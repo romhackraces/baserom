@@ -1,0 +1,11 @@
+1. per level basis configuration (retry_table.asm)
+multiple_midway_$00.png
+multiple_midway_$01.png
+multiple_midway_$02.png
+multiple_midway_$03.png
+
+
+2. custom midway bar object
+custom_bar.png
+
+* The destinations of custom midway bars are not affected by retry_table configuration ($00-$03).

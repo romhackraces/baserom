@@ -1,0 +1,87 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Valley of Bowser"
+	#game "Super Mario World"
+}
+
+#option smwvtable
+
+#0
+$F0 @4 t24
+y5 $DF
+q49
+^2.. r16 o4 g+16
+/
+o4 g2.. r16 g16 
+o4 g+2.. r16 g+16 
+
+
+
+
+#1
+@14 v255
+y10
+q6f
+[
+	r32o1 e32 e32 e32 e16 e32 e16 e32 e16 e16 >> d16 $DD $06 $04 $9c
+	r32<< e32 e32 e32 e16 e32 e16 e32 e16 e16 >  a16 $DD $06 $04 $97
+]1
+/
+*2
+
+
+
+
+#2
+@4
+y10
+$DF
+q49
+^2.. r16 o4 d+16
+/
+d2.. r16 d16
+d+2.. r16 d+16
+
+
+
+
+#3
+v255
+y10 $DF
+q4f
+[@21c8 @29c8 r16 @21c16 @29c8]2
+/
+*4
+
+
+
+
+#4
+@4
+y15
+$DF
+q49
+^2.. r16 o3 a16 
+/
+g+2.. r16 g+16 
+a2.. r16 a16 
+
+
+
+
+#5
+y20 $DF
+[
+	q49 @22c32 q49 @22c32
+	q4b @22c32 q49 @22c32
+	q4c @22c32 q49 @22c32
+	q4b @22c32 q49 @22c32
+]4
+
+/
+
+*8                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

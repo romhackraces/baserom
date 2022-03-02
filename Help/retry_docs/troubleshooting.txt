@@ -1,0 +1,70 @@
+Q: I applied a FG gradient code, and it appears above the Retry prompt as well!
+A: You need to make a slight edit to the HDMA code. You should see something like this:
+	
+	LDA #$17
+	STA $212C
+	LDA #$00
+	STA $212E
+
+Change that to:
+	
+	LDA #$17
+	STA $212C
+	LDA #$17	; <-
+	STA $212E
+
+--------------------------------------------------------------------------------
+
+Q: When I get the midway point in a level, sometimes Mario respawns in the main entrance rather than the midway entrance!
+A: Midway entrances only work properly if they use the "secondary method" in Lunar Magic. So if a midway doesn't seem to work, drag it around in LM while in sprite editing mode and put it back where it was (which enables the secondary method).
+
+--------------------------------------------------------------------------------
+
+Q: I set a custom midway entrance value to a secondary exit, but it doesn't work!
+A: Secondary entrances that are already present in the original game won't work properly. To make it work, delete it and remake it in LM.
+
+--------------------------------------------------------------------------------
+
+Q: When I enter a level from the overworld, it brings me to the bonus game!
+A: After inserting this, make sure to start from a new save file.
+
+--------------------------------------------------------------------------------
+
+Q: I patched the "Individual Dragon Coins Save" patch, but it doesn't seem to work correctly with Retry (for example, Dragon Coins not saving when getting a midway when using !Midpoint = 1 in that patch).
+A: First, check that you're using the latest version of that patch (the one that lists lx5 among the authors). After inserting that patch for the first time, you'll need to rerun UberASM Tool so that Retry can be aware that it's been inserted. After doing this, you can repatch both freely in any order, and they should work in any case.
+Additionally, if you just patched the "Remove Status Bar" patch, rerun UberASM Tool as well.
+
+--------------------------------------------------------------------------------
+
+Q: I use a custom midway block/sprite, but it doesn't seem to work!
+A: By default Retry only works with the vanilla midway tile, but it's fairly straightforward to make it work with your own blocks/sprites. Retry has a specific RAM address that can be used to set the midway in the current level (according to the "checkpoint" table in "retry_config/tables.asm"). The address is !ram_set_checkpoint: to have it always available in sprites/blocks, you can copy the contents of "ram.asm" into PIXI's "asm/sa1def.asm", GPS's "defines.asm" and UberASM Tool's "other/macro_library.asm".
+The system works as follows: if you set the low byte (!ram_set_checkpoint) to #$00, it will trigger the current level's midway. If the checkpoint table for this sublevel is 0, it means it will give you the midway for the main level. While if it's 2 or 3, it will give you the midway for the current sublevel.
+You can also set a completely custom entrance for the checkpoint, similarly to how Retry's custom midway objects work. To do this, you need to set the entire 16 bit address (!ram_set_checkpoint and !ram_set_checkpoint+1) to the entrance value you want to use. This value follows the format of $7E19B8 and $7E19D8 (where $7E19B8 should go in the first byte of the address, $7E19D8 in the second). For more info, check those addresses in SMWCentral's RAM Map.
+In practice, your midway block sprite should have a piece of code like this, to set the vanilla midway:
+
+	LDA #$01
+	STA $13CE
+
+To add multiple midway support, you'd just need to add this after it:
+	
+	LDA #$00
+	STA !ram_set_checkpoint
+
+To make the midway take you to an arbitrary entrance, you need to set a different value depending on what entrance it is. For example, to make it use secondary exit number $0169, you'd use this code:
+
+	REP #$20
+	LDA #$0169	; Secondary exit number.
+	ORA #$0200	; Set the "secondary exit" bit in the high byte (like $7E19D8).
+	STA !ram_set_checkpoint
+	SEP #$20
+
+Additionally, you can also reset the current level's checkpoint by setting !ram_set_checkpoint to #$80. This will respawn Mario in the current level's main entrance when dying.
+
+Note 1: if !save_on_checkpoint = 1, using this method will also make the game save.
+Note 2: if using the "Individual Dragon Coins Save" patch, using this method will also make the current Dragon Coins save (when !Midpoint = 1 in that patch).
+Note 3: this address is only checked while in a level, but you can also set it in other situations (in this case, the checkpoint will be registered the first time a level is entered).
+
+--------------------------------------------------------------------------------
+
+Q: I patched the 32x32 Player Tilemap patch / lx5's Custom Powerups and I get glitched graphics when dying! What do I do?
+A: Those patches have a high chance of using the same spots in SP1 for their dynamic tiles as the Retry prompt. To fix it, open "settings.asm" and towards the bottom you'll see a bunch of !tile_... defines. You need to edit some of those to other free spots in SP1 that aren't used by other patches.

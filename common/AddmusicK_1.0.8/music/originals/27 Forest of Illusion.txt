@@ -1,0 +1,126 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Forest of Illusion"
+	#game "Super Mario World"
+}
+#option smwvtable
+
+#0
+$F0
+r8 /
+
+@1 t25 y13
+$DE $14 $1f $30
+[
+	q4e o5 c32 d32 c32^32 c32 d32 c32^32
+	q3e c16
+	q5e > c8 c16
+	q5c < b16
+	q2c d16 d16 d16
+	q6d d4
+]2
+
+q6c o5 f16
+q2b d+16 d+16
+q6c f16
+q2b d+16 d+16
+q6c f8
+q6c e16
+q2b d16 d16
+q6c e16
+q2b d16 d16
+q6c e8
+q6d f16
+q2c d+16 d+16
+q6d f16
+q2c d+16 d+16
+q6d f16 > c16
+q7c ^16
+q7c < b4.. 
+
+
+
+
+
+
+#1
+r8 /
+
+@1 y8
+$DE $14 $1e $30
+[
+	q7d r4 o4 d+16 g+8.
+	q7c r4 a+16 b8. 
+]2
+
+q3b a+8. a+8.
+q6b a+8
+q3b a8. a8.
+q6b a8
+q3c a+8. a+8.
+q6c a+8
+q5d a2 
+
+
+
+
+
+
+#2
+r8 /
+
+
+@1 y10
+$DE $14 $1d $30
+[
+	q7d r8 r8 o4 c16 d+8.
+	q7c r8 r8 f+16 g8.
+]2
+
+q3b f+8. f+8.
+q6b f+8
+q3b f8. f8.
+q6b f8
+q3c f+8. f+8.
+q6c f+8
+q5d f2 
+
+
+
+
+
+
+#3
+r8 /
+
+@1 y5
+$DE $14 $1e $30
+[
+	q4e r8 o3 d+4.
+	q4d r8 g4.
+]2
+
+r2r2r2r2
+
+
+
+
+
+
+#7
+r8 /
+
+; $1374 / $1D75
+@1 y0
+$DE $14 $1c $30
+[
+	q4f o2 g+2
+	q4e g2
+]2
+
+r2r2r2r2
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

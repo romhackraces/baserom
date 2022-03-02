@@ -1,0 +1,91 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Overworld"
+	#game "Super Mario World"
+}
+#option smwvtable
+
+
+#0
+$F0
+@3 t28
+y10 q6f
+[
+	r12 o4 c24 b24 c24 b24 r8 a8
+	r12 d24 > c24 < d24 > c24 r8 < b8
+	r12 c24 b24 c24 b24 r8 a8
+]1
+> c24 r24 < a24 r24 f24 r24 e8 d8
+
+@3
+y10
+q6f
+*1
+d24 r24 e24 f24 r24 g24
+@0
+r12 > g48 a48 g16 r16^24
+
+
+
+
+
+#1
+@8
+y10
+q4f
+[
+	o2 c8 > c8 < < a8 > a8 d8 > d8 < < g8 > g8
+	c8 > c8 < < a8 > a8
+]1
+d16 r16 r8 c+4 
+*1
+r2
+
+
+
+
+
+#2
+@3
+y0
+q6f
+[
+	r12. o4 g24 r24 g24 r8 e8 r12. a24 r24 a24 r8 g8
+	r12. g24 r24 g24 r8 e8
+]1
+a8 r8 < b4
+*1
+r2
+
+
+
+
+
+#3
+@3
+y20
+q6f
+[
+	r12. o4 e24 r24 e24 r8 c8 r12. f24 r24 f24 r8 d8
+	r12. e24 r24 e24 r8 c8
+]1
+f8 r8 < f4
+*1
+r2
+
+
+
+
+
+#7
+y20
+q6c
+(1)[@22c24 r24 @22c24 @23c8]6
+(2)[@22c8 @22c24 @22c24 @22c24 @23c8 @23c8]1
+(1)6
+(2)1
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

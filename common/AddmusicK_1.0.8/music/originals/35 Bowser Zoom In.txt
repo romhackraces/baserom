@@ -1,0 +1,96 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Title = Bowser Zoom In ;;
+;; Ported by LadiesMan217 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+#option smwvtable
+
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Bowser Zoom In"
+	#game "Super Mario World"
+}
+?
+"VCMD_PAN_FADE=$dc"
+"VCMD_PITCH_SLIDE=$dd"
+"VCMD_MASTER_VOL_FADE=$e1"
+
+"PATCH017=@17 h0 $ed $7e $6a"
+
+#0
+PATCH017
+t25
+w255
+VCMD_MASTER_VOL_FADE $60 $c8
+y20
+VCMD_PAN_FADE $60 $0a
+q7f
+o4 e8 VCMD_PITCH_SLIDE $00 $0c $af
+VCMD_PITCH_SLIDE $00 $0c $b2
+q7e
+c8 VCMD_PITCH_SLIDE $00 $0c $ab
+VCMD_PITCH_SLIDE $00 $0c $af
+q7d
+< a8 VCMD_PITCH_SLIDE $00 $0c $a8
+VCMD_PITCH_SLIDE $00 $0c $9f
+q7c
+f8.. VCMD_PITCH_SLIDE $00 $0c $a4
+VCMD_PITCH_SLIDE $00 $1e $9c
+
+
+#1
+PATCH017
+y0
+VCMD_PAN_FADE $60 $0a
+r32 q7f
+o4 e8 VCMD_PITCH_SLIDE $00 $0c $af
+VCMD_PITCH_SLIDE $00 $0c $b2
+q7e
+c8 VCMD_PITCH_SLIDE $00 $0c $ab
+VCMD_PITCH_SLIDE $00 $0c $af
+q7d
+< a8 VCMD_PITCH_SLIDE $00 $0c $a8
+VCMD_PITCH_SLIDE $00 $0c $9f
+q7c
+f8. VCMD_PITCH_SLIDE $00 $0c $a4
+VCMD_PITCH_SLIDE $00 $18 $9c
+
+
+#2
+PATCH017
+y15
+VCMD_PAN_FADE $60 $0a
+r16 q7f
+o3 g8 VCMD_PITCH_SLIDE $00 $0c $a6
+VCMD_PITCH_SLIDE $00 $0c $9d
+q7e
+e8 VCMD_PITCH_SLIDE $00 $0c $a3
+VCMD_PITCH_SLIDE $00 $0c $9a
+q7d
+c8 VCMD_PITCH_SLIDE $00 $0c $a1
+VCMD_PITCH_SLIDE $00 $0c $97
+q7c
+< a12... VCMD_PITCH_SLIDE $00 $0c $9d
+VCMD_PITCH_SLIDE $00 $12 $93
+
+
+#3
+PATCH017
+y5
+VCMD_PAN_FADE $60 $0a
+r16. q7f
+o3 g8 VCMD_PITCH_SLIDE $00 $0c $a6
+VCMD_PITCH_SLIDE $00 $0c $9d
+q7e
+e8 VCMD_PITCH_SLIDE $00 $0c $a3
+VCMD_PITCH_SLIDE $00 $0c $9a
+q7d
+c8 VCMD_PITCH_SLIDE $00 $0c $a1
+VCMD_PITCH_SLIDE $00 $0c $97
+q7c
+< a8 VCMD_PITCH_SLIDE $00 $0c $9d
+VCMD_PITCH_SLIDE $00 $0c $93
+
+
+#amk 2

@@ -1,0 +1,73 @@
+;本家SMW スイッチ宮殿　by ◆oL7G5poF4c 
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Switch Palace"
+	#game "Super Mario World"
+}
+
+#option smwvtable
+
+ #0 q5c t64 @4 y5
+$F0
+o4g4g4f+4f+4f8d8a8g2r8/
+(1)[r2]8
+(2)[$de $00 $00 $00
+@1y10 q5d
+$ec $00 $06 $08
+o5a4f8.c16f8f8f8.c16f8f8f8>c8<a4g8.c16 
+o5a4f8.c16f8f8f8.c16f8>c8<a8g8f4@15h0<<a4]2
+@1
+o5a4f8c8a4f4g+16f16c8g+4g2
+o5a4f8c8a4f4g+16f16c8>c2r4
+(2)1
+
+ #1 q5d @14 y10
+o2a4a4g+4g+4g8r8g8c4c8c8c8/
+@7y5 q5b
+r8>>f8f8r8f8f8r8f8
+r8d8d8r8d8d8r8d8
+r8f8f8r8f8f8r8f8
+r8d8d8r8d2
+y10 q59
+(3)[o2f8>>c8<<f8>>c8<<f8>>c8<<f8>>c8<<f8>>c8<<f8>>c8<<f8r8c4 
+f8>>c8<<f8>>c8<<f8>>c8<<f8>>c8<<f8>>c8<c8>e8<<f8r8f8r8]2
+[a+8>>d8<<a+8>>d8<<a8>>c8<<a8>>c8<<g+8>>c8<<g+8>>c8<<g8>>d8<<c8>>c8]2
+(3)1
+
+ #2 q5c @4 y10
+o4e4e4d+4d+4d8<a+8>f8e2r8/
+@7y10 q5b
+<<f8>>c8c8<<f8>>c8c8<<f8>>c8<<d8>a8a8<d8>a8a8<d8>a8
+<f8>>c8c8<<f8>>c8c8<<f8>>c8<<d8>a8a8<d8>a2
+y5 q59
+(4)[r8a8r8a8r8a8r8a8r8a8r8a8a8r8g4
+r8a8r8a8r8a8r8a8r8a8r8>c8<a8r8a8r8]2
+[r8a+8r8a+8r8a8r8a8r8g+8r8g+8r8a+8r8a+8]2
+(4)1
+
+ #3 q5c @4 y15
+o4c4c4c4c4<a+8g8>d8c2r8/
+@12h0y10v255 q6f
+[>f8.c16d8f8.c16d8f16a16c16d16]36
+
+ #5 q5c @0 y10
+o5g4g4f+4f+4f8d8a8g2r8/
+(1)8
+(5)[$de $00 $00 $00
+@2h0y5 q59
+a4f8.c16f8f8f8.c16f8f8f8>c8<a4g8.c16
+a4f8.c16f8f8f8.c16f8>c8<a8g8f4@15h0<a4]2
+(1)8
+(5)1
+
+ #7 q59 @7 y15
+(1)4/
+(1)8
+(6)[r8o4f8r8f8r8f8r8f8r8f8r8f8c8r8e4
+r8f8r8f8r8f8r8f8r8f8r8g8c8r8c8r8]2
+[r8f8r8f8r8f8r8f8r8f8r8f8r8f8r8e8]2
+(6)1                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

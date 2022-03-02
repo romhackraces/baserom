@@ -1,0 +1,127 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Water"
+	#game "Super Mario World"
+}
+
+#option smwvtable
+
+;本家SMW 水中面　by ◆oL7G5poF4c 
+;title=water
+
+ #0 q7e t50 @1 y10
+$f0
+$de $23 $12 $40
+$F4 $00				;ヨッシー制御オン
+o6 d4.<a+4f8e8.e16f32f+32g4./
+@3 q79
+r4.o5c32d32f32a32>c4r4.<d32f32g32a+32>d4
+r4.<c32d32f32a32>c4r4.<e32g32a+32>d32e8.
+q2e r16
+@1 q6e
+[<a4.f4c8d4f8f4.c4f8f4>c8<a4.g4.
+o5a4.f4c8d4f8f4.c4f8a+8a8g8f4.r4.]2
+(1)[o5a4.f4c8a4.f4.]1
+o5g+4.f4g+8g4.r4.
+(1)1
+o5g+4.f4c8>c4.^4.
+o5a4.f4c8d4f8f4.c4f8a+8a8g8f4.r4.
+
+ #1 q6e @1 y10
+o5f4.d4<a+8g8.g16a32a32a+4./
+@1y10 q4d
+r8c8c8r8c8c8r8d8d8r8c+8c+8
+r8c8c8r8c8c8r8d8d8r8c+8c+8
+(2)[r8c8c8r8c8c8r8d8d8r8d8d8
+r8e8e8r8d+8d+8r8d8d8r8e8e8
+r8c8c8r8c8c8r8d8d8r8d8d8
+r8d8d8r8c8c8r8c8c8r8c8c8]1
+@2 h0 q6c
+o5a4.f4c8d4f8f4.c4f8f4>c8<a4.g4.
+; $16D0 / $540C
+a4.f4c8d4f8f4.c4f8a+8a8g8f4.r4.
+@1 q4d
+[r8o4f8f8r8f8f8r8f8f8r8f8f8
+r8o4f8f8r8f8f8r8f8f8r8e8e8]2
+@2 h0 q6c
+o5a4.f4c8d4f8f4.c4f8a+8a8g8f4.r4.
+
+ #2 q6e @1 y10
+$de $23 $12 $40
+o3g4.g4g8<c8.c16d32d+32e4./
+q3e
+o2f4.d4.g4.c4.f4.d4.g4.c8d8e8
+[o2f4.a4.a+4.b4.a4.g+4.g4.c8d8e8
+f4.a4.a+4.b4.g4.>c4.<f8>c8<a8f4.]2
+[o2a+4.a+4.a4.a4.g+4.g+4.g4.c8d8e8]2
+o2f4.a4.a+4.b4.g4.>c4.<f8>c8<a8f4.
+
+ #3 q7b @1
+$db $8a
+r32 o6 d4. < a+4 f8 e8. e16 f32 f+32 g6... r16/
+(3)[r2]6
+y10 $de $23 $12 $40
+r16.[a4.f4c8d4f8f4.c4f8f4>c8<a4.g4.
+a4.f4c8d4f8f4.c4f8a+8a8g8f4.r4.]2
+(4)[a4.f4c8a4.f4.]1
+g+4.f4g+8g4.r4.
+(4)1
+g+4.f4c8>c4.^4.
+<a4.f4c8d4f8f4.c4f8a+8a8g8f4.r4^32
+
+ #4 q4d @1 y10
+r=276/
+(3)18
+(2)1
+(3)12
+r8o4c8c8r8c8c8r8d8d8r8d8d8
+r8d8d8r8c8c8r8c8c8r8c8c8
+
+ #5 q6d @12 h0 y10
+r=276/
+(44)[r8o5c16c16c8r8<a8>d8]11
+<a8>c8c8<a8>r4
+(44)7
+<a8>c8c8<a8>r4
+[r8d8d8r8d8<a8r8>d8d8r8<a8>d8]4
+(44)3
+<a8>c8c8<a8>r4
+
+ #6 q6b @1
+$db $8a
+$de $23 $12 $40
+r32 o3 g4. g4 g8 < c8. c16 d32 d+32 e4^16./
+q4d y10
+r8>a8a8r8a8a8r8a+8a+8r8a+8a+8
+r8a8a8r8a8a8r8a+8a+8r8a+8a+8
+[r8a8a8r8a8a8r8a+8a+8r8b8b8
+r8>c8c8r8c8c8r8<a+8a+8r8>c8c8
+r8<a8a8r8a8a8r8a+8a+8r8b8b8
+r8a+8a+8r8a+8a+8r8a8a8r8a8a8]2
+[r8o4d8d8r8d8d8r8c8c8r8c8c8
+r8<b8b8r8b8b8r8a+8a+8r8>c8c8]2
+r8<a8a8r8a8a8r8a+8a+8r8b8b8
+r8a+8a+8r8a+8a+8r8a8a8r8a8a8
+
+ #7 q6e @1
+$db $a0
+r32 o5 f4. d4 < a+8 g8. g16 a32 a32 a+4^16./
+(3)6
+$de $23 $12 $40
+y15
+(5)[q7c c4.c+4.d4.c+4.c4.<b4.a+4.>e4.]1
+q7b c4.c+4.d4.c+4.c4.<a+4.a4.^4.
+(5)1
+q7b >c4.c+4.d4.c+4.c4.e4.f4.^4.
+@0 q67
+(6)[o5c2c+16d16f16a16>c4.<a4.]1
+o4b2>c16d16f16g+16a+4.g4.
+(6)1
+o4b2>c16c+16d16f16a4.g4.
+@1 q7b
+o4c4.c+4.d4.c+4.c4.e4.f4. ^4.
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

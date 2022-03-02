@@ -1,0 +1,11 @@
+#--------------------------------------#
+# Used FreeRAM Values                  #
+#--------------------------------------#
+
+$1929 - asar/BlockDuplicationFix.asm - 1 byte
+$1FFA - asar/ToggleStatusbar.asm - 1 byte
+$140B - asar/FlightSpinFix.asm - 1 byte
+$1DFD - library/double_hit_fix.asm - 1 byte
+$1DFE - library/double_hit_fix.asm - 1 byte
+$7FB400 - retry_config/ram.asm - at minimum 230 bytes + 1 byte for every custom midway
+$7FB000 - AddMusicK - 2 to potentially 1032 bytes

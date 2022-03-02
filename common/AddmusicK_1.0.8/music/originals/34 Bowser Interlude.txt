@@ -1,0 +1,94 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Bowser Interlude"
+	#game "Super Mario World"
+	#length "0:11"
+}
+?
+#option smwvtable
+
+"PERC000N=@21c"
+"PERC008N=@29c"
+"PERC000X=@21c"
+"PERC008X=@29c"
+
+#0
+@4 t13
+$E3 $ff $1e
+y20
+q7d
+o1 e8 a+8 a8 g+8 d8 d+8 q7e
+e8 a+8 a8 g+8 d8 d+8 q7f
+e8 a+8 a8 g+8 r8 r8 
+
+
+#1
+@4
+y10
+q7d
+o2 e8 a+8 a8 g+8 d8 d+8 q7e
+e8 a+8 a8 g+8 d8 d+8 q7f
+e8 a+8 a8 g+8 r8 r8 
+
+
+#2
+@4
+y0
+q7d
+o1 b8 > f8 e8 d+8 < a8 a+8 q7e
+b8 > f8 e8 d+8 < a8 a+8 q7f
+b8 > f8 e8 d+8 r8 r8 
+
+#3
+@4 
+y15
+q7d
+r2 r4 q7e
+o2 b8 > f8 e8 d+8 < a8 a+8 q7f
+b8 > f8 e8 d+8 r8 r8 
+; $1A64 / $23C0
+@4
+y14
+q7e
+r8. < g4. y2
+> > > c+8. y5
+d4. ^4. $DD $0c $60 $97
+
+; $1A66 / $2495
+@1
+y10
+
+; VCMD_SUBROUTINE $9d $24 $04
+q7e
+(4)[
+PERC000N8 ^8 PERC000X16 PERC000X16 ^8 PERC000X16 ^16 ^16 PERC000X16 ^16 PERC000X16 ^16 ^16 
+]2
+
+
+#4
+@4
+y10
+r2 r2 r2 q7f
+o3 e8 a+8 a8 g+8 r8 r8 
+
+#5
+@4
+y10
+r32 q79
+o2 e8 a+8 a8 g+8 d8 d+8 q7b
+b8 > f8 e8 d+8 < a8 a+8 q7c
+> e8 a+8 a8 g+16. r8 r8 
+
+
+#7
+@4
+y10
+q7d
+[PERC000N8]6  q7e
+*6 q7f
+[PERC000X16]8 r4
+
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

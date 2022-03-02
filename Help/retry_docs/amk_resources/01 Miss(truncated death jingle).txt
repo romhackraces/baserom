@@ -1,0 +1,56 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Miss!"
+	#game "Super Mario World"
+}
+
+#samples
+{
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"default/03 SMW @3.brr" ; death
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"default/0A SMW @9.brr"
+	"EMPTY.brr"
+	"default/0C SMW @13.brr"
+}
+
+#option TempoImmunity
+#option NoLoop
+#option smwvtable
+
+#0
+
+$F0 y10
+t52 @9 q6E o6
+d+=12 e=12 d+=12 e=12 c=12 o5
+g=12 g+=12 a=12 d+=12 e=12 c=12 o4
+g=12 g+=12 a=12 d+=12 e=12 c=48 o3
+c=48
+
+#2
+@9 y10 q4E r=24 o4
+e=24 r=24 d=24 r=24 c=24 r=24 o3
+b=24 g=24 r=24 o2
+g=24 r=24
+
+#3
+@9 y10 q6E o3
+c=24 q4E o4 c=24 q6E o2
+a+=24 q4E o3
+a+=24 q6E o2
+a=24 q4E o3
+a=24 q6E o2
+g=24 q4E o3
+g=24 q6E o2
+c=24 r=24 c=48
+                
+
+#amk 2
