@@ -62,4 +62,4 @@ If you need to quickly generate a BPS patch for your hack for distribution `@cre
 
 ## More Information
 
-For more information about the creating levels for Romhack Races or for additional documentation about the baserom check out the items in the `Help` folder.
+For more information about the creating levels for Romhack Races or for additional documentation about the baserom check out the items in the `Help` folder or visit the [baserom Wiki](https://github.com/ampersam-smw/rhr-baserom/wiki)
