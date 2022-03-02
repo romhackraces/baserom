@@ -4,10 +4,9 @@
 
 Patch your copy of unmodified Super Mario World using the `RHR.bps` patch found in the main folder of this BaseROM ensuring it has the name 'RHR4'. If you change the name be sure to change all instances of 'RHR4' found in all scripts.
 
-## THE 'common' FOLDER
+## The 'common' Folder
 
-This BaseROM comes with a 'common' folder that collates all commonly used tools and resources 
-you need to apply patches and code to your ROM in one place.
+This BaseROM comes with a 'common' folder that collates all commonly used tools and resources you need to apply patches and code to your ROM in one place.
 
 See The [README](common/README.md) in that folder for further instructions, before proceeding further.
 
