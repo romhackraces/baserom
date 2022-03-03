@@ -57,7 +57,7 @@ if "%Action%"=="5" (
 if "%Action%"=="6" (
     echo Creating BPS patch...
     cd .\common\
-    .\flips.exe --create --bps ..\sysLMRestore\smwOrig.smc ..\RHR4.smc ..\RHR4.bps
+    .\flips.exe --create --bps ..\sysLMRestore\smwOrig.smc %ROMFILE% ..\RHR4.bps
     echo Done.
 )
 if "%Action%"=="0" (

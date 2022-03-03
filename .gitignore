@@ -8,6 +8,7 @@ sysLMRestore
 *.mw2
 *.mwt
 *.sfc
+*.extmod
 *.smc
 *.ssc
 *.zip
