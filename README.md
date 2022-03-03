@@ -22,7 +22,7 @@ To make life easier for your as a hack, this baserom comes some helpful scripts 
 
 ## More Information
 
-For more information about the creating levels for Romhack Races or for additional documentation about the baserom check out the [baserom Wiki](https://github.com/ampersam-smw/rhr-baserom/wiki). If you need to view documentation for large resources included in the baserom, such as the Retry System, the `Help` folder included in this baserom contains the relevant material.
+For more information about the creating levels for Romhack Races or for additional documentation about what is in the baserom check out the [baserom Wiki](https://github.com/ampersam-smw/rhr-baserom/wiki). If you need to view documentation for large resources included in the baserom, such as the Retry System, the `Docs` folder included in this baserom contains the relevant material.
 
 If you have feedback or would like additional support with the baserom from the Romhack Races team, please visit the `#baserom-support` in the Romhack Races Discord server.
 
