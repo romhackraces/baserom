@@ -1,4 +1,4 @@
-# Romhack Races BaseROM v4
+# Romhack Races Base ROM v4
 
 This is the official BaseROM for creating Super Mario World race levels for [Romhack Races](https://romhackraces.com/). This base ROM is tailor-made for both race level creation as well as general purpose hacking, but a lot of the changes made and patches included are to accommodate Kaizo level design in particular.
 
@@ -10,9 +10,7 @@ If you change the filename of your ROM be sure to rename the ancillary files inc
 
 ### The 'common' Folder
 
-This BaseROM comes with a 'common' folder that collates all commonly used tools and resources you need to apply patches and code to your ROM in one place.
-
-See The [README](common/README.md) in that folder for further instructions, before proceeding further.
+This base ROM comes with a folder that collates all commonly used tools, resources you need, patches to apply to your ROM, etc. in the  `common` folder to keep the main directory of your project neat and tidy. See The [README in that folder](common) for further instructions, before proceeding further.
 
 ### Helpful Scripts
 
@@ -25,7 +23,7 @@ To make life easier for your as a hack, this base ROM comes some helpful scripts
 
 ## More Information
 
-For more information about the creating levels for Romhack Races or for additional documentation about the baserom check out the items in the `Help` folder or visit the [baserom Wiki](https://github.com/ampersam-smw/rhr-baserom/wiki)
+For more information about the creating levels for Romhack Races or for additional documentation about the base ROM check out the items in the `Help` folder or visit the [baserom Wiki](https://github.com/ampersam-smw/rhr-baserom/wiki)
 
 ### Credits
 
