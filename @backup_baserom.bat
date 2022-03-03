@@ -69,8 +69,8 @@ if "%Action%"=="4" (
 		mkdir %~dp0Backup
 	)
     echo Creating time-stamped copy of your ROM...
-    copy %ROMFILE% "%~dp0Backup\%TIMESTAMP%_%BASEROM_NAME%.smc"
-    copy %ROMFILE% "%~dp0Backup\latest_%BASEROM_NAME%.smc"
+    copy %ROMFILE% "%~dp0Backup\%TIMESTAMP%_RHR4.smc"
+    copy %ROMFILE% "%~dp0Backup\latest_RHR4.smc"
     echo Done.
 )
 if "%Action%"=="0" (
