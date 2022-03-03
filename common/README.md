@@ -1,10 +1,10 @@
 # Common Tools and Patches
 
-This `common` folder is where you will place any or all ASM patches, blocks, sprites, etc. and the tools needed to apply them so everything you need for your baserom is in one convenient place. Empty folders required by the tools have been pre-made and will be encountered when you add the tools into this folder in later steps.
+This `common` folder contains all ASM patches, blocks, sprites, etc. included in the baserom, as well the tools needed to apply them to your hack so everything you need for is in one convenient place. The exception to this is AddMusicK which is more compilated and self-contained in its own folder in the main directory.
 
 ## The BaseROM Toolkit
 
-For applying custom code and patches to your baserom there is a basic set of tools one usually needs:
+For applying custom resources and patches to your baserom there is a basic set of tools one usually needs:
 
 - AddMusicK: a tool for inserting custom music into your ROM
 - Asar: an assembler for applying patches to your BaseROM
@@ -14,11 +14,11 @@ For applying custom code and patches to your baserom there is a basic set of too
 - PIXI: a sprite insertion tool (CFG Editor is a tool included with PIXI for tweaking configuration files of custom sprites.)
 - UberASM: a tool for inserting level, overworld, game mode, status bar, sprite and global ASM without using a patch
 
-All these tools have been provided for ease of editing your BaseROM.
+All these tools have been provided right in this folder for ease of editing your baserom. Adding custom assets will be as simple as copying additional blocks, sprites, patches, extra folders, etc. into the appropriate locations in this `common` folder, e.g. sprites into the `sprites` folder and so forth, and updating the appropriate list files.
 
-## List Files
+### List Files
 
-Adding custom assets will be as simple as copying blocks, sprites, patches, extra folders, etc. into the appropriate locations in this 'common' folder and updating the appropriate list files:
+"Wait how do I keep track of my list files??" Worry not, each of the tool's list files are now specified for each tool and read by the build scripts included with this baserom. You need only update each as you would normally and the build script will take care of the rest.
 
 - `list_asar.txt` the list file where you can list the patches for use with Asar from the `asar` folder.
 - `list_gps.txt` the custom block list for GPS where you list blocks by Map16 tile number and references to the block ASM as usual, e.g. '0200 custom_block.asm' etc.
