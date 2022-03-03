@@ -4,13 +4,13 @@ This is the official baserom for creating Super Mario World race levels for [Rom
 
 ## Getting Started
 
-While all the individual resources used in the baserom are readily available, the first thing you are doing to do is patch your copy of unmodified Super Mario World with the `RHR.bps` patch found in the main folder of this baserom, ensuring it has the name 'RHR4' when completed. This patch contains all of the changes already made so you can get going straightaway.
+The first thing you are going to do is patch your copy of unmodified Super Mario World with the `RHR.bps` patch found in the main folder of this baserom, ensuring it has the name 'RHR4' when completed. This patch contains all of the changes already made so you can get going straightaway on building your Romhack Race level.
 
-If you change the filename of your ROM be sure to rename the ancillary files included in this baserom and change all instances of 'RHR4' found in the scripts (specified usually by `set ROMFILE="RHR4.smc"`) otherwise they will not work as intended.
+If you change the filename of your ROM be sure to rename the ancillary files included in this baserom and change all instances of `RHR4` found in the build scripts (specified usually by `set ROMFILE="RHR4.smc"`) otherwise they will not work as intended.
 
 ### The 'common' Folder
 
-This baserom comes with a folder that collates all commonly used tools, resources you need, patches to apply to your ROM, etc. in the  `common` folder to keep the main directory of your project neat and tidy. See The [README in that folder](common) for further instructions, before proceeding further.
+This baserom comes with a folder that compiles all commonly used tools, resources you need, patches to apply to your ROM, etc. in one place to keep the main directory of your project neat and tidy and streamline your workflow. See The [README in that folder](common) for further instructions, before proceeding further.
 
 ### Helpful Scripts
 
@@ -26,7 +26,7 @@ For more information about the creating levels for Romhack Races or for addition
 
 ### Credits
 
-It is good practice to keep track of all resources used in your hacks if you can help it, see the included [CREDITS.txt](CREDITS.txt) file for information about the resources included out-of-the-box or visit the [wiki page](https://github.com/ampersam-smw/rhr-baserom/wiki/Resources-Used-in-the-Baserom).
+It is good practice to keep track of all resources used in your hacks if you can help it, see the included [CREDITS.txt](CREDITS.txt) file for a list of all resources included in the baserom visit the [wiki page](https://github.com/ampersam-smw/rhr-baserom/wiki/Resources-Used-in-the-Baserom).
 
 ### Contributing
 
