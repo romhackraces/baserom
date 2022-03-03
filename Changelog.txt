@@ -1,0 +1,9 @@
+v4.3
+
+- streamlined the script process to make it less overwhelming
+- added back the bush graphics to the baserom as ExGraphics
+- updated the documentation and moved a lot of it to the GitHub wiki
+
+v4.2.1
+
+- The initial version uploaded to GitHub
