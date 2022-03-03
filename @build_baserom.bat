@@ -81,4 +81,4 @@ popd
 if "!Action!"=="0" (
     exit /b
 )
-if '!Action!'=='' echo !choice!" is not valid please try again.
+if '!Action!'=='' echo Nothing is not valid option, please try again.
