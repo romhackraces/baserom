@@ -1,8 +1,8 @@
-# Common Tools and Patches
+## Common Tools and Patches
 
 This `common` folder contains all ASM patches, blocks, sprites, etc. included in the baserom, as well the tools needed to apply them to your hack so everything you need for is in one convenient place.
 
-## The BaseROM Toolkit
+### The BaseROM Toolkit
 
 For applying custom resources and patches to your baserom there is a basic set of tools one usually needs:
 
@@ -18,7 +18,7 @@ All these tools have been provided right in this folder for ease of editing your
 
 The exception to this is AddMusicK which is more compilated and self-contained in its own folder in the main directory. However you can still use the build scripts for adding music.
 
-## List Files
+### List Files
 
 "Wait how do I keep track of my list files??" Worry not, each of the tool's list files are now specified for each tool and read by the build scripts included with this baserom. You need only update each as you would normally and the build script will take care of the rest.
 
