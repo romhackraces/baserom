@@ -60,13 +60,6 @@ if "%Action%"=="6" (
     .\flips.exe --create --bps ..\sysLMRestore\smwOrig.smc ..\RHR4.smc ..\RHR4.bps
     echo Done.
 )
-:: Create bps Patch with Flips
-if "%Action%"=="6" (
-    echo Creating BPS patch...
-    cd .\common\
-    .\flips.exe --create --bps ..\sysLMRestore\smwOrig.smc ..\RHR4.smc ..\RHR4.bps
-    echo Done.
-)
 if "%Action%"=="0" (
     exit
 )
