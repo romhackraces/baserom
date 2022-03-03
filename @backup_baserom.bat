@@ -55,6 +55,9 @@ if "%Action%"=="3" (
 )
 :: Create time-stamped backup of your ROM
 if "%Action%"=="4" (
+	if not exist Backup (
+		mkdir Backup
+	)
     echo Creating time-stamped copy of your ROM...
     copy %ROMFILE% "Backup\%TIMESTAMP%_%BASEROM_NAME%.smc"
     copy %ROMFILE% "Backup\latest_%BASEROM_NAME%.smc"
