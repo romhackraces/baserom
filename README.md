@@ -26,3 +26,7 @@ To make life easier for your as a hack, this base ROM comes some helpful scripts
 ## More Information
 
 For more information about the creating levels for Romhack Races or for additional documentation about the baserom check out the items in the `Help` folder or visit the [baserom Wiki](https://github.com/ampersam-smw/rhr-baserom/wiki)
+
+### Credits
+
+It is good practice to keep track of all resources used in your hacks if you can help it, see the included [CREDITS.txt](CREDITS.txt) file for information about the resources included out-of-the-box or visit the [wiki page](https://github.com/ampersam-smw/rhr-baserom/wiki/Resources-Used-in-the-Baserom).
