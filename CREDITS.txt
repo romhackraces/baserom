@@ -11,6 +11,7 @@ P-Balloon and Cloud Clipping Fix - lolcats439 - https://smwc.me/s/8771
 P-Switch Duplication with Yoshi Fix - KevinM - https://smwc.me/s/22611
 Rollover Fix - Noobish Noobsicle - https://smwc.me/s/14053
 Rope Fix - Alcaro - https://smwc.me/s/8784
+Throw Direction Fix - PangeaPanga, AmazingChest
 Time Up Fix - Alcaro - https://smwc.me/s/15110
 Walljump/Note Block Glitch Fix v1.6 - lolcats439 - https://smwc.me/s/19932
 
