@@ -50,7 +50,7 @@ if "!Action!"=="3" (
 :: Insert custom music with AddmusicK
 if "!Action!"=="4" (
     echo Inserting custom Music...
-    pushd .\AddmusicK_1.0.8\
+    pushd .\common\AddmusicK_1.0.8\
     .\AddmusicK.exe !ROMFILE!
     echo Done.
 )
