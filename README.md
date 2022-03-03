@@ -16,14 +16,9 @@ See The [README](common/README.md) in that folder for further instructions, befo
 
 To make life easier, this BaseROM comes some helpful script to automate the process of applying additional custom assets to your ROM as well as for backing things up and creating a patch for distribution.
 
-`@build_baserom.bat`
-- does a lot of the work for you when it comes to inserting custom assets into your ROM by present a list the options corresponding to each of the tools. 
-
-`@backup_baserom.bat`
-- gives you the option to exports all modified levels, edited map16 and/or shared palettes from your ROM using Lunar Magic, as well as create a time-stamped backup of your ROM if you desire.
-
-`@restore_from_backup.bat`
-- restores global assets your ROM from a time-stamped based backup and imports previously-exported levels, map16 and palettes into your ROM. Requires Lunar Magic and the backup scripts to be run first.
+- `@build_baserom.bat`: does a lot of the work for you when it comes to inserting custom assets into your ROM by present a list the options corresponding to each of the tools. 
+- `@backup_baserom.bat`: gives you the option to exports all modified levels, edited map16 and/or shared palettes from your ROM using Lunar Magic, as well as create a time-stamped backup of your ROM if you desire.
+- `@restore_from_backup.bat`: restores global assets your ROM from a time-stamped based backup and imports previously-exported levels, map16 and palettes into your ROM. Requires Lunar Magic and the backup scripts to be run first.
     
 ## More Information
 
