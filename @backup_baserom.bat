@@ -3,8 +3,7 @@ cls
 :start
 
 :: Variables
-set ROMFILE="RHR4.smc"
-
+set ROMFILE="%~dp0RHR4.smc"
 setlocal
 for /f "delims=" %%a in ('wmic OS Get localdatetime ^| find "."') do set DateTime=%%a
 
@@ -31,39 +30,50 @@ set /p Action=Enter the number of your choice:
 :: Export MWL level files
 if "%Action%"=="1" (
     echo Exporting Levels...
-    mkdir "Levels\%TIMESTAMP%"
-    mkdir "Levels\latest"
-    ".\common\Lunar Magic.exe" -ExportMultLevels "%ROMFILE%" "Levels\%TIMESTAMP%\level" 
-    ".\common\Lunar Magic.exe" -ExportMultLevels "%ROMFILE%" "Levels\latest\level"  
+	if not exist %~dp0Levels\%TIMESTAMP% (
+		mkdir "%~dp0Levels\%TIMESTAMP%"
+	)
+
+	if not exist %~dp0Levels\latest (
+		mkdir "%~dp0Levels\latest"
+	)
+
+    "%~dp0common\Lunar Magic.exe" -ExportMultLevels "%ROMFILE%" "%~dp0Levels\%TIMESTAMP%\level" 
+    "%~dp0common\Lunar Magic.exe" -ExportMultLevels "%ROMFILE%" "%~dp0Levels\latest\level"  
     echo Done.
 )
 :: Export Map16
 if "%Action%"=="2" (
     echo Exporting Map16...
-    mkdir "Map16"
-    ".\common\Lunar Magic.exe" -ExportAllMap16 "%ROMFILE%" "Map16\AllMap16_%TIMESTAMP%.map16" 
-    ".\common\Lunar Magic.exe" -ExportAllMap16 "%ROMFILE%" "Map16\AllMap16_latest.map16" 
+	echo %~dp0
+	if not exist %~dp0Map16 (
+		mkdir "%~dp0Map16"
+	)
+    "%~dp0common\Lunar Magic.exe" -ExportAllMap16 "%ROMFILE%" "%~dp0Map16\AllMap16_%TIMESTAMP%.map16" 
+    "%~dp0common\Lunar Magic.exe" -ExportAllMap16 "%ROMFILE%" "%~dp0Map16\AllMap16_latest.map16" 
     echo Done.
 )
 :: Export Palettes
 if "%Action%"=="3" (
     echo Exporting Palettes...
-    mkdir "Palettes"
-    ".\common\Lunar Magic.exe" -ExportSharedPalette "%ROMFILE%" "Palettes\%TIMESTAMP%_Shared.pal"
-    ".\common\Lunar Magic.exe" -ExportSharedPalette "%ROMFILE%" "Palettes\Shared_latest.pal"
+	if not exist %~dp0Palettes (
+		mkdir "%~dp0Palettes"
+	)
+    "%~dp0common\Lunar Magic.exe" -ExportSharedPalette "%ROMFILE%" "%~dp0Palettes\%TIMESTAMP%_Shared.pal"
+    "%~dp0common\Lunar Magic.exe" -ExportSharedPalette "%ROMFILE%" "%~dp0Palettes\Shared_latest.pal"
     echo Done.
 )
 :: Create time-stamped backup of your ROM
 if "%Action%"=="4" (
-	if not exist Backup (
-		mkdir Backup
+	if not exist %~dp0Backup (
+		mkdir %~dp0Backup
 	)
     echo Creating time-stamped copy of your ROM...
-    copy %ROMFILE% "Backup\%TIMESTAMP%_%BASEROM_NAME%.smc"
-    copy %ROMFILE% "Backup\latest_%BASEROM_NAME%.smc"
+    copy %ROMFILE% "%~dp0Backup\%TIMESTAMP%_RHR4.smc"
+    copy %ROMFILE% "%~dp0Backup\latest_RHR4.smc"
     echo Done.
 )
 if "%Action%"=="0" (
-    exit
+    exit /b
 )
 if '%Action%'=='' echo %choice%" is not valid please try again.
