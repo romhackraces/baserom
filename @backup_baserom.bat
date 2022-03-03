@@ -1,9 +1,24 @@
 @echo off
+Setlocal EnableDelayedExpansion
 cls
 :start
 
+:: Name of your ROM
+set ROMNAME=RHR4
+
 :: Variables
-set ROMFILE="%~dp0RHR4.smc"
+set ROMFILE="%~dp0%ROMNAME%.smc"
+
+:: Backup locations
+set MAIN_BACKUP=%~dp0Backup
+set LEVELS_BACKUP=%~dp0Levels
+set MAP16_BACKUP=%~dp0Map16
+set PAL_BACKUP=%~dp0Palettes
+
+:: Lunar Magic location
+set LM="%~dp0common\Lunar Magic.exe"
+
+:: Time stuff
 setlocal
 for /f "delims=" %%a in ('wmic OS Get localdatetime ^| find "."') do set DateTime=%%a
 
@@ -30,50 +45,51 @@ set /p Action=Enter the number of your choice:
 :: Export MWL level files
 if "%Action%"=="1" (
     echo Exporting Levels...
-	if not exist %~dp0Levels\%TIMESTAMP% (
-		mkdir "%~dp0Levels\%TIMESTAMP%"
-	)
+    if not exist %LEVELS_BACKUP%\%TIMESTAMP% (
+        mkdir "%LEVELS_BACKUP%\%TIMESTAMP%"
+    )
 
-	if not exist %~dp0Levels\latest (
-		mkdir "%~dp0Levels\latest"
-	)
+    if not exist %LEVELS_BACKUP%\latest (
+        mkdir "%LEVELS_BACKUP%\latest"
+    )
 
-    "%~dp0common\Lunar Magic.exe" -ExportMultLevels "%ROMFILE%" "%~dp0Levels\%TIMESTAMP%\level" 
-    "%~dp0common\Lunar Magic.exe" -ExportMultLevels "%ROMFILE%" "%~dp0Levels\latest\level"  
+    %LM% -ExportMultLevels "%ROMFILE%" "%LEVELS_BACKUP%\%TIMESTAMP%\level"
+    %LM% -ExportMultLevels "%ROMFILE%" "%LEVELS_BACKUP%\latest\level"
     echo Done.
 )
 :: Export Map16
 if "%Action%"=="2" (
     echo Exporting Map16...
-	echo %~dp0
-	if not exist %~dp0Map16 (
-		mkdir "%~dp0Map16"
-	)
-    "%~dp0common\Lunar Magic.exe" -ExportAllMap16 "%ROMFILE%" "%~dp0Map16\AllMap16_%TIMESTAMP%.map16" 
-    "%~dp0common\Lunar Magic.exe" -ExportAllMap16 "%ROMFILE%" "%~dp0Map16\AllMap16_latest.map16" 
+    echo %~dp0
+    if not exist %MAP16_BACKUP% (
+        mkdir "%MAP16_BACKUP%"
+    )
+    %LM% -ExportAllMap16 "%ROMFILE%" "%MAP16_BACKUP%\AllMap16_%TIMESTAMP%.map16"
+    %LM% -ExportAllMap16 "%ROMFILE%" "%MAP16_BACKUP%\AllMap16_latest.map16"
     echo Done.
 )
 :: Export Palettes
 if "%Action%"=="3" (
     echo Exporting Palettes...
-	if not exist %~dp0Palettes (
-		mkdir "%~dp0Palettes"
-	)
-    "%~dp0common\Lunar Magic.exe" -ExportSharedPalette "%ROMFILE%" "%~dp0Palettes\%TIMESTAMP%_Shared.pal"
-    "%~dp0common\Lunar Magic.exe" -ExportSharedPalette "%ROMFILE%" "%~dp0Palettes\Shared_latest.pal"
+    if not exist %PAL_BACKUP% (
+        mkdir "%PAL_BACKUP%"
+    )
+    %LM% -ExportSharedPalette "%ROMFILE%" "%PAL_BACKUP%\%TIMESTAMP%_Shared.pal"
+    %LM% -ExportSharedPalette "%ROMFILE%" "%PAL_BACKUP%\Shared_latest.pal"
     echo Done.
 )
 :: Create time-stamped backup of your ROM
 if "%Action%"=="4" (
-	if not exist %~dp0Backup (
-		mkdir %~dp0Backup
-	)
+    if not exist %MAIN_BACKUP% (
+        mkdir %MAIN_BACKUP%
+    )
     echo Creating time-stamped copy of your ROM...
-    copy %ROMFILE% "%~dp0Backup\%TIMESTAMP%_RHR4.smc"
-    copy %ROMFILE% "%~dp0Backup\latest_RHR4.smc"
+    copy "%ROMFILE%" "%MAIN_BACKUP%\%TIMESTAMP%_%ROMNAME%.smc"
+    copy "%ROMFILE%" "%MAIN_BACKUP%\latest_%ROMNAME%.smc"
     echo Done.
 )
 if "%Action%"=="0" (
+    echo Have a nice day ^^_^^
     exit /b
 )
 if '%Action%'=='' echo Nothing is not valid option, please try again.

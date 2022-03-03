@@ -6,7 +6,7 @@ This is the official baserom for creating Super Mario World race levels for [Rom
 
 The first thing you are going to do is patch your copy of unmodified Super Mario World with the `RHR.bps` patch found in the main folder of this baserom, ensuring it has the name 'RHR4' when completed. This patch contains all of the changes already made so you can get going straightaway on building your Romhack Race level.
 
-If you change the filename of your ROM be sure to rename the ancillary files included in this baserom and change all instances of `RHR4` found in the build scripts (specified usually by `set ROMFILE="RHR4.smc"`) otherwise they will not work as intended.
+If you change the filename of your ROM be sure to rename the ancillary files included in this baserom and change all instances of `RHR4` found in the build scripts (usually specified by `ROMFILE`) otherwise they will not work as intended.
 
 ### The 'common' Folder
 
@@ -14,11 +14,11 @@ This baserom comes with a folder that compiles all commonly used tools, resource
 
 ### Helpful Scripts
 
-To make life easier for your as a hack, this baserom comes some helpful scripts to automate the process of applying additional custom assets to your ROM as well as for backing things up and creating a patch for distribution.
+To make life easier for you as a hacker, this baserom comes some helpful scripts to automate the process of applying additional custom assets to your ROM as well as for backing things up and creating a patch for distribution.
 
 - `@build_baserom.bat` Does a lot of the work for you when it comes to inserting custom assets into your ROM by present a list the options corresponding to each of the tools. Additionally will create a BPS patch for distribution.
-- `@backup_baserom.bat` Gives you the option to exports all modified levels, edited map16 and/or shared palettes from your ROM using Lunar Magic, as well as create a time-stamped backup of your ROM if you desire.
-- `@restore_from_backup.bat` Restores global assets your ROM from a time-stamped based backup and imports previously-exported levels, map16 and palettes into your ROM. Requires Lunar Magic and the backup scripts to be run first.
+- `@backup_baserom.bat` Some basic backup options that leverages some Lunar Magic features to export all modified levels, edited map16 and/or shared palettes from your ROM, as well as a basic way to create a time-stamped backup of your ROM file, and create a BPS patch on demand.
+- `@restore_from_backup.bat` Options to create a fresh ROM, restore global assets from a time-stamped based backup and imports previously-exported levels, map16 and palettes into it. Requires Lunar Magic and the backup scripts to be run first.
 
 ## More Information
 
