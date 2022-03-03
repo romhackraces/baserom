@@ -1,0 +1,127 @@
+body 
+{
+	background: #000000 url('back.png') fixed;
+	margin-top: 20px;
+	color: white;
+}
+
+h1
+{
+	text-align:center;
+}
+
+a:visited
+{
+	color:#0074EC;
+}
+
+a:link
+{
+	color:#00A3EC;
+}
+
+a:active
+{
+	color:#FF1C00;
+}
+
+.nullRegister
+{
+	background-color:rgb(0,0,0);
+	color:rgb(70, 70, 70);
+	text-align:center;
+	position:relative;
+	min-height:5em;
+	min-width:12em;
+	height:100%;
+}
+
+.channelRegister
+{
+	background-color:rgb(197, 217, 241);
+	color:black;
+	text-align:center;
+	position:relative;
+	min-width:12em;
+	min-height:5em;
+	font-style:italic;
+}
+
+.channelRegisterReadOnly
+{
+	background-color:rgb(216, 228, 188);
+	color:black;
+	text-align:center;
+	position:relative;
+	min-width:12em;
+	min-height:5em;
+	font-style:italic;
+}
+
+.generalPurposeRegister
+{
+	background-color:rgb(241, 220, 219);
+	color:black;
+	text-align:center;
+	position:relative;
+	min-width:12em;
+	min-height:5em;
+}
+
+.channelBitRegister
+{
+	background-color:rgb(150, 54, 52);
+	color:white;
+	text-align:center;
+	position:relative;
+	min-width:12em;
+	min-height:5em;
+}
+
+.generalPurposeRegisterReadOnly
+{
+	background-color:rgb(118, 147, 60);
+	color:white;
+	text-align:center;
+	position:relative;
+	min-width:12em;
+	min-height:5em;
+}
+
+.registerInfo
+{
+	font-family:"Lucida Console", Monaco, monospace;
+	text-align:center;
+	position:absolute;
+	top:10%;
+	text-decoration:underline;
+	min-width:12em;
+}
+
+.registerDescription
+{
+	position:absolute;
+	bottom: 10%;
+	text-align:center;
+	min-width:12em;
+	font-style:italic;
+}
+
+.registerTable>tbody>tr>td
+{
+	position:relative;
+	font-size:12px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.registerTableContainer
+{
+	width:90%;
+	overflow:auto;
+	margin-left:auto;
+	margin-right:auto;
+	border-width:5px;
+	border-color:white;
+	border-style:solid;
+}
