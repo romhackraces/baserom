@@ -3,6 +3,7 @@ v4.3
 - streamlined the script process to make it less overwhelming
 - added back the bush graphics to the baserom as ExGraphics
 - updated the documentation and moved a lot of it to the GitHub wiki
+- some visual cleanup in map16 and of mario/sprite solid blocks
 
 v4.2.1
 
