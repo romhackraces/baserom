@@ -18,7 +18,7 @@ All these tools have been provided right in this folder for ease of editing your
 
 The exception to this is AddMusicK which is more compilated and self-contained in its own folder in the main directory. However you can still use the build scripts for adding music.
 
-### List Files
+## List Files
 
 "Wait how do I keep track of my list files??" Worry not, each of the tool's list files are now specified for each tool and read by the build scripts included with this baserom. You need only update each as you would normally and the build script will take care of the rest.
 
