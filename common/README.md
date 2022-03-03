@@ -1,10 +1,10 @@
 # Common Tools and Patches
 
-This `common` folder is where you will place any or all ASM patches, blocks, sprites, etc. and the tools needed to apply them so everything you need for your Base ROM is in one convenient place. Empty folders required by the tools have been pre-made and will be encountered when you add the tools into this folder in later steps.
+This `common` folder is where you will place any or all ASM patches, blocks, sprites, etc. and the tools needed to apply them so everything you need for your baserom is in one convenient place. Empty folders required by the tools have been pre-made and will be encountered when you add the tools into this folder in later steps.
 
 ## The BaseROM Toolkit
 
-For applying custom code and patches to your Base ROM there is a basic set of tools one usually needs:
+For applying custom code and patches to your baserom there is a basic set of tools one usually needs:
 
 - AddMusicK: a tool for inserting custom music into your ROM
 - Asar: an assembler for applying patches to your BaseROM
