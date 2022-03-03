@@ -4,6 +4,7 @@ v4.3
 - added back the bush graphics to the baserom as ExGraphics
 - updated the documentation and moved a lot of it to the GitHub wiki
 - some visual cleanup in map16 and of mario/sprite solid blocks
+- updated ThrowDirection.asm with contributions from AmazingChest
 
 v4.2.1
 
