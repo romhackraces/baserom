@@ -22,7 +22,7 @@ To make life easier for your as a hack, this base ROM comes some helpful scripts
 
 ## More Information
 
-For more information about the creating levels for Romhack Races or for additional documentation about the base ROM check out the items in the `Help` folder or visit the [baserom Wiki](https://github.com/ampersam-smw/rhr-baserom/wiki)
+For more information about the creating levels for Romhack Races or for additional documentation about the base ROM check out the items in the `Help` folder or visit the [baserom Wiki](https://github.com/ampersam-smw/rhr-baserom/wiki). If you have feedback or would like additional support with the baserom please visit the `#baserom-support` in the Romhack Races Discord server.
 
 ### Credits
 
