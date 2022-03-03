@@ -27,3 +27,7 @@ For more information about the creating levels for Romhack Races or for addition
 ### Credits
 
 It is good practice to keep track of all resources used in your hacks if you can help it, see the included [CREDITS.txt](CREDITS.txt) file for information about the resources included out-of-the-box or visit the [wiki page](https://github.com/ampersam-smw/rhr-baserom/wiki/Resources-Used-in-the-Baserom).
+
+### Contributing
+
+If you have suggestions or improvements for this base ROM feel free to open issues or contribute to it on [GitHub](https://github.com/ampersam-smw/rhr-baserom). Important: this project has no license nor do the authors claim any rights to the resources included within, those remain the rights of their respective authors.
