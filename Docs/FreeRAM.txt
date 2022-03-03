@@ -1,4 +1,6 @@
-# Used FreeRAM Values
+#--------------------------------------#
+# Used FreeRAM Values                  #
+#--------------------------------------#
 
 $1929 - asar/BlockDuplicationFix.asm - 1 byte
 $1FFA - asar/ToggleStatusbar.asm - 1 byte
