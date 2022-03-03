@@ -20,14 +20,7 @@ All these tools have been provided for ease of editing your BaseROM.
 
 Adding custom assets will be as simple as copying blocks, sprites, patches, extra folders, etc. into the appropriate locations in this 'common' folder and updating the appropriate list files:
 
-    list_asar.txt
-    - the list file where you can list the patches for use with Asar from the `asar` folder.
-
-    list_gps.txt
-    - the custom block list for GPS where you list blocks by Map16 tile number and references to the block ASM as usual, e.g. '0200 custom_block.asm' etc.
-
-    list_pixi.txt
-    - the custom sprite list file for PIXI and can be filled in as usual: '00 custom_sprite.cfg/.json' etc.
-
-    list_uberasm.txt
-    - a copy of the UberASM list file, where you can specific various patches to be applied to your ROM. 
+- `list_asar.txt` the list file where you can list the patches for use with Asar from the `asar` folder.
+- `list_gps.txt` the custom block list for GPS where you list blocks by Map16 tile number and references to the block ASM as usual, e.g. '0200 custom_block.asm' etc.
+- `list_pixi.txt` the custom sprite list file for PIXI and can be filled in as usual: '00 custom_sprite.cfg/.json' etc.
+- `list_uberasm.txt` a copy of the UberASM list file, where you can specific various patches to be applied to your ROM. 
