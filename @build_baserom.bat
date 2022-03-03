@@ -5,6 +5,13 @@ cls
 
 :: Variables
 set ROMFILE="%~dp0RHR4.smc"
+set PATCHNAME=RHR4.bps
+
+:: List files in common (Do not change!)
+set ASAR_LIST=list_asar.txt
+set GPS_LIST=list_gps.txt
+set PIXI_LIST=list_pixi.txt
+set UBER_LIST=list_uberasm.txt
 
 :: Options
 echo Build Actions
@@ -23,21 +30,21 @@ set /p Action=Enter the number of your choice:
 if "!Action!"=="1" (
     echo Applying patches...
     pushd .\common\
-    for /f "tokens=*" %%a in (list_asar.txt) do (.\asar.exe -v asar\%%a !ROMFILE!)
+    for /f "tokens=*" %%a in (%ASAR_LIST%) do (.\asar.exe -v asar\%%a !ROMFILE!)
     echo Done.
 )
 :: Insert custom blocks with GPS
 if "!Action!"=="2" (
     echo Inserting custom blocks...
     pushd .\common\
-    .\gps.exe -l "list_gps.txt" !ROMFILE!
+    .\gps.exe -l %GPS_LIST% !ROMFILE!
     echo Done.
 )
 :: Insert Custom Sprites with PIXI
 if "!Action!"=="3" (
     echo Inserting custom sprites...
     pushd .\common\
-    .\pixi.exe -l "common\list_pixi.txt" !ROMFILE!
+    .\pixi.exe -l common\%PIXI_LIST% !ROMFILE!
     echo Done.
 )
 :: Insert custom music with AddmusicK
@@ -51,7 +58,7 @@ if "!Action!"=="4" (
 if "!Action!"=="5" (
     echo Inserting UberASM...
     pushd .\common\
-    .\UberASMTool.exe "list_uberasm.txt"
+    .\UberASMTool.exe %UBER_LIST% !ROMFILE!
     echo Done.
 )
 :: Create bps Patch with Flips
