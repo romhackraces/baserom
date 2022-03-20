@@ -6,17 +6,22 @@ cls
 :: Name of your ROM
 set ROMNAME=RHR4
 
+:: DO NOT CHANGE THE VARIABLES BELOW
+
+:: Working Directory 
+set WORKING_DIR=%~dp0
+
 :: Variables
-set ROMFILE="%~dp0%ROMNAME%.smc"
+set ROMFILE="%WORKING_DIR%%ROMNAME%.smc"
 
 :: Backup locations
-set MAIN_BACKUP=%~dp0Backup
-set LEVELS_BACKUP=%~dp0Levels
-set MAP16_BACKUP=%~dp0Map16
-set PAL_BACKUP=%~dp0Palettes
+set MAIN_BACKUP="%WORKING_DIR%"Backup
+set LEVELS_BACKUP="%WORKING_DIR%"Levels
+set MAP16_BACKUP="%WORKING_DIR%"Map16
+set PAL_BACKUP="%WORKING_DIR%"Palettes
 
 :: Lunar Magic location
-set LM="%~dp0common\Lunar Magic.exe"
+set LM="%WORKING_DIR%common\Lunar Magic.exe"
 
 :: Time stuff
 setlocal
@@ -46,36 +51,35 @@ set /p Action=Enter the number of your choice:
 if "%Action%"=="1" (
     echo Exporting Levels...
     if not exist %LEVELS_BACKUP%\%TIMESTAMP% (
-        mkdir "%LEVELS_BACKUP%\%TIMESTAMP%"
+        mkdir %LEVELS_BACKUP%\%TIMESTAMP%
     )
 
     if not exist %LEVELS_BACKUP%\latest (
-        mkdir "%LEVELS_BACKUP%\latest"
+        mkdir %LEVELS_BACKUP%\latest
     )
 
-    %LM% -ExportMultLevels "%ROMFILE%" "%LEVELS_BACKUP%\%TIMESTAMP%\level"
-    %LM% -ExportMultLevels "%ROMFILE%" "%LEVELS_BACKUP%\latest\level"
+    !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\%TIMESTAMP%\level
+    !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\latest\level
     echo Done.
 )
 :: Export Map16
 if "%Action%"=="2" (
     echo Exporting Map16...
-    echo %~dp0
     if not exist %MAP16_BACKUP% (
-        mkdir "%MAP16_BACKUP%"
+        mkdir %MAP16_BACKUP%
     )
-    %LM% -ExportAllMap16 "%ROMFILE%" "%MAP16_BACKUP%\AllMap16_%TIMESTAMP%.map16"
-    %LM% -ExportAllMap16 "%ROMFILE%" "%MAP16_BACKUP%\AllMap16_latest.map16"
+    !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\AllMap16_%TIMESTAMP%.map16
+    !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\AllMap16_latest.map16
     echo Done.
 )
 :: Export Palettes
 if "%Action%"=="3" (
     echo Exporting Palettes...
     if not exist %PAL_BACKUP% (
-        mkdir "%PAL_BACKUP%"
+        mkdir %PAL_BACKUP%
     )
-    %LM% -ExportSharedPalette "%ROMFILE%" "%PAL_BACKUP%\%TIMESTAMP%_Shared.pal"
-    %LM% -ExportSharedPalette "%ROMFILE%" "%PAL_BACKUP%\Shared_latest.pal"
+    !LM! -ExportSharedPalette !ROMFILE! %PAL_BACKUP%\%TIMESTAMP%_Shared.pal
+    !LM! -ExportSharedPalette !ROMFILE! %PAL_BACKUP%\Shared_latest.pal
     echo Done.
 )
 :: Create time-stamped backup of your ROM
@@ -84,8 +88,8 @@ if "%Action%"=="4" (
         mkdir %MAIN_BACKUP%
     )
     echo Creating time-stamped copy of your ROM...
-    copy "%ROMFILE%" %MAIN_BACKUP%\%TIMESTAMP%_%ROMNAME%.smc
-    copy "%ROMFILE%" %MAIN_BACKUP%\latest_%ROMNAME%.smc
+    copy !ROMFILE! %MAIN_BACKUP%\%TIMESTAMP%_%ROMNAME%.smc
+    copy !ROMFILE! %MAIN_BACKUP%\latest_%ROMNAME%.smc
     echo Done.
 )
 if "%Action%"=="0" (

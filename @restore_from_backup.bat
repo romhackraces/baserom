@@ -6,19 +6,23 @@ cls
 :: Name of your ROM
 set ROMNAME=RHR4
 
+:: DO NOT CHANGE THE VARIABLES BELOW
+
+:: Working Directory 
+set WORKING_DIR=%~dp0
+
 :: Variables
-set SMW_ORIG=%~dp0sysLMRestore\smwOrig.smc
-set BACKUP=%~dp0Backup\latest_%ROMNAME%.smc
-set ROMFILE=%~dp0%ROMNAME%.smc
-set PATCHFILE=%~dp0%ROMNAME%.bps
+set BACKUP="%WORKING_DIR%Backup\latest_%ROMNAME%.smc"
+set ROMFILE="%WORKING_DIR%%ROMNAME%.smc"
+set PATCHFILE="%WORKING_DIR%%ROMNAME%.bps"
 
 :: Restore locations
-set LEVELS_BACKUP=%~dp0Levels\latest\
-set MAP16_BACKUP=%~dp0Map16\AllMap16_latest.map16
-set PAL_BACKUP=%~dp0Palettes\Shared_latest.pal
+set LEVELS_BACKUP="%WORKING_DIR%Levels\latest\"
+set MAP16_BACKUP="%WORKING_DIR%Map16\AllMap16_latest.map16"
+set PAL_BACKUP="%WORKING_DIR%Palettes\Shared_latest.pal"
 
 :: Lunar Magic location
-set LM="%~dp0common\Lunar Magic.exe"
+set LM="%WORKING_DIR%common\Lunar Magic.exe"
 
 :: Options
 echo Restore Actions -- Only use this with a fresh ROM
@@ -34,19 +38,27 @@ set /p Action=Enter the number of your choice:
 
 :: Create fresh baserom from patch.
 if "!Action!"=="1" (
-    echo Creating fresh baserom...
+    echo Patching fresh baserom...
     if not exist %PATCHFILE% (
         echo Could not find baserom patch. Please try again.
         exit /b
     ) else (
-        if exist %ROMFILE% (
-            echo Hack already exists, making temporary backup.
+        :: Check if a patched ROM already exists and make a temporary backup
+        if exist !ROMFILE! (
+            echo Hack already exists, making temporary backup called "%ROMNAME%.smc~".
             :: Make backup of ROM just in case of error
-            copy %ROMFILE% "%ROMFILE%~"
+            copy !ROMFILE! "!ROMFILE!~"
+        )
+        :: Check for unmodified SMW rom
+        set SMWROM=
+        if not exist "%WORKING_DIR%\sysLMRestore\smwOrig.smc" (
+            echo Could not find an unmodified SMW file. Enter the path to an original, unmodified SMW smc: 
+            set /p SMWROM=
+        ) else (
+            set SMWROM="%WORKING_DIR%\sysLMRestore\smwOrig.smc"
         )
         :: Apply baserom patch with Flips
-        echo Patching fresh baserom...
-        %~dp0common\flips.exe --apply %PATCHFILE% !SMW_ORIG! %ROMFILE%
+        "%WORKING_DIR%common\flips.exe" --apply %PATCHFILE% !SMWROM! !ROMFILE!
         echo Done.
     )
 )
@@ -58,10 +70,10 @@ if "!Action!"=="2" (
         exit /b
     ) else (
         :: Run Lunar Magic Actions
-        !LM! -TransferLevelGlobalExAnim %ROMFILE% !BACKUP!
-        !LM! -TransferOverworld %ROMFILE% !BACKUP!
-        !LM! -TransferTitleScreen %ROMFILE% !BACKUP!
-        !LM! -TransferCredits %ROMFILE% !BACKUP!
+        !LM! -TransferLevelGlobalExAnim !ROMFILE! !BACKUP!
+        !LM! -TransferOverworld !ROMFILE! !BACKUP!
+        !LM! -TransferTitleScreen !ROMFILE! !BACKUP!
+        !LM! -TransferCredits !ROMFILE! !BACKUP!
         echo Done.
     )
 )
@@ -72,7 +84,7 @@ if "!Action!"=="3" (
         echo Could not find a back-up of your levels.
         exit /b
     ) else (
-        !LM! -ImportMultLevels %ROMFILE% !LEVELS_BACKUP!
+        !LM! -ImportMultLevels !ROMFILE! !LEVELS_BACKUP!
         echo Done.
     )
 )
@@ -83,7 +95,7 @@ if "!Action!"=="4" (
         echo Could not find a back-up of map16.
         exit /b
     ) else (
-        !LM! -ImportAllMap16 %ROMFILE% !MAP16_BACKUP!
+        !LM! -ImportAllMap16 !ROMFILE! !MAP16_BACKUP!
         echo Done.
     )
 )
@@ -94,7 +106,7 @@ if "!Action!"=="5" (
         echo Could not find a back-up of palettes.
         exit /b
     ) else (
-        !LM! -ImportSharedPalette  %ROMFILE% !PAL_BACKUP!
+        !LM! -ImportSharedPalette  !ROMFILE! !PAL_BACKUP!
         echo Done.
     )
 )
