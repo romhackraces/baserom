@@ -20,6 +20,8 @@ To make life easier for you as a hacker, this baserom comes some helpful scripts
 - `@backup_baserom.bat` Some basic backup options that leverages some Lunar Magic features to export all modified levels, edited map16 and/or shared palettes from your ROM, as well as a basic way to create a time-stamped backup of your ROM file, and create a BPS patch on demand.
 - `@restore_from_backup.bat` Options to create a fresh ROM, restore global assets from a time-stamped based backup and imports previously-exported levels, map16 and palettes into it. Requires Lunar Magic and the backup scripts to be run first.
 
+See the [Wiki page](https://github.com/romhackraces/baserom/wiki/Using-the-Build-Scripts) for more information about these scripts.
+
 ## More Information
 
 For more information about the creating levels for Romhack Races or for additional documentation about what is in the baserom check out the [baserom Wiki](https://github.com/romhackraces/baserom/wiki). If you need to view documentation for large resources included in the baserom, such as the Retry System, the `Docs` folder included in this baserom contains the relevant material.
