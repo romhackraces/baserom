@@ -6,7 +6,7 @@ See the [baserom Wiki page](https://github.com/romhackraces/baserom/wiki/Changes
 
 ## Getting Started
 
-The first thing you are going to do is patch your copy of unmodified Super Mario World with the `RHR.bps` patch found in the main folder of this baserom, ensuring it has the name 'RHR4' when completed. This patch contains all of the changes already made so you can get going straightaway on building your Romhack Race level.
+The first thing you are going to do is patch your copy of unmodified Super Mario World with the `RHR.bps` patch found in the main folder of this baserom, ensuring it has the name 'RHR4' and an extension of `.smc` when completed. This patch contains all of the changes already made so you can get going straightaway on building your Romhack Race level.
 
 If you change the filename of your ROM be sure to rename the ancillary files included in this baserom and change all instances of `RHR4` found in the build scripts (usually specified by `ROMFILE`) otherwise they will not work as intended.
 
