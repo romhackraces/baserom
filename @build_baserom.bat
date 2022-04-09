@@ -3,8 +3,8 @@ Setlocal EnableDelayedExpansion
 cls
 :start
 
-:: Name of your ROM
-set ROMNAME=RHR4
+:: ROM Details
+set ROM_NAME=RHR4
 
 :: DO NOT CHANGE THE VARIABLES BELOW
 
@@ -12,8 +12,8 @@ set ROMNAME=RHR4
 set WORKING_DIR=%~dp0
 
 :: Variables
-set ROMFILE="%WORKING_DIR%%ROMNAME%.smc"
-set PATCHNAME="%WORKING_DIR%%ROMNAME%.bps"
+set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
+set PATCHNAME="%WORKING_DIR%%ROM_NAME%.bps"
 
 :: List files in common (Do not change!)
 set ASAR_LIST=list_asar.txt
@@ -37,35 +37,35 @@ set /p Action=Enter the number of your choice:
 :: Apply asar patches
 if "!Action!"=="1" (
     echo Applying patches...
-    pushd "%WORKING_DIR%common\"
-    for /f "tokens=*" %%a in (%ASAR_LIST%) do (asar.exe -v asar\%%a !ROMFILE!)
+    pushd "%WORKING_DIR%Asar\"
+    for /f "tokens=*" %%a in (%ASAR_LIST%) do (asar.exe -v %%a !ROMFILE!)
     echo Done.
 )
 :: Insert custom blocks with GPS
 if "!Action!"=="2" (
     echo Inserting custom blocks...
-    pushd "%WORKING_DIR%common\"
+    pushd "%WORKING_DIR%GPS\"
     gps.exe -l %GPS_LIST% !ROMFILE!
     echo Done.
 )
 :: Insert Custom Sprites with PIXI
 if "!Action!"=="3" (
     echo Inserting custom sprites...
-    pushd "%WORKING_DIR%common\"
-    pixi.exe -l common\%PIXI_LIST% !ROMFILE!
+    pushd "%WORKING_DIR%PIXI\"
+    pixi.exe -l "PIXI\%PIXI_LIST%" !ROMFILE!
     echo Done.
 )
 :: Insert custom music with AddmusicK
 if "!Action!"=="4" (
     echo Inserting custom Music...
-    pushd "%WORKING_DIR%common\AddmusicK_1.0.8\"
+    pushd "%WORKING_DIR%AddmusicK_1.0.8\"
     AddmusicK.exe !ROMFILE!
     echo Done.
 )
 :: Insert custom uberASM
 if "!Action!"=="5" (
     echo Inserting UberASM...
-    pushd "%WORKING_DIR%common\"
+    pushd "%WORKING_DIR%UberASM\"
     UberASMTool.exe %UBER_LIST% !ROMFILE!
     echo Done.
 )
@@ -79,7 +79,7 @@ if "!Action!"=="6" (
     ) else (
         set SMWROM="%WORKING_DIR%sysLMRestore\smwOrig.smc"
     )
-    "%WORKING_DIR%common\flips.exe" --create --bps !SMWROM! !ROMFILE! !PATCHNAME!
+    "%WORKING_DIR%\flips.exe" --create --bps !SMWROM! !ROMFILE! !PATCHNAME!
 )
 
 popd

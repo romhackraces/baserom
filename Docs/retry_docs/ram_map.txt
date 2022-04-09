@@ -1,6 +1,6 @@
 This documents serves as a detailed reference on the purpose of the RAM addresses used by Retry, and how you can use them.
 
-First things first, Retry uses a chunk of area at $7FB400 ($40C000 on SA-1 roms) by default. If you want to change that, open "ram.asm". This is the same area used by old Retry, so it should usually be fine.
+First things first, Retry uses a chunk of area at $7FB400 ($40A400 on SA-1 roms) by default. If you want to change that, open "ram.asm". This is the same area used by old Retry, so it should usually be fine (on lorom, while on SA-1 I changed it to not conflict with lx5's DSS).
 Then, all the used addresses are defined as this freeram + <offset>, to makes it easier to manage them and have a clearer code. The first 12 addresses (offset $00-$0B) are the same as the old Retry patch: this was done intentionally so that resources that interact with old Retry should also work on this one (for example, the "Individual Dragon Coins Save" patch expects the "hurry up" flag to be 2 bytes after the "is respawning flag").
 
 Now for the actual RAM addresses (names are prefixed with "!ram_" in ram.asm, and offset is from !retry_freeram):
@@ -70,18 +70,31 @@ Now for the actual RAM addresses (names are prefixed with "!ram_" in ram.asm, an
 ;                 ;         ;       ; when applicable (but only on the first death frame) and ;
 ;                 ;         ;       ; to handle the prompt/respawn. Reset on level load.      ;
 ;=============================================================================================;
-; prompt_override ;   $0F   ;  $01  ; Can be used to override the Retry settings of the cur-  ;
+; 9D_backup       ;   $0F   ;  $01  ; Holds a backup of the $9D value when going through a    ;
+;                 ;         ;       ; normal transition, which is then restored when respawn- ;
+;                 ;         ;       ; ing. This makes pipe entrances into a level consistent  ;
+;                 ;         ;       ; when respawning, since sprites are locked during them   ;
+;                 ;         ;       ; only if $9D was set before the transition (i.e., if a   ;
+;                 ;         ;       ; pipe was entered, but not if a door was entered).       ;
+;=============================================================================================;
+; l2_backup       ;   $10   ;  $01  ; Holds a backup of the "interactable layer 2" flag during;
+;                 ;         ;       ; level load when respawning. The flag is disabled for a  ;
+;                 ;         ;       ; brief period of time to avoid some jank behaviors when  ;
+;                 ;         ;       ; respawning in layer 2 levels. The flag is then restored ;
+;                 ;         ;       ; from this address before the level fades in.            ;
+;=============================================================================================;
+; prompt_override ;   $11   ;  $01  ; Can be used to override the Retry settings of the cur-  ;
 ;                 ;         ;       ; rent level. It follows the same format as the "effect"  ;
 ;                 ;         ;       ; table in tables.asm. It's only reset on title screen    ;
 ;                 ;         ;       ; load, meaning that its effect will last until you set it;
 ;                 ;         ;       ; back to 0 yourself.                                     ;
 ;=============================================================================================;
-; disable_exit    ;   $10   ;  $01  ; If set, the Retry prompt won't show the "exit" option.  ;
+; disable_exit    ;   $12   ;  $01  ; If set, the Retry prompt won't show the "exit" option.  ;
 ;                 ;         ;       ; It's set to !disable_exit_option on title screen load.  ;
 ;                 ;         ;       ; You can also change it at any time to remove the option ;
 ;                 ;         ;       ; in certain situations.                                  ;
 ;=============================================================================================;
-; set_checkpoint  ;   $11   ;  $02  ; If the low byte is set to any value other than $FF,     ;
+; set_checkpoint  ;   $13   ;  $02  ; If the low byte is set to any value other than $FF,     ;
 ;                 ;         ;       ; it will trigger a checkpoint according to the checkpoint;
 ;                 ;         ;       ; table. Alternatively, you can set the whole 16-bit      ;
 ;                 ;         ;       ; address to an entrance value to trigger a checkpoint    ;
@@ -94,28 +107,25 @@ Now for the actual RAM addresses (names are prefixed with "!ram_" in ram.asm, an
 ;                 ;         ;       ; sprites with retry's multiple midway system. For more   ;
 ;                 ;         ;       ; info, see "docs/troubleshooting.txt".                   ;
 ;=============================================================================================;
-; 9D_backup       ;   $13   ;  $01  ; Holds a backup of the $9D value when going through a    ;
-;                 ;         ;       ; normal transition, which is then restored when respawn- ;
-;                 ;         ;       ; ing. This makes pipe entrances into a level consistent  ;
-;                 ;         ;       ; when respawning, since sprites are locked during them   ;
-;                 ;         ;       ; only if $9D was set before the transition (i.e., if a   ;
-;                 ;         ;       ; pipe was entered, but not if a door was entered).       ;
-;=============================================================================================;
-; prompt_x_pos    ;   $14   ;  $01  ; Holds the X position at which the Retry prompt should   ;
+; prompt_x_pos    ;   $15   ;  $01  ; Holds the X position at which the Retry prompt should   ;
 ;                 ;         ;       ; appear at. You can write to it at any time. Note that   ;
 ;                 ;         ;       ; this address is only reset on title screen load.        ;
 ;=============================================================================================;
-; prompt_y_pos    ;   $15   ;  $01  ; Holds the Y position at which the Retry prompt should   ;
+; prompt_y_pos    ;   $16   ;  $01  ; Holds the Y position at which the Retry prompt should   ;
 ;                 ;         ;       ; appear at. You can write to it at any time. Note that   ;
 ;                 ;         ;       ; this address is only reset on title screen load.        ;
 ;=============================================================================================;
-; disable_box     ;   $16   ;  $01  ; If set, the Retry prompt's black box will be disabled.  ;
+; disable_box     ;   $17   ;  $01  ; If set, the Retry prompt's black box will be disabled.  ;
 ;                 ;         ;       ; It's set to !no_prompt_box on title screen load, but you;
 ;                 ;         ;       ; can also change it at any time. Suggested to be set if  ;
 ;                 ;         ;       ; also changing !prompt_x_pos and !prompt_y_pos during    ;
 ;                 ;         ;       ; gameplay.                                               ;
 ;=============================================================================================;
-; reserved        ;   $16   ;  $0A  ; Unused, but reserved for future expansion.              ;
+; play_sfx        ;   $18   ;  $01  ; Flag set on level transition when getting a room check- ;
+;                 ;         ;       ; point. Used to play the midway SFX during level init.   ;
+;                 ;         ;       ; Only read/written if !room_cp_sfx != $00.               ;
+;=============================================================================================;
+; reserved        ;   $19   ;  $07  ; Unused, but reserved for future expansion.              ;
 ;                 ;         ;       ; Usage as free ram is not recommended.                   ;
 ;=============================================================================================;
 ; death_counter   ;   $20   ;  $05  ; Holds the amount of deaths occurred. Each byte holds the;

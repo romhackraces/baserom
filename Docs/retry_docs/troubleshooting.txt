@@ -15,6 +15,49 @@ Change that to:
 
 --------------------------------------------------------------------------------
 
+Q: I'm making the music in a level fade out using the following code (with AMK):
+
+	LDA #$FF
+	STA $1DFB
+
+but the music doesn't reload when dying!
+A: You want to also store #$FF to $0DDA, like this:
+
+	LDA #$FF
+	STA $1DFB
+	STA $0DDA	; <-
+
+--------------------------------------------------------------------------------
+
+Q: When dying after getting the goal post or beating a boss, the music doesn't restart when respawning!
+A: One common cause for this is a bug with AddmusicK that happens when you change certain songs to #$00 in the "tweaks.asm" file, specifically: !Miss, !BossClear, !StageClear, !Keyhole or !IrisOut (maybe also !SwitchPalace, !RescueEgg and !StaffRoll). This can cause issues like the one mentioned here or the P-Switch/Star timers acting weirdly when activated.
+To fix this, open AMK's "patch.asm" file and remove all instances of codes like this:
+
+	CMP !SongThatYouChangedTo0
+	BEQ Something
+
+For example, if you changed !IrisOut to #$00, then you'd remove these codes (you can CTRL+F "!IrisOut" to find all instances in the file):
+
+	CMP !IrisOut
+	BEQ ++
+
+	CMP !IrisOut
+	BEQ LevelEndMusicChange
+
+	CMP !IrisOut
+	BEQ Okay
+
+After doing it, run AddmusicK and the issue should be fixed.
+If this happens but you didn't change the tweaks file, then DM me the issue.
+
+--------------------------------------------------------------------------------
+
+Q: I'm using the "Single Screen" UberASM code, and sprites keep moving while Mario is dead!
+A: To fix, add this code at the very start of the Single Screen's main code:
+	LDA $71 : CMP #$09 : BNE + : RTL : +
+
+--------------------------------------------------------------------------------
+
 Q: When I get the midway point in a level, sometimes Mario respawns in the main entrance rather than the midway entrance!
 A: Midway entrances only work properly if they use the "secondary method" in Lunar Magic. So if a midway doesn't seem to work, drag it around in LM while in sprite editing mode and put it back where it was (which enables the secondary method).
 
@@ -66,5 +109,5 @@ Note 3: this address is only checked while in a level, but you can also set it i
 
 --------------------------------------------------------------------------------
 
-Q: I patched the 32x32 Player Tilemap patch / lx5's Custom Powerups and I get glitched graphics when dying! What do I do?
+Q: I patched the 32x32 Player Tilemap patch / lx5's Custom Powerups / lx5's Dynamic Spriteset System (DSS) / DKCR Status Bar (or other sprite status bars) and I get glitched graphics when dying! What do I do?
 A: Those patches have a high chance of using the same spots in SP1 for their dynamic tiles as the Retry prompt. To fix it, open "settings.asm" and towards the bottom you'll see a bunch of !tile_... defines. You need to edit some of those to other free spots in SP1 that aren't used by other patches.

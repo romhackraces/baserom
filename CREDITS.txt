@@ -14,16 +14,20 @@ Rollover Fix - Noobish Noobsicle - https://smwc.me/s/14053
 Rope Fix - Alcaro - https://smwc.me/s/8784
 Throw Direction Fix - PangeaPanga, AmazingChest
 Time Up Fix - Alcaro - https://smwc.me/s/15110
+Piranha Plant Stems Fix by Ice Man
 Walljump/Note Block Glitch Fix v1.6 - lolcats439 - https://smwc.me/s/19932
+Player X Speed Fix 3.0 by HammerBrother, tjb0607 - https://smwc.me/s/24862
+Line-Guided Rope Length Fix by imamelia - https://smwc.me/s/18948
 
 -- UberASM --
 Toggle Status Bar - dtothefourth - https://www.patreon.com/posts/40894949
 ON/OFF Double Hit fix - KevinM - https://smwc.me/s/21081
-Retry System - KevinM - https://github.com/kkevinm/retry-system/releases/tag/v0.2.6
+Retry System - KevinM - https://github.com/kkevinm/retry-system/releases/tag/v0.3.3
 
 -- Custom Blocks --
 Basic Mario/Sprite Solid Blocks - AmperSam
 Basic ON/OFF Blocks - AmperSam
+Basic Power Up Filter Block - AmperSam
 Block Breakable by Item - JUMP Team
 Hurt / Death Block for Kaizo / Pit Hacks - dacin - https://smwc.me/s/27268
 One-way blocks 1.2 - HammerBrother https://smwc.me/s/18158

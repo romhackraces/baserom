@@ -1,2 +1,0 @@
-- There may be issues with Layer 2 interaction on the first frame when respawning.
-- Missing ObjecTool info file.

@@ -1,5 +1,11 @@
+Q: Can I insert this in a ROM where I've already inserted worldpeace's Retry patch?
+A: No, doing so will result in an error when running UberASM Tool. First, you need to remove the original patch: either try to use the Unpatcher tool (at your own risk) or port your hack over to a new ROM.
+
+Q: I noticed that you don't lose lives when dying/retrying a level. Is it possible to change that?
+A: Yes. Look at the "lose_lives" table in "retry_config/tables.asm". There you can choose in which level the player will lose lives by changing the corresponding 0 to a 1. If you just don't want infinite lives anywhere, then change all the 0s to 1s.
+
 Q: Can I change the prompt type in specific sublevels?
-A: Yes. Look at "checkpoint_effect" in "retry_config/tables.asm". The first digit in each value controls the prompt type for a specific sublevel.
+A: Yes. Look at the "checkpoint_effect" table in "retry_config/tables.asm". The first digit in each value controls the prompt type for a specific sublevel.
 
 Q: Can I change the prompt type in specific situations (not necessarily on a sublevel basis)?
 A: Yes. Additionally to the "effect" table, there's the "!ram_prompt_override" address that, when set, will replace both the table and the default option (see "retry_config/ram.asm" and "docs/ram_map.txt"). For example, you could use it to let the player choose the prompt type as they want (you still have to implement that, though, as this only handles setting the prompt type).
@@ -17,3 +23,6 @@ Q: Can I change where the prompt is shown on the screen?
 A: Yes. Look at "!text_x_pos" and "!text_y_pos" in "retry_config/settings.asm". For example, using "!text_x_pos = $08" and "!text_y_pos = $D0" will place it on the lower left corner of the screen.
 Additionally, you can also change it at runtime by writing to the "!ram_prompt_x_pos" and "!ram_prompt_y_pos" addresses (see "docs/ram_map.txt" for more info).
 Either way, if you want to change it you should disable the Retry box (either by setting "!no_prompt_box = 1" or by writing to "!ram_disable_box" at runtime) as its position can't be changed easily.
+
+Q: Is this compatible with the "No Overworld" UberASM?
+A: Yes. If you want to insert it with the global code method, you don't need to do anything else. If you want to use the gamemode method, you'll need to merge the UberASM files, but this is just a matter of adding "jsl NoOverworld_SkipOW" to "retry_gm0C.asm" (init), "jsl NoOverworld_PreLoadLevel" to "retry_gm10.asm" (init), and "jsl NoOverworld_DuringLevel" to "retry_gm14.asm" (main).

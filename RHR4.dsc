@@ -8,3 +8,4 @@
 298	0	block that can be broken by a kicked or thrown item
 299	0	Block that silently kills any sprite.
 29a	0	Block that kills the player (even on yoshi), is solid for sprites and kills on wall running.
+29b	0	Block that removes any powerup from Mario

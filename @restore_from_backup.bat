@@ -3,26 +3,28 @@ Setlocal EnableDelayedExpansion
 cls
 :start
 
-:: Name of your ROM
-set ROMNAME=RHR4
+:: ROM Details
+set ROM_NAME=RHR4
 
 :: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Working Directory 
 set WORKING_DIR=%~dp0
+:: Backup Directory 
+set BACKUP_DIR=%~dp0Backup\
 
 :: Variables
-set BACKUP="%WORKING_DIR%Backup\latest_%ROMNAME%.smc"
-set ROMFILE="%WORKING_DIR%%ROMNAME%.smc"
-set PATCHFILE="%WORKING_DIR%%ROMNAME%.bps"
+set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
+set PATCHFILE="%BACKUP_DIR%%ROM_NAME%.bps"
 
 :: Restore locations
-set LEVELS_BACKUP="%WORKING_DIR%Levels\latest\"
-set MAP16_BACKUP="%WORKING_DIR%Map16\AllMap16_latest.map16"
-set PAL_BACKUP="%WORKING_DIR%Palettes\Shared_latest.pal"
+set ROM_BACKUP="%BACKUP_DIR%ROM\latest_%ROM_NAME%.smc"
+set LEVELS_BACKUP="%BACKUP_DIR%Levels\latest\"
+set MAP16_BACKUP="%BACKUP_DIR%Map16\AllMap16_latest.map16"
+set PAL_BACKUP="%BACKUP_DIR%Palettes\Shared_latest.pal"
 
 :: Lunar Magic location
-set LM="%WORKING_DIR%common\Lunar Magic.exe"
+set LM="%WORKING_DIR%\Lunar Magic.exe"
 
 :: Options
 echo Restore Actions -- Only use this with a fresh ROM
@@ -45,7 +47,7 @@ if "!Action!"=="1" (
     ) else (
         :: Check if a patched ROM already exists and make a temporary backup
         if exist !ROMFILE! (
-            echo Hack already exists, making temporary backup called "%ROMNAME%.smc~".
+            echo Hack already exists, making temporary backup called "%ROM_NAME%.smc~".
             :: Make backup of ROM just in case of error
             copy !ROMFILE! "!ROMFILE!~"
         )
@@ -58,22 +60,22 @@ if "!Action!"=="1" (
             set SMWROM="%WORKING_DIR%\sysLMRestore\smwOrig.smc"
         )
         :: Apply baserom patch with Flips
-        "%WORKING_DIR%common\flips.exe" --apply %PATCHFILE% !SMWROM! !ROMFILE!
+        "%WORKING_DIR%\flips.exe" --apply %PATCHFILE% !SMWROM! !ROMFILE!
         echo Done.
     )
 )
 :: Transferr Global ExAnimation, Overworld, Titlescreen and Credits
 if "!Action!"=="2" (
     echo Transferring ExAnimation, Overworld, Titlescreen and Credits...
-    if not exist !BACKUP! (
+    if not exist !ROM_BACKUP! (
         echo Could not a back-up of your ROM. Run a back-up first before proceeding.
         exit /b
     ) else (
         :: Run Lunar Magic Actions
-        !LM! -TransferLevelGlobalExAnim !ROMFILE! !BACKUP!
-        !LM! -TransferOverworld !ROMFILE! !BACKUP!
-        !LM! -TransferTitleScreen !ROMFILE! !BACKUP!
-        !LM! -TransferCredits !ROMFILE! !BACKUP!
+        !LM! -TransferLevelGlobalExAnim !ROMFILE! !ROM_BACKUP!
+        !LM! -TransferOverworld !ROMFILE! !ROM_BACKUP!
+        !LM! -TransferTitleScreen !ROMFILE! !ROM_BACKUP!
+        !LM! -TransferCredits !ROMFILE! !ROM_BACKUP!
         echo Done.
     )
 )
@@ -106,7 +108,7 @@ if "!Action!"=="5" (
         echo Could not find a back-up of palettes.
         exit /b
     ) else (
-        !LM! -ImportSharedPalette  !ROMFILE! !PAL_BACKUP!
+        !LM! -ImportSharedPalette !ROMFILE! !PAL_BACKUP!
         echo Done.
     )
 )

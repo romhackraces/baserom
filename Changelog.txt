@@ -1,3 +1,12 @@
+v4.4
+
+- reorganized the folder structure to better accommodate the build script
+- added powerup filter block to the custom blocks
+- added Piranha Plant Stems Fix, Player X Speed Fix 3.0 and Line-Guided Rope Length Fix patches
+- adjusted a few hex edits
+- updated the demo level
+- update retry system to version 0.3.3
+
 v4.3
 
 - streamlined the script process to make it less overwhelming

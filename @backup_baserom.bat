@@ -3,25 +3,28 @@ Setlocal EnableDelayedExpansion
 cls
 :start
 
-:: Name of your ROM
-set ROMNAME=RHR4
+:: ROM Details
+set ROM_NAME=RHR4
 
 :: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Working Directory 
 set WORKING_DIR=%~dp0
 
+:: Backup Directory 
+set BACKUP_DIR=%~dp0Backup\
+
 :: Variables
-set ROMFILE="%WORKING_DIR%%ROMNAME%.smc"
+set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
 
 :: Backup locations
-set MAIN_BACKUP="%WORKING_DIR%"Backup
-set LEVELS_BACKUP="%WORKING_DIR%"Levels
-set MAP16_BACKUP="%WORKING_DIR%"Map16
-set PAL_BACKUP="%WORKING_DIR%"Palettes
+set MAIN_BACKUP="%BACKUP_DIR%"ROM
+set LEVELS_BACKUP="%BACKUP_DIR%"Levels
+set MAP16_BACKUP="%BACKUP_DIR%"Map16
+set PAL_BACKUP="%BACKUP_DIR%"Palettes
 
 :: Lunar Magic location
-set LM="%WORKING_DIR%common\Lunar Magic.exe"
+set LM="%WORKING_DIR%Lunar Magic.exe"
 
 :: Time stuff
 setlocal
@@ -68,7 +71,7 @@ if "%Action%"=="2" (
     if not exist %MAP16_BACKUP% (
         mkdir %MAP16_BACKUP%
     )
-    !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\AllMap16_%TIMESTAMP%.map16
+    !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\%TIMESTAMP%_AllMap16.map16
     !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\AllMap16_latest.map16
     echo Done.
 )
@@ -88,8 +91,8 @@ if "%Action%"=="4" (
         mkdir %MAIN_BACKUP%
     )
     echo Creating time-stamped copy of your ROM...
-    copy !ROMFILE! %MAIN_BACKUP%\%TIMESTAMP%_%ROMNAME%.smc
-    copy !ROMFILE! %MAIN_BACKUP%\latest_%ROMNAME%.smc
+    copy !ROMFILE! %MAIN_BACKUP%\%TIMESTAMP%_%ROM_NAME%.smc
+    copy !ROMFILE! %MAIN_BACKUP%\latest_%ROM_NAME%.smc
     echo Done.
 )
 if "%Action%"=="0" (
