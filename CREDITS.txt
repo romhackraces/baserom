@@ -30,7 +30,7 @@ Basic ON/OFF Blocks - AmperSam
 Basic Power Up Filter Block - AmperSam
 Block Breakable by Item - JUMP Team
 Hurt / Death Block for Kaizo / Pit Hacks - dacin - https://smwc.me/s/27268
-One-way blocks 1.2 - HammerBrother https://smwc.me/s/18158
+One-way blocks 1.2 - HammerBrother - https://smwc.me/s/18158
 
 -- Included Tools --
 AddmusicK 1.0.8 - Kipenal - https://smwc.me/s/24994
