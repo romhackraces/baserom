@@ -6,6 +6,7 @@ Backup/Palettes/20*
 sysLMRestore/*.smc
 sysLMRestore/*.lrp
 sysLMRestore/readme.txt
+UberASM/asm/work/*.asm
 *.*~
 *.7z
 *.extmod

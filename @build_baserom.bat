@@ -8,10 +8,10 @@ set ROM_NAME=RHR4
 :: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Working Directory 
-setlocal disabledelayedexpansion
+setlocal DisableDelayedExpansion
 set WORKING_DIR=%~dp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
-setlocal enabledelayedexpansion
+setlocal EnableDelayedExpansion
 
 :: Variables
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"

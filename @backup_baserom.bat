@@ -1,5 +1,4 @@
 @echo off
-Setlocal EnableDelayedExpansion
 cls
 :start
 
@@ -9,7 +8,10 @@ set ROM_NAME=RHR4
 :: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Working Directory 
+setlocal DisableDelayedExpansion
 set WORKING_DIR=%~dp0
+set WORKING_DIR=%WORKING_DIR:!=^^!%
+setlocal EnableDelayedExpansion
 
 :: Backup Directory 
 set BACKUP_DIR=%~dp0Backup\
