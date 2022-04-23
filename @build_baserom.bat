@@ -1,5 +1,4 @@
 @echo off
-Setlocal EnableDelayedExpansion
 cls
 :start
 
@@ -9,7 +8,10 @@ set ROM_NAME=RHR4
 :: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Working Directory 
+setlocal disabledelayedexpansion
 set WORKING_DIR=%~dp0
+set WORKING_DIR=%WORKING_DIR:!=^^!%
+setlocal enabledelayedexpansion
 
 :: Variables
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
