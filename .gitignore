@@ -1,4 +1,9 @@
 AddmusicK_*/temp
+AddmusicK_*/asm/SNES/bin/*.bin
+AddmusicK_*/readme.html
+AddmusicK_*/readme_files/
+AddmusicK_*/stats/*.txt
+AddmusicK_*/SPCs/*.spc
 flipscfg.bin
 Backup/Levels/20*
 Backup/Map16/20*
