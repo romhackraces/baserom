@@ -64,7 +64,7 @@ if "!Action!"=="1" (
         )
         :: Apply baserom patch with Flips
         "%WORKING_DIR%\flips.exe" --apply %PATCHFILE% !SMWROM! !ROMFILE!
-        echo Done.
+        pause
     )
 )
 :: Transferr Global ExAnimation, Overworld, Titlescreen and Credits
@@ -79,7 +79,7 @@ if "!Action!"=="2" (
         !LM! -TransferOverworld !ROMFILE! !ROM_BACKUP!
         !LM! -TransferTitleScreen !ROMFILE! !ROM_BACKUP!
         !LM! -TransferCredits !ROMFILE! !ROM_BACKUP!
-        echo Done.
+        pause
     )
 )
 :: Import backed up levels
@@ -90,7 +90,7 @@ if "!Action!"=="3" (
         exit /b
     ) else (
         !LM! -ImportMultLevels !ROMFILE! !LEVELS_BACKUP!
-        echo Done.
+        pause
     )
 )
 :: Import backed up map16
@@ -101,7 +101,7 @@ if "!Action!"=="4" (
         exit /b
     ) else (
         !LM! -ImportAllMap16 !ROMFILE! !MAP16_BACKUP!
-        echo Done.
+        pause
     )
 )
 :: Import backed up palettes
@@ -112,7 +112,7 @@ if "!Action!"=="5" (
         exit /b
     ) else (
         !LM! -ImportSharedPalette !ROMFILE! !PAL_BACKUP!
-        echo Done.
+        pause
     )
 )
 popd

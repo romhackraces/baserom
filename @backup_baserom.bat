@@ -65,7 +65,7 @@ if "%Action%"=="1" (
 
     !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\%TIMESTAMP%\level
     !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\latest\level
-    echo Done.
+    pause
 )
 :: Export Map16
 if "%Action%"=="2" (
@@ -75,7 +75,7 @@ if "%Action%"=="2" (
     )
     !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\%TIMESTAMP%_AllMap16.map16
     !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\AllMap16_latest.map16
-    echo Done.
+    pause
 )
 :: Export Palettes
 if "%Action%"=="3" (
@@ -85,7 +85,7 @@ if "%Action%"=="3" (
     )
     !LM! -ExportSharedPalette !ROMFILE! %PAL_BACKUP%\%TIMESTAMP%_Shared.pal
     !LM! -ExportSharedPalette !ROMFILE! %PAL_BACKUP%\Shared_latest.pal
-    echo Done.
+    pause
 )
 :: Create time-stamped backup of your ROM
 if "%Action%"=="4" (
@@ -95,7 +95,7 @@ if "%Action%"=="4" (
     echo Creating time-stamped copy of your ROM...
     copy !ROMFILE! %MAIN_BACKUP%\%TIMESTAMP%_%ROM_NAME%.smc
     copy !ROMFILE! %MAIN_BACKUP%\latest_%ROM_NAME%.smc
-    echo Done.
+    pause
 )
 if "%Action%"=="0" (
     echo Have a nice day ^^_^^

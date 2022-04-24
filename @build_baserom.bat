@@ -41,35 +41,35 @@ if "!Action!"=="1" (
     echo Applying patches...
     pushd "%WORKING_DIR%Asar\"
     for /f "tokens=*" %%a in (%ASAR_LIST%) do (asar.exe -v %%a !ROMFILE!)
-    echo Done.
+    pause
 )
 :: Insert custom blocks with GPS
 if "!Action!"=="2" (
     echo Inserting custom blocks...
     pushd "%WORKING_DIR%GPS\"
     gps.exe -l %GPS_LIST% !ROMFILE!
-    echo Done.
+    pause
 )
 :: Insert Custom Sprites with PIXI
 if "!Action!"=="3" (
     echo Inserting custom sprites...
     pushd "%WORKING_DIR%PIXI\"
     pixi.exe -l "PIXI\%PIXI_LIST%" !ROMFILE!
-    echo Done.
+    pause
 )
 :: Insert custom music with AddmusicK
 if "!Action!"=="4" (
     echo Inserting custom Music...
     pushd "%WORKING_DIR%AddmusicK_1.0.8\"
     AddmusicK.exe !ROMFILE!
-    echo Done.
+    pause
 )
 :: Insert custom uberASM
 if "!Action!"=="5" (
     echo Inserting UberASM...
     pushd "%WORKING_DIR%UberASM\"
     UberASMTool.exe %UBER_LIST% !ROMFILE!
-    echo Done.
+    pause
 )
 :: Create bps Patch with Flips
 if "!Action!"=="6" (
@@ -82,6 +82,7 @@ if "!Action!"=="6" (
         set SMWROM="%WORKING_DIR%sysLMRestore\smwOrig.smc"
     )
     "%WORKING_DIR%\flips.exe" --create --bps !SMWROM! !ROMFILE! !PATCHNAME!
+    pause
 )
 
 popd
