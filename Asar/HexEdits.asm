@@ -17,11 +17,14 @@ org $00D24E : LDA $7D : NOP : NOP
 ; fix bug in yoshi stomp hitbox 
 org $0286D7 : db $D5
 
-; disable L/R
+; disable L/R scroll
 org $00CDFC : db $80
 
 ; no powerups from midways
 org $00F2E2 : db $80
+
+; remove Yoshi's rescue message
+org $01EC36 : db $80
 
 ; stop the bridge breaking in the Reznor fight
 org $03989F : db $EA,$EA,$EA,$EA
@@ -38,9 +41,31 @@ org $02D421 : db $6B
 ; infinite lives
 org $00D0D8 : NOP #3
 
+; fix Yellow Koopa jump framerule
+org $018898 : bra $05
+
+; fix Message Box removing some sprite tiles when closing
+org $05B31B : rts
+
+; fix HDMA breaks
+org $05B129 : nop #3
+org $05B296 : db $0C
+org $00CB0C : db $0C
+org $009CAD : nop #3
+org $0092EA : db $0C
+org $0CAB98 : db $0C
+org $04DB99 : db $0C
+org $04F40D : nop #3
+org $00C5CE : nop #3
+org $03C511 : db $0C
+
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GFX Tweaks & Fixes ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
+
+; fix palette of the white tile in the cave layer 3 background
+org $05A312 : db $15
+org $05A4B2 : db $15
 
 ; fix dark palette on "Erase Game" screen
 org $009D30 : db $EA,$EA,$EA,$EA,$EA
@@ -111,11 +136,11 @@ org $0291F4 : db $40 : org $02878C : db $00 : org $02925D : db $02
 org $0291F6 : db $20 : org $02878E : db $06 : org $02925D : db $02
 
 ; Yoshi's tongue, end
-org $01F48C : db $4A : org $01F494 : db $08
+org $01F48C : db $7E : org $01F494 : db $08
 ; Yoshi's tongue, middle
-org $01F488 : db $4B : org $01F494 : db $08
+org $01F488 : db $7F : org $01F494 : db $08
 ; Yoshi's throat
-org $01F08B : db $5B : org $01F097 : db $00
+org $01F08B : db $38 : org $01F097 : db $00
 
 ; Piranha plant Head 1
 org $019BBD : db $AC : org $07F418 : db $08
