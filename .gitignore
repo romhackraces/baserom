@@ -21,6 +21,8 @@ UberASM/asm/work/*.asm
 *.mwt
 *.sfc
 *.smc
+*.smc~
+*.sym
 *.spc
 *.ssc
 *.zip
