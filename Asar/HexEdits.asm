@@ -129,7 +129,7 @@ org $07F407
 ;;;;;;;;;;;;;;;;;;;
 
 ; Note block bounce sprite
-org $0291F2 : db $22 : org $02878A : db $02 : org $02925D : db $02
+org $0291F2 : db $4A : org $02878A : db $02 : org $02925D : db $02
 ; Side turn block bounce sprite
 org $0291F4 : db $40 : org $02878C : db $00 : org $02925D : db $02
 ; ON/OFF bounce sprite
@@ -150,3 +150,12 @@ org $019BBE : db $0A : org $018E92 : db $0B
 org $019BBF : db $AE : org $07F418 : db $08
 ; Piranha plant Stem 2
 org $019BC0 : db $0A : org $018E92 : db $09
+
+; Lava splashes
+org $029E82
+    db $5B
+    db $4B
+    db $5A
+    db $4A
+
+org $029ED5 : db $04
