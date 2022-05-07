@@ -27,7 +27,13 @@ set MAP16_BACKUP="%BACKUP_DIR%Map16\AllMap16_latest.map16"
 set PAL_BACKUP="%BACKUP_DIR%Palettes\Shared_latest.pal"
 
 :: Lunar Magic location
-set LM="%WORKING_DIR%\Lunar Magic.exe"
+set LM="%WORKING_DIR%Lunar Magic.exe"
+set LM_ZIP="%WORKING_DIR%lm331.zip"
+
+:: Extract Lunar Magic if not already 
+if not exist !LM! (
+    powershell Expand-Archive %LM_ZIP% -DestinationPath %WORKING_DIR%
+)
 
 :: Options
 echo Restore Actions -- Only use this with a fresh ROM

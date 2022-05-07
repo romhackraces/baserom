@@ -10,6 +10,8 @@ The first thing you are going to do is patch your copy of unmodified Super Mario
 
 If you change the filename of your ROM be sure to rename the ancillary files included in this baserom and change all instances of `RHR4` found in the build scripts (usually specified by `ROM_NAME`) otherwise they will not work as intended.
 
+Lunar Magic is provided as-is for use with the baserom scripts and to build your level with, to use extract `lm331.zip` into the main baserom folder.
+
 ### Helpful Scripts
 
 To make life easier for you as a hacker, this baserom comes some helpful scripts to automate the process of applying additional custom assets to your ROM as well as for backing things up and creating a patch for distribution.

@@ -12,8 +12,9 @@ sysLMRestore/*.smc
 sysLMRestore/*.lrp
 sysLMRestore/readme.txt
 UberASM/asm/work/*.asm
+Lunar Magic*
+readme.txt
 *.*~
-*.7z
 *.extmod
 *.lrp
 *.msc
@@ -25,4 +26,3 @@ UberASM/asm/work/*.asm
 *.sym
 *.spc
 *.ssc
-*.zip
