@@ -25,13 +25,22 @@ set LEVELS_BACKUP="%BACKUP_DIR%"Levels
 set MAP16_BACKUP="%BACKUP_DIR%"Map16
 set PAL_BACKUP="%BACKUP_DIR%"Palettes
 
+:: Tools
+call %WORKING_DIR%@baserom_tools.bat
+
 :: Lunar Magic location
 set LM="%WORKING_DIR%Lunar Magic.exe"
-set LM_ZIP="%WORKING_DIR%lm331.zip"
 
-:: Extract Lunar Magic if not already 
+:: Check if Lunar Magic exists and download if not
 if not exist !LM! (
-    powershell Expand-Archive %LM_ZIP% -DestinationPath %WORKING_DIR%
+    echo Executable for Lunar Magic not found, downloading...
+    powershell Invoke-WebRequest !LM_DL! -OutFile !LM_ZIP! >NUL
+    powershell Expand-Archive !LM_ZIP! -DestinationPath %WORKING_DIR% >NUL
+    :: Delete junk files
+    del %WORKING_DIR%!LM_ZIP!
+    pushd %WORKING_DIR%
+    for %%a in (!LM_JUNK!) do (del %WORKING_DIR%%%a)
+    echo Done.
 )
 
 :: Time stuff

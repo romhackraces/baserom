@@ -13,6 +13,9 @@ set WORKING_DIR=%~dp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
+:: Tools
+call %WORKING_DIR%@baserom_tools.bat
+
 :: Backup Directory 
 set BACKUP_DIR=%~dp0Backup\
 
@@ -28,11 +31,17 @@ set PAL_BACKUP="%BACKUP_DIR%Palettes\Shared_latest.pal"
 
 :: Lunar Magic location
 set LM="%WORKING_DIR%Lunar Magic.exe"
-set LM_ZIP="%WORKING_DIR%lm331.zip"
 
-:: Extract Lunar Magic if not already 
+:: Check if Lunar Magic exists and download if not
 if not exist !LM! (
-    powershell Expand-Archive %LM_ZIP% -DestinationPath %WORKING_DIR%
+    echo Executable for Lunar Magic not found, downloading...
+    powershell Invoke-WebRequest !LM_DL! -OutFile !LM_ZIP! >NUL
+    powershell Expand-Archive !LM_ZIP! -DestinationPath %WORKING_DIR% >NUL
+    :: Delete junk files
+    del %WORKING_DIR%!LM_ZIP!
+    pushd %WORKING_DIR%
+    for %%a in (!LM_JUNK!) do (del %WORKING_DIR%%%a)
+    echo Done.
 )
 
 :: Options

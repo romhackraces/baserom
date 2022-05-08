@@ -1,4 +1,4 @@
-AddmusicK_*/temp
+AddmusicK_*/temp*
 AddmusicK_*/asm/SNES/bin/*.bin
 AddmusicK_*/readme.html
 AddmusicK_*/readme_files/
@@ -12,10 +12,10 @@ sysLMRestore/*.smc
 sysLMRestore/*.lrp
 sysLMRestore/readme.txt
 UberASM/asm/work/*.asm
-Lunar Magic*
-readme.txt
 *.*~
 *.extmod
+*.exe
+*.dll
 *.lrp
 *.msc
 *.mw2
@@ -26,3 +26,4 @@ readme.txt
 *.sym
 *.spc
 *.ssc
+*.zip
