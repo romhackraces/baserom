@@ -66,18 +66,15 @@ echo   0. Exit
 echo.
 set /p Action=Enter the number of your choice: 
 
-
 :: Export MWL level files
 if "%Action%"=="1" (
     echo Exporting Levels...
     if not exist %LEVELS_BACKUP%\%TIMESTAMP% (
         mkdir %LEVELS_BACKUP%\%TIMESTAMP%
     )
-
     if not exist %LEVELS_BACKUP%\latest (
         mkdir %LEVELS_BACKUP%\latest
     )
-
     !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\%TIMESTAMP%\level
     !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\latest\level
     pause

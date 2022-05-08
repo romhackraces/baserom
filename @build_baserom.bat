@@ -136,7 +136,6 @@ if "!Action!"=="5" (
     echo Inserting UberASM...
     pushd !UBER_DIR!
     UberASMTool.exe !UBER_LIST! !ROMFILE!
-    pause
 )
 :: Create bps Patch with Flips
 if "!Action!"=="6" (
