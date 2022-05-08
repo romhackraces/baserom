@@ -4,6 +4,7 @@ AddmusicK_*/readme.html
 AddmusicK_*/readme_files/
 AddmusicK_*/stats/*.txt
 AddmusicK_*/SPCs/*.spc
+GPS/blocks/template.asm
 flipscfg.bin
 Backup/Levels/20*
 Backup/Map16/20*
@@ -12,6 +13,7 @@ sysLMRestore/*.smc
 sysLMRestore/*.lrp
 sysLMRestore/readme.txt
 UberASM/asm/work/*.asm
+UberASM/*.pdb
 *.*~
 *.extmod
 *.exe

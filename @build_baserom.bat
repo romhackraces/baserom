@@ -52,8 +52,7 @@ if "!Action!"=="1" (
     )
     echo Applying Asar patches...
     pushd !ASAR_DIR!
-    echo !ASAR_DIR!
-    ::for /f "tokens=*" %%a in (!ASAR_LIST!) do (asar.exe -v %%a !ROMFILE!)
+    for /f "tokens=*" %%a in (!ASAR_LIST!) do (asar.exe -v %%a !ROMFILE!)
     pause
 )
 :: Insert custom blocks with GPS
@@ -104,7 +103,7 @@ if "!Action!"=="4" (
     set AMK_DIR=%WORKING_DIR%AddmusicK_1.0.8\
     :: Check if AMK exists and download if not
     if not exist !AMK_DIR!AddmusicK.exe (
-        echo Executable for AMK not found, downloading...
+        echo Executable for AddmusicK not found, downloading...
         powershell Invoke-WebRequest !AMK_DL! -OutFile !AMK_ZIP! >NUL
         powershell Expand-Archive !AMK_ZIP! -DestinationPath %WORKING_DIR%\ >NUL
         :: Delete junk files
@@ -122,7 +121,7 @@ if "!Action!"=="4" (
 :: Insert custom uberASM
 if "!Action!"=="5" (
     :: UberASM Defines
-    set UBER_DIR=%WORKING_DIR%UberASM
+    set UBER_DIR=%WORKING_DIR%UberASM\
     set UBER_LIST=list_uberasm.txt
     :: Check if UberASM exists and download if not
     if not exist "!UBER_DIR!UberASMTool.exe" (
@@ -131,9 +130,7 @@ if "!Action!"=="5" (
         powershell Expand-Archive !UBER_ZIP! -DestinationPath !UBER_DIR! >NUL
         :: Delete junk files
         del %WORKING_DIR%!UBER_ZIP!
-        (for %%a in (!UBER_JUNK!) do (
-           del !UBER_DIR!%%a
-        ))
+        for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a)
         echo Done.
     )
     echo Inserting UberASM...
