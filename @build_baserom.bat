@@ -9,7 +9,7 @@ set ROM_NAME=RHR4
 
 :: Working Directory 
 setlocal DisableDelayedExpansion
-set WORKING_DIR=%~dp0
+set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
@@ -18,7 +18,7 @@ set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
 set PATCHNAME="%WORKING_DIR%%ROM_NAME%.bps"
 
 :: Tools
-call %WORKING_DIR%@baserom_tools.bat
+call %WORKING_DIR%@tool_defines.bat
 
 :: Options
 echo Build Actions
@@ -36,15 +36,16 @@ set /p Action=Enter the number of your choice:
 :: Apply asar patches
 if "!Action!"=="1" (
     :: Asar Defines
-    set ASAR_DIR=%WORKING_DIR%Asar\
+    set ASAR_DIR=%WORKING_DIR%%Asar\
     set ASAR_LIST=list_asar.txt
     :: Check if Asar exists and download if not
     if not exist !ASAR_DIR!asar.exe (
         echo Executable for Asar not found, downloading...
-        powershell Invoke-WebRequest !ASAR_DL! -OutFile %ASAR_ZIP% >NUL
+        powershell Invoke-WebRequest !ASAR_DL! -OutFile !ASAR_ZIP! >NUL
         powershell Expand-Archive !ASAR_ZIP! -DestinationPath !ASAR_DIR! >NUL
         :: Delete junk files
-        del %WORKING_DIR%%ASAR_ZIP%
+        del %WORKING_DIR%!ASAR_ZIP!
+        echo !ASAR_ZIP!
         pushd !ASAR_DIR!
         for %%a in (!ASAR_JUNK!) do (del !ASAR_DIR!%%a)
         for %%a in (!ASAR_JUNK_DIR!) do (rmdir /S /Q !ASAR_DIR!%%a)

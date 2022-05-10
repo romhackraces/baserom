@@ -13,7 +13,7 @@ set ASAR_JUNK_DIR="ext" "dll" "docs"
 :: Flips
 set FLIPS_DL="https://dl.smwcentral.net/11474/floating.zip"
 set FLIPS_ZIP="floating.zip"
-set FLIPS_JUNK="license.txt" "flips-linux"
+set FLIPS_JUNK="license.txt" "flips-linux" "boring.zip"
 
 :: GPS
 set GPS_DL="https://dl.smwcentral.net/29130/GPS%20v1.4.3.zip"

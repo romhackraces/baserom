@@ -9,12 +9,12 @@ set ROM_NAME=RHR4
 
 :: Working Directory 
 setlocal DisableDelayedExpansion
-set WORKING_DIR=%~dp0
+set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: Backup Directory 
-set BACKUP_DIR=%~dp0Backup\
+set BACKUP_DIR=%~sdp0Backup\
 
 :: Variables
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
@@ -26,7 +26,7 @@ set MAP16_BACKUP="%BACKUP_DIR%"Map16
 set PAL_BACKUP="%BACKUP_DIR%"Palettes
 
 :: Tools
-call %WORKING_DIR%@baserom_tools.bat
+call %WORKING_DIR%@tool_defines.bat
 
 :: Lunar Magic location
 set LM="%WORKING_DIR%Lunar Magic.exe"

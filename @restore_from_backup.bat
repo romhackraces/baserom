@@ -9,15 +9,15 @@ set ROM_NAME=RHR4
 
 :: Working Directory 
 setlocal DisableDelayedExpansion
-set WORKING_DIR=%~dp0
+set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: Tools
-call %WORKING_DIR%@baserom_tools.bat
+call %WORKING_DIR%\@tool_defines.bat
 
 :: Backup Directory 
-set BACKUP_DIR=%~dp0Backup\
+set BACKUP_DIR=%~sdp0Backup\
 
 :: Variables
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
