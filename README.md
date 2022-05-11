@@ -8,8 +8,7 @@ See the [baserom Wiki page](https://github.com/romhackraces/baserom/wiki/Changes
 
 The first thing you are going to do is patch your copy of unmodified Super Mario World with the `RHR4.bps` patch found in the main folder of this baserom, ensuring it has the name 'RHR4' and an extension of `.smc` when completed. This patch contains all of the changes already made so you can get going straightaway on building your Romhack Race level.
 
-If you change the filename of your ROM be sure to rename the ancillary files included in this baserom and change all instances of `RHR4` found in the build scripts (usually specified by `ROM_NAME`) otherwise they will not work as intended.
-
+If you change the filename of your ROM be sure to update it in the `@your_defines.bat` file otherwise the baserom scripts will not work as intended.
 
 ### Helpful Scripts
 
@@ -19,6 +18,7 @@ To make life easier for you as a hacker, this baserom comes some helpful scripts
 - `@backup_baserom.bat` Some basic backup options that leverages some Lunar Magic features to export all modified levels, edited map16 and/or shared palettes from your ROM, as well as a basic way to create a time-stamped backup of your ROM file, and create a BPS patch on demand.
 - `@restore_from_backup.bat` Options to create a fresh ROM, restore global assets from a time-stamped based backup and imports previously-exported levels, map16 and palettes into it. Requires Lunar Magic and the backup scripts to be run first.
 - `@tool_defines.bat` DO NOT RUN THIS! This file is just a series of definitions for where and what to download for the baserom tools, this is used by the other scripts.
+- `@your_defines.bat` DO NOT RUN THIS! In this file are definitions you can change to change things about the baserom.
 
 See the [Wiki page](https://github.com/romhackraces/baserom/wiki/Using-the-Build-Scripts) for more information about these scripts.
 

@@ -2,23 +2,21 @@
 cls
 :start
 
-:: ROM Details
-set ROM_NAME=RHR4
-
-:: DO NOT CHANGE THE VARIABLES BELOW
-
 :: Working Directory 
 setlocal DisableDelayedExpansion
 set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
+:: Import Definitions
+call %WORKING_DIR%@your_defines.bat
+call %WORKING_DIR%@tool_defines.bat
+
+:: DO NOT CHANGE THE VARIABLES BELOW
+
 :: Variables
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
 set PATCHNAME="%WORKING_DIR%%ROM_NAME%.bps"
-
-:: Tools
-call %WORKING_DIR%@tool_defines.bat
 
 :: Options
 echo Build Actions
@@ -152,8 +150,7 @@ if "!Action!"=="6" (
         echo Done.
     )
     echo Creating BPS patch...
-    set SMWROM=
-    if not exist "%WORKING_DIR%sysLMRestore\smwOrig.smc" (
+    if not exist !SMWROM! (
         echo Could not find an unmodified SMW file. Enter the path to an original, unmodified SMW smc: 
         set /p SMWROM=
     ) else (

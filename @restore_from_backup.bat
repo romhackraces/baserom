@@ -2,19 +2,17 @@
 cls
 :start
 
-:: ROM Details
-set ROM_NAME=RHR4
-
-:: DO NOT CHANGE THE VARIABLES BELOW
-
 :: Working Directory 
 setlocal DisableDelayedExpansion
 set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
-:: Tools
-call %WORKING_DIR%\@tool_defines.bat
+:: Import Definitions
+call %WORKING_DIR%@your_defines.bat
+call %WORKING_DIR%@tool_defines.bat
+
+:: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Backup Directory 
 set BACKUP_DIR=%~sdp0Backup\

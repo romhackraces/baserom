@@ -2,16 +2,17 @@
 cls
 :start
 
-:: ROM Details
-set ROM_NAME=RHR4
-
-:: DO NOT CHANGE THE VARIABLES BELOW
-
 :: Working Directory 
 setlocal DisableDelayedExpansion
 set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
+
+:: Import Definitions
+call %WORKING_DIR%@your_defines.bat
+call %WORKING_DIR%@tool_defines.bat
+
+:: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Backup Directory 
 set BACKUP_DIR=%~sdp0Backup\
@@ -24,9 +25,6 @@ set MAIN_BACKUP="%BACKUP_DIR%"ROM
 set LEVELS_BACKUP="%BACKUP_DIR%"Levels
 set MAP16_BACKUP="%BACKUP_DIR%"Map16
 set PAL_BACKUP="%BACKUP_DIR%"Palettes
-
-:: Tools
-call %WORKING_DIR%@tool_defines.bat
 
 :: Lunar Magic location
 set LM="%WORKING_DIR%Lunar Magic.exe"
