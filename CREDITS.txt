@@ -32,7 +32,7 @@ Block Breakable by Item - JUMP Team
 Hurt / Death Block for Kaizo / Pit Hacks - dacin - https://smwc.me/s/27268
 One-way blocks 1.2 - HammerBrother - https://smwc.me/s/18158
 
--- Included Tools --
+-- Used Tools --
 AddmusicK 1.0.8 - Kipenal - https://smwc.me/s/24994
 Asar v1.81 - Alcaro et al. - https://smwc.me/s/25953
 Flips v1.31 - Alcaro - https://smwc.me/s/11474
