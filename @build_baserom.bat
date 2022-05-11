@@ -150,11 +150,11 @@ if "!Action!"=="6" (
         echo Done.
     )
     echo Creating BPS patch...
+	set SMWROM=%WORKING_DIR%\SMWRom\smwOrig.smc
     if not exist !SMWROM! (
         echo Could not find an unmodified SMW file. Enter the path to an original, unmodified SMW smc: 
-        set /p SMWROM=
-    ) else (
-        set SMWROM="%WORKING_DIR%sysLMRestore\smwOrig.smc"
+        set /p SMWROMNEW=
+		copy !SMWROMNEW! !SMWROM!
     )
     "%WORKING_DIR%\flips.exe" --create --bps !SMWROM! !ROMFILE! !PATCHNAME!
     pause
