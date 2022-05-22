@@ -5,7 +5,8 @@ verbose: on
 
 ; Level list. Valid values: 000-1FF.
 level:
-   105 NoStatus.asm
+   105 DisableStatus.asm
+   106 EnableLR.asm
 
 ; OW list. Valid values: 0 = Main map; 1 = Yoshi's Island; 2 = Vanilla Dome;
 ; 3 = Forest of Illusion; 4 = Valley of Bowser; 5 = Special World; and

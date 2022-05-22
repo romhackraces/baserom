@@ -98,3 +98,4 @@ F	0F Door.txt
 33	33 Podoboo 71% pan.txt
 34	34 Podoboo 100% pan.txt
 35 ?	35 Jump.txt
+36	36 Death Prelude.txt

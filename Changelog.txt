@@ -1,3 +1,19 @@
+v4.5
+
+- added an abridged version of HammerBrother's screen scrolling pipes
+- reduced amount of global ExGraphics
+- adjusted the bush and big pipe to use ExGraphics
+- remapped more vanilla objects to accommodate the Screen Scrolling Pipes
+- replace dtothefourth's "Toggle Statusbar" with Kevin's "RAM Toggled Status Bar (& IRQ)"
+- switched to a RAM toggled L/R patch instead of disabling via hex edit
+- enhanced some vanilla sprites with new features that can be enabled by setting the extra bit of each
+- adjusted the graphics for custom blocks
+- added some more bug fixes and quality of life patches
+- added the Poison Mushroom into an unused sprite slot
+- removed the double hit shell palette change as it causes more problems than benefits
+- add reset for boo ring positions
+- made the lava splashes a global sprite
+
 v4.4
 
 - reorganized the folder structure to better accommodate the build script

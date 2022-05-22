@@ -17,9 +17,6 @@ org $00D24E : LDA $7D : NOP : NOP
 ; fix bug in yoshi stomp hitbox 
 org $0286D7 : db $D5
 
-; disable L/R scroll
-org $00CDFC : db $80
-
 ; no powerups from midways
 org $00F2E2 : db $80
 
@@ -115,14 +112,6 @@ org $0584C1 : db $20            ; level mode 0A
 org $0584C3 : db $20,$20,$20    ; level mode 0C, 0D & 0E
 org $0584C8 : db $20            ; level mode 11
 org $0584D5 : db $20,$20        ; level mode 1E & 1F
-
-; changes the palette the special 'double-bounce' shell uses (also changes koopas)
-org $07F407
-;   db $00 ; yellow
-    db $02 ; silver
-;   db $0C ; grey
-;   db $0E ; green
-
 
 ;;;;;;;;;;;;;;;;;;;
 ;; Sprite Remaps ;;

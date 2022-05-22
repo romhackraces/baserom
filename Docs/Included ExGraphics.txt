@@ -2,11 +2,8 @@
 # Included ExGraphics                  #
 #--------------------------------------#
 
-ExGFX60: Global ExAnimation Tiles 
-	- feel free to add to this but do not remove anything unless you know what you are doing
-
-ExGFXFE: Bush Tiles
+ExGFXB80: Bush & Big Pipe Tiles
 	- all the 8x8 bush tiles from GFX17 that were sacrificed for global block graphics 
-	- map16 files for their use as ExGraphics can be found in Map16 folder
+	- insert this into your levels in slot BG2 to restore the bush and Pipe graphics
 
 ExGFXFF: basic 8x8 font used in the Demo level

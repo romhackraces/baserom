@@ -1,0 +1,13 @@
+Through a variety of patches some vanilla sprites now have new features that can be enabled by setting the extra bit of each:
+
+1. You can place a disco shell if you insert of of the shell sprites (number DA, DB, DC, DD or DF) with extra bit set to 1.
+
+2. You can spawn a variety of kicked shell by:
+	
+	a. placing one of the 4 Koopa sprites (sprite number 4 through 7) with extra bit set to 1 to get a kicked shell of the same color. 
+	b. placing a Green Parakoopa (sprite 8 or 9) with extra bit set to 1 will spawn a kicked "special green shell" (sprite DF).
+	c. placing a Buzzy Beetle (sprite 11) with extra bit set to 1 will spawn a kicked Buzzy.
+
+3. You can now place a Throw Block (sprite 53) with the extra bit set to 0, the block will spawn in the stationary state, if set to 1 it will spawn kicked towards Mario. 
+
+4. You can place a triple rotating Ball 'n' Chain by inserting the three rotating gray platforms (sprite E0) with extra bit set to 1.

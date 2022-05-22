@@ -2,10 +2,14 @@
 # Used FreeRAM Values                  #
 #--------------------------------------#
 
-$1929 - asar/BlockDuplicationFix.asm - 1 byte
-$1FFA - asar/ToggleStatusbar.asm - 1 byte
-$140B - asar/FlightSpinFix.asm - 1 byte
-$1DFD - library/double_hit_fix.asm - 1 byte
-$1DFE - library/double_hit_fix.asm - 1 byte
-$7FB400 - retry_config/ram.asm - at minimum 230 bytes + 1 byte for every custom midway
+$0F3A - Screen Scrolling Pipes - 2 bytes
+$0F3C - Screen Scrolling Pipes - 2 bytes
+$0F42 - Screen Scrolling Pipes - 5 bytes
+$140B - FlightSpinFix.asm - 1 byte
+$1929 - BlockDuplicationFix.asm - 1 byte
+$1DFD - library/double_hit_fix.asm - 2 bytes
+$79 - RAMToggledStatusbar.asm - 1 byte
+$7C - RAMToggledLR.asm - 1 byte
 $7FB000 - AddMusicK - 2 to potentially 1032 bytes
+$7FB400 - retry_config/ram.asm - at minimum 230 bytes + 1 byte for every custom midway
+$7FB540 - Layer2+3Triangles.asm - 1 byte

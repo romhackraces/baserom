@@ -13,12 +13,12 @@ set ASAR_JUNK_DIR="ext" "dll" "docs"
 :: Flips
 set FLIPS_DL="https://dl.smwcentral.net/11474/floating.zip"
 set FLIPS_ZIP="floating.zip"
-set FLIPS_JUNK="license.txt" "flips-linux" "boring.zip"
+set FLIPS_JUNK="license.txt" "flips-linux" "boring.zip" "src.zip"
 
 :: GPS
 set GPS_DL="https://dl.smwcentral.net/29130/GPS%20v1.4.3.zip"
 set GPS_ZIP="GPS%20v1.4.3.zip"
-set GPS_JUNK="list.txt" "src.zip" "Changes.txt" "README.txt"
+set GPS_JUNK="list.txt" "src.zip" "Changes.txt" "README.txt" "blocks/template.asm"
 
 :: Lunar Magic
 set LM_DL="https://dl.smwcentral.net/28429/lm331.zip"
@@ -33,4 +33,4 @@ set PIXI_JUNK="list.txt" "removedResources.txt" "changelog.txt" "readme.txt"
 :: UberASM Tool
 set UBER_DL="https://dl.smwcentral.net/19982/UberASMTool14.zip"
 set UBER_ZIP="UberASMTool14.zip"
-set UBER_JUNK="readme.txt" "readme - library.txt" "list.txt"
+set UBER_JUNK="readme.txt" "readme - library.txt" "list.txt" "level/test.asm" "level/test2.asm"

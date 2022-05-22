@@ -1,0 +1,3 @@
+1. Copy the Level ExGraphics slot 00 from the Demo level (105) into your level 
+2. Set AN2 graphics slot for your level to use "ExGFXA1"
+3. Import the "PoisonMushroom.pal" palette into your level.

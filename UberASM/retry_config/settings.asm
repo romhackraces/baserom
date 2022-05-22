@@ -45,8 +45,8 @@
 
 ; What SFX to play when dying (!death_sfx = $00 -> no SFX).
 ; Only played if not playing the death song (for example, if the level uses vanilla death).
-    !death_sfx = $20
-    !death_sfx_addr = $1DF9|!addr
+    !death_sfx = $36
+    !death_sfx_addr = $1DFC|!addr
 
 ; The alternative death jingle which will be played after the !death_sfx when "no" is chosen in the prompt (only available when you're using AddmusicK).
 ; $01-$FE: custom song number, $FF = do not use this feature.
