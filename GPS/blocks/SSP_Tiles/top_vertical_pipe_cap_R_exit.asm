@@ -3,7 +3,7 @@
 ;1-way pipe (exit only).
 ;behaves $25 or $130
 
-incsrc "../../../SSP_Defines.asm"
+incsrc "../../../Defines/SSP.asm"
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP return : JMP return : JMP return

@@ -1,4 +1,4 @@
-incsrc "../SSP_Defines.asm"
+incsrc "../Defines/SSP.asm"
 ;Reverses the player's pipe direction (for example, if going up, would set his direction to down, right to left, and so on).
 	LDA !Freeram_SSP_PipeDir
 	AND.b #%00001111		

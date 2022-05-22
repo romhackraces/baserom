@@ -1,6 +1,6 @@
 ;Put this in uberasm tool's library file.
 
-incsrc "../SSP_Defines.asm"
+incsrc "../Defines/SSP.asm"
 
 SSPMaincode:
 .DeathAnimationCheck

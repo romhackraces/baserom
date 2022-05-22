@@ -3,7 +3,7 @@
 ;enterable as small mario (note that yoshi isn't allowed).
 ;behaves $130
 
-incsrc "../../../SSP_Defines.asm"
+incsrc "../../../Defines/SSP.asm"
 incsrc "cap_defines.asm"
 
 db $42

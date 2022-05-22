@@ -1,3 +1,9 @@
+::
+:: These are files and external links to the tools needed to build 
+:: the baserom, plus lists of files that are deleted since they 
+:: are not relevant to the build process.
+::
+
 :: AddmusicK
 set AMK_DL="https://dl.smwcentral.net/24994/AddmusicK_1.0.8.zip"
 set AMK_ZIP="AddmusicK_1.0.8.zip"

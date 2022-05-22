@@ -9,8 +9,8 @@ set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: Import Definitions
-call %WORKING_DIR%@your_defines.bat
-call %WORKING_DIR%@tool_defines.bat
+call %WORKING_DIR%Defines\@your_defines.bat
+call %WORKING_DIR%Defines\@tool_defines.bat
 
 :: DO NOT CHANGE THE VARIABLES BELOW
 

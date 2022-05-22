@@ -1,4 +1,4 @@
-incsrc "../SSP_Defines.asm"
+incsrc "../Defines/SSP.asm"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;Drag mario mode handler.
 ;;
