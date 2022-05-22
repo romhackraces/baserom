@@ -1,0 +1,1 @@
+This folder contains shared files that are used by multiple tools or by the build system.

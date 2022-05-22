@@ -3,7 +3,7 @@
 ;from down to left or right to up, for small pipes.
 ;Behaves $25 or $130
 
-incsrc "../../../Defines/SSP.asm"
+incsrc "../../../Defines/ScreenScrollingPipes.asm"
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP Return : JMP Return : JMP Return

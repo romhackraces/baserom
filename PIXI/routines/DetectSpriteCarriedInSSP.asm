@@ -1,4 +1,4 @@
-incsrc "../Defines/SSP.asm"
+incsrc "../Defines/ScreenScrollingPipes.asm"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;Carry: Clear if outside pipe (should be visible), Set if inside pipe (should be invisible). This will determine
 ;;should the sprite being carried turn invisible with the player traveling through SSP.

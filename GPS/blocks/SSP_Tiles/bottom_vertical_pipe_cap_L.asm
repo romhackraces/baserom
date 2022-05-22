@@ -2,7 +2,7 @@
 ;This is the bottom left-half cap of a vertical two-way pipe.
 ;behaves $130
 
-incsrc "../../../Defines/SSP.asm"
+incsrc "../../../Defines/ScreenScrollingPipes.asm"
 incsrc "cap_defines.asm"
 
 db $42

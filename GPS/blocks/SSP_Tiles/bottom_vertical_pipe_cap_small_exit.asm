@@ -3,7 +3,7 @@
 ;is exit only for small mario.
 ;behaves $25 or $130
 
-incsrc "../../../Defines/SSP.asm"
+incsrc "../../../Defines/ScreenScrollingPipes.asm"
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP return : JMP return : JMP return

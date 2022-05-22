@@ -3,7 +3,7 @@
 ;enterable as small mario (yoshi always not allowed).
 ;behaves $130
 
-incsrc "../../../Defines/SSP.asm"
+incsrc "../../../Defines/ScreenScrollingPipes.asm"
 incsrc "cap_defines.asm"
 
 db $42
