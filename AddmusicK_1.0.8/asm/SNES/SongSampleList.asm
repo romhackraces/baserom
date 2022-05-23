@@ -1,4 +1,4 @@
-org $1784F6
+org $178000
 
 
 db $53, $54, $41, $52				; Needed to stop Asar from treating this like an xkas patch.
