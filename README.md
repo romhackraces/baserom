@@ -28,7 +28,7 @@ If you have feedback or would like additional support with the baserom from the 
 
 ### Resource Credits
 
-It is good practice to keep track of all resources used in your hacks if you can help it and credit their authors. See the included [CREDITS.txt](CREDITS.txt) file for a list of all resources included in the baserom or visit the [corresponding wiki page](https://github.com/romhackraces/baserom/wiki/Resources-Used-in-the-Baserom).
+It is good practice to keep track of all resources used in your hacks if you can help it and credit their authors. See the included [CREDITS.txt](CREDITS.txt) file for a list of all resources included in the baserom.
 
 ### Contributing
 

@@ -6,6 +6,7 @@ $0F3A - Screen Scrolling Pipes - 2 bytes
 $0F3C - Screen Scrolling Pipes - 2 bytes
 $0F42 - Screen Scrolling Pipes - 5 bytes
 $140B - FlightSpinFix.asm - 1 byte
+$0DC3 - SpriteScrollFix.asm - 1 byte
 $1929 - BlockDuplicationFix.asm - 1 byte
 $1DFD - library/double_hit_fix.asm - 2 bytes
 $60 - RAMControlledFireballAmount.asm - 1 byte
