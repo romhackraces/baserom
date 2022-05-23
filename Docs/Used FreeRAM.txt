@@ -8,6 +8,7 @@ $0F42 - Screen Scrolling Pipes - 5 bytes
 $140B - FlightSpinFix.asm - 1 byte
 $1929 - BlockDuplicationFix.asm - 1 byte
 $1DFD - library/double_hit_fix.asm - 2 bytes
+$60 - RAMControlledFireballAmount.asm - 1 byte
 $79 - RAMToggledStatusbar.asm - 1 byte
 $7C - RAMToggledLR.asm - 1 byte
 $7FB000 - AddMusicK - 2 to potentially 1032 bytes
