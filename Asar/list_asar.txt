@@ -4,7 +4,9 @@ BlockDuplicationFix.asm
 CastleBlockFix.asm
 ClusterBooDuckingFix.asm
 DoubleSpinFix.asm
+ExtendedNSTL.asm
 FireBerryFix.asm
+FixedColorDataNMIOptimizer.asm
 FixFeather.asm
 FixPiranhaStem.asm
 FlightSpinFix.asm
@@ -32,4 +34,5 @@ SSP_Fixes.asm
 TimeUpFix.asm
 TorpedoOffscreenSmokeFix.asm
 TripleBallNChain.asm
+VRAMOptimize.asm
 WallJumpNoteBlockGlitchFix.asm
