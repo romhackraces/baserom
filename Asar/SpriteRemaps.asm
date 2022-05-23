@@ -60,9 +60,10 @@ org $019BBF : db $AE : org $07F418 : db $08
 org $019BC0 : db $CE : org $018E92 : db $09
 
 ; Lava splashes
-org $029E82
-    db $5B
-    db $4B
-    db $5A
-    db $4A
+org $029E82 : db $5F,$4F,$5E,$4E
 org $029ED5 : db $04
+
+; Podoboo lava trail
+org $028F2B : db $5F,$4F,$5E,$4E
+org $028F76 : db $04
+org $028F82 : db $00
