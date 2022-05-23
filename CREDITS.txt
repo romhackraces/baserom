@@ -19,6 +19,7 @@ $13FB Game Crash Fix (Fireberry) - p4plus2 - https://smwc.me/s/18319
 Ball n' Chain and Yoshi Interaction Fix - Kevin - https://smwc.me/s/22761
 Block Duplication Fix v1.5 - Tattletale, lolcats439 - https://smwc.me/s/18413
 Bounce Blocks Death Fix - Kevin - https://smwc.me/s/25647
+Bob-omb Kicked Palette Fix - Koopster - https://smwc.me/s/24684
 Capespin During Flight Fix - betalogic - https://smwc.me/s/17463
 Climbing Net Door on Subscreen Boundary Fix - Kevin - https://smwc.me/s/29100
 Cluster Boo Ducking Fix - Alcaro - https://smwc.me/s/11618
@@ -38,6 +39,7 @@ P-Balloon and Cloud Clipping Fix - lolcats439 - https://smwc.me/s/8771
 P-Switch Duplication with Yoshi Fix - Kevin - https://smwc.me/s/22611
 Piranha Plant Stems Fix - Ice Man
 Player X Speed Fix 3.0 - HammerBrother, tjb0607 - https://smwc.me/s/24862
+Question Block Item Collision Fix - Kevin - https://smwc.me/s/29094
 Rollover Fix - Noobish Noobsicle - https://smwc.me/s/14053
 Rope Fix - Alcaro - https://smwc.me/s/8784
 Spike Swim Fix v1.1 - Alcaro, yoshifanatic - https://smwc.me/s/17740

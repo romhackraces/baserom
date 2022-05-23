@@ -1,6 +1,7 @@
 Fixes/AutoScrollLRFix.asm
 Fixes/BallChainYoshiFix.asm
 Fixes/BlockDuplicationFix.asm
+Fixes/BombPaletteFix.asm
 Fixes/BounceBlockDeathFix.asm
 Fixes/CapeTurnaround.asm
 Fixes/CastleBlockFix.asm
@@ -23,6 +24,7 @@ Fixes/NetScreenBoundaryFix.asm
 Fixes/PBalloonCloudFix.asm
 Fixes/PlayerXSpeedFix.asm
 Fixes/PressedSwitchYoshiFix.asm
+Fixes/QuestionBlockCollisionFix.asm
 Fixes/RolloverFix.asm
 Fixes/RopeFix.asm
 Fixes/SlideKillGFXFix.asm
