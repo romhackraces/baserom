@@ -4,8 +4,9 @@ v4.5
 - reduced amount of global ExGraphics
 - adjusted the bush and big pipe to use ExGraphics
 - remapped more vanilla objects to accommodate the Screen Scrolling Pipes
-- replace dtothefourth's "Toggle Statusbar" with Kevin's "RAM Toggled Status Bar (& IRQ)"
+- replaced dtothefourth's "Toggle Statusbar" with Kevin's "RAM Toggled Status Bar (& IRQ)"
 - switched to a RAM toggled L/R patch instead of disabling via hex edit
+- applied patch for fireball amount configuration via RAM
 - enhanced some vanilla sprites with new features that can be enabled by setting the extra bit of each
 - adjusted the graphics for custom blocks
 - added some more bug fixes and quality of life patches
