@@ -37,7 +37,6 @@ Fixes/VRAMOptimize.asm
 Fixes/WallJumpNoteBlockGlitchFix.asm
 ExtendedNSTL.asm
 HexEdits.asm
-SpriteRemaps.asm
 MarioGFXDMA/MarioGFXDMA.asm
 NoMoreSpriteTileLimits.asm
 PlaceableDiscoShell.asm
@@ -48,5 +47,6 @@ RAMControlledFireballAmount.asm
 RAMToggledLR.asm
 RAMToggledStatusbar.asm
 SpinThrowDirectionAndOffset.asm
+SpriteRemaps.asm
 SpriteSubmapBehaviorAsExtraBit.asm
 TripleBallNChain.asm

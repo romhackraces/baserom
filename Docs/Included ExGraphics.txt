@@ -2,6 +2,9 @@
 # Included ExGraphics                  #
 #--------------------------------------#
 
+ExGFX60: Global ExAnimation
+	- contains optional frames for One-Ways (overrides the cloud graphics), see the Demo level ExAnimation settings.
+
 ExGFXB80: Bush & Big Pipe Tiles
 	- all the 8x8 bush tiles from GFX17 that were sacrificed for global block graphics 
 	- insert this into your levels in slot BG2 to restore the bush and Pipe graphics

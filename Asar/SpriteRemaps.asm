@@ -18,7 +18,8 @@ org $01F488 : db $7F : org $01F494 : db $08
 ; Yoshi's throat
 org $01F08B : db $38 : org $01F097 : db $00
 ; Yoshi egg fragment
-org $028EB2 : db $6F : org $028EBC : db $03
+org $028EB2 : db $2F : org $028EBC : db $03
+
 
 ; Cheep cheep, horizontal
 org $019C0D : db $66 : org $07F413 : db $45

@@ -1,3 +1,1 @@
-1. Copy the Level ExGraphics slot 00 from the Demo level (105) into your level 
-2. Set AN2 graphics slot for your level to use "ExGFXA1"
-3. Import the "PoisonMushroom.pal" palette into your level.
+A poison mushroom has been enabled in the base game through a patch, it is available by inserting it as sprite 85 with the insert tool. To get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
