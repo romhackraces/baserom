@@ -27,6 +27,7 @@ Placeable Disco Shell - Alcaro - https://smwc.me/s/21597
 Placeable Kicked Shell v1.1 - Kevin - https://smwc.me/s/28994
 Player X Speed Fix 3.0 - HammerBrother, tjb0607 - https://smwc.me/s/24862
 Poison Mushroom v1.0 - JackTheSpades, mikeyk - https://smwc.me/s/20440
+RAM Controlled Mario's Fireballs Limit - Kevin - https://smwc.me/s/29898
 RAM Specific L/R Scroll Disable - Chdata - https://smwc.me/s/20355
 RAM Toggled Status Bar (& IRQ) - Kevin - https://smwc.me/s/28449
 Rollover Fix - Noobish Noobsicle - https://smwc.me/s/14053
