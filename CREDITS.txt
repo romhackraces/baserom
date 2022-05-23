@@ -50,7 +50,6 @@ Torpedo Ted Offscreen Smoke Fix - Kevin - https://smwc.me/s/26503
 Victory Pose Fix v1.1 - TheBiob - https://smwc.me/s/22372
 Walljump/Note Block Glitch Fix v1.6 - lolcats439 - https://smwc.me/s/19932
 
-
 -- UberASM --
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/21081
 Retry System - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.3.3
