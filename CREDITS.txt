@@ -14,7 +14,7 @@ Layer 2+3 Wallrun Triangle Fix - dtothefourth - https://smwc.me/s/21413
 Line Guide Acts-Like Fix - imamelia, worldpeace - https://smwc.me/s/23847
 Line-Guided Rope Length Fix - imamelia - https://smwc.me/s/18948
 Lunar Magic's "VRAM Patch" Optimization - Kevin - https://smwc.me/s/28028
-Mario's 8x8 Tiles DMA-er - Ladida, lx5 - https://smwc.me/s/30045
+Mario's 8x8 Tiles DMA-er - Ladida, lx5 - https://smwc.me/s/26002
 Moving Castle Block Offscreen Handling Fix v1.1 - Blind Devil - https://smwc.me/s/18721
 No More Sprite Tile Limits v1.2.1 - Arujus, MathOnNapkins, Tattletale, NoelYoshi, Vitor Vilela, edit1754 - https://smwc.me/s/24816
 P-Balloon and Cloud Clipping Fix - lolcats439 - https://smwc.me/s/8771
