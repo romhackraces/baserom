@@ -37,6 +37,7 @@ Fixes/VRAMOptimize.asm
 Fixes/WallJumpNoteBlockGlitchFix.asm
 ExtendedNSTL.asm
 HexEdits.asm
+SpriteRemaps.asm
 MarioGFXDMA/MarioGFXDMA.asm
 NoMoreSpriteTileLimits.asm
 PlaceableDiscoShell.asm

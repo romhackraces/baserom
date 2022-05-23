@@ -1,6 +1,6 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Game Fixes & Tweaks ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;
+;; Minor Tweaks ;;
+;;;;;;;;;;;;;;;;;;
 
 ; check for interaction every single frame (as opposed to every other frame)
 org $02A0B2 : db $00 ; fireball-sprite
@@ -8,14 +8,11 @@ org $01A7EF : db $00 ; mario-sprite
 org $029500 : db $00 ; cape-sprite
 
 ; make doors more easy to enter adjust door proximity check
-org $00F44B : db $10 ; width of the enterable region of the door (up to 0x10, default 0x08)  
+org $00F44B : db $0A ; width of the enterable region of the door (up to 0x10, default 0x08)  
 org $00F447 : db $05 ; offset the enterable region, which is half of above (default 0x04)
 
 ; play SFX when exiting horizontal pipes
 org $00D24E : LDA $7D : NOP : NOP
-
-; fix bug in yoshi stomp hitbox 
-org $0286D7 : db $D5
 
 ; no powerups from midways
 org $00F2E2 : db $80
@@ -26,17 +23,30 @@ org $01EC36 : db $80
 ; stop the bridge breaking in the Reznor fight
 org $03989F : db $EA,$EA,$EA,$EA
 
-; fix disappearing music on overworld when boss defeated
-org $048E2E : db $80  
-
 ; Sunken Ghost Ship glitch
 org $048DDA : db $80
+
+; disable losing lives a.k.a. infinite lives
+org $00D0D8 : NOP #3
+
+;;;;;;;;;;;;;;;;;
+;; Minor Fixes ;;
+;;;;;;;;;;;;;;;;;
+
+; fix disappearing music on overworld when boss defeated
+org $048E2E : db $80  
 
 ; fix crash that occurs when trying to stop layer 3 smasher with generator D2
 org $02D421 : db $6B
 
-; infinite lives
-org $00D0D8 : NOP #3
+; fix bug in yoshi stomp hitbox 
+org $0286D7 : db $D5
+
+; fix bug where ? block sprites are immune to fire
+org $02A0B9 : db $0B
+
+; fix sprite screen edge interaction bug
+org $01A7F0 : db $EA,$EA,$EA
 
 ; fix Yellow Koopa jump framerule
 org $018898 : bra $05
@@ -112,39 +122,3 @@ org $0584C1 : db $20            ; level mode 0A
 org $0584C3 : db $20,$20,$20    ; level mode 0C, 0D & 0E
 org $0584C8 : db $20            ; level mode 11
 org $0584D5 : db $20,$20        ; level mode 1E & 1F
-
-;;;;;;;;;;;;;;;;;;;
-;; Sprite Remaps ;;
-;;;;;;;;;;;;;;;;;;;
-
-; Note block bounce sprite
-org $0291F2 : db $4A : org $02878A : db $02 : org $02925D : db $02
-; Side turn block bounce sprite
-org $0291F4 : db $40 : org $02878C : db $00 : org $02925D : db $02
-; ON/OFF bounce sprite
-org $0291F6 : db $20 : org $02878E : db $06 : org $02925D : db $02
-
-; Yoshi's tongue, end
-org $01F48C : db $7E : org $01F494 : db $08
-; Yoshi's tongue, middle
-org $01F488 : db $7F : org $01F494 : db $08
-; Yoshi's throat
-org $01F08B : db $38 : org $01F097 : db $00
-
-; Piranha plant Head 1
-org $019BBD : db $AC : org $07F418 : db $08
-; Piranha plant Stem 1
-org $019BBE : db $0A : org $018E92 : db $0B
-; Piranha plant Head 2
-org $019BBF : db $AE : org $07F418 : db $08
-; Piranha plant Stem 2
-org $019BC0 : db $0A : org $018E92 : db $09
-
-; Lava splashes
-org $029E82
-    db $5B
-    db $4B
-    db $5A
-    db $4A
-
-org $029ED5 : db $04
