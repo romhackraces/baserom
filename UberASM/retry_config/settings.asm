@@ -62,7 +62,7 @@
 
 ; SFX when getting a checkpoint through a room transition (!room_cp_sfx = $00 -> no SFX).
 ; This is meant as a way to inform the player that they just got a room checkpoint.
-    !room_cp_sfx = $05
+    !room_cp_sfx = $00
     !room_cp_sfx_addr = $1DF9|!addr
 
 ;========================================================================
