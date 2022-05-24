@@ -123,7 +123,7 @@ endif
 
 ;Settings. NOTE: There are other defines settings in [SSP_Tiles\caps\enterable\*\cap_defines.asm] (* means any valid filename, including "default")
 ;so that you can multiple blocks with different variations (such as having some pipe caps that allow carrying sprites or allowing yoshi).
- !Setting_SSP_Hijack_00EA18	= 1
+ !Setting_SSP_Hijack_00EA18	= 0
   ;^If you are planning to install the “Walljump/Note Block Glitch Fix” patch, set this to 0, reinstall Fixes.asm, and then patch the WJNB fix patch.
   ; Otherwise set this to 1 to prevent potential pushing the player 1 pixel to the left when entering small pipes facing downwards by hitting their
   ; bottom corners.

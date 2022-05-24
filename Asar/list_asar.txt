@@ -30,11 +30,11 @@ Fixes/RopeFix.asm
 Fixes/SlideKillGFXFix.asm
 Fixes/SpikeSwimFix.asm
 Fixes/SpriteScrollFix.asm
-Fixes/SSP_Fixes.asm
 Fixes/TimeUpFix.asm
 Fixes/TorpedoOffscreenSmokeFix.asm
 Fixes/VRAMOptimize.asm
 Fixes/WallJumpNoteBlockGlitchFix.asm
+Fixes/SSP_Fixes.asm
 ExtendedNSTL.asm
 HexEdits.asm
 MarioGFXDMA/MarioGFXDMA.asm

@@ -51,7 +51,7 @@ if "!Action!"=="1" (
     )
     echo Applying Asar patches...
     pushd !ASAR_DIR!
-    for /f "tokens=*" %%a in (!ASAR_LIST!) do (asar.exe -v %%a !ROMFILE!)
+    for /f "tokens=*" %%a in (!ASAR_LIST!) do (asar.exe %%a !ROMFILE!)
     pause
 )
 :: Insert custom blocks with GPS
