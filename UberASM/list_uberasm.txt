@@ -6,7 +6,6 @@ verbose: on
 ; Level list. Valid values: 000-1FF.
 level:
    105 Level105.asm
-   106 EnableLR.asm
 
 ; OW list. Valid values: 0 = Main map; 1 = Yoshi's Island; 2 = Vanilla Dome;
 ; 3 = Forest of Illusion; 4 = Valley of Bowser; 5 = Special World; and
@@ -18,6 +17,7 @@ overworld:
 gamemode: 
     03 retry_gm03.asm
     0C retry_gm0C.asm
+    0D retry_gm0D.asm
     0F retry_gm0F.asm
     10 retry_gm10.asm
     11 retry_gm11.asm
