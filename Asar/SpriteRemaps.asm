@@ -21,6 +21,10 @@ org $01F08B : db $38 : org $01F097 : db $00
 org $028EB2 : db $2F : org $028EBC : db $03
 
 
+; Coin Game coin, use normal coin sprite
+org $029D4B : db $E8 : org $029D50 : db $34
+
+
 ; Cheep cheep, horizontal
 org $019C0D : db $66 : org $07F413 : db $45
 org $019C0E : db $68 : org $07F413 : db $45

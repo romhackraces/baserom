@@ -7,6 +7,10 @@ org $02A0B2 : db $00 ; fireball-sprite
 org $01A7EF : db $00 ; mario-sprite
 org $029500 : db $00 ; cape-sprite
 
+; make Bob-Omb explosions interact with Mario and other sprites every frame
+org $0280A8 : bra $05
+org $0280B2 : bra $08
+
 ; make doors more easy to enter adjust door proximity check
 org $00F44B : db $0A ; width of the enterable region of the door (up to 0x10, default 0x08)  
 org $00F447 : db $05 ; offset the enterable region, which is half of above (default 0x04)
@@ -23,15 +27,36 @@ org $01EC36 : db $80
 ; stop the bridge breaking in the Reznor fight
 org $03989F : db $EA,$EA,$EA,$EA
 
-; Sunken Ghost Ship glitch
-org $048DDA : db $80
-
 ; disable losing lives a.k.a. infinite lives
 org $00D0D8 : NOP #3
+
+; disable gaining lives & fix halo Mario
+org $028AD2 : NOP #3
+
+; remove RNG from Podobos/Jumping Fireballs
+org $01E0D7 : LDA #$7F : NOP #6
+
+; remove float delay framerule from falling with cape
+org $00D909 : db $00
+
+; shorten intro message skip timer
+org $00A09C : db $04
+
+; don't shoot fireballs while spinjumping
+org $00D093 : db $80
+
+; prevent Mario clipping on Mega Moles when they have upwards speed
+org $0387E3 : db $DF
+org $0387E6 : bra $02
+org $0387F4 : bra $00
+
 
 ;;;;;;;;;;;;;;;;;
 ;; Minor Fixes ;;
 ;;;;;;;;;;;;;;;;;
+
+; fix Sunken Ghost Ship glitch
+org $048DDA : db $80
 
 ; fix disappearing music on overworld when boss defeated
 org $048E2E : db $80  
@@ -49,26 +74,32 @@ org $02A0B9 : db $0B
 org $01A7F0 : db $EA,$EA,$EA
 
 ; fix Yellow Koopa jump framerule
-org $018898 : bra $05
+org $018898 : BRA $05
 
 ; fix Message Box removing some sprite tiles when closing
-org $05B31B : rts
+org $05B31B : RTS
+
+; fix glitch with blocks not activating when hit with thrown sprites
+org $0195A5 : db $00
 
 ; fix HDMA breaks
-org $05B129 : nop #3
+org $05B129 : NOP #3
 org $05B296 : db $0C
 org $00CB0C : db $0C
-org $009CAD : nop #3
+org $009CAD : NOP #3
 org $0092EA : db $0C
 org $0CAB98 : db $0C
 org $04DB99 : db $0C
-org $04F40D : nop #3
-org $00C5CE : nop #3
+org $04F40D : NOP #3
+org $00C5CE : NOP #3
 org $03C511 : db $0C
 
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GFX Tweaks & Fixes ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
+
+; activate unused Yoshi dust
+org $028BB4 : db $B9
 
 ; fix palette of the white tile in the cave layer 3 background
 org $05A312 : db $15

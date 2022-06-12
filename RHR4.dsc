@@ -1,4 +1,3 @@
-288	0	Question block that spawns a poison mushroom.
 290	0	Block that is solid to sprites, passable by Mario
 291	0	Block that is solid to Mario, passable by sprites
 293	0	Solid if anything goes up
@@ -9,7 +8,22 @@
 298	0	block that can be broken by a kicked or thrown item
 299	0	Block that silently kills any sprite.
 29a	0	Block that kills the player (even on yoshi), is solid for sprites and kills on wall running.
-29b	0	Block that removes any powerup from Mario
+29b	0	Block that removes any powerup or item from Mario as well as flight state
+29c	0	A Donut Lift, which will fall shortly after being stepped on.
+29d	0	Block with infinite supply of throwblocks.
+2a0	0	Question block that always spawns a Mushroom.
+2a1	0	Question block that always spawns a Fire Flower.
+2a2	0	Question block that always spawns a Cape Feather.
+2a3	0	Question block that always spawns a 1-Up.
+2a4	0	Question block that always spawns a Vine.
+2a5	0	Question block that always spawns a P-Balloon.
+2a6	0	Question block that always spawns a Key.
+2a7	0	Question block that always spawns a Poison Mushroom.
+2a8	0	Question block that always spawns a Galoomba.
+2a9	0	Question block that always spawns a Fish.
+2aa	0	Question block that always spawns a Blue P-Switch/POW.
+2ab	0	Question block that always spawns a Blue P-Switch/POW.
+2ac	0	Question block that always spawns a Spring.
 300	0	Top-left cap piece of vertical 2-way pipe.
 301	0	Top-right cap piece of vertical 2-way pipe.
 302	0	A part of the pipe that is passable when in pipe mode.
