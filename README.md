@@ -22,7 +22,7 @@ See the [Wiki page](https://github.com/romhackraces/baserom/wiki/Using-the-Build
 
 ## More Information
 
-For more information about the creating levels for Romhack Races or for additional documentation about what is in the baserom check out the [baserom Wiki](https://github.com/romhackraces/baserom/wiki). If you need to view documentation for large resources included in the baserom, such as the Retry System, the `Docs` folder included in this baserom contains the relevant material.
+For more information about the creating levels for Romhack Races or for additional documentation about what is in the baserom check out the [baserom Wiki](https://github.com/romhackraces/baserom/wiki). If you need more information on how to use some of the resources included in the baserom, check out the documentation in the `Docs` folder included in this baserom.
 
 If you have feedback or would like additional support with the baserom from the Romhack Races team, please visit the `#baserom-support` in the Romhack Races Discord server.
 
