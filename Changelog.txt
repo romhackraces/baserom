@@ -1,3 +1,14 @@
+v4.6
+
+- reworked the global block graphics to use Vanilla layouts and ExGraphics
+- reworked page 2 of map16 to allow for using the Lunar Magic layer 3 tide act as feature
+- added several sprite-spawning question mark blocks
+- added Donut lift block
+- added infinite throw block
+- undid all the Vanilla object remapping so the baserom is more flexible
+- added several bugfix patches informed by Katun24's patches document
+- added more hex edits, renamed patch to "Tweaks"
+
 v4.5
 
 - added an abridged version of HammerBrother's screen scrolling pipes
