@@ -1,1 +1,3 @@
-A poison mushroom has been enabled in the base game through a patch, it is available by inserting it as sprite 85 with the insert tool. To get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
+A poison mushroom has been enabled in the base game through a patch, it is available 
+by inserting it as sprite 85 with the insert tool. To get the correct palette in your 
+levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
