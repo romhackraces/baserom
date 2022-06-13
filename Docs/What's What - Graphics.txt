@@ -1,0 +1,30 @@
+--------
+Graphics
+--------
+
+GFX16 : Rope Set Foregroud
+- the tiles for the line guide have been moved to ExGFXE17 as they now are global.
+- a proper corner tile for ropes was added,
+- the graphics for the log bridge from GFX19 was moved here
+- a version of the Reznor bridge that isn't 2BPP was put into free space.
+
+GFX19 : Cloud & Forest Background
+- tiles for the log bridge have been moved to GFX16
+
+GFX2B : Layer 3 Tiles
+- The unused graphics for "Super Mario Bros. 4" has been replaced with "Romhack Races Baserom"
+
+----------
+ExGraphics
+----------
+
+ExGFX61: Global ExAnimation
+ - contains optional animation frames for One-Ways and for the Infinite throw block
+ - see the "What's What - Exanimation.txt" document for more details.
+
+ExGFXE17: Custom Global Block Tiles
+ - All the tiles for the custom global blocks found in the Demo Level. 
+ - this resource is a drop in replacement for GFX17 that overrides the Big Bush and Large Slanted Pipe tiles.
+
+ExGFXFF: Font
+ - a basic 8x8 font and symbol set, used in the Demo levels for in-game text.

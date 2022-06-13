@@ -1,6 +1,8 @@
-#--------------------------------------#
-# Used FreeRAM Values                  #
-#--------------------------------------#
+The below is a list of resources and the FreeRAM they use by starting RAM address, name of resource and number of bytes. Keep in mind some of these use a range of values, e.g. if it's starting at $60 and is 4 bytes it's using addresses 60,61,62 and 63.
+
+-------------------
+Used FreeRAM Values
+-------------------
 
 $0F3A - Screen Scrolling Pipes - 2 bytes
 $0F3C - Screen Scrolling Pipes - 2 bytes

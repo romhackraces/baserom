@@ -1,0 +1,61 @@
+If you're not animating a large amount of tiles using Level ExAnimation, or if you're not animating any tiles at all, this document is not for you. If you are, see Lunar Magic's help file for instructions and technical documentation.
+
+Each item is categorized by where they are applied, either Global or Level. The number following the name in brackets is the number of frames, 	followed by the details of the ExAnimation.
+
+------------------
+Global ExAnimation
+------------------
+
+The destinations for these global animations override graphics in the big pipe tile object. You can disable these in particular levels by going to: `Level -> Edit Animation Settings` and uncheck "Enable Lunar Magic's global animations" for that level.
+
+Line Guide Ends (4)
+-------------------
+Slot: 02
+Type: 2 8x8s line
+Frames: 740,750,760,770
+Destination: CE
+
+ON/OFF Normal (2)
+-----------------
+Slot: 03
+Type: 2 8x8s line
+Frames: 686,696
+Destination: C8
+
+ON/OFF Inverted (2)
+-------------------
+Slot: 04
+Type: 2 8x8s line
+Frames: 696,686
+Destination: CA
+
+
+-----------------
+Level ExAnimation
+-----------------
+
+The following are optional level ExAnimations for one-ways and the infinite throwblock, which will appear as clouds or as a normal throwblock respectively if they aren't used.
+
+One-Ways, horizontal (5)
+------------------------
+Uses alternate ExGraphics: 61
+Slot: 00
+Type: 2 8x8s stacked
+Frames: 1000,1010,1020,1030,1040
+Destination: 0B
+
+One-Ways, vertical (5)
+----------------------
+Uses alternate ExGraphics: 61
+Slot: 02
+Type: 2 8x8s stacked
+Frames: 1002,1012,1022,1032,1042
+Destination: 2C
+
+Infinite throwblock (4)
+-----------------------
+Uses alternate ExGraphics: 61
+Slot: 02
+Type: 4 8x8s line
+Frames: 1008,1018,1028,1038
+Destination: 6

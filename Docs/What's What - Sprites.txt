@@ -1,0 +1,17 @@
+-----------------------
+Enhanced Normal Sprites
+-----------------------
+
+53 : Placeable Throw Block 
+ - a throw block that can be placed your levels, if placed with extra bit = 1 it will be kicked towards Mario.
+
+85 - Poison Mushroom
+ - a sprite with mushroom movement that moves towards Mario and damages him, is also in a custom question block.
+ - to get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
+
+---------------------------------
+Custom Sprites inserted with PIXI
+---------------------------------
+
+A0 : Companion sprite for the Donut Lift block 
+ - do NOT use this, insert the donut lift object from map16 into your levels instead
