@@ -8,7 +8,7 @@ GFX14 : Global Tiles
  - a couple unused tiles in the bullet launcher were replaced with sideways cloud graphics.
 
 GFX16 : Rope Set Foregroud
- - the tiles for the line guide have been moved to ExGFXE17 as they now are global
+ - the tiles for the line guide have been moved to ExGFXE17 (FG2) as they now are global
  - a proper corner tiles for rope foreground was added so the objects can be used properly
  - the graphics for the log bridge from GFX19 was moved here
  - a version of the Reznor bridge that isn't 2BPP was put into free space
@@ -32,7 +32,8 @@ ExGFX61: Global ExAnimation
 
 ExGFXE17: Custom Global Block Tiles
  - contains all tiles for custom global blocks and the line guide tiles have been moved here from GFX16
- - this resource is arranged to be drop in replacement for GFX17 as the custom blocks that override the tiles for the Big Bush and Large Slanted Pipe objects.
+ - this resource is arranged to be drop in replacement for GFX17 (FG2) as the custom blocks that override the tiles for the Big Bush and Large Slanted Pipe objects.
+ - any level that uses line guides, formerly GFX16 (FG3), will now need ExGFXE17 (FG2), for line guides to properly appear.
 
 ExGFXFF: Font
  - a basic 8x8 font and symbol set, used in the Demo levels for in-game text.
