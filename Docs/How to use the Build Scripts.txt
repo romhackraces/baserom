@@ -1,7 +1,6 @@
 ## Baserom Build Scripts
 
-As said in the README, the RomHack Races baserom has 3 main build script sets to help you create your 
-level or use on your hacking project:
+As said in the README, the RomHack Races baserom has 3 main build script sets to help you create your level or use on your hacking project:
 
 1. `@build_baserom.bat` for building or rebuilding your hack
 2. `@backup_baserom.bat` for backing up your hack or exporting things from your hack
@@ -11,14 +10,9 @@ This page will go into detail about how to use each of those.
 
 ## Building Your Hack
 
-When you run the `@build_baserom.bat` script (by double-clicking it in File Explorer) you will be given 
-a menu in the Command Prompt with a list of build options for your hack. The build options are pretty 
-straightforward as they are just automated actions of the commonly used tools that are done when 
-making a Super Mario World hack.
+When you run the `@build_baserom.bat` script (by double-clicking it in File Explorer) you will be given a menu in the Command Prompt with a list of build options for your hack. The build options are pretty straightforward as they are just automated actions of the commonly used tools that are done when making a Super Mario World hack.
 
-Unlike the typical use case, the build scripts specify a particular list file for each tool as to make 
-them somewhat easier to manage. You can add or remove resources as you would under normal circumstances 
-but you will have to run the build script to apply any changes.
+Unlike the typical use case, the build scripts specify a particular list file for each tool as to make them somewhat easier to manage. You can add or remove resources as you would under normal circumstances but you will have to run the build script to apply any changes.
 
 1. Apply Asar Patches
 
@@ -51,49 +45,35 @@ This will create a BPS patch of your hack using Flips for ease of distributing y
 
 ## Backing Up Your Hack
 
-Like the above, when you run the `@build_baserom.bat` script you will be given a menu in the 
-Command Prompt with a list of backup options for your hack:
+Like the above, when you run the `@build_baserom.bat` script you will be given a menu in the Command Prompt with a list of backup options for your hack:
 
 1. Export all modified Levels to files
 
-This will use Lunar Magic's level export feature to save all modified levels as .mwl files to a folder 
-in `Levels` called `latest` in addition to a time-stamped folder of levels as a sort of versioning. 
+This will use Lunar Magic's level export feature to save all modified levels as .mwl files to a folder in `Levels` called `latest` in addition to a time-stamped folder of levels as a sort of versioning. 
 
 2. Export all of Map16
 
-This will use Lunar Magic's map16 export feature to save *all* of your hack's map16 (not sections of it) 
-to a file in the `Map16` folder called `AllMap16_latest.map16`, there will be also be a copy of that 
-file that is time stamped in case you want to recover some older map16 changes.
+This will use Lunar Magic's map16 export feature to save *all* of your hack's map16 (not sections of it) to a file in the `Map16` folder called `AllMap16_latest.map16`, there will be also be a copy of that file that is time stamped in case you want to recover some older map16 changes.
 
 3. Export Shared Palettes
 
-This will use Lunar Magic's map16 export feature to save a copy of the *shared* palette (not the 
-palettes of individual levels) in the `Palettes` folder, this action is also time-stamped. 
-This action is only really necessary if you modify the shared palettes of the ROM as individual 
-level palettes will be saved when you export levels in the first option.
+This will use Lunar Magic's map16 export feature to save a copy of the *shared* palette (not the palettes of individual levels) in the `Palettes` folder, this action is also time-stamped. This action is only really necessary if you modify the shared palettes of the ROM as individual level palettes will be saved when you export levels in the first option.
 
 4. Create a time-stamped backup of your ROM
 
-Basically this just makes a copy of your hack's ROM file in the `Backups` folder with a timestamp, 
-so you can access older versions. This backed-up file is also used by the restore script to restore data.
+Basically this just makes a copy of your hack's ROM file in the `Backups` folder with a timestamp, so you can access older versions. This backed-up file is also used by the restore script to restore data.
 
 ## Restoring from Backups
 
-Like the above, when you run the `@restore_from_backup.bat` script you will be given a menu in 
-the Command Prompt with a list of restore options for your hack:
+Like the above, when you run the `@restore_from_backup.bat` script you will be given a menu in the Command Prompt with a list of restore options for your hack:
 
 1. Create fresh rom out of baserom patch
 
-To start over, this will take the prebuilt `RHR4.bps` and create a fresh ROM out of it with 
-no additional changes. This action will ensure it doesn't overwrite any existing hack files 
-by making a copy first.
+To start over, this will take the prebuilt `RHR4.bps` and create a fresh ROM out of it with no additional changes. This action will ensure it doesn't overwrite any existing hack files by making a copy first.
 
 2. Transfer Global ExAnimation, Overworld, Titlescreen and Credits from backup
 
-This uses some restore features in Lunar Magic to import the global ExAnimation slots (not 
-the per-level ExAnimations as those are saved with level files), as well as any changes to 
-Overworld, Titlescreen and Credits from a backed up romfile of your hack. This requires the 
-backup script to have run at least one backup first.
+This uses some restore features in Lunar Magic to import the global ExAnimation slots (not the per-level ExAnimations as those are saved with level files), as well as any changes to Overworld, Titlescreen and Credits from a backed up romfile of your hack. This requires the backup script to have run at least one backup first.
 
 3. Import levels from backup
 
