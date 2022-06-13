@@ -6,7 +6,7 @@ $0F3A - Screen Scrolling Pipes - 2 bytes
 $0F3C - Screen Scrolling Pipes - 2 bytes
 $0F42 - Screen Scrolling Pipes - 5 bytes
 $140B - CapeSpinDirectionConsistency.asm - 1 byte
-$0DC3 - SpriteScrollFix.asm - 1 byte
+$0DC3 - SpriteScrollFix.asm - 4 bytes
 $1929 - BlockDuplicationFix.asm - 1 byte
 $1DFD - library/double_hit_fix.asm - 2 bytes
 $60 - RAMControlledFireballAmount.asm - 1 byte
@@ -16,3 +16,4 @@ $57 - SkullRaftFix.asm - 1 byte
 $7FB000 - AddMusicK - 2 to potentially 1032 bytes
 $7FB400 - retry_config/ram.asm - at minimum 230 bytes + 1 byte for every custom midway
 $7FB540 - Layer2+3Triangles.asm - 1 byte
+$7F8332 - SpriteScrollFix.asm - 4 bytes (if an option is set)
