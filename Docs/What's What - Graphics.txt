@@ -2,17 +2,25 @@
 Graphics
 --------
 
+The following are what vanilla graphics files have been edited in the baserom, backups can be found in the Backups/Graphics folder.
+
+GFX14 : Global Tiles
+ - a couple unused tiles in the bullet launcher were replaced with sideways cloud graphics.
+
 GFX16 : Rope Set Foregroud
-- the tiles for the line guide have been moved to ExGFXE17 as they now are global.
-- a proper corner tile for ropes was added,
-- the graphics for the log bridge from GFX19 was moved here
-- a version of the Reznor bridge that isn't 2BPP was put into free space.
+ - the tiles for the line guide have been moved to ExGFXE17 as they now are global
+ - a proper corner tiles for rope foreground was added so the objects can be used properly
+ - the graphics for the log bridge from GFX19 was moved here
+ - a version of the Reznor bridge that isn't 2BPP was put into free space
 
 GFX19 : Cloud & Forest Background
-- tiles for the log bridge have been moved to GFX16
+ - tiles for the log bridge have been moved to GFX16
 
-GFX2B : Layer 3 Tiles
-- The unused graphics for "Super Mario Bros. 4" has been replaced with "Romhack Races Baserom"
+GFX2B : Layer 3 tiles
+ - The unused graphics for "Super Mario Bros. 4" has been replaced with "Romhack Races Baserom"
+
+GFX33 : Global Animation Tiles
+ - tiles for ON/OFF blocks have been added to unused space in the resource
 
 ----------
 ExGraphics
@@ -23,8 +31,8 @@ ExGFX61: Global ExAnimation
  - see the "What's What - Exanimation.txt" document for more details.
 
 ExGFXE17: Custom Global Block Tiles
- - All the tiles for the custom global blocks found in the Demo Level. 
- - this resource is a drop in replacement for GFX17 that overrides the Big Bush and Large Slanted Pipe tiles.
+ - contains all tiles for custom global blocks and the line guide tiles have been moved here from GFX16
+ - this resource is arranged to be drop in replacement for GFX17 as the custom blocks that override the tiles for the Big Bush and Large Slanted Pipe objects.
 
 ExGFXFF: Font
  - a basic 8x8 font and symbol set, used in the Demo levels for in-game text.
