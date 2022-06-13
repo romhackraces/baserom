@@ -16,23 +16,7 @@ wall:
 	CMP #$07
 	BEQ solid
 	RTL
-Check:			;>so mario wouldn't "vibrate" should there be a boost next to it.
-if !using_boost > 0		;>if this statement is true, then include this:
-	LDA $7B			;\if the player is going to the right
-	CMP #$35		;|very fast..
-	BCC playeroneway	;|
-	CMP #$80		;|
-	BCS playeroneway	;/
-	REP #$20		;\..prevent the boosted player from going through
-	LDA $9A			;|this block in the opposite direction.
-	AND #$FFF0		;|
-	SEC : SBC #$000E	;|
-	STA $94			;|
-	SEP #$20		;|
-	STZ $7B			;/
-	RTL
-playeroneway:
-endif
+Check:
 	REP #$20		;\compare mario's position and the block
 	LDA $9A			;|(so it won't solid if mario moves
 	AND #$FFF0		;|right while directly *inside* the block)

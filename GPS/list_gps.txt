@@ -5,7 +5,7 @@
 ; CUSTOM GLOBAL BLOCKS (DO NOT MODIFY) --------------------;
 290 sprite_solid.asm
 291 mario_solid.asm
-; 292 OCCUPIED
+292 one_way_up.asm
 293 one_way_down.asm
 294 one_way_left.asm
 295 one_way_right.asm
@@ -14,9 +14,10 @@
 298 breakable_by_item.asm
 299 silent_sprite_killer.asm
 29A hurt_death.asm
-29B remove_powerup.asm
-29C donut_lift.asm
-29D endless_throwblock.asm
+29B hurt_death_sprite_passthrough.asm
+29C remove_powerup.asm
+29D donut_lift.asm
+29E endless_throwblock.asm
 
 ; CUSTOM QUESTION BLOCKS (DO NOT MODIFY) ------------------;
 2A0 question_blocks/74_mushroom.asm
