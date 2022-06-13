@@ -1,16 +1,14 @@
 v4.6
-
 - reworked the global block graphics to use Vanilla layouts and ExGraphics
 - reworked page 2 of map16 to allow for using the Lunar Magic layer 3 tide act as feature
 - added several sprite-spawning question mark blocks
-- added Donut lift block
-- added infinite throw block
+- added Donut lift and infinite throw block to blocks
 - undid all the Vanilla object remapping so the baserom is more flexible
 - added several bugfix patches informed by Katun24's patches document
 - added more hex edits, renamed patch to "Tweaks"
+- added more documentation
 
 v4.5
-
 - added an abridged version of HammerBrother's screen scrolling pipes
 - reduced amount of global ExGraphics
 - adjusted the bush and big pipe to use ExGraphics
@@ -27,7 +25,6 @@ v4.5
 - made the lava splashes a global sprite
 
 v4.4
-
 - reorganized the folder structure to better accommodate the build script
 - added powerup filter block to the custom blocks
 - added Piranha Plant Stems Fix, Player X Speed Fix 3.0 and Line-Guided Rope Length Fix patches
@@ -36,7 +33,6 @@ v4.4
 - update retry system to version 0.3.3
 
 v4.3
-
 - streamlined the script process to make it less overwhelming
 - added back the bush graphics to the baserom as ExGraphics
 - updated the documentation and moved a lot of it to the GitHub wiki
@@ -44,5 +40,4 @@ v4.3
 - updated ThrowDirection.asm with contributions from AmazingChest
 
 v4.2.1
-
 - The initial version uploaded to GitHub
