@@ -1,4 +1,5 @@
 -- Patches --
+
 Extended No Sprite Tile Limits v3.1 - DiscoTheBat, Kevin, Roy, imamelia, worldpeace
  > https://smwc.me/s/24642
 
@@ -40,6 +41,7 @@ Triple Ball 'n' Chain - imamelia
 
 
 -- Bug Fixes --
+
 $13FB Game Crash Fix (Fireberry) - p4plus2
  > https://smwc.me/s/18319
 
@@ -176,6 +178,7 @@ Walljump/Note Block Glitch Fix v1.6 - lolcats439
 
 
 -- UberASM --
+
 ON/OFF Double Hit fix - Kevin
  > https://smwc.me/s/21081
 
@@ -184,6 +187,7 @@ Retry System - Kevin
 
 
 -- Custom Blocks --
+
 Basic Mario/Sprite Solid Blocks
 
 Basic ON/OFF Blocks
@@ -217,6 +221,7 @@ Super Bounce Blocks - dogemaster
 * simplified for use in the baserom
 
 -- Used Tools --
+
 AddmusicK 1.0.8 - Kipenal
  > https://smwc.me/s/24994
 
