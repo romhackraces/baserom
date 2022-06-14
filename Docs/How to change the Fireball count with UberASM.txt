@@ -1,0 +1,14 @@
+To the change the fireball count on a per-level basis, apply MoreFireballs.asm to the level that you want in list_uberasm.txt in the UberASM folder.
+
+If you are using other UberASM on your level you can use the following method by adding the following to your desired uberASM file:
+
+    ; Make sure this is the same as the patch
+    !fireballs_freeram = $60
+
+    ; How many fireballs to have in this level
+    !fireballs_level_amount = $05
+
+    init:
+        lda.b #!fireballs_level_amount
+        sta !fireballs_freeram
+        rtl
