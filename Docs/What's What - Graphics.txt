@@ -30,6 +30,10 @@ ExGFX61: Global ExAnimation
  - contains optional animation frames for One-Ways and for the Infinite throw block
  - see the "What's What - Exanimation.txt" document for more details.
 
+ExGFXB54: ExGraphic Version of Big Bush and Pipe
+ - contains optional animation tiles for the bushes and big pipe that can be used as ExGraphics
+ - must be loaded into slot FG2, and their Map16 Files are found in Backup/Map16. See demo level for example.
+
 ExGFXE17: Custom Global Block Tiles
  - contains all tiles for custom global blocks and the line guide tiles have been moved here from GFX16
  - this resource is arranged to be drop in replacement for GFX17 (FG2) as the custom blocks that override the tiles for the Big Bush and Large Slanted Pipe objects.
