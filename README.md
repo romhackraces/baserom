@@ -10,19 +10,15 @@ The first thing you are going to do is patch your copy of unmodified Super Mario
 
 If you change the filename of your ROM be sure to update it in the `Defines\@your_defines.bat` file otherwise the baserom scripts will not work as intended.
 
-### Helpful Scripts
+### Build Scripts
 
-To make life easier for you as a hacker, this baserom comes some helpful scripts to automate the process of applying additional custom assets to your ROM as well as for backing things up and creating a patch for distribution.
+To make life easier for you as a hacker, this baserom comes some helpful scripts to automate the process of applying additional custom assets to your ROM as well as for backing things up and creating a patch for distribution. See the "How to use the Build Scripts" file in the Docs folder or check out the [Wiki page](https://github.com/romhackraces/baserom/wiki/Using-the-Build-Scripts) for more information about these scripts.
 
-- `@build_baserom.bat` Does a lot of the work for you when it comes to inserting custom assets into your ROM by present a list the options corresponding to each of the tools. Additionally will create a BPS patch for distribution.
-- `@backup_baserom.bat` Some basic backup options that leverages some Lunar Magic features to export all modified levels, edited map16 and/or shared palettes from your ROM, as well as a basic way to create a time-stamped backup of your ROM file, and create a BPS patch on demand.
-- `@restore_from_backup.bat` Options to create a fresh ROM, restore global assets from a time-stamped based backup and imports previously-exported levels, map16 and palettes into it. Requires Lunar Magic and the backup scripts to be run first.
-
-See the [Wiki page](https://github.com/romhackraces/baserom/wiki/Using-the-Build-Scripts) for more information about these scripts.
+Also, in order to keep things lean and to avoid distributing executable files, the tools are downloaded on demand when the baserom build scripts are run to add things to your hack.
 
 ## More Information
 
-For more information about the creating levels for Romhack Races or for additional documentation about what is in the baserom check out the [baserom Wiki](https://github.com/romhackraces/baserom/wiki). If you need more information on how to use some of the resources included in the baserom, check out the documentation in the `Docs` folder included in this baserom.
+For more information about the creating levels for Romhack Races or for additional documentation about what is in the baserom check out the [baserom Wiki](https://github.com/romhackraces/baserom/wiki). If you need more information on how to use some of the resources included in the baserom, check out the documentation in the Docs folder included in this baserom.
 
 If you have feedback or would like additional support with the baserom from the Romhack Races team, please visit the `#baserom-support` in the Romhack Races Discord server.
 

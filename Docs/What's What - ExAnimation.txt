@@ -6,31 +6,28 @@ Each item is categorized by where they are applied, either Global or Level. The 
 Global ExAnimation
 ------------------
 
-The destinations for these global animations override graphics in the big pipe tile object. You can disable these in particular levels by going to: `Level -> Edit Animation Settings` and uncheck "Enable Lunar Magic's global animations" for that level.
+The destinations for these global animations are the final row of BG3 and will override any graphics loaded into this slot. You can disable these in particular levels by going to: `Level -> Edit Animation Settings` and uncheck "Enable Lunar Magic's global animations" for that level.
 
 Line Guide Ends (4)
 -------------------
-Slot: 02
+Slot: 01
 Type: 2 8x8s line
 Frames: 740,750,760,770
-Destination: CE
- - overrides bush & pipe tiles
+Destination: 2F4 (BG3)
 
 ON/OFF Normal (2)
 -----------------
-Slot: 03
+Slot: 02
 Type: 2 8x8s line
 Frames: 686,696
-Destination: C8
- - overrides bush & pipe tiles
+Destination: 2F0 (BG3)
 
 ON/OFF Inverted (2)
 -------------------
-Slot: 04
+Slot: 03
 Type: 2 8x8s line
 Frames: 696,686
-Destination: CA
- - overrides bush & pipe tiles
+Destination: 2F2 (BG3)
 
 
 -----------------
@@ -63,7 +60,7 @@ Uses alternate ExGraphics: 61
 Slot: 03
 Type: 4 8x8s: line
 Frames: 1008,1018,1028,1038
-Destination: 6
+Destination: 06
  - overrides turn/throw block
 
 Sprite Bounce Block (4)
@@ -73,4 +70,4 @@ Slot: 03
 Type: 4 8x8s: 16x16
 Frames: 100C,102C,103C,104C
 Destination: 8E
- - overrides translucent glass block
+ - overrides some big pipe tiles
