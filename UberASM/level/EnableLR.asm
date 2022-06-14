@@ -1,4 +1,7 @@
+; must match Asar/RAMToggledLR.asm
+!LREnableToggle = $7C 
+
 init:
 	lda #$01
-	sta $7C ; must match Asar/RAMToggledLR.asm
+	sta !LREnableToggle
 	rtl

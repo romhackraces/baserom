@@ -1,6 +1,6 @@
-!flag = $79	; from RAMToggledStatusbar.asm
+!StatusBarToggle = $79	; must match RAMToggledStatusbar.asm
 
 load:
 	lda #$01
-	sta !flag
+	sta !StatusBarToggle
 	rtl

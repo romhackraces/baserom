@@ -5,5 +5,6 @@
 !fireballs_level_amount = $05
 
 init:
-    lda.b #!fireballs_level_amount : sta !fireballs_freeram
+    lda.b #!fireballs_level_amount
+    sta !fireballs_freeram
     rtl

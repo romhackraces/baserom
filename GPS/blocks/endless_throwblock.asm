@@ -1,6 +1,6 @@
 db $37
 
-print "Block with infinite supply of throwblocks."
+print "Block with an endless supply of throwblocks."
 
 !Sprite = $53
 !State = $0B

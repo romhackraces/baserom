@@ -1,6 +1,6 @@
 290	0	Block that is solid to sprites, passable by Mario
 291	0	Block that is solid to Mario, passable by sprites
-292	0	Solid if anything goes down
+292	0	A block that bounces sprites! But is passable by Mario.
 293	0	Solid if anything goes up
 294	0	Solid if anything goes right
 295	0	Solid if anything goes left
@@ -12,7 +12,8 @@
 29b	0	Block that kills the player (even on yoshi), is passable for sprites and kills on wall running.
 29c	0	Block that removes any powerup or item from Mario as well as flight state
 29d	0	A Donut Lift, which will fall shortly after being stepped on.
-29e	0	Block with infinite supply of throwblocks.
+29e	0	Block with an endless supply of throwblocks.
+29f	0	A ledge vine that the player automatically hops above.
 2a0	0	Question block that always spawns a Mushroom.
 2a1	0	Question block that always spawns a Fire Flower.
 2a2	0	Question block that always spawns a Cape Feather.
