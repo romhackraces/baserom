@@ -1,12 +1,14 @@
 v4.6
 - reworked the global block graphics to use Vanilla layouts and ExGraphics
 - reworked page 2 of map16 to allow for using the Lunar Magic layer 3 tide act as feature
+- returned the big bush and big pipe as optional ExGraphics
+- custom blocks now use ExGraphics instead of overriding GFX17
 - added several sprite-spawning question mark blocks
-- added Donut lift and infinite throw block to blocks
+- added Donut lift, sprite bounce, climbable ledge and infinite throw block to blocks
 - undid all the Vanilla object remapping so the baserom is more flexible
 - added several bugfix patches informed by Katun24's patches document
-- added more hex edits, renamed patch to "Tweaks"
-- added more documentation
+- added more hex edits, renamed hexedit patch to "Tweaks"
+- added new and updated old documentation
 
 v4.5
 - added an abridged version of HammerBrother's screen scrolling pipes
