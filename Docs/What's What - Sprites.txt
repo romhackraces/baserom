@@ -2,10 +2,43 @@
 Enhanced Normal Sprites
 -----------------------
 
-53 : Placeable Throw Block 
- - a throw block that can be placed your levels, if placed with extra bit = 1 it will be kicked towards Mario.
+DA,DB,DC,DD,DF: Shells
+- extra bit = 0: normal
+- extra bit = 1: disco shell
 
-85 - Poison Mushroom
+04-07: Koopas
+- extra bit = 0: normal
+- extra bit = 1: kicked shell of same color
+
+08,09: Green Parakoopa
+- extra bit = 0: normal
+- extra bit = 1: kicked double bounce shell
+
+11: Buzzy Beetle
+- extra bit = 0: normal
+- extra bit = 1: kicked buzzy shell
+
+53: Throw Block
+- extra bit = 0: normal, stationary
+- extra bit = 1: kicked
+
+E0: 3 Platforms on Chains
+- extra bit = 0: normal, grey platforms
+- extra bit = 1: spike ball
+
+4D,4E: Monty Moles
+- extra bit = 0: fast digging
+- extra bit = 1: slow digging
+
+9B: Hammer Bro
+- extra bit = 0: unfrequent throwing
+- extra bit = 1: frequent throwing
+
+32: Dry Bones, stay on ledge
+- extra bit = 0: throws bones
+- extra bit = 1: doesn't throw bones
+
+85: Poison Mushroom
  - a sprite with mushroom movement that moves towards Mario and damages him, is also in a custom question block.
  - to get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
 
