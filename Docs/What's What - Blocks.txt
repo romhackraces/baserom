@@ -4,6 +4,7 @@ GPS Inserted Blocks
 
 290 - Block that is solid to sprites, passable by Mario
 291 - Block that is solid to Mario, passable by sprites
+292 - Block that bounces sprites but is passable by Mario
 293 - Solid if anything goes up
 294 - Solid if anything goes right
 295 - Solid if anything goes left
@@ -12,8 +13,11 @@ GPS Inserted Blocks
 298 - Block that can be broken by a kicked or thrown item
 299 - Block that silently kills any sprite.
 29A - Block that kills the player (even on yoshi), is solid for sprites and kills on wall running.
-29B - Block that removes any powerup or item from Mario as well as flight state
-29C - A Donut Lift, which will fall shortly after being stepped on.
+29B - Block that kills the player (even on yoshi), is passable for sprites and kills on wall running.
+29C - Block that removes any powerup or item from Mario as well as flight state
+29D - A Donut Lift, which will fall shortly after being stepped on.
+29E - A Donut Lift, which will fall shortly after being stepped on.
+29F - A ledge that is climbable.
 29D - Block with infinite supply of throwblocks.
 2A0-2AC - Custom Question Blocks (hover for descriptions)
 300-36F - Screen Scrolling Pipe Tiles (hover for descriptions)
