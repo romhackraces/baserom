@@ -14,6 +14,7 @@ Slot: 02
 Type: 2 8x8s line
 Frames: 740,750,760,770
 Destination: CE
+ - overrides bush & pipe tiles
 
 ON/OFF Normal (2)
 -----------------
@@ -21,6 +22,7 @@ Slot: 03
 Type: 2 8x8s line
 Frames: 686,696
 Destination: C8
+ - overrides bush & pipe tiles
 
 ON/OFF Inverted (2)
 -------------------
@@ -28,6 +30,7 @@ Slot: 04
 Type: 2 8x8s line
 Frames: 696,686
 Destination: CA
+ - overrides bush & pipe tiles
 
 
 -----------------
@@ -40,22 +43,34 @@ One-Ways, horizontal (5)
 ------------------------
 Uses alternate ExGraphics: 61
 Slot: 00
-Type: 2 8x8s stacked
+Type: 2 8x8s: stacked
 Frames: 1000,1010,1020,1030,1040
 Destination: 0B
+ - overrides horizontal cloud graphics
 
 One-Ways, vertical (5)
 ----------------------
 Uses alternate ExGraphics: 61
-Slot: 02
-Type: 2 8x8s stacked
+Slot: 01
+Type: 2 8x8s: stacked
 Frames: 1002,1012,1022,1032,1042
 Destination: 2C
+ - overrides vertical cloud graphics
 
 Infinite throwblock (4)
 -----------------------
 Uses alternate ExGraphics: 61
-Slot: 02
-Type: 4 8x8s line
+Slot: 03
+Type: 4 8x8s: line
 Frames: 1008,1018,1028,1038
 Destination: 6
+ - overrides turn/throw block
+
+Sprite Bounce Block (4)
+-----------------------
+Uses alternate ExGraphics: 61
+Slot: 03
+Type: 4 8x8s: 16x16
+Frames: 100C,102C,103C,104C
+Destination: 8E
+ - overrides translucent glass block
