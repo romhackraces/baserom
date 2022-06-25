@@ -4,7 +4,9 @@ cls
 
 :: Working Directory 
 setlocal DisableDelayedExpansion
-set WORKING_DIR=%~sdp0
+:: In case we have a working path that has spaces, quote that part and only that part.
+:: The . is because it's easier than removing the trailing \ in ~sdp0
+set WORKING_DIR="%~sdp0."\
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
@@ -15,8 +17,8 @@ call %WORKING_DIR%Defines\@tool_defines.bat
 :: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Variables
-set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
-set PATCHNAME="%WORKING_DIR%%ROM_NAME%.bps"
+set ROMFILE=%WORKING_DIR%%ROM_NAME%.smc
+set PATCHNAME=%WORKING_DIR%%ROM_NAME%.bps
 
 :: Options
 echo Build Actions
@@ -60,7 +62,7 @@ if "!Action!"=="2" (
     set GPS_DIR=%WORKING_DIR%GPS\
     set GPS_LIST=list_gps.txt
     :: Check if GPS exists and download if not
-    if not exist "!GPS_DIR!gps.exe" (
+    if not exist !GPS_DIR!gps.exe (
         echo Executable for GPS not found, downloading...
         powershell Invoke-WebRequest !GPS_DL! -OutFile !GPS_ZIP! >NUL
         powershell Expand-Archive !GPS_ZIP! -DestinationPath !GPS_DIR! >NUL
@@ -70,6 +72,8 @@ if "!Action!"=="2" (
         for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
         echo Done.
     )
+	
+	echo !GPS_DIR!
     echo Inserting custom blocks...
     pushd !GPS_DIR!
     gps.exe -l !GPS_LIST! !ROMFILE!
@@ -139,7 +143,7 @@ if "!Action!"=="5" (
 :: Create bps Patch with Flips
 if "!Action!"=="6" (
     :: Check if Flips exists and download if not
-    if not exist "%WORKING_DIR%\flips.exe" (
+    if not exist %WORKING_DIR%\flips.exe (
         echo Executable for Flips not found, downloading...
         powershell Invoke-WebRequest !FLIPS_DL! -OutFile !FLIPS_ZIP! >NUL
         powershell Expand-Archive !FLIPS_ZIP! -DestinationPath %WORKING_DIR%\ >NUL
@@ -150,13 +154,15 @@ if "!Action!"=="6" (
         echo Done.
     )
     echo Creating BPS patch...
-	set SMWROM=%WORKING_DIR%\SMWRom\smwOrig.smc
+	set SMWROM=%WORKING_DIR%SMWRom\smwOrig.smc
     if not exist !SMWROM! (
         echo Could not find an unmodified SMW file. Enter the path to an original, unmodified SMW smc: 
         set /p SMWROMNEW=
 		copy !SMWROMNEW! !SMWROM!
     )
-    "%WORKING_DIR%\flips.exe" --create --bps !SMWROM! !ROMFILE! !PATCHNAME!
+
+:: Do not, under any circumstances, even if Takemoto himself asks you to, ever change "flips.exe" to anything else. Just run it as a relative path from %WORKINGDIR%. Trust me. Don't ask any more questions.
+    flips.exe --create --bps !SMWROM! !ROMFILE! !PATCHNAME!
     pause
 )
 
