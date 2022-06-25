@@ -72,8 +72,7 @@ if "!Action!"=="2" (
         for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
         echo Done.
     )
-	
-	echo !GPS_DIR!
+
     echo Inserting custom blocks...
     pushd !GPS_DIR!
     gps.exe -l !GPS_LIST! !ROMFILE!
