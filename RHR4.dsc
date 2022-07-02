@@ -14,19 +14,19 @@
 29d	0	A Donut Lift, which will fall shortly after being stepped on.
 29e	0	Block with an endless supply of throwblocks.
 29f	0	A ledge vine that the player automatically hops above.
-2a0	0	Question block that always spawns a Mushroom.
-2a1	0	Question block that always spawns a Fire Flower.
-2a2	0	Question block that always spawns a Cape Feather.
-2a3	0	Question block that always spawns a 1-Up.
-2a4	0	Question block that always spawns a Vine.
-2a5	0	Question block that always spawns a P-Balloon.
-2a6	0	Question block that always spawns a Key.
-2a7	0	Question block that always spawns a Poison Mushroom.
-2a8	0	Question block that always spawns a Galoomba.
-2a9	0	Question block that always spawns a Fish.
-2aa	0	Question block that always spawns a Blue P-Switch/POW.
-2ab	0	Question block that always spawns a Blue P-Switch/POW.
-2ac	0	Question block that always spawns a Spring.
+2b0	0	Question block that always spawns a Mushroom.
+2b1	0	Question block that always spawns a Fire Flower.
+2b2	0	Question block that always spawns a Cape Feather.
+2b3	0	Question block that always spawns a 1-Up.
+2b4	0	Question block that always spawns a Vine.
+2b5	0	Question block that always spawns a P-Balloon.
+2b6	0	Question block that always spawns a Key.
+2b7	0	Question block that always spawns a Poison Mushroom.
+2b8	0	Question block that always spawns a Galoomba.
+2b9	0	Question block that always spawns a Fish.
+2ba	0	Question block that always spawns a Blue P-Switch/POW.
+2bb	0	Question block that always spawns a Blue P-Switch/POW.
+2bc	0	Question block that always spawns a Spring.
 300	0	Top-left cap piece of vertical 2-way pipe.
 301	0	Top-right cap piece of vertical 2-way pipe.
 302	0	A part of the pipe that is passable when in pipe mode.

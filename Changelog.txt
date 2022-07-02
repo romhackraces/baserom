@@ -1,3 +1,6 @@
+v5.0
+- move over to a Lunar Helper Workflow
+
 v4.6
 - reworked the global block graphics to use Vanilla layouts and ExGraphics
 - reworked page 2 of map16 to allow for using the Lunar Magic layer 3 tide act as feature

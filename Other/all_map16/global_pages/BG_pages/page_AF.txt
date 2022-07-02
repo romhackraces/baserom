@@ -1,0 +1,511 @@
+AF00: ~
+
+AF01: ~
+
+AF02: ~
+
+AF03: ~
+
+AF04: ~
+
+AF05: ~
+
+AF06: ~
+
+AF07: ~
+
+AF08: ~
+
+AF09: ~
+
+AF0A: ~
+
+AF0B: ~
+
+AF0C: ~
+
+AF0D: ~
+
+AF0E: ~
+
+AF0F: ~
+
+AF10: ~
+
+AF11: ~
+
+AF12: ~
+
+AF13: ~
+
+AF14: ~
+
+AF15: ~
+
+AF16: ~
+
+AF17: ~
+
+AF18: ~
+
+AF19: ~
+
+AF1A: ~
+
+AF1B: ~
+
+AF1C: ~
+
+AF1D: ~
+
+AF1E: ~
+
+AF1F: ~
+
+AF20: ~
+
+AF21: ~
+
+AF22: ~
+
+AF23: ~
+
+AF24: ~
+
+AF25: ~
+
+AF26: ~
+
+AF27: ~
+
+AF28: ~
+
+AF29: ~
+
+AF2A: ~
+
+AF2B: ~
+
+AF2C: ~
+
+AF2D: ~
+
+AF2E: ~
+
+AF2F: ~
+
+AF30: ~
+
+AF31: ~
+
+AF32: ~
+
+AF33: ~
+
+AF34: ~
+
+AF35: ~
+
+AF36: ~
+
+AF37: ~
+
+AF38: ~
+
+AF39: ~
+
+AF3A: ~
+
+AF3B: ~
+
+AF3C: ~
+
+AF3D: ~
+
+AF3E: ~
+
+AF3F: ~
+
+AF40: ~
+
+AF41: ~
+
+AF42: ~
+
+AF43: ~
+
+AF44: ~
+
+AF45: ~
+
+AF46: ~
+
+AF47: ~
+
+AF48: ~
+
+AF49: ~
+
+AF4A: ~
+
+AF4B: ~
+
+AF4C: ~
+
+AF4D: ~
+
+AF4E: ~
+
+AF4F: ~
+
+AF50: ~
+
+AF51: ~
+
+AF52: ~
+
+AF53: ~
+
+AF54: ~
+
+AF55: ~
+
+AF56: ~
+
+AF57: ~
+
+AF58: ~
+
+AF59: ~
+
+AF5A: ~
+
+AF5B: ~
+
+AF5C: ~
+
+AF5D: ~
+
+AF5E: ~
+
+AF5F: ~
+
+AF60: ~
+
+AF61: ~
+
+AF62: ~
+
+AF63: ~
+
+AF64: ~
+
+AF65: ~
+
+AF66: ~
+
+AF67: ~
+
+AF68: ~
+
+AF69: ~
+
+AF6A: ~
+
+AF6B: ~
+
+AF6C: ~
+
+AF6D: ~
+
+AF6E: ~
+
+AF6F: ~
+
+AF70: ~
+
+AF71: ~
+
+AF72: ~
+
+AF73: ~
+
+AF74: ~
+
+AF75: ~
+
+AF76: ~
+
+AF77: ~
+
+AF78: ~
+
+AF79: ~
+
+AF7A: ~
+
+AF7B: ~
+
+AF7C: ~
+
+AF7D: ~
+
+AF7E: ~
+
+AF7F: ~
+
+AF80: ~
+
+AF81: ~
+
+AF82: ~
+
+AF83: ~
+
+AF84: ~
+
+AF85: ~
+
+AF86: ~
+
+AF87: ~
+
+AF88: ~
+
+AF89: ~
+
+AF8A: ~
+
+AF8B: ~
+
+AF8C: ~
+
+AF8D: ~
+
+AF8E: ~
+
+AF8F: ~
+
+AF90: ~
+
+AF91: ~
+
+AF92: ~
+
+AF93: ~
+
+AF94: ~
+
+AF95: ~
+
+AF96: ~
+
+AF97: ~
+
+AF98: ~
+
+AF99: ~
+
+AF9A: ~
+
+AF9B: ~
+
+AF9C: ~
+
+AF9D: ~
+
+AF9E: ~
+
+AF9F: ~
+
+AFA0: ~
+
+AFA1: ~
+
+AFA2: ~
+
+AFA3: ~
+
+AFA4: ~
+
+AFA5: ~
+
+AFA6: ~
+
+AFA7: ~
+
+AFA8: ~
+
+AFA9: ~
+
+AFAA: ~
+
+AFAB: ~
+
+AFAC: ~
+
+AFAD: ~
+
+AFAE: ~
+
+AFAF: ~
+
+AFB0: ~
+
+AFB1: ~
+
+AFB2: ~
+
+AFB3: ~
+
+AFB4: ~
+
+AFB5: ~
+
+AFB6: ~
+
+AFB7: ~
+
+AFB8: ~
+
+AFB9: ~
+
+AFBA: ~
+
+AFBB: ~
+
+AFBC: ~
+
+AFBD: ~
+
+AFBE: ~
+
+AFBF: ~
+
+AFC0: ~
+
+AFC1: ~
+
+AFC2: ~
+
+AFC3: ~
+
+AFC4: ~
+
+AFC5: ~
+
+AFC6: ~
+
+AFC7: ~
+
+AFC8: ~
+
+AFC9: ~
+
+AFCA: ~
+
+AFCB: ~
+
+AFCC: ~
+
+AFCD: ~
+
+AFCE: ~
+
+AFCF: ~
+
+AFD0: ~
+
+AFD1: ~
+
+AFD2: ~
+
+AFD3: ~
+
+AFD4: ~
+
+AFD5: ~
+
+AFD6: ~
+
+AFD7: ~
+
+AFD8: ~
+
+AFD9: ~
+
+AFDA: ~
+
+AFDB: ~
+
+AFDC: ~
+
+AFDD: ~
+
+AFDE: ~
+
+AFDF: ~
+
+AFE0: ~
+
+AFE1: ~
+
+AFE2: ~
+
+AFE3: ~
+
+AFE4: ~
+
+AFE5: ~
+
+AFE6: ~
+
+AFE7: ~
+
+AFE8: ~
+
+AFE9: ~
+
+AFEA: ~
+
+AFEB: ~
+
+AFEC: ~
+
+AFED: ~
+
+AFEE: ~
+
+AFEF: ~
+
+AFF0: ~
+
+AFF1: ~
+
+AFF2: ~
+
+AFF3: ~
+
+AFF4: ~
+
+AFF5: ~
+
+AFF6: ~
+
+AFF7: ~
+
+AFF8: ~
+
+AFF9: ~
+
+AFFA: ~
+
+AFFB: ~
+
+AFFC: ~
+
+AFFD: ~
+
+AFFE: ~
+
+AFFF: ~

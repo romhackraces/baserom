@@ -1,0 +1,63 @@
+#default
+{
+	"default/00 SMW @0.brr"!
+	"default/01 SMW @1.brr"!
+	"default/02 SMW @2.brr"!
+	"default/03 SMW @3.brr"!
+	"default/04 SMW @4.brr"!
+	"default/05 SMW @8.brr"!
+	"default/06 SMW @22.brr"!
+	"default/07 SMW @5.brr"!
+	"default/08 SMW @6.brr"!
+	"default/09 SMW @7.brr"!
+	"default/0A SMW @9.brr"!
+	"default/0B SMW @10.brr"!
+	"default/0C SMW @13.brr"!
+	"default/0D SMW @14.brr"
+	"default/0E SMW @29.brr"!
+	"default/0F SMW @21.brr"
+	"default/10 SMW @12.brr"!
+	"default/11 SMW @17.brr"
+	"default/12 SMW @15.brr"!
+	"default/13 SMW Thunder.brr"!
+}
+
+#optimized
+{
+	"optimized/00 SMW @0.brr"!
+	"optimized/01 SMW @1.brr"!
+	"optimized/02 SMW @2.brr"!
+	"optimized/03 SMW @3.brr"!
+	"optimized/04 SMW @4.brr"!
+	"optimized/05 SMW @8.brr"!
+	"optimized/06 SMW @22.brr"!
+	"optimized/07 SMW @5.brr"!
+	"optimized/08 SMW @6.brr"!
+	"optimized/09 SMW @7.brr"!
+	"optimized/0A SMW @9.brr"!
+	"optimized/0B SMW @10.brr"!
+	"optimized/0C SMW @13.brr"!
+	"optimized/0D SMW @14.brr"
+	"optimized/0E SMW @29.brr"!
+	"optimized/0F SMW @21.brr"
+	"optimized/10 SMW @12.brr"!
+	"optimized/11 SMW @17.brr"
+	"optimized/12 SMW @15.brr"!
+	"optimized/13 SMW Thunder.brr"!
+}
+
+#AMM
+{
+	"EMPTY.brr"!
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+	"EMPTY.brr"
+}

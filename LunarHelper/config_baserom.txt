@@ -1,0 +1,44 @@
+-- working directory (all paths are relative to this one)
+dir = ../
+
+-- rom paths
+clean = clean.smc
+temp = temp.smc
+output = RHR4.smc
+package = RHR4.bps
+
+-- initial patch
+initial_patch = Other/initial_patch.bps
+
+-- tool paths
+addmusick_path = Tools/AddmusicK_1.0.8/AddMusicK.exe
+asar_path = Tools/Asar/asar.exe
+flips_path = Tools/Flips/flips.exe
+gps_path = Tools/GPS/gps.exe
+human_readable_map16_cli_path = Tools/HumanReadableMap16/human-readable-map16-cli.exe
+human_readable_map16_directory_path = Other/all_map16
+lm_path = Tools/LunarMagic/Lunar Magic.exe
+pixi_path = Tools/PIXI/pixi.exe
+uberasm_path = Tools/UberASMTool/UberASMTool.exe
+
+-- tool CLI options
+addmusick_options = -v
+gps_options = -l list_gps.txt
+lm_level_import_flags = 0
+pixi_options = -d -l Tools/PIXI/list_pixi.txt
+uberasm_options = list_uberasm.txt
+
+-- shared config folder
+shared_folder = Shared
+
+-- content
+levels = Levels/latest
+shared_palette = Backup/Palettes/Shared_latest.pal
+map16 = Backup/Map16/AllMap16_latest.map16
+-- title_moves = Other/smwtitledemo.zst
+
+-- global_data is a BPS patch file, to be created by Lunar Helper, 
+-- that will hold the overworld, ex global animations, credits, intro screen, and title moves.
+-- You will work on these things from the built output ROM in Lunar Magic, 
+-- and Lunar Monitor will automatically export them as you save your changes
+global_data = Other/global_data.bps

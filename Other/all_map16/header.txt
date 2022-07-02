@@ -1,0 +1,11 @@
+file_format_version_number: 100
+game_id: 1
+program_version: 331
+program_id: 1
+size_x: 10
+size_y: 1000
+base_x: 0
+base_y: 0
+is_full_game_export: 1
+has_tileset_specific_page_2: 0
+comment_field: "Lunar Magic 3.31  ©2021 FuSoYa  Defender of Relm"

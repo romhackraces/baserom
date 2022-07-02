@@ -1,0 +1,44 @@
+Globals:
+01  originals/01 Miss.txt
+02  originals/02 Game Over.txt
+03  originals/03 Boss Clear.txt
+04  originals/04 Stage Clear.txt
+05  originals/05 Starman.txt
+06  originals/06 P-switch.txt
+07  originals/07 Keyhole.txt
+08  originals/08 Iris Out.txt
+09  originals/09 Bonus End.txt
+
+
+Locals:
+0A  originals/10 Piano.txt
+0B  originals/11 Here We Go.txt
+0C  originals/12 Water.txt
+0D  originals/13 Bowser.txt
+0E  originals/14 Boss.txt
+0F  originals/15 Cave.txt
+10  originals/16 Ghost.txt
+11  originals/17 Castle.txt
+12  originals/18 Switch Palace.txt
+13  originals/19 Welcome.txt
+14  originals/20 Rescue Egg.txt
+15  originals/21 Title.txt
+16  originals/22 Valley of Bowser Appears.txt
+17  originals/23 Overworld.txt
+18  originals/24 Yoshi's Island.txt
+19  originals/25 Vanilla Dome.txt
+1A  originals/26 Star Road.txt
+1B  originals/27 Forest of Illusion.txt
+1C  originals/28 Valley of Bowser.txt
+1D  originals/29 Special World.txt
+1E  originals/30 IntroScreen.txt
+1F  originals/31 Bowser Scene 2.txt
+20  originals/32 Bowser Scene 3.txt
+21  originals/33 Bowser Defeated.txt
+22  originals/34 Bowser Interlude.txt
+23  originals/35 Bowser Zoom In.txt
+24  originals/36 Bowser Zoom Out.txt
+25  originals/37 Princess Peach is Rescued.txt
+26  originals/38 Staff Roll.txt
+27  originals/39 The Yoshis Are Home.txt
+28  originals/40 Cast List.txt

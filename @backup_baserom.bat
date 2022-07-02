@@ -9,13 +9,18 @@ set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: Import Definitions
-call %WORKING_DIR%Defines\@your_defines.bat
 call %WORKING_DIR%Defines\@tool_defines.bat
+
+:: The name of your ROM file (without the extension)
+:: used both for patch creation and applying resources.
+:: be sure it matches
+set ROM_NAME=RHR4
 
 :: DO NOT CHANGE THE VARIABLES BELOW
 
-:: Backup Directory 
+:: Directory Definitiions
 set BACKUP_DIR=%~sdp0Backup\
+set TOOLS_DIR=%WORKING_DIR%Tools\
 
 :: Variables
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
@@ -26,19 +31,20 @@ set LEVELS_BACKUP="%BACKUP_DIR%"Levels
 set MAP16_BACKUP="%BACKUP_DIR%"Map16
 set PAL_BACKUP="%BACKUP_DIR%"Palettes
 
-:: Lunar Magic location
-set LM="%WORKING_DIR%Lunar Magic.exe"
-
+:: Lunar Magic
+set LM_DIR=!TOOLS_DIR!LunarMagic\
 :: Check if Lunar Magic exists and download if not
-if not exist !LM! (
-    echo Executable for Lunar Magic not found, downloading...
+if not exist "!LM_DIR!Lunar Magic.exe" (
+    echo Lunar Magic not found, downloading...
     powershell Invoke-WebRequest !LM_DL! -OutFile !LM_ZIP! >NUL
-    powershell Expand-Archive !LM_ZIP! -DestinationPath %WORKING_DIR% >NUL
+    powershell Expand-Archive !LM_ZIP! -DestinationPath !LM_DIR! >NUL
     :: Delete junk files
-    del %WORKING_DIR%!LM_ZIP!
-    pushd %WORKING_DIR%
-    for %%a in (!LM_JUNK!) do (del %WORKING_DIR%%%a)
+    for %%a in (!LM_JUNK!) do (del !LM_DIR!%%a)
+    :: Delete Zip
+    del !LM_ZIP!
     echo Done.
+) else (
+    echo -- Lunar Magic already setup.
 )
 
 :: Time stuff
