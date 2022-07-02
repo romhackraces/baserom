@@ -3,8 +3,8 @@
 ; 209-28F	; Occupied with vanilla Tiles
 
 ; CUSTOM GLOBAL BLOCKS (DO NOT MODIFY) --------------------;
-290 sprite_solid.asm
-291 mario_solid.asm
+290 mario_passable.asm
+291 sprite_passable.asm
 292 sprite_bounce.asm
 293 one_way_down.asm
 294 one_way_left.asm

@@ -1,4 +1,4 @@
--- Insert paths to patches you would like Lunar Helper to insert in this list
+-- Add or remove paths to patches you would like Lunar Helper to insert in this list
 
 patches
 [

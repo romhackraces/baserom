@@ -5,7 +5,8 @@
 ; check for interaction every single frame (as opposed to every other frame)
 org $02A0B2 : db $00 ; fireball-sprite
 org $01A7EF : db $00 ; mario-sprite
-org $029500 : db $00 ; cape-sprite
+; made redundant by CapespinNetHitboxConsistency.asm
+;org $029500 : db $00 ; capespin-sprite
 
 ; make Bob-Omb explosions interact with Mario and other sprites every frame
 org $0280A8 : bra $05
@@ -17,9 +18,6 @@ org $00F447 : db $05 ; offset the enterable region, which is half of above (defa
 
 ; play SFX when exiting horizontal pipes
 org $00D24E : LDA $7D : NOP : NOP
-
-; no powerups from midways
-org $00F2E2 : db $80
 
 ; remove Yoshi's rescue message
 org $01EC36 : db $80
@@ -35,9 +33,6 @@ org $028AD2 : NOP #3
 
 ; remove RNG from Podobos/Jumping Fireballs
 org $01E0D7 : LDA #$7F : NOP #6
-
-; remove float delay framerule from falling with cape
-org $00D909 : db $00
 
 ; shorten intro message skip timer
 org $00A09C : db $04

@@ -1,0 +1,9 @@
+-- This variable lets you specify the path to your retroarch emulator if you want 
+-- to be able to run the built ROM in it from Lunar Helper's menu via the Run 
+-- and/or Test menu options.
+
+-- You can also specify other emulators in the `'retroarch_path' variable.
+
+-- emulator and testing (full path)
+-- retroarch_path = C:\Users\user\AppData\Roaming\RetroArch\retroarch.exe
+-- retroarch_core = C:\Users\user\AppData\Roaming\RetroArch\cores\snes9x_libretro.dll

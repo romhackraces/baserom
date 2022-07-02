@@ -24,6 +24,3 @@ org $01DCC3
 	NOP #2
 	LDY !1FD6,x
 ; CPX #$06 : BCC $07 : LDY $1692
-
-
-

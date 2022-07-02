@@ -10,7 +10,7 @@ $0F42 - Screen Scrolling Pipes - 5 bytes
 $140B - CapeSpinDirectionConsistency.asm - 1 byte
 $0DC3 - SpriteScrollFix.asm - 4 bytes
 $1929 - BlockDuplicationFix.asm - 1 byte
-$1DFD - library/double_hit_fix.asm - 2 bytes
+$1DFD - library/double_hit_fix.asm - 1 bytes
 $60 - RAMControlledFireballAmount.asm - 1 byte
 $79 - RAMToggledStatusbar.asm - 1 byte
 $7C - RAMToggledLR.asm - 1 byte

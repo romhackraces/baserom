@@ -294,7 +294,7 @@ Example:
 
 If I had created my directory at 
 
-    C:/Users/underway/Documents/hack/levels 
+    C:/Users/Me/Documents/hack/levels 
     
 I would just write 
 

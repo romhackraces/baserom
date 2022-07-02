@@ -71,7 +71,7 @@ endif
 		!WalljumpNoteBlockFixPatch = 1
 	endif
 
-incsrc "../Defines/ScreenScrollingPipes.asm"
+incsrc "../SSP_Defines.asm"
 
 	macro define_sprite_table(name, addr, addr_sa1)
 		if !sa1 == 0

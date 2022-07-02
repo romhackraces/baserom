@@ -1,20 +1,26 @@
 # Romhack Races Baserom
 
-This is the official baserom for creating Super Mario World race levels for [Romhack Races](https://romhackraces.com/). This baserom is tailor-made for both race level creation as well as general purpose hacking, but a lot of the changes made and patches included are to accommodate Kaizo level design in particular.
-
-See the [baserom Wiki page](https://github.com/romhackraces/baserom/wiki/Changes-or-Additions-to-Vanilla-Super-Mario-World) for a detailed breakdown of the changes made to the base game. 
+This is the official baserom for creating Super Mario World race levels for [Romhack Races](https://romhackraces.com/). This baserom is tailor-made for both race level creation as well as general purpose hacking, but a lot of the changes made and patches included are to accommodate Kaizo level design in particular (see the [baserom Wiki page](https://github.com/romhackraces/baserom/wiki/Changes-or-Additions-to-Vanilla-Super-Mario-World) for a detailed breakdown of the all changes).
 
 ## Getting Started
 
-The first thing you are going to do is patch your copy of unmodified Super Mario World with the `RHR4.bps` patch found in the main folder of this baserom, ensuring it has the name 'RHR4' and an extension of `.smc` when completed. This patch contains all of the changes already made so you can get going straightaway on building your Romhack Race level.
+The first thing you're going to do, for the build system to work properly, is to put you a copy of your unmodified Super Mario World ROM in the main folder of this baserom renamed to `clean.smc`.
 
-If you change the filename of your ROM be sure to update it in the `Defines\@your_defines.bat` file otherwise the baserom scripts will not work as intended, and rename all the extra files that are also called "RHR4" to the new name if you want things to display properly (like block details) in Lunar Magic.
+### Initialize the Baserom
 
-### Build Scripts
+To start using the baserom you will first have to initialize the baserom folder and download all of the tools used by it. You can do this by running `@initialize_baserom.bat` this will check for all of the tools used by the build system and download them on demand. This is done to keep the baserom pretty lean and avoid distributing a lot of executables and binary files.
 
-To make life easier for you as a hacker, this baserom comes some helpful scripts to automate the process of applying additional custom assets to your ROM as well as for backing things up and creating a patch for distribution. See the "How to use the Build Scripts" file in the Docs folder or check out the [Wiki page](https://github.com/romhackraces/baserom/wiki/Using-the-Build-Scripts) for more information about these scripts.
+## Building the Baserom
 
-Also, in order to keep things lean and to avoid distributing executable files, the tools are downloaded on demand when the baserom build scripts are run to add things to your hack.
+To make life easier for you as a hacker, this baserom has a few build tools included that will automagically rebuild your hack everytime you make changes to it.
+
+### Lunar Helper
+
+When working on your hack Lunar Helper is your new best friend, you can find it by running `Lunar Helper.exe` in the LunarHelper folder. This tool will entirely rebuild your rom (from scratch) each time you want to add (or remove) things to make sure it all builds smoothly. It will also help you with quickly editing, testing and packaging your hack for distribution. See the Lunar Helper readme in the Docs folder for more information.
+
+### Lunar Monitor
+
+In addition to Lunar Helper, a tool is bundled with Lunar Magic to monitor your hack and enable you to quickly export levels, map16, palettes and so forth for rebuilding instead of doing so manually. You'll find when you open Lunar Magic, there will be a new button between the Save and Undo buttons in the toolbar to enable this with one-click. See the Lunar Monitor readme in the Docs folder for more information.
 
 ## More Information
 

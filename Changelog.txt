@@ -1,5 +1,9 @@
-v5.0
-- move over to a Lunar Helper Workflow
+v4.7
+- massive rework to a Lunar Helper + Lunar Monitor workflow
+- a few block updates
+- some fixes to Extended NMST patch for castle frames
+- replace cape framerule hex edit with uberasm version
+- removal of a couple needless tweaks
 
 v4.6
 - reworked the global block graphics to use Vanilla layouts and ExGraphics

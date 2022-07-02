@@ -9,7 +9,7 @@ set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: Import Definitions
-call %WORKING_DIR%Defines\@tool_defines.bat
+call %WORKING_DIR%Shared\@tool_defines.bat
 
 :: The name of your ROM file (without the extension)
 :: used both for patch creation and applying resources.
@@ -32,6 +32,7 @@ set MAP16_BACKUP="%BACKUP_DIR%"Map16
 set PAL_BACKUP="%BACKUP_DIR%"Palettes
 
 :: Lunar Magic
+set LM="!TOOLS_DIR!LunarMagic\Lunar Magic.exe"
 set LM_DIR=!TOOLS_DIR!LunarMagic\
 :: Check if Lunar Magic exists and download if not
 if not exist "!LM_DIR!Lunar Magic.exe" (
@@ -43,8 +44,6 @@ if not exist "!LM_DIR!Lunar Magic.exe" (
     :: Delete Zip
     del !LM_ZIP!
     echo Done.
-) else (
-    echo -- Lunar Magic already setup.
 )
 
 :: Time stuff

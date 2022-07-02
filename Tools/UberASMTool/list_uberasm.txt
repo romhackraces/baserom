@@ -15,17 +15,17 @@ overworld:
 
 ; Game mode list. Valid values: 00-FF.
 gamemode: 
-    03 retry_gm03.asm
-    0C retry_gm0C.asm
-    0D retry_gm0D.asm
-    0F retry_gm0F.asm
-    10 retry_gm10.asm
-    11 retry_gm11.asm
-    12 retry_gm12.asm
-    13 retry_gm13.asm
-    14 retry_gm14.asm
-    16 retry_gm16.asm
-    19 retry_gm19.asm
+    03 GM03.asm
+    0C GM0C.asm
+    0D GM0D.asm
+    0F GM0F.asm
+    10 GM10.asm
+    11 GM11.asm
+    12 GM12.asm
+    13 GM13.asm
+    14 GM14.asm
+    16 GM16.asm
+    19 GM19.asm
 
 
 global:		other/global_code.asm	; global code.

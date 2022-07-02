@@ -1,0 +1,27 @@
+----------------
+@backup_hack.bat
+----------------
+
+Like the above, when you run the this script you will be given a menu in the Command Prompt with a list of backup options for your hack:
+
+> "Export all modified Levels to files"
+
+This will use Lunar Magic's level export feature to save all modified levels as .mwl files to a folder in "Backup/Levels" called "latest" in addition to a time-stamped folder of levels as a sort of versioning. 
+
+> "Export all of Map16"
+
+This will use Lunar Magic's map16 export feature to save *all* of your hack's map16 (not sections of it) to a file in the "Backup/Map16" folder called "AllMap16_latest.map16", there will be also be a copy of that file that is time stamped in case you want to recover some older map16 changes.
+
+> "Export Shared Palettes"
+
+This will use Lunar Magic's map16 export feature to save a copy of the *shared* palette (not the palettes of individual levels) in the "Backup/Palettes" folder, this action is also time-stamped. This action is only really necessary if you modify the shared palettes of the ROM as individual level palettes will be saved when you export levels in the first option.
+
+> "Create a time-stamped backup of your ROM"
+
+Basically this just makes a copy of your hack's ROM file in the "Backups/ROM" folder with a timestamp, so you can access older versions. This backed-up file is also used by the restore script to restore data.
+
+-----------------------
+@initialize_baserom.bat
+-----------------------
+
+This is a first-run script when setting up the baserom that will download each and every tool on demand that is used by the build system if it isn't detected.

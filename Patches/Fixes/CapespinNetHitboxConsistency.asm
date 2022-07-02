@@ -12,17 +12,22 @@
 ; The net punching hitbox (which shares part of its hitbox checking routine with the capespin) is also changed to interact with sprites every frame and is offset to the left and right of Mario equally.
 ; In vanilla SMW, punching checks for sprite interaction only every other frame and is offset to the left or right of Mario depending on whether you're in front of the net or behind it.
 
+org $0294FF						; have capespin interact with sprites every frame
+NOP #2
 
 org $00D034						; set capespin hitbox x to Mario's x minus 12 pixels (always left side)
-dw $FFF4						; vanilla value = $000C
+dw $FFF4						; vanilla value = &000C
 org $00D038						; set net punching hitbox x to Mario's x minus 8 pixels (always left side)
-dw $FFF8						; vanilla value = $0008
+dw $FFF8						; vanilla value = &0008
 
 org $02953E						; set capespin layer1/2 interaction points so that it checks for interaction left or right depending on a framerule (x offset from $00D034)
 db $02,$25						; vanilla:	db $02,$0E
 
 org $0296A5
 autoclean JML HitboxWidth
+
+org $0296B4						; set capespin hitbox height to 14 pixels (vanilla = 16 pixels) to account for spin-killing sprites more readily when spin-gliding into them at an angle (side-effect of the patch)
+db $0E
 
 freecode
 

@@ -1,3 +1,4 @@
+-- DO NOT CHANGE THIS FILE --
 -- paths
 flips_path: "Tools/Flips/flips.exe"
 map16_path: "Backup/Map16/AllMap16_latest.map16"

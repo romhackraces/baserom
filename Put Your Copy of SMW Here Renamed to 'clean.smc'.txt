@@ -1,2 +1,1 @@
-For some of the build scripts to work properly put a copy of your unmodified 
-Super Mario World ROM here renamed to 'smwOrig.smc'.
+For the build system to work properly put a copy of your unmodified Super Mario World ROM here renamed to 'clean.smc'.

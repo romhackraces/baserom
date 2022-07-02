@@ -65,8 +65,9 @@ Walljump/Note Block Glitch Fix v1.6 - lolcats439 - https://smwc.me/s/19932
 
 -- UberASM --
 
-ON/OFF Double Hit fix - Kevin - https://smwc.me/s/21081
+ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
 Retry System - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.3.3
+Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 
 -- Custom Blocks --
 

@@ -5,6 +5,8 @@ dir = ../
 clean = clean.smc
 temp = temp.smc
 output = RHR4.smc
+
+-- outfile
 package = RHR4.bps
 
 -- initial patch
@@ -24,9 +26,9 @@ uberasm_path = Tools/UberASMTool/UberASMTool.exe
 -- tool CLI options
 addmusick_options = -v
 gps_options = -l list_gps.txt
-lm_level_import_flags = 0
-pixi_options = -d -l Tools/PIXI/list_pixi.txt
+pixi_options = -l Tools/PIXI/list_pixi.txt
 uberasm_options = list_uberasm.txt
+lm_level_import_flags = 0
 
 -- shared config folder
 shared_folder = Shared

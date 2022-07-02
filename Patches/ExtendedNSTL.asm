@@ -128,8 +128,8 @@ org $02FD4A							;
 	LDY !RAM_ExtOAMIndex			;
 org $02FD98							;
 	LDY !RAM_ExtOAMIndex			;
-org $02FA2B							;
-	LDY !RAM_ExtOAMIndex			;
+;org $02FA2B						;
+;	LDY !RAM_ExtOAMIndex			;
 org $02FE48							;
 	LDY !RAM_ExtOAMIndex			;
 org $02DF6E							; patch Sumo Brother flame GFX routine
@@ -156,18 +156,18 @@ org $02FDAF							;
 	dw $0202|!base					;
 org $02FDB4							;
 	dw $0203|!base					;
-org $02FA35							;
-	dw $0200|!base					;
-org $02FA3E							;
-	dw $0201|!base					;
-org $02FA4C							;
-	dw $0202|!base					;
-org $02FA52							;
-	dw $0203|!base					;
-org $02FA5C							;
-	dw $0420|!base					;
-org $02FA60							;
-	dw $0200|!base					;
+; org $02FA35						;
+; 	dw $0200|!base					;
+; org $02FA3E						;
+; 	dw $0201|!base					;
+; org $02FA4C						;
+; 	dw $0202|!base					;
+; org $02FA52						;
+; 	dw $0203|!base					;
+; org $02FA5C						;
+; 	dw $0420|!base					;
+; org $02FA60						;
+; 	dw $0200|!base					;
 
 ; Mario's fireballs
 org $02A03B

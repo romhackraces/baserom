@@ -90,8 +90,6 @@ if "!Action!"=="1" (
         powershell Expand-Archive !GPS_ZIP! -DestinationPath !GPS_DIR! >NUL
         :: Delete junk files
         for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
-        :: Copy in existing list file
-        copy /y !LISTS_DIR!!GPS_LIST! !GPS_DIR!list.txt
         :: Delete Zip
         del !GPS_ZIP!
         echo Done.
@@ -180,8 +178,6 @@ if "!Action!"=="1" (
         powershell Expand-Archive !PIXI_ZIP! -DestinationPath !PIXI_DIR! >NUL
         :: Delete junk files
         for %%a in (!PIXI_JUNK!) do (del !PIXI_DIR!%%a)
-        :: Copy in existing list file
-        copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!list.txt
         :: Delete Zip
         del !PIXI_ZIP!
         echo Done.
@@ -203,8 +199,6 @@ if "!Action!"=="1" (
         echo ; > !UBER_DIR!library\_gitkeep
         :: Delete junk files
         for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a)
-        :: Copy in existing list file
-        copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
         :: Delete Zip
         del !UBER_ZIP!
         echo Done.
