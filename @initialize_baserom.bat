@@ -198,7 +198,7 @@ if "!Action!"=="1" (
         copy /y NUL !UBER_DIR!gamemode\_gitkeep
         copy /y NUL !UBER_DIR!overworld\_gitkeep
         copy /y NUL !UBER_DIR!level\_gitkeep
-        copy /y NUL !UBER_DIR!library\_gitkeep
+        echo ; !UBER_DIR!library\_gitkeep
         :: add warning to list.txt
         echo Baserom Note: Do not Use. Use !UBER_LIST! instead. > !UBER_DIR!list.txt
         :: Delete junk files
