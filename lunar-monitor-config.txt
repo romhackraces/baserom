@@ -1,0 +1,15 @@
+-- DO NOT CHANGE THIS FILE --
+-- paths
+flips_path: "Tools/Flips/flips.exe"
+map16_path: "Backup/Map16/AllMap16_latest.map16"
+clean_rom_path: "clean.smc"
+global_data_path: "Other/global_data.bps"
+shared_palettes_path: "Backup/Palettes/Shared_latest.pal"
+-- Level monitoring
+level_directory: "Levels/latest"
+-- Optional config variables if you want to use a human readble text-based map16 format
+human_readable_map16_cli_path: "Tools/HumanReadableMap16/human-readable-map16-cli.exe"
+human_readable_map16_directory_path: "Other/all_map16"
+-- Logs
+log_level: Log
+log_path: "Other/lunar-monitor-log.txt"
