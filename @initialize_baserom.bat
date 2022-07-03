@@ -84,10 +84,12 @@ if "!Action!"=="1" (
     :: GPS
     set GPS_DIR=!TOOLS_DIR!GPS\
     :: Check if GPS exists and download if not
-    if not exist "!GPS_DIR!" (
+    if not exist "!GPS_DIR!gps.exe" (
         echo GPS not found, downloading...
         powershell Invoke-WebRequest !GPS_DL! -OutFile !GPS_ZIP! >NUL
         powershell Expand-Archive !GPS_ZIP! -DestinationPath !GPS_DIR! >NUL
+        :: add warning to list.txt
+        echo Baserom Note: Do not Use. Use !GPS_LIST! instead. > !GPS_DIR!list.txt
         :: Delete junk files
         for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
         :: Delete Zip
@@ -155,7 +157,6 @@ if "!Action!"=="1" (
         powershell Expand-Archive !LUN_MON_ZIP! -DestinationPath !LUN_MON_DIR! >NUL
         :: Move files
         echo Moving files to relevant locations...
-        move !LUN_MON_DIR!lunar-monitor-config.txt %WORKING_DIR%
         move !LUN_MON_DIR!LM3.31\lunar-monitor.dll !LUN_MON_DIR!
         :: Delete junk files
         for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a)
@@ -176,6 +177,8 @@ if "!Action!"=="1" (
         echo PIXI not found, downloading...
         powershell Invoke-WebRequest !PIXI_DL! -OutFile !PIXI_ZIP! >NUL
         powershell Expand-Archive !PIXI_ZIP! -DestinationPath !PIXI_DIR! >NUL
+        :: add warning to list.txt
+        echo Baserom Note: Do not Use. Use !PIXI_LIST! instead. > !PIXI_DIR!list.txt
         :: Delete junk files
         for %%a in (!PIXI_JUNK!) do (del !PIXI_DIR!%%a)
         :: Delete Zip
@@ -196,7 +199,9 @@ if "!Action!"=="1" (
         copy /y NUL !UBER_DIR!gamemode\_gitkeep
         copy /y NUL !UBER_DIR!overworld\_gitkeep
         copy /y NUL !UBER_DIR!level\_gitkeep
-        echo ; > !UBER_DIR!library\_gitkeep
+        copy /y NUL !UBER_DIR!library\_gitkeep
+        :: add warning to list.txt
+        echo Baserom Note: Do not Use. Use !UBER_LIST! instead. > !UBER_DIR!list.txt
         :: Delete junk files
         for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a)
         :: Delete Zip
