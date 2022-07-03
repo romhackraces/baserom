@@ -11,7 +11,6 @@ setlocal EnableDelayedExpansion
 :: Directory definitions
 set TOOLS_DIR=%WORKING_DIR%Tools\
 set LISTS_DIR=%WORKING_DIR%Backup\Lists\
-set BACKUP_DIR=%WORKING_DIR%Backup\
 
 :: Import Definitions
 call %WORKING_DIR%Shared\@tool_defines.bat
@@ -162,7 +161,7 @@ if "!Action!"=="1" (
         for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a)
         for %%a in (!LUN_MON_JUNK_DIR!) do (rmdir /S /Q !LUN_MON_DIR!%%a)
         :: Copy in existing config file
-        copy /y !BACKUP_DIR!lunar-monitor-config.txt %WORKING_DIR%
+        copy /y %WORKING_DIR%Other\lunar-monitor-config.txt %WORKING_DIR%
         :: Delete Zip
         del !LUN_MON_ZIP!
         echo Done.
