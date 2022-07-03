@@ -4,7 +4,7 @@ This is the official baserom for creating Super Mario World race levels for [Rom
 
 ## Getting Started
 
-The first thing you're going to do, for the build system to work properly, is to put you a copy of your unmodified Super Mario World ROM in the main folder of this baserom renamed to `clean.smc`.
+The first thing you're going to do is provide your copy of Super Mario World. For the build system to work properly, you'll need to provide a clean copy of a headered (U) [!] ROM Super Mario World ROM renamed to 'clean.smc'. Ensure the file extension is `.smc` and not `.sfc`.
 
 ### Initialize the Baserom
 
