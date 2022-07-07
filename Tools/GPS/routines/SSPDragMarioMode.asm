@@ -1,4 +1,4 @@
-incsrc "../Defines/ScreenScrollingPipes.asm"
+incsrc "../../Defines/ScreenScrollingPipes.asm"
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;Drag mario mode handler.
 ;;
