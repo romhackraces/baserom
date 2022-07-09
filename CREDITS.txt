@@ -62,6 +62,7 @@ Vertical Level Bowser Statue Fireball Fix - Medic, Telinc1 - https://smwc.me/s/1
 Vertical Spawn/Despawn Fix - HammerBrother - https://smwc.me/s/22833
 Victory Pose Fix v1.1 - TheBiob - https://smwc.me/s/22372
 Walljump/Note Block Glitch Fix v1.6 - lolcats439 - https://smwc.me/s/19932
+Yoshi Pipe Animation Fix - Kevin https://smwc.me/s/30127
 
 -- UberASM --
 

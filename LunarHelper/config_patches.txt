@@ -50,6 +50,7 @@ patches
 	Patches/Fixes/VerticalSpawnDespawnFix.asm
 	Patches/Fixes/VRAMOptimize.asm
 	Patches/Fixes/WallJumpNoteBlockGlitchFix.asm
+	Patches/Fixes/YoshiPipeAnimationFix.asm
 	Patches/Fixes/SSP_Fixes.asm
 	Patches/ExtendedNSTL.asm
 	Patches/NoMoreSpriteTileLimits.asm
