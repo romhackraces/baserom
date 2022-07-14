@@ -1,0 +1,511 @@
+BC00: ~
+
+BC01: ~
+
+BC02: ~
+
+BC03: ~
+
+BC04: ~
+
+BC05: ~
+
+BC06: ~
+
+BC07: ~
+
+BC08: ~
+
+BC09: ~
+
+BC0A: ~
+
+BC0B: ~
+
+BC0C: ~
+
+BC0D: ~
+
+BC0E: ~
+
+BC0F: ~
+
+BC10: ~
+
+BC11: ~
+
+BC12: ~
+
+BC13: ~
+
+BC14: ~
+
+BC15: ~
+
+BC16: ~
+
+BC17: ~
+
+BC18: ~
+
+BC19: ~
+
+BC1A: ~
+
+BC1B: ~
+
+BC1C: ~
+
+BC1D: ~
+
+BC1E: ~
+
+BC1F: ~
+
+BC20: ~
+
+BC21: ~
+
+BC22: ~
+
+BC23: ~
+
+BC24: ~
+
+BC25: ~
+
+BC26: ~
+
+BC27: ~
+
+BC28: ~
+
+BC29: ~
+
+BC2A: ~
+
+BC2B: ~
+
+BC2C: ~
+
+BC2D: ~
+
+BC2E: ~
+
+BC2F: ~
+
+BC30: ~
+
+BC31: ~
+
+BC32: ~
+
+BC33: ~
+
+BC34: ~
+
+BC35: ~
+
+BC36: ~
+
+BC37: ~
+
+BC38: ~
+
+BC39: ~
+
+BC3A: ~
+
+BC3B: ~
+
+BC3C: ~
+
+BC3D: ~
+
+BC3E: ~
+
+BC3F: ~
+
+BC40: ~
+
+BC41: ~
+
+BC42: ~
+
+BC43: ~
+
+BC44: ~
+
+BC45: ~
+
+BC46: ~
+
+BC47: ~
+
+BC48: ~
+
+BC49: ~
+
+BC4A: ~
+
+BC4B: ~
+
+BC4C: ~
+
+BC4D: ~
+
+BC4E: ~
+
+BC4F: ~
+
+BC50: ~
+
+BC51: ~
+
+BC52: ~
+
+BC53: ~
+
+BC54: ~
+
+BC55: ~
+
+BC56: ~
+
+BC57: ~
+
+BC58: ~
+
+BC59: ~
+
+BC5A: ~
+
+BC5B: ~
+
+BC5C: ~
+
+BC5D: ~
+
+BC5E: ~
+
+BC5F: ~
+
+BC60: ~
+
+BC61: ~
+
+BC62: ~
+
+BC63: ~
+
+BC64: ~
+
+BC65: ~
+
+BC66: ~
+
+BC67: ~
+
+BC68: ~
+
+BC69: ~
+
+BC6A: ~
+
+BC6B: ~
+
+BC6C: ~
+
+BC6D: ~
+
+BC6E: ~
+
+BC6F: ~
+
+BC70: ~
+
+BC71: ~
+
+BC72: ~
+
+BC73: ~
+
+BC74: ~
+
+BC75: ~
+
+BC76: ~
+
+BC77: ~
+
+BC78: ~
+
+BC79: ~
+
+BC7A: ~
+
+BC7B: ~
+
+BC7C: ~
+
+BC7D: ~
+
+BC7E: ~
+
+BC7F: ~
+
+BC80: ~
+
+BC81: ~
+
+BC82: ~
+
+BC83: ~
+
+BC84: ~
+
+BC85: ~
+
+BC86: ~
+
+BC87: ~
+
+BC88: ~
+
+BC89: ~
+
+BC8A: ~
+
+BC8B: ~
+
+BC8C: ~
+
+BC8D: ~
+
+BC8E: ~
+
+BC8F: ~
+
+BC90: ~
+
+BC91: ~
+
+BC92: ~
+
+BC93: ~
+
+BC94: ~
+
+BC95: ~
+
+BC96: ~
+
+BC97: ~
+
+BC98: ~
+
+BC99: ~
+
+BC9A: ~
+
+BC9B: ~
+
+BC9C: ~
+
+BC9D: ~
+
+BC9E: ~
+
+BC9F: ~
+
+BCA0: ~
+
+BCA1: ~
+
+BCA2: ~
+
+BCA3: ~
+
+BCA4: ~
+
+BCA5: ~
+
+BCA6: ~
+
+BCA7: ~
+
+BCA8: ~
+
+BCA9: ~
+
+BCAA: ~
+
+BCAB: ~
+
+BCAC: ~
+
+BCAD: ~
+
+BCAE: ~
+
+BCAF: ~
+
+BCB0: ~
+
+BCB1: ~
+
+BCB2: ~
+
+BCB3: ~
+
+BCB4: ~
+
+BCB5: ~
+
+BCB6: ~
+
+BCB7: ~
+
+BCB8: ~
+
+BCB9: ~
+
+BCBA: ~
+
+BCBB: ~
+
+BCBC: ~
+
+BCBD: ~
+
+BCBE: ~
+
+BCBF: ~
+
+BCC0: ~
+
+BCC1: ~
+
+BCC2: ~
+
+BCC3: ~
+
+BCC4: ~
+
+BCC5: ~
+
+BCC6: ~
+
+BCC7: ~
+
+BCC8: ~
+
+BCC9: ~
+
+BCCA: ~
+
+BCCB: ~
+
+BCCC: ~
+
+BCCD: ~
+
+BCCE: ~
+
+BCCF: ~
+
+BCD0: ~
+
+BCD1: ~
+
+BCD2: ~
+
+BCD3: ~
+
+BCD4: ~
+
+BCD5: ~
+
+BCD6: ~
+
+BCD7: ~
+
+BCD8: ~
+
+BCD9: ~
+
+BCDA: ~
+
+BCDB: ~
+
+BCDC: ~
+
+BCDD: ~
+
+BCDE: ~
+
+BCDF: ~
+
+BCE0: ~
+
+BCE1: ~
+
+BCE2: ~
+
+BCE3: ~
+
+BCE4: ~
+
+BCE5: ~
+
+BCE6: ~
+
+BCE7: ~
+
+BCE8: ~
+
+BCE9: ~
+
+BCEA: ~
+
+BCEB: ~
+
+BCEC: ~
+
+BCED: ~
+
+BCEE: ~
+
+BCEF: ~
+
+BCF0: ~
+
+BCF1: ~
+
+BCF2: ~
+
+BCF3: ~
+
+BCF4: ~
+
+BCF5: ~
+
+BCF6: ~
+
+BCF7: ~
+
+BCF8: ~
+
+BCF9: ~
+
+BCFA: ~
+
+BCFB: ~
+
+BCFC: ~
+
+BCFD: ~
+
+BCFE: ~
+
+BCFF: ~

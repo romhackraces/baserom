@@ -1,0 +1,47 @@
+; Kicked shells
+04 0012 0,0,30 0,0,10A
+05 0012 0,0,31 0,0,10A
+06 0012 0,0,32 0,0,10A
+07 0012 0,0,33 0,0,10A
+08 0012 0,0,30 0,0,10A 8,0,10A
+
+04 0010 A green shell that spawns kicked towards the player.
+05 0010 A red shell that spawns kicked towards the player.
+06 0010 A blue hell that spawns kicked towards the player.
+07 0010 A yellow shell that spawns kicked towards the player.
+08 0010 A double hit green shell that spawns kicked towards the player.
+
+; Kicked Buzzy Beetle
+11 0012 0,0,D 0,0,10A
+
+11 0010 A Buzzy Beetle which spawns kicked towards the player.
+
+; Disco shell
+DA 0012 0,0,30 0,0,114
+DB 0012 0,0,31 0,0,114
+DC 0012 0,0,32 0,0,114
+DD 0012 0,0,33 0,0,114
+DF 0012 0,0,30 0,0,114
+
+DA 0010 A Disco Shell.
+DB 0010 A Disco Shell.
+DC 0010 A Disco Shell.
+DD 0010 A Disco Shell.
+DF 0010 A Disco Shell.
+
+; Throwblock
+53 0002 0,-1,215
+53 0012 0,-1,215 0,0,10A
+
+53 0000 A stationary throwblock sprite with infinite timer.
+53 0010 A throwblock sprite that spawns kicked towards the player.
+
+; Poison mushroom
+85 0002 0,0,214
+85 0012 0,0,214 0,0,10A
+
+85 0000 A poison mushroom which hurts the player.
+85 0010 A poison mushroom which kills the player.
+
+85 0008 7F,100,7F,7F 7F,103,7F,7F
+85 0018 7F,100,7F,7F 7F,103,7F,7F
