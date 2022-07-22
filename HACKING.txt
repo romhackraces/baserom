@@ -1,13 +1,11 @@
-### So you wanna make a romhack?
-
 Here's the tl;dr for getting the baserom up and running for your project:
 
-	1. Run "@initialize_baserom.bat" to set up the baserom with all the needed tools to be a happy hacker
+    1. Run "@initialize_baserom.bat" to set up the baserom with all the needed tools to be a happy hacker
 
-	2. Place a copy of your (headered) copy of Super Mario World in the main baserom folder, renamed "clean.smc"
+    2. Place a copy of your (headered) copy of Super Mario World in the main baserom folder, renamed "clean.smc"
 
-	3. In the LunarHelper folder, edit "config_baserom.txt" (and optionally the other config files) to your preference.
+    3. In the LunarHelper folder, edit "config_baserom.txt" (and optionally the other config files) to your preference.
 
-	4. Run LunarHelper.exe to rebuild the baserom after all your changes have been made and your preferences set
+    4. Run LunarHelper.exe to rebuild the baserom after all your changes have been made and your preferences set
 
 Happy hacking!
