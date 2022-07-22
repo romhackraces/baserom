@@ -1,6 +1,7 @@
--- This variable lets you specify the path to your retroarch emulator if you want 
--- to be able to run the built ROM in it from Lunar Helper's menu via the Run 
+-- This variable lets you specify the path to your retroarch emulator if you want
+-- to be able to run the built ROM in it from Lunar Helper's menu via the Run
 -- and/or Test menu options.
+-- Change the options below and remove the "example_" from this files name.
 
 -- You can also specify other emulators in the `'retroarch_path' variable.
 

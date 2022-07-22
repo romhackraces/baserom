@@ -13,22 +13,22 @@
 ;Do not change anything here unless you know what are you doing.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 if defined("sa1") == 0
-	!dp = $0000
-	!addr = $0000
-	!sa1 = 0
-	!gsu = 0
-	
-	if read1($00FFD6) == $15
-		sfxrom
-		!dp = $6000
-		!addr = !dp
-		!gsu = 1
-	elseif read1($00FFD5) == $23
-		sa1rom
-		!dp = $3000
-		!addr = $6000
-		!sa1 = 1
-	endif
+    !dp = $0000
+    !addr = $0000
+    !sa1 = 0
+    !gsu = 0
+
+    if read1($00FFD6) == $15
+        sfxrom
+        !dp = $6000
+        !addr = !dp
+        !gsu = 1
+    elseif read1($00FFD5) == $23
+        sa1rom
+        !dp = $3000
+        !addr = $6000
+        !sa1 = 1
+    endif
 endif
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;uberasm code for GHB's screen scrolling pipes.
@@ -46,9 +46,9 @@ endif
 ;RAM address.
 
  if !sa1 == 0
-  !Freeram_SSP_PipeDir		= $7E0F42
+  !Freeram_SSP_PipeDir      = $7E0F42
  else
-  !Freeram_SSP_PipeDir		= $0F42
+  !Freeram_SSP_PipeDir      = $0F42|!addr
  endif
   ;^[1 byte] this controls the directions within a pipe. Values stored on
   ;this RAM as follows:
@@ -71,9 +71,9 @@ endif
   ;   Note: When using warp mode, this will be the direction upon Mario reaches his warp destination his DDDD bits to be set to.
 
  if !sa1 == 0
-  !Freeram_SSP_PipeTmr		= $7E0F43
+  !Freeram_SSP_PipeTmr      = $7E0F43
  else
-  !Freeram_SSP_PipeTmr		= $0F43
+  !Freeram_SSP_PipeTmr      = $0F43|!addr
  endif
   ;^[1 byte] Used for various purposes:
   ;-If !Freeram_SSP_PipeDir's low nybble (DDDD bits) is 0-4:
@@ -82,30 +82,30 @@ endif
   ;
 
  if !sa1 == 0
-  !Freeram_SSP_EntrExtFlg	= $7E0F44
+  !Freeram_SSP_EntrExtFlg   = $7E0F44
  else
-  !Freeram_SSP_EntrExtFlg	= $0F44
+  !Freeram_SSP_EntrExtFlg   = $0F44|!addr
  endif
   ;^[1 byte] use to determine if mario's entering or
   ; exiting, stored values are:
   ; #$00 = outside the pipe
   ; #$01 = entering (including during the entire pipe trip between pipe caps).
   ; #$02 = exiting
-  
+
  if !sa1 == 0
-  !Freeram_SSP_CarrySpr		= $7E0F45
+  !Freeram_SSP_CarrySpr     = $7E0F45
  else
-  !Freeram_SSP_CarrySpr		= $0F45
+  !Freeram_SSP_CarrySpr     = $0F45|!addr
  endif
   ;^[BytesUsed = !Setting_SSP_CarryAllowed, either not used or 1 byte taken] used for if
   ; mario enters a pipe while holding a sprite. Will store a #$01 if you did carry a
   ; sprite though pipe. Not used should your entire hack doesn't allow entering SSP with
   ; a sprite, otherwise 1 byte taken.
-  
+
  if !sa1 == 0
-  !Freeram_BlockedStatBkp	= $7E0F46
+  !Freeram_BlockedStatBkp   = $7E0F46
  else
-  !Freeram_BlockedStatBkp	= $0F46
+  !Freeram_BlockedStatBkp   = $0F46|!addr
  endif
   ;^[1 byte] A backup of $77 to determine if Mario is on the ground.
  ;Warp mode destination. 2 bytes each. This determines where Mario will
@@ -123,37 +123,37 @@ endif
 
 ;Settings. NOTE: There are other defines settings in [SSP_Tiles\caps\enterable\*\cap_defines.asm] (* means any valid filename, including "default")
 ;so that you can multiple blocks with different variations (such as having some pipe caps that allow carrying sprites or allowing yoshi).
- !Setting_SSP_Hijack_00EA18	= 0
+ !Setting_SSP_Hijack_00EA18 = 0
   ;^If you are planning to install the “Walljump/Note Block Glitch Fix” patch, set this to 0, reinstall Fixes.asm, and then patch the WJNB fix patch.
   ; Otherwise set this to 1 to prevent potential pushing the player 1 pixel to the left when entering small pipes facing downwards by hitting their
   ; bottom corners.
   ;
   ; Make sure you avoid doing this: set to 1, patch Fixes.asm, and then patch WJNB fix afterwards, because the WJNB fix will merely overwrite
   ; $00EA16-$00EA21 (which overwrites Fixes.asm's $00EA18 hijack), but not clean out the old freespace code, which may have a freespace leak.
- !Setting_SSP_PipeDebug		= 0
+ !Setting_SSP_PipeDebug     = 0
   ;^0 = off
   ; 1 = on
   ; This will make mario visible and in front of objects when enabled, set to 1 if you encounter issues and need to know where is Mario. NOTE:
   ; Mario INTERACTS with sprites in his path (causes them to face his direction and take damage, for example) when turned on.
-  
+
  ;SFX stuff for yoshi prohibited from entering pipes (only for normal-sized pipes, since you cannot enter small pipes on yoshi even as small Mario):
-  !Setting_SSP_YoshiProhibitSFXNum	= $20
+  !Setting_SSP_YoshiProhibitSFXNum  = $20
    ;^Set this to $00 for no sound (no worry, it won't cancel the SFX port of any current SFX on all frames when the button is held down).
-  !Setting_SSP_YoshiProhibitSFXPort	= $1DF9
+  !Setting_SSP_YoshiProhibitSFXPort = $1DF9
    ;^The sound effect played when you tried to enter pipes on yoshi when yoshi is prohibited.
- 
- !Setting_SSP_Description	= 1
+
+ !Setting_SSP_Description   = 1
   ;^0 = off, 1 = on. Due to a bug in GPS with blocks with the wrong description, I added an option just in case if GPS has that fixed in the future.
-  
- !Setting_SSP_FreezeTime	= 0
+
+ !Setting_SSP_FreezeTime    = 0
   ;^0 = FuSoYa's pipe to not freeze stuff, 1 = freeze stuff.
-  
- !Setting_SSP_FuSoYaSpd		= 1
+
+ !Setting_SSP_FuSoYaSpd     = 1
   ;^0 = SMW styled speed (pipe caps recreated from SMW's exit-enabled pipes, but with fast stem speed by default), 1 = FuSoYa's SSP speed.
- !Setting_SSP_CarryAllowed	= 1
+ !Setting_SSP_CarryAllowed  = 1
   ;^0 = In your entire hack, you never allowed carrying sprites through pipes.
   ; 1 = In your entire hack, there are at least 1 case that you can enter pipes while carrying sprites.
- !Setting_SSP_Minimal_StuntimerSprites	= $5A
+ !Setting_SSP_Minimal_StuntimerSprites  = $5A
   ;^When having !Setting_SSP_FreezeTime = 0, this is the minimum amount of "double-frames" (each value here is 2 frames) remaining allowed when sprites
   ; are carried through SSPs. What this mean is when the timer goes below this value, will be set to this value* so that they cannot unstun
   ; during pipe travels and waits until the player exits the pipe, afterwards, the timer will continue counting and then unstun.
@@ -172,7 +172,7 @@ endif
   ;
   ; Note: This will also apply even if !Setting_SSP_FreezeTime = 1, because again, the player could enter the pipe on the last double-frame and can unfairly get hurt
   ; on exit. The original SMW, when carrying stunned sprites into exit-enabled pipes causes them to remain stunned forever.
- !Setting_SSP_VerticalCapsEnterableWidth	= $0005
+ !Setting_SSP_VerticalCapsEnterableWidth    = $0005
   ;^This is the number of pixels far from the center the player is allowed to enter vertical normal-sized pipe caps. The higher the value, the further away from the
   ; center the player can enter them:
   ; Tested via the left edge of the pipe:
@@ -191,25 +191,25 @@ endif
   ; This is only used during setting the player's facing direction upon exiting horizontal pipe caps while riding yoshi.
 ;Pipe travel speeds:
 ;Use only values $01-$7F (negative speeds already calculated).
- if !Setting_SSP_FuSoYaSpd == 0		;>Don't change this if statement.
+ if !Setting_SSP_FuSoYaSpd == 0     ;>Don't change this if statement.
   ;SMW styled speed
-  !SSP_HorizontalSpd		= $40 ;\Stem speed (changing this does not affect the timing of the entering/exiting)
-  !SSP_VerticalSpd		= $40 ;/
-  !SSP_HorizontalSpdPipeCap	= $08 ;\cap speed (if changed, you must change the timers below this section)
-  !SSP_VerticalSpdPipeCap	= $10 ;/
-  !SSP_DragSpd			= $40 ;>Speed mario travels when using warp mode.
+  !SSP_HorizontalSpd        = $40 ;\Stem speed (changing this does not affect the timing of the entering/exiting)
+  !SSP_VerticalSpd      = $40 ;/
+  !SSP_HorizontalSpdPipeCap = $08 ;\cap speed (if changed, you must change the timers below this section)
+  !SSP_VerticalSpdPipeCap   = $10 ;/
+  !SSP_DragSpd          = $40 ;>Speed mario travels when using warp mode.
  else
   ;FuSoYa styled speed.
-  !SSP_HorizontalSpd		= $40 ;\Duplicate of above, but for fusoya style speeds.
-  !SSP_VerticalSpd		= $40 ;|
-  !SSP_HorizontalSpdPipeCap	= $40 ;|
-  !SSP_VerticalSpdPipeCap	= $40 ;/
-  !SSP_DragSpd			= $40 ;>Speed mario travels when using warp mode. Remember, high speeds and the player could overshoot and softlock oscillating around his target position!
+  !SSP_HorizontalSpd        = $40 ;\Duplicate of above, but for fusoya style speeds.
+  !SSP_VerticalSpd      = $40 ;|
+  !SSP_HorizontalSpdPipeCap = $40 ;|
+  !SSP_VerticalSpdPipeCap   = $40 ;/
+  !SSP_DragSpd          = $40 ;>Speed mario travels when using warp mode. Remember, high speeds and the player could overshoot and softlock oscillating around his target position!
  endif
  ;Cannon launcher speeds (special pipe caps that fire the player out of the caps with momentum):
-  !SSP_Cannon_HorizontalSpd	= $40		;>Use only $01-$7F, this covers both left and right speeds
-  !SSP_Cannon_UpwardsSpd	= $B0		;>Use only $80-$FF, fires the player upwards
-  !SSP_Cannon_DownwardsSpd	= $40		;>Use only $01-$7F, fires the player downwards.
+  !SSP_Cannon_HorizontalSpd = $40       ;>Use only $01-$7F, this covers both left and right speeds
+  !SSP_Cannon_UpwardsSpd    = $B0       ;>Use only $80-$FF, fires the player upwards
+  !SSP_Cannon_DownwardsSpd  = $40       ;>Use only $01-$7F, fires the player downwards.
    ;^Note: The downwards speed, once initially exiting the cap and returning to normal state, you'll lose your additional speed,
    ; and will revert to your normal maximum downwards Y speed. If you don't want this, install “Same Fall Acceleration Speed”
    ; from the patch section: https://www.smwcentral.net/?p=section&a=details&id=24286 and you can fall faster gained from the
@@ -243,50 +243,50 @@ endif
  ; amount.
  ;
  ;Again, only use speeds $01-$7F, the negative speeds are automatically calculated when inserted.
- 
+
   if !Setting_SSP_FuSoYaSpd == 0
    ;Regular pipe timing
-   !SSP_PipeTimer_Enter_Leftwards			= $3A
-   !SSP_PipeTimer_Enter_Rightwards			= $3C
-   !SSP_PipeTimer_Enter_Upwards_OffYoshi		= $1D
-   !SSP_PipeTimer_Enter_Upwards_OnYoshi			= $27
-   !SSP_PipeTimer_Enter_Downwards_OffYoshi		= $20
-   !SSP_PipeTimer_Enter_Downwards_OnYoshi		= $30
-   !SSP_PipeTimer_Enter_Downwards_SmallPipe		= $1D
-   
-   !SSP_PipeTimer_Exit_Leftwards			= $1B
-   !SSP_PipeTimer_Exit_Rightwards			= $1B
-   !SSP_PipeTimer_Exit_Upwards_OffYoshi			= $1D
-   !SSP_PipeTimer_Exit_Upwards_OnYoshi			= $27
-   !SSP_PipeTimer_Exit_Downwards_OffYoshi_SmallMario	= $0E
-   !SSP_PipeTimer_Exit_Downwards_OffYoshi_BigMario	= $1B
-   !SSP_PipeTimer_Exit_Downwards_OnYoshi_SmallMario	= $18
-   !SSP_PipeTimer_Exit_Downwards_OnYoshi_BigMario	= $25
+   !SSP_PipeTimer_Enter_Leftwards           = $3A
+   !SSP_PipeTimer_Enter_Rightwards          = $3C
+   !SSP_PipeTimer_Enter_Upwards_OffYoshi        = $1D
+   !SSP_PipeTimer_Enter_Upwards_OnYoshi         = $27
+   !SSP_PipeTimer_Enter_Downwards_OffYoshi      = $20
+   !SSP_PipeTimer_Enter_Downwards_OnYoshi       = $30
+   !SSP_PipeTimer_Enter_Downwards_SmallPipe     = $1D
+
+   !SSP_PipeTimer_Exit_Leftwards            = $1B
+   !SSP_PipeTimer_Exit_Rightwards           = $1B
+   !SSP_PipeTimer_Exit_Upwards_OffYoshi         = $1D
+   !SSP_PipeTimer_Exit_Upwards_OnYoshi          = $27
+   !SSP_PipeTimer_Exit_Downwards_OffYoshi_SmallMario    = $0E
+   !SSP_PipeTimer_Exit_Downwards_OffYoshi_BigMario  = $1B
+   !SSP_PipeTimer_Exit_Downwards_OnYoshi_SmallMario = $18
+   !SSP_PipeTimer_Exit_Downwards_OnYoshi_BigMario   = $25
   else
    ;FuSoYa enter and exit timers.
-   !SSP_PipeTimer_Enter_Leftwards			= $06
-   !SSP_PipeTimer_Enter_Rightwards			= $06
-   !SSP_PipeTimer_Enter_Upwards_OffYoshi		= $06
-   !SSP_PipeTimer_Enter_Upwards_OnYoshi			= $0A
-   !SSP_PipeTimer_Enter_Downwards_OffYoshi		= $08
-   !SSP_PipeTimer_Enter_Downwards_OnYoshi		= $0A
-   !SSP_PipeTimer_Enter_Downwards_SmallPipe		= $06
- 
-   !SSP_PipeTimer_Exit_Leftwards			= $04
-   !SSP_PipeTimer_Exit_Rightwards			= $04
-   !SSP_PipeTimer_Exit_Upwards_OffYoshi			= $09
-   !SSP_PipeTimer_Exit_Upwards_OnYoshi			= $0A
-   !SSP_PipeTimer_Exit_Downwards_OffYoshi_SmallMario	= $06
-   !SSP_PipeTimer_Exit_Downwards_OffYoshi_BigMario	= $08
-   !SSP_PipeTimer_Exit_Downwards_OnYoshi_SmallMario	= $07
-   !SSP_PipeTimer_Exit_Downwards_OnYoshi_BigMario	= $08
+   !SSP_PipeTimer_Enter_Leftwards           = $06
+   !SSP_PipeTimer_Enter_Rightwards          = $06
+   !SSP_PipeTimer_Enter_Upwards_OffYoshi        = $06
+   !SSP_PipeTimer_Enter_Upwards_OnYoshi         = $0A
+   !SSP_PipeTimer_Enter_Downwards_OffYoshi      = $08
+   !SSP_PipeTimer_Enter_Downwards_OnYoshi       = $0A
+   !SSP_PipeTimer_Enter_Downwards_SmallPipe     = $06
+
+   !SSP_PipeTimer_Exit_Leftwards            = $04
+   !SSP_PipeTimer_Exit_Rightwards           = $04
+   !SSP_PipeTimer_Exit_Upwards_OffYoshi         = $09
+   !SSP_PipeTimer_Exit_Upwards_OnYoshi          = $0A
+   !SSP_PipeTimer_Exit_Downwards_OffYoshi_SmallMario    = $06
+   !SSP_PipeTimer_Exit_Downwards_OffYoshi_BigMario  = $08
+   !SSP_PipeTimer_Exit_Downwards_OnYoshi_SmallMario = $07
+   !SSP_PipeTimer_Exit_Downwards_OnYoshi_BigMario   = $08
   endif
   ;Cannon exit timers
-   !SSP_PipeTimer_CannonExit_Leftwards				= $04
-   !SSP_PipeTimer_CannonExit_Rightwards				= $04
-   !SSP_PipeTimer_CannonExit_Upwards_OffYoshi			= $09
-   !SSP_PipeTimer_CannonExit_Upwards_OnYoshi			= $09
-   !SSP_PipeTimer_CannonExit_Downwards_OffYoshi_SmallMario	= $06
-   !SSP_PipeTimer_CannonExit_Downwards_OffYoshi_BigMario	= $09
-   !SSP_PipeTimer_CannonExit_Downwards_OnYoshi_SmallMario	= $09
-   !SSP_PipeTimer_CannonExit_Downwards_OnYoshi_BigMario		= $09
+   !SSP_PipeTimer_CannonExit_Leftwards              = $04
+   !SSP_PipeTimer_CannonExit_Rightwards             = $04
+   !SSP_PipeTimer_CannonExit_Upwards_OffYoshi           = $09
+   !SSP_PipeTimer_CannonExit_Upwards_OnYoshi            = $09
+   !SSP_PipeTimer_CannonExit_Downwards_OffYoshi_SmallMario  = $06
+   !SSP_PipeTimer_CannonExit_Downwards_OffYoshi_BigMario    = $09
+   !SSP_PipeTimer_CannonExit_Downwards_OnYoshi_SmallMario   = $09
+   !SSP_PipeTimer_CannonExit_Downwards_OnYoshi_BigMario     = $09

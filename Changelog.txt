@@ -1,3 +1,7 @@
+*.*:
+- added (optional) SA-1 support
+- adjusted included resources to be fully compatible with SA-1
+
 v4.7
 - massive rework to a Lunar Helper + Lunar Monitor workflow
 - a few block updates

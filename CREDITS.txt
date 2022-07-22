@@ -14,6 +14,8 @@ RAM Specific L/R Scroll Disable - Chdata - https://smwc.me/s/20355
 RAM Toggled Status Bar (& IRQ) - Kevin - https://smwc.me/s/28449
 Triple Ball 'n' Chain - imamelia - https://smwc.me/s/19256
 
+SA-1 Pack v1.40 - Arujus, Vitor Vilela - https://smwc.me/s/25938
+
 -- Bug Fixes --
 
 $13FB Game Crash Fix (Fireberry) - p4plus2 - https://smwc.me/s/18319

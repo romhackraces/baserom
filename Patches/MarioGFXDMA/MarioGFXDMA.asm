@@ -1,17 +1,17 @@
-	lorom
-	!sa1 = 0
-	!bank = $800000
-	!addr = $0000
-
 if read1($00FFD5) == $23	; Detects SA-1.
 	sa1rom
 	!sa1 = 1
 	!bank = $000000
 	!addr = $6000
+else
+	lorom
+	!sa1 = 0
+	!bank = $800000
+	!addr = $0000
 endif
 
 !Tile = $0C		;Tile where the extended tiles will be loaded to. Takes up 2 8x8's
-			;located in SP1
+				;located in SP1
 
 
 org $00A300

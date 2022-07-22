@@ -45,13 +45,13 @@ endmacro
 %define_sprite_table("14E0", $14E0, $326E)
 
 org $01A087
-autoclean JML ThrowHorizFix		; when throwing an item horizontally, offset the item from Mario based on the dpad inputs or Mario's x speed
+autoclean JML ThrowHorizFix	; when throwing an item horizontally, offset the item from Mario based on the dpad inputs or Mario's x speed
 
 org $01A068
-autoclean JML ThrowUpFix		; when upthrowing an item, offset the item from Mario based on the dpad inputs or Mario's x speed
+autoclean JML ThrowUpFix	; when upthrowing an item, offset the item from Mario based on the dpad inputs or Mario's x speed
 
 org $01A047
-autoclean JML DropFix			; when dropping an item, offset the item from Mario based on the dpad inputs or Mario's x speed
+autoclean JML DropFix		; when dropping an item, offset the item from Mario based on the dpad inputs or Mario's x speed
 
 freecode
 
@@ -67,7 +67,7 @@ ThrowHorizFix:
 	BRA .returnThrow
 	+
 
-	LDA $140D|!addr				; else if not spinning...
+	LDA $140D|!addr			; else if not spinning...
 	BNE .nospin
 
 	LDA $15					; if right is pressed, go to .throwRight_nospin
@@ -119,13 +119,13 @@ ThrowHorizFix:
 	BRA .returnThrow
 
 .returnThrow
-	JSL $01AB6F|!bank				; display 'hit' graphic at sprite's position
+	JSL $01AB6F|!bank		; display 'hit' graphic at sprite's position
 	LDA $187A|!addr
 	JML $01A08C|!bank
 
 
 ThrowUpFix:
-	LDA $140D|!addr				; if not spinning, return
+	LDA $140D|!addr			; if not spinning, return
 	BEQ .returnThrow
 
 	LDA $15					; if right is pressed, go to .throwRight
@@ -162,7 +162,7 @@ ThrowUpFix:
 	STA !14E0,X				; store to sprite's x position, high byte
 
 .returnThrow:
-	JSL $01AB6F|!bank				; display 'hit' graphic at sprite's position (vanilla code)
+	JSL $01AB6F|!bank		; display 'hit' graphic at sprite's position (vanilla code)
 	JML $01A06C|!bank
 
 
@@ -176,7 +176,7 @@ DropFix:
 	JML $01A0A6|!bank
 	+
 
-	LDA $140D|!addr				; else, if not spinning, return
+	LDA $140D|!addr			; else, if not spinning, return
 	BEQ .returnThrow
 
 	LDA $15					; if right is pressed, go to .throwRight

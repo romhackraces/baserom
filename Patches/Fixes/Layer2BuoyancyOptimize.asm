@@ -1,9 +1,10 @@
 ; This patch reduces the unnecessary cost of sprite interaction with layer 2,
 ; when the 2nd buoyancy option(disables all other sprite interaction with layer 2) is checked in a layer 2 level.
 
-
-assert read1($00FFD5) != $23,      "This patch won't work in a SA-1 enabled ROM!"
-
+if read1($00FFD5) == $23
+	sa1rom
+	print "This patch won't work in a SA-1 enabled ROM!"
+else
 	org $01808F
 	autoclean JML SpriteLoopStart
 
@@ -45,4 +46,4 @@ assert read1($00FFD5) != $23,      "This patch won't work in a SA-1 enabled ROM!
 		JML $8180C3
 	+
 		JML $8180C9
-
+endif
