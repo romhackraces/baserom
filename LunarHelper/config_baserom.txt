@@ -10,7 +10,7 @@ output = RHR4.smc
 package = RHR4.bps
 
 -- initial patch
-initial_patch = Other/initial_patch.bps
+initial_patch = Other/initial_patch_sa1.bps
 
 -- tool paths
 addmusick_path = Tools/AddmusicK_1.0.8/AddMusicK.exe
