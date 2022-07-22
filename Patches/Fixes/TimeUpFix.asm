@@ -1,13 +1,11 @@
-header
-
-lorom
-!bank = $800000
-!addr = $0000
-
 if read1($00ffd5) == $23
 	sa1rom
 	!bank = $000000
 	!addr = $6000
+else
+	lorom
+	!bank = $800000
+	!addr = $0000
 endif
 
 org $008E21|!bank

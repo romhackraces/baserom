@@ -12,6 +12,20 @@
 ; The net punching hitbox (which shares part of its hitbox checking routine with the capespin) is also changed to interact with sprites every frame and is offset to the left and right of Mario equally.
 ; In vanilla SMW, punching checks for sprite interaction only every other frame and is offset to the left or right of Mario depending on whether you're in front of the net or behind it.
 
+if read1($00FFD5) == $23
+    ; SA-1 base addresses
+    sa1rom
+    !SA1  = 1
+    !addr = $6000
+    !bank = $000000
+else
+    ; Non SA-1 base addresses
+    lorom
+    !SA1  = 0
+    !addr = $0000
+    !bank = $800000
+endif
+
 org $0294FF						; have capespin interact with sprites every frame
 NOP #2
 
@@ -42,4 +56,4 @@ HitboxWidth:
 
 .return
 	STA $02
-	JML $0296A9
+	JML $0296A9|!bank

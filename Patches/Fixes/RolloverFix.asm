@@ -1,9 +1,9 @@
-lorom
 if read1($00FFD5) == $23
 	!base = $6000
 	!1626 = $758E
 	sa1rom
 else
+	lorom
 	!base = $0000
 	!1626 = $1626
 endif
