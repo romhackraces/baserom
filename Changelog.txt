@@ -1,4 +1,4 @@
-*.*:
+v4.8
 - added (optional) SA-1 support
 - adjusted included resources to be fully compatible with SA-1
 
