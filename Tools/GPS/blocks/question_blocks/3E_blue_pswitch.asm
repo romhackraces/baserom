@@ -10,7 +10,7 @@ print "Question block that always spawns a Blue P-Switch/POW."
 
 !Placement = %move_spawn_above_block()
 		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block() 
-		
+
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide
 JMP SpriteV : JMP SpriteH
 JMP Cape : JMP Fireball
@@ -33,13 +33,13 @@ SpriteH:
 RTL
 
 SpriteV:
-	LDA $14C8,x
+	LDA !14C8,x
 	CMP #$09
 	BCC Return
 	LDA $AA,x
 	BPL Return
 	LDA #$10
-	STA $AA,x
+	STA !AA,x
 
 SpriteShared:
 	%sprite_block_position()
@@ -76,18 +76,18 @@ SpawnItem:
 	PLY
 
 	LDA #!State
-	STA $14C8,x
+	STA !14C8,x
 	LDA #!1540_val
-	STA $1540,x
+	STA !1540,x
 	LDA #$D0
-	STA $AA,x
+	STA !AA,x
 	LDA #$2C
-	STA $154C,x
+	STA !154C,x
 
-	LDA $190F,x
+	LDA !190F,x
 	BPL Return2
 	LDA #$10
-	STA $15AC,x
+	STA !15AC,x
 Return2:
 	PLY
 	PLX

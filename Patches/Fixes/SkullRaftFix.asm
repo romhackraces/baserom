@@ -1,9 +1,9 @@
-lorom
-!addr = $0000
-
 if read1($00FFD5) == $23
 	sa1rom
 	!addr = $6000
+else
+	lorom
+	!addr = $0000
 endif
 
 !Freeram = $57	;This address may be cleared whenever you want,

@@ -1,11 +1,11 @@
-lorom
-!E4 = $E4,x
-!1FD6 = $1FD6
-
 if read1($00FFD5) == $23
 	sa1rom
 	!E4 = ($EE)
 	!1FD6 = $766E
+else
+	lorom
+	!E4 = $E4,x
+	!1FD6 = $1FD6
 endif
 
 org $01D6C4

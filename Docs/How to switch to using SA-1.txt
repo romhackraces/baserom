@@ -1,0 +1,7 @@
+The baserom's resources are all compatible with SA-1, but the baserom itself is configured to be FastROM by default, but it only takes a couple steps to switch over to using SA-1:
+
+1. in the "config_baserom.txt" file in the LunarHelper folder, change the "initial_patch" setting to use the "initial_patch_sa1.bps" option.
+
+2. Run LunarHelper.exe and rebuild your rom.
+
+That's it!

@@ -13,10 +13,10 @@ else
 endif
 
 org $01C5AE
-			LDA #$03
-			STA $71
-			LDA #$18
-			STA $1496|!addr
-			LDA $81
-			ORA $7F
-			BNE $2E
+	LDA #$03
+	STA $71
+	LDA #$18
+	STA $1496|!addr
+	LDA $81
+	ORA $7F
+	BNE $2E
