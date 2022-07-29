@@ -60,6 +60,7 @@ Sprite Scroll Fix - HammerBrother - https://smwc.me/s/13675
 Star/Slide Kill GFX Fix - Kevin - https://smwc.me/s/30709
 Time Up Fix - Alcaro - https://smwc.me/s/15110
 Torpedo Ted Offscreen Smoke Fix - Kevin - https://smwc.me/s/26503
+Triple Rotating Platform Vertical Level Fix - Karisa - https://smwc.me/s/21707
 Vertical Level Bowser Statue Fireball Fix - Medic, Telinc1 - https://smwc.me/s/16781
 Vertical Spawn/Despawn Fix - HammerBrother - https://smwc.me/s/22833
 Victory Pose Fix v1.1 - TheBiob - https://smwc.me/s/22372

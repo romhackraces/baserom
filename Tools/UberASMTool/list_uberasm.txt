@@ -14,7 +14,7 @@ overworld:
 ; Insert files here
 
 ; Game mode list. Valid values: 00-FF.
-gamemode: 
+gamemode:
     03 GM03.asm
     0C GM0C.asm
     0D GM0D.asm

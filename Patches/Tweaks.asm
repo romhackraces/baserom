@@ -1,3 +1,11 @@
+if read1($00FFD5) == $23
+    sa1rom
+    !sa1 = 1
+else
+    lorom
+    !sa1 = 0
+endif
+
 ;;;;;;;;;;;;;;;;;;
 ;; Minor Tweaks ;;
 ;;;;;;;;;;;;;;;;;;
@@ -13,7 +21,7 @@ org $0280A8 : bra $05
 org $0280B2 : bra $08
 
 ; make doors more easy to enter adjust door proximity check
-org $00F44B : db $0A ; width of the enterable region of the door (up to 0x10, default 0x08)  
+org $00F44B : db $0A ; width of the enterable region of the door (up to 0x10, default 0x08)
 org $00F447 : db $05 ; offset the enterable region, which is half of above (default 0x04)
 
 ; play SFX when exiting horizontal pipes
@@ -25,8 +33,8 @@ org $01EC36 : db $80
 ; stop the bridge breaking in the Reznor fight
 org $03989F : db $EA,$EA,$EA,$EA
 
-; disable losing lives a.k.a. infinite lives
-org $00D0D8 : NOP #3
+; disable losing lives a.k.a. infinite lives (not needed with retry)
+;org $00D0D8 : NOP #3
 
 ; disable gaining lives & fix halo Mario
 org $028AD2 : NOP #3
@@ -54,16 +62,20 @@ org $0387F4 : bra $00
 org $048DDA : db $80
 
 ; fix disappearing music on overworld when boss defeated
-org $048E2E : db $80  
+org $048E2E : db $80
 
 ; fix crash that occurs when trying to stop layer 3 smasher with generator D2
 org $02D421 : db $6B
 
-; fix bug in yoshi stomp hitbox 
+; fix bug in yoshi stomp hitbox
 org $0286D7 : db $D5
 
 ; fix bug where ? block sprites are immune to fire
-org $02A0B9 : db $0B
+if !sa1 == 1
+    org $02A0B9 : db $15
+else
+    org $02A0B9 : db $0B
+endif
 
 ; fix sprite screen edge interaction bug
 org $01A7F0 : db $EA,$EA,$EA
