@@ -1,21 +1,24 @@
-Lunar Helper ^_^
+Lunar Helper is a build system for Super Mario World ROM hacking.
 
-B - (Re)Build
-Creates your ROM from scratch, using your provided clean SMW ROM as a base and inserting all the configured patches, graphics, levels, etc.
+Step by step, what it does is:
 
-Q - Quick Build
-Attempts to reuse a previously built ROM for the build process if it is available. Automatically determines if a full rebuild is needed or if only certain tools need to be reapplied or resources need to be reinserted.
+- Takes a clean SMW ROM
+- Applies an initial .bps patch to it (more on this later)
+- Runs GPS and PIXI on it
+- Applies your patches to it
+- Runs UberASM Tool on it
+- Runs AddmusicK on it
+- Inserts various SMW data (graphics, map16, overworld, title screen,
+  title screen moves etc.) into it
+- Inserts level files into it
 
-R - Run
-Loads the previously-built ROM into the configured emulator for testing. The ROM must already be built first.
+It basically takes a bunch of resources stored as individual files
+(i.e. all of your blocks, sprites, patches, graphics, levels, etc.)
+and creates a single fully functional hacked ROM from them.
 
-T - Test (Build -> Run)
-Executes the above two commands in sequence.
+Lunar Helper also offers convenient functionality for:
 
-E - Edit (in Lunar Magic)
-Opens the previously-built ROM in Lunar Magic. The ROM must already be built first.
+- Opening the built ROM in Lunar Magic
+- Running it inside an emulator of your choice
 
-P - Package
-Creates a BPS patch for your ROM against the configured clean SMW ROM, so that you can share it!
-
-Full readme in Docs folder.
+Full details on this tool can be found in the Docs folder of this baserom.

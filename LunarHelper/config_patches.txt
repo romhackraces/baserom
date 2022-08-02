@@ -47,6 +47,7 @@ patches
 	Patches/Fixes/SpriteScrollFix.asm
 	Patches/Fixes/TimeUpFix.asm
 	Patches/Fixes/TorpedoOffscreenSmokeFix.asm
+	Patches/Fixes/TripleRotatingPlatformVerticalLevelFix.asm
 	Patches/Fixes/VerticalSpawnDespawnFix.asm
 	Patches/Fixes/VRAMOptimize.asm
 	Patches/Fixes/WallJumpNoteBlockGlitchFix.asm

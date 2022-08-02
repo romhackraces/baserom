@@ -6,9 +6,22 @@ SSPMaincode:
 .DeathAnimationCheck
 	LDA $71					;\Prevent potential glitch that the player enters pipe and dies
 	CMP #$09				;|during travel (if freezing enabled, at the same frame the players interacts a pipe cap).
-	BNE .PipeStateCheck			;|
-	RTL					;/
-	
+	BNE .PipeStateCheck		;.
+
+	.ScreenScrollingPipeHandle
+	LDA !Freeram_SSP_PipeDir
+	BEQ .Return
+
+	..ResetPipeStatus
+	LDA #$00
+	STA !Freeram_SSP_PipeDir		;\Reset pipe state.
+	STA !Freeram_SSP_PipeTmr		;|
+	STA !Freeram_SSP_EntrExtFlg		;/
+	STA !Freeram_SSP_CarrySpr		;\Remove any carryable sprites.
+	STA !Freeram_BlockedStatBkp		;/
+	.Return
+	RTL
+
 	.PipeStateCheck
 	LDA !Freeram_SSP_PipeDir		;\don't do anything while outside the pipe.
 	AND.b #%00001111			;|
@@ -28,7 +41,7 @@ SSPMaincode:
 	;ORA <address>				;>Other RAM to disable running pipe code.
 	BEQ .HandleCarryingSprites
 	JMP .pose				;>While the pipe-related code should stop running during a freeze, the pose should still be running (during freeze, he reverts to his normal pose).
-	
+
 	.HandleCarryingSprites
 	if !Setting_SSP_CarryAllowed != 0
 		..KeyGlitchFailsafe			;>A glitch that forces the player to drop the key upon exiting should the player enter and pick up the key the same frame.
@@ -37,15 +50,15 @@ SSPMaincode:
 		BEQ ...NoCarry
 		LDA #$01
 		STA !Freeram_SSP_CarrySpr
-		
+
 		...NoCarry
-		LDY #$00			;>Default Y as #$00 (later on, will remain #$00 if not carrying sprites) 
+		LDY #$00			;>Default Y as #$00 (later on, will remain #$00 if not carrying sprites)
 		LDA !Freeram_SSP_CarrySpr	;\fix automatic drop item when carrying (when freeze disabled, he shouldn't automatically
 		BEQ ..NotCarrying		;/pick up sprites when the player didn't intend to do so.)
-		
+
 		..CarryingSprite
 		INY
-		
+
 		..NotCarrying
 	endif
 	.ForceControlsSetAndClear
@@ -80,7 +93,7 @@ SSPMaincode:
 	.YoshiImage
 	LDA $187A|!addr		;\if on yoshi, then use yoshi poses
 	BNE ..OnYoshi		;/
-	
+
 	..OffYoshi
 	STZ $73			;>so mario cannot remain ducking (unless on yoshi) as he exits.
 
@@ -201,7 +214,7 @@ SSPMaincode:
 	if !Setting_SSP_CarryAllowed != 0
 		LDA !Freeram_SSP_CarrySpr	;\Holding sprites routine
 		BEQ ...NotCarrySprite		;|
-	
+
 		...CarrySprite
 		LDA #$40			;|
 		BRA ...WriteXYBitController	;|
@@ -249,7 +262,7 @@ SSPMaincode:
 	BNE ...YoshiFaceScrn	;/use face screen instead
 	LDA #$0F		;>vertical pipe pose (without regard to powerup status)
 	BRA ..SetPose
-	
+
 	...YoshiFaceScrn
 	LDA #$21		;>pose that mario turns around partically face the screen
 	BRA ..SetPose
