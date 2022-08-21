@@ -22,6 +22,7 @@ echo   1. Download and Setup all Baserom tools
 echo   0. Exit
 echo.
 set /p Action=Enter the number of your choice:
+echo.
 
 :: Download Baserom Tools
 if "!Action!"=="1" (
@@ -218,6 +219,8 @@ if "!Action!"=="0" (
 
 if '!Action!'=='' echo Nothing is not valid option, please try again.
 
+echo.
 echo All done. Have a nice day ^^_^^
+echo.
 pause
 exit /b

@@ -68,6 +68,7 @@ echo   4. Create time-stamped backup of your ROM
 echo   0. Exit
 echo.
 set /p Action=Enter the number of your choice: 
+echo.
 
 :: Export MWL level files
 if "%Action%"=="1" (
@@ -118,6 +119,8 @@ if "%Action%"=="0" (
 )
 if '%Action%'=='' echo Nothing is not valid option, please try again.
 
+echo.
 echo All done. Have a nice day ^^_^^
+echo.
 pause
 exit /b
