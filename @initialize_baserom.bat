@@ -217,3 +217,7 @@ if "!Action!"=="0" (
 )
 
 if '!Action!'=='' echo Nothing is not valid option, please try again.
+
+echo All done. Have a nice day ^^_^^
+pause
+exit /b

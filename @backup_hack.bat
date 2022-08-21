@@ -117,3 +117,7 @@ if "%Action%"=="0" (
     exit /b
 )
 if '%Action%'=='' echo Nothing is not valid option, please try again.
+
+echo All done. Have a nice day ^^_^^
+pause
+exit /b
