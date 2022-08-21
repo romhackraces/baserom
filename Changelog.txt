@@ -1,3 +1,9 @@
+v4.9
+- tool updates: UberASMTool 1.5, LunarHelper 2.1.1, Lunar Monitor 1.2.3
+- reorganization of patches
+- updates to build scripts
+- updates retry to 0.3.5
+
 v4.8.1
 - fixed some SA-1 specific issues
 - included big/vertical level patch fix for triple platforms
