@@ -1,6 +1,6 @@
 ::
-:: These are files and external links to the tools needed to build 
-:: the baserom, plus lists of files that are deleted since they 
+:: These are files and external links to the tools needed to build
+:: the baserom, plus lists of files that are deleted since they
 :: are not relevant to the build process.
 ::
 
