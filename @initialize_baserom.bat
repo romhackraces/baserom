@@ -141,6 +141,8 @@ if "!Action!"=="1" (
         :: Delete junk files
         for %%a in (!LUN_HLP_JUNK!) do (del !LUN_HLP_DIR!%%a)
         for %%a in (!LUN_HLP_JUNK_DIR!) do (rmdir /S /Q !LUN_HLP_DIR!%%a)
+        :: Create Lunar Helper shortcut
+        powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%WORKING_DIR%LunarHelper.exe.lnk');$s.TargetPath='!LUN_HLP_DIR!LunarHelper.exe';$s.Save()"
         :: Delete Zip
         del !LUN_HLP_ZIP!
         echo Done.
