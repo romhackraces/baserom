@@ -42,6 +42,12 @@ endif
     ; Draw "RETRY"
     ldy #$00 : sty $01
     ldx.b #letters_retry-letters
+if !prompt_wave
+    stz $03
+    lda $1B92|!addr : bne +
+    inc $03
++
+endif
     jsr oam_draw
     jsr handle_cursor
 
@@ -49,6 +55,12 @@ endif
     lda !ram_disable_exit : bne .no_exit
     sty $01
     ldx.b #letters_exit-letters
+if !prompt_wave
+    stz $03
+    lda $1B92|!addr : beq +
+    inc $03
++
+endif
     jsr oam_draw
     lsr $00
     jsr handle_cursor
@@ -69,7 +81,7 @@ endif
 
 if !cursor_setting == 2
 .cursor_x_offset:
-    db $FF,$00,$01,$02,$03,$02,$01,$00
+    db -1,0,1,2,3,2,1,0
 endif
 
 ;=====================================
@@ -173,12 +185,29 @@ endif
 ;  Y = OAM index
 ;=====================================
 oam_draw:
+if !prompt_wave
+    stz $0F
+endif
+
+.loop:
     ; Return if we reached the $FF terminator.
     lda.w letters,x : cmp #$FF : beq .return
 
     ; Store the X,Y positions and tile OAM properties.
     clc : adc !ram_prompt_x_pos : sta $0200|!addr,y
     lda.w letters+1,x : clc : adc !ram_prompt_y_pos : sta $0201|!addr,y
+if !prompt_wave
+    ; Make the letters wave
+    lda $03 : beq +
+    lda.w letters+2,x : cmp.b #!tile_curs : beq +
+    phx
+    lda $1B91|!addr : lsr #!prompt_wave_speed
+    clc : adc $0F : and #$07 : tax
+    lda.w .y_offset,x : clc : adc $0201|!addr,y : sta $0201|!addr,y
+    plx
+    inc $0F
++
+endif
     rep #$20
     lda.w letters+2,x : sta $0202|!addr,y
     sep #$20
@@ -192,9 +221,14 @@ oam_draw:
     ; Go to the next tile.
     inx #5
     iny #4
-    bra oam_draw
+    bra .loop
 .return:
     rts
+
+if !prompt_wave
+.y_offset:
+    db -3,-2,-1,0,1,0,-1,-2
+endif
 
 ;=====================================
 ; OAM info for each tile (X,Y,T,P,S)

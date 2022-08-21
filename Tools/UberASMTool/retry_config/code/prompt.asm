@@ -32,17 +32,31 @@ handle_menu:
     ; Play the correct death song.
 if !amk
 if !death_jingle_alt != $FF
+if !exit_animation > 1
     lda.b #!death_time : sta $1496|!addr
+else
+    stz $1496|!addr
+endif
+if !exit_animation == 0
+    lda !ram_hurry_up : beq +
+endif
     lda.b #!death_jingle_alt : sta $1DFB|!addr
-    rts
++   rts
 endif
 else
     lda #$FF : sta $0DDA|!addr
 endif
 
+if !exit_animation > 1
     lda.b #!death_time+$1E : sta $1496|!addr
+else
+    stz $1496|!addr
+endif
+if !exit_animation == 0
+    lda !ram_hurry_up : beq +
+endif
     lda.b #!death_song : sta $1DFB|!addr
-    rts
++   rts
 .retry:
     ; Set prompt phase to "shrinking with retry selected".
     lda !ram_prompt_phase : inc : sta !ram_prompt_phase
@@ -138,8 +152,10 @@ endif
 ;=====================================
 handle_box:
     ; Check if the box has finished expanding/shrinking.
-    ldx $1B88|!addr
-
+    ldx #$00
+    lda !ram_prompt_phase : cmp #$01 : beq +
+    inx
++
     ; If we shouldn't show the box, then just go to the next phase immediately.
     lda !ram_disable_box : bne +
     lda $1B89|!addr : cmp.l .size,x : bne .not_finished
@@ -151,9 +167,6 @@ handle_box:
     txa : beq .finished_expanding
 
 .finished_shrinking:
-    ; Reset shrinking flag.
-    stz $1B88|!addr
-
     ; If the box is enabled, reset the screen settings and disable windowing.
     lda !ram_disable_box : bne +
     stz $41
@@ -165,9 +178,6 @@ handle_box:
     rts
 
 .finished_expanding:
-    ; Go to the next box phase.
-    inc $1B88|!addr
-
     ; Reset cursor counters.
     stz $1B91|!addr
     stz $1B92|!addr

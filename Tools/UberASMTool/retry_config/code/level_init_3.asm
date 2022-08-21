@@ -75,6 +75,14 @@ endif
 if !reset_dsx
     stz $06FE|!addr
 endif
+
+    ; Reset vanilla Boo rings.
+if !reset_boo_rings == 2
+    rep #$20
+    stz $0FAE|!addr
+    stz $0FB0|!addr
+    sep #$20
+endif
     
 if !amk
     ; Store $05 or $06 to $1DFA depending on the
