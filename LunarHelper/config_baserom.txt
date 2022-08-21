@@ -10,11 +10,11 @@ output = RHR4.smc
 package = RHR4.bps
 
 -- initial patch (FastROM)
-initial_patch = Other/initial_patch.bps
+initial_patch = Other/initial_patches/fastrom.bps
 
 -- initial patch (SA-1)
 -- if you are building a hack using SA-1, uncomment the line below
--- initial_patch = Other/initial_patch_sa1.bps
+-- initial_patch = Other/initial_patches/sa1.bps
 
 -- tool paths
 addmusick_path = Tools/AddmusicK_1.0.8/AddMusicK.exe
@@ -48,3 +48,8 @@ map16 = Backup/Map16/AllMap16_latest.map16
 -- You will work on these things from the built output ROM in Lunar Magic,
 -- and Lunar Monitor will automatically export them as you save your changes
 global_data = Other/global_data.bps
+
+-- test_level is a 3-digit hex value specifying the level number of a level that will be copied to the 3-digit level number
+-- specified by test_level_dest *only* when Lunar Helper's "T - Test" option is run
+test_level = 0A7
+test_level_dest = 105
