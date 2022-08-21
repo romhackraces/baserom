@@ -7,7 +7,6 @@
 ; 2 = instant retry (no prompt & play only the sfx: the fastest option; like "yes" is chosen automatically)
 ;       In this option, you can press start then select to exit the level.
 ; 3 = no retry prompt/respawn (vanilla death: as if "no" is chosen automatically, use this if you only want the multi-midway feature).
-;
 ; Note: you can override this per sublevel (see "tables.asm") and also at any point by setting a certain RAM address (see "docs/ram_map.txt").
     !default_prompt_type = 1
 
@@ -34,12 +33,21 @@
 ; It's suggested to enable the fix to make sprite behavior consistent between the first and all the next level reloads.
     !initial_facing_fix = 1
 
+; If 1, it fixes the issue where you can drop the reserve item in the item box
+; by pressing Select while Mario is dying or while the Retry prompt is shown.
+    !item_box_fix = 1
+
 ; If 1, start+select out of a level is always possible.
 ; Otherwise, it's only possible with the instant Retry option (or if the level is already beaten like vanilla).
     !always_start_select = 1
 
-; Reset DSX sprites on reload.
+; If 1, DSX (dynamic) sprites status is reset on level load.
     !reset_dsx = 1
+
+; 0 = vanilla (Boo Rings will retain the previous positions, not recommended for Kaizo).
+; 1 = reset Boo Rings positions on death.
+; 2 = reset Boo Rings positions on death and on level load.
+    !reset_boo_rings = 1
 
 ;========================================================================
 
@@ -96,6 +104,7 @@
 ;========================================================================
 
 ; If 1, the prompt will show up immediately after dying.
+; Otherwise, it will show up midway through the death animation, but pressing A/B during it will skip it.
     !fast_prompt = 1
 
 ; How fast the prompt expands/shrinks. It must evenly divide 72.
@@ -103,6 +112,18 @@
 
 ; If 1, level transitions will be much faster than usual.
     !fast_transitions = 1
+
+; 0 = sprites and animations won't freeze when the prompt is shown.
+; 1 = sprites and most animations will freeze, but some animations will still play (for example, Magikoopa Magic's flashing).
+; 2 = sprites and all animations will freeze.
+    !prompt_freeze = 2
+
+; This controls what happens when hitting "Exit" on the Retry prompt:
+; 0 = exit the level immediately and don't play the death music (except when the level music is sped up).
+; 1 = exit the level immediately and play the death music (note that the vanilla song will be cut short).
+; 2 = play the death animation and music, then exit the level.
+; Note: when dying before going to Game Over, the vanilla animation will be always played regardless.
+    !exit_animation = 2
 
 ; Set to 1 if you don't want the "exit" option in the prompt.
 ; This will also allow the player to start+select when having the prompt.
@@ -141,6 +162,14 @@
 ; Higher = slower. Possible values: 0 to 5.
     !cursor_oscillate_speed = 2
 
+; 1 = the letters in the option selected on the Retry prompt will wave up and down.
+; Note: this is incompatible with the black box (use !no_prompt_box = 1)
+    !prompt_wave = 0
+
+; How fast the letters wave (only used when !prompt_wave = 1)
+; Higher = slower. Possible values: 0 to 5.
+    !prompt_wave_speed = 2
+
 ; Palette row used by the letters and cursor (remember: they use sprite palettes).
     !letter_palette = $08
     !cursor_palette = $08
@@ -153,6 +182,7 @@
 ;
 ; Note: when the prompt box is enabled, !tile_curs and !tile_blk actually use 2 adjacent 8x8 tiles.
 ; For example, !tile_curs = $24 means both $24 and $25 will be overwritten.
+; Also, obviously these aren't used if you don't use the Retry prompt.
     !tile_curs = $20
     !tile_blk  = $22
     !tile_r    = $30

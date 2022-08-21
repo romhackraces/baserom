@@ -151,6 +151,14 @@ nmi_hijack:
 		LDA.l level_nmi_table+1,x
 		JSL nmi_run_code
 		
+		REP #$20
+		PLA
+		STA $70
+		PLA
+		STA $6E
+		SEP #$20
+		
+		PLB
 		LDA $1DFB|!addr	; return
 		JML $00817C
 	

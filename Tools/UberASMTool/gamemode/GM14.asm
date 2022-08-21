@@ -1,8 +1,4 @@
 init:
-    REP #$20    ;\
-    STZ $0FAE   ;| reset Vanilla boo ring positions
-    STZ $0FB0   ;|
-    SEP #$20    ;/
     jsl double_hit_fix_init
     rtl
 

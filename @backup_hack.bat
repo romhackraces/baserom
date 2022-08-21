@@ -2,7 +2,7 @@
 cls
 :start
 
-:: Working Directory 
+:: Working Directory
 setlocal DisableDelayedExpansion
 set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
@@ -67,7 +67,8 @@ echo   3. Export shared palettes
 echo   4. Create time-stamped backup of your ROM
 echo   0. Exit
 echo.
-set /p Action=Enter the number of your choice: 
+set /p Action=Enter the number of your choice:
+echo.
 
 :: Export MWL level files
 if "%Action%"=="1" (
@@ -117,3 +118,5 @@ if "%Action%"=="0" (
     exit /b
 )
 if '%Action%'=='' echo Nothing is not valid option, please try again.
+
+exit /b

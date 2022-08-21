@@ -1,10 +1,6 @@
 ; Gamemode 14
 
-if !fast_prompt
-    !show_prompt_time #= !death_time
-else
-    !show_prompt_time #= !death_time-$10
-endif
+!show_prompt_time #= !death_time-$10
 
 main:
     ; Update the window HDMA when the flag is set.
@@ -50,9 +46,25 @@ endif
 .dying:
     ; Show the death pose just to be sure.
     lda.b #!death_pose : sta $13E0|!addr
-
-    ; Force sprites to be locked.
+    
+if !prompt_freeze
+    ; Force sprites and animations to lock.
     lda #$01 : sta $9D
+
+if !prompt_freeze == 2
+    ; Freeze animations that use $13.
+    lda !ram_prompt_phase : beq +
+    cmp #$06 : beq +
+    dec $13
++
+endif
+else
+    ; Force sprites and animations to run.
+    stz $9D
+
+    ; Prevent timer from ticking down.
+    inc $0F30|!addr
+endif
 
     ; Skip Yoshi's hatch animation.
     stz $18E8|!addr
@@ -85,8 +97,10 @@ endif
     ; If the prompt hasn't begun yet, check if it should.
     lda !ram_prompt_phase : beq ...check_box
 
-    ; Keep Mario in the death animation.
+    ; Keep Mario locked in the death animation.
     ldx.b #!show_prompt_time : stx $1496|!addr
+    stz $7D
+    stz $76
 
     ; Handle the box expanding/shrinking.
     cmp #$04 : beq ..respawn
@@ -102,8 +116,12 @@ endif
     rtl
 
 ...check_box:
+if not(!fast_prompt)
     ; Check if it's time to show the prompt.
+    lda $16 : ora $18 : bmi +
     lda $1496|!addr : cmp.b #!show_prompt_time : bcs ..return
++
+endif
 
     ; Set letter transfer flag and change prompt phase.
     lda #$01 : sta !ram_update_request
@@ -160,8 +178,12 @@ endif
     ; Skip No Yoshi intros.
     stz $141D|!addr
 
-    ; Change to "Fade to level" game mode.
-    lda #$0F : sta $0100|!addr
+    ; Change to "Fade to level" game mode
+    ; (or "Fade to overworld" when on the intro level to avoid going to level 0)
+    ldy #$0F
+    lda $0109|!addr : beq +
+    ldy #$0B
++   sty $0100|!addr
     rtl
 
 ;=====================================
@@ -208,6 +230,12 @@ endif
     dex #2
     bpl -
     plb
+
+    ; Reset vanilla Boo rings.
+if !reset_boo_rings
+    stz $0FAE|!addr
+    stz $0FB0|!addr
+endif
 
     ; Reset various timers.
     stz $1497|!addr
@@ -304,7 +332,7 @@ endif
     lda !ram_timer+2 : sta $0F33|!addr
 
     ; Reset timer frame counter
-    lda #$28 : sta $0F30|!addr
+    lda.b #!timer_ticks : sta $0F30|!addr
 
     ; Music related stuff. I don't understand most of it.
 if !amk

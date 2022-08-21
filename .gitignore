@@ -22,6 +22,7 @@ lunar-monitor-log.txt
 config_user.txt
 temp.*
 *.*~
+*.lnk
 *.dll
 *.exe
 *.extmod

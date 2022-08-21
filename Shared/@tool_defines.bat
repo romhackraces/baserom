@@ -1,6 +1,6 @@
 ::
-:: These are files and external links to the tools needed to build 
-:: the baserom, plus lists of files that are deleted since they 
+:: These are files and external links to the tools needed to build
+:: the baserom, plus lists of files that are deleted since they
 :: are not relevant to the build process.
 ::
 
@@ -39,14 +39,14 @@ set LM_ZIP="lm331.zip"
 set LM_JUNK="readme.txt"
 
 :: Lunar Helper
-set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v1.5.0-LMC/LunarHelper-v1.5.0.zip"
-set LUN_HLP_ZIP="LunarHelper-v1.5.0.zip"
+set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v2.1.1-LMC/LunarHelper-v2.1.1.zip"
+set LUN_HLP_ZIP="LunarHelper-v2.1.1.zip"
 set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt"
 set LUN_HLP_JUNK_DIR="initial_patches"
 
 :: Lunar Monitor
-set LUN_MON_DL="https://github.com/Underrout/lunar-monitor/releases/download/v1.2.2/lunar-monitor-v1.2.2.zip"
-set LUN_MON_ZIP="lunar-monitor-v1.2.2.zip"
+set LUN_MON_DL="https://github.com/Underrout/lunar-monitor/releases/download/v1.2.3/lunar-monitor-v1.2.3.zip"
+set LUN_MON_ZIP="lunar-monitor-v1.2.3.zip"
 set LUN_MON_JUNK="README.txt" "LICENSE"
 set LUN_MON_JUNK_DIR="LM3.30" "LM3.31"
 
@@ -57,7 +57,7 @@ set PIXI_JUNK="removedResources.txt" "changelog.txt" "readme.txt"
 set PIXI_LIST="list_pixi.txt"
 
 :: UberASM Tool
-set UBER_DL="https://dl.smwcentral.net/19982/UberASMTool14.zip"
-set UBER_ZIP="UberASMTool14.zip"
+set UBER_DL="https://dl.smwcentral.net/28974/UberASMTool15.zip"
+set UBER_ZIP="UberASMTool15.zip"
 set UBER_JUNK="readme.txt" "readme - library.txt" ".\level\test.asm" ".\level\test2.asm"
 set UBER_LIST="list_uberasm.txt"

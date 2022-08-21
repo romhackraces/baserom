@@ -70,7 +70,7 @@ Yoshi Pipe Animation Fix - Kevin https://smwc.me/s/30127
 -- UberASM --
 
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
-Retry System - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.3.3
+Retry System - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.3.5
 Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 
 -- Custom Blocks --
@@ -96,8 +96,8 @@ Asar v1.81 - Alcaro et al. - https://smwc.me/s/25953
 Flips v1.31 - Alcaro - https://smwc.me/s/11474
 GPS V1.4.3 - TheBiob, p4plus2 - https://smwc.me/s/29130
 Human Readable Map16 CLI - Underway - https://github.com/Underrout/human-readable-map16-cli
-Lunar Helper 1.5.0 - Underway, Maddy - https://github.com/Underrout/LunarHelper
+Lunar Helper 2.1.1 - Underway, Maddy - https://github.com/Underrout/LunarHelper
 Lunar Magic 3.31 - FuSoYa - https://smwc.me/s/26916
-Lunar Monitor 1.5.0 - Underway, Atari2.0 - https://github.com/Underrout/lunar-monitor
+Lunar Monitor 1.2.3 - Underway, Atari2.0 - https://github.com/Underrout/lunar-monitor
 PIXI v1.32 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/26026
-UberASM Tool 1.4 - Vitor Vilela - https://smwc.me/s/19982
+UberASM Tool 1.5 - Vitor Vilela - https://smwc.me/s/28974
