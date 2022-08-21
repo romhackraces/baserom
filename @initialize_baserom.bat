@@ -2,7 +2,7 @@
 cls
 :start
 
-:: Working Directory 
+:: Working Directory
 setlocal DisableDelayedExpansion
 set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
@@ -21,7 +21,7 @@ echo.
 echo   1. Download and Setup all Baserom tools
 echo   0. Exit
 echo.
-set /p Action=Enter the number of your choice: 
+set /p Action=Enter the number of your choice:
 
 :: Download Baserom Tools
 if "!Action!"=="1" (
