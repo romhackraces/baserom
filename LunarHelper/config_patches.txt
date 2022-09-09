@@ -59,9 +59,11 @@ patches
 	Tools/Asar/PlaceableKickedShell.asm
 	Tools/Asar/PlaceableThrowBlock.asm
 	Tools/Asar/PoisonMushroom.asm
+	Tools/Asar/PuffOfSmokeSprite.asm
 	Tools/Asar/RAMControlledFireballAmount.asm
 	Tools/Asar/RAMToggledLR.asm
 	Tools/Asar/RAMToggledStatusbar.asm
+	Tools/Asar/SpriteRemaps.asm
 	Tools/Asar/SpriteRemaps.asm
 	Tools/Asar/SpriteSubmapBehaviorAsExtraBit.asm
 	Tools/Asar/TripleBallNChain.asm

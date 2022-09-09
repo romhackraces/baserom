@@ -12,13 +12,17 @@
 296 onoff_block.asm
 297 onoff_block_inv.asm
 298 breakable_by_item.asm
-299 silent_sprite_killer.asm
+299 sprite_killer.asm
 29A hurt_death.asm
 29B hurt_death_sprite_passthrough.asm
 29C remove_powerup.asm
 29D donut_lift.asm
 29E endless_throwblock.asm
 29F ledge_vine.asm
+2A0:0025	spinyblock.asm
+2A1:0025	swooperblock.asm
+2A2:0025	set_to_on.asm
+2A3:0025	set_to_off.asm
 
 ; CUSTOM QUESTION BLOCKS (DO NOT MODIFY) ------------------;
 2B0 question_blocks/74_mushroom.asm

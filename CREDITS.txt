@@ -79,12 +79,13 @@ Basic Mario/Sprite Solid Blocks
 Basic ON/OFF Blocks
 Block Breakable by Item - JUMP Baserom
 Donut Lift Block v1.1 - by Davros, mikeyk - https://smwc.me/s/20418
-Hurt / Death Block for Kaizo / Pit Hacks - dacin - https://smwc.me/s/27268
 Endless Throwblock - AmperSam
+Hurt / Death Block for Kaizo / Pit Hacks - dacin - https://smwc.me/s/27268
 Ledge Vine - ASM - https://smwc.me/s/3944
 One-way blocks 1.2 - HammerBrother - https://smwc.me/s/18158
 Question Mark Blocks v1.3.0* - MarioFanGamer, lx5 - https://smwc.me/s/19775
 Screen Scrolling Pipes 4.0.2* - HammerBrother - https://smwc.me/s/27019
+Spiny and Swooper Blocks - TheBourgyman - https://smwc.me/s/30296
 Super Bounce Blocks - dogemaster - https://smwc.me/s/22934
 
 * simplified for use in the baserom

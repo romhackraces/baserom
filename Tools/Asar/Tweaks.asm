@@ -42,6 +42,9 @@ org $028AD2 : NOP #3
 ; remove RNG from Podobos/Jumping Fireballs
 org $01E0D7 : LDA #$7F : NOP #6
 
+; adjust Yellow Koopa jump framerule
+org $018898 : BRA $05
+
 ; shorten intro message skip timer
 org $00A09C : db $04
 
@@ -80,9 +83,6 @@ endif
 ; fix sprite screen edge interaction bug
 org $01A7F0 : db $EA,$EA,$EA
 
-; fix Yellow Koopa jump framerule
-org $018898 : BRA $05
-
 ; fix Message Box removing some sprite tiles when closing
 org $05B31B : RTS
 
@@ -104,9 +104,6 @@ org $03C511 : db $0C
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GFX Tweaks & Fixes ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
-
-; activate unused Yoshi dust
-org $028BB4 : db $B9
 
 ; fix palette of the white tile in the cave layer 3 background
 org $05A312 : db $15
