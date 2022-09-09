@@ -8,7 +8,7 @@ emulator_path = C:\Users\user\AppData\Roaming\RetroArch\retroarch.exe
 -- you can uncomment emulator_options and pass command line arguments to your configured
 -- emulator, if you're using retroarch, you should change the path after the "-L" to
 -- match your core of choice
--- emulator_options = -L C:\Users\user\AppData\Roaming\RetroArch\cores\snes9x_libretro.dll
+-- emulator_options = "-L C:\Users\user\AppData\Roaming\RetroArch\cores\snes9x_libretro.dll"
 
 -- you can uncomment this config variable to make Lunar Helper automatically reload your emulator
 -- if you have it open while a (Quick) Build finishes, which is nice if you're prototyping something
