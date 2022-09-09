@@ -66,6 +66,7 @@ patches
 	Tools/Asar/SpriteRemaps.asm
 	Tools/Asar/SpriteRemaps.asm
 	Tools/Asar/SpriteSubmapBehaviorAsExtraBit.asm
+	Tools/Asar/TitleScreenSpriteCleanup.asm
 	Tools/Asar/TripleBallNChain.asm
 	Tools/Asar/Tweaks.asm
 	Tools/Asar/MarioGFXDMA/MarioGFXDMA.asm
