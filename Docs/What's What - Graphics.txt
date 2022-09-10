@@ -20,7 +20,8 @@ GFX2B : Layer 3 tiles
  - The unused graphics for "Super Mario Bros. 4" has been replaced with "Romhack Races Baserom"
 
 GFX33 : Global Animation Tiles
- - tiles for ON/OFF blocks have been added to unused space in the resource
+ - the midway animation frames have been fixed
+ - the castle conveyor/stairs have been fixed to use the the castle's brick pattern
 
 ----------
 ExGraphics
