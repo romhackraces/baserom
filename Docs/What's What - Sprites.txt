@@ -18,6 +18,22 @@ DA,DB,DC,DD,DF: Shells
 - extra bit = 0: normal
 - extra bit = 1: kicked buzzy shell
 
+1A: Classic Piranha Plant
+- extra bit = 0: normal
+- extra bit = 1: red, ignores player proximity
+
+2A: Upside Down Piranha Plant
+- extra bit = 0: normal
+- extra bit = 1: red, ignores player proximity
+
+32: Dry Bones, stay on ledge
+- extra bit = 0: throws bones
+- extra bit = 1: doesn't throw bones
+
+4D,4E: Monty Moles
+- extra bit = 0: fast digging
+- extra bit = 1: slow digging
+
 53: Throw Block
 - extra bit = 0: normal, stationary
 - extra bit = 1: kicked
@@ -26,25 +42,17 @@ E0: 3 Platforms on Chains
 - extra bit = 0: normal, grey platforms
 - extra bit = 1: spike ball
 
-4D,4E: Monty Moles
-- extra bit = 0: fast digging
-- extra bit = 1: slow digging
+85: Poison Mushroom
+ - a sprite with mushroom movement that moves towards Mario and damages him, is also in a custom question block.
+ - to get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
 
 9B: Hammer Bro
 - extra bit = 0: unfrequent throwing
 - extra bit = 1: frequent throwing
 
-32: Dry Bones, stay on ledge
-- extra bit = 0: throws bones
-- extra bit = 1: doesn't throw bones
-
-85: Poison Mushroom
- - a sprite with mushroom movement that moves towards Mario and damages him, is also in a custom question block.
- - to get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
-
 ---------------------------------
 Custom Sprites inserted with PIXI
 ---------------------------------
 
-A0 : Companion sprite for the Donut Lift block 
+A0 : Companion sprite for the Donut Lift block
  - do NOT use this, insert the donut lift object from map16 into your levels instead
