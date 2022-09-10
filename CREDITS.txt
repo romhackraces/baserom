@@ -44,6 +44,7 @@ Line-Guided Rope Length Fix - imamelia - https://smwc.me/s/18948
 Lunar Magic's "VRAM Patch" Optimization - Kevin - https://smwc.me/s/28028
 Moving Castle Block Offscreen Handling Fix v1.1 - Blind Devil - https://smwc.me/s/18721
 No Sprite Interaction Fix - chillyfox - https://smwc.me/s/19222
+Optimize 1F0 - Fernap - https://smwc.me/s/31950
 P-Balloon and Cloud Clipping Fix - lolcats439 - https://smwc.me/s/8771
 P-Switch Duplication with Yoshi Fix - Kevin - https://smwc.me/s/22611
 Player X Speed Fix 3.0 - HammerBrother, tjb0607 - https://smwc.me/s/24862

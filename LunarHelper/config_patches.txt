@@ -32,6 +32,7 @@ patches
 	Tools/Asar/Fixes/LineRopeLengthFix.asm
 	Tools/Asar/Fixes/NetScreenBoundaryFix.asm
 	Tools/Asar/Fixes/NoSpriteInteractionFix.asm
+	Tools/Asar/Fixes/Optimize1F0.asm
 	Tools/Asar/Fixes/PBalloonCloudFix.asm
 	Tools/Asar/Fixes/PlayerXSpeedFix.asm
 	Tools/Asar/Fixes/PressedSwitchYoshiFix.asm
