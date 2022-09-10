@@ -42,27 +42,28 @@ namespace off
 ; To use these in UberASM code, just use "retry_ram_is_respawning" (or whatever address you want), without the "!".
 ; To use these in other codes (patch, sprites, etc.), copy paste this file's contents at the start of the patch/sprite/etc., then use "!retry_ram_is_respawning" (with "!") or "retry_ram_is_respawning" (without "!").
 
-%retry_ram(timer,$00)           ; 3
-%retry_ram(respawn,$03)         ; 2
-%retry_ram(is_respawning,$05)   ; 1
-%retry_ram(music_to_play,$06)   ; 1
-%retry_ram(hurry_up,$07)        ; 1
-%retry_ram(door_dest,$08)       ; 2
-%retry_ram(music_backup,$0A)    ; 1
-%retry_ram(update_request,$0B)  ; 1
-%retry_ram(prompt_phase,$0C)    ; 1
-%retry_ram(update_window,$0D)   ; 1
-%retry_ram(is_dying,$0E)        ; 1
-%retry_ram(9D_backup,$0F)       ; 1
-%retry_ram(l2_backup,$10)       ; 1
-%retry_ram(prompt_override,$11) ; 1
-%retry_ram(disable_exit,$12)    ; 1
-%retry_ram(set_checkpoint,$13)  ; 2
-%retry_ram(prompt_x_pos,$15)    ; 1
-%retry_ram(prompt_y_pos,$16)    ; 1
-%retry_ram(disable_box,$17)     ; 1
-%retry_ram(play_sfx,$18)        ; 1
-%retry_ram(reserved,$19)        ; 7 (reserved for future expansion)
-%retry_ram(death_counter,$20)   ; 5
-%retry_ram(checkpoint,$25)      ; 192
-%retry_ram(cust_obj_data,$E5)   ; 1+(!max_custom_midway_num*4)
+%retry_ram(timer,$00)            ; 3
+%retry_ram(respawn,$03)          ; 2
+%retry_ram(is_respawning,$05)    ; 1
+%retry_ram(music_to_play,$06)    ; 1
+%retry_ram(hurry_up,$07)         ; 1
+%retry_ram(door_dest,$08)        ; 2
+%retry_ram(music_backup,$0A)     ; 1
+%retry_ram(update_request,$0B)   ; 1
+%retry_ram(prompt_phase,$0C)     ; 1
+%retry_ram(update_window,$0D)    ; 1
+%retry_ram(is_dying,$0E)         ; 1
+%retry_ram(9D_backup,$0F)        ; 1
+%retry_ram(l2_backup,$10)        ; 1
+%retry_ram(prompt_override,$11)  ; 1
+%retry_ram(disable_exit,$12)     ; 1
+%retry_ram(set_checkpoint,$13)   ; 2
+%retry_ram(prompt_x_pos,$15)     ; 1
+%retry_ram(prompt_y_pos,$16)     ; 1
+%retry_ram(disable_box,$17)      ; 1
+%retry_ram(play_sfx,$18)         ; 1
+%retry_ram(midways_override,$19) ; 1
+%retry_ram(reserved,$1A)         ; 6 (reserved for future expansion)
+%retry_ram(death_counter,$20)    ; 5
+%retry_ram(checkpoint,$25)       ; 192
+%retry_ram(cust_obj_data,$E5)    ; 1+(!max_custom_midway_num*4)

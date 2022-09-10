@@ -4,6 +4,7 @@ v4.10
 - updated the pirahna plant patch & added demo level for it
 - updated documentation
 - added Optimize 1F0 patch
+- update retry to 0.3.7
 
 v4.9
 - tool updates: UberASMTool 1.5, LunarHelper 2.1.1, Lunar Monitor 1.2.3

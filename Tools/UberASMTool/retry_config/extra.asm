@@ -138,6 +138,21 @@ game_over:
     rts
 
 ;=====================================
+; This routine will be called when Mario enters a door, every frame during the fade out.
+; This could be useful since the door animation is the only one that can't be intercepted
+; with level ASM or sprite ASM (since it immediately goes to the fading gamemode).
+; If you need some level-specific action here, you can check the sublevel number in $010B (16 bit).
+; If you need to only run the code for 1 frame, you can check for $0DB0 equal to 0.
+; NOTE: on SA-1 roms, this runs on the SNES cpu.
+;=====================================
+door_animation:
+    ; Feel free to put your code here.
+
+
+    
+    rts
+
+;=====================================
 ; This routine will be called at the end of the game loop during gamemodes 7 and 14 (title screen and levels),
 ; just before Retry draws the prompt and AddmusicK's code runs.
 ; If you have other patches that hijack $00A2EA, you could try to put their freespace code in this routine to solve the conflict.

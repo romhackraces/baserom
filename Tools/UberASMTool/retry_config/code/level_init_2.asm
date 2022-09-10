@@ -20,6 +20,9 @@ endif
     jsr shared_get_checkpoint_value
     cmp #$02 : bcc .return
 
+    ; If entrance checkpoints are overridden, skip it.
+    lda !ram_midways_override : bmi .return
+
 ..set_checkpoint:
     ; Set the checkpoint to the current entrance.
     lda !ram_door_dest : sta !ram_respawn

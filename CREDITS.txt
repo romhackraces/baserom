@@ -72,7 +72,7 @@ Yoshi Pipe Animation Fix - Kevin - https://smwc.me/s/30127
 -- UberASM --
 
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
-Retry System - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.3.5
+Retry System - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.3.7
 Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 
 -- Custom Blocks --

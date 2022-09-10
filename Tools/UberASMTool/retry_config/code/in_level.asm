@@ -3,6 +3,14 @@
 !show_prompt_time #= !death_time-$10
 
 main:
+if !lives_overflow_fix
+    ; Cap lives at 99, unless they're negative (about to game over).
+    lda $0DBE|!addr : bmi +
+    cmp #$62 : bcc +
+    lda #$62 : sta $0DBE|!addr
++
+endif
+
     ; Update the window HDMA when the flag is set.
     lda !ram_update_window : beq +
     jsr prompt_update_window
@@ -23,7 +31,7 @@ main:
 
 .paused:
 if not(!always_start_select)
-    ; Check if the prompt type requires start+select always active.
+    ; Check if the prompt type requires Start+Select always active.
     jsr shared_get_prompt_type
     cmp #$04 : bcs .not_dying
     tay
@@ -31,6 +39,9 @@ if not(!always_start_select)
     cpy #$03 : bcc .not_dying
 +
 endif
+    
+    ; If we're in the intro level, don't Start+Select.
+    lda $0109|!addr : bne .not_dying
 
     ; Check if the correct button was pressed.
     lda.b !exit_level_buttons_addr
@@ -38,9 +49,9 @@ endif
     beq .not_dying
 
 ..start_select_exit:
-    ; Call the start+select routine.
+    ; Call the Start+Select routine.
     ; This should make this compatible with custom resources like Start+Select Advanced, AMK 1.0.8 Start+Select SFX, etc.
-    %jsl_to_rts($00A269, $0084CF)
+    %jsl_to_rts($00A269,$0084CF)
     rtl
 
 .dying:
@@ -117,6 +128,9 @@ endif
 
 ...check_box:
 if not(!fast_prompt)
+    ; If fallen in a pit, show immediately.
+    lda $81 : dec : bpl +
+
     ; Check if it's time to show the prompt.
     lda $16 : ora $18 : bmi +
     lda $1496|!addr : cmp.b #!show_prompt_time : bcs ..return
@@ -168,9 +182,6 @@ endif
     ; If Mario died on Yoshi, remove Yoshi.
     stz $0DC1|!addr
 
-    ; Reset the death timer.
-    stz $1496|!addr
-
     ; Mark as sublevel so we skip the "Mario Start!" message.
     ; (don't do "inc $141A" so we avoid the 256 entrance glitch)
     lda #$01 : sta $141A|!addr
@@ -179,11 +190,7 @@ endif
     stz $141D|!addr
 
     ; Change to "Fade to level" game mode
-    ; (or "Fade to overworld" when on the intro level to avoid going to level 0)
-    ldy #$0F
-    lda $0109|!addr : beq +
-    ldy #$0B
-+   sty $0100|!addr
+    lda #$0F : sta $0100|!addr
     rtl
 
 ;=====================================
@@ -202,6 +209,9 @@ reset_addresses:
     stz $1420|!addr
     stz $1422|!addr
 
+    ; Reset collected invisible 1-UPs.
+    stz $1421|!addr
+
     ; Reset green star block counter.
     lda.b #read1($0091AC) : sta $0DC0|!addr
 
@@ -211,13 +221,12 @@ if !dcsave
 endif
 
     ; Reset item memory.
-    ldx #$7E
     rep #$20
+    ldx #$7E
 -   stz $19F8|!addr,x
     stz $1A78|!addr,x
     stz $1AF8|!addr,x
-    dex #2
-    bpl -
+    dex #2 : bpl -
 
     ; Reset the sprite load index table.
     ; Change DBR to use absolute addressing (saves 512 cycles in the best case).
@@ -227,8 +236,7 @@ endif
 if !255_sprites_per_level
     stz.w !sprite_load_table+$80,x
 endif
-    dex #2
-    bpl -
+    dex #2 : bpl -
     plb
 
     ; Reset vanilla Boo rings.
@@ -236,20 +244,18 @@ if !reset_boo_rings
     stz $0FAE|!addr
     stz $0FB0|!addr
 endif
+    
+    ; Reset scroll sprites ($1446-$1455).
+    ldx #$0E
+-   stz $1446|!addr,x
+    dex #2 : bpl -
 
-    ; Reset various timers.
-    stz $1497|!addr
-    stz $1499|!addr
-    stz $149B|!addr
-    stz $149D|!addr
-    stz $149F|!addr
-    stz $14A1|!addr
-    stz $14A3|!addr
-    stz $14A5|!addr
-    stz $14A7|!addr
-    stz $14A9|!addr
+    ; Reset various timers and end-level addresses ($1492-$14AB).
+    ldx #$18
+-   stz $1492|!addr,x
+    dex #2 : bpl -
+
     sep #$20
-    stz $14AB|!addr
 
     ; Reset directional coin flag.
     stz $1432|!addr
@@ -272,11 +278,7 @@ endif
     ; Reset Yoshi drums.
     lda #$03 : sta $1DFA|!addr
 
-    ; Reset some level end addresses (for Kaizo traps).
-    rep #$20
-    stz $1492|!addr
-    stz $1494|!addr
-    sep #$20
+    ; Reset peace image flag.
     stz $1B99|!addr
 
     ; Don't go to the bonus game after a Kaizo trap to prevent it glitching out.
