@@ -54,15 +54,6 @@ org $02A2E5 : db $6E
 ; Koopa Sliding, second frame
 org $019B92 : db $88
 
-; Pipe Piranha Plant, head 1
-org $019BBD : db $AC : org $07F418 : db $08
-; Pipe Piranha Plant, stem 1
-org $019BBE : db $CE : org $018E92 : db $0B
-; Pipe Piranha Plant, head 2
-org $019BBF : db $AE : org $07F418 : db $08
-; Pipe Piranha Plant, stem 2
-org $019BC0 : db $CE : org $018E92 : db $09
-
 ; Lava splashes
 org $029E82 : db $5F,$4F,$5E,$4E
 org $029ED5 : db $04
