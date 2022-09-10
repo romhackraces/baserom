@@ -61,10 +61,12 @@ set TIMESTAMP="%Year%%Month%%Day%_%Hour%%Minute%"
 :: Options
 echo Backup Actions
 echo.
-echo   1. Export all modified levels to files
-echo   2. Export all of Map16
-echo   3. Export shared palettes
-echo   4. Create time-stamped backup of your ROM
+echo This script will create time-stamped backups of the following:
+echo.
+echo   1. Any edited levels
+echo   2. All of Map16
+echo   3. Shared palette
+echo   4. ROM file
 echo   0. Exit
 echo.
 set /p Action=Enter the number of your choice:
