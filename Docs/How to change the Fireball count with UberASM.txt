@@ -2,7 +2,7 @@ To the change the fireball count on a per-level basis, apply MoreFireballs.asm t
 
 If you are using other UberASM on your level you can use the following method by adding the following to your desired uberASM file:
 
-    ; Make sure this is the same as the patch
+    ; Make sure this is the same as the patch in Tools/Asar/RAMControlledFireballAmount.asm
     !fireballs_freeram = $60
 
     ; How many fireballs to have in this level
