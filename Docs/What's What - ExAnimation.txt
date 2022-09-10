@@ -8,26 +8,34 @@ Global ExAnimation
 
 The destinations for these global animations are the final row of BG3 and will override any graphics loaded into this slot. You can disable these in particular levels by going to: `Level -> Edit Animation Settings` and uncheck "Enable Lunar Magic's global animations" for that level.
 
-Line Guide Ends (4)
--------------------
-Slot: 01
-Type: 2 8x8s line
-Frames: 740,750,760,770
-Destination: 2F4 (BG3)
-
-ON/OFF Normal (2)
+ON/OFF Blocks (2)
 -----------------
-Slot: 02
-Type: 2 8x8s line
-Frames: 686,696
+Uses alternate ExGraphics: 61
+Slot: 00
+Type: 10 8x8s line
+Frames: 1060,1080
 Destination: 2F0 (BG3)
 
-ON/OFF Inverted (2)
+Swooper Block (2)
 -------------------
-Slot: 03
+Slot: 01
+Type: 4 8x8s line
+Frames: 1048,104C
+Destination: 2E0 (BG3)
+
+Spiny Blocks (2)
+-------------------
+Slot: 01
+Type: 1 8x8s
+Frames: 1044,1045
+Destination: 1D (BG1)
+
+Line Guide Ends (4)
+-------------------
+Slot: 04
 Type: 2 8x8s line
-Frames: 696,686
-Destination: 2F2 (BG3)
+Frames: 740,750,760,770
+Destination: 2E4 (BG3)
 
 
 -----------------
