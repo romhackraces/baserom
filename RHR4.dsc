@@ -16,8 +16,8 @@
 29f	0	A ledge vine that the player automatically hops above.
 2a0	0	A block that acts like a mid-air suspended Spiny.
 2a1	0	A block that acts like a stationary Swooper.
-2a2	0	A button that sets the on/off status to on.
-2a3	0	A button that sets the on/off status to off.
+2a2	0	Sets the ON/OFF status to ON when anything (incl. dead sprites) passes through it.
+2a3	0	Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it.
 2b0	0	Question block that always spawns a Mushroom.
 2b1	0	Question block that always spawns a Fire Flower.
 2b2	0	Question block that always spawns a Cape Feather.

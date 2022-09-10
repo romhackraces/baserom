@@ -13,4 +13,4 @@ trigger:
 return:
 	RTL
 
-print "A button that sets the on/off status to on."
+print "Sets the ON/OFF status to ON when anything (incl. dead sprites) passes through it."

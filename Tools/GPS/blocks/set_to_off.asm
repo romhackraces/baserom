@@ -5,7 +5,7 @@ JMP return : JMP trigger : JMP trigger : JMP trigger : JMP trigger
 
 trigger:
 	LDA $14AF|!addr	;\If switch already pressed, return act as $25
-	BNE return	;/
+	BNE return		;/
 
 	INC $14AF|!addr	;set switch to off
 	LDA #$0B
@@ -13,4 +13,4 @@ trigger:
 return:
 	RTL
 
-print "A button that sets the on/off status to off."
+print "Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it."
