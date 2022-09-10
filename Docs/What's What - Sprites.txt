@@ -2,10 +2,6 @@
 Enhanced Normal Sprites
 -----------------------
 
-DA,DB,DC,DD,DF: Shells
-- extra bit = 0: normal
-- extra bit = 1: disco shell
-
 04-07: Koopas
 - extra bit = 0: normal
 - extra bit = 1: kicked shell of same color
@@ -38,10 +34,6 @@ DA,DB,DC,DD,DF: Shells
 - extra bit = 0: normal, stationary
 - extra bit = 1: kicked
 
-E0: 3 Platforms on Chains
-- extra bit = 0: normal, grey platforms
-- extra bit = 1: spike ball
-
 85: Poison Mushroom
  - a sprite with mushroom movement that moves towards Mario and damages him, is also in a custom question block.
  - to get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
@@ -49,6 +41,14 @@ E0: 3 Platforms on Chains
 9B: Hammer Bro
 - extra bit = 0: unfrequent throwing
 - extra bit = 1: frequent throwing
+
+DA,DB,DC,DD,DF: Shells
+- extra bit = 0: normal
+- extra bit = 1: disco shell
+
+E0: 3 Platforms on Chains
+- extra bit = 0: normal, grey platforms
+- extra bit = 1: spike ball
 
 ---------------------------------
 Custom Sprites inserted with PIXI
