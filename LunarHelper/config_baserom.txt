@@ -4,9 +4,11 @@ dir = ../
 -- rom paths
 clean = clean.smc
 temp = temp.smc
+
+-- name of your ROM file
 output = RHR4.smc
 
--- outfile
+-- name of your ROM's output patch
 package = RHR4.bps
 
 -- initial patch (FastROM)

@@ -7,13 +7,17 @@
 296	0	ON/OFF Switch block.
 297	0	Inverted ON/OFF Switch block.
 298	0	A block that shatters when a sprite is thrown at it.
-299	0	Block that silently kills any sprite.
+299	0	A block that kills sprites.
 29a	0	Block that kills the player (even on yoshi), is solid for sprites and kills on wall running.
 29b	0	Block that kills the player (even on yoshi), is passable for sprites and kills on wall running.
 29c	0	Block that removes any powerup or item from Mario as well as flight state
 29d	0	A Donut Lift, which will fall shortly after being stepped on.
 29e	0	Block with an endless supply of throwblocks.
 29f	0	A ledge vine that the player automatically hops above.
+2a0	0	A block that acts like a mid-air suspended Spiny.
+2a1	0	A block that acts like a stationary Swooper.
+2a2	0	Sets the ON/OFF status to ON when anything (incl. dead sprites) passes through it.
+2a3	0	Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it.
 2b0	0	Question block that always spawns a Mushroom.
 2b1	0	Question block that always spawns a Fire Flower.
 2b2	0	Question block that always spawns a Cape Feather.

@@ -245,6 +245,9 @@ endif
 ..next:
     %next_iteration()
 ..end:
+    ; Initialize the intro level checkpoint.
+    lda.w #!intro_sublevel : sta !ram_checkpoint
+
     ; Keep 16 bit X/Y for the original code.
     sep #$20
 

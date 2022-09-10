@@ -55,10 +55,14 @@ if !object_tool
     jml [$0000|!dp]
 +
 endif
+    
+    ; If midways are overridden, don't spawn it.
+    lda !ram_midways_override : and #$7F : bne .return
 
     ; We only care about object 2D.
     jsr custom_midway
 
+.return:
     ; Jump back to an rts.
     jml $0DA53C|!bank
 

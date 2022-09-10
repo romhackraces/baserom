@@ -4,6 +4,7 @@ pushpc
 org $05D842
     jml mmp_main
 
+; Make midway entrances work correctly.
 org $05D9DA
     jml midway_entrance
 
@@ -84,6 +85,11 @@ mmp_main:
     jml $05D7B3|!bank
 
 midway_entrance:
+if !dynamic_ow_levels
+    %lda_13BF() : tax
+    lda $1EA2|!addr,x
+endif
+
     ; Restore original code.
     and #$40 : sta $13CF|!addr
 

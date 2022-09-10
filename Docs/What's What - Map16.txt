@@ -5,7 +5,7 @@ You should use Lunar Magic's "Add Objects" window as much as possible to constru
 Page 02
 =======
 
-200-20A 
+200-20A
 -------
 These tiles are reserved for Lunar Magic's layer 3 "Make tides act as" setting. What this means is that any block that is inserted here (or used as an act as) will be the tile the Layer 3 tide works as instead of water or lava or any of the other options.
 
@@ -17,11 +17,11 @@ Tiles for flipped muncher, hurt block, outlined note and coin block as well as 1
 -------
 A bunch of common ground tiles and uncommon net tiles.
 
-290-29F
+290-2AF
 -------
 The tiles for the custom blocks inserted by GPS, see "What's What - Blocks" document for more details.
 
-2A0-2AC
+2B0-2BC
 -------
 Tiles for a variety of custom question blocks, also inserted by GPS.
 

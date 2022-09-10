@@ -54,6 +54,14 @@ endif
 +   
 endif
     
+if !pipe_entrance_freeze < 2
+    ; If in the pipe entrance animation, lock/unlock sprites.
+    lda $71 : cmp #$05 : bcc +
+    cmp #$07 : bcs +
+    lda.b #!pipe_entrance_freeze : sta $9D
++
+endif
+
     ; If goal walk is in progress, reset the music to play.
     ; This ensures the song will be reloaded if dying and respawning in the same sublevel.
     lda $1493|!addr : beq +
@@ -130,4 +138,5 @@ if !fast_transitions
     ; Reset the mosaic timer.
     stz $0DB1|!addr
 endif
+
     rtl

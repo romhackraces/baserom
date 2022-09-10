@@ -1,10 +1,24 @@
--- This variable lets you specify the path to your retroarch emulator if you want
--- to be able to run the built ROM in it from Lunar Helper's menu via the Run
--- and/or Test menu options.
--- Change the options below and remove the "example_" from this files name.
+-- Change the options below and remove the "example_" from this file's name.
 
--- You can also specify other emulators in the `'retroarch_path' variable.
+-- emulator settings
+-- you can set emulator_path to an emulator of your choosing that will be used
+-- to run your ROM if you use the Test or Run functions from Lunar Helper's menu
+emulator_path = C:\Users\user\AppData\Roaming\RetroArch\retroarch.exe
 
--- emulator and testing (full path)
--- retroarch_path = C:\Users\user\AppData\Roaming\RetroArch\retroarch.exe
--- retroarch_core = C:\Users\user\AppData\Roaming\RetroArch\cores\snes9x_libretro.dll
+-- you can uncomment emulator_options and pass command line arguments to your configured
+-- emulator, if you're using retroarch, you should change the path after the "-L" to
+-- match your core of choice
+-- emulator_options = "-L C:\Users\user\AppData\Roaming\RetroArch\cores\snes9x_libretro.dll"
+
+-- you can uncomment this config variable to make Lunar Helper automatically reload your emulator
+-- if you have it open while a (Quick) Build finishes, which is nice if you're prototyping something
+-- note that for this to work, you have to launch your emulator using Lunar Helper, it won't work
+-- if you're starting it from anywhere else
+-- reload_emulator_after_build = yes
+
+-- you can uncomment this config variable to stop Lunar Helper from warning you about arbitrary
+-- dependencies after a build, arbitrary dependencies will result in your quick build taking
+-- slightly longer than may be necessary, but should not cause any problems, so you can ignore
+-- them if you want, though in most cases they should be easy enough to convert to dependencies
+-- that Lunar Helper can understand
+-- suppress_arbitrary_dependency_warning = yes

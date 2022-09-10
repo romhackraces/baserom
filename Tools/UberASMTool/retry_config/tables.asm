@@ -51,7 +51,7 @@ checkpoint_effect:
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 130-13F
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 140-14F
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 150-15F
-    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$00,$00,$00,$00,$00 ; 160-16F
+    db $02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$02,$00,$00,$00,$00,$00 ; 160-16F
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 170-17F
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 180-18F
     db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00 ; 190-19F
@@ -226,14 +226,14 @@ reset_rng:
 save:
     dl !ram_checkpoint    : dw 192
     ; Feel free to add your own stuff here.
-    
-    
+
+
 
 .not_game_over:
     dl !ram_death_counter : dw 5
     ; Feel free to add your own stuff here.
-    
-    
+
+
 
 ; Here you specify the default values of the addresses you want to save, for when a new save file is started.
 ; You can do "db $XX,$XX,..." for 1 byte values, "dw $XXXX,$XXXX,..." for 2 bytes values and "dl $XXXXXX,$XXXXXX,..." for 3 bytes values.
@@ -256,12 +256,12 @@ sram_defaults:
     dw $012C,$012D,$012E,$012F,$0130,$0131,$0132,$0133
     dw $0134,$0135,$0136,$0137,$0138,$0139,$013A,$013B
     ; Feel free to add your own stuff here.
-    
-    
+
+
 
 .not_game_over:
     ; Initial death counter value (don't edit this!).
     db $00,$00,$00,$00,$00
     ; Feel free to add your own stuff here.
-    
-    
+
+

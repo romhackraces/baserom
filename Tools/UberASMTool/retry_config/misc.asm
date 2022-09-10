@@ -4,7 +4,7 @@
 ; Retry version number (Va.b.c) to write in ROM.
 !version_a = 0
 !version_b = 3
-!version_c = 5
+!version_c = 7
 
 ; Read death time from ROM.
 !death_time #= read1($00F61C)
@@ -124,6 +124,13 @@ if read3($01DF78) == $535344
     !dss = 1
 else
     !dss = 0
+endif
+
+; Detects the "Level Depending on Ram" and similar patches.
+if read1($05DCDD) == $22 || read1($05DCE2) == $22
+    !dynamic_ow_levels = 1
+else
+    !dynamic_ow_levels = 0
 endif
 
 ; Check which channel is used for windowing HDMA, for SA-1 v1.35 (H)DMA remap compatibility.

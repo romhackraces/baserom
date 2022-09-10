@@ -19,7 +19,7 @@ patches
 	Tools/Asar/Fixes/FireBerryFix.asm
 	Tools/Asar/Fixes/FixedColorDataNMIOptimizer.asm
 	Tools/Asar/Fixes/FixFeather.asm
-	Tools/Asar/Fixes/FixPiranhaStem.asm
+	Tools/Asar/Fixes/FixPiranhasPlusRedOnExtraBit.asm
 	Tools/Asar/Fixes/FixPlayerPose.asm
 	Tools/Asar/Fixes/FixPowerupPriority.asm
 	Tools/Asar/Fixes/FreeUpBlankTilesFix.asm
@@ -32,6 +32,7 @@ patches
 	Tools/Asar/Fixes/LineRopeLengthFix.asm
 	Tools/Asar/Fixes/NetScreenBoundaryFix.asm
 	Tools/Asar/Fixes/NoSpriteInteractionFix.asm
+	Tools/Asar/Fixes/Optimize1F0.asm
 	Tools/Asar/Fixes/PBalloonCloudFix.asm
 	Tools/Asar/Fixes/PlayerXSpeedFix.asm
 	Tools/Asar/Fixes/PressedSwitchYoshiFix.asm
@@ -59,11 +60,14 @@ patches
 	Tools/Asar/PlaceableKickedShell.asm
 	Tools/Asar/PlaceableThrowBlock.asm
 	Tools/Asar/PoisonMushroom.asm
+	Tools/Asar/PuffOfSmokeSprite.asm
 	Tools/Asar/RAMControlledFireballAmount.asm
 	Tools/Asar/RAMToggledLR.asm
 	Tools/Asar/RAMToggledStatusbar.asm
 	Tools/Asar/SpriteRemaps.asm
+	Tools/Asar/SpriteRemaps.asm
 	Tools/Asar/SpriteSubmapBehaviorAsExtraBit.asm
+	Tools/Asar/TitleScreenSpriteCleanup.asm
 	Tools/Asar/TripleBallNChain.asm
 	Tools/Asar/Tweaks.asm
 	Tools/Asar/MarioGFXDMA/MarioGFXDMA.asm
