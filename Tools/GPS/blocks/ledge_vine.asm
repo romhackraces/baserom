@@ -13,19 +13,19 @@ JMP Mario : JMP Ledge : JMP Ledge
 
 Mario:
 LDA $74			;\If already climbing
-BNE Climbing		;/Branch to climbing code
+BNE Climbing	;/Branch to climbing code
 LDA $15			;\If not pressing
 AND #$04		;|down
 BEQ Ledge		;/then branch to act like a ledge
 SetClimb:
 LDA #$1F		;\Set the climbing RAM
 STA $8B			;/to "climbing up or down" value (I still haven't documented all the values yet)
-RTL			;Return
+RTL				;Return
 
 Climbing:
 LDA $15			;\If not pressing
 AND #$08		;|up
-BEQ SetClimb		;/branch back up to set the climb value
+BEQ SetClimb	;/branch back up to set the climb value
 LDA $8B			;\If climbing RAM value
 AND #$1D		;|isn't "Top of vine"
 BEQ Return		;|then return
@@ -33,16 +33,16 @@ STZ $74			;|otherwise, zero climbing flag
 LDA #$A8		;|Pop Mario up
 STA $7D			;/about one Tile
 ;LDA #$01		;\Uncomment this
-;STA $1DFA		;/for jump sound
+;STA $1DFA|!addr;/for jump sound
 BRA Ledge		;Branch to ledge so the vine code stops completely
 Return:
 RTL
 
 MarioSide:
 Ledge:
-LDY #$01	;		;\Acts like tile 100 if Mario isn't pressing down
+LDY #$01		;\Acts like tile 100 if Mario isn't pressing down
 LDA #$00		;/Or if a sprite is touching it.
-STA $1693
-RTL			;Return
+STA $1693|!addr
+RTL				;Return
 
 print "A ledge vine that the player automatically hops above."
