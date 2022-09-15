@@ -6,7 +6,7 @@ clean_rom_path: "clean.smc"
 global_data_path: "Other/global_data.bps"
 shared_palettes_path: "Backup/Palettes/Shared_latest.pal"
 -- Level monitoring
-level_directory: "Levels/latest"
+level_directory: "Backup/Levels/latest"
 -- Optional config variables if you want to use a human readble text-based map16 format
 human_readable_map16_cli_path: "Tools/HumanReadableMap16/human-readable-map16-cli.exe"
 human_readable_map16_directory_path: "Other/all_map16"
