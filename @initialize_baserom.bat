@@ -173,7 +173,7 @@ if "!Action!"=="1" (
         copy /y NUL !UBER_DIR!gamemode\.gitkeep
         copy /y NUL !UBER_DIR!overworld\.gitkeep
         copy /y NUL !UBER_DIR!level\.gitkeep
-        echo ; > !UBER_DIR!library\.gitkeep
+        echo ; > !UBER_DIR!library\_gitkeep
         :: replace stock list with baserom list
         copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
         :: Delete junk files
