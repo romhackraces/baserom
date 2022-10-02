@@ -10,6 +10,7 @@ Tools/AddmusicK_*/readme_files/
 Tools/AddmusicK_*/SPCs/*.spc
 Tools/AddmusicK_*/stats/*.txt
 Tools/AddmusicK_*/temp*
+Tools/AddmusicK_*/*.pl
 Tools/AddmusicK_*/Addmusic_*.txt
 Tools/GPS/blocks/template.asm
 Tools/GPS/rom.txt
