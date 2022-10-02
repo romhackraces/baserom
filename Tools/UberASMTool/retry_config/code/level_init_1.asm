@@ -22,10 +22,12 @@ init:
 
     ; The game sets $13BF a bit later so we need to do it ourselves
     ; (unless it's right after a "No Yoshi" cutscene).
-    lda $71 : cmp #$0A : beq +
-    jsr shared_get_translevel
-    asl : tax
-+
+    lda $71 : cmp #$0A : bne +
+    %lda_13BF()
+    bra ++
++   jsr shared_get_translevel
+++  asl : tax
+
     ; Don't trigger Yoshi init.
     lda #$00 : sta !ram_is_respawning
 
