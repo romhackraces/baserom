@@ -30,7 +30,7 @@ if not exist !ROM_NAME_FILE! (
     :: Set ROM name
     set /p ROM_NAME=<!ROM_NAME_FILE!
 )
-echo ROM name: !ROM_NAME!
+
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
 
 :: Backup locations
@@ -67,11 +67,11 @@ set Minute=%DateTime:~10,2%
 set TIMESTAMP="%Year%%Month%%Day%_%Hour%%Minute%"
 
 :: Options
-echo Backup Actions
+echo Backup Actions. ROM name: !ROM_NAME!
 echo.
 echo This script will create time-stamped backups of the following:
 echo.
-echo   1. Any edited levels
+echo   1. Any modified levels
 echo   2. All of Map16
 echo   3. Shared palette
 echo   4. ROM file
@@ -82,7 +82,7 @@ echo.
 
 :: Export MWL level files
 if "%Action%"=="1" (
-    echo Exporting Levels...
+    echo Exporting modified levels...
     if not exist %LEVELS_BACKUP%\%TIMESTAMP% (
         mkdir %LEVELS_BACKUP%\%TIMESTAMP%
     )
@@ -91,7 +91,7 @@ if "%Action%"=="1" (
 )
 :: Export Map16
 if "%Action%"=="2" (
-    echo Exporting Map16...
+    echo Exporting all of Map16...
     if not exist %MAP16_BACKUP% (
         mkdir %MAP16_BACKUP%
     )
@@ -100,7 +100,7 @@ if "%Action%"=="2" (
 )
 :: Export Palettes
 if "%Action%"=="3" (
-    echo Exporting Palettes...
+    echo Exporting shared palette...
     if not exist %PAL_BACKUP% (
         mkdir %PAL_BACKUP%
     )
