@@ -23,26 +23,21 @@ addmusick_path = Tools/AddmusicK_1.0.8/AddMusicK.exe
 asar_path = Tools/Asar/asar.exe
 flips_path = Tools/Flips/flips.exe
 gps_path = Tools/GPS/gps.exe
-human_readable_map16_cli_path = Tools/HumanReadableMap16/human-readable-map16-cli.exe
-human_readable_map16_directory_path = Other/all_map16
 lm_path = Tools/LunarMagic/Lunar Magic.exe
 pixi_path = Tools/PIXI/pixi.exe
 uberasm_path = Tools/UberASMTool/UberASMTool.exe
 
 -- tool CLI options
 addmusick_options = -v
-gps_options = -l list_gps.txt
-pixi_options = -l Tools/PIXI/list_pixi.txt -ssc "Tools\PIXI\append.ssc" -mwt "PIXI\append.mwt"
-uberasm_options = list_uberasm.txt
+gps_options =
+pixi_options = -l Tools/PIXI/list.txt -ssc "Tools\PIXI\append.ssc" -mwt "Tools\PIXI\append.mwt"
+uberasm_options = list.txt
 lm_level_import_flags = 0
 
--- shared config folder
-shared_folder = Shared
-
 -- content
-levels = Backup/Levels/latest
-shared_palette = Backup/Palettes/Shared_latest.pal
-map16 = Backup/Map16/AllMap16_latest.map16
+levels = Levels
+shared_palette = Other/Palettes/Shared.pal
+map16 = Other/AllMap16.map16
 -- title_moves = Other/smwtitledemo.zst
 
 -- global_data is a BPS patch file, to be created by Lunar Helper,

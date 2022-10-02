@@ -10,10 +10,10 @@ setlocal EnableDelayedExpansion
 
 :: Directory definitions
 set TOOLS_DIR=%WORKING_DIR%Tools\
-set LISTS_DIR=%WORKING_DIR%Backup\Lists\
+set LISTS_DIR=%WORKING_DIR%Other\Lists\
 
 :: Import Definitions
-call %WORKING_DIR%Shared\@tool_defines.bat
+call %WORKING_DIR%Tools\@tool_defines.bat
 
 :: Options
 echo Commands to Initialize Baserom
@@ -80,7 +80,6 @@ if "!Action!"=="1" (
         echo -- Flips already setup.
     )
 
-
     :: GPS
     set GPS_DIR=!TOOLS_DIR!GPS\
     :: Check if GPS exists and download if not
@@ -88,8 +87,8 @@ if "!Action!"=="1" (
         echo GPS not found, downloading...
         powershell Invoke-WebRequest !GPS_DL! -OutFile !GPS_ZIP! >NUL
         powershell Expand-Archive !GPS_ZIP! -DestinationPath !GPS_DIR! >NUL
-        :: add warning to list.txt
-        echo Baserom Note: Do not Use. Use !GPS_LIST! instead. > !GPS_DIR!list.txt
+        :: replace stock list with baserom list
+        copy /y !LISTS_DIR!!PIXI_LIST! !GPS_DIR!
         :: Delete junk files
         for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
         :: Delete Zip
@@ -97,22 +96,6 @@ if "!Action!"=="1" (
         echo Done.
     ) else (
         echo -- GPS already setup.
-    )
-
-    :: Human Readable Map16 CLI
-    set HRM_DIR=!TOOLS_DIR!HumanReadableMap16\
-    :: Check if HRM exists and download if not
-    if not exist "!HRM_DIR!" (
-        echo Human Readable Map16 CLI not found, downloading...
-        powershell Invoke-WebRequest !HRM_DL! -OutFile !HRM_ZIP! >NUL
-        powershell Expand-Archive !HRM_ZIP! -DestinationPath !HRM_DIR! >NUL
-        :: Delete junk files
-        for %%a in (!HRM_JUNK!) do (del !HRM_DIR!%%a)
-        :: Delete Zip
-        del !HRM_ZIP!
-        echo Done.
-    ) else (
-        echo -- Human Readable Map16 CLI already setup.
     )
 
     :: Lunar Magic
@@ -179,8 +162,8 @@ if "!Action!"=="1" (
         echo PIXI not found, downloading...
         powershell Invoke-WebRequest !PIXI_DL! -OutFile !PIXI_ZIP! >NUL
         powershell Expand-Archive !PIXI_ZIP! -DestinationPath !PIXI_DIR! >NUL
-        :: add warning to list.txt
-        echo Baserom Note: Do not Use. Use !PIXI_LIST! instead. > !PIXI_DIR!list.txt
+        :: replace stock list with baserom list
+        copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!
         :: Delete junk files
         for %%a in (!PIXI_JUNK!) do (del !PIXI_DIR!%%a)
         :: Delete Zip
@@ -202,8 +185,8 @@ if "!Action!"=="1" (
         copy /y NUL !UBER_DIR!overworld\_gitkeep
         copy /y NUL !UBER_DIR!level\_gitkeep
         echo ; > !UBER_DIR!library\_gitkeep
-        :: add warning to list.txt
-        echo Baserom Note: Do not Use. Use !UBER_LIST! instead. > !UBER_DIR!list.txt
+        :: replace stock list with baserom list
+        copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!
         :: Delete junk files
         for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a)
         :: Delete Zip

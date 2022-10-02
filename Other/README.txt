@@ -7,14 +7,13 @@ two BPS patch files that are initial configurations for FastROM and SA-1 respect
 to be applied to your clean Super Mario World ROM.
 
 -- Palettes
-palette files for the Poison Mushroom and One-Way blocks in the baserom
-
--- all_map16
-the text files for Human Readable Map16, which are map16 pages in a readable format,
-that are converted by said tool back into map16 files.
+palette files for the Shared palette as well as for the Poison Mushroom and One-Way blocks in the baserom
 
 -- Map 16 Pages
-exported sections of map16 for various things within the baserom
+individual exports of sections of map16 for various things within the baserom
+
+-- AllMap16.map16
+a copy of all of Map16 exported by Lunar Monitor
 
 -- lunar-monitor-config.txt
-the config file for Lunar Monitor
+a backup of the config file for Lunar Monitor
