@@ -11,18 +11,26 @@ setlocal EnableDelayedExpansion
 :: Import Definitions
 call %WORKING_DIR%Tools\@tool_defines.bat
 
-:: The name of your ROM file (without the extension)
-:: used both for patch creation and applying resources.
-:: be sure it matches
-set ROM_NAME=RHR4
-
 :: DO NOT CHANGE THE VARIABLES BELOW
 
 :: Directory Definitiions
 set BACKUP_DIR=%~sdp0Backup\
 set TOOLS_DIR=%WORKING_DIR%Tools\
 
-:: Variables
+:: ROM Definitions
+set ROM_NAME_FILE=%WORKING_DIR%\Other\rom-name.txt
+:: Check if rom-name.txt exists
+if not exist !ROM_NAME_FILE! (
+    :: Ask for ROM name
+    set /p ROM_NAME_INPUT=Enter the filename of your ROM, e.g. "MyHack": 
+    echo !ROM_NAME_INPUT!>!ROM_NAME_FILE!
+    :: Set ROM name
+    set /p ROM_NAME=<!ROM_NAME_FILE!
+) else (
+    :: Set ROM name
+    set /p ROM_NAME=<!ROM_NAME_FILE!
+)
+echo ROM name: !ROM_NAME!
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
 
 :: Backup locations
@@ -69,7 +77,7 @@ echo   3. Shared palette
 echo   4. ROM file
 echo   0. Exit
 echo.
-set /p Action=Enter the number of your choice:
+set /p Action=Enter the number of your choice: 
 echo.
 
 :: Export MWL level files
