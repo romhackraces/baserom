@@ -2,12 +2,31 @@
 Graphics
 --------
 
-The following are what vanilla graphics files have been edited in the baserom, backups can be found in the Backups/Graphics folder.
+The following are what vanilla graphics files have been edited in the baserom, backups can be found in the Other/Original Graphics folder.
 
-GFX14 : Global Tiles
+GFX00 : Global Sprite Graphics
+ - the 8x8 tiles for Mario have been removed as they are now dynamically inserted
+ - tiles for the bounce sprites for the ON/OFF, Glass and Note blocks have been moved here
+ - 8x8 tiles for lava splashes, Yoshi's tongue and throat have been moved here
+ - a frame for the blue sliding koopa has been moved to GFX01
+ - tile for Poison Mushroom was added here
+
+GFX01 : Global Sprite Graphics
+ - graphic for the donut block has been placed here replacing the Smiley coin
+ - tile for Pirahna plant stem was added here
+ - a frame for the blue sliding koopa from GFX00 was added here
+ - flopping fish graphics were moved to GFX13
+
+GFX13 : Global Tiles
+ - note block bounce sprite frame moved to GFX00
+ - tiles for the flopping fish from GFX01 were added here
+ - a frame of the hammer has been moved
+ - 8x8 tiles for the small note and egg fragment have been moved
+
+GFX14 : Global Foreground Tiles
  - a couple unused tiles in the bullet launcher were replaced with sideways cloud graphics.
 
-GFX16 : Rope Set Foregroud
+GFX16 : Rope Set Foreground
  - the tiles for the line guide have been moved to ExGFXE17 (FG2) as they now are global
  - a proper corner tiles for rope foreground was added so the objects can be used properly
  - the graphics for the log bridge from GFX19 was moved here
