@@ -51,12 +51,6 @@ org $00A09C : db $04
 ; don't shoot fireballs while spinjumping
 org $00D093 : db $80
 
-; prevent Mario clipping on Mega Moles when they have upwards speed
-org $0387E3 : db $DF
-org $0387E6 : bra $02
-org $0387F4 : bra $00
-
-
 ;;;;;;;;;;;;;;;;;
 ;; Minor Fixes ;;
 ;;;;;;;;;;;;;;;;;

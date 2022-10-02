@@ -88,7 +88,7 @@ if "!Action!"=="1" (
         powershell Invoke-WebRequest !GPS_DL! -OutFile !GPS_ZIP! >NUL
         powershell Expand-Archive !GPS_ZIP! -DestinationPath !GPS_DIR! >NUL
         :: replace stock list with baserom list
-        copy /y !LISTS_DIR!!PIXI_LIST! !GPS_DIR!
+        copy /y !LISTS_DIR!!GPS_LIST! !GPS_DIR!list.txt
         :: Delete junk files
         for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
         :: Delete Zip
@@ -136,16 +136,12 @@ if "!Action!"=="1" (
     :: Lunar Monitor
     set LUN_MON_DIR=!TOOLS_DIR!LunarMagic\
     :: Check if Lunar Monitor exists and download if not
-    if not exist "!LUN_MON_DIR!lunar-monitor.dll" (
+    if not exist "!LUN_MON_DIR!lunar_monitor" (
         echo Lunar Monitor not found, downloading...
         powershell Invoke-WebRequest !LUN_MON_DL! -OutFile !LUN_MON_ZIP! >NUL
         powershell Expand-Archive !LUN_MON_ZIP! -DestinationPath !LUN_MON_DIR! >NUL
-        :: Move files
-        echo Moving files to relevant locations...
-        move !LUN_MON_DIR!LM3.31\lunar-monitor.dll !LUN_MON_DIR!
         :: Delete junk files
         for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a)
-        for %%a in (!LUN_MON_JUNK_DIR!) do (rmdir /S /Q !LUN_MON_DIR!%%a)
         :: Copy in existing config file
         copy /y %WORKING_DIR%Other\lunar-monitor-config.txt %WORKING_DIR%
         :: Delete Zip
@@ -163,7 +159,7 @@ if "!Action!"=="1" (
         powershell Invoke-WebRequest !PIXI_DL! -OutFile !PIXI_ZIP! >NUL
         powershell Expand-Archive !PIXI_ZIP! -DestinationPath !PIXI_DIR! >NUL
         :: replace stock list with baserom list
-        copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!
+        copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!list.txt
         :: Delete junk files
         for %%a in (!PIXI_JUNK!) do (del !PIXI_DIR!%%a)
         :: Delete Zip
@@ -181,12 +177,12 @@ if "!Action!"=="1" (
         powershell Invoke-WebRequest !UBER_DL! -OutFile !UBER_ZIP! >NUL
         powershell Expand-Archive !UBER_ZIP! -DestinationPath !UBER_DIR! >NUL
         :: Make null files in empty folders
-        copy /y NUL !UBER_DIR!gamemode\_gitkeep
-        copy /y NUL !UBER_DIR!overworld\_gitkeep
-        copy /y NUL !UBER_DIR!level\_gitkeep
-        echo ; > !UBER_DIR!library\_gitkeep
+        copy /y NUL !UBER_DIR!gamemode\.gitkeep
+        copy /y NUL !UBER_DIR!overworld\.gitkeep
+        copy /y NUL !UBER_DIR!level\.gitkeep
+        echo ; > !UBER_DIR!library\.gitkeep
         :: replace stock list with baserom list
-        copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!
+        copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
         :: Delete junk files
         for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a)
         :: Delete Zip

@@ -6,6 +6,9 @@ assert !cursor_palette >= $08 && !cursor_palette <= $0F, "Error: \!cursor_palett
 !l_props #= ($30|((!letter_palette-8)<<1))
 !c_props #= ($30|((!cursor_palette-8)<<1))
 
+; Function to add the T bit in the YXPPCCCT properties for tiles in page 1
+function props(prop,tile) = ((prop)|((tile>>8)&1))
+
 ;=====================================
 ; prompt_oam routine
 ;
@@ -235,30 +238,30 @@ endif
 ;=====================================
 letters:
 .retry:
-    db $00,$00,!tile_curs,!c_props,$00 ; Black/Cursor
-    db $10,$00,!tile_r,   !l_props,$00 ; R
-    db $18,$00,!tile_e,   !l_props,$00 ; E
-    db $20,$00,!tile_t,   !l_props,$00 ; T
-    db $28,$00,!tile_r,   !l_props,$00 ; R
-    db $30,$00,!tile_y,   !l_props,$00 ; Y
+    db $00,$00,!tile_curs,props(!c_props,!tile_curs),$00 ; Black/Cursor
+    db $10,$00,!tile_r,   props(!l_props,!tile_r),   $00 ; R
+    db $18,$00,!tile_e,   props(!l_props,!tile_e),   $00 ; E
+    db $20,$00,!tile_t,   props(!l_props,!tile_t),   $00 ; T
+    db $28,$00,!tile_r,   props(!l_props,!tile_r),   $00 ; R
+    db $30,$00,!tile_y,   props(!l_props,!tile_y),   $00 ; Y
 ..end:
     db $FF
 
 .exit:
-    db $00,$10,!tile_curs,!c_props,$00 ; Black/Cursor
-    db $10,$10,!tile_e,   !l_props,$00 ; E
-    db $18,$10,!tile_x,   !l_props,$00 ; X
-    db $20,$10,!tile_i,   !l_props,$00 ; I
-    db $28,$10,!tile_t,   !l_props,$00 ; T
+    db $00,$10,!tile_curs,props(!c_props,!tile_curs),$00 ; Black/Cursor
+    db $10,$10,!tile_e,   props(!l_props,!tile_e),   $00 ; E
+    db $18,$10,!tile_x,   props(!l_props,!tile_x),   $00 ; X
+    db $20,$10,!tile_i,   props(!l_props,!tile_i),   $00 ; I
+    db $28,$10,!tile_t,   props(!l_props,!tile_t),   $00 ; T
 ..end:
     db $FF
 
 .box:
-    db $E0,$10,!tile_blk, !l_props,$02 ; Black
-    db $F0,$10,!tile_blk, !l_props,$02 ; Black
+    db $E0,$10,!tile_blk, props(!l_props,!tile_blk), $02 ; Black
+    db $F0,$10,!tile_blk, props(!l_props,!tile_blk), $02 ; Black
 ..no_exit:
-    db $E0,$00,!tile_blk, !l_props,$02 ; Black
-    db $F0,$00,!tile_blk, !l_props,$02 ; Black
+    db $E0,$00,!tile_blk, props(!l_props,!tile_blk), $02 ; Black
+    db $F0,$00,!tile_blk, props(!l_props,!tile_blk), $02 ; Black
 ..end:
     db $FF
 

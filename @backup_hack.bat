@@ -9,7 +9,7 @@ set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: Import Definitions
-call %WORKING_DIR%Shared\@tool_defines.bat
+call %WORKING_DIR%Tools\@tool_defines.bat
 
 :: The name of your ROM file (without the extension)
 :: used both for patch creation and applying resources.
@@ -26,7 +26,7 @@ set TOOLS_DIR=%WORKING_DIR%Tools\
 set ROMFILE="%WORKING_DIR%%ROM_NAME%.smc"
 
 :: Backup locations
-set MAIN_BACKUP="%BACKUP_DIR%"ROM
+set ROM_BACKUP="%BACKUP_DIR%"ROM
 set LEVELS_BACKUP="%BACKUP_DIR%"Levels
 set MAP16_BACKUP="%BACKUP_DIR%"Map16
 set PAL_BACKUP="%BACKUP_DIR%"Palettes
@@ -78,11 +78,7 @@ if "%Action%"=="1" (
     if not exist %LEVELS_BACKUP%\%TIMESTAMP% (
         mkdir %LEVELS_BACKUP%\%TIMESTAMP%
     )
-    if not exist %LEVELS_BACKUP%\latest (
-        mkdir %LEVELS_BACKUP%\latest
-    )
     !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\%TIMESTAMP%\level
-    !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\latest\level
     pause
 )
 :: Export Map16
@@ -92,7 +88,6 @@ if "%Action%"=="2" (
         mkdir %MAP16_BACKUP%
     )
     !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\%TIMESTAMP%_AllMap16.map16
-    !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\AllMap16_latest.map16
     pause
 )
 :: Export Palettes
@@ -102,17 +97,15 @@ if "%Action%"=="3" (
         mkdir %PAL_BACKUP%
     )
     !LM! -ExportSharedPalette !ROMFILE! %PAL_BACKUP%\%TIMESTAMP%_Shared.pal
-    !LM! -ExportSharedPalette !ROMFILE! %PAL_BACKUP%\Shared_latest.pal
     pause
 )
 :: Create time-stamped backup of your ROM
 if "%Action%"=="4" (
-    if not exist %MAIN_BACKUP% (
-        mkdir %MAIN_BACKUP%
+    if not exist %ROM_BACKUP% (
+        mkdir %ROM_BACKUP%
     )
     echo Creating time-stamped copy of your ROM...
-    copy !ROMFILE! %MAIN_BACKUP%\%TIMESTAMP%_%ROM_NAME%.smc
-    copy !ROMFILE! %MAIN_BACKUP%\latest_%ROM_NAME%.smc
+    copy !ROMFILE! %ROM_BACKUP%\%TIMESTAMP%_%ROM_NAME%.smc
     pause
 )
 if "%Action%"=="0" (

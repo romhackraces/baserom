@@ -1,3 +1,8 @@
+v4.11
+- new death block graphics, using the MM2 spikes
+- updated Lunar Helper to 2.4.0, Lunar Magic to 3.33 and Lunar Monitor to 1.4.0
+- update retry to 0.3.9
+
 v4.10
 - new on/off blocks and block graphics
 - added TheBourgyMan's swooper and spiny blocks

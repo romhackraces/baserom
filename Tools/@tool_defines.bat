@@ -40,10 +40,9 @@ set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt"
 set LUN_HLP_JUNK_DIR="initial_patches"
 
 :: Lunar Monitor
-set LUN_MON_DL="https://github.com/Underrout/lunar-monitor/releases/download/v1.2.3/lunar-monitor-v1.2.3.zip"
-set LUN_MON_ZIP="lunar-monitor-v1.2.3.zip"
-set LUN_MON_JUNK="README.txt" "LICENSE"
-set LUN_MON_JUNK_DIR="LM3.30" "LM3.31"
+set LUN_MON_DL="https://github.com/Underrout/lunar-monitor/releases/download/v1.4.0/lunar-monitor-v1.4.0.zip"
+set LUN_MON_ZIP="lunar-monitor-v1.4.0.zip"
+set LUN_MON_JUNK="README.txt" "LICENSE" "lunar-monitor-config.txt"
 
 :: PIXI
 set PIXI_DL="https://dl.smwcentral.net/26026/pixi_v1.32.zip"

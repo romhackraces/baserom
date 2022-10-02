@@ -1,4 +1,4 @@
-; Capespin Hitbox Consistency + Net Punching Hitbox Correction - patch by Katun24
+; Capespin Hitbox Consistency + Net Punching Hitbox Correction - patch by Katun24,  SA-1 conversion by AmperSam
 ;
 ; Capespinning in vanilla SMW has the following properties:
 ;	- The capespin hitbox is active either only on the left side of Mario or on the right side - the side changes every 4 frames (unpredictable for RTA as it depends on a global timer).

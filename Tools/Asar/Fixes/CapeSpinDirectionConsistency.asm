@@ -1,4 +1,4 @@
-; Capespin Direction Consistency - patch by Katun24
+; Capespin Direction Consistency - patch by Katun24, SA-1 conversion by AmperSam
 ; This patch makes it so a capespin always results in Mario turning around, and makes the face direction consistent during the capespin animation.
 
 if read1($00FFD5) == $23

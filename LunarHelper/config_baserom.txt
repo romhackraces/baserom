@@ -29,9 +29,9 @@ uberasm_path = Tools/UberASMTool/UberASMTool.exe
 
 -- tool CLI options
 addmusick_options = -v
-gps_options =
+gps_options = -d
 pixi_options = -l Tools/PIXI/list.txt -ssc "Tools\PIXI\append.ssc" -mwt "Tools\PIXI\append.mwt"
-uberasm_options = list.txt
+-- uberasm_options
 lm_level_import_flags = 0
 
 -- content
