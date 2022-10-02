@@ -34,9 +34,12 @@ Enhanced Normal Sprites
 - extra bit = 0: normal, stationary
 - extra bit = 1: kicked
 
+69: Puff of Smoke
+- a sprite inserted for use with the sprite killing block as visual feedback
+
 85: Poison Mushroom
- - a sprite with mushroom movement that moves towards Mario and damages him, is also in a custom question block.
- - to get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
+- a sprite with mushroom movement that moves towards Mario and damages him, is also in a custom question block.
+- to get the correct palette in your levels import "PoisonMushroom.pal" palette from `Backups/Palettes`.
 
 9B: Hammer Bro
 - extra bit = 0: unfrequent throwing
