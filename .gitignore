@@ -1,10 +1,8 @@
 Backup/Levels/20*
-Backup/Map16/20*
-Backup/Palettes/20*
-sysLMRestore
-sysLMRestore/*.lrp
-sysLMRestore/*.smc
-sysLMRestore/readme.txt
+Backup/Levels/*.mwl
+Backup/Map16/*.map16
+Backup/Palettes/*.pal
+sysLMRestore/*
 Tools/AddmusicK_*/asm/SNES/bin/*.bin
 Tools/AddmusicK_*/asm/SNES/SongSampleList.asm
 Tools/AddmusicK_*/readme.html
@@ -12,6 +10,8 @@ Tools/AddmusicK_*/readme_files/
 Tools/AddmusicK_*/SPCs/*.spc
 Tools/AddmusicK_*/stats/*.txt
 Tools/AddmusicK_*/temp*
+Tools/AddmusicK_*/*.pl
+Tools/AddmusicK_*/Addmusic_*.txt
 Tools/GPS/blocks/template.asm
 Tools/GPS/rom.txt
 Tools/UberASMTool/*.pdb
@@ -20,10 +20,12 @@ Tools/UberASMTool/asm/work/*.asm
 flipscfg.bin
 lunar-monitor-log.txt
 config_user.txt
+list.txt
 temp.*
 *.*~
 *.lnk
 *.dll
+*.chm
 *.exe
 *.extmod
 *.lrp

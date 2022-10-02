@@ -4,6 +4,12 @@ init:
     ; Better safe than sorry.
     stz $13 : stz $14
 
+    ; Reset layer 1 and 2 X positions.
+    rep #$20
+    stz $1A
+    stz $1E
+    sep #$20
+
     ; Reset the custom midway object counter.
     lda #$00 : sta !ram_cust_obj_num
 
@@ -16,10 +22,12 @@ init:
 
     ; The game sets $13BF a bit later so we need to do it ourselves
     ; (unless it's right after a "No Yoshi" cutscene).
-    lda $71 : cmp #$0A : beq +
-    jsr shared_get_translevel
-    asl : tax
-+
+    lda $71 : cmp #$0A : bne +
+    %lda_13BF()
+    bra ++
++   jsr shared_get_translevel
+++  asl : tax
+
     ; Don't trigger Yoshi init.
     lda #$00 : sta !ram_is_respawning
 

@@ -1,5 +1,5 @@
 ***START***
-"lunar-monitor-injector.exe" "%9"
+"lunar_monitor/lunar-monitor-injector.exe" "%9" "%8" "%4"
 LM_DEFAULT
 LM_NO_BUTTON,LM_AUTORUN_ON_NEW_ROM,LM_NO_CONSOLE_WINDOW
 ***END***

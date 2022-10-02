@@ -1,0 +1,21 @@
+--------------------------
+Frequently Asked Questions
+--------------------------
+
+
+"How do I remove things from the baserom?"
+------------------------------------------
+
+The Lunar Helper build system makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts.
+
+Removing resources, like blocks or sprites, is as straightforward as editing the list of the respective tool and running Lunar Helper's "(Re)Build" action. You can then delete those resources, if desired.
+
+To remove global patches from the baserom: edit the list of patches in LunarHelper/config_patches.txt, then re-run Lunar Helper's "(Re)Build" action.
+
+To remove specific hexedits or tweaks: edit the Tweaks.asm file, in Tools/Asar folder, then re-run Lunar Helper's "(Re)Build" action.
+
+
+"Why are my block graphics not looking right?"
+----------------------------------------------
+
+The custom block graphics in the baserom use ExGraphics, loading E17 into the FG2 slot in the graphics override dialog will make the blocks appear as they are intended to in other levels.

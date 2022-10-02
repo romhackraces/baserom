@@ -1,24 +1,10 @@
-Lunar Helper is a build system for Super Mario World ROM hacking.
+Lunar Helper is the build system for the Romhack Races Baserom. Full details on this tool can be found in the Docs folder of this baserom.
 
-Step by step, what it does is:
+-- config_baserom.txt
+The lunar helper config file for all the specific settings related to the baserom.
 
-- Takes a clean SMW ROM
-- Applies an initial .bps patch to it (more on this later)
-- Runs GPS and PIXI on it
-- Applies your patches to it
-- Runs UberASM Tool on it
-- Runs AddmusicK on it
-- Inserts various SMW data (graphics, map16, overworld, title screen,
-  title screen moves etc.) into it
-- Inserts level files into it
+-- config_patches.txt
+A Lunar Helper config that has the list of Asar patches to be applied to the baserom, you can add or remove ASM file destinations to this list as desired.
 
-It basically takes a bunch of resources stored as individual files
-(i.e. all of your blocks, sprites, patches, graphics, levels, etc.)
-and creates a single fully functional hacked ROM from them.
-
-Lunar Helper also offers convenient functionality for:
-
-- Opening the built ROM in Lunar Magic
-- Running it inside an emulator of your choice
-
-Full details on this tool can be found in the Docs folder of this baserom.
+-- example_config_user.txt
+An example Lunar Helper configuration file that has user-specific options, like emulator setup, that can be edited for your own use.

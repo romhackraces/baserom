@@ -18,6 +18,7 @@ handle_menu:
 
     ; Check if we have to retry or exit.
     cpy #$00 : beq .retry
+
 .exit:
     ; Call the custom exit routine.
     phy : php : phb : phk : plb
@@ -29,14 +30,13 @@ handle_menu:
 
     ;lda !ram_hurry_up : bne ..return
     
-    ; Play the correct death song.
+    ; Play the correct death song and set Exit animation time.
+if !exit_animation == 2
+    lda.b #!death_time : sta $1496|!addr
+endif
+
 if !amk
 if !death_jingle_alt != $FF
-if !exit_animation > 1
-    lda.b #!death_time : sta $1496|!addr
-else
-    stz $1496|!addr
-endif
 if !exit_animation == 0
     lda !ram_hurry_up : beq +
 endif
@@ -47,19 +47,16 @@ else
     lda #$FF : sta $0DDA|!addr
 endif
 
-if !exit_animation > 1
-    lda.b #!death_time+$1E : sta $1496|!addr
-else
-    stz $1496|!addr
-endif
 if !exit_animation == 0
     lda !ram_hurry_up : beq +
 endif
     lda.b #!death_song : sta $1DFB|!addr
 +   rts
+
 .retry:
     ; Set prompt phase to "shrinking with retry selected".
     lda !ram_prompt_phase : inc : sta !ram_prompt_phase
+
 .skip:
     rts
 

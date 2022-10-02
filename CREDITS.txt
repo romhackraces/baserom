@@ -24,8 +24,8 @@ Block Duplication Fix v1.5 - Tattletale, lolcats439 - https://smwc.me/s/18413
 Bob-omb Kicked Palette Fix - Koopster - https://smwc.me/s/24684
 Bounce Blocks Death Fix - Kevin - https://smwc.me/s/25647
 Cape Layer 2 Position Fix - HammerBrother - https://smwc.me/s/12328
-Capespin Direction Consistency - Katun24 - https://bin.smwcentral.net/u/37400/capespindirection.asm
-Capespin Hitbox Consistency + Net Punching Hitbox Correction - Katun24 - https://bin.smwcentral.net/u/37400/capespinhitboxconsistency.asm
+Capespin Direction Consistency - Katun24
+Capespin Hitbox Consistency + Net Punching Hitbox Correction - Katun24
 Climbing Net Door on Subscreen Boundary Fix - Kevin - https://smwc.me/s/29100
 Cluster Boo Ducking Fix - Alcaro - https://smwc.me/s/11618
 Dark Room Background Fix - Roy - https://smwc.me/s/19456
@@ -72,16 +72,13 @@ Yoshi Pipe Animation Fix - Kevin - https://smwc.me/s/30127
 -- UberASM --
 
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
-Retry System - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.3.7
+Retry System - Kevin - https://github.com/kkevinm/retry-system
 Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 
 -- Custom Blocks --
 
-Basic Mario/Sprite Solid Blocks
-Basic ON/OFF Blocks
 Block Breakable by Item - JUMP Baserom
 Donut Lift Block v1.1 - by Davros, mikeyk - https://smwc.me/s/20418
-Endless Throwblock - AmperSam
 Hurt / Death Block for Kaizo / Pit Hacks - dacin - https://smwc.me/s/27268
 Ledge Vine - ASM - https://smwc.me/s/3944
 One-way blocks 1.2 - HammerBrother - https://smwc.me/s/18158
@@ -98,9 +95,8 @@ AddmusicK 1.0.8 - Kipenal - https://smwc.me/s/24994
 Asar v1.81 - Alcaro et al. - https://smwc.me/s/25953
 Flips v1.31 - Alcaro - https://smwc.me/s/11474
 GPS V1.4.3 - TheBiob, p4plus2 - https://smwc.me/s/29130
-Human Readable Map16 CLI - Underway - https://github.com/Underrout/human-readable-map16-cli
-Lunar Helper 2.2.0 - Underway, Maddy - https://github.com/Underrout/LunarHelper
-Lunar Magic 3.31 - FuSoYa - https://smwc.me/s/26916
-Lunar Monitor 1.2.3 - Underway, Atari2.0 - https://github.com/Underrout/lunar-monitor
+Lunar Helper 2.4.0 - Underway, Maddy - https://github.com/Underrout/LunarHelper
+Lunar Magic 3.33 - FuSoYa - https://fusoya.eludevisibility.org/lm/program.html
+Lunar Monitor 1.4.0 - Underway, Atari2.0 - https://github.com/Underrout/lunar-monitor
 PIXI v1.32 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/26026
 UberASM Tool 1.5 - Vitor Vilela - https://smwc.me/s/28974

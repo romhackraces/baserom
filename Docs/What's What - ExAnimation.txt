@@ -18,6 +18,7 @@ Destination: 2F0 (BG3)
 
 Swooper Block (2)
 -------------------
+Uses alternate ExGraphics: 61
 Slot: 01
 Type: 4 8x8s line
 Frames: 1048,104C
@@ -25,42 +26,40 @@ Destination: 2E0 (BG3)
 
 Spiny Blocks (2)
 -------------------
-Slot: 01
+Uses alternate ExGraphics: 61
+Slot: 02
 Type: 1 8x8s
 Frames: 1044,1045
 Destination: 1D (BG1)
 
 Line Guide Ends (4)
 -------------------
-Slot: 04
+Slot: 03
 Type: 2 8x8s line
 Frames: 740,750,760,770
 Destination: 2E4 (BG3)
 
+Death Spikes (4)
+-------------------
+Uses alternate ExGraphics: 61
+Slot: 04
+Type: 4 8x8s line
+Frames: 1058,1058,105C,105C
+Destination: 2E8 (BG3)
+
+One-Ways, horizontal & vertical (5)
+------------------------
+Uses alternate ExGraphics: 61
+Slot: 05
+Type: 2 8x8s: stacked
+Frames: 1000,1010,1020,1030,1040
+Destination: 2EC (BG3)
 
 -----------------
 Level ExAnimation
 -----------------
 
 The following are optional level ExAnimations for one-ways and the infinite throwblock, which will appear as clouds or as a normal throwblock respectively if they aren't used.
-
-One-Ways, horizontal (5)
-------------------------
-Uses alternate ExGraphics: 61
-Slot: 00
-Type: 2 8x8s: stacked
-Frames: 1000,1010,1020,1030,1040
-Destination: 0B
- - overrides horizontal cloud graphics
-
-One-Ways, vertical (5)
-----------------------
-Uses alternate ExGraphics: 61
-Slot: 01
-Type: 2 8x8s: stacked
-Frames: 1002,1012,1022,1032,1042
-Destination: 2C
- - overrides vertical cloud graphics
 
 Infinite throwblock (4)
 -----------------------

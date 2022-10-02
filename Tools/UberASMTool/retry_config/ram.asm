@@ -26,12 +26,9 @@ macro retry_ram(name,offset)
     !ram_<name> #= !retry_freeram+<offset>
     !retry_ram_<name> #= !ram_<name>
 
-    pushpc
-    warnings disable W1009
-        org !ram_<name>
-            ram_<name>:
-    warnings enable W1009
-    pullpc
+    base !ram_<name>
+        ram_<name>:
+    base off
 endmacro
 
 namespace off

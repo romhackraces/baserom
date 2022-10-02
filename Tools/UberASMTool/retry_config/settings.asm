@@ -43,12 +43,15 @@
 ; (which would show a glitched amount on the OW and Mario will have a halo).
     !lives_overflow_fix = 1
 
+; If 1, it fixes the weird behavior where levels 12E-13B always use the "No Yoshi Sign 2" intro
+; regardless of the tileset / custom "No Yoshi Intro" patches.
+    !no_yoshi_intro_fix = 1
+
 ; If 1, it removes the "Hurry up!" SFX and tempo hike effect that happens when reaching 100 seconds on the timer.
 ; If not disabled, the death song will be played when dying during the tempo hike effect (regardless of the settings), to reset the tempo of the song after respawning.
     !disable_hurry_up = 0
 
-; This controls whether to freeze sprites during a level's pipe entrance.
-; It doesn't affect other entrance types.
+; This controls whether to freeze sprites during a level's pipe entrance (it doesn't affect other entrance types).
 ; 0 = don't freeze
 ; 1 = freeze
 ; 2 = vanilla: freeze only if sprites were frozen when exiting the previous room (e.g. if you entered a pipe, but not if you entered a door).
@@ -192,12 +195,12 @@
     !letter_palette = $08
     !cursor_palette = $08
 
-; Tile number for the tiles used by the prompt (in SP1/SP2).
+; Sprite tile number for the tiles used by the prompt ($00-$FF = SP1/SP2, $100-$1FF = SP3/SP4).
+; These will be overwritten dynamically when the prompt needs to show up.
 ; The default values should be fine in most cases, unless you're using some other patch that reserves tiles in SP1,
 ; for example: Sprite Status Bar, 32x32 Player Tilemap, lx5's Custom Powerups, lx5's Dynamic Spriteset System.
 ; In this case you may need to change some of them to avoid other tiles being overwritten.
-; You can see the tile number in LM's 8x8 Tile Editor, by taking the low byte of the value you see in the bottom left (for example, "Tile 0x442" -> $42).
-;
+; You can see the tile number in LM's 8x8 Tile Editor, by taking the value you see in the bottom left - $400 (e.g., "Tile 0x442" -> $42, "Tile 0x542" -> $142).
 ; Note: when the prompt box is enabled, !tile_curs and !tile_blk actually use 2 adjacent 8x8 tiles.
 ; For example, !tile_curs = $24 means both $24 and $25 will be overwritten.
 ; Also, obviously these aren't used if you don't use the Retry prompt.

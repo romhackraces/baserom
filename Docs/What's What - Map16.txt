@@ -33,6 +33,10 @@ Upside down bullet bill shooter.
 -------
 Vine ends
 
+2C3,2C4,2D3,2D4,2E3,2E4,2F3,2F4
+-------------------------------
+Alternative One-ways
+
 2E1
 ---
 Green coin

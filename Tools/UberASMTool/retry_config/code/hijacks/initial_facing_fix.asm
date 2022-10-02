@@ -7,13 +7,17 @@ org $05DA1C
 
 else
 
-if read1($05DA1C) == $5C
-
+; Restore the original code.
+; Don't force "No Yoshi Sign 2" intro if the fix is enabled.
 org $05DA1C
+if not(!no_yoshi_intro_fix)
     cmp #$52
     bcc $04
-
+else
+    bra $06
+    nop #2
 endif
+
 endif
 
 pullpc
@@ -29,8 +33,12 @@ initial_facing_fix:
     sep #$10
 
     ; Restore the original code.
+    ; Don't force "No Yoshi Sign 2" intro if the fix is enabled.
+if not(!no_yoshi_intro_fix)
     cmp #$52 : bcc +
     jml $05DA20|!bank
-+   jml $05DA24|!bank
++   
+endif
+    jml $05DA24|!bank
 
 endif

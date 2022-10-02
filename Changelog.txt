@@ -1,3 +1,13 @@
+v4.11
+- new death block graphics, using the SMM2 spikes
+- removed mega mole tweak
+- tidier backup process and updates to backup script
+- cleaner, less idiosyncratic baserom layout (return of normal list files)
+- updated Lunar Helper to 2.4.0, Lunar Magic to 3.33 and Lunar Monitor to 1.4.0
+- updated retry to 0.3.10
+- dropped Human Readable Map16 from tools
+- documentation updates
+
 v4.10
 - new on/off blocks and block graphics
 - added TheBourgyMan's swooper and spiny blocks
