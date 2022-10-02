@@ -1,5 +1,7 @@
+This folder is the destination for backups created by the "@backup_hack.bat" script.
+
 -- Graphics
-Copies of the original unmodified, graphics files from the base game.
+Copies of the original unmodified, graphics files from the base game (unrelated to the backup script).
 
 -- Levels
 Folder for timestamped backups of Levels exported from your ROM, if you ran a backup.
