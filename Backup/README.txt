@@ -1,3 +1,6 @@
+-- Graphics
+Copies of the original unmodified, graphics files from the base game.
+
 -- Levels
 Folder for timestamped backups of Levels exported from your ROM, if you ran a backup.
 

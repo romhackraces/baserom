@@ -11,7 +11,6 @@ individual exports of sections of map16 for various things within the baserom
 -- Palettes
 palette files for the Shared palette as well as for the Poison Mushroom and One-Way blocks in the baserom
 
-
 -- AllMap16.map16
 a copy of all of Map16 exported by Lunar Monitor
 

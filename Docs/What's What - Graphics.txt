@@ -2,7 +2,7 @@
 Graphics
 --------
 
-The following are what vanilla graphics files have been edited in the baserom, backups can be found in the Other/Original Graphics folder.
+The following are what vanilla graphics files have been edited in the baserom, backups can be found in the Backup/Graphics folder.
 
 GFX00 : Global Sprite Graphics
  - the 8x8 tiles for Mario have been removed as they are now dynamically inserted
