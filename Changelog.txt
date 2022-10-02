@@ -1,5 +1,6 @@
 v4.11
 - new death block graphics, using the MM2 spikes
+- cleaner, less idiosyncratic baserom layout (return of normal list files)
 - updated Lunar Helper to 2.4.0, Lunar Magic to 3.33 and Lunar Monitor to 1.4.0
 - update retry to 0.3.9
 
