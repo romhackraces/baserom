@@ -8,7 +8,7 @@
 set AMK_DIR=!TOOLS_DIR!AddMusicK_1.0.8\
 set AMK_DL="https://dl.smwcentral.net/24994/AddmusicK_1.0.8.zip"
 set AMK_ZIP="AddmusicK_1.0.8.zip"
-set AMK_JUNK="readme.html" "src.zip"
+set AMK_JUNK="readme.html" "src.zip" "addmusicMRemover.pl"
 set AMK_JUNK_DIR="readme_files"
 set AMK_LISTS="Addmusic_sample groups.txt" "Addmusic_list.txt" "Addmusic_sound effects.txt"
 

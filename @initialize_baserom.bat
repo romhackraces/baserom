@@ -188,12 +188,12 @@ if "!Action!"=="1" (
 
 :: Restore Baserom list files
 if "!Action!"=="2" (
-
     :: Copy in existing list file(s) to respective folders
     for %%a in (!AMK_LISTS!) do (copy /y !LISTS_DIR!%%a !AMK_DIR!)
     copy /y !LISTS_DIR!!GPS_LIST! !GPS_DIR!list.txt
     copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!list.txt
     copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
+    echo Done.
 )
 
 
