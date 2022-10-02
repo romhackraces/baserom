@@ -1,3 +1,5 @@
+; GPS list file
+
 ; PAGE 02 OF MAP16 ----------------------------------------;
 ; 200-20A 	; Available for Lunar magic's Tide Act As
 ; 209-28F	; Occupied with vanilla Tiles
