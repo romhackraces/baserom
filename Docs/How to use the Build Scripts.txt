@@ -2,23 +2,23 @@
 @backup_hack.bat
 ----------------
 
-Like the above, when you run the this script you will be given a menu in the Command Prompt with a list of backup options for your hack:
+This script is available to let you make time-stamped backups of various parts of your hack. In the Command Prompt you will see a menu with a list of the following backup options for your hack:
 
-> "Export all modified Levels to files"
+> "Any edited levels"
 
-This will use Lunar Magic's level export feature to save all modified levels as .mwl files to a folder in "Backup/Levels" called "latest" in addition to a time-stamped folder of levels as a sort of versioning. 
+This will use Lunar Magic's level export feature to save all modified levels as .mwl files to a folder in "Backup/Levels" theat is time-stamped as a sort of versioning action.
 
-> "Export all of Map16"
+> "All of Map16"
 
-This will use Lunar Magic's map16 export feature to save *all* of your hack's map16 (not sections of it) to a file in the "Backup/Map16" folder called "AllMap16_latest.map16", there will be also be a copy of that file that is time stamped in case you want to recover some older map16 changes.
+This will use Lunar Magic's map16 export feature to save *all* of your hack's map16 (not sections of it) to a file in the "Backup/Map16" folder that is time stamped in case you want to recover some older map16 changes.
 
-> "Export Shared Palettes"
+> "Shared Palette"
 
-This will use Lunar Magic's map16 export feature to save a copy of the *shared* palette (not the palettes of individual levels) in the "Backup/Palettes" folder, this action is also time-stamped. This action is only really necessary if you modify the shared palettes of the ROM as individual level palettes will be saved when you export levels in the first option.
+This will use Lunar Magic's map16 export feature to save a copy of the *shared* palette (not the palettes of individual levels) in the "Backup/Palettes" folder, this action is also time-stamped. This is only really necessary if you modify the shared palettes of the ROM as individual level palettes will be saved when you export levels in the first option.
 
-> "Create a time-stamped backup of your ROM"
+> "ROM file"
 
-Basically this just makes a copy of your hack's ROM file in the "Backups/ROM" folder with a timestamp, so you can access older versions. This backed-up file is also used by the restore script to restore data.
+This just makes a time-stamped copy of your hack's ROM file in the "Backups/ROM" folder, so you can access older versions.
 
 -----------------------
 @initialize_baserom.bat
