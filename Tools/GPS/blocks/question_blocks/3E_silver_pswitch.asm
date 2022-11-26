@@ -1,6 +1,6 @@
 db $42
 
-print "Question block that always spawns a Blue P-Switch/POW."
+print "Question block that always spawns a Silver P-Switch/POW."
 ;print "Spawns sprite $",hex(!Sprite),"."
 
 !Sprite = $3E	; sprite number
