@@ -117,7 +117,7 @@ handle_init_codes:
 +
     print "Level init codes: $",pc
 .Return
-RTS
+    RTS
 
 handle_main_codes:
     LDA $71
@@ -126,17 +126,22 @@ handle_main_codes:
     JMP .Return
 +
     print "Level main codes: $",pc
+    %RunCode(0, free_vertical_scroll)
     %RunCode(1, enable_sfx_echo)
     %RunCode(2, eight_frame_float)
 .Return
-RTS
+    RTS
+
+free_vertical_scroll:
+    lda #$01 : sta $1404|!addr
+    RTS
 
 enable_sfx_echo:
     LDA #$06 : STA $1DFA|!addr
-RTS
+    RTS
 
 eight_frame_float:
     LDA $15 : AND #$80 : BEQ +
     LDA #$08 : STA $14A5|!addr
     +
-RTS
+    RTS

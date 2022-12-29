@@ -33,7 +33,9 @@ CustExObj9A:
 
 ; Free vertical scroll
 CustExObj9B:
-	lda #$01 : sta $1404|!addr
+	REP #$20
+	LDA.w #$0001 : TSB !level_flags
+	SEP #$20
 	RTS
 
 ; Set ON/OFF state to OFF
@@ -44,14 +46,14 @@ CustExObj9C:
 ; Enable SFX Echo
 CustExObj9D:
 	REP #$20
-	LDA.w #$0001 : TSB !level_flags
+	LDA.w #$0002 : TSB !level_flags
 	SEP #$20
 	RTS
 
 ; Enable 8 frame float
 CustExObj9E:
 	REP #$20
-	LDA.w #$0002 : TSB !level_flags
+	LDA.w #$0004 : TSB !level_flags
 	SEP #$20
 	RTS
 

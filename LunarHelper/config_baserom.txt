@@ -36,20 +36,28 @@ lm_level_import_flags = 0
 -- build order
 build_order
 [
-    Graphics
-    ExGraphics
-    Map16
---  TitleMoves
-    SharedPalettes
-    GlobalData
-	Patches
-	PIXI
-    Levels
-	PIXI 			-- Needed for LM 3.31+
-	AddMusicK
-	GPS
-	UberASM
+    Graphics                -- Insert standard GFX
+    ExGraphics              -- Insert ExGFX
+    Map16                   -- Insert Map16
+
+--  TitleMoves              -- Uncomment this if you're inserting title moves
+
+    SharedPalettes          -- Insert Shared Palettes
+    GlobalData              -- Insert Overworld, Title Screen and Credits
+
+    Patches                 -- Insert all remaining patches from the patches list that
+                            -- are not explicitly mentioned in this build order
+
+    Levels                  -- Insert all levels
+    PIXI                    -- Insert custom sprites
+
+    AddMusicK               -- Insert custom music
+    UberASM                 -- Insert UberASM code
+    GPS                     -- Insert custom blocks
+
+    PIXI                    -- Uncomment this if you're using Lunar Magic 3.31 or higher
 ]
+
 
 
 -- content
