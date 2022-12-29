@@ -35,7 +35,7 @@ set LM_JUNK="readme.txt"
 set LUN_HLP_DIR=%WORKING_DIR%LunarHelper\
 set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v3.0.0/LunarHelper-v3.0.0.zip"
 set LUN_HLP_ZIP="LunarHelper-v3.0.0.zip"
-set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt" "ASAR_LICENSE"
+set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt" "ASAR_LICENSE" "README.md"
 set LUN_HLP_JUNK_DIR="initial_patches"
 
 :: Lunar Monitor

@@ -40,6 +40,9 @@ org $019C0E : db $68 : org $07F416 : db $85
 ; Cheep cheep, flopping
 org $019C0F : db $6C
 org $019C10 : db $6A
+; Cheep cheep, in bubble
+org $02D8A3 : db $66 : org $02D8AB : db $05
+org $02D8A7 : db $68 : org $02D8AB : db $05
 ; Force flopping cheep-cheep onto 2nd page
 org $01B10A
     BRA +
