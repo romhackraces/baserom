@@ -29,7 +29,6 @@ echo.
 :: Download Baserom Tools
 if "!Action!"=="1" (
 
-    :: AddMusicK
     :: Check if AMK exists and download if not
     if not exist "!AMK_DIR!AddmusicK.exe" (
         echo AddmusicK not found, downloading...
@@ -47,7 +46,6 @@ if "!Action!"=="1" (
         echo -- AddmusicK already setup.
     )
 
-    :: Asar
     :: Check if Asar exists and download if not
     if not exist "!ASAR_DIR!asar.exe" (
         echo Asar not found, downloading...
@@ -63,8 +61,6 @@ if "!Action!"=="1" (
         echo -- Asar already setup.
     )
 
-
-    :: Flips
     :: Check if Flips exists and download if not
     if not exist "!FLIPS_DIR!flips.exe" (
         echo Flips not found, downloading...
@@ -79,7 +75,6 @@ if "!Action!"=="1" (
         echo -- Flips already setup.
     )
 
-    :: GPS
     :: Check if GPS exists and download if not
     if not exist "!GPS_DIR!gps.exe" (
         echo GPS not found, downloading...
@@ -96,7 +91,6 @@ if "!Action!"=="1" (
         echo -- GPS already setup.
     )
 
-    :: Lunar Magic
     :: Check if Lunar Magic exists and download if not
     if not exist "!LM_DIR!Lunar Magic.exe" (
         echo Lunar Magic not found, downloading...
@@ -111,7 +105,6 @@ if "!Action!"=="1" (
         echo -- Lunar Magic already setup.
     )
 
-    :: Lunar Helper
     :: Check if Lunar Helper exists and download if not
     if not exist "!LUN_HLP_DIR!LunarHelper.exe" (
         echo Lunar Helper not found, downloading...
@@ -129,7 +122,6 @@ if "!Action!"=="1" (
         echo -- Lunar Helper already setup.
     )
 
-    :: Lunar Monitor
     :: Check if Lunar Monitor exists and download if not
     if not exist "!LUN_MON_DIR!lunar_monitor" (
         echo Lunar Monitor not found, downloading...
@@ -146,7 +138,6 @@ if "!Action!"=="1" (
         echo -- Lunar Monitor already setup.
     )
 
-    :: PIXI
     :: Check if PIXI exists and download if not
     if not exist "!PIXI_DIR!pixi.exe" (
         echo PIXI not found, downloading...
@@ -163,7 +154,6 @@ if "!Action!"=="1" (
         echo -- PIXI already setup.
     )
 
-    :: UberASM Tool
     :: Check if UberASM exists and download if not
     if not exist "!UBER_DIR!UberASMTool.exe" (
         echo UberASMTool not found, downloading...
@@ -173,7 +163,7 @@ if "!Action!"=="1" (
         copy /y NUL !UBER_DIR!gamemode\.gitkeep
         copy /y NUL !UBER_DIR!overworld\.gitkeep
         copy /y NUL !UBER_DIR!level\.gitkeep
-        echo ; > !UBER_DIR!library\.gitkeep
+        echo ; > !UBER_DIR!library\_gitkeep
         :: replace stock list with baserom list
         copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
         :: Delete junk files
