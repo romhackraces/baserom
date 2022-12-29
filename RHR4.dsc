@@ -29,7 +29,7 @@
 2b8	0	Question block that always spawns a Galoomba.
 2b9	0	Question block that always spawns a Fish.
 2ba	0	Question block that always spawns a Blue P-Switch/POW.
-2bb	0	Question block that always spawns a Blue P-Switch/POW.
+2bb	0	Question block that always spawns a Silver P-Switch/POW.
 2bc	0	Question block that always spawns a Spring.
 300	0	Top-left cap piece of vertical 2-way pipe.
 301	0	Top-right cap piece of vertical 2-way pipe.

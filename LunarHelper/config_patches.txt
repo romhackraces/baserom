@@ -68,6 +68,7 @@ patches
 	Tools/Asar/PuffOfSmokeSprite.asm
 	Tools/Asar/RAMToggledLR.asm
 	Tools/Asar/RAMToggledStatusbar.asm
+	Tools/Asar/SpikeTopCeilingCling.asm
 	Tools/Asar/SpriteItemBox.asm
 	Tools/Asar/SpriteRemaps.asm
 	Tools/Asar/SpriteSubmapBehaviorAsExtraBit.asm

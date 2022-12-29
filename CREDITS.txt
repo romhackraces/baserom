@@ -14,6 +14,8 @@ Placeable Kicked Shell v1.1 - Kevin - https://smwc.me/s/28994
 Poison Mushroom v1.0 - JackTheSpades, mikeyk - https://smwc.me/s/20440
 RAM Specific L/R Scroll Disable - Chdata - https://smwc.me/s/20355
 RAM Toggled Status Bar (& IRQ) - Kevin - https://smwc.me/s/28449
+Rexes With Extra Bit Set Are Squished - Supermario1313 - https://smwc.me/s/27788
+Spike Top Ceiling Cling - imamelia - https://smwc.me/s/18949
 Sprite Item Box - Kevin - https://smwc.me/s/26887
 Triple Ball 'n' Chain - imamelia - https://smwc.me/s/19256
 
