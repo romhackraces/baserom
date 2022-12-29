@@ -126,14 +126,9 @@ handle_main_codes:
     JMP .Return
 +
     print "Level main codes: $",pc
-    %RunCode(0, free_vertical_scroll)
     %RunCode(1, enable_sfx_echo)
     %RunCode(2, eight_frame_float)
 .Return
-RTS
-
-free_vertical_scroll:
-    lda #$01 : sta $1404|!addr
 RTS
 
 enable_sfx_echo:
