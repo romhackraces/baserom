@@ -1,6 +1,15 @@
 ; Gamemode 14
 
+; Normally the prompt comes up $40 frames after dying
 !show_prompt_time #= !death_time-$10
+
+; If the death animation should show, set the times to the minimum possible
+if !retry_death_animation&1
+    !show_prompt_time #= 2
+endif
+if !retry_death_animation&2
+    !death_time #= 2
+endif
 
 main:
 if !lives_overflow_fix
@@ -11,6 +20,11 @@ if !lives_overflow_fix
 +
 endif
 
+    ; Enable SFX echo if applicable.
+    lda !ram_play_sfx : bpl +
+    lda $1DFA|!addr : bne +
+    lda #$06 : sta $1DFA|!addr
++
     ; Update the window HDMA when the flag is set.
     lda !ram_update_window : beq +
     jsr prompt_update_window
@@ -56,8 +70,13 @@ endif
 
 .dying:
     ; Show the death pose just to be sure.
-    lda.b #!death_pose : sta $13E0|!addr
-    
+    lda.l death_pose : sta $13E0|!addr
+
+    ; Disable camera Y scroll if applicable.
+if !death_camera_lock
+    stz $1412|!addr
+endif
+
 if !prompt_freeze
     ; Force sprites and animations to lock.
     lda #$01 : sta $9D
@@ -75,11 +94,17 @@ if !prompt_freeze == 2
 +   
     ; Freeze Shell-less Koopas.
     ldx.b #!sprite_slots-1
--   lda !14C8,x : cmp #$08 : bne +
-    lda !9E,x : cmp #$04 : bcs +
+-   lda !9E,x : cmp #$04 : bcs +
+    lda !14C8,x : cmp #$08 : bne +
     lda !extra_bits,x : and #$08 : bne +
     stz !sprite_speed_y,x
 +   dex : bpl -
+    
+    ; Stop earthquake.
+    stz $1887|!addr
+
+    ; Stop lightning effect.
+    stz $1FFC|!addr : stz $1FFD|!addr
 endif
 else
     ; Force sprites and animations to run.
@@ -95,13 +120,24 @@ endif
     ; Reset Yoshi's swallow timer.
     ldx $18E2|!addr : beq +
     stz !1564-1,x
+    ; Prevent Yoshi's tongue from extending.
+    lda !1594-1,x : cmp #$01 : bne ++
+    lda !151C-1,x : sec : sbc.l yoshi_tongue_extend_speed : bmi +
+    sta !151C-1,x
+    bra +
+++  ; Prevent Yoshi's tongue from retracting.
+    cmp #$02 : bne +
+    sta !1558-1,x
 +
     ; Don't respawn if not infinite lives and we're about to game over.
+if not(!infinite_lives)
     jsr shared_get_bitwise_mask
     and.l tables_lose_lives,x : beq +
     lda $0DBE|!addr : bne +
     rtl
 +
+endif
+
     ; See what retry we have to use.
     jsr shared_get_prompt_type
     cmp #$03 : bcc ..prompt
@@ -112,25 +148,33 @@ endif
     ; If Mario is not dying because of selecting "Exit", skip.
     lda !ram_prompt_phase : cmp #$06 : bne ...no_exit
 
+...exit:
     ; If not supposed to run the Exit animation, end it immediately.
 if !exit_animation < 2
     stz $1496|!addr
     stz $76
     stz $7D
 endif
+
+    ; If the game isn't locked, prevent death timer from running out.
 if !prompt_freeze == 0
     lda $1496|!addr : bpl +
     stz $1496|!addr
 +   inc $1496|!addr
 endif
+
     rtl
 
 ...no_exit:
-    ; Keep Mario locked in place, but only after he fully ascended during the animation.
+    ; Keep Mario locked in place, but only after he fully ascended during the animation
+    ; (unless the full death animation should be shown).
+if !show_prompt_time > 2
     lda $7D : bmi +
     stz $7D
     stz $76
 +
+endif
+
     ; If the prompt hasn't begun yet, check if it should.
     lda !ram_prompt_phase : beq ...check_box
 
@@ -140,8 +184,9 @@ endif
 
     ; Handle the box shrinking.
     cmp #$05 : bne ...no_shrink
-if !prompt_freeze == 0
+
     ; This overcomes vanilla DECing $1496 twice since $9D is 0
+if !prompt_freeze == 0
     inc $1496|!addr
 endif
     bra ...handle_box
@@ -154,13 +199,13 @@ endif
     cmp #$04 : beq ..respawn
     cmp #$02 : bne ...handle_box
 
-    ; Handle the menu cursor and options.
 ...handle_menu:
+    ; Handle the menu cursor and options.
     jsr prompt_handle_menu
     rtl
 
-    ; Expand/shrink the prompt.
 ...handle_box:
+    ; Expand/shrink the prompt.
     jsr prompt_handle_box
     rtl
 
@@ -187,10 +232,14 @@ endif
     lda $0D9B|!addr : bpl ..return
     stz $0701|!addr
     stz $0702|!addr
+
 ..return:
     rtl
 
 ..instant:
+    ; If fallen offscreen, respawn immediately.
+    lda $81 : dec : bpl ..respawn
+    
     ; Respawn after 4 frames so it shows the death pose.
     lda $1496|!addr : cmp.b #!death_time : bcs ..return
 
@@ -201,6 +250,9 @@ endif
     ; Reset some addresses.
     jsr reset_addresses
 
+    ; Reset level music.
+    jsr reset_music
+
     ; Reset the prompt phase.
     lda #$00 : sta !ram_prompt_phase
 
@@ -209,16 +261,32 @@ endif
 
     ; Set the destination to send Mario to.
     jsr shared_get_screen_number
-    lda !ram_respawn : sta $19B8|!addr,x
+    lda !ram_respawn+0 : sta $19B8|!addr,x
     lda !ram_respawn+1 : ora #$04 : sta $19D8|!addr,x
 
+    ; If the Yoshi Wings checkpoint flag is set and the destination is the
+    ; level's main entrance, also set the normal Yoshi Wings and "Carry Yoshi" flags.
+    ; Also clear the flag in the checkpoint ram to avoid a game crash.
+    bpl ...remove_yoshi
+    bit #$0A : bne ...remove_yoshi
+    and #$7F : sta $19D8|!addr,x
+    lda #$02 : sta $1B95|!addr
+    dec : sta $0DC1|!addr
+    bra +
+
+    ; Remove Yoshi, but only if not set to go to the Yoshi Wings level.
+...remove_yoshi:
+    stz $0DC1|!addr
+    stz $187A|!addr
+    lda #$03 : sta $1DFA|!addr
++
     ; If applicable, decrement lives (if 0, we can't get here so we're safe).
+if not(!infinite_lives)
     jsr shared_get_bitwise_mask
     and.l tables_lose_lives,x : beq +
     dec $0DBE|!addr
-+    
-    ; If Mario died on Yoshi, remove Yoshi.
-    stz $0DC1|!addr
++
+endif
 
     ; Mark as sublevel so we skip the "Mario Start!" message.
     ; (don't do "inc $141A" so we avoid the 256 entrance glitch)
@@ -247,19 +315,12 @@ reset_addresses:
     stz $1420|!addr
     stz $1422|!addr
 
-    ; Reset collected invisible 1-UPs.
-    stz $1421|!addr
-
-    ; Reset green star block counter.
-    lda.b #read1($0091AC) : sta $0DC0|!addr
-
     ; Reset individual dcsave buffers.
-if !dcsave
     jsr shared_dcsave_init
-endif
+
+    rep #$20
 
     ; Reset item memory.
-    rep #$20
     ldx #$7E
 -   stz $19F8|!addr,x
     stz $1A78|!addr,x
@@ -267,22 +328,21 @@ endif
     dex #2 : bpl -
 
     ; Reset the sprite load index table.
-    ; Change DBR to use absolute addressing (saves 512 cycles in the best case).
-    %set_dbr(!sprite_load_table)
+    ; If SA-1 or PIXI's 255 sprite per level are used, the reset loop
+    ; will use the remapped address and reset 256 entries instead of 128.
     ldx #$7E
+    lda.l sprite_load_orig : cmp #$1938 : beq .sprite_load_orig
+.sprite_load_remap:
+    %set_dbr(!sprite_load_table)
 -   stz.w !sprite_load_table,x
-if !255_sprites_per_level
     stz.w !sprite_load_table+$80,x
-endif
     dex #2 : bpl -
     plb
-
-    ; Reset vanilla Boo rings.
-if !reset_boo_rings
-    stz $0FAE|!addr
-    stz $0FB0|!addr
-endif
-    
+    bra +
+.sprite_load_orig:
+    stz.w $1938,x
+    dex #2 : bpl .sprite_load_orig
++    
     ; Reset scroll sprites ($1446-$1455).
     ldx #$0E
 -   stz $1446|!addr,x
@@ -293,7 +353,54 @@ endif
 -   stz $1492|!addr,x
     dex #2 : bpl -
 
+    ; Reset various addresses used by Bowser ($14B0-$14B9).
+    ldx #$08
+-   stz $14B0|!addr,x
+    dex #2 : bpl -
+
+    ; Reset vanilla Boo rings.
+if !reset_boo_rings
+    stz $0FAE|!addr
+    stz $0FB0|!addr
+endif
+
+    ; Reset bonus stars counter.
+if !counterbreak_bonus_stars
+    stz $0F48|!addr
+endif
+
+    ; Reset score counter.
+if !counterbreak_score
+    stz $0F34|!addr
+    stz $0F36|!addr
+    stz $0F38|!addr
+endif
+
+    ; Reset timer to the original value.
+    lda !ram_timer+0 : sta $0F31|!addr
     sep #$20
+    lda !ram_timer+2 : sta $0F33|!addr
+
+    ; Reset powerup.
+if !counterbreak_powerup
+    stz $19
+endif
+
+    ; Reset item box.
+if !counterbreak_item_box
+    stz $0DC2|!addr
+endif
+
+    ; Reset coin counter.
+if !counterbreak_coins
+    stz $0DBF|!addr
+endif
+
+    ; Reset green star block counter.
+    lda.l green_star_block_count : sta $0DC0|!addr
+
+    ; Reset collected invisible 1-UPs.
+    stz $1421|!addr
 
     ; Reset directional coin flag.
     stz $1432|!addr
@@ -307,6 +414,9 @@ endif
     ; Reset side exit flag.
     stz $1B96|!addr
 
+    ; Reset peace image flag.
+    stz $1B99|!addr
+
     ; Reset background scroll flag.
     stz $1B9A|!addr
 
@@ -315,12 +425,6 @@ endif
 
     ; Reset Reznor bridge counter.
     stz $1B9F|!addr
-
-    ; Reset Yoshi drums.
-    lda #$03 : sta $1DFA|!addr
-
-    ; Reset peace image flag.
-    stz $1B99|!addr
 
     ; Don't go to the bonus game after a Kaizo trap to prevent it glitching out.
     ; Don't reset it if currently in the bonus itself to prevent a softlock.
@@ -337,74 +441,46 @@ endif
     stz $148B|!addr
     stz $148D|!addr
     sep #$20
-+
++   
+    rts
 
-if !counterbreak_powerup
-    ; Reset powerup.
-    stz $19
-endif
+;=====================================
+; reset_music routine
+;
+; Routine to reset music to make it play properly after respawning.
+;=====================================
+reset_music:
+    lda.l amk_byte : cmp #$5C : beq .amk
 
-if !counterbreak_item_box
-    ; Reset item box.
-    stz $0DC2|!addr
-endif
+.no_amk:
+    lda $0DDA|!addr : bpl .return
+    stz $0DDA|!addr
+    rts
 
-if !counterbreak_coins
-    ; Reset coin counter.
-    stz $0DBF|!addr
-endif
-
-if !counterbreak_bonus_stars
-    ; Reset bonus stars counter.
-    stz $0F48|!addr
-    stz $0F49|!addr
-endif
-
-if !counterbreak_score
-    ; Reset score counter.
-    rep #$20
-    stz $0F34|!addr
-    stz $0F36|!addr
-    stz $0F38|!addr
-    sep #$20
-endif
-
-    ; Reset timer to the original value.
-    lda !ram_timer+0 : sta $0F31|!addr
-    lda !ram_timer+1 : sta $0F32|!addr
-    lda !ram_timer+2 : sta $0F33|!addr
-
-    ; Reset timer frame counter
-    lda.b #!timer_ticks : sta $0F30|!addr
-
-    ; Music related stuff. I don't understand most of it.
-if !amk
+.amk:
     lda $13C6|!addr : bne .force_reset
     lda $0DDA|!addr : cmp #$FF : beq .spec
-    lda !ram_music_to_play : cmp $0DDA|!addr : bne .music_end
+    lda !ram_music_to_play : cmp $0DDA|!addr : bne .return
     bra .bypass
 
 .spec:
-if !death_song != $00
-    lda $1DFB|!addr : cmp.b #!death_song : beq +
-endif
+    lda.l death_song : beq .force_reset
+    cmp $1DFB|!addr : beq .no_reset
 
 .force_reset:
     lda #$00 : sta !amk_freeram : sta $1DFB|!addr
-    bra .music_end
-+   
-    lda !ram_music_to_play : cmp !ram_music_backup : bne .music_end
+    bra .return
+
+.no_reset:
+    lda !ram_music_to_play : cmp !ram_music_backup : bne .return
 
 .bypass:
-    lda !ram_music_to_play : cmp #$FF : beq .music_end
+    lda !ram_music_to_play : cmp #$FF : beq .return
     jsr shared_get_prompt_type
-    cmp #$02 : bcs .music_end
+    cmp #$02 : bcs .return
 
-    ; Force AMK to reload the samples.
+    ; Don't make AMK reload the samples.
     lda #$01 : sta !amk_freeram+1
-else
-    lda $0DDA|!addr : bpl .music_end
-    stz $0DDA|!addr
-endif
-.music_end:
+
+.return:
     rts

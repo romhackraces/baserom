@@ -2,17 +2,6 @@
 ; It works on both lorom (SRAM) and SA-1 (BW-RAM).
 ; You can change the parameters below if you want. The default should be fine in most cases.
 
-; Warn if SRAM/BW-RAM plus are patched in already.
-if !sram_feature && not(!sa1) && !sram_plus
-    print "Warning: SRAM Plus was detected in your ROM. Retry's save feature won't be inserted."
-    !sram_feature = 0
-endif
-
-if !sram_feature && !sa1 && !bwram_plus
-    print "Warning: BW-RAM Plus was detected in your ROM. Retry's save feature won't be inserted."
-    !sram_feature = 0
-endif
-
 ; SRAM size in the ROM header. Actual size is (2^!sram_size) KB.
 ; Not used on SA-1 roms.
 !sram_size = $03
@@ -32,7 +21,7 @@ endif
 !sram_defaults_bank = (tables_sram_defaults>>16)
 
 ; How big is the save table.
-!save_table_size = (tables_sram_defaults-tables_save)
+!save_table_size           = (tables_sram_defaults-tables_save)
 !save_table_size_game_over = (tables_save_not_game_over-tables_save)
 
 if !sram_feature
@@ -246,7 +235,8 @@ endif
     %next_iteration()
 ..end:
     ; Initialize the intro level checkpoint.
-    lda.w #!intro_sublevel : sta !ram_checkpoint
+    jsr shared_get_intro_sublevel
+    sta !ram_checkpoint
 
     ; Keep 16 bit X/Y for the original code.
     sep #$20

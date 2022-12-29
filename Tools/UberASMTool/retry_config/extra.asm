@@ -37,21 +37,6 @@ death:
 
 
 
-    ; Code to reset some stuff related to lx5's Custom Powerups.
-    ; You shouldn't need to edit this.
-if !custom_powerups == 1
-    stz.w ($170B|!addr)+$08
-    stz.w ($170B|!addr)+$09
-    lda #$00 : sta !projectile_do_dma
-
-    ldx #$07
--   lda $170B|!addr,x : cmp #$12 : bne +
-    stz $170B|!addr,x
-+   dex : bpl -
-    
-    lda !item_box_disable : ora #$02 : sta !item_box_disable
-endif
-
     rts
 
 ;=====================================

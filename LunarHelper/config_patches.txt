@@ -53,22 +53,26 @@ patches
 	Tools/Asar/Fixes/VRAMOptimize.asm
 	Tools/Asar/Fixes/WallJumpNoteBlockGlitchFix.asm
 	Tools/Asar/Fixes/YoshiPipeAnimationFix.asm
-	Tools/Asar/Fixes/SSP_Fixes.asm
+	Tools/Asar/CharlesRemembers.asm
+	Tools/Asar/DoubleBouncePalette.asm
 	Tools/Asar/ExtendedNSTL.asm
+	Tools/Asar/Fixes/SSP_Fixes.asm
+	Tools/Asar/GrowPipeExitOnExtraBit.asm
+	Tools/Asar/MarioGFXDMA/MarioGFXDMA.asm
 	Tools/Asar/NoMoreSpriteTileLimits.asm
+	Tools/Asar/ObjecTool/ObjecTool.asm
 	Tools/Asar/PlaceableDiscoShell.asm
 	Tools/Asar/PlaceableKickedShell.asm
 	Tools/Asar/PlaceableThrowBlock.asm
 	Tools/Asar/PoisonMushroom.asm
 	Tools/Asar/PuffOfSmokeSprite.asm
-	Tools/Asar/RAMControlledFireballAmount.asm
 	Tools/Asar/RAMToggledLR.asm
 	Tools/Asar/RAMToggledStatusbar.asm
-	Tools/Asar/SpriteRemaps.asm
+	Tools/Asar/SpriteItemBox.asm
 	Tools/Asar/SpriteRemaps.asm
 	Tools/Asar/SpriteSubmapBehaviorAsExtraBit.asm
+	Tools/Asar/SquishedRexOnExtraBit.asm
 	Tools/Asar/TitleScreenSpriteCleanup.asm
 	Tools/Asar/TripleBallNChain.asm
 	Tools/Asar/Tweaks.asm
-	Tools/Asar/MarioGFXDMA/MarioGFXDMA.asm
 ]

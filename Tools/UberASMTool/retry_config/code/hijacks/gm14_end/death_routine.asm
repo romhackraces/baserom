@@ -30,15 +30,32 @@ death_routine:
     jsr extra_death
     plb : plp
 
+    ; Reset some stuff related to lx5's Custom Powerups.
+if !custom_powerups == 1
+    stz.w ($170B|!addr)+$08
+    stz.w ($170B|!addr)+$09
+    lda #$00 : sta !projectile_do_dma
+
+    ldx #$07
+-   lda $170B|!addr,x : cmp #$12 : bne +
+    stz $170B|!addr,x
++   dex : bpl -
+    
+    lda !item_box_disable : ora #$02 : sta !item_box_disable
+endif
+
 .handle_song:
     ; If the music is sped up, play the death song to make it normal again.
     lda !ram_hurry_up : bne .return
 
     ; If not infinite lives and they're over, skip retry as we're about to game over.
+if not(!infinite_lives)
     jsr shared_get_bitwise_mask
     and.l tables_lose_lives,x : beq +
     lda $0DBE|!addr : beq .return : bmi .return
 +
+endif
+
     ; If "Exit" was selected, don't disable the death music.
     lda !ram_prompt_phase : cmp #$05 : bcs .return
 

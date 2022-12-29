@@ -63,6 +63,12 @@ mmp_main:
     ; If we should load a secondary exit, branch.
     lda !ram_checkpoint+1,x : bit #$02 : bne .secondary_exit
 
+    ; If we should load the Yoshi Wings level, do it.
+    bit #$80 : beq +
+    bit #$0A : bne +
+    lda #$02 : sta $1B95|!addr
+    dec : sta $0DC1|!addr
++
     ; Store level number to load.
     rep #$20
     lda !ram_checkpoint,x : and #$01FF : sta $0E

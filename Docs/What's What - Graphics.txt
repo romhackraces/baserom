@@ -26,15 +26,6 @@ GFX13 : Global Tiles
 GFX14 : Global Foreground Tiles
  - a couple unused tiles in the bullet launcher were replaced with sideways cloud graphics.
 
-GFX16 : Rope Set Foreground
- - the tiles for the line guide have been moved to ExGFXE17 (FG2) as they now are global
- - a proper corner tiles for rope foreground was added so the objects can be used properly
- - the graphics for the log bridge from GFX19 was moved here
- - a version of the Reznor bridge that isn't 2BPP was put into free space
-
-GFX19 : Cloud & Forest Background
- - tiles for the log bridge have been moved to GFX16
-
 GFX2B : Layer 3 tiles
  - The unused graphics for "Super Mario Bros. 4" has been replaced with "Romhack Races Baserom"
 
@@ -45,6 +36,9 @@ GFX33 : Global Animation Tiles
 ----------
 ExGraphics
 ----------
+
+ExGFX101: SP2
+ - an alternative to GFX01 with the poison mushroom
 
 ExGFX61: Global ExAnimation
  - contains optional animation frames for One-Ways and for the Infinite throw block

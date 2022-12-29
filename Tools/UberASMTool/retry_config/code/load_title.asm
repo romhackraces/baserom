@@ -23,7 +23,8 @@ init:
     dey : bpl -
 
     ; Set the intro level checkpoint (level 0 = intro).
-    lda.w #!intro_sublevel : sta.w !ram_checkpoint
+    jsr shared_get_intro_sublevel
+    sta.w !ram_checkpoint
     
     sep #$30
 
@@ -36,6 +37,9 @@ init:
     ; Initialize prompt position.
     lda.b #!text_x_pos : sta.w !ram_prompt_x_pos
     lda.b #!text_y_pos : sta.w !ram_prompt_y_pos
+
+    ; Initialize "midway powerup" flag.
+    lda.b #!midway_powerup : sta.w !ram_midway_powerup
 
     ; Call the custom load title routine.
     php : phk : plb

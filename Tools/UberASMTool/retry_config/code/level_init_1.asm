@@ -47,8 +47,10 @@ init:
     sep #$20
 
 .skip:
-    ; Reset Yoshi, but only if respawning and not parked outside of a Castle/Ghost House.
+    ; Reset Yoshi, but only if respawning, not during the Yoshi Wings entrance
+    ; and not parked outside of a Castle/Ghost House.
     lda !ram_is_respawning : beq +
+    lda $1B95|!addr : bne +
 if not(!counterbreak_yoshi)
     lda $1B9B|!addr : bne +
 endif

@@ -12,13 +12,6 @@ set AMK_JUNK="readme.html" "src.zip" "addmusicMRemover.pl"
 set AMK_JUNK_DIR="readme_files"
 set AMK_LISTS="Addmusic_sample groups.txt" "Addmusic_list.txt" "Addmusic_sound effects.txt"
 
-:: Asar
-set ASAR_DIR=!TOOLS_DIR!Asar\
-set ASAR_DL="https://dl.smwcentral.net/25953/asar181.zip"
-set ASAR_ZIP="asar181.zip"
-set ASAR_JUNK="LICENSE" "license-lgpl.txt" "license-gpl.txt" "license-wtfpl.txt" "README.txt"
-set ASAR_JUNK_DIR="ext" "dll" "docs"
-
 :: Flips
 set FLIPS_DIR=!TOOLS_DIR!Flips\
 set FLIPS_DL="https://dl.smwcentral.net/11474/floating.zip"
@@ -40,9 +33,9 @@ set LM_JUNK="readme.txt"
 
 :: Lunar Helper
 set LUN_HLP_DIR=%WORKING_DIR%LunarHelper\
-set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v2.4.0/LunarHelper-v2.4.0.zip"
-set LUN_HLP_ZIP="LunarHelper-v2.4.0.zip"
-set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt"
+set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v3.0.0/LunarHelper-v3.0.0.zip"
+set LUN_HLP_ZIP="LunarHelper-v3.0.0.zip"
+set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt" "ASAR_LICENSE"
 set LUN_HLP_JUNK_DIR="initial_patches"
 
 :: Lunar Monitor

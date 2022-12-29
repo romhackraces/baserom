@@ -3,8 +3,6 @@
 ;And also work when placed on Layer 2
 ;By dtothefourth
 
-!FreeRAM = $7FB540 ;Any FreeRAM, change if conflicting
-
 if read1($00FFD5) == $23	;sa-1 compatibility
   sa1rom
   !BankB = $000000
@@ -13,6 +11,8 @@ else
   !BankB = $800000
   !addr = $0000
 endif
+
+!FreeRAM = $14BE|!addr
 
 
 org $00F048|!BankB
