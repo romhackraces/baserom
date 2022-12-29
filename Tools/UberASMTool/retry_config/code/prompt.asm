@@ -34,8 +34,15 @@ handle_menu:
 if !exit_animation == 2
     lda.b #!death_time : sta $1496|!addr
 endif
+    
+    ; Handle exit music differently if AMK is inserted or not.
+    lda.l amk_byte : cmp #$5C : beq ..amk
 
-if !amk
+..no_amk:
+    lda #$FF : sta $0DDA|!addr
+    bra ..common
+
+..amk:
 if !death_jingle_alt != $FF
 if !exit_animation == 0
     lda !ram_hurry_up : beq +
@@ -43,15 +50,13 @@ endif
     lda.b #!death_jingle_alt : sta $1DFB|!addr
 +   rts
 endif
-else
-    lda #$FF : sta $0DDA|!addr
-endif
 
+..common:
 if !exit_animation == 0
-    lda !ram_hurry_up : beq +
+    lda !ram_hurry_up : beq .skip
 endif
-    lda.b #!death_song : sta $1DFB|!addr
-+   rts
+    lda.l death_song : sta $1DFB|!addr
+    rts
 
 .retry:
     ; Set prompt phase to "shrinking with retry selected".

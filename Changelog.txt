@@ -1,3 +1,14 @@
+v4.12
+- new uberasm objects system; cleaned up level asm
+- return of the grey double bounce shell (but no more messed up koopas)
+- more extra-bit sprite enhancements; chucks remember behaviour, exit-enabled grow pipe, squished rex
+- tweaked some global exanimations
+- added spike top ceiling cling patch
+- dropped the ram controlled fireballs feature
+- moved global line guide map16 tiles
+- updated retry to 0.4.3
+- updated Lunar Helper to 3.0.0
+
 v4.11
 - new death block graphics, using the SMM2 spikes
 - removed mega mole tweak

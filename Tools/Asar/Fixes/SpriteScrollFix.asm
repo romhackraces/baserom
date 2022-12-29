@@ -10,7 +10,7 @@
 ;^Set this  to 1 if you wanted to use a number that is the amount of pixels
 ;the screen has been moved.
 
-!Freeram_ScrnDisplace = $7F8332
+!Freeram_ScrnDisplace = $1487
 ;[4 bytes], this ram is used if !Displacement is set to 1. This ram address
 ;holds the amount of pixels the screen has moved. Format:
 ;-First 2 bytes = moved horizontally

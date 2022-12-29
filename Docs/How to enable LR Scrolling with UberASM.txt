@@ -1,8 +1,0 @@
-Scrolling the screen with L/R is disabled baserom-wide however it can be re-enabled by setting a RAM flag.
-
-For individual levels save the following to an ASM file or include it in an existing level ASM file, and reapply UberASM.
-
-    init:
-        lda #$01
-        sta $7C ;> must match patch in Tools/Asar/RAMToggledLR.asm
-        rtl

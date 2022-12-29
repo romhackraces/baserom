@@ -7,21 +7,27 @@
 ; 0 = retry prompt & play the vanilla death song when players die.
 ; 1 = retry prompt & play only the death sfx when players die (music won't be interrupted).
 ; 2 = instant retry (no prompt & play only the sfx: the fastest option; like "yes" is chosen automatically)
-;       In this option, you can press start then select to exit the level.
+;     In this option, you can press start then select to exit the level.
 ; 3 = no retry prompt/respawn (vanilla death: as if "no" is chosen automatically, use this if you only want the multi-midway feature).
 ; Note: you can override this per sublevel (see "tables.asm") and also at any point by setting a certain RAM address (see "docs/ram_map.txt").
-    !default_prompt_type = 1
+    !default_prompt_type = 3
 
 ;======================== QoL and Anti-Break ============================;
 
 ; How many lives to start a new save file with.
     !initial_lives = 99
 
+; If 1, lives won't decrement when dying.
+; Note: if 0, you can choose to have infinite lives in specific sublevels using the "lose_lives" table in "tables.asm".
+    !infinite_lives = 1
+
 ; 0 = midways won't give Mario a mushroom.
 ; 1 = vanilla midway powerup behavior.
-    !midway_powerup = 0
+; Note: you can also change this on the fly (see "docs/ram_map.txt").
+    !midway_powerup = 1
 
-; Counterbreak options reset the corresponding counters/items when the player dies and when going to the overworld. Useful for Kaizo and collab hacks.
+; Counterbreak options reset the corresponding counters/items when the player dies and when going to the Overworld.
+; Useful for Kaizo and collab hacks.
     !counterbreak_yoshi = 1
     !counterbreak_powerup = 1
     !counterbreak_item_box = 1
@@ -31,9 +37,16 @@
 
 ;======================== QoL fixes =====================================;
 
+; If 1, level transitions will be much faster than usual.
+    !fast_transitions = 1
+
 ; If 1, it fixes the issue where some sprites don't face Mario when entering a level for the first time.
 ; It's suggested to enable the fix to make sprite behavior consistent between the first and all the next level reloads.
     !initial_facing_fix = 1
+
+; If 1, it fixes the issue where dying in a level with the timer set to 0
+; shows the "TIME UP!" message when exiting the level.
+    !time_up_fix = 1
 
 ; If 1, it fixes the issue where you can drop the reserve item in the item box
 ; by pressing Select while Mario is dying or while the Retry prompt is shown.
@@ -53,14 +66,17 @@
 
 ; This controls whether to freeze sprites during a level's pipe entrance (it doesn't affect other entrance types).
 ; 0 = don't freeze
-; 1 = freeze
+; 1 = freeze (recommended)
 ; 2 = vanilla: freeze only if sprites were frozen when exiting the previous room (e.g. if you entered a pipe, but not if you entered a door).
-; If you experience inconsistencies, use one of the other options.
-    !pipe_entrance_freeze = 2
+;     This can be inconsistent if exiting and re-entering the level.
+    !pipe_entrance_freeze = 1
 
 ; If 1, Start+Select out of a level is always possible.
-; Otherwise, it's only possible with the instant Retry option (or if the level is already beaten like vanilla).
+; Otherwise, it's only possible with the instant Retry option, or with the Retry prompt with the "Exit" option disabled, or if the level is already beaten like vanilla.
     !always_start_select = 1
+
+; If 1, the camera won't scroll vertically during Mario's death animation.
+    !death_camera_lock = 1
 
 ; If 1, DSX (dynamic) sprites status is reset on level load.
     !reset_dsx = 1
@@ -72,8 +88,8 @@
 
 ;======================== SFX ===========================================;
 
-; What SFX to play when dying (!death_sfx = $00 -> no SFX).
-; Only played if not playing the death song (for example, if the level uses vanilla death).
+; SFX to play when dying (!death_sfx = $00 -> no SFX).
+; Only played if not playing the death song (for example, it's not played if the level uses vanilla death).
     !death_sfx = $36
     !death_sfx_addr = $1DFC|!addr
 
@@ -81,18 +97,25 @@
 ; $01-$FE: custom song number, $FF = do not use this feature.
     !death_jingle_alt = $FF
 
-; SFX when selecting an option in the prompt (!option_sfx = $00 -> no SFX).
+; SFX to play when selecting an option in the prompt (!option_sfx = $00 -> no SFX).
     !option_sfx = $01
     !option_sfx_addr = $1DFC|!addr
 
-; SFX when the prompt cursor moves (!cursor_sfx = $00 -> no SFX).
+; SFX to play when the prompt cursor moves (!cursor_sfx = $00 -> no SFX).
     !cursor_sfx = $06
     !cursor_sfx_addr = $1DFC|!addr
 
-; SFX when getting a checkpoint through a room transition (!room_cp_sfx = $00 -> no SFX).
+; SFX to play when getting a checkpoint through a room transition (!room_cp_sfx = $00 -> no SFX).
 ; This is meant as a way to inform the player that they just got a room checkpoint.
-    !room_cp_sfx = $00
+; If enabled, you can disable it in specific sublevels using the "disable_room_cp_sfx" table in "tables.asm".
+    !room_cp_sfx = $05
     !room_cp_sfx_addr = $1DF9|!addr
+
+; SFX to play when entering a level from the Overworld (!enter_level_sfx = $00 -> no SFX)
+; similarly to what SMB3 does. If the SFX gets cut out, increase !enter_level_delay.
+    !enter_level_sfx = $00
+    !enter_level_sfx_addr = $1DFC|!addr
+    !enter_level_delay = $02
 
 ;======================== Save and SRAM =================================;
 
@@ -106,7 +129,9 @@
     !save_on_checkpoint = 1
 
 ; If 1, the game will automatically save after getting a game over.
-; This can be useful when paired with the option of not reloading some data from SRAM after a game over (see "tables.asm"), if you want some things to retain even if the player got a game over before saving them (for example, the death counter). This ensures that they will be saved to SRAM when this happens.
+; This can be useful when paired with the option of not reloading some data from SRAM after a game over (see "tables.asm"),
+; if you want some things to retain even if the player got a game over before saving them (for example, the death counter).
+; This ensures that they will be saved to SRAM when this happens.
     !save_after_game_over = 1
 
 ;======================== Custom Midways ================================;
@@ -114,7 +139,6 @@
 ; If 1, Retry will install a custom midway object in the ROM, insertable in levels by using object 2D.
 ; These objects allow you to have multiple midways in the same level, each with a different entrance.
 ; For more info on how to use them, check out "docs/midway_instruction/".
-;
 ; Note: this can be used alongside ObjecTool, but you'll need to modify that patch a bit (see the "objectool_info.txt" file).
     !use_custom_midway_bar = 1
 
@@ -125,14 +149,19 @@
 ;======================== Retry Prompt ==================================;
 
 ; If 1, the prompt will show up immediately after dying.
-; Otherwise, it will show up halfway through the death animation, but pressing A/B during it will skip it.
+; Otherwise, it will show up halfway through (or right after, depending on !retry_death_animation)
+; the death animation, but pressing A/B during it will skip the animation.
     !fast_prompt = 1
+
+; 0 = don't play the death animation when using instant Retry or prompt
+;     Note: for Retry prompt, part of the death animation still plays if not using !fast_prompt
+; 1 = play the full death animation before showing the Retry prompt (note: make sure !fast_prompt = 0)
+; 2 = play the full death animation before reloading the level with instant Retry
+; 3 = play the full death animation in both cases (effects 1 and 2)
+    !retry_death_animation = 0
 
 ; How fast the prompt expands/shrinks. It must evenly divide 72.
     !prompt_speed = 6
-
-; If 1, level transitions will be much faster than usual.
-    !fast_transitions = 1
 
 ; 0 = sprites and animations won't freeze when the prompt is shown.
 ; 1 = sprites and most animations will freeze, but some animations will still play (for example, Magikoopa Magic's flashing).
@@ -158,7 +187,7 @@
 ; Set to 1 to dim the screen while the prompt is shown.
     !dim_screen = 0
 
-; Only used if !dim_screen = 1. Can go from 0 to 16, 16 = max brightness, 0 = black.
+; Only used if !dim_screen = 1. Can go from 0 to 15, 15 = max brightness, 0 = black.
     !brightness = 8
 
 ; This defines a button that will count as hitting "Exit" on the menu while the prompt is shown.
@@ -191,7 +220,7 @@
 ; Higher = slower. Possible values: 0 to 5.
     !prompt_wave_speed = 2
 
-; Palette row used by the letters and cursor (remember: they use sprite palettes).
+; Palette row used by the letters and cursor (note: they use sprite palettes).
     !letter_palette = $08
     !cursor_palette = $08
 
@@ -226,14 +255,14 @@
 ; Note: this only handles the counter, if you want other stuff like "DEATHS" appear, use LM's layer 3 editor.
     !ow_death_counter = 0
 
-; Position of the death counter on the overworld.
+; Position of the death counter on the Overworld.
     !ow_death_counter_x_pos = $19
     !ow_death_counter_y_pos = $02
 
-; YXPCCCTT properties of the death counter on the overworld.
+; YXPCCCTT properties of the death counter on the Overworld.
 ; The first digit is the palette, the second is the GFX page number (0 or 1).
     !ow_death_counter_props = l3_prop(6,1)
 
-; Tile number of the digit "0" on the overworld.
+; Tile number of the digit "0" on the Overworld.
 ; (it's assumed that the digits are stored in order from 0 to 9 in the GFX file).
     !ow_digit_0 = $22

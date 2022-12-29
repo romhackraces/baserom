@@ -13,6 +13,12 @@
 ; left unused (48 bytes at $00C39F) and it can be used by other patches.
 ;=======================================================================
 
+if read1($00FFD5) == $23
+    sa1rom
+else
+    lorom
+endif
+
 org $00C35D
 net_door_stripe_upload:
     lda $06 : xba : sta $06

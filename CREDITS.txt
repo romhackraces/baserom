@@ -1,17 +1,22 @@
 -- Patches --
 
+Double Bounce Shell Palette - Fernap
 Extended No Sprite Tile Limits v3.1 - DiscoTheBat, Kevin, Roy, imamelia, worldpeace - https://smwc.me/s/24642
 Free up Tiles 69 and 83 - Alcaro - https://smwc.me/s/14538
 Mario's 8x8 Tiles DMA-er - Ladida, lx5 - https://smwc.me/s/26002
 Monty Mole, Hammer Bro and Dry Bone Behavior on Extra Bit - Kevin - https://smwc.me/s/30450
 No More Sprite Tile Limits v1.2.1 - Arujus, MathOnNapkins, Tattletale, NoelYoshi, Vitor Vilela, edit1754 - https://smwc.me/s/24816
+ObjecTool 0.5 - 0x400, imamelia - https://smwc.me/s/24217
+Pitchin' Chuck Won't Turn On Extra Bit - JamesD28 https://smwc.me/s/28579
 Placeable (Kicked) Throw Block - Kevin - https://smwc.me/s/22809
 Placeable Disco Shell - Alcaro - https://smwc.me/s/21597
 Placeable Kicked Shell v1.1 - Kevin - https://smwc.me/s/28994
 Poison Mushroom v1.0 - JackTheSpades, mikeyk - https://smwc.me/s/20440
-RAM Controlled Mario's Fireballs Limit - Kevin - https://smwc.me/s/29898
 RAM Specific L/R Scroll Disable - Chdata - https://smwc.me/s/20355
 RAM Toggled Status Bar (& IRQ) - Kevin - https://smwc.me/s/28449
+Rexes With Extra Bit Set Are Squished - Supermario1313 - https://smwc.me/s/27788
+Spike Top Ceiling Cling - imamelia - https://smwc.me/s/18949
+Sprite Item Box - Kevin - https://smwc.me/s/26887
 Triple Ball 'n' Chain - imamelia - https://smwc.me/s/19256
 
 SA-1 Pack v1.40 - Arujus, Vitor Vilela - https://smwc.me/s/25938
@@ -26,7 +31,7 @@ Bounce Blocks Death Fix - Kevin - https://smwc.me/s/25647
 Cape Layer 2 Position Fix - HammerBrother - https://smwc.me/s/12328
 Capespin Direction Consistency - Katun24
 Capespin Hitbox Consistency + Net Punching Hitbox Correction - Katun24
-Climbing Net Door on Subscreen Boundary Fix - Kevin - https://smwc.me/s/29100
+Climbing Net Door on Subscreen Boundary Fix v1.1 - Kevin - https://smwc.me/s/32586
 Cluster Boo Ducking Fix - Alcaro - https://smwc.me/s/11618
 Dark Room Background Fix - Roy - https://smwc.me/s/19456
 Dead Spring Fix - Kevin - https://smwc.me/s/29595
@@ -72,7 +77,7 @@ Yoshi Pipe Animation Fix - Kevin - https://smwc.me/s/30127
 -- UberASM --
 
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
-Retry System - Kevin - https://github.com/kkevinm/retry-system
+Retry System v0.4.3 - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.4.3
 Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 
 -- Custom Blocks --

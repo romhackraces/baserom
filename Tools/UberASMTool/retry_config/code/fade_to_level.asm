@@ -4,6 +4,14 @@ init:
     ; If respawning or doing a level transition, skip.
     lda $141A|!addr : bne .transition
 
+if !enter_level_sfx != $00
+    ; If not loading the level from a No Yoshi intro, play the SFX.
+    lda $71 : cmp #$0A : beq +
+    lda.b #!enter_level_sfx : sta !enter_level_sfx_addr
+    lda.b #!enter_level_delay : sta $0DB1|!addr
++
+endif
+
 if !pipe_entrance_freeze == 2
     ; Reset the $9D backup.
     lda #$00 : sta !ram_9D_backup
@@ -29,9 +37,16 @@ if !pipe_entrance_freeze == 2
 endif
 
     ; ...and backup the current entrance value for later.
-    jsr shared_get_screen_number
-    lda $19B8|!addr,x : sta !ram_door_dest
-    lda $19D8|!addr,x : sta !ram_door_dest+1
+    ; (if warping to Yoshi Wings, change the entrance to the correct level
+    ; and set the Yoshi Wings flag in the checkpoint RAM).
+    lda $1B95|!addr : beq +
+    %jsl_to_rts_db($05DBAC,$058125)
+    lda $19D8|!addr,x : and #$FE : ora $010C|!addr : ora #$80
+    bra ++
++   jsr shared_get_screen_number
+    lda $19D8|!addr,x
+++  sta !ram_door_dest+1
+    lda $19B8|!addr,x : sta !ram_door_dest+0 
 
 main:
 if !fast_transitions

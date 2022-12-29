@@ -60,18 +60,16 @@ midway_main:
     jsr extra_midway
     plb : plp : ply : plx
     
-    ; Make it compatible with the "SMB2-Styled Health Bar" patch or other patches that hijack here.
-    ; If they restore the powerup code, it should be an easy thing to edit out if needed.
-if !midway_powerup || read1($00F2E0) == $5C || read1($00F2E0) == $22
+    ; Only run the powerup code if applicable.
+    ; If using the "SMB2-Styled" Health Bar patch, this should prevent healing
+    ; at midways unless the flag is set.
+    lda !ram_midway_powerup : beq +
     jml $00F2E0|!bank
-else
-    ; Skip the powerup code: no need for hex editing.
-    jml $00F2E8|!bank
-endif
++   jml $00F2E8|!bank
 
 ;=====================================
 ; Routine to get a block's $7EC800 index in $04 (16 bit).
-; It should be  run during the block interaction process.
+; It should be run during the block interaction process.
 ;=====================================
 get_tile_index:
     phy : phx : php
@@ -84,14 +82,15 @@ get_tile_index:
     bra ++
 +   lda $9B
 ++  tax
-
+    
+    lda.l lm_version : cmp #$33
     rep #$20
-if !lm3
+    bcc +
     lda $13D7|!addr
-else
-    lda #$01B0
-endif
-    sta $04
+    bra ++
++   lda #$01B0
+++  sta $04
+    
     jsr .multiply
 
     lda $9A : and #$00F0 : lsr #4
@@ -188,20 +187,19 @@ midway_spawn:
 
 ..main:
     %lda_13BF() : bne ...no_intro
-    rep #$20
-    lda.w #!intro_sublevel
-    bra ++
+    jsr shared_get_intro_sublevel
+    bra +
 
 ...no_intro:
     rep #$20
-    and #$00FF : cmp #$0025 : bcc ++
+    and #$00FF : cmp #$0025 : bcc +
     clc : adc #$00DC
-    bra ++
+    bra +
 
 ..sublevel:
     rep #$20
     lda $010B|!addr
-++  ora #$0C00 : eor !ram_respawn : and #$FBFF
++   ora #$0C00 : eor !ram_respawn : and #$FBFF
     sep #$20
     bne .spawn
 

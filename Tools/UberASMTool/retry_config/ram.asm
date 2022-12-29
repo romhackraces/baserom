@@ -6,12 +6,13 @@
 ;=====================================
 ; What freeram to use.
 ; 230 + (!max_custom_midway_num*4) bytes are used.
+; On SA-1, only !retry_freeram_sa1 is used.
 ;=====================================
 !retry_freeram     = $7FB400
 !retry_freeram_sa1 = $40A400
 
 ;=====================================
-; What freeram is used by AMK. Shoudln't need to be changed usually.
+; What freeram is used by AMK. Shouldn't need to be changed usually.
 ;=====================================
 !amk_freeram = $7FB000
 
@@ -51,7 +52,7 @@ namespace off
 %retry_ram(update_window,$0D)    ; 1
 %retry_ram(is_dying,$0E)         ; 1
 %retry_ram(9D_backup,$0F)        ; 1
-%retry_ram(l2_backup,$10)        ; 1
+%retry_ram(midway_powerup,$10)   ; 1
 %retry_ram(prompt_override,$11)  ; 1
 %retry_ram(disable_exit,$12)     ; 1
 %retry_ram(set_checkpoint,$13)   ; 2

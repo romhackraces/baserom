@@ -15,7 +15,7 @@ else
     !bank = $800000
 endif
 
-!FreeRam = $140B|!addr
+!FreeRam = $1696|!addr
 
 org $00D076|!bank
 autoclean JML CapeSpinStart                 ; called at the start of the capespin

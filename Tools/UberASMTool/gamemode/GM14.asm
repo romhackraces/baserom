@@ -4,7 +4,6 @@ init:
 
 main:
     jsl retry_in_level_main
-    jsl EightFrameFloat_main
     jsl double_hit_fix_main
     JSL ScreenScrollingPipes_SSPMaincode
     rtl
