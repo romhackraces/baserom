@@ -1,6 +1,8 @@
 ; Gamemode 0C
 
 init:
+    ; Reset to the default prompt type on return to OW
+    lda.b #!default_prompt_type+1 : sta !ram_prompt_override
 
 ; Reset various counters.
 .counterbreak:
