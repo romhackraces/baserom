@@ -53,10 +53,10 @@ patches
 	Tools/Asar/Fixes/VRAMOptimize.asm
 	Tools/Asar/Fixes/WallJumpNoteBlockGlitchFix.asm
 	Tools/Asar/Fixes/YoshiPipeAnimationFix.asm
+	Tools/Asar/Fixes/SSP_Fixes.asm
 	Tools/Asar/CharlesRemembers.asm
 	Tools/Asar/DoubleBouncePalette.asm
 	Tools/Asar/ExtendedNSTL.asm
-	Tools/Asar/Fixes/SSP_Fixes.asm
 	Tools/Asar/GrowPipeExitOnExtraBit.asm
 	Tools/Asar/MarioGFXDMA/MarioGFXDMA.asm
 	Tools/Asar/NoMoreSpriteTileLimits.asm
