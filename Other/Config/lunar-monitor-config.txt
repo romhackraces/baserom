@@ -9,4 +9,4 @@ shared_palettes_path: "Other/Palettes/Shared.pal"
 level_directory: "Levels"
 -- Logs
 log_level: Log
-log_path: "Other/lunar-monitor-log.txt"
+log_path: "Other/lunar_monitor_log.txt"

@@ -19,7 +19,7 @@ Tools/UberASMTool/*.pdb
 Tools/UberASMTool/asm/work/*.asm
 .lunar_helper/*
 flipscfg.bin
-lunar-monitor-log.txt
+lunar_monitor_log.txt
 config_user.txt
 list.txt
 rom-name.txt

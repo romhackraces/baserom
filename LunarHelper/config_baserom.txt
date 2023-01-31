@@ -25,6 +25,7 @@ gps_path = Tools/GPS/gps.exe
 lm_path = Tools/LunarMagic/Lunar Magic.exe
 pixi_path = Tools/PIXI/pixi.exe
 uberasm_path = Tools/UberASMTool/UberASMTool.exe
+lunar_monitor_loader_path = Tools/LunarMagic/LunarMonitorLoader.exe
 
 -- tool CLI options
 addmusick_options = -v
