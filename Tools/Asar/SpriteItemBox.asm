@@ -12,7 +12,7 @@
 !freeram = $79 ; Same as RAMToggledStatusbar so they both activate.
 
 ; Box GFX properties.
-!box_tile = $22
+!box_tile = $20
 !box_prop = $36 ; YXPPCCCT
 !box_xpos = $70
 !box_ypos = $07
