@@ -4,7 +4,7 @@ To insert a custom object either use the "Edit > Insert manual..." menu action o
 
 Custom objects can be activated by putting their value in the "Size/Type/Ext (0-FF)" field and multiple objects can be active in one level. For example, the demo level (105) has objects 98 and 9C active.
 
-Note: These custom objects will look garbled in Lunar Magic and appear as "null" object but they won't actually appear in game. The random tiles they are made up of may occassionally use an exit-enabled tile which may display a warning depending on your Lunar Magic settings, it can be ignored.
+Note: These custom objects will look garbled in Lunar Magic and appear as "null" object but they won't actually appear in game. The random tiles they are made up of may occasionally use an exit-enabled tile which may display a warning depending on your Lunar Magic settings, it can be ignored.
 
 
 98 - Toggle Statusbar
