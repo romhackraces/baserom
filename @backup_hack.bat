@@ -16,13 +16,14 @@ call %WORKING_DIR%Tools\@tool_defines.bat
 :: Directory Definitiions
 set BACKUP_DIR=%~sdp0Backup\
 set TOOLS_DIR=%WORKING_DIR%Tools\
+set CONF_DIR=%WORKING_DIR%Other\Config\
 
 :: ROM Definitions
-set ROM_NAME_FILE=%WORKING_DIR%\Other\rom-name.txt
+set ROM_NAME_FILE=!CONF_DIR!rom-name.txt
 :: Check if rom-name.txt exists
 if not exist !ROM_NAME_FILE! (
     :: Ask for ROM name
-    set /p ROM_NAME_INPUT=Enter the filename of your ROM, e.g. "MyHack": 
+    set /p ROM_NAME_INPUT=Enter the filename of your ROM, e.g. "MyHack":
     echo !ROM_NAME_INPUT!>!ROM_NAME_FILE!
     :: Set ROM name
     set /p ROM_NAME=<!ROM_NAME_FILE!
@@ -77,7 +78,7 @@ echo   3. Shared palette
 echo   4. ROM file
 echo   0. Exit
 echo.
-set /p Action=Enter the number of your choice: 
+set /p Action=Enter the number of your choice:
 echo.
 
 :: Export MWL level files

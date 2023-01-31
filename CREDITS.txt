@@ -105,3 +105,6 @@ Lunar Magic 3.33 - FuSoYa - https://fusoya.eludevisibility.org/lm/program.html
 Lunar Monitor 1.4.0 - Underway, Atari2.0 - https://github.com/Underrout/lunar-monitor
 PIXI v1.32 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/26026
 UberASM Tool 1.5 - Vitor Vilela - https://smwc.me/s/28974
+
+-- Other Credits --
+Burning Loaf - Ideas taken from Trinkets (https://smwc.me/s/32272) for toolbar actions.

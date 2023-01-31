@@ -12,6 +12,7 @@ Tools/AddmusicK_*/stats/*.txt
 Tools/AddmusicK_*/temp*
 Tools/AddmusicK_*/*.pl
 Tools/AddmusicK_*/Addmusic_*.txt
+Tools/LunarMagic/usertoolbar*
 Tools/GPS/blocks/template.asm
 Tools/GPS/rom.txt
 Tools/UberASMTool/*.pdb
@@ -21,6 +22,7 @@ flipscfg.bin
 lunar-monitor-log.txt
 config_user.txt
 list.txt
+rom-name.txt
 temp.*
 *.*~
 *.lnk

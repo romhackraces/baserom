@@ -48,8 +48,8 @@ build_order
     Patches                 -- Insert all remaining patches from the patches list that
                             -- are not explicitly mentioned in this build order
 
-    Levels                  -- Insert all levels
     PIXI                    -- Insert custom sprites
+    Levels                  -- Insert all levels
 
     AddMusicK               -- Insert custom music
     UberASM                 -- Insert UberASM code

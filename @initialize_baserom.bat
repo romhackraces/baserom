@@ -10,6 +10,7 @@ setlocal EnableDelayedExpansion
 
 :: Directory definitions
 set TOOLS_DIR=%WORKING_DIR%Tools\
+set CONF_DIR=%WORKING_DIR%Other\Config\
 set LISTS_DIR=%WORKING_DIR%Other\Lists\
 
 :: Import Definitions
@@ -105,6 +106,16 @@ if "!Action!"=="1" (
         echo -- Lunar Magic already setup.
     )
 
+    :: Setup Usertoolbar things
+    if not exist "!LM_DIR!usertoolbar_icons.bmp" (
+        echo Setting up custom Lunar Magic toolbar...
+        copy /y !CONF_DIR!usertoolbar.txt !LM_DIR!
+        copy /y !CONF_DIR!usertoolbar_icons.bmp !LM_DIR!
+        copy /y !CONF_DIR!usertoolbar_wrapper.bat !LM_DIR!
+    ) else (
+        echo -- Custom Lunar Magic toolbar already setup.
+    )
+
     :: Check if Lunar Helper exists and download if not
     if not exist "!LUN_HLP_DIR!LunarHelper.exe" (
         echo Lunar Helper not found, downloading...
@@ -113,14 +124,13 @@ if "!Action!"=="1" (
         :: Delete junk files
         for %%a in (!LUN_HLP_JUNK!) do (del !LUN_HLP_DIR!%%a)
         for %%a in (!LUN_HLP_JUNK_DIR!) do (rmdir /S /Q !LUN_HLP_DIR!%%a)
-        :: Create Lunar Helper shortcut
-        powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%WORKING_DIR%LunarHelper.exe.lnk');$s.TargetPath='!LUN_HLP_DIR!LunarHelper.exe';$s.Save()"
         :: Delete Zip
         del !LUN_HLP_ZIP!
         echo Done.
     ) else (
         echo -- Lunar Helper already setup.
     )
+
 
     :: Check if Lunar Monitor exists and download if not
     if not exist "!LUN_MON_DIR!lunar_monitor" (
@@ -130,7 +140,7 @@ if "!Action!"=="1" (
         :: Delete junk files
         for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a)
         :: Copy in existing config file
-        copy /y %WORKING_DIR%Other\lunar-monitor-config.txt %WORKING_DIR%
+        copy /y !CONF_DIR!lunar-monitor-config.txt %WORKING_DIR%
         :: Delete Zip
         del !LUN_MON_ZIP!
         echo Done.
