@@ -9,8 +9,8 @@ print "Question block that always spawns a Fire Flower."
 				; Carryable sprites uses it as the stun timer
 
 !Placement = %move_spawn_into_block()
-		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block() 
-		
+		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block()
+
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide
 JMP SpriteV : JMP SpriteH
 JMP Cape : JMP Fireball
@@ -55,7 +55,7 @@ SpawnItem:
 	STA $1901,y
 
 	LDA #$02
-	STA $1DFC
+	STA $1DFC|!addr
 
 	LDA #!Sprite
 	CLC
