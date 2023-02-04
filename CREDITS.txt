@@ -100,7 +100,7 @@ AddmusicK 1.0.8 - Kipenal - https://smwc.me/s/24994
 Asar v1.81 - Alcaro et al. - https://smwc.me/s/25953
 Flips v1.31 - Alcaro - https://smwc.me/s/11474
 GPS V1.4.3 - TheBiob, p4plus2 - https://smwc.me/s/29130
-Lunar Helper 4.0.0 - Underway, Maddy - https://github.com/Underrout/LunarHelper
+Lunar Helper 4.0.1 - Underway, Maddy - https://github.com/Underrout/LunarHelper
 Lunar Magic 3.33 - FuSoYa - https://fusoya.eludevisibility.org/lm/program.html
 Lunar Monitor 1.4.0 - Underway, Atari2.0 - https://github.com/Underrout/lunar-monitor
 PIXI v1.32 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/26026
