@@ -23,5 +23,6 @@ GPS Inserted Blocks
 2A1 - A block that acts like a stationary Swooper.
 2A2 - Sets the ON/OFF status to ON when anything (incl. dead sprites) passes through it.
 2A3 - Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it.
+2A4 - A block that will teleport Mario to the current screen exit.
 2B0-2BC - Custom Question Blocks (hover for descriptions)
 300-36F - Screen Scrolling Pipe Tiles (hover for descriptions)
