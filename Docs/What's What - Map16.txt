@@ -1,5 +1,5 @@
 - POINT OF ADVICE -
-You should use Lunar Magic's "Add Objects" window as much as possible to construct your levels instead of placing tiles directly from map16. Objects that are composed of several tiles take up fewer bytes in-ROM when placed in levels over individual map16 tiles. Essentially each tile from map16 counts as its own object in the level and this can dramatically increase the bytesize of levels if there are many many tiles, and this will impact level load times.
+You should use Lunar Magic's "Add Objects" window as much as possible to construct your levels instead of placing tiles directly from map16. Objects that are composed of several tiles take up fewer bytes in-ROM when placed in levels over individual map16 tiles. Each tile placed from map16 counts as its own object in the level and this can dramatically increase the bytesize of levels if there are many tiles, and this will impact level load times.
 
 =======
 Page 02
@@ -7,11 +7,11 @@ Page 02
 
 200-20A
 -------
-These tiles are reserved for Lunar Magic's layer 3 "Make tides act as" setting. What this means is that any block that is inserted here (or used as an act as) will be the tile the Layer 3 tide works as instead of water or lava or any of the other options.
+These tiles are reserved for Lunar Magic's layer 3 "Make tides act as" setting. Any block that is inserted here (or used as an act as) will be the tile the Layer 3 tide works as instead of water or lava or any of the other options.
 
 20B-20F
 -------
-Tiles for flipped muncher, hurt block, outlined note and coin block as well as 1F0.
+Tiles for flipped muncher, "anon" block, outlined note and coin block, as well as 1F0.
 
 210-28F
 -------
@@ -33,9 +33,22 @@ Upside down bullet bill shooter.
 -------
 Vine ends
 
-2C3,2C4,2D3,2D4,2E3,2E4,2F3,2F4
--------------------------------
-Alternative One-ways
+2C2
+---
+Upside-down lava tile.
+
+2D2
+---
+Upside-down water tile.
+
+2C3,2C4,2D3,2D4
+2E3,2E4,2F3,2F4
+---------------
+Alternative One-ways.
+
+2C5,2C6,2D5,2D6
+---------------
+General purpose arrow indicators.
 
 2E1
 ---

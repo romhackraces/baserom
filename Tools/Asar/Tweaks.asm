@@ -122,10 +122,6 @@ org $07F69C : db $25
 ; fix bat ceiling gfx
 org $02FDB8 : db $AE,$AE,$C0,$E8
 
-; fix layer 3 cave background using wrong colors
-org $05A312 : db $15
-org $05A4B2 : db $15
-
 ; fix the last tile of the Turnblock Bridge being X flipped.
 org $01B79D : db $20
 

@@ -2,6 +2,7 @@ If you're not animating a large amount of tiles using Level ExAnimation, or if y
 
 Each item is categorized by where they are applied, either Global or Level. The number following the name in brackets is the number of frames, 	followed by the details of the ExAnimation.
 
+
 ------------------
 Global ExAnimation
 ------------------
@@ -24,19 +25,19 @@ Type: 4 8x8s line
 Frames: 1048,104C
 Destination: 2E0 (BG3)
 
-Spiny Blocks (2)
+Spiny Blocks (2) & Line Guide Ends (2)
 -------------------
-Uses alternate ExGraphics: 61
 Slot: 02
-Type: 1 8x8s
-Frames: 1044,1045
-Destination: 1D (BG1)
+Type: 2 8x8s
+Frames: 686,686
+Destination: 96 (FG2)
 
-Line Guide Ends (4)
--------------------
+Sprite Bounce Block (4)
+-----------------------
+Uses alternate ExGraphics: 61
 Slot: 03
-Type: 2 8x8s line
-Frames: 740,750,760,770
+Type: 4 8x8s: 16x16
+Frames: 100C,101C,102C,103C
 Destination: 2E4 (BG3)
 
 Death Spikes (4)
@@ -55,13 +56,12 @@ Type: 2 8x8s: stacked
 Frames: 1000,1010,1020,1030,1040
 Destination: 2EC (BG3)
 
+
 -----------------
 Level ExAnimation
 -----------------
 
-The following are optional level ExAnimations for one-ways and the infinite throwblock, which will appear as clouds or as a normal throwblock respectively if they aren't used.
-
-Infinite throwblock (4)
+Spinning throwblock (4)
 -----------------------
 Uses alternate ExGraphics: 61
 Slot: 03
@@ -70,11 +70,3 @@ Frames: 1008,1018,1028,1038
 Destination: 06
  - overrides turn/throw block
 
-Sprite Bounce Block (4)
------------------------
-Uses alternate ExGraphics: 61
-Slot: 03
-Type: 4 8x8s: 16x16
-Frames: 100C,102C,103C,104C
-Destination: 8E
- - overrides some big pipe tiles
