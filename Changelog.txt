@@ -1,3 +1,11 @@
+v4.13
+- new custom user toolbar buttons
+- updated to Lunar Helper + Monitor 4.0.1
+- updated some ExGraphics and map16
+- Updated the basic text to be outlined
+- adjusted some sprite remaps
+- added a basic teleport block
+
 v4.12
 - new uberasm objects system; cleaned up level asm
 - return of the grey double bounce shell (but no more messed up koopas)

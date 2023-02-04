@@ -10,6 +10,8 @@ setlocal EnableDelayedExpansion
 
 :: Directory definitions
 set TOOLS_DIR=%WORKING_DIR%Tools\
+set TMP_DIR=%WORKING_DIR%temp\
+set CONF_DIR=%WORKING_DIR%Other\Config\
 set LISTS_DIR=%WORKING_DIR%Other\Lists\
 
 :: Import Definitions
@@ -20,9 +22,10 @@ echo Commands to Initialize Baserom
 echo.
 echo   1. Download and Setup all Baserom tools
 echo   2. Restore Baserom list files.
+echo   3. Setup Baserom's custom Lunar Magic toolbar.
 echo   0. Exit
 echo.
-set /p Action=Enter the number of your choice:
+set /p Action=Enter the number of your choice: 
 echo.
 
 
@@ -44,21 +47,6 @@ if "!Action!"=="1" (
         echo Done.
     ) else (
         echo -- AddmusicK already setup.
-    )
-
-    :: Check if Asar exists and download if not
-    if not exist "!ASAR_DIR!asar.exe" (
-        echo Asar not found, downloading...
-        powershell Invoke-WebRequest !ASAR_DL! -OutFile !ASAR_ZIP! >NUL
-        powershell Expand-Archive !ASAR_ZIP! -DestinationPath !ASAR_DIR! >NUL
-        :: Delete junk files
-        for %%a in (!ASAR_JUNK!) do (del !ASAR_DIR!%%a)
-        for %%a in (!ASAR_JUNK_DIR!) do (rmdir /S /Q !ASAR_DIR!%%a)
-        :: Delete Zip
-        del !ASAR_ZIP!
-        echo Done.
-    ) else (
-        echo -- Asar already setup.
     )
 
     :: Check if Flips exists and download if not
@@ -109,33 +97,35 @@ if "!Action!"=="1" (
     if not exist "!LUN_HLP_DIR!LunarHelper.exe" (
         echo Lunar Helper not found, downloading...
         powershell Invoke-WebRequest !LUN_HLP_DL! -OutFile !LUN_HLP_ZIP! >NUL
-        powershell Expand-Archive !LUN_HLP_ZIP! -DestinationPath !LUN_HLP_DIR! >NUL
+
+        :: Create Temp directory
+        if not exist "!TMP_DIR!" (mkdir !TMP_DIR!)
+        :: Download Lunar Helper + Lunar Monitor archive
+        powershell Expand-Archive !LUN_HLP_ZIP! -DestinationPath !TMP_DIR! >NUL
+
+        :: Move Lunar Helper Files
+        copy /y !TMP_DIR!"LunarHelper"\* !LUN_HLP_DIR!
         :: Delete junk files
         for %%a in (!LUN_HLP_JUNK!) do (del !LUN_HLP_DIR!%%a)
         for %%a in (!LUN_HLP_JUNK_DIR!) do (rmdir /S /Q !LUN_HLP_DIR!%%a)
-        :: Create Lunar Helper shortcut
-        powershell "$s=(New-Object -COM WScript.Shell).CreateShortcut('%WORKING_DIR%LunarHelper.exe.lnk');$s.TargetPath='!LUN_HLP_DIR!LunarHelper.exe';$s.Save()"
+
+        :: Move Lunar Monitor Files
+        copy /y !TMP_DIR!"LunarMonitor"\* !LUN_MON_DIR!
+        move /y !TMP_DIR!"LunarMonitor"\lunar_monitor !LUN_MON_DIR!
+        :: Delete junk files
+        for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a)
+        for %%a in (!LUN_MON_JUNK_DIR!) do (rmdir /S /Q !LUN_MON_DIR!%%a)
+
+        :: Copy in existing config file
+        copy /y !CONF_DIR!\lunar-monitor-config.txt %WORKING_DIR%
+
+        :: Delete Temp directory
+        rmdir /S /Q !TMP_DIR!
         :: Delete Zip
         del !LUN_HLP_ZIP!
         echo Done.
     ) else (
         echo -- Lunar Helper already setup.
-    )
-
-    :: Check if Lunar Monitor exists and download if not
-    if not exist "!LUN_MON_DIR!lunar_monitor" (
-        echo Lunar Monitor not found, downloading...
-        powershell Invoke-WebRequest !LUN_MON_DL! -OutFile !LUN_MON_ZIP! >NUL
-        powershell Expand-Archive !LUN_MON_ZIP! -DestinationPath !LUN_MON_DIR! >NUL
-        :: Delete junk files
-        for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a)
-        :: Copy in existing config file
-        copy /y %WORKING_DIR%Other\lunar-monitor-config.txt %WORKING_DIR%
-        :: Delete Zip
-        del !LUN_MON_ZIP!
-        echo Done.
-    ) else (
-        echo -- Lunar Monitor already setup.
     )
 
     :: Check if PIXI exists and download if not
@@ -183,6 +173,16 @@ if "!Action!"=="2" (
     copy /y !LISTS_DIR!!GPS_LIST! !GPS_DIR!list.txt
     copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!list.txt
     copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
+    echo Done.
+)
+
+:: Setup Custom Baserom user toolbar
+if "!Action!"=="3" (
+    :: Setup Usertoolbar things
+    echo Setting up custom Lunar Magic toolbar...
+    copy /y !CONF_DIR!usertoolbar\usertoolbar.txt !LM_DIR!
+    copy /y !CONF_DIR!usertoolbar\usertoolbar_icons.bmp !LM_DIR!
+    copy /y !CONF_DIR!usertoolbar\usertoolbar_wrapper.bat !LM_DIR!
     echo Done.
 )
 

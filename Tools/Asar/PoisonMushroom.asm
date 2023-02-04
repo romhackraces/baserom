@@ -8,7 +8,7 @@
 ; You can however freely change the other defines and reapply then
 
 !NUM ?= $85		;NORMAL sprite number to insert as
-!Tile = $80		;tile to use gfx
+!Tile = $22		;tile to use gfx
 !Pal = $A		;palette to use (not yxppccct, just plain normal palette row)
 !Sec = 0		;use second graphics page 0=no,1=yes
 

@@ -1,0 +1,90 @@
+; Lunar Monitor
+
+***START***
+"LunarMonitorLoader.exe" --running "%9" "%8" "%4"
+LM_DEFAULT
+LM_NO_BUTTON,LM_AUTORUN_ON_NEW_ROM,LM_NO_CONSOLE_WINDOW
+***END***
+
+LM_ADDIMAGE "usertoolbar_icons.bmp"
+
+***START***
+LM_SPACER
+
+***START***
+"explorer.exe" "%2"
+6,Open Current ROM Directory
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+LM_SPACER
+
+; PIXI
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "!pixi_path!" "explorer.exe"
+17,Open PIXI Folder
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "Start /wait /b ''" "'!pixi_list:\=/!!'"
+18,Open Sprite List
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+LM_SPACER
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "'!pixi_path!\CFG editor.exe'"
+20,Open CFG Editor
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+LM_SPACER
+
+
+; GPS
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "'!gps_path!'" "explorer.exe"
+23,Open GPS Folder
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "Start /wait /b ''" "'!gps_list:\=/!'"
+24,Open Custom Block List
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+LM_SPACER
+
+
+; UberASM
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "'!uber_path!'" "explorer.exe"
+27,Open UberASMTool Folder
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "Start /wait /b ''" "'!uber_list:\=/!'"
+28,Open UberASM list
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+LM_SPACER
+
+
+; AddMusicK
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "'!amk_path!'" "explorer.exe"
+30,Open AddMusicK Folder
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+"usertoolbar_wrapper.bat" "%1" "Start /wait /b ''" "'!amk_path:\=/!/Addmusic_list.txt'"
+31,Open Music List
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***END***

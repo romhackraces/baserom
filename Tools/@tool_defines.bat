@@ -33,16 +33,13 @@ set LM_JUNK="readme.txt"
 
 :: Lunar Helper
 set LUN_HLP_DIR=%WORKING_DIR%LunarHelper\
-set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v3.0.0/LunarHelper-v3.0.0.zip"
-set LUN_HLP_ZIP="LunarHelper-v3.0.0.zip"
-set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt" "ASAR_LICENSE" "README.md"
+set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v4.0.1/LunarHelper-v4.0.1.zip"
+set LUN_HLP_ZIP="LunarHelper-v4.0.1.zip"
+set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt" "ASAR_LICENSE"
 set LUN_HLP_JUNK_DIR="initial_patches"
-
 :: Lunar Monitor
 set LUN_MON_DIR=!TOOLS_DIR!LunarMagic\
-set LUN_MON_DL="https://github.com/Underrout/lunar-monitor/releases/download/v1.4.0/lunar-monitor-v1.4.0.zip"
-set LUN_MON_ZIP="lunar-monitor-v1.4.0.zip"
-set LUN_MON_JUNK="README.txt" "LICENSE" "lunar-monitor-config.txt"
+set LUN_MON_JUNK="LICENSE" "lunar-monitor-config.txt"
 
 :: PIXI
 set PIXI_DIR=!TOOLS_DIR!PIXI\

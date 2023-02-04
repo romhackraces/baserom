@@ -23,6 +23,7 @@
 2A1:0025	swooperblock.asm
 2A2:0025	set_to_on.asm
 2A3:0025	set_to_off.asm
+2A4:0025 teleport.asm
 
 ; CUSTOM QUESTION BLOCKS (DO NOT MODIFY) ------------------;
 2B0 question_blocks/74_mushroom.asm

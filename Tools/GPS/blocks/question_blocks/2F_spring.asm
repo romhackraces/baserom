@@ -55,7 +55,7 @@ SpawnItem:
 	STA $1901,y
 
 	LDA #$02
-	STA $1DFC
+	STA $1DFC|!addr
 
 	LDA #!Sprite
 	CLC

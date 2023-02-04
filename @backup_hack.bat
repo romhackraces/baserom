@@ -16,9 +16,10 @@ call %WORKING_DIR%Tools\@tool_defines.bat
 :: Directory Definitiions
 set BACKUP_DIR=%~sdp0Backup\
 set TOOLS_DIR=%WORKING_DIR%Tools\
+set CONF_DIR=%WORKING_DIR%Other\Config\
 
 :: ROM Definitions
-set ROM_NAME_FILE=%WORKING_DIR%\Other\rom-name.txt
+set ROM_NAME_FILE=!CONF_DIR!rom-name.txt
 :: Check if rom-name.txt exists
 if not exist !ROM_NAME_FILE! (
     :: Ask for ROM name
