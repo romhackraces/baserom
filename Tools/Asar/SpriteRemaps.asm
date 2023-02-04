@@ -8,8 +8,6 @@ org $0291F2 : db $4A : org $02878A : db $02
 org $0291F4 : db $40 : org $02878C : db $00
 ; ON/OFF bounce sprite
 org $0291F6 : db $0A : org $02878E : db $06
-; Glass block bounce sprite
-org $0291F5 : db $22 : org $02878D : db $00
 
 ; Yoshi's tongue, end
 org $01F48C : db $7E : org $01F494 : db $08
