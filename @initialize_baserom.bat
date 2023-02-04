@@ -104,14 +104,14 @@ if "!Action!"=="1" (
         powershell Expand-Archive !LUN_HLP_ZIP! -DestinationPath !TMP_DIR! >NUL
 
         :: Move Lunar Helper Files
-        copy /y !TMP_DIR!"LunarHelper (read README.txt first)"\* !LUN_HLP_DIR!
+        copy /y !TMP_DIR!"LunarHelper"\* !LUN_HLP_DIR!
         :: Delete junk files
         for %%a in (!LUN_HLP_JUNK!) do (del !LUN_HLP_DIR!%%a)
         for %%a in (!LUN_HLP_JUNK_DIR!) do (rmdir /S /Q !LUN_HLP_DIR!%%a)
 
         :: Move Lunar Monitor Files
-        copy /y !TMP_DIR!"LunarMonitor (read README.txt first)"\* !LUN_MON_DIR!
-        move /y !TMP_DIR!"LunarMonitor (read README.txt first)"\lunar_monitor !LUN_MON_DIR!
+        copy /y !TMP_DIR!"LunarMonitor"\* !LUN_MON_DIR!
+        move /y !TMP_DIR!"LunarMonitor"\lunar_monitor !LUN_MON_DIR!
         :: Delete junk files
         for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a)
         for %%a in (!LUN_MON_JUNK_DIR!) do (rmdir /S /Q !LUN_MON_DIR!%%a)
