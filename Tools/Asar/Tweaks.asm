@@ -21,8 +21,8 @@ org $0280A8 : bra $05
 org $0280B2 : bra $08
 
 ; make doors more easy to enter adjust door proximity check
-org $00F44B : db $0A ; width of the enterable region of the door (up to 0x10, default 0x08)
-org $00F447 : db $05 ; offset the enterable region, which is half of above (default 0x04)
+org $00F44B : db $0A ; width of the enterable region of the door (up to $10, default: $08)
+org $00F447 : db $05 ; offset the enterable region, which is half of above (default: $04)
 
 ; play SFX when exiting horizontal pipes
 org $00D24E : LDA $7D : NOP : NOP
@@ -48,12 +48,15 @@ org $018898 : BRA $05
 ; shorten intro message skip timer
 org $00A09C : db $04
 
-; don't shoot fireballs while spinjumping
+; don't shoot fireballs while spinjumping (default: $F0)
 org $00D093 : db $80
 
 ;;;;;;;;;;;;;;;;;
 ;; Minor Fixes ;;
 ;;;;;;;;;;;;;;;;;
+
+; fix throwblocks having splashes in buoyancy-enabled levels
+org $028648 : db $A5
 
 ; fix Sunken Ghost Ship glitch
 org $048DDA : db $80
@@ -103,7 +106,7 @@ org $03C511 : db $0C
 org $05A312 : db $15
 org $05A4B2 : db $15
 
-; fix dark palette on "Erase Game" screen
+; remove dark palette on "Erase Game" screen (interferes with some backgrounds)
 org $009D30 : db $EA,$EA,$EA,$EA,$EA
 
 ; fix a misplaced tile on the keyhole "iris in" effect
