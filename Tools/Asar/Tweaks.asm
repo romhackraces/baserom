@@ -36,8 +36,8 @@ org $03989F : db $EA,$EA,$EA,$EA
 ; disable losing lives a.k.a. infinite lives (not needed with retry)
 ;org $00D0D8 : NOP #3
 
-; disable gaining lives & fix halo Mario
-org $028AD2 : NOP #3
+; disable gaining lives & fix halo Mario (not needed with retry)
+;org $028AD2 : NOP #3
 
 ; remove RNG from Podobos/Jumping Fireballs
 org $01E0D7 : LDA #$7F : NOP #6
