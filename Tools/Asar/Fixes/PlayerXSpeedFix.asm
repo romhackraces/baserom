@@ -5,6 +5,8 @@
 !GroundDecel = 0 		;If 1, !FixDeceleration only applies in the air, not on the ground.
 						;  Setting this to 0 allows you to keep extra speed even on the ground, unlike vanilla.
 						;(the "No Jump" fix is always applied.)
+!FixNoJump = 1 			;Fix when Mario is be unable to jump  when being pushed very fast
+						;either from an autoscroll or other means.
 
 	!dp = $0000
 	!addr = $0000
@@ -26,25 +28,29 @@ elseif read1($00FFD5) == $23
 	!sa1 = 1
 endif
 
+if !FixNoJump != 0
 org $00D663
 	autoclean JML FixNoJump
 	nop #1
+endif
 
 org $00D742
 if !FixOscillation != 0
-		autoclean JML FixSpeed
+	autoclean JML FixSpeed
 else
-		LDA $7B								;>Restore
-		SEC									;
-		SBC $D535,y							;
+	LDA $7B								;>Restore
+	SEC									;
+	SBC $D535,y							;
 endif
 
 freecode
 
+if !FixNoJump != 0
 FixNoJump:
 	LDA.l JumpYSpeeds,x		;>New table
 	STA $7D				;>And done.
 	JML $00D668|!bank
+endif
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;How X speed affects your jump. This table contains a list of values to be used on how high mario
