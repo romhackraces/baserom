@@ -28,10 +28,13 @@ elseif read1($00FFD5) == $23
 	!sa1 = 1
 endif
 
-if !FixNoJump != 0
 org $00D663
+if !FixNoJump != 0
 	autoclean JML FixNoJump
 	nop #1
+else
+	LDA.W $D2BD,X 						;>Restore
+	STA $7D 							;
 endif
 
 org $00D742
