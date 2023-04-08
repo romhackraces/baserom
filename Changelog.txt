@@ -2,6 +2,7 @@ v4.14
 - added pballoon removal to powerup filter block
 - moved some uberasm object things to gamemode
 - updated PlayerXSpeedFix with a new option flag
+- better organized the demo text
 - fixed up gps list
 
 v4.13
