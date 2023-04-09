@@ -11,7 +11,7 @@ init:
     lda.b #!text_y_pos : sta !ram_prompt_y_pos
 
     ; Initialize "midway powerup" flag.
-    lda #$01 : sta !ram_midway_powerup
+    lda.b #!midway_powerup : sta !ram_midway_powerup
 
     jsl retry_load_overworld_init
     rtl
