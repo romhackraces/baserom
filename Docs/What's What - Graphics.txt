@@ -40,8 +40,12 @@ GFX16 : Rope Foreground (FG3)
 GFX17 : Global Foreground Tiles (FG2)
  - a duplicate tile in the door and the unused pressed P-switch tile were reserved for some animation
 
+GFX2A : Layer 3 tiles (LG3)
+ - The unused graphics for "AND" have been removed, and part of "Nintendo" has ben moved here from GFX2B
+
 GFX2B : Layer 3 tiles (LG4)
  - The unused graphics for "Super Mario Bros. 4" has been replaced with "Romhack Races Baserom"
+ - Part of "Nintendo" has ben moved to GFX2A, and "8" and "9" has been added to make it usable in Info Boxes
 
 GFX33 : Global Animation Tiles
  - the midway animation frames have been fixed

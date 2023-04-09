@@ -10,7 +10,7 @@
 299	0	A block that kills sprites.
 29a	0	Block that kills the player (even on yoshi), is solid for sprites and kills on wall running.
 29b	0	Block that kills the player (even on yoshi), is passable for sprites and kills on wall running.
-29c	0	Block that removes any powerup or item from Mario as well as flight state
+29c	0	Block that makes Mario small, clears item box and removes balloon, flight, and slide state
 29d	0	A Donut Lift, which will fall shortly after being stepped on.
 29e	0	Block with an endless supply of throwblocks.
 29f	0	A ledge vine that the player automatically hops above.

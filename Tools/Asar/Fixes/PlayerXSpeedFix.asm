@@ -1,10 +1,12 @@
-;Player X Speed Fix v3.0 by GreenHammerBro and tjb
-!FixOscillation = 1	;Fix the speed oscillation bug
-!FixDeceleration = 1	;Fix behavior where holding forward can slow you down if you're over the max speed
-			;  (requires !FixOscillation)
-!GroundDecel = 1 	;If 1, !FixDeceleration only applies in the air, not on the ground.
-			;  Setting this to 0 allows you to keep extra speed even on the ground, unlike vanilla.
-			;(the "No Jump" fix is always applied.)
+;Player X Speed Fix v3.0 by GreenHammerBro and tjb, with edits by AmperSam
+!FixOscillation = 1		;Fix the speed oscillation bug
+!FixDeceleration = 0	;Fix behavior where holding forward can slow you down if you're over the max speed
+						;  (requires !FixOscillation)
+!GroundDecel = 0 		;If 1, !FixDeceleration only applies in the air, not on the ground.
+						;  Setting this to 0 allows you to keep extra speed even on the ground, unlike vanilla.
+						;(the "No Jump" fix is always applied.)
+!FixNoJump = 1 			;Fix when Mario is be unable to jump  when being pushed very fast
+						;either from an autoscroll or other means.
 
 	!dp = $0000
 	!addr = $0000
@@ -27,24 +29,31 @@ elseif read1($00FFD5) == $23
 endif
 
 org $00D663
+if !FixNoJump != 0
 	autoclean JML FixNoJump
 	nop #1
+else
+	LDA.W $D2BD,X 						;>Restore
+	STA $7D 							;
+endif
 
 org $00D742
 if !FixOscillation != 0
-		autoclean JML FixSpeed
+	autoclean JML FixSpeed
 else
-		LDA $7B								;>Restore
-		SEC									;
-		SBC $D535,y							;
+	LDA $7B								;>Restore
+	SEC									;
+	SBC $D535,y							;
 endif
 
 freecode
 
+if !FixNoJump != 0
 FixNoJump:
 	LDA.l JumpYSpeeds,x		;>New table
 	STA $7D				;>And done.
 	JML $00D668|!bank
+endif
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;How X speed affects your jump. This table contains a list of values to be used on how high mario
@@ -136,7 +145,7 @@ if !FixOscillation != 0
 		LDY $72			;\if you're in the air, branch to the acceleration code
 		BNE .accel		;/
 		LDA $D43D,x		;> mario is on a slippery floor. load the slippery accel table instead
-	
+
 	.accel
 		CLC			;\accelerate mario
 		ADC $7A			;/
@@ -150,14 +159,14 @@ if !FixOscillation != 0
 		EOR $D535,y		;|> flip +/- bit based on direction
 		BPL .clamp		;/> branch if we just pushed it over the max speed
 		JML $00D7A4|!bank	;>jump to RTS
-		
+
 	.clamp
 		LDA $D535,y		;>clamp speed to exactly the maximum
 		STA $7B			;>store new speed
 	.resetfraction
 		STZ $7A			;>and reset fraction bits
 		JML $00D7A4|!bank	;>jump to RTS
-	
+
 	if !FixDeceleration
 		DecelTable:
 			; There are many different things that call this acceleration routine, and we only want to fix deceleration with some of them.
