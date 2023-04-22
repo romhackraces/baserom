@@ -27,4 +27,4 @@ MarioBelow:
 return:
 	RTL
 
-print "A part of the pipe that is passable when in pipe mode."
+print "Part of pipe that is passable."

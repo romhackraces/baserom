@@ -137,7 +137,9 @@ free_vertical_scroll:
     RTS
 
 enable_sfx_echo:
+    lda $1DFA|!addr : bne +
     LDA #$06 : STA $1DFA|!addr
+    +
     RTS
 
 eight_frame_float:
