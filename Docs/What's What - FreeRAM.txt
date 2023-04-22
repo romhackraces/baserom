@@ -22,5 +22,7 @@ $1DFD - double_hit_fix.asm - 1 byte
 ------------
 Large Blocks
 ------------
-$7FB000 - AddMusicK - 2 to potentially 1032 bytes
-$7FB400 - Retry System - at minimum 230 bytes + 1 byte for every custom midway
+$A660 - Dragon Coin Save - 300 bytes
+$A960 - Dragon Coin Save - 8 bytes
+$B000 - AddMusicK - 2 to potentially 1032 bytes
+$B400 - Retry System - at minimum 230 bytes + 1 byte for every custom midway

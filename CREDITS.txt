@@ -3,6 +3,7 @@
 Double Bounce Shell Palette - Fernap
 Extended No Sprite Tile Limits v3.1 - DiscoTheBat, Kevin, Roy, imamelia, worldpeace - https://smwc.me/s/24642
 Free Up Tile 69 - Kevin
+Individual Dragon Coin Save - JackTheSpades, lx5, worldpeace - https://smwc.me/s/22888
 Mario's 8x8 Tiles DMA-er - Ladida, lx5 - https://smwc.me/s/26002
 Monty Mole, Hammer Bro and Dry Bone Behavior on Extra Bit - Kevin - https://smwc.me/s/30450
 No More Sprite Tile Limits v1.2.1 - Arujus, MathOnNapkins, Tattletale, NoelYoshi, Vitor Vilela, edit1754 - https://smwc.me/s/24816

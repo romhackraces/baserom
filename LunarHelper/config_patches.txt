@@ -55,6 +55,7 @@ patches
 	Tools/Asar/Fixes/SSP_Fixes.asm
 	Tools/Asar/CharlesRemembers.asm
 	Tools/Asar/DoubleBouncePalette.asm
+	Tools/Asar/DragonCoinSave.asm
 	Tools/Asar/ExtendedNSTL.asm
 	Tools/Asar/FreeUpBlankTile.asm
 	Tools/Asar/GrowPipeExitOnExtraBit.asm
