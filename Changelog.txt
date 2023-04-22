@@ -1,6 +1,7 @@
 v4.15
 - heavily simplified the screen scrolling pipes to have fewer freeram addresses reserved
 - changed pipe freeram to be one that clears on return to overworld
+- added pipe tile that clears held item
 - added Dragon Coin Save asm by request
 
 v4.14
