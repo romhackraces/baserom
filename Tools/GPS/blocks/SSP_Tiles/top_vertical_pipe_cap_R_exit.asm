@@ -96,6 +96,5 @@ passable:
 
 YoshiTimersExit:
 	db !SSP_PipeTimer_Exit_Upwards_OffYoshi,!SSP_PipeTimer_Exit_Upwards_OnYoshi,!SSP_PipeTimer_Exit_Upwards_OnYoshi		;>Timers: 1st one = on foot, 2nd and 3rd one = on yoshi
-if !Setting_SSP_Description != 0
+
 print "Top-right exit cap piece of a vertical pipe."
-endif

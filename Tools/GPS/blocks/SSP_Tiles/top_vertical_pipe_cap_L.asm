@@ -3,7 +3,6 @@
 ;behaves $130
 
 incsrc "../../../Defines/ScreenScrollingPipes.asm"
-incsrc "cap_defines.asm"
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP return : JMP return : JMP return
@@ -43,10 +42,6 @@ enter:
 	REP #$20		;\Must be on the correct side to enter.
 	LDA $9A			;|
 	AND #$FFF0		;|
-	if !Setting_SSP_VerticalCapsEnterableWidth != $0008
-		SEC
-		SBC.w #!Setting_SSP_VerticalCapsEnterableWidth-($0008-1)
-	endif
 	CMP $94			;|
 	SEP #$20		;|
 	BCC .MarioOnRight	;>Branch out of bounds.
@@ -60,14 +55,12 @@ enter:
 	if !Setting_SSP_YoshiAllowed == 0
 		LDA $187A|!addr
 		BEQ +
-		if !Setting_SSP_YoshiProhibitSFXNum != 0
-			LDA $16						;\Use 1-frame controller to prevent sound replaying each frame.
-			AND #$04					;|(you have to let go the button and tap to trigger this though)
-			BEQ ++						;/
-			LDA.b #!Setting_SSP_YoshiProhibitSFXNum
-			STA !Setting_SSP_YoshiProhibitSFXPort|!addr
-			++
-		endif
+		LDA $16						;\Use 1-frame controller to prevent sound replaying each frame.
+		AND #$04					;|(you have to let go the button and tap to trigger this though)
+		BEQ ++						;/
+		LDA #$20
+		STA $1DF9|!addr
+		++
 		RTL
 		+
 	endif
@@ -193,6 +186,5 @@ passable:
 		YoshiTimersEnter:
 		db !SSP_PipeTimer_Enter_Downwards_OffYoshi,!SSP_PipeTimer_Enter_Downwards_OnYoshi,!SSP_PipeTimer_Enter_Downwards_OnYoshi
 	endif
-if !Setting_SSP_Description != 0
+
 print "Top-left cap piece of vertical 2-way pipe."
-endif

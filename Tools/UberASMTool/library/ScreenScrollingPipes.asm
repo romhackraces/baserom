@@ -34,9 +34,7 @@ SSPMaincode:
 	PHK					;|
 	PLB					;/
 	LDA $13D4|!addr				;>$13D4 - pause flag.
-	if !Setting_SSP_FreezeTime == 0
-		ORA $9D				;>Prevent glitches in which !Freeram_SSP_PipeTmr still decrements during freezes like baby yoshi growing when the user disable pipe freezing.
-	endif
+	ORA $9D				;>Prevent glitches in which !Freeram_SSP_PipeTmr still decrements during freezes like baby yoshi growing when the user disable pipe freezing.
 	ORA $1426|!addr				;>Don't lock controls on message boxes.
 	;ORA <address>				;>Other RAM to disable running pipe code.
 	BEQ .HandleCarryingSprites
@@ -123,11 +121,6 @@ SSPMaincode:
 	if !Setting_SSP_PipeDebug == 0
 		LDA #$02		;\go behind layers
 		STA $13F9|!addr		;/
-	endif
-	if !Setting_SSP_FreezeTime != 0
-		LDA #$0B		;\freeze player (blame $00cde8 for that), note that this also renders the plater invulnerable.
-		STA $71			;/
-		STA $9D			;>Freeze time
 	endif
 	LDA #$01			;\allow vertical scroll up.
 	STA $1404|!addr			;/
@@ -225,9 +218,6 @@ SSPMaincode:
 	...WriteXYBitController		;|
 	STA $15				;/
 	..RevertPipeStatus
-	if !Setting_SSP_FreezeTime != 0
-		STZ $9D			;>back in motion
-	endif
 	STZ $13F9|!addr			;>go in front
 	STZ $71				;>mario can move
 	STZ $73				;>stop crouching (when going exiting down on yoshi)
@@ -288,26 +278,26 @@ SSPMaincode:
 
 SSP_PipeXSpeed:
 ;X speed table
-db $00                            ;>#$01 Stem upwards
-db !SSP_HorizontalSpd             ;>#$02 Stem rightwards
-db $00                            ;>#$03 Stem downwards
-db $100-!SSP_HorizontalSpd        ;>#$04 Sten leftwards
-db $00                            ;>#$05 Pipe cap upwards
-db !SSP_HorizontalSpdPipeCap      ;>#$06 Pipe cap rightwards
-db $00                            ;>#$07 Pipe cap downwards
-db $100-!SSP_HorizontalSpdPipeCap ;>#$08 Pipe cap leftwards
+db $00 ;>#$01 Stem upwards
+db $40 ;>#$02 Stem rightwards
+db $00 ;>#$03 Stem downwards
+db $C0 ;>#$04 Stem leftwards
+db $00 ;>#$05 Pipe cap upwards
+db $40 ;>#$06 Pipe cap rightwards
+db $00 ;>#$07 Pipe cap downwards
+db $C0 ;>#$08 Pipe cap leftwards
 
 
 SSP_PipeYSpeed:
 ;Y speed table
-db $100-!SSP_VerticalSpd          ;>#$01 Stem upwards
-db $00                            ;>#$02 Stem rightwards
-db !SSP_VerticalSpd               ;>#$03 Stem downwards
-db $00                            ;>#$04 Stem leftwards
-db $100-!SSP_VerticalSpdPipeCap   ;>#$05 Pipe cap upwards
-db $00                            ;>#$06 Pipe cap rightwards
-db !SSP_VerticalSpdPipeCap        ;>#$07 Pipe cap downwards
-db $00                            ;>#$08 Pipe cap leftwards
+db $C0 ;>#$01 Stem upwards
+db $00 ;>#$02 Stem rightwards
+db $40 ;>#$03 Stem downwards
+db $00 ;>#$04 Stem leftwards
+db $C0 ;>#$05 Pipe cap upwards
+db $00 ;>#$06 Pipe cap rightwards
+db $40 ;>#$07 Pipe cap downwards
+db $00 ;>#$08 Pipe cap leftwards
 
 SSP_CarryControlsForceSet:
 ; first number = force button held when not carrying sprites, second is when carrying.

@@ -62,14 +62,19 @@ elseif read1($00FFD5) == $23
 	!addr = $6000
 	!sa1 = 1
 endif
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Check for other hijacks
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+!Setting_SSP_Hijack_00EA18 = 0
+
 ;Walljump/Note Block Glitch Fix
-	!WalljumpNoteBlockFixPatch = 0
-	if read1($00EA16) != $C2		;>Originally [REP #$20] [C2 20]
-		!WalljumpNoteBlockFixPatch = 1
-	endif
+!WalljumpNoteBlockFixPatch = 0
+if read1($00EA16) != $C2		;>Originally [REP #$20] [C2 20]
+	!WalljumpNoteBlockFixPatch = 1
+endif
 
 incsrc "../../Defines/ScreenScrollingPipes.asm"
 
@@ -135,10 +140,10 @@ incsrc "../../Defines/ScreenScrollingPipes.asm"
 	org $00C5CE				;\fix hdma issues (like message box) when setting
 		autoclean JSL FixHDMA		;/$7E0071 to #$0B ($00cde8 constantly sets $9D to $00 when $71 is $00.).
 		NOP #4
-	
+
 	org $01ED44				;\fix getting on yoshi automatically when entering
 		autoclean JML GetOnYoshiExcept	;/horizontal pipes while ovelapping yoshi's saddle.
-	
+
 	org $00EAA9				;\This is why blocks always assume $77, $13E1 and $13EE
 		autoclean JSL BlockedFix	;/are stored as zero (this runs every frame).
 		nop #1
@@ -169,7 +174,7 @@ incsrc "../../Defines/ScreenScrollingPipes.asm"
 ;Fix various springboard glitches.
 	org $01E650
 		autoclean JML Sprite_Springboard_CancelLaunch	;>So after exiting pipe, doesn't continue bouncing the player up
-	
+
 	org $01E6F0
 		autoclean JSL Sprite_Springboard_ImageFix	;>If you enter a pipe while on a springboard when pressed down, will revert its image to unpressed.
 		nop #2
@@ -191,13 +196,13 @@ incsrc "../../Defines/ScreenScrollingPipes.asm"
 ;Prevent platforms from setting the player's Y position (which that create problems with entering horizontal pipe caps.)
 	org $01AAD8
 		autoclean JML Sprite_Key_pos			;>Prevent Key from setting mario position (also p-switch).
-	
+
 	org $01B882
 		autoclean JML Sprite_TurnBlockHV_pos		;>Same as above (turnblock bridge, vertical and horizontal)
 		;^Happens by entering the pipe while expanding vertically.
 	org $02CFA5
 		autoclean JML Sprite_Peabouncer_pos
-	
+
 	org $01B47F
 		autoclean JML Sprite_InvisibleBlock_pos
 		;breakpoints at $01B48F:
@@ -215,13 +220,13 @@ incsrc "../../Defines/ScreenScrollingPipes.asm"
 		autoclean JML Sprite_springboard_Pos		;>Springboard will not set player's Y position during entering.
 	org $01CA3C
 		autoclean JML Sprite_ChainedPlatform_pos
-	
+
 	org $02EE77
 		autoclean JML Sprite_SkullRaft_pos
-	
+
 	org $0387F6
 		autoclean JML Sprite_Megamole_pos
-	
+
 	org $038CA7
 		autoclean JML Sprite_CarrotLft_Pos
 ;Just in case tides can move the player in pipe.
@@ -242,23 +247,23 @@ incsrc "../../Defines/ScreenScrollingPipes.asm"
 	org $01A14D
 		autoclean JML MakeGoombaInvisible
 		nop
-		
+
 	org $01A1EC
 		autoclean JSL MakeBobOmbInvisible
 		nop
-		
+
 	org $01A352
 		autoclean JSL MakeBabyYoshiInvisible
 		nop #3
-		
+
 	org $01E6F7
 		autoclean JSL MakeSpringBoardInvisible
 		nop
-		
+
 	org $01A21D
 		autoclean JSL MakePSwitchesInvisible
 		nop
-	
+
 	org $01A1D4
 		autoclean JML MakeThrowBlockInvisible
 
@@ -328,7 +333,7 @@ if and(equal(!WalljumpNoteBlockFixPatch, 0), notequal(!Setting_SSP_Hijack_00EA18
 		LDA !Freeram_SSP_PipeDir
 		AND.w #%0000000000001111
 		BNE .InPipe
-		
+
 		.OutOfPipe
 			LDA $94
 			CLC
@@ -358,7 +363,7 @@ SpriteSub_CarryInteractWithOtherSpr: ;>JML from $01A417
 				LDA !Freeram_SSP_PipeDir	;\and/or player is outside of pipe, then enable interaction
 				AND.b #%00001111		;|with other sprites.
 				BEQ ...OutOfPipe		;/
-			
+
 			...InPipe
 				JML $01A4B0		;>Ignore interaction should carried sprite is in pipe.
 			...OutOfPipe
@@ -369,7 +374,7 @@ SpringBoardAndKeyNoPush:		;>JML from $01AB31
 	LDA !Freeram_SSP_PipeDir
 	AND.b #%00001111
 	BNE .NoPush
-	
+
 	.RestorePushPlayer
 		STZ $7B
 		PHK
@@ -378,7 +383,7 @@ SpringBoardAndKeyNoPush:		;>JML from $01AB31
 		JML $01AD30
 			..jslrtsreturn
 		JML $01AB36
-	
+
 	.NoPush
 		JML $01AB45
 ;---------------------------------------------------------------------------------
@@ -457,15 +462,15 @@ Sprite_TurnBlockHV_SideSolidFix:     ;>JML from $01B8D5
 	LDA !Freeram_SSP_PipeDir
 	AND.b #%00001111
 	BEQ .Restore
-	
+
 	JML $01B8FE
-	
+
 	.Restore
 	LDA $0E
 	CLC
 	ADC.b #$10
 	JML $01B8DA
-	
+
 ;---------------------------------------------------------------------------------
 Sprite_Peabounceer_FirstFrameBounce:           ;>JML from $02CDD5
 	LDA !Freeram_SSP_PipeDir
@@ -563,7 +568,7 @@ Layer3TideDisablePush:             ;>JML from $00DA6C
 	AND.b #%00001111
 	BEQ .Restore
 	BRA +
-	
+
 	.Restore
 	LDA $1403|!addr
 	BEQ +
@@ -610,7 +615,7 @@ MakeKeyInvisible:                  ;>JSL from $01A1F3 (key)
 MakeMechaKoopaInvisible:           ;>JSL from $01A162
 	JSL CheckIfSpriteIsInsideSSPWhenInvisible
 	BCC .Visible
-	
+
 	.Invisible
 		RTL
 	.Visible
@@ -620,7 +625,7 @@ MakeMechaKoopaInvisible:           ;>JSL from $01A162
 MakeGoombaInvisible:    ;>JML from $01A14D
 	JSL CheckIfSpriteIsInsideSSPWhenInvisible
 	BCS .Invisible
-	
+
 	.Visible
 		LDA #$80
 		JML $019F09
@@ -630,7 +635,7 @@ MakeGoombaInvisible:    ;>JML from $01A14D
 ;SubSprGfx2Invisible:   ;>JML from $019F0F
 ;	JSL CheckIfSpriteIsInsideSSPWhenInvisible
 ;	BCS .Invisible
-;	
+;
 ;	.Visible
 ;		PHK
 ;		PEA.w ..jslrtsreturn-1
@@ -646,7 +651,7 @@ MakeGoombaInvisible:    ;>JML from $01A14D
 MakeBobOmbInvisible:       ;>JSL from $01A1EC
 	JSL CheckIfSpriteIsInsideSSPWhenInvisible
 	BCS .Invisible
-	
+
 	.Visible
 		PHK
 		PEA.w ..jslrtsreturn-1
@@ -660,7 +665,7 @@ MakeBobOmbInvisible:       ;>JSL from $01A1EC
 MakeBabyYoshiInvisible:     ;>JSL from $01A352
 	JSL CheckIfSpriteIsInsideSSPWhenInvisible
 	BCS .Invisible
-	
+
 	.Visible
 		PHK
 		PEA.w ..jslrtsreturn-1
@@ -675,7 +680,7 @@ MakeBabyYoshiInvisible:     ;>JSL from $01A352
 MakeSpringBoardInvisible:          ;>JSL from $01E6F7
 	JSL CheckIfSpriteIsInsideSSPWhenInvisible
 	BCS .Invisible
-	
+
 	.Visible
 		LDA #$02
 		PHK
@@ -690,7 +695,7 @@ MakeSpringBoardInvisible:          ;>JSL from $01E6F7
 MakePSwitchesInvisible:       ;>$JSL from $01A21D
 	JSL CheckIfSpriteIsInsideSSPWhenInvisible
 	BCS .Invisible
-	
+
 	.Visible
 		LDA #$02
 		PHK
@@ -709,20 +714,20 @@ MakeThrowBlockInvisible:        ;>JML from $01A1D4
 	;$01A1D9.
 	JSL CheckIfSpriteIsInsideSSPWhenInvisible
 	BCS .Invisible
-	
+
 	.Visible
 	LDA !1540,x
 	CMP #$40
 	BCS ..CODE_01A1DE
 	LSR
 	BCS ..StunYoshiEgg
-	
+
 	..CODE_01A1DE
 		LDA !15F6,x
 		INC #2
 		AND #$0F
 		STA !15F6,x
-	
+
 	..StunYoshiEgg
 	..JumpToGFXSub
 		PHK
@@ -730,7 +735,7 @@ MakeThrowBlockInvisible:        ;>JML from $01A1D4
 		PEA.w $9D66-1
 		JML $019F0D
 		...jslrtsreturn
-	
+
 	.Done
 	.Invisible
 		JML $01A1EB
@@ -738,12 +743,12 @@ MakeThrowBlockInvisible:        ;>JML from $01A1D4
 DontUnstunInPipes:   ;>$JML from $0196A1
 	JSL CheckIfSpriteCarriedInPipe
 	BCC .NoFreeze
-	
+
 	.FreezeTimerAtMinimum
-		LDA.b #($04+!Setting_SSP_Minimal_StuntimerSprites)	;\If #$04 is less than timer (or timer >= #$04),
-		CMP !1540,x						;|don't set it to be 1 frame before unstun.
-		BCC ..NotDecrementPast					;/
-		
+		LDA #$5E   				;\If #$04 is less than timer (or timer >= #$04),
+		CMP !1540,x				;|don't set it to be 1 frame before unstun.
+		BCC ..NotDecrementPast	;/
+
 		..DecrementPast
 			STA !1540,x
 			;^Because $1540 will decrement TOWARDS ZERO, skipping the unstun code means
@@ -755,7 +760,7 @@ DontUnstunInPipes:   ;>$JML from $0196A1
 	CMP #$03
 	BEQ .Unstun
 	JML $0196A5
-	
+
 	.Unstun
 		JML $0196A9
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -790,7 +795,7 @@ CheckIfSpriteCarriedInPipe:
 	LDA !14C8,x
 	CMP #$0B
 	BNE .OutsideOfPipe
-	
+
 	.InsideOfPipe
 		SEC
 		RTL

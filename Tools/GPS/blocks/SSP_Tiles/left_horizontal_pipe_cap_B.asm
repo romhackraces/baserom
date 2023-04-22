@@ -3,7 +3,6 @@
 ;behaves $130
 
 incsrc "../../../Defines/ScreenScrollingPipes.asm"
-incsrc "cap_defines.asm"
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP return : JMP return : JMP return
@@ -48,13 +47,11 @@ enter:
 	if !Setting_SSP_YoshiAllowed == 0
 		LDA $187A|!addr
 		BEQ +
-		if !Setting_SSP_YoshiProhibitSFXNum != 0
-			LDA $16						;\Use 1-frame controller to prevent sound replaying each frame.
-			AND #$01					;|(you have to let go the button and tap to trigger this though)
-			BEQ return					;/
-			LDA.b #!Setting_SSP_YoshiProhibitSFXNum
-			STA !Setting_SSP_YoshiProhibitSFXPort|!addr
-		endif
+		LDA $16						;\Use 1-frame controller to prevent sound replaying each frame.
+		AND #$01					;|(you have to let go the button and tap to trigger this though)
+		BEQ return					;/
+		LDA #$20
+		STA $1DF9|!addr
 		RTL
 		+
 	endif
@@ -155,6 +152,4 @@ center_vert:
 		RTS
 	endif
 
-if !Setting_SSP_Description != 0
 print "Bottom-left cap piece of horizontal 2-way pipe."
-endif

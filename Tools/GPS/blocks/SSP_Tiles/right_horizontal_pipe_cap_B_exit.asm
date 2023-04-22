@@ -89,6 +89,5 @@ yoshi_center:
 	STA $96
 	SEP #$20
 	RTS
-if !Setting_SSP_Description != 0
+
 print "Bottom-right/right cap exit piece of horizontal pipe."
-endif

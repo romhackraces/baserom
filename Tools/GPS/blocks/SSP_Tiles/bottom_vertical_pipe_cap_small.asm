@@ -4,7 +4,6 @@
 ;behaves $130
 
 incsrc "../../../Defines/ScreenScrollingPipes.asm"
-incsrc "cap_defines.asm"
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP return : JMP return : JMP return
@@ -111,6 +110,4 @@ passable:
 	LDA #$25		;|
 	STA $1693|!addr		;/
 	RTS
-if !Setting_SSP_Description != 0
 print "Bottom cap of 2-way pipe for small mario."
-endif

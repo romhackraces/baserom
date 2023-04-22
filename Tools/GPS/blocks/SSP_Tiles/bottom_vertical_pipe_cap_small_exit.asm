@@ -68,6 +68,4 @@ passable:
 	LDA #$25		;|
 	STA $1693|!addr		;/
 	RTS
-if !Setting_SSP_Description != 0
 print "Bottom exit cap of a pipe for small mario."
-endif

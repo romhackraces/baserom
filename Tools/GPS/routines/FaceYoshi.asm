@@ -14,11 +14,9 @@
 	endif
 
 	-
-	if !Setting_SSP_UsingCustomSprites != 0
-		LDA !7FAB10,x	;\If custom sprite, next slot
-		AND #$08	;|
-		BNE ++		;/
-	endif
+	LDA !7FAB10,x	;\If custom sprite, next slot
+	AND #$08	;|
+	BNE ++		;/
 	LDA !9E,x	;\If other than yoshi, next slot
 	CMP #$35	;|
 	BNE ++		;/
