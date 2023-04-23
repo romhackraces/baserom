@@ -1,3 +1,0 @@
-For the build system to work properly, put a clean copy of a headered (U) [!] Super Mario World ROM here renamed to 'clean.smc'.
-Ensure the file extension is *.smc and not *.sfc (this can be changed by simply renaming the ROM's extension) and you'll be good to go.
-You can delete this file.
