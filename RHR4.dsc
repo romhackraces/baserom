@@ -19,6 +19,7 @@
 2a2	0	Sets the ON/OFF status to ON when anything (incl. dead sprites) passes through it.
 2a3	0	Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it.
 2a4	0	A block that will teleport Mario to the current screen exit.
+2a5	0	A single-use bounce block.
 2b0	0	Question block that always spawns a Mushroom.
 2b1	0	Question block that always spawns a Fire Flower.
 2b2	0	Question block that always spawns a Cape Feather.
