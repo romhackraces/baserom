@@ -3,27 +3,27 @@
 ; 209-28F   ; Occupied with vanilla Tiles
 
 ; CUSTOM GLOBAL BLOCKS (DO NOT MODIFY) --------------------;
-290:0130 mario_passable.asm
-291:0130 sprite_passable.asm
-292:0025 sprite_bounce.asm
-293:0025 one_way_down.asm
-294:0025 one_way_left.asm
-295:0025 one_way_right.asm
-296:0130 onoff_block.asm
-297:0130 onoff_block_inv.asm
-298:0130 breakable_by_item.asm
-299:0025 sprite_killer.asm
-29A:0130 hurt_death.asm
-29B:0025 hurt_death_sprite_passthrough.asm
-29C:0025 remove_powerup.asm
-29D:0100 donut_lift.asm
-29E:0130 endless_throwblock.asm
-29F:0025 ledge_vine.asm
-2A0:0025 spinyblock.asm
-2A1:0025 swooperblock.asm
-2A2:0025 set_to_on.asm
-2A3:0025 set_to_off.asm
-2A4:0025 teleport.asm
+290:0130 global/mario_passable.asm
+291:0130 global/sprite_passable.asm
+292:0025 global/sprite_bounce.asm
+293:0025 global/one_way_down.asm
+294:0025 global/one_way_left.asm
+295:0025 global/one_way_right.asm
+296:0130 global/onoff_block.asm
+297:0130 global/onoff_block_inv.asm
+298:0130 global/breakable_by_item.asm
+299:0025 global/sprite_killer.asm
+29A:0130 global/hurt_death.asm
+29B:0025 global/hurt_death_sprite_passthrough.asm
+29C:0025 global/remove_powerup.asm
+29D:0100 global/donut_lift.asm
+29E:0130 global/endless_throwblock.asm
+29F:0025 global/ledge_vine.asm
+2A0:0025 global/spinyblock.asm
+2A1:0025 global/swooperblock.asm
+2A2:0025 global/set_to_on.asm
+2A3:0025 global/set_to_off.asm
+2A4:0025 global/teleport.asm
 
 ; CUSTOM QUESTION BLOCKS (DO NOT MODIFY) ------------------;
 2B0:0130 question_blocks/74_mushroom.asm
