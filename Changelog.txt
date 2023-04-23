@@ -3,6 +3,7 @@ v4.15
 - changed pipe freeram to be one that clears on return to overworld
 - added pipe tile that clears held item
 - added Dragon Coin Save asm by request
+- clean up of the documentation
 
 v4.14
 - added pballoon removal to powerup filter block
