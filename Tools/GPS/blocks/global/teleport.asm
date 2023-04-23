@@ -1,3 +1,4 @@
+; act as 25
 db $37
 
 JMP + : JMP + : JMP +

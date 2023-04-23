@@ -9,8 +9,8 @@
 0293:0025 global/one_way_down.asm
 0294:0025 global/one_way_left.asm
 0295:0025 global/one_way_right.asm
-0296:0130 global/onoff_block.asm
-0297:0130 global/onoff_block_inv.asm
+0296:0130 global/solid_when_off.asm
+0297:0130 global/solid_when_on.asm
 0298:0130 global/breakable_by_item.asm
 0299:0025 global/sprite_killer.asm
 029A:0130 global/hurt_death.asm
@@ -24,6 +24,7 @@
 02A2:0025 global/set_to_on.asm
 02A3:0025 global/set_to_off.asm
 02A4:0025 global/teleport.asm
+02A5:0130 global/single_use_bounce_block.asm
 
 ; CUSTOM QUESTION BLOCKS (DO NOT MODIFY) ------------------;
 02B0:0130 question_blocks/74_mushroom.asm

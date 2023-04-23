@@ -1,7 +1,4 @@
-; Block that removes any powerup from Mario
-
-print "Block that makes Mario small, clears item box and removes balloon, flight, and slide state"
-
+; act as 25
 db $42
 JMP Mario : JMP Mario : JMP Mario : JMP Return : JMP Return : JMP Return : JMP Return
 JMP Mario : JMP Mario : JMP Mario
@@ -23,3 +20,4 @@ Mario:
 Return:
     RTL
 
+print "Block that makes Mario small, clears item box and removes balloon, flight, and slide state"

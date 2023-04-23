@@ -50,7 +50,7 @@ SpriteH:
 	CMP $00			;>Compare with sprite's x position
 	SEP #$20
 	BPL return		;>If block is too far to the right (sprite to the left) far enough, don't push sprite.
-	
+
 	LDA $0A			;\Teleport sprite to the front of the block.
 	AND #$F0		;|
 	CLC			;|

@@ -4,8 +4,8 @@
 293	0	Solid if anything goes up
 294	0	Solid if anything goes right
 295	0	Solid if anything goes left
-296	0	ON/OFF Switch block.
-297	0	Inverted ON/OFF Switch block.
+296	0	Block that is solid when ON/OFF switch is OFF.
+297	0	Block that is solid when ON/OFF switch is ON.
 298	0	A block that shatters when a sprite is thrown at it.
 299	0	A block that kills sprites.
 29a	0	Block that kills the player (even on yoshi), is solid for sprites and kills on wall running.
