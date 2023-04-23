@@ -1,5 +1,4 @@
 -- Patches --
-
 Double Bounce Shell Palette - Fernap
 Extended No Sprite Tile Limits v3.1 - DiscoTheBat, Kevin, Roy, imamelia, worldpeace - https://smwc.me/s/24642
 Free Up Tile 69 - Kevin
@@ -20,10 +19,10 @@ Spike Top Ceiling Cling - imamelia - https://smwc.me/s/18949
 Sprite Item Box - Kevin - https://smwc.me/s/26887
 Triple Ball 'n' Chain - imamelia - https://smwc.me/s/19256
 
+-- Big Resources --
 SA-1 Pack v1.40 - Arujus, Vitor Vilela - https://smwc.me/s/25938
 
 -- Bug Fixes --
-
 $13FB Game Crash Fix (Fireberry) - p4plus2 - https://smwc.me/s/18319
 Ball n' Chain and Yoshi Interaction Fix - Kevin - https://smwc.me/s/22761
 Block Duplication Fix v1.5 - Tattletale, lolcats439 - https://smwc.me/s/18413
@@ -76,12 +75,11 @@ Walljump/Note Block Glitch Fix v1.6 - lolcats439 - https://smwc.me/s/19932
 Yoshi Pipe Animation Fix - Kevin - https://smwc.me/s/30127
 
 -- UberASM --
-
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
 Retry System v0.4.3 - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.4.3
 Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 
--- Custom Blocks --
+-- Blocks --
 Basic Baserom Blocks - AmperSam
 Block Breakable by Item - JUMP Baserom
 Donut Lift Block v1.1 - by Davros, mikeyk - https://smwc.me/s/20418
@@ -96,7 +94,6 @@ Super Bounce Blocks* - dogemaster - https://smwc.me/s/22934
 * simplified for use in the baserom
 
 -- Used Tools --
-
 AddmusicK 1.0.8 - Kipenal - https://smwc.me/s/24994
 Asar v1.81 - Alcaro et al. - https://smwc.me/s/25953
 Flips v1.31 - Alcaro - https://smwc.me/s/11474
