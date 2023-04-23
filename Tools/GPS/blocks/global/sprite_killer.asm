@@ -1,3 +1,5 @@
+; act as 25
+
 !smoke_num = $69
 
 db $42

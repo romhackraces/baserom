@@ -1,4 +1,4 @@
-This folder is the destination for backups created by the "@backup_hack.bat" script.
+This folder is the destination for backups created by the "!backup_hack.bat" script.
 
 -- Graphics
 Copies of the original unmodified, graphics files from the base game (unrelated to the backup script).

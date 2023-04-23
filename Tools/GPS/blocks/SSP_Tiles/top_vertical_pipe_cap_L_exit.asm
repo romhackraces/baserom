@@ -16,7 +16,7 @@ HeadInside:
 BodyInside:
 MarioBelow:
 	LDA !Freeram_SSP_PipeDir	;\return for other offsets
-	AND.b #%00001111		;/	
+	AND.b #%00001111		;/
 	BEQ return		;/when not in pipe
 	CMP #$01		;\exit if going up
 	BEQ exit		;|
@@ -97,6 +97,4 @@ passable:
 YoshiTimersExit:
 	db !SSP_PipeTimer_Exit_Upwards_OffYoshi,!SSP_PipeTimer_Exit_Upwards_OnYoshi,!SSP_PipeTimer_Exit_Upwards_OnYoshi		;>Timers: 1st one = on foot, 2nd and 3rd one = on yoshi
 
-if !Setting_SSP_Description != 0
 print "Top-left exit cap piece of a vertical pipe."
-endif

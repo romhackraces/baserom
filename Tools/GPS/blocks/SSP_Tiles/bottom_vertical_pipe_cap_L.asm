@@ -3,7 +3,6 @@
 ;behaves $130
 
 incsrc "../../../Defines/ScreenScrollingPipes.asm"
-incsrc "cap_defines.asm"
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP return : JMP return : JMP return
@@ -42,10 +41,6 @@ enter:
 	REP #$20		;\Must be on the correct side to enter.
 	LDA $9A			;|
 	AND #$FFF0		;|
-	if !Setting_SSP_VerticalCapsEnterableWidth != $0008
-		SEC
-		SBC.w #!Setting_SSP_VerticalCapsEnterableWidth-($0008-1)
-	endif
 	CMP $94			;|
 	SEP #$20		;|
 	BCC .MarioOnRight	;/\Branch out of range.
@@ -59,12 +54,10 @@ enter:
 	if !Setting_SSP_YoshiAllowed == 0
 		LDA $187A|!addr
 		BEQ .AllowEnter
-		if !Setting_SSP_YoshiProhibitSFXNum != 0
-			LDA.b #!Setting_SSP_YoshiProhibitSFXNum
-			STA !Setting_SSP_YoshiProhibitSFXPort|!addr
-			LDA #$20					;\Prevent SFX playing multiple times.
-			STA $7D						;/
-		endif
+		LDA #$20
+		STA $1DF9|!addr
+		LDA #$20					;\Prevent SFX playing multiple times.
+		STA $7D						;/
 		RTL
 		.AllowEnter
 	endif
@@ -77,7 +70,7 @@ enter:
 	endif
 
 	.not_carry
-	
+
 	if !Setting_SSP_YoshiAllowed != 0
 		PHY			;\
 		LDY $187A|!addr		;|Set timer.
@@ -130,7 +123,7 @@ exit:
 	CMP $96			;|
 	SEP #$20		;|
 	BCS within_pipe		;/
-	
+
 	if !Setting_SSP_YoshiAllowed != 0
 		BRA .SkipFurtherSnap
 		.FurtherSnap
@@ -153,7 +146,7 @@ exit:
 ;offset notes:
 ;timer = 0E if small mario
 ;timer = 1B if super
-;timer = 18 if small on yoshi 
+;timer = 18 if small on yoshi
 ;timer = 25 if super on yoshi
 
 	if !Setting_SSP_YoshiAllowed != 0
@@ -169,14 +162,14 @@ exit:
 	LDA.b #!SSP_PipeTimer_Exit_Downwards_OffYoshi_BigMario		;\Big mario's timer
 	if !Setting_SSP_YoshiAllowed != 0
 		BRA .StoreTimer							;/
-		
+
 		.YoshiExit
 		LDA $19			;\powerup
 		BNE .BigMarioYoshi	;/
 
 		LDA.b #!SSP_PipeTimer_Exit_Downwards_OnYoshi_SmallMario		;\Small on yoshi's timer
 		BRA .StoreTimer							;/
-		
+
 		.BigMarioYoshi
 		LDA.b #!SSP_PipeTimer_Exit_Downwards_OnYoshi_BigMario		;>big on yoshi's timer
 	endif
@@ -226,6 +219,4 @@ if !Setting_SSP_YoshiAllowed != 0
 	YoshiTimersEnter:
 	db !SSP_PipeTimer_Enter_Upwards_OffYoshi,!SSP_PipeTimer_Enter_Upwards_OnYoshi,!SSP_PipeTimer_Enter_Upwards_OnYoshi	;>Timers: 1st one = on foot, 2nd and 3rd one = on yoshi
 endif
-if !Setting_SSP_Description != 0
 print "Bottom-left cap piece of vertical 2-way pipe."
-endif

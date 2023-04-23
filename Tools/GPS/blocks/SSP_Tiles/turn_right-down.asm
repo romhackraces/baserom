@@ -29,7 +29,7 @@ BodyInside:
 	;Adjust player pipe travel direction and centering
 		JSR DistanceFromTurnCornerCheck
 		BCC Return
-		
+
 		LDA !Freeram_SSP_PipeDir	;\Get current direction
 		AND.b #%00001111		;/
 		CMP #$02			;\If going right, translate to down
@@ -103,7 +103,7 @@ yoshi_center:
 	STA $96			;|
 	SEP #$20		;/
 	RTS
-	
+
 YoshiPositioning:
 	dw $0010,$0020,$0020
 
@@ -118,11 +118,11 @@ YoshiPositioning:
 	;
 	;AND #$FFF0 rounds DOWN to the nearest #$0010 value
 	;Carry is set if the player's position point is inside the block and clear if outside.
-	
+
 	LDA $187A|!addr		;\Yoshi Y positioning
 	ASL			;|
 	TAX			;/
-	
+
 	REP #$20
 	LDA $94				;\Get X position (due to some positioning lag a frame behind, this is 2 pixels to the right from center)
 	CLC				;|
@@ -134,7 +134,7 @@ YoshiPositioning:
 	ADC FootDistanceYpos,x		;|
 	AND #$FFF0			;|
 	STA $02				;/
-	
+
 	LDA $9A				;\if X position point is within this block
 	AND #$FFF0			;|
 	CMP $00				;|
@@ -152,6 +152,5 @@ YoshiPositioning:
 	RTS
 	FootDistanceYpos:
 	dw $0018, $0028, $0028
-if !Setting_SSP_Description != 0
+
 print "Changes the pipe direction from right to down or up to left."
-endif

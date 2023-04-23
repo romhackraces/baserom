@@ -1,3 +1,4 @@
+; act as 130
 db $37
 
 print "Block with an endless supply of throwblocks."

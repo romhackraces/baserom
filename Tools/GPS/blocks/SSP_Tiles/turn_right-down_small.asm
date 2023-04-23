@@ -29,7 +29,7 @@ BodyInside:
 	;Adjust player pipe travel direction and centering
 		JSR DistanceFromTurnCornerCheck
 		BCC Return
-	
+
 		LDA !Freeram_SSP_PipeDir	;\Get current direction
 		AND.b #%00001111		;/
 		CMP #$02			;\If going right, translate to down
@@ -78,7 +78,7 @@ up_to_left:
 	STA !Freeram_SSP_PipeDir	;/
 	JSR corner_center		;>and snap player
 	RTL
-	
+
 	YoshiPositioning:
 	dw $0010,$0020,$0020
 corner_center:
@@ -97,12 +97,12 @@ corner_center:
 	STA $96			;|
 	SEP #$20		;/
 	RTS
-	
+
 	YoshiYOffset:
 	dw $0011
 	dw $0021
 	dw $0021
-	
+
 	DistanceFromTurnCornerCheck:
 	;Prevents such glitches where as the player leaves a special turn corner
 	;and activates a special direction block while touching the previous corner
@@ -114,11 +114,11 @@ corner_center:
 	;
 	;AND #$FFF0 rounds DOWN to the nearest #$0010 value
 	;Carry is set if the player's position point is inside the block and clear if outside.
-	
+
 	LDA $187A|!addr		;\Yoshi Y positioning
 	ASL			;|
 	TAX			;/
-	
+
 	REP #$20
 	LDA $94				;\Get X position
 	CLC				;|
@@ -130,7 +130,7 @@ corner_center:
 	ADC FootDistanceYpos,x		;|
 	AND #$FFF0			;|
 	STA $02				;/
-	
+
 	LDA $9A				;\if X position point is within this block
 	AND #$FFF0			;|
 	CMP $00				;|
@@ -148,6 +148,5 @@ corner_center:
 	RTS
 	FootDistanceYpos:
 	dw $0018, $0028, $0028
-if !Setting_SSP_Description != 0
+
 print "Changes the pipe direction from right to down or up to left."
-endif

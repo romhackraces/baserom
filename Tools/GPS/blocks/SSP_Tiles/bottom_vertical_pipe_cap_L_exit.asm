@@ -121,6 +121,4 @@ passable:
 	STA $1693|!addr		;/
 	RTS
 
-if !Setting_SSP_Description != 0
 print "Bottom-left exit cap piece of a vertical pipe."
-endif

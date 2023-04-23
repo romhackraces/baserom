@@ -26,6 +26,5 @@ MarioBelow:
 	STA $1693|!addr	;/
 return:
 	RTL
-if !Setting_SSP_Description != 0
-print "A part of the pipe that is passable when in pipe mode."
-endif
+
+print "Part of pipe that is passable."

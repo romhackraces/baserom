@@ -4,7 +4,6 @@
 ;behaves $130
 
 incsrc "../../../Defines/ScreenScrollingPipes.asm"
-incsrc "cap_defines.asm"
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP return : JMP return : JMP return
@@ -142,6 +141,5 @@ center_vert:
 ;	STA $96
 ;	SEP #$20
 ;	RTS
-if !Setting_SSP_Description != 0
+
 print "Right cap piece of horizontal pipe for small mario."
-endif

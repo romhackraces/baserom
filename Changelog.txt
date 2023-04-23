@@ -1,3 +1,14 @@
+v4.15
+- simplified the screen scrolling pipes even more
+- changed pipe freeram to be one that clears on return to overworld
+- added pipe tile that clears held item
+- added blocks that control camera scroll or movement
+- added single-use bounce block
+- added Dragon Coin Save asm
+- clean up of the documentation
+- clean up of the global blocks
+- renamed scripts because '@' is a bit problematic
+
 v4.14
 - added pballoon removal to powerup filter block
 - moved some uberasm object things to gamemode

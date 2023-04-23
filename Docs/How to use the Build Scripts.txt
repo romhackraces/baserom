@@ -1,5 +1,5 @@
 ----------------
-@backup_hack.bat
+!backup_hack.bat
 ----------------
 
 This script is available to let you make time-stamped backups of various parts of your hack. In the Command Prompt you will see a menu with a list of the following backup options for your hack:
@@ -21,7 +21,7 @@ This will use Lunar Magic's map16 export feature to save a copy of the *shared* 
 This just makes a time-stamped copy of your hack's ROM file in the "Backups/ROM" folder, so you can access older versions.
 
 -----------------------
-@initialize_baserom.bat
+!initialize_baserom.bat
 -----------------------
 
 This is a first-run script when setting up the baserom that will download each and every tool on demand that is used by the build system if it isn't detected.

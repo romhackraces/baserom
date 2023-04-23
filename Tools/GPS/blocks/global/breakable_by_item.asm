@@ -1,3 +1,5 @@
+; act as 130
+
 db $42
 JMP ++ : JMP ++ : JMP ++
 JMP SpriteV : JMP SpriteH : JMP ++ : JMP ++
