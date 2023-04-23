@@ -24,5 +24,6 @@ GPS Inserted Blocks
 2A2 - Sets the ON/OFF status to ON when anything (incl. dead sprites) passes through it.
 2A3 - Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it.
 2A4 - A block that will teleport Mario to the current screen exit.
-2B0-2BC - Custom Question Blocks (hover for descriptions)
-300-36F - Screen Scrolling Pipe Tiles (hover for descriptions)
+2B0-2BC - Custom Question Blocks (hover in Lunar Magic for descriptions)
+2FA-2FF - Camera Blocks (hover in Lunar Magic for descriptions)
+300-36F - Screen Scrolling Pipe Tiles (hover in Lunar Magic for descriptions)
