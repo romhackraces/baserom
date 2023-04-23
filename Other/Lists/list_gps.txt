@@ -138,4 +138,8 @@
 ; Pass if In Pipe
 036F:0130 SSP_Tiles/pass_if_in_pipe.asm
 
+; Filter Pipe
+0332-0335:0130 SSP_Tiles/pass_if_in_pipe_and_filter.asm
+0342-0345:0130 SSP_Tiles/pass_if_in_pipe_and_filter.asm
+
 ; PLACE YOUR CUSTOM BLOCKS BELOW --------------------------;
