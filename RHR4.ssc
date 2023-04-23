@@ -13,7 +13,6 @@
 
 ; Kicked Buzzy Beetle
 11 0012 0,0,D 0,0,10A
-
 11 0010 A Buzzy Beetle which spawns kicked towards the player.
 
 ; Disco shell
@@ -32,16 +31,10 @@ DF 0010 A Disco Shell.
 ; Throwblock
 53 0002 0,-1,215
 53 0012 0,-1,215 0,0,10A
-
 53 0000 A stationary throwblock sprite with infinite timer.
 53 0010 A throwblock sprite that spawns kicked towards the player.
 
 ; Poison mushroom
 85 0002 0,0,214
-85 0012 0,0,214 0,0,10A
-
 85 0000 A poison mushroom which hurts the player.
-85 0010 A poison mushroom which kills the player.
-
 85 0008 7F,100,7F,7F 7F,103,7F,7F
-85 0018 7F,100,7F,7F 7F,103,7F,7F

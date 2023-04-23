@@ -28,7 +28,7 @@ Bounce:
 	LDA #$08			; Make Mario not interact with the spiny again for 8 frames.
 	STA $14A8|!addr
 	JML $01AB99|!bank	; Write the contact graphics for the spin jump.
-	
+
 MarioSide:				; Make the block's hitbox one pixel narrower (like Munchers).
 	REP #$20			; Make A 16 bit.
 	LDA $9A				; Check the collision X position currently being processed.
@@ -42,11 +42,11 @@ MarioSide:				; Make the block's hitbox one pixel narrower (like Munchers).
 	CMP $94
 	BCC Return			; If the carry is still set, Return.
 	SEP #$20
-	
+
 	LDA $1490|!addr		; Check if Mario has a star.
 	ORA $13ED|!addr		; Check if Mario is landing with a cape, or sliding.
 	BNE Star			; If he does, ignore the modified hitbox below.
-	
+
 
 TopCorner:
 MarioAbove:
@@ -93,7 +93,7 @@ if !fireballcoin
 +
 endif
 
-	
+
 MarioCape:
 	%hundred_points()	; Give points to the player.
 	BRA Poof
@@ -117,7 +117,7 @@ MarioBelow:
 	JSL $00F5B7|!bank	; Hurt subroutine.
 	PLY
 	RTL
-	
+
 HeadInside:
 	REP #$20			; Make A 16 bit.
 	LDA $9A				; Check the collision X position currently being processed.
@@ -126,12 +126,12 @@ HeadInside:
 	SBC #$000E			; Subtract 000E.
 	CMP $94				; Compare with the value in $94 (Player's X position within the level)
 	BCS Return			; If the carry is still set, Return.
-	CLC	
+	CLC
 	ADC #$001A			; Add 1A with carry.
 	CMP $94				; Compare with $94.
 	BCC Return			; If the carry is clear, Return.
 	SEP #$20			; Make A 8 bit.
-	
+
 BodyInside:
 	LDA $1490|!addr		; Check if Mario has a star.
 	ORA $13ED|!addr		; Check if Mario is landing with a cape, or sliding.
@@ -152,18 +152,18 @@ if !sa1					; Code stolen from Koopster. If Mario rides Yoshi, lose him when tou
 	STA $CC				; than rewriting the routine, this workaround is needed".
 	SEP #$20
 endif
-	
+
 	PEA $01|(PushReturn>>16<<8)	; Push current bank then bank $01.
 	PLB					; Pull $01 to data bank register.
-	
+
 	PHK
 	PEA PushReturn-1
 	PEA $80CA-1			; Koopster: "jslrts to yoshi runs away routine to force it to happen".
 	JML $01F70E|!bank
-	
+
 PushReturn:				; Restore our data bank register.
 	PLB
-	
+
 Damage:
 	LDA $14A8|!addr		; Check unused timer to see if Mario should take damage.
 	BNE Return			; If it's still going, return.
