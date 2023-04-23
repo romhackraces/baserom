@@ -22,4 +22,4 @@ global ExAnimations, credits, intro screen, and title moves.
 a backup of the config file for Lunar Monitor
 
 -- rom-name.txt
-A file with just the name of the hack's ROM file used by @backup_hack.bat.
+A file with just the name of the hack's ROM file used by !backup_hack.bat.

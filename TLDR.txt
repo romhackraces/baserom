@@ -1,6 +1,6 @@
 Here's the tl;dr for getting the baserom up and running for your project:
 
-    1. Run "@initialize_baserom.bat" to set up the baserom with all the needed tools to be a happy hacker
+    1. Run "!initialize_baserom.bat" to set up the baserom with all the needed tools to be a happy hacker
 
     2. Place a copy of your (headered) copy of Super Mario World in the main baserom folder, renamed "clean.smc"
 
