@@ -32,6 +32,12 @@
 2ba	0	Question block that always spawns a Blue P-Switch/POW.
 2bb	0	Question block that always spawns a Silver P-Switch/POW.
 2bc	0	Question block that always spawns a Spring.
+2fa	0	Scroll camera left.
+2fb	0	Scroll camera right.
+2fc	0	Enable horizontal camera scroll.
+2fd	0	Disable horizontal camera scroll.
+2fe	0	Enable vertical camera scroll.
+2ff	0	Disable vertical camera scroll.
 300	0	Top-left cap piece of vertical 2-way pipe.
 301	0	Top-right cap piece of vertical 2-way pipe.
 302	0	Part of pipe that is passable.
