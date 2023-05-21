@@ -1,0 +1,5 @@
+As of version 4.16 of the baserom, you can enable a sprite status bar feature of the retry system. Would recommend hiding the Vanilla status bar when you do this.
+
+In the Tools\UberASMTool\retry_config folder, the "sprite_status_bar_tables.asm" file has several large tables where you set which bits of the status bar to display on a per-level basis.
+
+Open that file for further details and instructions.

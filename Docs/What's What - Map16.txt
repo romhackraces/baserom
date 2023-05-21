@@ -71,7 +71,7 @@ Page 40,41
 Tiles for all the in-level text in the Demo Level (105), these can be deleted from your ROM if you delete the Demo Level.
 
 =======
-Page 42
+Page 50
 =======
 
 Tiles for ExGraphic big bush and big pipe tiles.

@@ -39,7 +39,7 @@ new_norm_objects:
     lda $66 : adc #$00 : sta $66
 
     ; If ObjecTool is inserted...
-    lda.l objectool_byte : cmp #$5C : bne .no_objectool
+    lda.l !rom_objectool_byte : cmp #$5C : bne .no_objectool
 
     ; ...jump to its code if the custom object number is $42-$4F or $52-$FF.
     lda $5A : cmp #$42 : bcc .no_objectool
@@ -50,9 +50,9 @@ new_norm_objects:
     ; This jumps in the middle of the NewNormObjects routine, right before PHB : PHK : PLB,
     ; assuming the code won't change in future updates.
     rep #$20
-    lda.l objectool_normal_code_address : clc : adc.w #68 : sta $00
+    lda.l !rom_objectool_normal_code_address : clc : adc.w #68 : sta $00
     sep #$20
-    lda.l objectool_normal_code_address+2 : sta $02
+    lda.l !rom_objectool_normal_code_address+2 : sta $02
     jml [$0000|!dp]
 
 .no_objectool:
@@ -134,7 +134,7 @@ custom_midway:
 else
 
 ; Restore code, in case settings are changed.
-if read1($0DA415) == $5C && read1(objectool_byte) != $5C
+if read1($0DA415) == $5C && read1(!rom_objectool_byte) != $5C
 
 pushpc
 

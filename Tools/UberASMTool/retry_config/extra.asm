@@ -23,9 +23,7 @@ load_title:
 ;=====================================
 reset:
     ; Feel free to put your code here.
-
-
-
+    stz $0F5E|!addr ; matches clear_score_sprites.asm
     rts
 
 ;=====================================
@@ -34,9 +32,7 @@ reset:
 ;=====================================
 death:
     ; Feel free to put your code here.
-
-
-
+    lda #$01 : sta $0F5E|!addr  ; matches clear_score_sprites.asm
     rts
 
 ;=====================================
@@ -106,7 +102,7 @@ load_new_file:
     ; Feel free to put your code here.
 
 
-    
+
     rts
 
 ;=====================================
@@ -119,7 +115,7 @@ game_over:
     ; Feel free to put your code here.
 
 
-    
+
     rts
 
 ;=====================================
@@ -134,7 +130,7 @@ door_animation:
     ; Feel free to put your code here.
 
 
-    
+
     rts
 
 ;=====================================

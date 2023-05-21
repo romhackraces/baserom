@@ -21,7 +21,7 @@ A: If you really need to use those, then you can add these to the "sram_table"/"
     dl !ram_checkpoint    : dw 192
     dl !ram_death_counter : dw 5
 
-(Note: to have the retry ram defines available in the patch, copy the contents of "ram.asm" at the top of the sram+/bwram+ table file).
+[Note: to have the Retry ram defines available in the patch, copy the contents of "ram.asm" at the top of the SRAM+/BW-RAM+ table file. Also, if you're not using the death counter, you can omit the second line].
 
 Then add these tables to the "sram_defaults"/"bw_ram_defaults":
 
@@ -41,3 +41,5 @@ Then add these tables to the "sram_defaults"/"bw_ram_defaults":
 
     ; Death counter.
     db $00,$00,$00,$00,$00
+
+[Note: if you omitted the death counter in the previous table, then do it here too.]

@@ -1,11 +1,9 @@
 ; Gamemode 11
 
 init:
-    ; Better safe than sorry.
-    stz $13 : stz $14
-
-    ; Reset layer 1 and 2 X positions.
+    ; Reset frame counters and layer 1 and 2 X positions.
     rep #$20
+    stz $13
     stz $1A
     stz $1E
     sep #$20

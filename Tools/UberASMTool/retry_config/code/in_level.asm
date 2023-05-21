@@ -26,7 +26,7 @@ endif
     lda #$06 : sta $1DFA|!addr
 +
     ; Update the window HDMA when the flag is set.
-    lda !ram_update_window : beq +
+    lda !ram_update_window : bpl +
     jsr prompt_update_window
 +
     ; If the game is paused, skip.
@@ -70,7 +70,7 @@ endif
 
 .dying:
     ; Show the death pose just to be sure.
-    lda.l death_pose : sta $13E0|!addr
+    lda.l !rom_death_pose : sta $13E0|!addr
 
     ; Disable camera Y scroll if applicable.
 if !death_camera_lock
@@ -92,19 +92,38 @@ if !prompt_freeze == 2
     lda $145E|!addr : lsr : bcs +
     dec $22
 +   
-    ; Freeze Shell-less Koopas.
+    ; Freeze Shell-less Koopas and Sumo Bro's Lightning.
     ldx.b #!sprite_slots-1
--   lda !9E,x : cmp #$04 : bcs +
-    lda !14C8,x : cmp #$08 : bne +
-    lda !extra_bits,x : and #$08 : bne +
+-   lda !14C8,x : cmp #$08 : bne ++
+    lda !extra_bits,x : and #$08 : bne ++
+    lda !9E,x : cmp #$04 : bcc +
+    cmp #$2B : bne ++
+    ; Sumo Bro's Lightning
+    lda.l !rom_sumo_bro_lightning_y_speed : eor #$FF : inc : sta !AA,x
+    jsl $01801A|!bank
+    bra ++
++   ; Shell-less Koopas
     stz !sprite_speed_y,x
-+   dex : bpl -
+++  dex : bpl -
     
     ; Stop earthquake.
     stz $1887|!addr
 
     ; Stop lightning effect.
     stz $1FFC|!addr : stz $1FFD|!addr
+
+    ; Stop Reappearing Boos timer.
+    inc $190A|!addr
+
+    ; Freeze bonus game 1UPs
+    lda $18B8|!addr : beq +
+    ldx.b #20-1
+    lda #$01
+-   cmp $1892|!addr,x : bne ++
+    stz $1E52|!addr,x
+    stz $1E66|!addr,x
+++  dex : bpl -
++
 endif
 else
     ; Force sprites and animations to run.
@@ -112,6 +131,16 @@ else
 
     ; Prevent timer from ticking down.
     inc $0F30|!addr
+
+    ; Prevent messages from activating.
+    stz $1426|!addr
+
+    ; Disable autoscrollers.
+    lda $143E|!addr : beq ++
+    cmp #$01 : beq +
+    cmp #$0C : bne ++
++   stz $143E|!addr
+++
 endif
 
     ; Skip Yoshi's hatch animation.
@@ -122,7 +151,7 @@ endif
     stz !1564-1,x
     ; Prevent Yoshi's tongue from extending.
     lda !1594-1,x : cmp #$01 : bne ++
-    lda !151C-1,x : sec : sbc.l yoshi_tongue_extend_speed : bmi +
+    lda !151C-1,x : sec : sbc.l !rom_yoshi_tongue_extend_speed : bmi +
     sta !151C-1,x
     bra +
 ++  ; Prevent Yoshi's tongue from retracting.
@@ -295,8 +324,11 @@ endif
     ; Skip No Yoshi intros.
     stz $141D|!addr
 
-    ; Change to "Fade to level" game mode
-    lda #$0F : sta $0100|!addr
+    ; Enable level teleport.
+    lda #$06 : sta $71
+    stz $88
+    stz $89
+    
     rtl
 
 ;=====================================
@@ -331,7 +363,7 @@ reset_addresses:
     ; If SA-1 or PIXI's 255 sprite per level are used, the reset loop
     ; will use the remapped address and reset 256 entries instead of 128.
     ldx #$7E
-    lda.l sprite_load_orig : cmp #$1938 : beq .sprite_load_orig
+    lda.l !rom_sprite_load_orig : cmp #$1938 : beq .sprite_load_orig
 .sprite_load_remap:
     %set_dbr(!sprite_load_table)
 -   stz.w !sprite_load_table,x
@@ -377,9 +409,9 @@ if !counterbreak_score
 endif
 
     ; Reset timer to the original value.
-    lda !ram_timer+0 : sta $0F31|!addr
+    lda !ram_timer+0 : and #$0F0F : sta $0F31|!addr
     sep #$20
-    lda !ram_timer+2 : sta $0F33|!addr
+    lda !ram_timer+2 : and #$0F : sta $0F33|!addr
 
     ; Reset powerup.
 if !counterbreak_powerup
@@ -397,7 +429,7 @@ if !counterbreak_coins
 endif
 
     ; Reset green star block counter.
-    lda.l green_star_block_count : sta $0DC0|!addr
+    lda.l !rom_green_star_block_count : sta $0DC0|!addr
 
     ; Reset collected invisible 1-UPs.
     stz $1421|!addr
@@ -450,7 +482,7 @@ endif
 ; Routine to reset music to make it play properly after respawning.
 ;=====================================
 reset_music:
-    lda.l amk_byte : cmp #$5C : beq .amk
+    lda.l !rom_amk_byte : cmp #$5C : beq .amk
 
 .no_amk:
     lda $0DDA|!addr : bpl .return
@@ -464,7 +496,7 @@ reset_music:
     bra .bypass
 
 .spec:
-    lda.l death_song : beq .force_reset
+    lda.l !rom_death_song : beq .force_reset
     cmp $1DFB|!addr : beq .no_reset
 
 .force_reset:

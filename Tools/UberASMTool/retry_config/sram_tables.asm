@@ -1,4 +1,14 @@
 ;=====================================;
+; Things to Save                      ;
+;=====================================;
+
+!DragonCoinSaving = 1
+
+; Matches Asar\DragonCoinSave.asm
+!dcsave_freeram     = $7FA660   ; 0x300 bytes, $7FA660-$7FA95F
+!dcsave_freeram_sa1 = $40A660   ; 0x300 bytes, $40A660-$40A95F
+
+;=====================================;
 ; Save and SRAM default values tables ;
 ;=====================================;
 ; This table can be used to save custom values to SRAM, so they can persist when the console is turned off.
@@ -18,17 +28,26 @@
 ;       Additionally, a lot of other addresses might be remapped to different locations (see SA-1 docs for more info).
 ; Note: if using FastROM, using $000000-$001FFF instead of $7E0000-$7E1FFF will make the save/load process a bit faster.
 
+
 save:
     dl !ram_checkpoint    : dw 192
     ; Feel free to add your own stuff here.
-    
-    
+
+if !DragonCoinSaving
+    ; Dragon Coin saving
+    if !sa1
+        dl $401F2F : dw $000C
+        dl !dcsave_freeram_sa1 : dw $0300
+    else
+        dl $7E1F2F : dw $000C
+        dl !dcsave_freeram : dw $0300
+    endif
+endif
 
 .not_game_over:
     dl !ram_death_counter : dw 5
     ; Feel free to add your own stuff here.
-    
-    
+
 
 ; Here you specify the default values of the addresses you want to save, for when a new save file is started.
 ; You can do "db $XX,$XX,..." for 1 byte values, "dw $XXXX,$XXXX,..." for 2 bytes values and "dl $XXXXXX,$XXXXXX,..." for 3 bytes values.
@@ -54,12 +73,63 @@ sram_defaults:
     dw $012C,$012D,$012E,$012F,$0130,$0131,$0132,$0133
     dw $0134,$0135,$0136,$0137,$0138,$0139,$013A,$013B
     ; Feel free to add your own stuff here.
-    
-    
+
+if !DragonCoinSaving
+    ; Dragon Coin Save
+    db $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+    db $C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00,$C0,$00
+endif
 
 .not_game_over:
     ; Initial death counter value (don't edit this!).
     rep 5 : db $00
     ; Feel free to add your own stuff here.
-    
-    
+
+

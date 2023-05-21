@@ -2,10 +2,14 @@ Here's the tl;dr for getting the baserom up and running for your project:
 
     1. Run "!initialize_baserom.bat" to set up the baserom with all the needed tools to be a happy hacker
 
-    2. Place a copy of your (headered) copy of Super Mario World in the main baserom folder, renamed "clean.smc"
+    2. Place a headered* copy of Super Mario World in the main baserom folder, renamed "clean.smc"
 
     3. In the LunarHelper folder, edit "config_baserom.txt" (and optionally the other config files) to your preference.
 
-    4. Run LunarHelper.exe to rebuild the baserom after all your changes have been made and your preferences have been set.
+    4. Run LunarHelper.exe and hit (Re)build after all your changes have been made and your preferences have been set.
 
 Happy hacking!
+
+
+*if your copy of Super Mario World is not headered Lunar Magic will alert you to this, and ask to add a header to your rom when you first open it.
+This is required in almost all cases to do any sort of hacking.

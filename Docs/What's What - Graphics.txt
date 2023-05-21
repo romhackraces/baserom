@@ -2,28 +2,26 @@
 Graphics
 --------
 
-The following are what vanilla graphics files have been edited in the baserom, backups can be found in the Backup/Graphics folder.
+The following are what vanilla graphics files have been edited in the baserom, copies of the originals can be found in the Backup/Graphics folder.
 
 GFX00 : Global Sprite Graphics (SP1)
  - the 8x8 tiles for Mario have been removed as they are now dynamically inserted
  - tiles for the bounce sprites for the ON/OFF and Note blocks have been remapped here
  - 8x8 tiles for lava splashes, Yoshi's tongue and throat have been remapped here also
  - a frame for the blue sliding koopa has been moved to GFX01
- - tile for Poison Mushroom was added here
- - tile for the sprite item box was added here
+ - space was reserved for dynamic retry tiles
 
 GFX01 : Global Sprite Graphics (SP2)
  - graphic for the donut block has been placed here replacing the Smiley coin
  - tile for Piranha plant stem was added here
  - a frame for the blue sliding koopa from GFX00 was added here
  - flopping fish graphics were moved to GFX13
+ - Smiley coin was remapped to use other sprite coin tile
+ - tile for blue sliding koopa has been remapped and Poison Mushroom was added in its place
 
 GFX08 : Switch Palace (FG3)
  - Sunken ship tiles were moved to GFX1E
  - Additional corner tiles for Switch palace foreground were added
-
-GFX1E : Overworld (FG4)
- - Half sunken ship was moved into blank tile space
 
 GFX13 : Sprite Tiles (SP3)
  - note block bounce sprite frame moved to GFX00
@@ -40,6 +38,9 @@ GFX16 : Rope Foreground (FG3)
 GFX17 : Global Foreground Tiles (FG2)
  - a duplicate tile in the door and the unused pressed P-switch tile were reserved for some animation
 
+GFX1E : Overworld (FG4)
+ - Half sunken ship was moved into blank tile space
+
 GFX2A : Layer 3 tiles (LG3)
  - The unused graphics for "AND" have been removed, and part of "Nintendo" has ben moved here from GFX2B
 
@@ -52,6 +53,7 @@ GFX33 : Global Animation Tiles
  - always turning block animation was lightly edited
  - the castle conveyor/stairs have been fixed to use the the castle's brick pattern
 
+See Tools/Asar/SpriteRemaps.asm for detailed remapping information.
 
 ----------
 ExGraphics

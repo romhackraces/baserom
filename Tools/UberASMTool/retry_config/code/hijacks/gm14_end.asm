@@ -45,6 +45,16 @@ gm14_end:
     jsr run_level_end_frame_code
     plb : plp
 
+if !sprite_status_bar
+    ; Draw the sprite status bar.
+    jsr sprite_status_bar_main
+endif
+
+    ; If Mario is dying, call the death routine.
+    lda $71 : cmp #$09 : bne .no_death
+    jsr death_routine
+
+.no_death:
     ; Check if we have to set the checkpoint.
     rep #$20
     lda !ram_set_checkpoint : cmp #$FFFF
@@ -53,11 +63,6 @@ gm14_end:
     jsr set_checkpoint
 
 .no_checkpoint:
-    ; If Mario is dying, call the death routine.
-    lda $71 : cmp #$09 : bne .no_death
-    jsr death_routine
-
-.no_death:
     ; Check if it's time to draw the tiles.
     lda !ram_prompt_phase : cmp #$02 : beq .draw_prompt
                                        bcc .return

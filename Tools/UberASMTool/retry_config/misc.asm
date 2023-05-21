@@ -3,11 +3,8 @@
 
 ; Retry version number (Va.b.c) to write in ROM.
 !version_a = 0
-!version_b = 4
-!version_c = 3
-
-; Read death time from ROM.
-!death_time #= read1($00F61C)
+!version_b = 5
+!version_c = 0
 
 ; What button exits the level while the game is paused (by default, select).
 !exit_level_buttons_addr = $16
@@ -15,6 +12,22 @@
 
 ; Level number of the intro level (automatically adjusted to $01C5 when necessary).
 !intro_level = $00C5
+
+; Read death time from ROM.
+!death_time #= read1($00F61C)
+
+; Check which channel is used for windowing HDMA, for SA-1 v1.35 (H)DMA remap compatibility.
+; It will be 7 on lorom or with SA-1 <1.35, and 1 with SA-1 >=1.35.
+!window_mask    #= read1($0092A1)
+!window_channel #= log2(!window_mask)
+
+; DMA channel used to upload the Retry prompt tiles.
+; You should never need to edit this.
+!prompt_channel = 2
+
+; Where in VRAM the prompt tiles will be uploaded to.
+; You should never need to edit this.
+!sprite_vram = $6000
 
 ; Stripe image table defines.
 !stripe_index = $7F837B
@@ -36,15 +49,6 @@ else
     !7ED000 = $7ED000
 endif
 
-; Check which channel is used for windowing HDMA, for SA-1 v1.35 (H)DMA remap compatibility.
-; It will be 7 on lorom or with SA-1 <1.35, and 1 with SA-1 >=1.35.
-!window_mask    #= read1($0092A1)
-!window_channel #= log2(!window_mask)
-
-; Where in VRAM the prompt tiles will be uploaded to. You should never need to edit this.
-; $6000 = SP1/SP2, $7000 = SP3/SP4.
-!base_vram = $6000
-
 ; Detect the SRAM Plus patch.
 if read1($009B42) == $04
     !sram_plus = 1
@@ -62,7 +66,6 @@ endif
 ; Detects lx5's Custom Powerups.
 if read2($00D067) == $DEAD
     !custom_powerups = 1
-    incsrc powerup_defs.asm
 else
     !custom_powerups = 0
 endif
@@ -72,4 +75,15 @@ if read1($05DCDD) == $22 || read1($05DCE2) == $22
     !dynamic_ow_levels = 1
 else
     !dynamic_ow_levels = 0
+endif
+
+; Detects if SA-1 MaxTile is inserted.
+if read1($00FFD5) == $23 && read3($0084C0) == $5A123 && read1($0084C3) >= 140
+    !maxtile = 1
+    !maxtile_buffer_max    = $6180
+    !maxtile_buffer_high   = $6190
+    !maxtile_buffer_normal = $61A0
+    !maxtile_buffer_low    = $61B0
+else
+    !maxtile = 0
 endif

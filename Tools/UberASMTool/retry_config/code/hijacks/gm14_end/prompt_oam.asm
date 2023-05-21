@@ -271,6 +271,7 @@ letters:
 ; This routine puts all used slots in OAM at the end of the table in contiguous spots.
 ; The result is that all free slots will be at the beginning of the table.
 ; This allows the letters to be drawn with max priority w.r.t. everything else, and to not overwrite other tiles.
+; Returns with Y = $01FC and X = last free OAM slot.
 ;=====================================
 defrag_oam:
     ; Since we scan both $0200 and $0300, we need 16 bit indexes.

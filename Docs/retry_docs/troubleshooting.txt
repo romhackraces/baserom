@@ -111,3 +111,16 @@ Note 3: this address is only checked while in a level, but you can also set it i
 
 Q: I patched the 32x32 Player Tilemap patch / lx5's Custom Powerups / lx5's Dynamic Spriteset System (DSS) / DKCR Status Bar (or other sprite status bars) and I get glitched graphics when dying! What do I do?
 A: Those patches have a high chance of using the same spots in SP1 for their dynamic tiles as the Retry prompt. To fix it, open "settings.asm" and towards the bottom you'll see a bunch of !tile_... defines. You need to edit some of those to other free spots in SP1 that aren't used by other patches.
+
+--------------------------------------------------------------------------------
+
+Q: I'm using !prompt_freeze = 0 to make sprites move while Mario is dead, but it also causes autoscrollers to keep going. How do I stop them?
+A: vanilla autoscrollers should already stop when dying with this options turned on, while custom autoscrollers need to be handled on a case-by-case basis by adding a check for Mario's state. This is usually simple to fix by adding a code like this at the beginning of your custom autoscroller:
+
+	LDA $71
+	CMP #$09
+	BNE .run
+	RTL
+.run:
+
+(if your autoscroller code is in a routine that ends with RTS, use RTS instead of RTL before .run).

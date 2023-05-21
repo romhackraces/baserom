@@ -1,39 +1,6 @@
 ; Gamemode 13
 
 init:
-    ; Reset some stuff related to lx5's Custom Powerups.
-if !custom_powerups == 1
-if !dynamic_items == 1
-    ldy $0DC2|!addr
-    lda.b #read1($02802D) : dec : sta $00
-    lda.b #read1($02802E) : sta $01
-    lda.b #read1($02802F) : sta $02
-    lda [$00],y : xba
-    rep #$20
-    and #$FF00 : lsr #3 : adc.w #read2($00A38B) : sta !item_gfx_pointer+4
-    clc : adc #$0200 : sta !item_gfx_pointer+10
-    sep #$20
-    lda !item_gfx_refresh : ora #$13 : sta !item_gfx_refresh
-endif
-
-    lda #$FF : sta !item_gfx_oldest : sta !item_gfx_latest
-
-    lda $86 : sta !slippery_flag_backup
-
-.init_cloud_data
-    lda $19 : cmp #!cloud_flower_powerup_num : bne +
-
-    rep #$30
-    phx
-    ldx #$006C
--   lda $94 : sta.l !collision_data_x,x
-    lda $96 : sta.l !collision_data_x+2,x
-    dex #4 : bpl -
-    plx
-    sep #$30
-+   
-endif
-    
 if !pipe_entrance_freeze < 2
     ; If in the pipe entrance animation, lock/unlock sprites.
     lda $71 : cmp #$05 : bcc +
@@ -57,7 +24,7 @@ endif
     ; If AMK is inserted, send the disable/enable SFX echo command
     ; depending on the current sublevel's sfx_echo setting.
     ; Also set a flag in RAM if SFX echo is enabled.
-    lda.l amk_byte : cmp #$5C : bne +
+    lda.l !rom_amk_byte : cmp #$5C : bne +
     ldy #$05
     jsr shared_get_bitwise_mask
     and.l tables_sfx_echo,x : beq ++
@@ -79,17 +46,19 @@ if !reset_boo_rings == 2
 endif
 
     ; Reset timer frame counter
-    lda.l timer_ticks : sta $0F30|!addr
+    lda.l !rom_timer_ticks : sta $0F30|!addr
 
     ; If not entering from the overworld, skip.
     lda $141A|!addr : bne .room_transition
 
     ; Backup the timer value.
+    rep #$20
     lda $0F31|!addr : sta !ram_timer+0
-    lda $0F32|!addr : sta !ram_timer+1
+    sep #$20
     lda $0F33|!addr : sta !ram_timer+2
 
 .room_transition:
+    ; Check if we're respawning or in a transition checkpoint.
     lda !ram_is_respawning : bne ..respawning
     jsr shared_get_checkpoint_value
     cmp #$02 : bcc .normal
@@ -100,8 +69,12 @@ endif
     stz $13C6|!addr
 
     ; Reset mode 7 values.
+    rep #$20
     stz $36
-    stz $37
+    stz $38
+    stz $3A
+    stz $3C
+    sep #$20
     
     ; Backup the music that should play.
     lda $0DDA|!addr : sta !ram_music_to_play
@@ -109,6 +82,13 @@ endif
 .normal:
     ; Reset the respawning flag.
     lda #$00 : sta !ram_is_respawning
+
+if !sprite_status_bar
+    ; Initialize and draw the status bar during the fadein
+    jsr sprite_status_bar_init
+    jsr sprite_status_bar_main
+    jsr shared_update_0400
+endif
 
 main:
 if !fast_transitions

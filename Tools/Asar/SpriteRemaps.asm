@@ -18,10 +18,8 @@ org $01F08B : db $38 : org $01F097 : db $00
 ; Yoshi egg fragment
 org $028EB2 : db $2F : org $028EBC : db $03
 
-
 ; Coin Game coin, use normal coin sprite
 org $029D4B : db $E8 : org $029D50 : db $34
-
 
 ; Cheep cheep, horizontal
 org $019C0D : db $66 : org $07F413 : db $45
@@ -42,8 +40,7 @@ org $019C10 : db $6A
 org $02D8A3 : db $66 : org $02D8AB : db $05
 org $02D8A7 : db $68 : org $02D8AB : db $05
 ; Force flopping cheep-cheep onto 2nd page
-org $01B10A
-    BRA +
+org $01B10A : BRA +
 org $01B11C : +
 
 ; Hammer Brother Hammer, second frame
@@ -52,8 +49,10 @@ org $02A2E1 : db $6E
 org $02A2E4 : db $6E
 org $02A2E5 : db $6E
 
-; Koopa Sliding, second frame
+; Blue Koopa Sliding, second frame
 org $019B92 : db $88
+; Blue Koopa Sliding, 8th frame
+org $0189ED : db $86
 
 ; Lava splashes
 org $029E82 : db $5F,$4F,$5E,$4E

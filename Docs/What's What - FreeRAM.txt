@@ -9,6 +9,7 @@ $79 - RAMToggledStatusbar.asm AND SpriteItemBox.asm - 1 byte
 $7C - RAMToggledLR.asm - 1 byte
 $87 - Used by SA-1 - 1 byte
 $0DC3 - SpriteScrollFix.asm - 4 bytes
+$0F5E - clear_score_sprites.asm - 1 byte
 $140B - FreeRAM to activate certain UberASM code (cleared at level load) - 2 bytes
 $146C - Used by Lunar Magic - 1 byte
 $1487 - SpriteScrollFix.asm - 4 bytes (if an option is set)

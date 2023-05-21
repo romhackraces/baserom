@@ -83,8 +83,12 @@ SSPMaincode:
 	LDA !Freeram_SSP_PipeTmr	;|
 	BNE ..NoHide			;|
 	if !Setting_SSP_PipeDebug == 0
-		LDA #$FF		;|
-		STA $78			;/
+		LDA #$EF
+		LDY $187A|!addr
+		BEQ +
+		LDA #$FF
+		+
+		STA $78
 	endif
 
 	..NoHide
