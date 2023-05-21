@@ -33,6 +33,9 @@ endmacro
 if !sram_feature
     %incsrc("",sram_tables)
 endif
+if !sprite_status_bar
+    %incsrc("",sprite_status_bar_tables)
+endif
 
 ;=====================================
 ; Load the letters gfx.
@@ -42,6 +45,16 @@ retry_gfx:
     %incbin(gfx,letters1)
 .no_box:
     %incbin(gfx,letters2)
+if !sprite_status_bar
+.digits:
+    %incbin(gfx,digits)
+.coin:
+    %incbin(gfx,coin)
+.timer:
+    %incbin(gfx,timer)
+.item_box:
+    %incbin(gfx,item_box)
+endif
 
 ;=====================================
 ; Load the ASM files.
@@ -62,6 +75,7 @@ retry_gfx:
     %incsrc(code,fade_to_overworld)
     %incsrc(code,game_over)
     %incsrc(code,time_up)
+    %incsrc(code,sprite_status_bar)
 
 ;=====================================
 ; Load the hijacks.
@@ -77,3 +91,4 @@ retry_gfx:
     %incsrc(code/hijacks,lose_lives)
     %incsrc(code/hijacks,initial_facing_fix)
     %incsrc(code/hijacks,item_box_fix)
+    %incsrc(code/hijacks,remove_status_bar)

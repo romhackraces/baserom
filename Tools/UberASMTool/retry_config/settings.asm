@@ -168,6 +168,11 @@
 ; 2 = sprites and all animations will freeze.
     !prompt_freeze = 2
 
+; Cooldown (max $7F) for disabling up/down when the prompt shows up, which prevents
+; selecting the "Exit" option for a few frames. Can be useful to prevent accidentally
+; pressing "Exit" when dying while pressing up/down. Set to $00 to disable this.
+    !prompt_cooldown = $10
+
 ; This controls what happens when hitting "Exit" on the Retry prompt:
 ; 0 = exit the level immediately and don't play the death music (except when the level music is sped up).
 ; 1 = exit the level immediately and play the death music (note that the vanilla song will be cut short).
@@ -234,13 +239,46 @@
 ; For example, !tile_curs = $24 means both $24 and $25 will be overwritten.
 ; Also, obviously these aren't used if you don't use the Retry prompt.
     !tile_curs = $69
-    !tile_blk  = $5E
-    !tile_r    = $80
-    !tile_e    = $81
-    !tile_t    = $90
-    !tile_y    = $91
-    !tile_x    = $29
-    !tile_i    = $39
+    !tile_blk  = $34
+    !tile_r    = $44
+    !tile_e    = $45
+    !tile_t    = $54
+    !tile_y    = $55
+    !tile_x    = $46
+    !tile_i    = $47
+
+;======================== Sprite Status Bar =============================;
+
+; If 1, a sprite status bar will be installed allowing you to display the item box, coin/Yoshi coin counter
+; and timer in levels with sprites, which keeps layer 3 working properly.
+; The sprites use dynamic tiles, meaning you'll need to reserve some GFX space in your SP slots for them.
+; Item box, coins and timer use 1 16x16 tile each, but they only need to be reserved when actually using them,
+; and you can choose which tiles to use for each level (or to just disable any or all of them in specific levels)
+; using the tables in "sprite_status_bar_tables.asm".
+    !sprite_status_bar = 1
+
+; If 1, it disables the original game's status bar (including the IRQ) which prevents layer 3 from messing up.
+; Differently than the normal remove status bar patch, this keeps the status bar functions (lives, coins,
+; bonus stars, score, timer, reserve item) running in the background.
+; Suggested to use if you're using !sprite_status_bar = 1.
+; Don't use this if you're using similar patches such as "RAM Toggled Status Bar".
+    !remove_vanilla_status_bar = 0
+
+; General properties for sprite status bar elements.
+; These are only relevant if !sprite_status_bar = 1.
+    !item_box_x_pos     = $70
+    !item_box_y_pos     = $07
+    !timer_x_pos        = $D0
+    !timer_y_pos        = $0F
+    !coin_counter_x_pos = $D0
+    !coin_counter_y_pos = $17
+    !dc_counter_x_pos   = $9A
+    !dc_counter_y_pos   = $0F
+
+; If 1, the item box will always be drawn (if set to be drawn for the specific level).
+; Otherwise, it will only be drawn when having an item in reserve.
+; This is only relevant if !sprite_status_bar = 1.
+    !always_draw_box = 0
 
 ;======================== Death Counter =================================;
 

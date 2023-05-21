@@ -61,7 +61,8 @@ namespace off
 %retry_ram(disable_box,$17)      ; 1
 %retry_ram(play_sfx,$18)         ; 1
 %retry_ram(midways_override,$19) ; 1
-%retry_ram(reserved,$1A)         ; 6 (reserved for future expansion)
+%retry_ram(coin_backup,$1A)      ; 1
+%retry_ram(reserved,$1B)         ; 5 (reserved for future expansion)
 %retry_ram(death_counter,$20)    ; 5
 %retry_ram(checkpoint,$25)       ; 192
 %retry_ram(cust_obj_data,$E5)    ; 1+(!max_custom_midway_num*4)

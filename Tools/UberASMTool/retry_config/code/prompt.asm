@@ -36,7 +36,7 @@ if !exit_animation == 2
 endif
     
     ; Handle exit music differently if AMK is inserted or not.
-    lda.l amk_byte : cmp #$5C : beq ..amk
+    lda.l !rom_amk_byte : cmp #$5C : beq ..amk
 
 ..no_amk:
     lda #$FF : sta $0DDA|!addr
@@ -55,7 +55,7 @@ endif
 if !exit_animation == 0
     lda !ram_hurry_up : beq .skip
 endif
-    lda.l death_song : sta $1DFB|!addr
+    lda.l !rom_death_song : sta $1DFB|!addr
     rts
 
 .retry:
@@ -118,11 +118,16 @@ endif
     ldy #$FF
 
     ; If there's less than 2 options, return (can't move the cursor).
-    lda $8A : cmp #$02 : bcc +
+    lda $8A : cmp #$02 : bcc ..return
 
+    ; If the prompt cooldown is active, tick it and return.
+    lda !ram_update_window : beq +
+    dec : sta !ram_update_window
+    rts
++
     ; If Select, Up or Down are not pressed, return.
     lda $16 : and #$20 : lsr #3
-    ora $16 : and #$0C : beq +
+    ora $16 : and #$0C : beq ..return
 
     ; Load the index to the cursor_speed table.
     lsr #2 : tax
@@ -136,12 +141,14 @@ endif
     stz $1B91|!addr
 
     ; Update the cursor position, taking into account the wraparound.
-    lda $1B92|!addr : adc.l .cursor_speed-1,x : bpl ++
+    lda $1B92|!addr : adc.l .cursor_speed-1,x : bpl +
     lda $8A : dec
-++  cmp $8A : bcc +++
++   cmp $8A : bcc ++
     lda #$00
-+++ sta $1B92|!addr
-+   rts
+++  sta $1B92|!addr
+
+..return:
+    rts
 
 ; Distance to move the cursor when pressing down/select, up and both respectively.
 .cursor_speed:
@@ -186,9 +193,14 @@ handle_box:
 
     ; If the box is enabled, signal that we have to update its shape.
     lda !ram_disable_box : bne +
-    lda #$01 : sta !ram_update_window
+    lda.b #$80|!prompt_cooldown : sta !ram_update_window
     rts
-+
++   
+    ; If the box is disabled, just set the cooldown.
+if !prompt_cooldown != $00
+    lda.b #!prompt_cooldown : sta !ram_update_window
+endif
+
     ; Otherwise, make sprites appear above the window.
     ; This fixes an issue when dying while the level end circle is covering the screen,
     ; which would make the retry letters not appear.
@@ -244,7 +256,7 @@ handle_box:
 ;=====================================
 update_window:
     ; Only update for 1 frame.
-    lda #$00 : sta !ram_update_window
+    and #$7F : sta !ram_update_window
 
     ; Update the HDMA table.
     ; If exit is disabled, the second line is all filled.

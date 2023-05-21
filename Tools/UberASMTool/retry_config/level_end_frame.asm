@@ -1,5 +1,5 @@
 ;=====================================
-; This routines are called at the end of every frame of the corresponding sublevel (level000 called in sublevel 0, etc.).
+; These routines are called at the end of every frame of the corresponding sublevel (level000 called in sublevel 0, etc.).
 ; You can see them as another label in UberASM level files (basically "main" but it runs at the end of the frame instead of the beginning).
 ; This can be useful to do stuff that requires to run after everything else: OAM manipulation, intercept music/sfx commands before they're sent to the SPC, drawing sprite tiles without using hardcoded slots, ...
 ; Note that these will run right after the "gm14_end" routine in "extra.asm".

@@ -16,7 +16,6 @@ RAM Specific L/R Scroll Disable - Chdata - https://smwc.me/s/20355
 RAM Toggled Status Bar (& IRQ) - Kevin - https://smwc.me/s/28449
 Rexes With Extra Bit Set Are Squished - Supermario1313 - https://smwc.me/s/27788
 Spike Top Ceiling Cling - imamelia - https://smwc.me/s/18949
-Sprite Item Box - Kevin - https://smwc.me/s/26887
 Triple Ball 'n' Chain - imamelia - https://smwc.me/s/19256
 
 -- Big Resources --
@@ -76,7 +75,7 @@ Yoshi Pipe Animation Fix - Kevin - https://smwc.me/s/30127
 
 -- UberASM --
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
-Retry System v0.4.3 - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.4.3
+Retry System v0.5 - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.5
 Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 
 -- Blocks --

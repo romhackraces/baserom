@@ -80,9 +80,6 @@ endif
 ; fix sprite screen edge interaction bug
 org $01A7F0 : db $EA,$EA,$EA
 
-; fix Message Box removing some sprite tiles when closing
-org $05B31B : RTS
-
 ; fix glitch with blocks not activating when hit with thrown sprites
 org $0195A5 : db $00
 

@@ -11,15 +11,6 @@
 ;
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;header
-lorom
-
-!dp = $0000
-!addr = $0000
-!bank = $800000
-!map16 = $7E
-!sa1 = 0
-
 if read1($00FFD5) == $23
 	sa1rom
 	!dp = $3000
@@ -27,6 +18,13 @@ if read1($00FFD5) == $23
 	!bank = $000000
 	!map16 = $40
 	!sa1 = 1
+else
+	lorom
+	!dp = $0000
+	!addr = $0000
+	!bank = $800000
+	!map16 = $7E
+	!sa1 = 0
 endif
 
 ; 80+ bytes used for scratch RAM in some routines to build tables

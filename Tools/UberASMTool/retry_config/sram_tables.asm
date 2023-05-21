@@ -2,7 +2,7 @@
 ; Things to Save                      ;
 ;=====================================;
 
-!DragonCoinSaving = 0
+!DragonCoinSaving = 1
 
 ; Matches Asar\DragonCoinSave.asm
 !dcsave_freeram     = $7FA660   ; 0x300 bytes, $7FA660-$7FA95F
@@ -37,10 +37,10 @@ if !DragonCoinSaving
     ; Dragon Coin saving
     if !sa1
         dl $401F2F : dw $000C
-        dl !dcsave_freeram : dw $0300
+        dl !dcsave_freeram_sa1 : dw $0300
     else
         dl $7E1F2F : dw $000C
-        dl !dcsave_freeram_sa1 : dw $0300
+        dl !dcsave_freeram : dw $0300
     endif
 endif
 
