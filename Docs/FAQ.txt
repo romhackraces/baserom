@@ -15,6 +15,13 @@ To remove global patches from the baserom: edit the list of patches in LunarHelp
 To remove specific hexedits or tweaks: edit the Tweaks.asm file, in Tools/Asar folder, then re-run Lunar Helper's "(Re)Build" action.
 
 
+
+"How do I hide the status bar?"
+-------------------------------
+
+This baserom comes with several objects to toggle feature on/off in levels, including the Status bar. Check out the "What's What - UberASM Objects" also in the Docs folder.
+
+
 "Why are my block graphics not looking right?"
 ----------------------------------------------
 
