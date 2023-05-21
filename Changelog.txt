@@ -4,6 +4,7 @@ v4.16
 - shuffled around gfx to accommodate retry system's sprite status bar
 - dropped sprite item box patch
 - fixed issue in pipes not showing yoshi
+- improved in-LM sprite display
 
 v4.15
 - simplified the screen scrolling pipes even more
