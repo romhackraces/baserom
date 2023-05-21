@@ -30,7 +30,7 @@ lunar_monitor_loader_path = Tools/LunarMagic/LunarMonitorLoader.exe
 -- tool CLI options
 addmusick_options = -v
 gps_options = -d
-pixi_options = -l Tools/PIXI/list.txt -ssc "Tools\PIXI\append.ssc"
+pixi_options = -l Tools/PIXI/list.txt -ssc "Tools\PIXI\append.ssc" -mwt "Tools\PIXI\append.mwt" -mw2 "Tools\PIXI\append.mw2"
 -- uberasm_options
 lm_level_import_flags = 0
 
