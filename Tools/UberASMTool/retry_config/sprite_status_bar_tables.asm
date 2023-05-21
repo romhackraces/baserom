@@ -20,14 +20,18 @@
 ; NOTE: while the coin counter uses one 16x16 tile, the bottom right 8x8 tile is not used or overwritten,
 ; so it's safe to use for anything else.
 
-!itemb_tile = $3080 ; use with item_box table
+
+; default settings for the baserom
+!itemb_tile = $3080 ; with item_box table
 !timer_tile = $0020 ; use with timer table
 !coins_tile = $0022 ; use with coins table
 
-!no_display = $0000 ; flag to disable in level
+; if you would like to change an individual level's setting to be different from these pre-set values,
+; you can do so in the table below following the instructions above
 
 ; don't change
-!always_off = $0000 ; to disable on title level
+!no_display = $0000 ; flag to not display any status bar items
+!always_off = $0000 ; a flag to ensure it's always disabled on title level, that's different from !no_display
 
 item_box:
     ;       0           1           2           3           4           5           6           7           8           9           A           B           C            D          E           F
