@@ -12,11 +12,11 @@ To start using the baserom you will first have to initialize the baserom folder 
 
 ## Building the Baserom
 
-To make life easier for you as a hacker, this baserom has a few build tools included that will automagically rebuild your hack everytime you make changes to it.
+To make life easier for you as a hacker, this baserom comes with a build tool called Lunar Helper that will automagically rebuild your hack everytime you make changes to it.
 
 ### Lunar Helper
 
-When working on your hack Lunar Helper is your new best friend, you can find it by running `Lunar Helper.exe` in the LunarHelper folder. This tool will entirely rebuild your rom (from scratch) each time you want to add (or remove) things to make sure it all builds smoothly. It will also help you with quickly editing, testing and packaging your hack for distribution. See the Lunar Helper readme in the Docs folder for more information.
+When working on your hack Lunar Helper is your new best friend, you can find it by running `Lunar Helper.exe` in the LunarHelper folder. This tool will entirely rebuild your rom (from scratch) each time you want to add (or remove) things to make sure it all builds smoothly. It will also help you with quickly editing, testing and packaging your hack for distribution. See the Lunar Helper readme in the Docs\readmes folder for more information.
 
 Lunar Helper comes bundled with a tool to monitor your hack and export level, map16, palette and overworld updates as you make changes. This is only if you use the Edit function of Lunar Helper and the bundled Lunar Magic.
 
