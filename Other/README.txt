@@ -1,3 +1,6 @@
+-- Config
+Folder with initial configuration files for the baserom.
+
 -- initial patches
 two BPS patch files that are initial configurations for FastROM and SA-1 respectively
 to be applied to your clean Super Mario World ROM.
@@ -22,4 +25,8 @@ global ExAnimations, credits, intro screen, and title moves.
 a backup of the config file for Lunar Monitor
 
 -- rom-name.txt
-A file with just the name of the hack's ROM file used by !backup_hack.bat.
+When it exists, a file with just the name of the hack's ROM file used by !backup_hack.bat.
+
+-- build-preference.txt
+When it exists, a file to check your build preference if you're using the !build_hack.bat script.
+
