@@ -1,96 +1,16 @@
 @echo off
 cls
-:start
+set IS_BUILD_SCRIPT=1
 
 :: Working Directory
 setlocal DisableDelayedExpansion
 set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
-:: Clean ROM
-set CLEAN_ROM=clean.smc
 
-:: DO NOT CHANGE THE VARIABLES BELOW
-
-:: ROM Definitions
-set ROM_NAME_FILE=%WORKING_DIR%Other\rom-name.txt
-:: Check if rom-name.txt exists
-if not exist !ROM_NAME_FILE! (
-    :: Ask for ROM name
-    set /p ROM_NAME_INPUT=Enter the filename of your ROM, e.g. "MyHack":
-    echo !ROM_NAME_INPUT!>!ROM_NAME_FILE!
-    :: Set ROM name
-    set /p ROM_NAME=<!ROM_NAME_FILE!
-) else (
-    :: Set ROM name
-    set /p ROM_NAME=<!ROM_NAME_FILE!
-)
-
-:: Directory definitions
-set TOOLS_DIR=%WORKING_DIR%Tools\
-
-:: Import Definitions
-call %WORKING_DIR%Tools\tool_defines.bat
-
-:: Variables
-set ROMFILE=%WORKING_DIR%%ROM_NAME%.smc
-set PATCHNAME=%WORKING_DIR%%ROM_NAME%.bps
-
-:: Lunar Helper Check
-set BUILD_PREF=%WORKING_DIR%Other\build-preference.txt
-:: Check if build-preference.txt exists
-:BuildPref
-if not exist !BUILD_PREF! (
-    echo Before you begin:
-    echo.
-    echo The Lunar Helper tool is the recommended method for building the baserom as it can resolve conflicts more readily and insure an issue-free build.
-    echo However, if you are comfortable using batch files and resolving issues manually while building your hack, this scriptset will be useful.
-    echo.
-    set /p Input="Are you sure you want to use the build scripts instead? (Y/N): "
-    :: Confirm choice
-    if /i "!Input!"=="Y" (
-        .>!BUILD_PREF! 2>NUL
-        cls
-        goto BuildMenu
-    ) else if /i "!Input!"=="N" (
-        echo.
-        echo Have a nice day ^^_^^
-        exit /b
-    ) else (
-        echo.
-        echo "!Input!" is not a valid option, please try again.
-        echo.
-        goto BuildPref
-    )
-)
-
-:: Clean ROM Check
-set IS_CLEAN_ROM=%WORKING_DIR%Other\using-clean-rom.txt
-:: Check if build-preference.txt exists
-:CleanRomCheck
-if not exist !IS_CLEAN_ROM! (
-    echo WARNING!
-    echo.
-    echo These scripts will fail if you have not created an initial ROM that is either FastROM or SA-1.
-    echo If you do not have a fresh initial ROM created, clean initial patches can be found in Other/initial_patches.
-    echo.
-    set /p Input="Do you have an initial ROM set up? (Y/N): "
-    :: Confirm choice
-    if /i "!Input!"=="Y" (
-        .>!IS_CLEAN_ROM! 2>NUL
-        cls
-        goto BuildMenu
-    ) else if /i "!Input!"=="N" (
-        echo.
-        echo Have a nice day ^^_^^
-        exit /b
-    ) else (
-        echo.
-        echo "!Input!" is not a valid option, please try again.
-        echo.
-        goto CleanRomCheck
-    )
-)
+:: Import Common Script Stuff
+call %WORKING_DIR%@build_script_common.bat
+if errorlevel == 1 goto :EOF
 
 :: Menu
 :BuildMenu
@@ -105,7 +25,7 @@ echo   2. Insert Blocks with GPS
 echo   3. Insert Sprites with PIXI
 echo   4. Insert Music with AddMusicK
 echo   5. Insert UberASM with UberASMTool
-echo   6. Create BPS Patch using FLIPS
+echo   6. Create BPS Patch using Flips
 echo   0. Exit
 echo.
 set /p "Action=Enter the number of your choice: "
@@ -127,7 +47,7 @@ if /i "!Action!"=="1" (
         echo The list of patches for Asar is not found.
     ) else (
         pushd !ASAR_DIR!
-        for /f "tokens=*" %%a in (%PATCH_LIST%) do (asar.exe -v %%a !ROMFILE!)
+        for /f "tokens=*" %%a in (%PATCH_LIST%) do (asar.exe -v %%a !ROM_FILE!)
         echo.
         goto BuildMenu
     )
@@ -137,17 +57,17 @@ if /i "!Action!"=="1" (
 if /i "!Action!"=="2" (
     echo Inserting custom blocks...
     pushd !GPS_DIR!
-    gps.exe !ROMFILE!
+    gps.exe !ROM_FILE!
     echo.
     goto BuildMenu
 )
 
 :: Insert Custom Sprites with PIXI
-set PIXI_LIST=!PIXI_DIR!\list.txt
+set PIXI_LIST=!PIXI_DIR!list.txt
 if /i "!Action!"=="3" (
     echo Inserting custom sprites...
     pushd !PIXI_DIR!
-    pixi.exe -l "%PIXI_LIST%" !ROMFILE!
+    pixi.exe -l "%PIXI_LIST%" !ROM_FILE!
     echo.
     goto BuildMenu
 )
@@ -156,18 +76,17 @@ if /i "!Action!"=="3" (
 if /i "!Action!"=="4" (
     echo Inserting custom Music...
     pushd !AMK_DIR!
-    AddmusicK.exe !ROMFILE!
+    AddmusicK.exe !ROM_FILE!
     echo.
     goto BuildMenu
 )
 
 :: Insert custom uberASM
-set UBER_LIST=!UBER_DIR!\list.txt
+set UBER_LIST=!UBER_DIR!list.txt
 if /i "!Action!"=="5" (
     echo Inserting UberASM...
     pushd !UBER_DIR!
-    UberASMTool.exe "%UBER_LIST%" !ROMFILE!
-    echo.
+    UberASMTool.exe "%UBER_LIST%" !ROM_FILE!
     echo.
     goto BuildMenu
 )
@@ -176,14 +95,15 @@ if /i "!Action!"=="5" (
 if /i "!Action!"=="6" (
     echo Creating BPS patch...
     set SMWROM=
-    if not exist "%WORKING_DIR%%CLEAN_ROM%" (
+    if not exist !CLEAN_ROM! (
         echo Could not find an unmodified SMW file. Enter the path to an original, unmodified SMW smc:
         set /p SMWROM=
     ) else (
-        set SMWROM="%WORKING_DIR%%CLEAN_ROM%"
+        set SMWROM=!CLEAN_ROM!
     )
+    if errorlevel == 1 goto :EOF
     pushd !FLIPS_DIR!
-    flips.exe --create --bps !SMWROM! !ROMFILE! !PATCHNAME!
+    flips.exe --create --bps !SMWROM! !ROM_FILE! !PATCH_FILE!
     echo.
     goto BuildMenu
 )
@@ -193,8 +113,4 @@ if /i "!Action!"=="0" (
     echo Have a nice day ^^_^^
     exit /b
 )
-
 popd
-pause
-endlocal
-exit /b

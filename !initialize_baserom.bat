@@ -1,6 +1,6 @@
 @echo off
 cls
-:start
+set IS_BUILD_SCRIPT=0
 
 :: Working Directory
 setlocal DisableDelayedExpansion
@@ -8,14 +8,9 @@ set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
-:: Directory definitions
-set TOOLS_DIR=%WORKING_DIR%Tools\
-set TMP_DIR=%WORKING_DIR%temp\
-set CONF_DIR=%WORKING_DIR%Other\Config\
-set LISTS_DIR=%WORKING_DIR%Other\Lists\
-
-:: Import Definitions
-call %WORKING_DIR%Tools\tool_defines.bat
+:: Import Common Script Stuff
+call %WORKING_DIR%@build_script_common.bat
+if errorlevel == 1 goto :EOF
 
 :: Menu
 :InitializeMenu
@@ -51,8 +46,8 @@ if "!Action!"=="1" (
         powershell Invoke-WebRequest !AMK_DL! -OutFile !AMK_ZIP! >NUL
         powershell Expand-Archive !AMK_ZIP! -DestinationPath !TOOLS_DIR! >NUL
         :: Delete junk files
-        for %%a in (!AMK_JUNK!) do (del !AMK_DIR!%%a)
-        for %%a in (!AMK_JUNK_DIR!) do (rmdir /S /Q !AMK_DIR!%%a)
+        for %%a in (!AMK_JUNK!) do (del !AMK_DIR!%%a) >NUL
+        for %%a in (!AMK_JUNK_DIR!) do (rmdir /S /Q !AMK_DIR!%%a) >NUL
         :: Copy in existing list file(s)
         for %%a in (!AMK_LISTS!) do (copy /y !LISTS_DIR!%%a !AMK_DIR!)
         :: Delete Zip
@@ -60,7 +55,7 @@ if "!Action!"=="1" (
         echo Done.
         echo.
     ) else (
-        echo -- AddmusicK already setup.
+        echo -- AddmusicK already set up.
     )
 
     :: Check if Asar exists and download if not
@@ -71,14 +66,14 @@ if "!Action!"=="1" (
         :: replace stock list with baserom list
         copy /y !LISTS_DIR!!ASAR_LIST! !ASAR_DIR!
         :: Delete junk files
-        for %%a in (!ASAR_JUNK!) do (del !ASAR_DIR!%%a)
-        for %%a in (!ASAR_JUNK_DIR!) do (rmdir /S /Q !ASAR_DIR!%%a)
+        for %%a in (!ASAR_JUNK!) do (del !ASAR_DIR!%%a) >NUL
+        for %%a in (!ASAR_JUNK_DIR!) do (rmdir /S /Q !ASAR_DIR!%%a) >NUL
         :: Delete Zip
         del !ASAR_ZIP!
         echo Done.
         echo.
     ) else (
-        echo -- Asar already setup.
+        echo -- Asar already set up.
     )
 
     :: Check if Flips exists and download if not
@@ -87,13 +82,13 @@ if "!Action!"=="1" (
         powershell Invoke-WebRequest !FLIPS_DL! -OutFile !FLIPS_ZIP! >NUL
         powershell Expand-Archive !FLIPS_ZIP! -DestinationPath !FLIPS_DIR! >NUL
         :: Delete junk files
-        for %%a in (!FLIPS_JUNK!) do (del !FLIPS_DIR!%%a)
+        for %%a in (!FLIPS_JUNK!) do (del !FLIPS_DIR!%%a) >NUL
         :: Delete Zip
         del !FLIPS_ZIP!
         echo Done.
         echo.
     ) else (
-        echo -- Flips already setup.
+        echo -- Flips already set up.
     )
 
     :: Check if GPS exists and download if not
@@ -104,13 +99,13 @@ if "!Action!"=="1" (
         :: replace stock list with baserom list
         copy /y !LISTS_DIR!!GPS_LIST! !GPS_DIR!list.txt
         :: Delete junk files
-        for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
+        for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a) >NUL
         :: Delete Zip
         del !GPS_ZIP!
         echo Done.
         echo.
     ) else (
-        echo -- GPS already setup.
+        echo -- GPS already set up.
     )
 
     :: Check if Lunar Magic exists and download if not
@@ -119,13 +114,13 @@ if "!Action!"=="1" (
         powershell Invoke-WebRequest !LM_DL! -OutFile !LM_ZIP! >NUL
         powershell Expand-Archive !LM_ZIP! -DestinationPath !LM_DIR! >NUL
         :: Delete junk files
-        for %%a in (!LM_JUNK!) do (del !LM_DIR!%%a)
+        for %%a in (!LM_JUNK!) do (del !LM_DIR!%%a) >NUL
         :: Delete Zip
         del !LM_ZIP!
         echo Done.
         echo.
     ) else (
-        echo -- Lunar Magic already setup.
+        echo -- Lunar Magic already set up.
     )
 
     :: Check if Lunar Helper exists and download if not
@@ -141,18 +136,18 @@ if "!Action!"=="1" (
         :: Move Lunar Helper Files
         copy /y !TMP_DIR!"LunarHelper"\* !LUN_HLP_DIR!
         :: Delete junk files
-        for %%a in (!LUN_HLP_JUNK!) do (del !LUN_HLP_DIR!%%a)
-        for %%a in (!LUN_HLP_JUNK_DIR!) do (rmdir /S /Q !LUN_HLP_DIR!%%a)
+        for %%a in (!LUN_HLP_JUNK!) do (del !LUN_HLP_DIR!%%a) >NUL
+        for %%a in (!LUN_HLP_JUNK_DIR!) do (rmdir /S /Q !LUN_HLP_DIR!%%a) >NUL
 
         :: Move Lunar Monitor Files
         copy /y !TMP_DIR!"LunarMonitor"\* !LUN_MON_DIR!
-        move /y !TMP_DIR!"LunarMonitor"\lunar_monitor !LUN_MON_DIR!
+        move /y !TMP_DIR!"LunarMonitor"\lunar_monitor !LUN_MON_DIR! >NUL
         :: Delete junk files
-        for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a)
-        for %%a in (!LUN_MON_JUNK_DIR!) do (rmdir /S /Q !LUN_MON_DIR!%%a)
+        for %%a in (!LUN_MON_JUNK!) do (del !LUN_MON_DIR!%%a) >NUL
+        for %%a in (!LUN_MON_JUNK_DIR!) do (rmdir /S /Q !LUN_MON_DIR!%%a) >NUL
 
         :: Copy in existing config file
-        copy /y !CONF_DIR!\lunar-monitor-config.txt %WORKING_DIR%
+        copy /y !CONFIG_DIR!\lunar-monitor-config.txt %WORKING_DIR%
 
         :: Delete Temp directory
         rmdir /S /Q !TMP_DIR!
@@ -161,7 +156,7 @@ if "!Action!"=="1" (
         echo Done.
         echo.
     ) else (
-        echo -- Lunar Helper already setup.
+        echo -- Lunar Helper already set up.
     )
 
     :: Check if PIXI exists and download if not
@@ -172,13 +167,13 @@ if "!Action!"=="1" (
         :: replace stock list with baserom list
         copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!list.txt
         :: Delete junk files
-        for %%a in (!PIXI_JUNK!) do (del !PIXI_DIR!%%a)
+        for %%a in (!PIXI_JUNK!) do (del !PIXI_DIR!%%a) >NUL
         :: Delete Zip
         del !PIXI_ZIP!
         echo Done.
         echo.
     ) else (
-        echo -- PIXI already setup.
+        echo -- PIXI already set up.
     )
 
     :: Check if UberASM exists and download if not
@@ -194,21 +189,22 @@ if "!Action!"=="1" (
         :: replace stock list with baserom list
         copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
         :: Delete junk files
-        for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a)
+        for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a) >NUL
         :: Delete Zip
         del !UBER_ZIP!
         echo Done.
         echo.
     ) else (
-        echo -- UberASMTool already setup.
+        echo -- UberASMTool already set up.
     )
-
+    echo.
     goto InitializeMenu
 )
 
 :: Restore Baserom list files
 if "!Action!"=="2" (
     :: Copy in existing list file(s) to respective folders
+    echo Copying pre-configured list files to respective Tools folders...
     for %%a in (!AMK_LISTS!) do (copy /y !LISTS_DIR!%%a !AMK_DIR!)
     copy /y !LISTS_DIR!!GPS_LIST! !GPS_DIR!list.txt
     copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!list.txt
@@ -222,21 +218,16 @@ if "!Action!"=="2" (
 if "!Action!"=="3" (
     :: Setup Usertoolbar things
     echo Setting up custom Lunar Magic toolbar...
-    copy /y !CONF_DIR!usertoolbar\usertoolbar.txt !LM_DIR!
-    copy /y !CONF_DIR!usertoolbar\usertoolbar_icons.bmp !LM_DIR!
-    copy /y !CONF_DIR!usertoolbar\usertoolbar_wrapper.bat !LM_DIR!
+    copy /y !CONFIG_DIR!usertoolbar\usertoolbar.txt !LM_DIR!
+    copy /y !CONFIG_DIR!usertoolbar\usertoolbar_icons.bmp !LM_DIR!
+    copy /y !CONFIG_DIR!usertoolbar\usertoolbar_wrapper.bat !LM_DIR!
     echo Done.
     echo.
     goto InitializeMenu
 )
 
-
+:: Exit
 if "!Action!"=="0" (
     echo Have a nice day ^^_^^
     exit /b
 )
-
-if '!Action!'=='' echo Nothing is not valid option, please try again.
-
-pause
-exit /b

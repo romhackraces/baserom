@@ -1,5 +1,6 @@
 Backup/Levels/20*
 Backup/Levels/*.mwl
+Backup/Levels/latest/*.mwl
 Backup/Map16/*.map16
 Backup/Palettes/*.pal
 sysLMRestore/*

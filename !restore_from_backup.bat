@@ -1,6 +1,6 @@
 @echo off
 cls
-:start
+set IS_BUILD_SCRIPT=1
 
 :: Working Directory
 setlocal DisableDelayedExpansion
@@ -8,53 +8,15 @@ set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
-:: DO NOT CHANGE THE VARIABLES BELOW
-
-:: ROM Definitions
-set ROM_NAME_FILE=%WORKING_DIR%Other\rom-name.txt
-:: Check if rom-name.txt exists
-if not exist !ROM_NAME_FILE! (
-    :: Ask for ROM name
-    set /p ROM_NAME_INPUT=Enter the filename of your ROM, e.g. "MyHack":
-    echo !ROM_NAME_INPUT!>!ROM_NAME_FILE!
-    :: Set ROM name
-    set /p ROM_NAME=<!ROM_NAME_FILE!
-) else (
-    :: Set ROM name
-    set /p ROM_NAME=<!ROM_NAME_FILE!
-)
-
-:: Import Definitions
-call %WORKING_DIR%Tools\@tool_defines.bat
-
-:: Directory Definitiions
-set BACKUP_DIR=%WORKING_DIR%Backup\
-set TOOLS_DIR=%WORKING_DIR%Tools\
-
-:: Variables
-set ROM_FILE="%WORKING_DIR%%ROM_NAME%.smc"
-set PATCH_FILE="%WORKING_DIR%%ROM_NAME%.bps"
+:: Import Common Script Stuff
+call %WORKING_DIR%@build_script_common.bat
+if errorlevel == 1 goto :EOF
 
 :: Restore locations
-set LEVELS_BACKUP="%BACKUP_DIR%Levels\latest\"
-set RESTORE_FILE="%BACKUP_DIR%ROM\latest_%ROM_NAME%.smc"
-set MAP16_BACKUP="%BACKUP_DIR%Map16\latest_AllMap16.map16"
-set PAL_BACKUP="%BACKUP_DIR%Palettes\latest_Shared.pal"
-
-:: Lunar Magic
-set LM="!TOOLS_DIR!LunarMagic\Lunar Magic.exe"
-set LM_DIR=!TOOLS_DIR!LunarMagic\
-:: Check if Lunar Magic exists and download if not
-if not exist "!LM_DIR!Lunar Magic.exe" (
-    echo Lunar Magic not found, downloading...
-    powershell Invoke-WebRequest !LM_DL! -OutFile !LM_ZIP! >NUL
-    powershell Expand-Archive !LM_ZIP! -DestinationPath !LM_DIR! >NUL
-    :: Delete junk files
-    for %%a in (!LM_JUNK!) do (del !LM_DIR!%%a)
-    :: Delete Zip
-    del !LM_ZIP!
-    echo Done.
-)
+set LEVELS_RESTORE=!BACKUP_DIR!Levels\latest\
+set ROM_RESTORE=!BACKUP_DIR!ROM\latest_%ROM_NAME%.smc
+set MAP16_RESTORE=!BACKUP_DIR!Map16\latest_AllMap16.map16
+set PAL_RESTORE=!BACKUP_DIR!Palettes\latest_Shared.pal
 
 :: Menu
 :RestoreMenu
@@ -77,14 +39,14 @@ for /F "delims=01234" %%i in ("!Action!") do (
     cls
     echo "%%i" is not a valid option, please try again.
     echo.
-    goto RestoreMenuMenu
+    goto RestoreMenu
 )
 cls
 
 :: Transferr Global ExAnimation, Overworld, Titlescreen and Credits
 if "!Action!"=="1" (
     echo Transferring ExAnimation, Overworld, Titlescreen and Credits...
-    if not exist !RESTORE_FILE! (
+    if not exist !ROM_RESTORE! (
         echo.
         echo Could not find a back-up of your ROM. Run a back-up first before proceeding.
         echo.
@@ -92,64 +54,60 @@ if "!Action!"=="1" (
         exit /b
     ) else (
         :: Run Lunar Magic Actions
-        !LM! -TransferLevelGlobalExAnim !ROM_FILE! !RESTORE_FILE!
-        !LM! -TransferOverworld !ROM_FILE! !RESTORE_FILE!
-        !LM! -TransferTitleScreen !ROM_FILE! !RESTORE_FILE!
-        !LM! -TransferCredits !ROM_FILE! !RESTORE_FILE!
+        !LM! -TransferLevelGlobalExAnim !ROM_FILE! !ROM_RESTORE!
+        !LM! -TransferOverworld !ROM_FILE! !ROM_RESTORE!
+        !LM! -TransferTitleScreen !ROM_FILE! !ROM_RESTORE!
+        !LM! -TransferCredits !ROM_FILE! !ROM_RESTORE!
         echo Done.
         echo.
-        goto RestoreMenuMenu
+        goto RestoreMenu
     )
 )
 
 :: Import backed up levels
 if "!Action!"=="2" (
     echo Importing levels...
-    if not exist !LEVELS_BACKUP! (
+    if not exist !LEVELS_RESTORE! (
         echo Could not find a back-up of your levels.
         exit /b
     ) else (
-        !LM! -ImportMultLevels !ROM_FILE! !LEVELS_BACKUP!
+        !LM! -ImportMultLevels !ROM_FILE! !LEVELS_RESTORE!
         echo Done.
         echo.
-        goto RestoreMenuMenu
+        goto RestoreMenu
     )
 )
 
 :: Import backed up map16
 if "!Action!"=="3" (
     echo Importing map16...
-    if not exist !MAP16_BACKUP! (
+    if not exist !MAP16_RESTORE! (
         echo Could not find a back-up of map16.
         exit /b
     ) else (
-        !LM! -ImportAllMap16 !ROM_FILE! !MAP16_BACKUP!
+        !LM! -ImportAllMap16 !ROM_FILE! !MAP16_RESTORE!
         echo Done.
         echo.
-        goto RestoreMenuMenu
+        goto RestoreMenu
     )
 )
 
 :: Import backed up palettes
 if "!Action!"=="4" (
     echo Importing palettes...
-    if not exist !PAL_BACKUP! (
+    if not exist !PAL_RESTORE! (
         echo Could not find a back-up of palettes.
         exit /b
     ) else (
-        !LM! -ImportSharedPalette  !ROM_FILE! !PAL_BACKUP!
+        !LM! -ImportSharedPalette  !ROM_FILE! !PAL_RESTORE!
         echo Done.
         echo.
-        goto RestoreMenuMenu
+        goto RestoreMenu
     )
 )
 
+:: Exit
 if "!Action!"=="0" (
     echo Have a nice day ^^_^^
     exit /b
 )
-
-popd
-pause
-endlocal
-exit /b
