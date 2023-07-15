@@ -12,6 +12,7 @@ Tools/AddmusicK_*/stats/*.txt
 Tools/AddmusicK_*/temp*
 Tools/AddmusicK_*/*.pl
 Tools/AddmusicK_*/Addmusic_*.txt
+Tools/Asar/patchlist.txt
 Tools/LunarMagic/usertoolbar*
 Tools/GPS/blocks/template.asm
 Tools/GPS/rom.txt
@@ -23,6 +24,7 @@ lunar_monitor_log.txt
 config_user.txt
 list.txt
 rom-name.txt
+build-preference.txt
 temp.*
 *.*~
 *.lnk

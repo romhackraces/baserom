@@ -12,6 +12,14 @@ set AMK_JUNK="readme.html" "src.zip" "addmusicMRemover.pl"
 set AMK_JUNK_DIR="readme_files"
 set AMK_LISTS="Addmusic_sample groups.txt" "Addmusic_list.txt" "Addmusic_sound effects.txt"
 
+:: Asar
+set ASAR_DIR=!TOOLS_DIR!Asar\
+set ASAR_DL="https://dl.smwcentral.net/25953/asar181.zip"
+set ASAR_ZIP="asar181.zip"
+set ASAR_JUNK="LICENSE" "license-lgpl.txt" "license-gpl.txt" "license-wtfpl.txt" "README.txt"
+set ASAR_JUNK_DIR="ext" "dll" "docs"
+set ASAR_LIST="patchlist.txt"
+
 :: Flips
 set FLIPS_DIR=!TOOLS_DIR!Flips\
 set FLIPS_DL="https://dl.smwcentral.net/11474/floating.zip"
