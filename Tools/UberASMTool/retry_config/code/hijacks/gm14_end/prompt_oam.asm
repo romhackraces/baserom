@@ -283,11 +283,14 @@ defrag_oam:
 
     ; First we find the first free slot from the end of the table.
     ; This prevents the main loop from hiding tiles when the end of the OAM table is filled.
+    lda #$F0
+    
 .setup_loop:
-    lda $0201|!addr,y : cmp #$F0 : beq .main_loop
+    cmp $0201|!addr,y : beq .main_loop
     dex #4
     dey #4
     bpl .setup_loop
+
 ..end:
     ; If we get here it means that the entire OAM table is full, so just return.
     sep #$10
@@ -296,7 +299,7 @@ defrag_oam:
     ; Now we move all the used slots in adjacent spots at the end of the OAM table.
 .main_loop:
     ; If the slot is free, go to the next one.
-    lda $0201|!addr,y : cmp #$F0 : beq ..next
+    cmp $0201|!addr,y : beq ..next
 
     ; Otherwise, copy the Y slot in the X slot...
     rep #$20
@@ -320,6 +323,9 @@ defrag_oam:
 
     ; Go to the next slot in the rearranged table.
     dex #4
+
+    ; Reload value to compare $0201 to.
+    lda #$F0
 
 ..next:
     ; Go to the next slot in the original table, and loop back if not the end.

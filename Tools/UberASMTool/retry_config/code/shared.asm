@@ -61,6 +61,12 @@ function str_header1(x,y)     = xb($5000|((y)<<5)|(x))
 function str_header2(len,rle) = xb((((rle)&1)<<14)|(len))
 
 ;================================================
+; Utility functions for VRAM and graphics.
+;================================================
+function vram_addr(offset) = (!sprite_vram+(offset*$10))
+function gfx_size(num)     = (num*$20)
+
+;================================================
 ; Routine to get the prompt type for the current level.
 ;================================================
 get_prompt_type:
