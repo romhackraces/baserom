@@ -100,7 +100,7 @@ GPS V1.4.3 - TheBiob, p4plus2 - https://smwc.me/s/29130
 Lunar Helper 4.0.6 - Underway, Maddy - https://github.com/Underrout/LunarHelper
 Lunar Magic 3.33 - FuSoYa - https://fusoya.eludevisibility.org/lm/program.html
 PIXI v1.32 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/26026
-UberASM Tool 1.5 - Vitor Vilela - https://smwc.me/s/28974
+UberASM Tool 1.6 - Vitor Vilela - https://smwc.me/s/32657
 
 -- Other Credits --
 Burning Loaf - Ideas taken from Trinkets (https://smwc.me/s/32272) for toolbar actions.

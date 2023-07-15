@@ -50,7 +50,7 @@ set PIXI_LIST="list_pixi.txt"
 
 :: UberASM Tool
 set UBER_DIR=!TOOLS_DIR!UberASMTool\
-set UBER_DL="https://dl.smwcentral.net/28974/UberASMTool15.zip"
+set UBER_DL="https://dl.smwcentral.net/32657/UberASMTool16.zip"
 set UBER_ZIP="UberASMTool15.zip"
-set UBER_JUNK="readme.txt" "readme - library.txt" ".\level\test.asm" ".\level\test2.asm"
+set UBER_JUNK="readme.txt" "readme - library.txt"
 set UBER_LIST="list_uberasm.txt"
