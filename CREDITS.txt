@@ -24,6 +24,7 @@ SA-1 Pack v1.40 - Arujus, Vitor Vilela - https://smwc.me/s/25938
 -- Bug Fixes --
 $13FB Game Crash Fix (Fireberry) - p4plus2 - https://smwc.me/s/18319
 Ball n' Chain and Yoshi Interaction Fix - Kevin - https://smwc.me/s/22761
+BG Candle Flames Priority Fix (for SA-1 MaxTile) - Kevin - https://smwc.me/s/32380
 Block Duplication Fix v1.5 - Tattletale, lolcats439 - https://smwc.me/s/18413
 Bob-omb Kicked Palette Fix - Koopster - https://smwc.me/s/24684
 Bounce Blocks Death Fix - Kevin - https://smwc.me/s/25647

@@ -4,6 +4,7 @@ Fixes/BlockDuplicationFix.asm
 Fixes/BombPaletteFix.asm
 Fixes/BounceBlockDeathFix.asm
 Fixes/BowserFireDespawnFix.asm
+Fixes/CandleFlamesFix.asm
 Fixes/CapeHitboxPositionFix.asm
 Fixes/CapeSpinDirectionConsistency.asm
 Fixes/CapespinNetHitboxConsistency.asm

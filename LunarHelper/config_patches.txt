@@ -8,6 +8,7 @@ patches
 	Tools/Asar/Fixes/BombPaletteFix.asm
 	Tools/Asar/Fixes/BounceBlockDeathFix.asm
 	Tools/Asar/Fixes/BowserFireDespawnFix.asm
+	Tools/Asar/Fixes/CandleFlamesFix.asm
 	Tools/Asar/Fixes/CapeHitboxPositionFix.asm
 	Tools/Asar/Fixes/CapeSpinDirectionConsistency.asm
 	Tools/Asar/Fixes/CapespinNetHitboxConsistency.asm
