@@ -17,6 +17,8 @@ lunar-monitor-config.txt - configuration file for Lunar Monitor
 !initialize_baserom.bat - initializes the baserom by downloading all the tools
 !restore_from_backups.bat - script to help restore items into your ROM from a backup
 
+@build_script_common - a file to keep definitions and routines common to the build scripts
+
 
 Other
 -----
