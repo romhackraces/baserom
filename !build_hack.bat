@@ -7,8 +7,6 @@ setlocal DisableDelayedExpansion
 set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
-
-
 :: Clean ROM
 set CLEAN_ROM=clean.smc
 
@@ -51,10 +49,9 @@ if not exist !BUILD_PREF! (
     set /p Input="Are you sure you want to use the build scripts instead? (Y/N): "
     :: Confirm choice
     if /i "!Input!"=="Y" (
-        :: Create preference file
         .>!BUILD_PREF! 2>NUL
         cls
-        goto Menu
+        goto BuildMenu
     ) else if /i "!Input!"=="N" (
         echo.
         echo Have a nice day ^^_^^
@@ -67,8 +64,36 @@ if not exist !BUILD_PREF! (
     )
 )
 
-:: Build Script Menu and actions
-:Menu
+:: Clean ROM Check
+set IS_CLEAN_ROM=%WORKING_DIR%Other\using-clean-rom.txt
+:: Check if build-preference.txt exists
+:CleanRomCheck
+if not exist !IS_CLEAN_ROM! (
+    echo WARNING!
+    echo.
+    echo These scripts will fail if you have not created an initial ROM that is either FastROM or SA-1.
+    echo If you do not have a fresh initial ROM created, clean initial patches can be found in Other/initial_patches.
+    echo.
+    set /p Input="Do you have an initial ROM set up? (Y/N): "
+    :: Confirm choice
+    if /i "!Input!"=="Y" (
+        .>!IS_CLEAN_ROM! 2>NUL
+        cls
+        goto BuildMenu
+    ) else if /i "!Input!"=="N" (
+        echo.
+        echo Have a nice day ^^_^^
+        exit /b
+    ) else (
+        echo.
+        echo "!Input!" is not a valid option, please try again.
+        echo.
+        goto CleanRomCheck
+    )
+)
+
+:: Menu
+:BuildMenu
 echo ------------------------------
 echo Baserom Build Script
 echo ------------------------------
@@ -90,7 +115,7 @@ for /F "delims=0123456" %%i in ("!Action!") do (
     cls
     echo "%%i" is not a valid option, please try again.
     echo.
-    goto Menu
+    goto BuildMenu
 )
 cls
 
@@ -104,7 +129,7 @@ if /i "!Action!"=="1" (
         pushd !ASAR_DIR!
         for /f "tokens=*" %%a in (%PATCH_LIST%) do (asar.exe -v %%a !ROMFILE!)
         echo.
-        goto Menu
+        goto BuildMenu
     )
 )
 
@@ -114,7 +139,7 @@ if /i "!Action!"=="2" (
     pushd !GPS_DIR!
     gps.exe !ROMFILE!
     echo.
-    goto Menu
+    goto BuildMenu
 )
 
 :: Insert Custom Sprites with PIXI
@@ -124,7 +149,7 @@ if /i "!Action!"=="3" (
     pushd !PIXI_DIR!
     pixi.exe -l "%PIXI_LIST%" !ROMFILE!
     echo.
-    goto Menu
+    goto BuildMenu
 )
 
 :: Insert custom music with AddmusicK
@@ -133,7 +158,7 @@ if /i "!Action!"=="4" (
     pushd !AMK_DIR!
     AddmusicK.exe !ROMFILE!
     echo.
-    goto Menu
+    goto BuildMenu
 )
 
 :: Insert custom uberASM
@@ -144,7 +169,7 @@ if /i "!Action!"=="5" (
     UberASMTool.exe "%UBER_LIST%" !ROMFILE!
     echo.
     echo.
-    goto Menu
+    goto BuildMenu
 )
 
 :: Create bps Patch with Flips
@@ -160,7 +185,7 @@ if /i "!Action!"=="6" (
     pushd !FLIPS_DIR!
     flips.exe --create --bps !SMWROM! !ROMFILE! !PATCHNAME!
     echo.
-    goto Menu
+    goto BuildMenu
 )
 
 :: Exit

@@ -17,8 +17,8 @@ set LISTS_DIR=%WORKING_DIR%Other\Lists\
 :: Import Definitions
 call %WORKING_DIR%Tools\tool_defines.bat
 
-:: Options
-:Menu
+:: Menu
+:InitializeMenu
 echo -----------------------------------
 echo Baserom Initialization Script
 echo -----------------------------------
@@ -38,7 +38,7 @@ for /F "delims=0123" %%i in ("!Action!") do (
     cls
     echo "%%i" is not a valid option, please try again.
     echo.
-    goto Menu
+    goto InitializeMenu
 )
 cls
 
@@ -57,6 +57,7 @@ if "!Action!"=="1" (
         for %%a in (!AMK_LISTS!) do (copy /y !LISTS_DIR!%%a !AMK_DIR!)
         :: Delete Zip
         del !AMK_ZIP!
+        echo Done.
         echo.
     ) else (
         echo -- AddmusicK already setup.
@@ -74,6 +75,7 @@ if "!Action!"=="1" (
         for %%a in (!ASAR_JUNK_DIR!) do (rmdir /S /Q !ASAR_DIR!%%a)
         :: Delete Zip
         del !ASAR_ZIP!
+        echo Done.
         echo.
     ) else (
         echo -- Asar already setup.
@@ -88,6 +90,7 @@ if "!Action!"=="1" (
         for %%a in (!FLIPS_JUNK!) do (del !FLIPS_DIR!%%a)
         :: Delete Zip
         del !FLIPS_ZIP!
+        echo Done.
         echo.
     ) else (
         echo -- Flips already setup.
@@ -104,6 +107,7 @@ if "!Action!"=="1" (
         for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
         :: Delete Zip
         del !GPS_ZIP!
+        echo Done.
         echo.
     ) else (
         echo -- GPS already setup.
@@ -118,6 +122,7 @@ if "!Action!"=="1" (
         for %%a in (!LM_JUNK!) do (del !LM_DIR!%%a)
         :: Delete Zip
         del !LM_ZIP!
+        echo Done.
         echo.
     ) else (
         echo -- Lunar Magic already setup.
@@ -153,6 +158,7 @@ if "!Action!"=="1" (
         rmdir /S /Q !TMP_DIR!
         :: Delete Zip
         del !LUN_HLP_ZIP!
+        echo Done.
         echo.
     ) else (
         echo -- Lunar Helper already setup.
@@ -169,6 +175,7 @@ if "!Action!"=="1" (
         for %%a in (!PIXI_JUNK!) do (del !PIXI_DIR!%%a)
         :: Delete Zip
         del !PIXI_ZIP!
+        echo Done.
         echo.
     ) else (
         echo -- PIXI already setup.
@@ -190,12 +197,13 @@ if "!Action!"=="1" (
         for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a)
         :: Delete Zip
         del !UBER_ZIP!
+        echo Done.
         echo.
     ) else (
         echo -- UberASMTool already setup.
     )
 
-    goto Menu
+    goto InitializeMenu
 )
 
 :: Restore Baserom list files
@@ -207,7 +215,7 @@ if "!Action!"=="2" (
     copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
     echo Done.
     echo.
-    goto Menu
+    goto InitializeMenu
 )
 
 :: Setup Custom Baserom user toolbar
@@ -219,7 +227,7 @@ if "!Action!"=="3" (
     copy /y !CONF_DIR!usertoolbar\usertoolbar_wrapper.bat !LM_DIR!
     echo Done.
     echo.
-    goto Menu
+    goto InitializeMenu
 )
 
 
@@ -230,8 +238,5 @@ if "!Action!"=="0" (
 
 if '!Action!'=='' echo Nothing is not valid option, please try again.
 
-echo.
-echo All done. Have a nice day ^^_^^
-echo.
 pause
 exit /b

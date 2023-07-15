@@ -68,7 +68,7 @@ set Minute=%DateTime:~10,2%
 set TIMESTAMP="%Year%%Month%%Day%_%Hour%%Minute%"
 
 :: Menu
-:Menu
+:BackupMenu
 echo ------------------------------
 echo Baserom Backup Script
 echo ------------------------------
@@ -89,7 +89,7 @@ for /F "delims=01234" %%i in ("!Action!") do (
     cls
     echo "%%i" is not a valid option, please try again.
     echo.
-    goto Menu
+    goto BackupMenu
 )
 cls
 
@@ -101,7 +101,7 @@ if "%Action%"=="1" (
     )
     !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\%TIMESTAMP%\level
     echo.
-    goto Menu
+    goto BackupMenu
 )
 :: Export Map16
 if "%Action%"=="2" (
@@ -111,7 +111,7 @@ if "%Action%"=="2" (
     )
     !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\%TIMESTAMP%_AllMap16.map16
     echo.
-    goto Menu
+    goto BackupMenu
 )
 :: Export Palettes
 if "%Action%"=="3" (
@@ -121,7 +121,7 @@ if "%Action%"=="3" (
     )
     !LM! -ExportSharedPalette !ROMFILE! %PAL_BACKUP%\%TIMESTAMP%_Shared.pal
     echo.
-    goto Menu
+    goto BackupMenu
 )
 :: Create time-stamped backup of your ROM
 if "%Action%"=="4" (
@@ -132,7 +132,7 @@ if "%Action%"=="4" (
     copy !ROMFILE! %ROM_BACKUP%\%TIMESTAMP%_%ROM_NAME%.smc
     echo Done.
     echo.
-    goto Menu
+    goto BackupMenu
 )
 if "%Action%"=="0" (
     echo Have a nice day ^^_^^
