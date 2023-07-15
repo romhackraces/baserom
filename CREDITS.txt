@@ -63,6 +63,7 @@ Springboard Fixes - MiracleWater - https://smwc.me/s/22084
 Sprite Ceiling Fix - Davros - https://smwc.me/s/14697
 Sprite Scroll Fix - HammerBrother - https://smwc.me/s/13675
 Star/Slide Kill GFX Fix - Kevin - https://smwc.me/s/30709
+Status Bar NMI Optimizer v1.1 - Kevin - https://smwc.me/s/33996
 Time Up Fix - Alcaro - https://smwc.me/s/15110
 Title Window Cleaner - Alcaro - Title Window Cleaner
 Torpedo Ted Offscreen Smoke Fix - Kevin - https://smwc.me/s/26503
@@ -74,9 +75,10 @@ Walljump/Note Block Glitch Fix v1.6 - lolcats439 - https://smwc.me/s/19932
 Yoshi Pipe Animation Fix - Kevin - https://smwc.me/s/30127
 
 -- UberASM --
+Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
+Controller Read Optimization - spooonsss - https://smwc.me/s/32580
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
 Retry System v0.5.1 - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.5.1
-Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 
 -- Blocks --
 Basic Baserom Blocks - AmperSam

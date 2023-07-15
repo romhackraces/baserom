@@ -28,6 +28,7 @@ Fixes/LineRopeLengthFix.asm
 Fixes/NetScreenBoundaryFix.asm
 Fixes/NoSpriteInteractionFix.asm
 Fixes/Optimize1F0.asm
+Fixes/OptimizeStatusbarNMI.asm
 Fixes/PBalloonCloudFix.asm
 Fixes/PlayerXSpeedFix.asm
 Fixes/PressedSwitchYoshiFix.asm
