@@ -1,4 +1,4 @@
-; Capespin Direction Consistency - patch by Katun24, SA-1 conversion by AmperSam
+; Capespin Direction Consistency (a.k.a. Turnaround) by Katun24, SA-1 conversion by AmperSam, made toggleable by binavik
 ; This patch makes it so a capespin always results in Mario turning around, and makes the face direction consistent during the capespin animation.
 
 if read1($00FFD5) == $23
@@ -15,7 +15,17 @@ else
     !bank = $800000
 endif
 
+
 !FreeRam = $1696|!addr
+
+; Default behaviour
+; 0 = patched turnarounds, setting flag unpatches turnarounds
+; 1 = unpatched turnarounds, setting flag patches turnarounds
+!default = 0
+; cleared on level load
+
+!Toggle = $1864|!addr
+
 
 org $00D076|!bank
 autoclean JML CapeSpinStart                 ; called at the start of the capespin
@@ -26,6 +36,17 @@ autoclean JML CapeSpinAnimation             ; called during capespin
 freecode
 
 CapeSpinStart:
+    LDA !Toggle
+if !default
+	BEQ .patched
+else
+	BNE .patched
+endif
+	LDA.b #$12
+	STA $14A6|!addr
+	JML $00D07B|!bank
+
+.patched
     LDA $76                                 ; load Mario's face direction
 
     LDY $14A6|!addr                         ; if already capespinning, load the current flight direction instead of Mario's face direction
@@ -44,6 +65,18 @@ CapespinStartframe:
     db $01,$05
 
 CapeSpinAnimation:
+
+    LDA !Toggle
+if !default
+	BEQ .patched
+else
+	BNE .patched
+endif
+	LDA $14
+	AND.b #$06
+	JML $00CF24|!bank
+
+.patched
     LDA $140D|!addr                         ; if spinjumping, use the global timer for the capespin animation
     BEQ +
     LDA $14
