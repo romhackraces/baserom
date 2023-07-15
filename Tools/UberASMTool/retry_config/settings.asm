@@ -282,7 +282,7 @@
 
 ;======================== Death Counter =================================;
 
-; If 1, a death counter will replace the lives on the status bar.
+; If 1, a death counter will replace the lives on the (vanilla) status bar.
     !status_death_counter = 0
 
 ; If 1, the "DEATHS" word will replace Mario's name on the status bar.

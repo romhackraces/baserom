@@ -33,7 +33,7 @@ nmi:
     pla
     plx
     jmp .no_timer
-+
++   
     ; Setup the constant DMA parameters.
     sep #$10
     rep #$20
@@ -46,24 +46,24 @@ nmi:
     lda $0F31|!addr : and #$00FF : beq +
     %store_digit_addr()
     lda $01,s : adc #$0010 : sta $2116
-    lda #$0020 : sta.w prompt_dma($4305)
+    lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
 
     ; In this case we need to upload the second digit even if 0.
     lda $0F32|!addr : and #$00FF : bra ++
-+
++   
     ; Upload the second digit, unless it's 0.
     lda $0F32|!addr : and #$00FF : beq +
 ++  %store_digit_addr()
     lda $01,s : adc #$0100 : sta $2116
-    lda #$0020 : sta.w prompt_dma($4305)
+    lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
 +
     ; Upload the third digit.
     lda $0F33|!addr : and #$00FF
     %store_digit_addr()
     pla : adc #$0110 : sta $2116
-    lda #$0020 : sta.w prompt_dma($4305)
+    lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
 
     ; Restore X and processor state.
@@ -81,7 +81,7 @@ nmi:
     lda $0DBF|!addr : cmp !ram_coin_backup : bne +
     rep #$20 : pla
     bra .no_coins
-+
++   
     ; Update the coin counter backup.
     sta !ram_coin_backup
 
@@ -100,14 +100,14 @@ nmi:
     ; Upload the first digit (unless it's 0).
     lda $4214 : beq +
     %store_digit_addr()
-    lda $01,s : adc #$0010 : sta $2116
-    lda #$0020 : sta.w prompt_dma($4305)
+    lda $01,s : adc #$0100 : sta $2116
+    lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
-+
++   
     ; Upload the second digit.
     lda $4216 : %store_digit_addr()
-    pla : adc #$0100 : sta $2116
-    lda #$0020 : sta.w prompt_dma($4305)
+    pla : adc #$0110 : sta $2116
+    lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
 
 .no_coins:
@@ -143,13 +143,13 @@ init:
     phx : sep #$10
     %calc_vram() : sta $2116 : pha
     lda.w #retry_gfx_item_box : sta.w prompt_dma($4302)
-    lda #$0040 : sta.w prompt_dma($4305)
+    lda.w #gfx_size(2) : sta.w prompt_dma($4305)
     sty $420B
 
     ; Upload the second row.
     pla : adc #$0100 : sta $2116
     lda.w #retry_gfx_item_box+$40 : sta.w prompt_dma($4302)
-    lda #$0040 : sta.w prompt_dma($4305)
+    lda.w #gfx_size(2) : sta.w prompt_dma($4305)
     sty $420B
 
     ; Restore X and processor state.
@@ -163,7 +163,7 @@ init:
     phx : sep #$10
     %calc_vram() : sta $2116
     lda.w #retry_gfx_timer : sta.w prompt_dma($4302)
-    lda #$0020 : sta.w prompt_dma($4305)
+    lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
 
     ; Restore X and processor state.
@@ -173,11 +173,11 @@ init:
     ; Check if we need to upload the coin tile.
     lda.l tables_coins,x : beq ..no_coins
 
-    ; Upload the coin tile.
+    ; Upload the coin tiles.
     sep #$10
     %calc_vram() : sta $2116
     lda.w #retry_gfx_coin : sta.w prompt_dma($4302)
-    lda #$0020 : sta.w prompt_dma($4305)
+    lda.w #gfx_size(2) : sta.w prompt_dma($4305)
     sty $420B
 
 ..no_coins:
@@ -205,7 +205,7 @@ endif
     plp : ply
 
 .no_item_box:
-
+    
     ; Draw the timer if applicable.
     lda.w tables_timer,y : beq .no_timer
     phy : php
@@ -310,7 +310,7 @@ draw_timer:
     ; Draw the clock tile.
     ldy #$0000
     jsr .draw
-
+    
     ; Draw the first digit, unless it's 0.
     lda $0F31|!addr : bne +
     lda #$80 : ora !ram_timer+0 : sta !ram_timer+0
@@ -423,25 +423,41 @@ endif
     db $18+!coin_counter_x_pos,!coin_counter_y_pos
 
 .tile:
-    dw $0000,$0001,$0010
+    dw $0000,$0010,$0011
 
 draw_yoshi_coins:
     ; Check if we need to draw the Yoshi Coins.
-    lda #$00 : xba
+    sep #$10
     lda $13BF|!addr : and #$07 : tay
     lda.w .mask,y : sta $02
     lda $13BF|!addr : lsr #3 : tay
-    lda $1F2F|!addr,y : and $02 : beq +
-    ldy.w #2*(5-1)
-    bra .loop
-+   lda $1422|!addr : beq .return
-    dec : asl : tay
+    lda $1F2F|!addr,y : and $02 : beq .not_all
+    jsr get_total_dc_amount
+    bne .shared
+    rts
+
+.not_all:
+    lda $1422|!addr : beq .return
+
+.shared:
+    rep #$10
+
+    ; $0F = amount of tiles to draw
+    dec : sta $0F
+
+    ; $0D = starting XY position
+    lda.b #!dc_counter_x_pos : sta $0D
+    lda.b #!dc_counter_y_pos : sta $0E
+
+    ; Yoshi Coin tile is one tile to the right.
+    inc $00
 
 .loop:
 if !maxtile
     ldx !maxtile_buffer_max+0 : cpx !maxtile_buffer_max+8 : beq .return
     rep #$20
-    lda.w .pos,y : sta $400000,x
+    lda $0D : sta $400000,x
+    clc : adc.w #$0008 : sta $0D
     lda $00 : sta $400002,x
     sep #$20
     dex #4 : stx !maxtile_buffer_max+0
@@ -451,7 +467,8 @@ if !maxtile
 else
     jsr get_free_slot
     rep #$20
-    lda.w .pos,y : sta $0200|!addr,x
+    lda $0D : sta $0200|!addr,x
+    clc : adc.w #$0008 : sta $0D
     lda $00 : sta $0202|!addr,x
     phx
     txa : lsr #2 : tax
@@ -460,18 +477,39 @@ else
     plx
     inx #4
 endif
-    dey #2 : bpl .loop
+    dec $0F : bpl .loop
+
 .return:
     rts
 
 .mask:
     db $80,$40,$20,$10,$08,$04,$02,$01
 
-.pos:
-    db $00+!dc_counter_x_pos,!dc_counter_y_pos
-    db $08+!dc_counter_x_pos,!dc_counter_y_pos
-    db $10+!dc_counter_x_pos,!dc_counter_y_pos
-    db $18+!dc_counter_x_pos,!dc_counter_y_pos
-    db $20+!dc_counter_x_pos,!dc_counter_y_pos
+get_total_dc_amount:
+    ; If CMP #$XX, return $XX
+    lda.l !rom_dc_amount_cmp_byte : cmp #$C9 : bne .hijack
+    lda.l !rom_dc_amount_cmp_byte+1
+    rts
+
+.hijack:
+    ; If detecting the "Per Level Yoshi Coins" patch,
+    ; use it to load the DC amount for this level.
+    lda.l !rom_dc_perlevel_patch_byte : cmp #$22 : bne .default
+
+    ; We get the DC per-level amount table address from the patch address + 8
+    ; (assuming people don't edit the patch...)
+    lda.l !rom_dc_perlevel_patch_byte+3 : sta $0F
+    rep #$20
+    lda.l !rom_dc_perlevel_patch_byte+1 : clc : adc.w #$0008 : sta $0D
+    lda [$0D] : sta $0D
+    sep #$20
+    ldy $13BF|!addr
+    lda [$0D],y
+    rts
+
+.default:
+    ; If detection failed, load the default amount.
+    lda.b #!default_dc_amount
+    rts
 
 endif

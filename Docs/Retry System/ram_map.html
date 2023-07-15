@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Retry RAM Map</title>
+  <style>
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    p, li, th, td {
+      line-height: 150%;
+    }
+    code {
+      font-size: 16px;
+      padding: 2px 4px;
+      background: rgba(0,0,0,.05);
+      border-radius: 4px;
+    }
+    blockquote {
+      font-style: italic;
+    }
+    table, th, td {
+      border: 1px solid black;
+      text-align: center;
+    }
+    .no-center {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h2>Retry RAM Map</h2>
+  <p>This documents serves as a detailed reference on the purpose of the RAM addresses used by Retry, and how you can use them.</p>
+
+  <h3>Overview</h3>
+  <p>Retry uses a chunk of RAM at <code>$7FB400</code> (<code>$40A400</code> on SA-1 roms) by default. The size of this area is <code>230 + (4*!max_custom_midway_num)</code> bytes (where <code>!max_custom_midway_num</code> is defined in <code>settings.asm</code>).</p>
+  <p>The default address should be fine in most cases, but if you want to change it because of some freeram conflict, open <code>ram.asm</code> and edit <code>!retry_freeram</code> (<code>!retry_freeram_sa1</code> if you're using SA-1).</p>
+  <p>In the <code>ram.asm</code> file you can also see the name for the different addresses, defined as <code>%retry_ram(name,$XX)</code>, where <code>$XX</code> specifies the offset from the base <code>!retry_freeram</code> address. The full address name is resolved to <code>!ram_name</code> and <code>!ram_retry_name</code>.
+
+  <h3>Usage</h3>
+  <p>If you need to perform read/write operations on the Retry RAM addresses, you can do as follows:</p>
+  <ul>
+    <li>For UberASM codes, the addresses can be referenced simply using the label <code>retry_ram_name</code> for a specific address <code>name</code>. For example, if you want to check if the player is respawning, you can do: <code>LDA retry_ram_is_respawning : BNE respawning</code>.</li>
+    <li>For all other codes, you'll need to copy the contents of the <code>ram.asm</code> file inside your patch/sprite/block file, then you can reference them either with the <code>!retry_ram_name</code> defines or the <code>retry_ram_name</code> label. If you need them for sprites, it's suggested to copy the contents inside PIXI's <code>sa1def.asm</code> file, and in case of blocks to copy them inside GPS's <code>defines.asm</code>. This way the addresses will be available in all sprites/blocks without having to copy them multiple times.</li>
+  </ul>
+
+  <h3>RAM information</h3>
+  <p>Here is the table containing information about all addresses used by Retry, including their name and size.</p>
+  <p>Addresses that are labeled as <code>Internal</code> are used internally by Retry and shouldn't be written to outside of it (although you can read them to know the state of some of Retry's operations, such as the respawning example earlier). Addresses that are labeled as <code>User</code> are meant to be written by the user to enable or customize some of Retry's features.</p>
+  <p>Note that the first 13 bytes (<code>$00-$0B</code>) are laid out exactly as the original Retry patch (and have the same function), to keep compatibility with resources that used them or that expect them to be arranged in a certain way. For this reason it's recommended not to change them.</p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Offset</th>
+      <th>Size</th>
+      <th>Purpose</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td><code>timer</code></td>
+      <td><code>$00</code></td>
+      <td><code>$03</code></td>
+      <td>Internal</td>
+      <td class="no-center">Used to hold the level's initial timer value, to reset it to the correct value when respawning. You can read it at any time during a level to know what the initial timer was.</td>
+    </tr>
+    <tr>
+      <td><code>respawn</code></td>
+      <td><code>$03</code></td>
+      <td><code>$02</code></td>
+      <td>Internal</td>
+      <td class="no-center">Destination value to go to when respawning. This value is written on level load depending on the current checkpoint and used when Retrying.<br>You can see the format at <code>$7E19B8</code> (low byte) and <code>$7E19D8</code> (high byte) in the SMWCentral RAM Map. Note that the high byte is always <code>ORA</code>d with <code>$04</code> (i.e. it always uses the Lunar Magic entrance system rather than vanilla).<br>Additionally, if the destination is a level's main entrance and the highest bit is set, then the entrance will act as a Yoshi Wings sublevel.</td>
+    </tr>
+    <tr>
+      <td><code>is_respawning</code></td>
+      <td><code>$05</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Flag set when a level is being reloaded by Retry after dying. It can be used to check if a room is being loaded by Retry or it's just a normal level entrance/transition.</td>
+    </tr>
+    <tr>
+      <td><code>music_to_play</code></td>
+      <td><code>$06</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Music number that has to be played after respawn. Only used when AddmusicK is patched. If <code>$FF</code>, the song's samples will be reloaded.</td>
+    </tr>
+    <tr>
+      <td><code>hurry_up</code></td>
+      <td><code>$07</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Flag set when the timer drops under 99 seconds and the music speeds up. When set, the death song will be played when dying even if it shouldn't, to reset the level's song's tempo.</td>
+    </tr>
+    <tr>
+      <td><code>door_dest</code></td>
+      <td><code>$08</code></td>
+      <td><code>$02</code></td>
+      <td>Internal</td>
+      <td class="no-center">It holds the destination value for the current entrance, set when going to a sublevel via a door/pipe/etc. It's used to set the checkpoint to the current entrance when using the <code>$02</code> or <code>$03</code> option in the checkpoint table. It uses the same format as <code>respawn</code>.</td>
+    </tr>
+    <tr>
+      <td><code>music_backup</code></td>
+      <td><code>$0A</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Holds the song number that was playing right before playing the death song. It's copied to <code>$0DDA</code> when dying, which prevents the samples to be reloaded if the same song is played again afterwards (for AddmusicK).</td>
+    </tr>
+    <tr>
+      <td><code>update_request</code></td>
+      <td><code>$0B</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Flag set when dying if the Retry prompt is active. It makes the NMI handler upload the prompt letters to VRAM. It's set to <code>$00</code> right after. You can set this mid-level if you need the letters GFX to be loaded for some reason.</td>
+    </tr>
+    <tr>
+      <td><code>prompt_phase</code></td>
+      <td><code>$0C</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Holds the value for the current phase of the Retry prompt box. The values go as follows:
+        <ul>
+          <li>$00: Retry prompt is off.</li>
+          <li>$01: box is expanding.</li>
+          <li>$02: box fully expanded, options are shown.</li>
+          <li>$03: box is shrinking after <code>RETRY</code> was selected.</li>
+          <li>$04: box finished shrinking after <code>RETRY</code> was selected.</li>
+          <li>$05: box is shrinking after <code>EXIT</code> was selected.</li>
+          <li>$06: box finished shrinking after <code>EXIT</code> was selected.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code>update_window</code></td>
+      <td><code>$0D</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">The high bit is set during the Retry prompt handling to make the window change shape to properly show the options. Needed to avoid occasional flickering when updating it on the same frame it finished expanding.<br>Additionally used as a timer (<code>$00-$7F</code>) when the Retry prompt opens to disable pressing up/down to move the cursor (as specified by <code>!prompt_cooldown</code> in <code>settings.asm</code>).</td>
+    </tr>
+    <tr>
+      <td><code>is_dying</code></td>
+      <td><code>$0E</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Flag set when Mario dies. Used to skip the death music when applicable (but only on the first death frame) and to handle the prompt/respawn. Reset on level load.</td>
+    </tr>
+    <tr>
+      <td><code>9D_backup</code></td>
+      <td><code>$0F</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Holds a backup of the <code>$9D</code> value when going through a normal transition, which is then restored when respawning. This is used when <code>!pipe_entrance_freeze = 2</code> in <code>settings.asm</code>.</td>
+    </tr>
+    <tr>
+      <td><code>midway_powerup</code></td>
+      <td><code>$10</code></td>
+      <td><code>$01</code></td>
+      <td>User</td>
+      <td class="no-center">This can be used to override the <code>!midway_powerup</code> setting in certain situations. If this is <code>$00</code>, then midways won't give a mushroom, otherwise they will. This is only initialized on the title screen based on the <code>!midway_powerup</code> setting, but you can change it at any time. Just remember that you'll need to change it back to the default value yourself if needed.</td>
+    </tr>
+    <tr>
+      <td><code>prompt_override</code></td>
+      <td><code>$11</code></td>
+      <td><code>$01</code></td>
+      <td>User</td>
+      <td class="no-center">This can be used to override the Retry settings of the current level or all levels depending on some condition (for example, if you want to let the player choose if to have instant Retry or not).<br>It follows the same format as the first digit in the <code>checkpoint_effect</code> table in <code>tables.asm</code> (if <code>$00</code>,  value in the table will be used instead). It's only reset on title screen load, meaning that its effect will last until you set it back to <code>$00</code> yourself.</td>
+    </tr>
+    <tr>
+      <td><code>disable_exit</code></td>
+      <td><code>$12</code></td>
+      <td><code>$01</code></td>
+      <td>User</td>
+      <td class="no-center">If set to a value other than <code>$00</code>, the Retry prompt won't show the <code>EXIT</code> option. It's set to <code>!disable_exit_option</code> from <code>settings.asm</code> on title screen load, but you can also change it at any time to remove the option in certain situations. Remember that you'll need to change it back to the default value yourself if needed.</td>
+    </tr>
+    <tr>
+      <td><code>set_checkpoint</code></td>
+      <td><code>$13</code></td>
+      <td><code>$02</code></td>
+      <td>User</td>
+      <td class="no-center">This address functions as a simple way to set the checkpoint for the current level to a certain entrance, without having to worry about all the internal Retry mechanism that makes it work. It's mainly used by the vanilla/custom midway objects, but you can also write to it yourself if you're making your own midways or you need to change the checkpoint dynamically. It can be used in 3 ways:
+        <ul>
+          <li>If the low byte is set to any value other than <code>$FF</code> and <code>$80</code> (for example, <code>$00</code>), but you don't change the high byte, then a checkpoint will be triggered depending on this level's <code>checkpoint_effect</code> table settings. This would be the preferred way to use it if making a custom midway block/sprite.</li>
+          <li>If the whole 16-bit value is set to an entrance value, following the format of <code>$7E19B8</code> and <code>$7E19D8</code>, then a checkpoint will be set using this entrance as the respawn destination. This can be used to have custom checkpoints that use any main/midway/secondary entrance as destination, similarly to Retry's custom midway objects.</li>
+          <li>If the low byte is set to <code>$80</code>, then the current level's checkpoint will be reset to the main level's entrance, effectively erasing the current checkpoint. In this case the high byte is ignored.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code>prompt_x_pos</code></td>
+      <td><code>$15</code></td>
+      <td><code>$01</code></td>
+      <td>User</td>
+      <td class="no-center">Holds the X position at which the Retry prompt should appear at. You can write to it at any time. Note that this address is only reset on title screen load to the <code>!text_x_pos</code> value in <code>settings.asm</code>.</td>
+    </tr>
+    <tr>
+      <td><code>prompt_y_pos</code></td>
+      <td><code>$16</code></td>
+      <td><code>$01</code></td>
+      <td>User</td>
+      <td class="no-center">Holds the Y position at which the Retry prompt should appear at. You can write to it at any time. Note that this address is only reset on title screen load to the <code>!text_y_pos</code> value in <code>settings.asm</code>.</td>
+    </tr>
+    <tr>
+      <td><code>disable_box</code></td>
+      <td><code>$17</code></td>
+      <td><code>$01</code></td>
+      <td>User</td>
+      <td class="no-center">If set, the Retry prompt's black box will be disabled. It's set to <code>!no_prompt_box</code> from <code>settings.asm</code> on title screen load, but you can also change it at any time. Suggested to be set if also changing <code>prompt_x_pos</code> and <code>prompt_y_pos</code> during gameplay.</td>
+    </tr>
+    <tr>
+      <td><code>play_sfx</code></td>
+      <td><code>$18</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Bitwise mask set on level load for different purposes.<br>Format: <code>e------s</code>.
+        <ul>
+          <li><code>e</code>: set if the value in the <code>sfx_echo</code> table in <code>tables.asm</code> is <code>1</code> for the current sublevel. Used to send the SFX echo command during level main. You can also set this manually in level init to enable SFX echo.</li>
+          <li><code>s</code>: Set if <code>!room_cp_sfx</code> is not <code>$00</code> and the current sublevel gives a room entrance checkpoint (unless the value in the <code>disable_room_cp_sfx</code> table in <code>tables.asm</code> for the current sublevel is <code>1</code>). Used to play the midway SFX during level init.</li>
+          <li><code>-</code>: currently unused.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><code>midways_override</code></td>
+      <td><code>$19</code></td>
+      <td><code>$01</code></td>
+      <td>User</td>
+      <td class="no-center">This can be used to prevents midways and/or checkpoints from functioning. Changing this will take effect on the next level load. Possible values to use are as follows:
+        <ul>
+          <li><code>$01</code>: all future midway objects (both vanilla and Retry's custom objects) won't spawn.</li>
+          <li><code>$80</code>: all future silent checkpoints (i.e. checkpoints enabled by using <code>$02</code> or <code>$03</code> in the <code>checkpoint_effect</code> table in <code>tables.asm</code>) won't activate.</li>
+          <li><code>$81</code>: enables the effect of both <code>$01</code> and <code>$80</code> (all midways and checkpoints won't work).</li>
+        </ul>
+        Note that this is only reset on the title screen, so it's up to you to set it back to <code>$00</code> when needed.
+      </td>
+    </tr>
+    <tr>
+      <td><code>coin_backup</code></td>
+      <td><code>$1A</code></td>
+      <td><code>$01</code></td>
+      <td>Internal</td>
+      <td class="no-center">Keeps track of the last frame's coin counter to check if it changed, to only upload the coin counter's sprite digits when necessary. Not used if <code>!sprite_status_bar = 0</code> in <code>settings.asm</code>.</td>
+    </tr>
+    <tr>
+      <td><code>reserved</code></td>
+      <td><code>$1B</code></td>
+      <td><code>$05</code></td>
+      <td>Internal</td>
+      <td class="no-center">Unused, but reserved for future expansion. Usage as freeram is not recommended.</td>
+    </tr>
+    <tr>
+      <td><code>death_counter</code></td>
+      <td><code>$20</code></td>
+      <td><code>$05</code></td>
+      <td>Internal</td>
+      <td class="no-center">Holds the amount of deaths occurred. Each byte holds the value of a digit in the counter (from left to right). Saved to SRAM/BW-RAM by default (if <code>!sram_feature = 1</code> in <code>settings.asm</code>).</td>
+    </tr>
+    <tr>
+      <td><code>checkpoint</code></td>
+      <td><code>$25</code></td>
+      <td><code>$C0</code></td>
+      <td>Internal</td>
+      <td class="no-center">Checkpoint data for each level (2 bytes per level). Holds the destination value of the latest checkpoint obtained in each level (using the same format as <code>respawn</code>). Note that entry <code>0</code> (the first 2 bytes) hold the checkpoint value for the intro level, but it won't be used after the intro. Saved to SRAM/BW-RAM by default (if <code>!sram_feature = 1</code> in <code>settings.asm</code>).</td>
+    </tr>
+    <tr>
+      <td><code>cust_obj_data</code></td>
+      <td><code>$E5</code></td>
+      <td><code>Var.</code></td>
+      <td>Internal</td>
+      <td class="no-center">Data for all the possible custom midway objects loaded in the current level, plus a counter for how many custom midways are in the level (used to prevent additional midways from spawning if reaching the <code>!max_custom_midway_num</code> value from <code>settings.asm</code>).<br>Each midway uses 4 bytes, so this uses <code>(4*!max_custom_midway_num)+1</code> bytes. For each object, there's a 2 bytes identifier (based on its index in the level's map16 data) and the destination value that this midway will set when grabbed (based on the object's extension).</td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -9,7 +9,7 @@ set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: Import Definitions
-call %WORKING_DIR%Tools\@tool_defines.bat
+call %WORKING_DIR%Tools\tool_defines.bat
 
 :: DO NOT CHANGE THE VARIABLES BELOW
 
@@ -19,11 +19,11 @@ set TOOLS_DIR=%WORKING_DIR%Tools\
 set CONF_DIR=%WORKING_DIR%Other\Config\
 
 :: ROM Definitions
-set ROM_NAME_FILE=!CONF_DIR!rom-name.txt
+set ROM_NAME_FILE=%WORKING_DIR%Other\rom-name.txt
 :: Check if rom-name.txt exists
 if not exist !ROM_NAME_FILE! (
     :: Ask for ROM name
-    set /p ROM_NAME_INPUT=Enter the filename of your ROM, e.g. "MyHack": 
+    set /p ROM_NAME_INPUT=Enter the filename of your ROM, e.g. "MyHack":
     echo !ROM_NAME_INPUT!>!ROM_NAME_FILE!
     :: Set ROM name
     set /p ROM_NAME=<!ROM_NAME_FILE!
@@ -67,19 +67,31 @@ set Minute=%DateTime:~10,2%
 
 set TIMESTAMP="%Year%%Month%%Day%_%Hour%%Minute%"
 
-:: Options
-echo Backup Actions. ROM name: !ROM_NAME!
+:: Menu
+:Menu
+echo ------------------------------
+echo Baserom Backup Script
+echo ------------------------------
 echo.
-echo This script will create time-stamped backups of the following:
+echo What would you like to to?
 echo.
-echo   1. Any modified levels
-echo   2. All of Map16
-echo   3. Shared palette
-echo   4. ROM file
+echo   1. Export any modified levels
+echo   2. Save all of Map16
+echo   3. Export copy of shared palette
+echo   4. Create time-stamped backup of ROM file
 echo   0. Exit
 echo.
-set /p Action=Enter the number of your choice: 
+set /p "Action=Enter the number of your choice: "
 echo.
+
+:: Check if input was a number
+for /F "delims=01234" %%i in ("!Action!") do (
+    cls
+    echo "%%i" is not a valid option, please try again.
+    echo.
+    goto Menu
+)
+cls
 
 :: Export MWL level files
 if "%Action%"=="1" (
@@ -88,7 +100,8 @@ if "%Action%"=="1" (
         mkdir %LEVELS_BACKUP%\%TIMESTAMP%
     )
     !LM! -ExportMultLevels !ROMFILE! %LEVELS_BACKUP%\%TIMESTAMP%\level
-    pause
+    echo.
+    goto Menu
 )
 :: Export Map16
 if "%Action%"=="2" (
@@ -97,7 +110,8 @@ if "%Action%"=="2" (
         mkdir %MAP16_BACKUP%
     )
     !LM! -ExportAllMap16 !ROMFILE! %MAP16_BACKUP%\%TIMESTAMP%_AllMap16.map16
-    pause
+    echo.
+    goto Menu
 )
 :: Export Palettes
 if "%Action%"=="3" (
@@ -106,7 +120,8 @@ if "%Action%"=="3" (
         mkdir %PAL_BACKUP%
     )
     !LM! -ExportSharedPalette !ROMFILE! %PAL_BACKUP%\%TIMESTAMP%_Shared.pal
-    pause
+    echo.
+    goto Menu
 )
 :: Create time-stamped backup of your ROM
 if "%Action%"=="4" (
@@ -115,7 +130,9 @@ if "%Action%"=="4" (
     )
     echo Creating time-stamped copy of your ROM...
     copy !ROMFILE! %ROM_BACKUP%\%TIMESTAMP%_%ROM_NAME%.smc
-    pause
+    echo Done.
+    echo.
+    goto Menu
 )
 if "%Action%"=="0" (
     echo Have a nice day ^^_^^

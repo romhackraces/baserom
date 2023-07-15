@@ -57,7 +57,11 @@ CustExObj9E:
 	SEP #$20
 	RTS
 
+; Vanilla Cape Turn-around
 CustExObj9F:
+	lda #$01 : sta $7C ; matches CapeSpinDirectionConsistency.asm
+	RTS
+
 CustExObjA0:
 CustExObjA1:
 CustExObjA2:

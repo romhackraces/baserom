@@ -42,6 +42,11 @@ Enabled the echo for sound effects, provided your level has custom music with ec
 Enable waiting 8 frames after the input is registered to adjust Mario's falling speed with cape.
 
 
+9F - Enable Vanilla Cape Turnaround
+-----------------------------------
+Disable the consistency patch that makes cape turnaround guaranteed.
+
+
 B0 - Instant Retry
 ------------------
 Make the retry skip using prompt and restart instantly after dying.

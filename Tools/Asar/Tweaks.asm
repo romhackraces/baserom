@@ -1,9 +1,16 @@
+; SA-1 Check
 if read1($00FFD5) == $23
     sa1rom
     !sa1 = 1
 else
     lorom
     !sa1 = 0
+endif
+
+; EXLEVEL Check
+!EXLEVEL = 0
+if (((read1($0FF0B4)-'0')*100)+((read1($0FF0B4+2)-'0')*10)+(read1($0FF0B4+3)-'0')) > 253
+    !EXLEVEL = 1
 endif
 
 ;;;;;;;;;;;;;;;;;;
@@ -79,9 +86,6 @@ endif
 
 ; fix sprite screen edge interaction bug
 org $01A7F0 : db $EA,$EA,$EA
-
-; fix glitch with blocks not activating when hit with thrown sprites
-org $0195A5 : db $00
 
 ; fix HDMA breaks
 org $05B129 : NOP #3

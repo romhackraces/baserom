@@ -2,11 +2,16 @@
 Frequently Asked Questions
 --------------------------
 
+"What is Lunar Helper?"
+-----------------------
+
+It's a build system that makes it easier to build the rom from scratch, by doing this it avoids potential conflicts between resources and insures your hack is built cleanly.
+
 
 "How do I remove things from the baserom?"
 ------------------------------------------
 
-The Lunar Helper build system makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts.
+Lunar Helper makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts.
 
 Removing resources, like blocks or sprites, is as straightforward as editing the list of the respective tool and running Lunar Helper's "(Re)Build" action. You can then delete those resources, if desired.
 
@@ -15,11 +20,16 @@ To remove global patches from the baserom: edit the list of patches in LunarHelp
 To remove specific hexedits or tweaks: edit the Tweaks.asm file, in Tools/Asar folder, then re-run Lunar Helper's "(Re)Build" action.
 
 
-
 "How do I hide the status bar?"
 -------------------------------
 
-This baserom comes with several objects to toggle feature on/off in levels, including the Status bar. Check out the "What's What - UberASM Objects" also in the Docs folder.
+This baserom comes with several objects to toggle feature on/off in levels, including the Status bar. Check out the "What's What - UberASM Objects" in the Docs folder.
+
+
+"Does this have Fast Retry?"
+----------------------------
+
+Yes! You can turn on the retry in a level using a custom object. Check out the "What's What - UberASM Objects" in the Docs folder for details.
 
 
 "Why are my block graphics not looking right?"

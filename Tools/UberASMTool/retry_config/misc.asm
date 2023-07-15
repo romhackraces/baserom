@@ -4,7 +4,7 @@
 ; Retry version number (Va.b.c) to write in ROM.
 !version_a = 0
 !version_b = 5
-!version_c = 0
+!version_c = 1
 
 ; What button exits the level while the game is paused (by default, select).
 !exit_level_buttons_addr = $16
@@ -28,6 +28,12 @@
 ; Where in VRAM the prompt tiles will be uploaded to.
 ; You should never need to edit this.
 !sprite_vram = $6000
+
+; Default amount of Yoshi Coins per level, used for the sprite status bar.
+; Note that usually this is not used, as the value is read from the ROM.
+; In case of patches editing the area around $00F346 (except for the
+; "Per Level Yoshi Coins Amount" patch) then this value will be used.
+!default_dc_amount = 5
 
 ; Stripe image table defines.
 !stripe_index = $7F837B

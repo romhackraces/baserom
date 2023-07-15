@@ -70,7 +70,7 @@ checkpoint_effect:
 ; to have to insert the same code in a lot of levels, so this table makes it easier.
 ;
 ; Each digit in the table corresponds to a sublevel: if a digit is set to 1,
-; the corresponding sublevel will have life loss enabled.
+; the corresponding sublevel will have sfx echo enabled.
 ; For example, %10000001 as the first value means the setting is on for levels 000 and 007.
 ; The guides at the top and right of the table should help visualize it.
 ;

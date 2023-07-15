@@ -10,6 +10,5 @@ Here's the tl;dr for getting the baserom up and running for your project:
 
 Happy hacking!
 
-
 *if your copy of Super Mario World is not headered Lunar Magic will alert you to this, and ask to add a header to your rom when you first open it.
 This is required in almost all cases to do any sort of hacking.

@@ -15,19 +15,32 @@ set CONF_DIR=%WORKING_DIR%Other\Config\
 set LISTS_DIR=%WORKING_DIR%Other\Lists\
 
 :: Import Definitions
-call %WORKING_DIR%Tools\@tool_defines.bat
+call %WORKING_DIR%Tools\tool_defines.bat
 
 :: Options
-echo Commands to Initialize Baserom
+:Menu
+echo -----------------------------------
+echo Baserom Initialization Script
+echo -----------------------------------
+echo.
+echo What would you like to to?
 echo.
 echo   1. Download and Setup all Baserom tools
 echo   2. Restore Baserom list files.
 echo   3. Setup Baserom's custom Lunar Magic toolbar.
 echo   0. Exit
 echo.
-set /p Action=Enter the number of your choice: 
+set /p "Action=Enter the number of your choice: "
 echo.
 
+:: Check if input was a number
+for /F "delims=0123" %%i in ("!Action!") do (
+    cls
+    echo "%%i" is not a valid option, please try again.
+    echo.
+    goto Menu
+)
+cls
 
 :: Download Baserom Tools
 if "!Action!"=="1" (
@@ -44,9 +57,26 @@ if "!Action!"=="1" (
         for %%a in (!AMK_LISTS!) do (copy /y !LISTS_DIR!%%a !AMK_DIR!)
         :: Delete Zip
         del !AMK_ZIP!
-        echo Done.
+        echo.
     ) else (
         echo -- AddmusicK already setup.
+    )
+
+    :: Check if Asar exists and download if not
+    if not exist "!ASAR_DIR!asar.exe" (
+        echo Asar not found, downloading...
+        powershell Invoke-WebRequest !ASAR_DL! -OutFile !ASAR_ZIP! >NUL
+        powershell Expand-Archive !ASAR_ZIP! -DestinationPath !ASAR_DIR! >NUL
+        :: replace stock list with baserom list
+        copy /y !LISTS_DIR!!ASAR_LIST! !ASAR_DIR!
+        :: Delete junk files
+        for %%a in (!ASAR_JUNK!) do (del !ASAR_DIR!%%a)
+        for %%a in (!ASAR_JUNK_DIR!) do (rmdir /S /Q !ASAR_DIR!%%a)
+        :: Delete Zip
+        del !ASAR_ZIP!
+        echo.
+    ) else (
+        echo -- Asar already setup.
     )
 
     :: Check if Flips exists and download if not
@@ -58,7 +88,7 @@ if "!Action!"=="1" (
         for %%a in (!FLIPS_JUNK!) do (del !FLIPS_DIR!%%a)
         :: Delete Zip
         del !FLIPS_ZIP!
-        echo Done.
+        echo.
     ) else (
         echo -- Flips already setup.
     )
@@ -74,7 +104,7 @@ if "!Action!"=="1" (
         for %%a in (!GPS_JUNK!) do (del !GPS_DIR!%%a)
         :: Delete Zip
         del !GPS_ZIP!
-        echo Done.
+        echo.
     ) else (
         echo -- GPS already setup.
     )
@@ -88,7 +118,7 @@ if "!Action!"=="1" (
         for %%a in (!LM_JUNK!) do (del !LM_DIR!%%a)
         :: Delete Zip
         del !LM_ZIP!
-        echo Done.
+        echo.
     ) else (
         echo -- Lunar Magic already setup.
     )
@@ -123,7 +153,7 @@ if "!Action!"=="1" (
         rmdir /S /Q !TMP_DIR!
         :: Delete Zip
         del !LUN_HLP_ZIP!
-        echo Done.
+        echo.
     ) else (
         echo -- Lunar Helper already setup.
     )
@@ -139,7 +169,7 @@ if "!Action!"=="1" (
         for %%a in (!PIXI_JUNK!) do (del !PIXI_DIR!%%a)
         :: Delete Zip
         del !PIXI_ZIP!
-        echo Done.
+        echo.
     ) else (
         echo -- PIXI already setup.
     )
@@ -160,10 +190,12 @@ if "!Action!"=="1" (
         for %%a in (!UBER_JUNK!) do (del !UBER_DIR!%%a)
         :: Delete Zip
         del !UBER_ZIP!
-        echo Done.
+        echo.
     ) else (
         echo -- UberASMTool already setup.
     )
+
+    goto Menu
 )
 
 :: Restore Baserom list files
@@ -174,6 +206,8 @@ if "!Action!"=="2" (
     copy /y !LISTS_DIR!!PIXI_LIST! !PIXI_DIR!list.txt
     copy /y !LISTS_DIR!!UBER_LIST! !UBER_DIR!list.txt
     echo Done.
+    echo.
+    goto Menu
 )
 
 :: Setup Custom Baserom user toolbar
@@ -184,6 +218,8 @@ if "!Action!"=="3" (
     copy /y !CONF_DIR!usertoolbar\usertoolbar_icons.bmp !LM_DIR!
     copy /y !CONF_DIR!usertoolbar\usertoolbar_wrapper.bat !LM_DIR!
     echo Done.
+    echo.
+    goto Menu
 )
 
 

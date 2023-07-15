@@ -12,6 +12,14 @@ set AMK_JUNK="readme.html" "src.zip" "addmusicMRemover.pl"
 set AMK_JUNK_DIR="readme_files"
 set AMK_LISTS="Addmusic_sample groups.txt" "Addmusic_list.txt" "Addmusic_sound effects.txt"
 
+:: Asar
+set ASAR_DIR=!TOOLS_DIR!Asar\
+set ASAR_DL="https://dl.smwcentral.net/25953/asar181.zip"
+set ASAR_ZIP="asar181.zip"
+set ASAR_JUNK="LICENSE" "license-lgpl.txt" "license-gpl.txt" "license-wtfpl.txt" "README.txt"
+set ASAR_JUNK_DIR="ext" "dll" "docs"
+set ASAR_LIST="patchlist.txt"
+
 :: Flips
 set FLIPS_DIR=!TOOLS_DIR!Flips\
 set FLIPS_DL="https://dl.smwcentral.net/11474/floating.zip"
@@ -33,8 +41,8 @@ set LM_JUNK="readme.txt"
 
 :: Lunar Helper
 set LUN_HLP_DIR=%WORKING_DIR%LunarHelper\
-set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v4.0.1/LunarHelper-v4.0.1.zip"
-set LUN_HLP_ZIP="LunarHelper-v4.0.1.zip"
+set LUN_HLP_DL="https://github.com/Underrout/LunarHelper/releases/download/v4.0.6/LunarHelper-v4.0.6.zip"
+set LUN_HLP_ZIP="LunarHelper-v4.0.6.zip"
 set LUN_HLP_JUNK="LICENSE" "config_project.txt" "config_user.txt" "ASAR_LICENSE"
 set LUN_HLP_JUNK_DIR="initial_patches"
 :: Lunar Monitor
@@ -50,7 +58,7 @@ set PIXI_LIST="list_pixi.txt"
 
 :: UberASM Tool
 set UBER_DIR=!TOOLS_DIR!UberASMTool\
-set UBER_DL="https://dl.smwcentral.net/28974/UberASMTool15.zip"
+set UBER_DL="https://dl.smwcentral.net/32657/UberASMTool16.zip"
 set UBER_ZIP="UberASMTool15.zip"
-set UBER_JUNK="readme.txt" "readme - library.txt" ".\level\test.asm" ".\level\test2.asm"
+set UBER_JUNK="readme.txt" "readme - library.txt"
 set UBER_LIST="list_uberasm.txt"

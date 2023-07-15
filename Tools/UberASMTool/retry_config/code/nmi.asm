@@ -8,10 +8,6 @@
 ; the case where the "exit" option is left out.
 ;=====================================
 
-; Helper functions to compute addresses more compactly.
-function vram_addr(offset) = (!sprite_vram+(offset*$10))
-function gfx_size(num)     = (num*$20)
-
 level:
 if !sprite_status_bar
     ; Update the sprite status bar graphics.
