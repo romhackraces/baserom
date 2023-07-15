@@ -80,9 +80,6 @@ endif
 ; fix sprite screen edge interaction bug
 org $01A7F0 : db $EA,$EA,$EA
 
-; fix glitch with blocks not activating when hit with thrown sprites
-org $0195A5 : db $00
-
 ; fix HDMA breaks
 org $05B129 : NOP #3
 org $05B296 : db $0C
