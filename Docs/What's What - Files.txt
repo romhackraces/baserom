@@ -15,6 +15,7 @@ lunar-monitor-config.txt - configuration file for Lunar Monitor
 !backup_hack.bat - build system script for backing up your hack
 !build_hack.bat - a legacy script to build your hack
 !initialize_baserom.bat - initializes the baserom by downloading all the tools
+!restore_from_backups.bat - script to help restore items into your ROM from a backup
 
 
 Other
