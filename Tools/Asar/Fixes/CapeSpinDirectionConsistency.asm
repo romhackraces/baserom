@@ -15,15 +15,13 @@ else
     !bank = $800000
 endif
 
-
 !FreeRam = $1696|!addr
 
 ; Default behaviour
 ; 0 = patched turnarounds, setting flag unpatches turnarounds
 ; 1 = unpatched turnarounds, setting flag patches turnarounds
 !default = 0
-; cleared on level load
-
+; FreeRAM for toggle, cleared on level load
 !Toggle = $1864|!addr
 
 
