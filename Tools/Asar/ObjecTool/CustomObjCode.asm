@@ -2,8 +2,13 @@
 
 !level_flags = $140B|!addr; FreeRAM to activate certain UberASM code (cleared at level load)
 
+; Resource FreeRAM used as toggles
 
-; Retry stuff
+!ram_statusbar_toggle = $79 			; matches RAMToggledStatusbar.asm
+!ram_lr_toggle = $7C 					; matches RAMToggledLR.asm
+!ram_blockdupe_toggle = $13E7|!addr 	; matches BlockDuplicationFix.asm
+!ram_turnaround_toggle = $186A|!addr 	; matches CapeSpinDirectionConsistency.asm
+
 if read1($00FFD5) == $23
     !retry_freeram =  $40A400
 else
@@ -18,12 +23,12 @@ endif
 
 ; Toggle status bar
 CustExObj98:
-	LDA #$01 : STA $79 ; matches RAMToggledStatusbar
+	LDA #$01 : STA !ram_statusbar_toggle
 	RTS
 
 ; Enable L/R scroll
 CustExObj99:
-	LDA #$01 : STA $7C ; matches RAMToggledLR
+	LDA #$01 : STA !ram_lr_toggle
 	RTS
 
 ; Lock horizontal scroll
@@ -59,10 +64,18 @@ CustExObj9E:
 
 ; Vanilla Cape Turn-around
 CustExObj9F:
-	lda #$01 : sta $7C ; matches CapeSpinDirectionConsistency.asm
+	REP #$20
+	LDA.w #$0008 : TSB !level_flags
+	SEP #$20
 	RTS
 
+; Toggleable block dupes
 CustExObjA0:
+	REP #$20
+	LDA.w #$0016 : TSB !level_flags
+	SEP #$20
+	RTS
+
 CustExObjA1:
 CustExObjA2:
 CustExObjA3:

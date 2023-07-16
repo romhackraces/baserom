@@ -14,7 +14,7 @@
 ;===================================================================================================================================
 !FindFree = $04A1FC			; location of the jump to the OAM slot-finding routine (in case you want to use it for your own sprites)
 !Default = $00				; the slot to overwrite when all are full
-!RAM_ExtOAMIndex = $1869	; the free RAM address to use for the OAM index (must be $0000-$1FFF)
+!RAM_ExtOAMIndex = $1879	; the free RAM address to use for the OAM index (must be $0000-$1FFF)
 ;===================================================================================================================================
 	!base = $0000
 	!base2 = $800000
@@ -349,7 +349,7 @@ FixSumoFlame2:
 	ASL #4
 	ORA $64
 	ORA #$05
-	STA $0203|!base,y 
+	STA $0203|!base,y
 	PHY
 	TYA
 	LSR #2

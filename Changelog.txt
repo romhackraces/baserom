@@ -1,3 +1,8 @@
+v4.17.1
+- hotfix for initialization script not working
+- reconfigured freeram for a number of patches
+- added in block duplication toggle
+
 v4.17
 - updated to retry system 0.5.1
 - patched status bar optimization and controller read optimization

@@ -1,5 +1,9 @@
-!level  = $010B|!addr   ;Patches rely on this, changing this is bad. Don't.
-!level_flags = $140B|!addr; FreeRAM to activate certain UberASM code (cleared at level load)
+!level  = $010B|!addr           ; Patches rely on this, changing this is bad. Don't.
+!level_flags = $140B|!addr      ; FreeRAM to activate certain UberASM code (cleared at level load)
+
+!ram_blockdupe_toggle = $13E7|!addr 	; matches BlockDuplicationFix.asm
+!ram_turnaround_toggle = $186A|!addr 	; matches CapeSpinDirectionConsistency.asm
+
 
 macro RunCode(code_id, code)
     REP #$20
@@ -116,6 +120,8 @@ handle_init_codes:
     JMP .Return
 +
     print "Level init codes: $",pc
+    %RunCode(3, vanilla_turnaround)
+    %RunCode(4, block_duplication)
 .Return
     RTS
 
@@ -146,4 +152,13 @@ eight_frame_float:
     LDA $15 : AND #$80 : BEQ +
     LDA #$08 : STA $14A5|!addr
     +
+    RTS
+
+vanilla_turnaround:
+    lda #$01 : sta !ram_turnaround_toggle
+    RTS
+
+
+block_duplication:
+    lda #$01 : sta !ram_blockdupe_toggle
     RTS

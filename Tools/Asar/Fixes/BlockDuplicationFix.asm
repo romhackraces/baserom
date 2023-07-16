@@ -21,9 +21,17 @@
 ; then get it back afterwards. For vertical duplication, the fix is to add 02 to the sprite's
 ; y position to increment the high nybble if necessary before clearing the low nybble.
 
-
 ; 1 byte of FreeRAM
-!FreeRAM = $1929
+!FreeRAM = $13E6|!addr
+
+; Default behaviour
+; 0 = patched, setting flag enables block dupes
+; 1 = unpatched, setting flag disables block dupes
+!default = 0
+
+; FreeRAM for toggle, cleared on level load
+!Toggle = $13E7|!addr
+
 
 !addr = $0000
 !sa1 = 0
@@ -44,11 +52,6 @@ elseif read1($00FFD5) == $23
 	!D8 = $3216
 	!14D4 = $3258
 endif
-if !FreeRAM >= $0100
-	!FreeRAM2 = !FreeRAM|!addr
-else
-	!FreeRAM2 = !FreeRAM
-endif
 
 org $0192FC
 	autoclean JSL CodeStart
@@ -65,18 +68,43 @@ freecode
 CodeStart:
 	LDA $1693|!addr		;\ restore overwritten code
 	STA $1868|!addr		;/
-	LDA !E4,x			;\ Store x position of sprite to FreeRAM so the original value can be used 
-	STA !FreeRAM2		;/ after the stuck-sprite code runs
+	LDA !E4,x			;\ Store x position of sprite to FreeRAM so the original value can be used
+	STA !FreeRAM		;/ after the stuck-sprite code runs
 	RTL
 
 GetUnmodifiedSpriteXPos:
-	LDA !FreeRAM2		;\ Get the sprite x pos 
+	LDA !Toggle
+if !default
+	BNE .patched
+else
+	BEQ .patched
+endif
+	LDA !E4,x
+	CLC
+	ADC #$08
+	RTL
+
+.patched
+	LDA !FreeRAM		;\ Get the sprite x pos
 	CLC					;| restore overwritten code
 	ADC #$08			;|
-	STZ !FreeRAM2		;/
+	STZ !FreeRAM		;/
 	RTL
 
 Add2toSpriteYPos:
+	LDA !Toggle
+
+if !default
+	BNE .patched
+else
+	BEQ .patched
+endif
+
+	LDA !D8,x
+	AND #$F0
+	JML $0195B8
+
+.patched
 	LDA !D8,x			;\ y position of block
 	CLC					;| add 02 to prevent duplicating blocks vertically,
 	ADC #$02			;| by making the high nybble increment if necessary
@@ -84,7 +112,7 @@ Add2toSpriteYPos:
 	LDA.w !14D4,x
 	ADC #$00
 	STA $99
-	
+
 	LDA #$0F
 	TRB $98
 	JML $0195BF

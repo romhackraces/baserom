@@ -8,6 +8,7 @@ set BACKUP_DIR=%WORKING_DIR%Backup\
 set CONFIG_DIR=%WORKING_DIR%Other\Config\
 set LISTS_DIR=%WORKING_DIR%Other\Lists\
 set TOOLS_DIR=%WORKING_DIR%Tools\
+set TMP_DIR=%WORKING_DIR%temp\
 
 :: Import Tools stuff
 call !TOOLS_DIR!\tool_defines.bat
