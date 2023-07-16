@@ -38,9 +38,9 @@ freecode
 CapeSpinStart:
     LDA !Toggle
 if !default
-	BEQ .patched
-else
 	BNE .patched
+else
+	BEQ .patched
 endif
 	LDA.b #$12
 	STA !CapespinTimer
@@ -67,11 +67,10 @@ CapespinStartframe:
 CapeSpinAnimation:
     LDA !Toggle
 if !default
-	BEQ .patched
-else
 	BNE .patched
+else
+	BEQ .patched
 endif
-
 	LDA $14
 	AND.b #$06
 	JML $00CF24|!bank
