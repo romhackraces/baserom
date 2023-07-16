@@ -75,9 +75,9 @@ CodeStart:
 GetUnmodifiedSpriteXPos:
 	LDA !Toggle
 if !default
-	BEQ .patched
-else
 	BNE .patched
+else
+	BEQ .patched
 endif
 	LDA !E4,x
 	CLC
@@ -95,9 +95,9 @@ Add2toSpriteYPos:
 	LDA !Toggle
 
 if !default
-	BEQ .patched
-else
 	BNE .patched
+else
+	BEQ .patched
 endif
 
 	LDA !D8,x

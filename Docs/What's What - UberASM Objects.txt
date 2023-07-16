@@ -47,6 +47,11 @@ Enable waiting 8 frames after the input is registered to adjust Mario's falling 
 Disable the consistency patch that makes cape turnaround guaranteed.
 
 
+A0 - Enable Block Duplication
+-----------------------------
+Sets a flag to disable the patch that prevents block duplication.
+
+
 B0 - Instant Retry
 ------------------
 Make the retry skip using prompt and restart instantly after dying.
