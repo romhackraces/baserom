@@ -1,5 +1,7 @@
-; Capespin Direction Consistency (a.k.a. Turnaround) by Katun24, SA-1 conversion by AmperSam, made toggleable by binavik
+; Capespin Direction Consistency (a.k.a. Turnaround) by Katun24, converted to SA-1 by AmperSam, made freeram toggleable by binavik
 ; This patch makes it so a capespin always results in Mario turning around, and makes the face direction consistent during the capespin animation.
+
+!CapespinTimer = $14A6|!addr
 
 if read1($00FFD5) == $23
     ; SA-1 base addresses
@@ -15,21 +17,21 @@ else
     !bank = $800000
 endif
 
-!FreeRam = $1696|!addr
+!FreeRam = $1869|!addr
 
 ; Default behaviour
 ; 0 = patched turnarounds, setting flag unpatches turnarounds
 ; 1 = unpatched turnarounds, setting flag patches turnarounds
 !default = 0
 ; FreeRAM for toggle, cleared on level load
-!Toggle = $1864|!addr
+!Toggle = $186A|!addr
 
 
 org $00D076|!bank
-autoclean JML CapeSpinStart                 ; called at the start of the capespin
+    autoclean JML CapeSpinStart                 ; called at the start of the capespin
 
 org $00CF20|!bank
-autoclean JML CapeSpinAnimation             ; called during capespin
+    autoclean JML CapeSpinAnimation             ; called during capespin
 
 freecode
 
@@ -41,13 +43,13 @@ else
 	BNE .patched
 endif
 	LDA.b #$12
-	STA $14A6|!addr
+	STA !CapespinTimer
 	JML $00D07B|!bank
 
 .patched
     LDA $76                                 ; load Mario's face direction
 
-    LDY $14A6|!addr                         ; if already capespinning, load the current flight direction instead of Mario's face direction
+    LDY !CapespinTimer                      ; if already capespinning, load the current flight direction instead of Mario's face direction
     BEQ +
     LDA !FreeRam
     +
@@ -55,7 +57,7 @@ endif
     STA !FreeRam
 
     LDA #$12
-    STA $14A6|!addr
+    STA !CapespinTimer
     JML $00D07B|!bank
 
 
@@ -63,13 +65,13 @@ CapespinStartframe:
     db $01,$05
 
 CapeSpinAnimation:
-
     LDA !Toggle
 if !default
 	BEQ .patched
 else
 	BNE .patched
 endif
+
 	LDA $14
 	AND.b #$06
 	JML $00CF24|!bank
@@ -82,7 +84,7 @@ endif
     +
 
     LDX !FreeRam                            ; otherwise (capespinning with X), use the freeram address instead of the global timer to determine where to start the capespin animation (this will make turnarounds during flight consistent both with the direction and the timing)
-    LDA $14A6|!addr
+    LDA !CapespinTimer
     CLC : ADC.l CapespinStartframe,X
 .StartCapespin
     AND #$06
