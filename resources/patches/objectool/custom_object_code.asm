@@ -22,9 +22,7 @@ CustExObj9A:
 CustExObj9B:
 	%LoadObject(3)
 CustExObj9C:
-	;%LoadObject(4)
-	lda #$01 : sta !toggle_statusbar_freeram
-	rts
+	%LoadObject(4)
 CustExObj9D:
 	%LoadObject(5)
 CustExObj9E:

@@ -30,7 +30,7 @@ main:
 +
     %RunCode(0, free_vertical_scroll)
     %RunCode(1, no_horizontal_scroll)
-    ;%RunCode(4, toggle_status_bar)
+    %RunCode(4, toggle_status_bar)
     %RunCode(5, toggle_lr_scroll)
     %RunCode(6, eight_frame_float)
     %RunCode(8, enable_sfx_echo)
@@ -73,8 +73,7 @@ block_duplication:
 ; Object 9C
 ; Toggle status bar
 toggle_status_bar:
-    ;lda #$01 : sta !toggle_statusbar_freeram
-    ; toggle moved to custom_objects_code.asm to avoid issue with message box
+    lda #$01 : sta !toggle_statusbar_freeram
     rts
 
 ; Object 9D

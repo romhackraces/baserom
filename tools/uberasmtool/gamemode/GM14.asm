@@ -1,11 +1,13 @@
 init:
     jsl double_hit_fix_init
+    jsl uberasm_objects_init
     rtl
 
 main:
     jsl retry_in_level_main
     jsl double_hit_fix_main
-    JSL ScreenScrollingPipes_main
+    jsl ScreenScrollingPipes_main
+    jsl uberasm_objects_main
     rtl
 
 nmi:
