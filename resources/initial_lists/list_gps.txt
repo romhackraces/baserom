@@ -1,6 +1,8 @@
+
+
 ; PAGE 02 OF MAP16 ----------------------------------------;
-; 200-20A   ; Available for Lunar magic's Tide Act As
-; 209-28F   ; Occupied with vanilla Tiles
+;
+; 209-28F ; Occupied with vanilla Tiles
 
 ; CUSTOM GLOBAL BLOCKS (DO NOT MODIFY) --------------------;
 0290:0130 global/mario_passable.asm
@@ -74,7 +76,6 @@
 0323:0130 SSP_Tiles/pass_if_in_pipe.asm
 0324:0130 SSP_Tiles/right_horizontal_pipe_cap_small.asm
 
-
 ; Large Vertical One-Way Pipe (Downward)
 0306:0130 SSP_Tiles/top_vertical_pipe_cap_L.asm
 0307:0130 SSP_Tiles/top_vertical_pipe_cap_R.asm
@@ -98,7 +99,6 @@
 0329:0130 SSP_Tiles/pass_if_in_pipe.asm
 032A:0130 SSP_Tiles/right_horizontal_pipe_cap_B_exit.asm
 
-
 ; Large Vertical One-Way Pipe (Upward)
 0336:0130 SSP_Tiles/top_vertical_pipe_cap_L_exit.asm
 0337:0130 SSP_Tiles/top_vertical_pipe_cap_R_exit.asm
@@ -115,7 +115,6 @@
 ; Small Horizontal One-Way Pipe (Rightward)
 033A:0130 SSP_Tiles/left_horizontal_pipe_cap_B_exit.asm
 034A:0130 SSP_Tiles/right_horizontal_pipe_cap_small.asm
-
 
 ; Turn Block (Right-Up)
 030C:0130 SSP_Tiles/pass_if_in_pipe.asm
@@ -152,3 +151,24 @@
 0342-0345:0130 SSP_Tiles/pass_if_in_pipe_and_filter.asm
 
 ; PLACE YOUR CUSTOM BLOCKS BELOW --------------------------;
+
+
+
+; PLACE YOUR CUSTOM BLOCKS ABOVE --------------------------;
+; Addtional Tile Descriptions
+@dsc
+200 0 Block that can be used for Lunar Magic's tide Act As feature.
+201 0 Block that can be used for Lunar Magic's tide Act As feature.
+202 0 Block that can be used for Lunar Magic's tide Act As feature.
+203 0 Block that can be used for Lunar Magic's tide Act As feature.
+204 0 Block that can be used for Lunar Magic's tide Act As feature.
+205 0 Block that can be used for Lunar Magic's tide Act As feature.
+206 0 Block that can be used for Lunar Magic's tide Act As feature.
+207 0 Block that can be used for Lunar Magic's tide Act As feature.
+208 0 Block that can be used for Lunar Magic's tide Act As feature.
+209 0 Block that can be used for Lunar Magic's tide Act As feature.
+20A 0 Block that can be used for Lunar Magic's tide Act As feature.
+2C4 0 Arrow pointing down.
+2C5 0 Arrow pointing left.
+2D4 0 Arrow pointing right.
+2D5 0 Arrow pointing up.

@@ -1,1 +1,3 @@
+; For use with the Donut block.
+; If you remove or change this be sure to update the donut_lift.asm block
 A0 donut_lift.cfg

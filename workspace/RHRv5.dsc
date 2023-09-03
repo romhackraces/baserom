@@ -116,3 +116,18 @@
 35c	0	Changes the pipe direction from left to up or down to right.
 35d	0	Changes the pipe direction from down to left or right to up.
 36f	0	Part of pipe that is passable.
+200 0 Block that can be used for Lunar Magic's tide Act As feature.
+201 0 Block that can be used for Lunar Magic's tide Act As feature.
+202 0 Block that can be used for Lunar Magic's tide Act As feature.
+203 0 Block that can be used for Lunar Magic's tide Act As feature.
+204 0 Block that can be used for Lunar Magic's tide Act As feature.
+205 0 Block that can be used for Lunar Magic's tide Act As feature.
+206 0 Block that can be used for Lunar Magic's tide Act As feature.
+207 0 Block that can be used for Lunar Magic's tide Act As feature.
+208 0 Block that can be used for Lunar Magic's tide Act As feature.
+209 0 Block that can be used for Lunar Magic's tide Act As feature.
+20A 0 Block that can be used for Lunar Magic's tide Act As feature.
+2C4 0 Arrow pointing down.
+2C5 0 Arrow pointing left.
+2D4 0 Arrow pointing right.
+2D5 0 Arrow pointing up.
