@@ -1,7 +1,8 @@
 -- Patches --
+Bullet Bill Sound Effect on Extra Bit - AmperSam - https://smwc.me/s/34948
 Double Bounce Shell Palette - Fernap
-Free Up Tile 69 - Kevin
 Extended No Sprite Tile Limits v4.0 - DiscoTheBat, Kevin, Roy, imamelia, worldpeace - https://smwc.me/s/32381
+Free Up Tile 69 - Kevin
 Individual Dragon Coin Save - JackTheSpades, lx5, worldpeace - https://smwc.me/s/22888
 Mario's 8x8 Tiles DMA-er - Ladida, lx5 - https://smwc.me/s/26002
 Monty Mole, Hammer Bro and Dry Bone Behavior on Extra Bit - Kevin - https://smwc.me/s/30450
