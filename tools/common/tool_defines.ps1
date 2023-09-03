@@ -11,10 +11,10 @@ $ToolList = @("AddMusicK", "Flips", "GPS", "LunarMagic", "PIXI", "UberASMTool", 
 $AddMusicK_Dir = "$ToolsDir\addmusick\"
 $AddMusicK_Download = "https://dl.smwcentral.net/31558/AddmusicK%201.0.9.zip"
 $AddMusicK_Archive = "AddmusicK 1.0.9.zip"
-$AddMusicK_Junk = @("readme.html", "src.zip", "addmusicMRemover.pl", "readme_files")
+$AddMusicK_Junk = @("readme_files", "src.zip", "addmusicMRemover.pl", "readme.html", "Makefile")
 
 # Callisto
-$Callisto_Dir = "$WorkingDir\callisto"
+$Callisto_Dir = "$WorkingDir\callisto\"
 $Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.1.0/callisto-v0.1.0.zip"
 $Callisto_Archive = "callisto-v0.1.0.zip"
 $Callisto_Junk = @("ASAR_LICENSE", "LICENSE", "documentation", "config", "asar", "initial_patches")
@@ -39,7 +39,7 @@ $LunarMagic_Junk = "readme.txt"
 
 # PIXI
 $PIXI_Dir = "$ToolsDir\pixi\"
-$PIXI_Download = "https://dl.smwcentral.net/26026/pixi_v1.40.zip"
+$PIXI_Download = "https://dl.smwcentral.net/32277/pixi_v1.40.zip"
 $PIXI_Archive = "pixi_v1.40.zip"
 $PIXI_Junk = @("removedResources.txt", "changelog.txt", "README.html", "CONTRIBUTING.html", "CHANGELOG.html")
 

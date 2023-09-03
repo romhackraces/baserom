@@ -6,11 +6,17 @@ Clear-Host
 # Directory Definitions
 $WorkingDir = Get-Location
 $ToolsDir = "$WorkingDir\tools"
-$TempDir = "$WorkingDir\temp"
+$TempDir = "$WorkingDir\temp\"
+$ListsDir = "$WorkingDir\resources\initial_lists\"
 
 # Dot includes
 . $ToolsDir\common\tool_defines.ps1
 # . $ToolsDir\common\build_script_common.ps1
+
+# Make TempDir if it doesn't exist
+if (-not (Test-Path -Path $TempDir -PathType Container)) {
+    New-Item -Path $TempDir -ItemType Directory | Out-Null
+}
 
 # Display a menu
 $UserChoice = $null
@@ -49,168 +55,254 @@ while ($UserChoice -ne "4") {
 
         # Initialize Tools
         "InitializeTools" {
+
             # Check if AddMusicK directory has set-up checkfile
+            $ToolName = "AddMusicK"
             if (Test-Path "$AddMusicK_Dir.is_setup" -PathType Leaf) {
-                Write-Host "-- AddMusicK is set up in: $AddMusicK_Dir."
+                Write-Host "-- $ToolName already is set up in: $AddMusicK_Dir"
             } else {
-                Write-Host "AddMusicK is not set up. `nDownloading..."
-                # Download zip file
-                Invoke-WebRequest -Uri $AddMusicK_Download -OutFile $TempDir$AddMusicK_Archive >NUL
-                Expand-Archive -Path $TempDir$AddMusicK_Archive -DestinationPath $ToolsDir >NUL
-                # Delete junk files
-                foreach ($item in $AddMusicK_Junk) {
-                    if (Test-Path $item -PathType Leaf) {
-                        Remove-Item $item -Force -Recurse
-                        Write-Host "Deleted file: $file"
-                    } else {
-                        Write-Host "File not found: $file"
+                try {
+                    Write-Host "$ToolName is not set up. `nDownloading..."
+                    # Download zip file
+                    Invoke-WebRequest -Uri $AddMusicK_Download -OutFile $TempDir$AddMusicK_Archive
+                    Expand-Archive -Path $TempDir$AddMusicK_Archive -DestinationPath $TempDir -Force
+                    # AddMusicK specific actions because zip is subfolder >:(
+                    Copy-Item "$TempDir\AddmusicK_*\*" -Destination $AddMusicK_Dir -Recurse | Out-Null
+                    # Delete junk files
+                    foreach ($item in $AddMusicK_Junk) {
+                        if (Test-Path -Path $AddMusicK_Dir$item) {
+                            if (
+                                Test-Path -Path $AddMusicK_Dir$item -PathType Leaf) {
+                                    Remove-Item -Path $AddMusicK_Dir$item -Force
+                                }
+                            else {
+                                Remove-Item -Path $AddMusicK_Dir$item -Recurse -Force
+                            }
+                        }
                     }
+                    # Create is_setup checkfile
+                    New-Item -Path "$AddMusicK_Dir.is_setup" -ItemType File | Out-Null
+                    Set-ItemProperty -Path "$AddMusicK_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                    # Done
+                    Write-Host "Done. `n"
+                } catch {
+                    Write-Host "An error occurred setting up $ToolName."
                 }
-                # Delete Zip
-                Remove-Item $AddMusicK_Archive
-                # Create is_setup checkfile
-                New-Item -Path "$AddMusicK_Dir.is_setup" -ItemType File
-                Set-ItemProperty -Path "$AddMusicK_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
-                Write-Host "Done. `n"
             }
 
             # Check if Flips directory has set-up checkfile
+            $ToolName = "Flips"
             if (Test-Path "$Flips_Dir.is_setup" -PathType Leaf) {
-                Write-Host "-- Flips is set up in: $Flips_Dir."
+                Write-Host "-- $ToolName already is set up in: $Flips_Dir"
             } else {
-                Write-Host "Flips is not set up. `nDownloading..."
-                # Download zip file
-                Invoke-WebRequest -Uri $Flips_Download -OutFile $TempDir$Flips_Archive >NUL
-                Expand-Archive -Path $TempDir$Flips_Archive -DestinationPath $ToolsDir >NUL
-                # Delete junk files
-                foreach ($item in $Flips_Junk) {
-                    if (Test-Path $item -PathType Leaf) {
-                        Remove-Item $item -Force -Recurse
-                        Write-Host "Deleted file: $file"
-                    } else {
-                        Write-Host "File not found: $file"
+                try {
+                    Write-Host "$ToolName is not set up. `nDownloading..."
+                    # Download zip file
+                    Invoke-WebRequest -Uri $Flips_Download -OutFile $TempDir$Flips_Archive
+                    Expand-Archive -Path $TempDir$Flips_Archive -DestinationPath $Flips_Dir -Force
+                    # Delete junk files
+                    foreach ($item in $Flips_Junk) {
+                        if (Test-Path -Path $Flips_Dir$item) {
+                            if (
+                                Test-Path -Path $Flips_Dir$item -PathType Leaf) {
+                                    Remove-Item -Path $Flips_Dir$item -Force
+                                }
+                            else {
+                                Remove-Item -Path $Flips_Dir$item -Recurse -Force
+                            }
+                        }
                     }
+                    # Create is_setup checkfile
+                    New-Item -Path "$Flips_Dir.is_setup" -ItemType File | Out-Null
+                    Set-ItemProperty -Path "$Flips_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                    # Done
+                    Write-Host "Done. `n"
+                } catch {
+                    Write-Host "An error occurred setting up $ToolName."
                 }
-                # Delete Zip
-                Remove-Item $Flips_Archive
-                # Create is_setup checkfile
-                New-Item -Path "$Flips_Dir.is_setup" -ItemType File
-                Set-ItemProperty -Path "$Flips_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
-                Write-Host "Done. `n"
             }
 
             # Check if GPS directory has set-up checkfile
+            $ToolName = "GPS"
             if (Test-Path "$GPS_Dir.is_setup" -PathType Leaf) {
-                Write-Host "-- GPS is set up in:  $GPS_Dir."
+                Write-Host "-- $ToolName already is set up in: $GPS_Dir"
             } else {
-                Write-Host "GPS is not set up. `nDownloading..."
-                # Download zip file
-                Invoke-WebRequest -Uri $GPS_Download -OutFile $TempDir$GPS_Archive >NUL
-                Expand-Archive -Path $TempDir$GPS_Archive -DestinationPath $ToolsDir >NUL
-                # Delete junk files
-                foreach ($item in $GPS_Junk) {
-                    if (Test-Path $item -PathType Leaf) {
-                        Remove-Item $item -Force -Recurse
-                        Write-Host "Deleted file: $file"
-                    } else {
-                        Write-Host "File not found: $file"
+                try {
+                    Write-Host "$ToolName is not set up. `nDownloading..."
+                    # Download zip file
+                    Invoke-WebRequest -Uri $GPS_Download -OutFile $TempDir$GPS_Archive
+                    Expand-Archive -Path $TempDir$GPS_Archive -DestinationPath $GPS_Dir -Force
+                    # Delete junk files
+                    foreach ($item in $GPS_Junk) {
+                        if (Test-Path -Path $GPS_Dir$item) {
+                            if (
+                                Test-Path -Path $GPS_Dir$item -PathType Leaf) {
+                                    Remove-Item -Path $GPS_Dir$item -Force
+                                }
+                            else {
+                                Remove-Item -Path $GPS_Dir$item -Recurse -Force
+                            }
+                        }
                     }
+                    # Create is_setup checkfile
+                    New-Item -Path "$GPS_Dir.is_setup" -ItemType File | Out-Null
+                    Set-ItemProperty -Path "$GPS_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                    # Done
+                    Write-Host "Done. `n"
+                } catch {
+                    Write-Host "An error occurred setting up $ToolName."
                 }
-                # Delete Zip
-                Remove-Item $GPS_Archive
-                # Create is_setup checkfile
-                New-Item -Path "$GPS_Dir.is_setup" -ItemType File
-                Set-ItemProperty -Path "$GPS_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
-                Write-Host "Done. `n"
+            }
+            # Check if PIXI directory has set-up checkfile
+            $ToolName = "PIXI"
+            if (Test-Path "$PIXI_Dir.is_setup" -PathType Leaf) {
+                Write-Host "-- $ToolName already is set up in: $PIXI_Dir"
+            } else {
+                try {
+                    Write-Host "$ToolName is not set up. `nDownloading..."
+                    # Download zip file
+                    Invoke-WebRequest -Uri $PIXI_Download -OutFile $TempDir$PIXI_Archive
+                    Expand-Archive -Path $TempDir$PIXI_Archive -DestinationPath $PIXI_Dir -Force
+                    # Delete junk files
+                    foreach ($item in $PIXI_Junk) {
+                        if (Test-Path -Path $PIXI_Dir$item) {
+                            if (
+                                Test-Path -Path $PIXI_Dir$item -PathType Leaf) {
+                                    Remove-Item -Path $PIXI_Dir$item -Force
+                                }
+                            else {
+                                Remove-Item -Path $PIXI_Dir$item -Recurse -Force
+                            }
+                        }
+                    }
+                    # Create is_setup checkfile
+                    New-Item -Path "$PIXI_Dir.is_setup" -ItemType File | Out-Null
+                    Set-ItemProperty -Path "$PIXI_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                    # Done
+                    Write-Host "Done. `n"
+                } catch {
+                    Write-Host "An error occurred setting up $ToolName."
+                }
             }
 
             # Check if Lunar Magic directory has set-up checkfile
+            $ToolName = "Lunar Magic"
             if (Test-Path "$LunarMagic_Dir.is_setup" -PathType Leaf) {
-                Write-Host "-- Lunar Magic is set up in: $LunarMagic_Dir."
+                Write-Host "-- $ToolName already is set up in: $LunarMagic_Dir"
             } else {
-                Write-Host "Lunar Magic is not set up. `nDownloading..."
-                # Download zip file
-                Invoke-WebRequest -Uri $LunarMagic_Download -OutFile $TempDir$LunarMagic_Archive >NUL
-                Expand-Archive -Path $TempDir$LunarMagic_Archive -DestinationPath $ToolsDir >NUL
-                # Delete junk files
-                foreach ($item in $LunarMagic_Junk) {
-                    if (Test-Path $item -PathType Leaf) {
-                        Remove-Item $item -Force -Recurse
-                        Write-Host "Deleted file: $file"
-                    } else {
-                        Write-Host "File not found: $file"
+                try {
+                    Write-Host "$ToolName is not set up. `nDownloading..."
+                    # Download zip file
+                    Invoke-WebRequest -Uri $LunarMagic_Download -OutFile $TempDir$LunarMagic_Archive
+                    Expand-Archive -Path $TempDir$LunarMagic_Archive -DestinationPath $LunarMagic_Dir -Force
+                    # Delete junk files
+                    foreach ($item in $LunarMagic_Junk) {
+                        if (Test-Path -Path $LunarMagic_Dir$item) {
+                            if (
+                                Test-Path -Path $LunarMagic_Dir$item -PathType Leaf) {
+                                    Remove-Item -Path $LunarMagic_Dir$item -Force
+                                }
+                            else {
+                                Remove-Item -Path $LunarMagic_Dir$item -Recurse -Force
+                            }
+                        }
                     }
+                    # Create is_setup checkfile
+                    New-Item -Path "$LunarMagic_Dir.is_setup" -ItemType File | Out-Null
+                    Set-ItemProperty -Path "$LunarMagic_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                    # Done
+                    Write-Host "Done. `n"
+                } catch {
+                    Write-Host "An error occurred setting up $ToolName."
                 }
-                # Delete Zip
-                Remove-Item $LunarMagic_Archive
-                # Create is_setup checkfile
-                New-Item -Path "$LunarMagic_Dir.is_setup" -ItemType File
-                Set-ItemProperty -Path "$LunarMagic_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
-                Write-Host "Done. `n"
             }
 
             # Check if UberASMTool directory has set-up checkfile
+            $ToolName = "UberASMTool"
             if (Test-Path "$UberASMTool_Dir.is_setup" -PathType Leaf) {
-                Write-Host "-- UberASMTool is set up in: $UberASMTool_Dir."
+                Write-Host "-- $ToolName already is set up in: $UberASMTool_Dir"
             } else {
-                Write-Host "UberASMTool is not set up. `nDownloading..."
-                # Download zip file
-                Invoke-WebRequest -Uri $UberASMTool_Download -OutFile $TempDir$UberASMTool_Archive >NUL
-                Expand-Archive -Path $TempDir$UberASMTool_Archive -DestinationPath $ToolsDir >NUL
-                # Delete junk files
-                foreach ($item in $UberASMTool_Junk) {
-                    if (Test-Path $item -PathType Leaf) {
-                        Remove-Item $item -Force -Recurse
-                        Write-Host "Deleted file: $file"
-                    } else {
-                        Write-Host "File not found: $file"
+                try {
+                    Write-Host "$ToolName is not set up. `nDownloading..."
+                    # Download zip file
+                    Invoke-WebRequest -Uri $UberASMTool_Download -OutFile $TempDir$UberASMTool_Archive
+                    Expand-Archive -Path $TempDir$UberASMTool_Archive -DestinationPath $UberASMTool_Dir -Force
+                    # Delete junk files
+                    foreach ($item in $UberASMTool_Junk) {
+                        if (Test-Path -Path $UberASMTool_Dir$item) {
+                            if (
+                                Test-Path -Path $UberASMTool_Dir$item -PathType Leaf) {
+                                    Remove-Item -Path $UberASMTool_Dir$item -Force
+                                }
+                            else {
+                                Remove-Item -Path $UberASMTool_Dir$item -Recurse -Force
+                            }
+                        }
                     }
+                    # Create is_setup checkfile
+                    New-Item -Path "$UberASMTool_Dir.is_setup" -ItemType File | Out-Null
+                    Set-ItemProperty -Path "$UberASMTool_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                    # Done
+                    Write-Host "Done. `n"
+                } catch {
+                    Write-Host "An error occurred setting up $ToolName."
                 }
-                # Delete Zip
-                Remove-Item $UberASMTool_Archive
-                # Create is_setup checkfile
-                New-Item -Path "$UberASMTool_Dir.is_setup" -ItemType File
-                Set-ItemProperty -Path "$UberASMTool_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
-                Write-Host "Done. `n"
             }
 
             # Check if Callisto directory has set-up checkfile
+            $ToolName = "Callisto"
             if (Test-Path "$Callisto_Dir.is_setup" -PathType Leaf) {
-                Write-Host "-- Callisto is set up in: $Callisto_Dir."
+                Write-Host "-- $ToolName already is set up in: $Callisto_Dir"
             } else {
-                Write-Host "Callisto is not set up. `nDownloading..."
-                # Download zip file
-                Invoke-WebRequest -Uri $Callisto_Download -OutFile $TempDir$Callisto_Archive >NUL
-                Expand-Archive -Path $TempDir$Callisto_Archive -DestinationPath $Callisto_Dir >NUL
-                # Install Callisto's modified asar dll.
-                Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $GPS_Dir
-                Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $AddMusicK_Dir
-                Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $UberASMTool_Dir
-                Copy-Item -Path "$Callisto_Dir\asar\64-bit\asar.dll" -Destination $PIXI_Dir
-                # Delete junk files
-                foreach ($item in $Callisto_Junk) {
-                    if (Test-Path $item -PathType Leaf) {
-                        Remove-Item $item -Force -Recurse
-                        Write-Host "Deleted file: $file"
-                    } else {
-                        Write-Host "File not found: $file"
+                try {
+                    Write-Host "$ToolName is not set up. `nDownloading..."
+                    # Download zip file
+                    Invoke-WebRequest -Uri $Callisto_Download -OutFile $TempDir$Callisto_Archive
+                    Expand-Archive -Path $TempDir$Callisto_Archive -DestinationPath $Callisto_Dir -Force
+                    # Install Callisto's modified asar dll.
+                    Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $GPS_Dir
+                    Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $AddMusicK_Dir | Remove-Item $AddMusicK_Dir\asar.exe
+                    Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $UberASMTool_Dir
+                    Copy-Item -Path "$Callisto_Dir\asar\64-bit\asar.dll" -Destination $PIXI_Dir
+                    # Delete junk files
+                    foreach ($item in $Callisto_Junk) {
+                        if (Test-Path -Path $Callisto_Dir$item) {
+                            if (
+                                Test-Path -Path $Callisto_Dir$item -PathType Leaf) {
+                                    Remove-Item -Path $Callisto_Dir$item -Force
+                                }
+                            else {
+                                Remove-Item -Path $Callisto_Dir$item -Recurse -Force
+                            }
+                        }
                     }
+                    # Create is_setup checkfile
+                    New-Item -Path "$Callisto_Dir.is_setup" -ItemType File | Out-Null
+                    Set-ItemProperty -Path "$Callisto_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                    # Done
+                    Write-Host "Done. `n"
+                } catch {
+                    Write-Host "An error occurred setting up $ToolName."
                 }
-                # Delete Zip
-                Remove-Item $Callisto_Archive
-                # Create is_setup checkfile
-                New-Item -Path "$Callisto_Dir.is_setup" -ItemType File
-                Set-ItemProperty -Path "$Callisto_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden)
-                Write-Host "Done. `n"
             }
             # Done
             Write-Host "All done. `n"
             continue
+
         }
 
         # Initialize Baserom tool list files
         "InitializeListFiles" {
-            Write-Host "You selected Option 2"
+            try {
+                # Copy in existing list file(s) to respective folders
+                Write-Host "Copying pre-configured list files to respective Tools folders..."
+                Copy-Item -Path "$ListsDir\Addmusic*" -Destination $AddMusicK_Dir
+                Copy-Item -Path "$ListsDir\list_gps.txt" -Destination $GPS_Dir\list.txt
+                Copy-Item -Path "$ListsDir\list_pixi.txt" -Destination $PIXI_Dir\list.txt
+                Copy-Item -Path "$ListsDir\list_uberasm.txt" -Destination $UberASMTool_Dir\list.txt
+            } catch {
+                Write-Host "An error occurred setting up list files."
+            }
             continue
         }
 
@@ -228,8 +320,11 @@ while ($UserChoice -ne "4") {
 
         # Exit
         "Exit" {
+            # Remove temporary items
+            Remove-Item $TempDir -Recurse
             Clear-Host
             Write-Host "Have a nice day ^_^`n"
+
             exit 0
         }
     }

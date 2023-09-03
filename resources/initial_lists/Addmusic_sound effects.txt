@@ -24,8 +24,8 @@ F	0F Hurt while flying.txt
 17	17 Enemy stomp 5.txt
 18	18 Enemy stomp 6.txt
 19	19 Enemy stomp 7.txt
-1A ?	1A Grinder click 1.txt
-1B	1B Grinder click 2.txt
+1A 	1A Grinder click 1.txt
+1B *	1A Grinder click 1.txt
 1C	1C Yoshi coin.txt
 1D	1D Time running low 1.txt
 1E	1E P-balloon.txt
@@ -42,7 +42,9 @@ F	0F Hurt while flying.txt
 29	29 Firework bang 2.txt
 2A	2A Peach pops up.txt
 2B	2B Jump.txt
-2C  12 Unpause (silent).txt
+2C	12 Unpause (silent).txt
+2D	2D Grinder click 2.txt
+2E	2B Jump (alt).txt
 
 SFX1DFC:
 1	01 Coin.txt
@@ -97,5 +99,7 @@ F	0F Door.txt
 32	32 Podoboo 43% pan.txt
 33	33 Podoboo 71% pan.txt
 34	34 Podoboo 100% pan.txt
-35 ?	35 Jump.txt
-36	36 Death Prelude.txt
+35	35 Jump.txt
+36	36 Grinder click 2.txt
+37	35 Jump (alt).txt
+38  Death Prelude.txt
