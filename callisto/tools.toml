@@ -1,0 +1,80 @@
+# Tools
+[tools]
+
+# Flips Config
+[tools.FLIPS]
+executable = "tools/flips/flips.exe"
+
+# Lunar Magic Config
+[tools.LunarMagic]
+executable = "tools/lunar_magic/Lunar Magic.exe"
+
+# PIXI Config
+[tools.generic.PIXI]
+directory = "tools/pixi"
+executable = "pixi.exe"
+options = '-l "../../tools/pixi/list.txt" -ssc "../../tools/pixi/append.ssc" -mwt "../../tools/pixi/append.mwt" -mw2 "../../tools/pixi/append.mw2"'
+static_dependencies = [
+	{ path = "pixi.exe", policy = "rebuild" },
+
+	# Omitting policy is the same as specifying policy = "reinsert"
+    { path = "list.txt" },
+
+    { path = "asar.dll", policy = "rebuild" },
+    { path = "NewtonSoft.Json.dll", policy = "rebuild" } ,
+
+	# policy = "reinsert" is not needed here, since it's
+	# the default, but it can still be specified for explicitness
+    { path = "routines", policy = "reinsert" },
+
+	# Need to add the "sprites" folder here, because the
+	# dependency report for PIXI won't include .json/.cfg files
+    { path = "sprites", policy = "reinsert" }
+]
+dependency_report_file = ".dependencies"
+
+# GPS Config
+[tools.generic.GPS]
+directory = "tools/gps"
+executable = "gps.exe"
+static_dependencies = [
+	{ path = "gps.exe", policy = "rebuild" },
+	{ path = "asar.dll", policy = "rebuild"},
+	{ path = "list.txt" },
+	{ path = "routines" }
+]
+dependency_report_file = ".dependencies"
+
+# UberASMTool Config
+[tools.generic.UberASM]
+directory = "tools/uberasmtool"
+executable = "UberASMTool.exe"
+options = "list.txt"
+static_dependencies = [
+	{ path = "UberASMTool.exe" },
+	{ path = "list.txt" },
+	{ path = "asar.dll", policy = "rebuild" },
+	{ path = "library" },
+	{ path = "routines" },
+]
+dependency_report_file = ".dependencies"
+
+# AddMusicK Config
+[tools.generic.AddMusicK]
+directory = "tools/addmusick"
+executable = "AddmusicK.exe"
+static_dependencies = [
+    { path = "AddmusicK.exe", policy = "rebuild" },
+    { path = "asar.exe", policy = "rebuild" },
+
+    { path = "AddMusic_list.txt" },
+    { path = "AddMusic_sample groups.txt" },
+    { path = "AddMusic_sound effects.txt" },
+
+    { path = "1DF9" },
+    { path = "1DFC" },
+
+	{ path = "samples" },
+	{ path = "music" }
+]
+dependency_report_file = ".dependencies"

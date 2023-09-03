@@ -1,0 +1,221 @@
+#amk 2
+#option smwvtable
+#option noloop
+
+;Bowser Defeated from Super Mario World
+;Original by Koji Kondo
+;Original sound driver this originated from by Nintendo
+;(N-SPC/Koji Kondo, the same build that AddmusicK was based off of, at that)
+;AddmusicK Port by KungFuFurby
+
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Bowser Defeated"
+	#game "Super Mario World"
+}
+
+"VCMD_PANFADE=$DC"
+"VCMD_SLIDETONOTE=$DD"
+"VCMD_SONGVOLFADE=$E1"
+
+#0
+;Phrase $1BD6
+;Pattern $1D50
+
+;w is undefined on initialization: it defaults to 192, since that's what the
+;sound driver initializes it to.
+;v is also undefined on initialization on all channels: it defaults to 255,
+;since that's what the sound driver initializes it to.
+@17t50y20
+q7fo4e16VCMD_SLIDETONOTE$00$0C<b
+q7eo4e16VCMD_SLIDETONOTE$00$0C<b
+q7do4e16VCMD_SLIDETONOTE$00$0C<b
+q7co4e16VCMD_SLIDETONOTE$00$0C<b
+
+q7fo4e16VCMD_SLIDETONOTE$00$0C<b
+q7eo4e16VCMD_SLIDETONOTE$00$0C<b
+q7do4e16VCMD_SLIDETONOTE$00$0C<b
+q7co4e16VCMD_SLIDETONOTE$00$0C<b
+
+q7fo4e8VCMD_SLIDETONOTE$00$18<b
+q7eo4c8VCMD_SLIDETONOTE$00$18<g
+q7eo4e2VCMD_SLIDETONOTE$00$60g
+r2
+
+;Phrase $1BE6
+;Pattern $1E7D
+;@17 ;Carried over from previous phrase
+t25w255 VCMD_SONGVOLFADE$60$C8 y20
+q7fo3d8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0Cc
+q7fo3f8VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$0C<e
+q7fo3a8VCMD_SLIDETONOTE$00$0C>eVCMD_SLIDETONOTE$00$0C<g
+q7eo4c8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0C<b
+
+;Phrase $1B9A
+;Pattern $1F4B
+;@17t25w200y20 ;Carried over from previous phrase
+VCMD_SONGVOLFADE$60$64 VCMD_PANFADE$30$0A
+q7eo4e8VCMD_SLIDETONOTE$00$0CbVCMD_SLIDETONOTE$00$0Cd
+q7do4g8VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$0C<e
+q7co4b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7bo5d8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0Cc
+
+#1
+;Phrase $1BD6
+;Pattern $1DA6
+@17y10
+r64
+q7fo3a+16VCMD_SLIDETONOTE$00$0Cf+
+q7eo3a+16VCMD_SLIDETONOTE$00$0Cf+
+q7do3a+16VCMD_SLIDETONOTE$00$0Cf+
+q7co3a+16VCMD_SLIDETONOTE$00$0Cf+
+
+q7fo3a+16VCMD_SLIDETONOTE$00$0Cf+
+q7eo3a+16VCMD_SLIDETONOTE$00$0Cf+
+q7do3a+16VCMD_SLIDETONOTE$00$0Cf+
+q7co3a+16VCMD_SLIDETONOTE$00$0Cf+
+
+q7fo3a+8VCMD_SLIDETONOTE$00$18f
+q7eo3g8VCMD_SLIDETONOTE$00$18d
+q7eo3a+2VCMD_SLIDETONOTE$00$60>c+
+r2
+;Interrupted a 64th of a note prior to completing the phrase.
+;No phrase end marker either in the original data.
+
+;Phrase $1BE6
+;Pattern $1EB5
+;Starts offset a 64th of a note (this is not possible when using phrases,
+;but the original data has rests in both areas, which allows me to treat
+;this as a continuous rest, though with some adjustments)
+;@17 ;Carried over from previous phrase
+y0
+;r32 ;Original delay length: adjusted due to a rest carrying over from a previous phrase
+r64
+q7fo3d8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0Cc
+q7fo3f8VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$0C<e
+q7fo3a8VCMD_SLIDETONOTE$00$0C>eVCMD_SLIDETONOTE$00$0C<g
+q7eo4c8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0C<b
+;Interrupted a 32nd of a note prior to completing the phrase.
+;No phrase end marker either in the original data.
+
+;Phrase $1B9A
+;Pattern $1F86
+;Starts offset a 32nd of a note (this is not possible when using phrases,
+;but the original data has rests in both areas, which allows me to treat
+;this as a continuous rest, though with some adjustments)
+;@17y0 ;Carried over from previous phrase
+VCMD_PANFADE$30$0A
+;r32 ;Original delay length: removed due to a rest carrying over from a previous phrase
+q7eo4e8VCMD_SLIDETONOTE$00$0CbVCMD_SLIDETONOTE$00$0Cd
+q7do4g8VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$0C<e
+q7co4b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7bo5d8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0Cc
+;Interrupted by a phrase end marker from a previous channel a 32nd of a note
+;prior to actually ending.
+;No phrase end marker either in the original data.
+
+#2
+;Phrase $1BD6
+;Pattern $1DFB
+@17y5
+r32
+q7fo3f16VCMD_SLIDETONOTE$00$0Cc+
+q7eo3f16VCMD_SLIDETONOTE$00$0Cc+
+q7do3f16VCMD_SLIDETONOTE$00$0Cc+
+q7co3f16VCMD_SLIDETONOTE$00$0Cc+
+
+q7fo3f16VCMD_SLIDETONOTE$00$0Cc+
+q7eo3f16VCMD_SLIDETONOTE$00$0Cc+
+q7do3f16VCMD_SLIDETONOTE$00$0Cc+
+q7co3f16VCMD_SLIDETONOTE$00$0Cc+
+
+q7fo3f8VCMD_SLIDETONOTE$00$18<b
+q7eo3d8VCMD_SLIDETONOTE$00$18<a
+q7eo3f2VCMD_SLIDETONOTE$00$60a+
+r2
+;Interrupted a 32nd of a note prior to completing the phrase.
+;No phrase end marker either in the original data.
+
+;Phrase $1BE6
+;Pattern $1EE7
+;Starts offset a 32nd of a note (this is not possible when using phrases,
+;but the original data has rests in both areas, which allows me to treat
+;this as a continuous rest, though with some adjustments)
+;@17 ;Carried over from previous phrase
+y15
+;r16 ;Original delay length: adjusted due to a rest carrying over from a previous phrase
+r32
+q7fo2f8VCMD_SLIDETONOTE$00$0C>dVCMD_SLIDETONOTE$00$0C<e
+q7fo2a8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<g
+q7fo3c8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0C<b
+q7eo3f8VCMD_SLIDETONOTE$00$0Cb;VCMD_SLIDETONOTE$00$0Cd
+;Interrupted a 16th of a note prior to completing the phrase.
+;The second pitch slide of the last note is commented out because the
+;interruption causes the command to fail to execute.
+;No phrase end marker either in the original data.
+
+;Phrase $1B9A
+;Pattern $1FBB
+;@17y15 ;Carried over from previous phrase
+VCMD_PANFADE$30$0A
+;r16 ;Original delay length: removed due to a rest carrying over from a previous phrase
+q7eo3g8VCMD_SLIDETONOTE$00$0C>dVCMD_SLIDETONOTE$00$0C<f
+q7do3b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7co4d8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0Cc
+q7bo4f8VCMD_SLIDETONOTE$00$0Cb;VCMD_SLIDETONOTE$00$0Ce
+;Interrupted by a phrase end marker from a previous channel a 16th of a note
+;prior to actually ending.
+;The second pitch slide of the last note is commented out because the
+;interruption causes the command to fail to execute.
+;No phrase end marker either in the original data.
+
+#3
+;Phrase $1BD6
+;Pattern $1E50
+;@17 ;Redundant due to being overwritten by percussion.
+y10
+q7e@21o4e32
+q7d@21o4e32
+q7c@21o4e32
+q7b@21o4e32
+q79@21o4e8
+
+q7e@21o4e32
+q7d@21o4e32
+q7c@21o4e32
+q7b@21o4e32
+q79@21o4e8^4
+
+;BUG: The original song was supposed to use @17 here, but it was overwritten
+;by percussion. Thus, the kick drum plays instead.
+q7eo3c2VCMD_SLIDETONOTE$00$60e
+r2
+
+;Phrase $1BE6
+;Pattern $1F19
+@17y5
+r16.
+q7fo2f8VCMD_SLIDETONOTE$00$0C>dVCMD_SLIDETONOTE$00$0C<e
+q7fo2a8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<g
+q7fo3c8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0C<b
+q7eo3f8VCMD_SLIDETONOTE$00$0Cb;VCMD_SLIDETONOTE$00$0Cd
+;Interrupted a dotted 16th of a note prior to completing the phrase.
+;The second pitch slide of the last note is commented out because the
+;interruption causes the command to fail to execute.
+;No phrase end marker either in the original data.
+
+;Phrase $1B9A
+;Pattern $1FF0
+;@17y15 ;Carried over from previous phrase
+VCMD_PANFADE$30$0A
+;r16. ;Original delay length: removed due to a rest carrying over from a previous phrase
+q7eo3g8VCMD_SLIDETONOTE$00$0C>dVCMD_SLIDETONOTE$00$0C<f
+q7do3b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7co4d8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0Cc
+q7bo4f8VCMD_SLIDETONOTE$00$0Cb;VCMD_SLIDETONOTE$00$0Ce
+;Interrupted by a phrase end marker from a previous channel a dotted 16th of
+;a note prior to actually ending.
+;The second pitch slide of the last note is commented out because the
+;interruption causes the command to fail to execute.
+;No phrase end marker either in the original data.

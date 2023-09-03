@@ -1,0 +1,85 @@
+; Kicked shells
+04 0012 0,0,30 0,0,10A
+05 0012 0,0,31 0,0,10A
+06 0012 0,0,32 0,0,10A
+07 0012 0,0,33 0,0,10A
+DF 0002 0,0,21E
+08 0012 0,0,21E 0,0,10A
+
+04 0010 A green shell that spawns kicked towards the player.
+05 0010 A red shell that spawns kicked towards the player.
+06 0010 A blue hell that spawns kicked towards the player.
+07 0010 A yellow shell that spawns kicked towards the player.
+08 0010 A double hit green shell that spawns kicked towards the player.
+
+; Kicked Buzzy Beetle
+11 0012 0,0,D 0,0,10A
+11 0010 A Buzzy Beetle which spawns kicked towards the player.
+
+; Classic Piranha
+1A 0012 8,-15,21B 8,-31,16
+1A 0000 Classic Piranha plant. Will be red and ignore Mario if it's extra bit is set. It's currently set to hide.
+1A 0010 Classic Piranha plant. Will be red and ignore Mario if it's extra bit is set. It's currently set to ignore.
+
+; Upside-Down Piranha
+2A 0012 8,15,21C 8,31,2B
+2A 0000 An upside-down Piranha plant. Will be red and ignore Mario if it's extra bit is set. It's currently set to hide.
+2A 0010 An upside-down Piranha plant. Will be red and ignore Mario if it's extra bit is set. It's currently set to ignore.
+
+; Dry Bones, stay on ledge
+32 0012 0,1,46 -8,-15,36 0,-24,10A
+32 0000 A dry bones that stays on ledges that will stop throwing bones if its extra bit is set. It's currently set to throw bones.
+32 0010 A dry bones that stays on ledges that will stop throwing bones if its extra bit is set. It's currently set to not throw bones.
+
+; Growing pipe
+49 0000 A pipe end that will rise up 4 tiles and then sink, will be exit-enabled if it's extra bit is set. It's currently a normal pipe.
+49 0012 0,0,A4 16,0,A5 0,-8,10A
+49 0010 A pipe end that will rise up 4 tiles and then sink, will be exit-enabled if it's extra bit is set. It's currently an exit-enabled pipe.
+
+; Ground monty mole
+4D 0012 0,1,A7 0,1,A8 0,0,10A
+4E 0012 0,1,A7 -4,-4,B1 -4,8,B0 12,-4,B3 12,8,B2 0,0,10A
+
+4D 0000 A ground dwelling monty mole that will have different digging speed depending on its extra bit. It's currently set to dig quickly.
+4D 0010 A ground dwelling monty mole that will have different digging speed depending on its extra bit. It's currently set to dig slowly.
+4E 0000 A ledge dwelling monty mole that will have different digging speed depending on its extra bit. It's currently set to dig quickly.
+4E 0010 A ledge dwelling monty mole that will have different digging speed depending on its extra bit. It's currently set to dig slowly.
+
+; Hammer Brother
+9B 0012 0,-15,1DC 16,-15,1DD 0,-30,1CC 16,-30,1CD -16,-15,1DB 0,-24,10A
+9B 0000 A hammer brother that flies around (requires sprite 9C) throwing hammers that will change its throw frequency when the extra bit is set. It's currently set to infrequently.
+9B 0010 A hammer brother that flies around (requires sprite 9C) throwing hammers that will change its throw frequency when the extra bit is set. It's currently set to frequently.
+
+; Rex
+AB 0000 A rex. It will be squished if it's extra bit is set.
+AB 0010 A squished rex. It will be a normal rex if it's extra bit is clear.
+AB 0012 0,1,21D
+
+; Disco shell
+DA 0012 0,0,224 0,0,114
+DB 0012 0,0,224 0,0,114
+DC 0012 0,0,224 0,0,114
+DD 0012 0,0,224 0,0,114
+DF 0012 0,0,224 0,0,114
+
+DA 0010 A Disco Shell.
+DB 0010 A Disco Shell.
+DC 0010 A Disco Shell.
+DD 0010 A Disco Shell.
+DF 0010 A Disco Shell.
+
+; Triple ball n' chain
+E0 0000 3 platforms on chains that move will be a triple ball n' chain if the extra bit is set. Changes direction based on it's X position.
+E0 0010 A triple ball n' chain on chains will be 3 platforms on chains if the extra bit is clear. Changes direction based on it's X position.
+E0 0012 -1,16,1D6 -3,32,1D6 -16,48,1C4 0,48,1C5 -16,64,1D4 0,64,1D5 -12,-10,1D6 -24,-20,1D6 -48,-40,1C4 -32,-40,1C5 -48,-24,1D4 -32,-24,1D5 15,-6,1D6 30,-12,1D6 40,-32,1C4 56,-32,1C5 40,-16,1D4 56,-16,1D5
+E0 0112 1,16,1D6 3,32,1D6 0,48,1C4 16,48,1C5 0,64,1D4 16,64,1D5 12,-10,1D6 24,-20,1D6 32,-40,1C4 48,-40,1C5 32,-24,1D4 48,-24,1D5 -15,-6,1D6 -30,-12,1D6 -56,-28,1C4 -40,-28,1C5 -56,-12,1D4 -40,-12,1D5
+
+; Throwblock
+53 0002 0,-1,215
+53 0012 0,-1,215 0,-8,10A
+53 0000 A stationary throwblock sprite with infinite timer.
+53 0010 A throwblock sprite that spawns kicked towards the player.
+
+; Poison mushroom
+85 0002 0,0,214
+85 0000 A poison mushroom which hurts the player.

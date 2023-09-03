@@ -1,0 +1,41 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Keyhole"
+	#game "Super Mario World"
+}
+
+#option TempoImmunity
+#option NoLoop
+
+#0
+$F4 $07			; Zero out tempo modifier.
+
+$F0 w100 $E1$30$FF
+@1 t20 $DC$30$00 q6F o4 f=96 $DD$0A$30$C1
+
+#1
+@1 $DC$30$14 q6F o4 f=96 $DD$0A$30$91
+
+#2
+@1 $DC$30$00 q6F o3 c=96 $DD$0A$30$B5
+
+#3
+@1 $DC$30$14 q6F o4 c=96 $DD$0A$30$9D
+
+#4
+@1 $DC$30$00 q6F o3 f=96 $DD$0A$30$B0
+
+#5
+@1 $DC$30$14 q6F o2 f=96 $DD$0A$30$98
+
+#6
+@1 $DC$30$00 q6F o3 f=96 $DD$0A$30$91
+
+#7
+@1 $DC$30$14 q6F o4 f=96 $DD$0A$30$8C
+
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

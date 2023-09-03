@@ -1,0 +1,13 @@
+If you want to insert custom objects using the ObjecTool patch, and you're using Retry's Custom Midway Object feature (!use_custom_midway_bar = 1 in the settings) you'll need to make an edit before inserting the patch.
+Open "objectool.asm" and remove these lines (they're towards the top of the file):
+
+org $0DA415|!bank				; x6A615 (hijack normal object loading routine)
+	autoclean JML NewNormObjects	; E2 30 AD 31 19
+	NOP						;
+
+After doing this, just patch "objectool.asm".
+
+One thing to keep in mind is that Retry will use slots 00-41 and 50-51 of the Custom Normal Objects (i.e., objects with id 2D) for its custom midway bars, meaning that you can't use them in ObjecTool.
+You're free to use normal objects 42-4F and 52-FF, as well as all Custom Extended Objects available.
+
+Additionally, if you want to remove Retry's custom midway bar while keeping ObjecTool, you'll need to place back the code that you removed in "objectool.asm" (and make sure you run Retry with !use_custom_midway_bar = 0).

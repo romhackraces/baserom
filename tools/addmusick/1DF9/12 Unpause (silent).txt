@@ -1,0 +1,6 @@
+$E0 $FF #jsr changePause
+
+#asm changePause
+{
+	jmp UnpauseMusic_silent
+}

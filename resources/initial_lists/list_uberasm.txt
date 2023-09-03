@@ -1,0 +1,33 @@
+verbose: on
+
+; UberASM Tool code list.
+; You can use the same .asm file for multiple levels/OW/etc. for saving space.
+
+; Level list. Valid values: 000-1FF.
+level:
+
+; OW list. Valid values: 0 = Main map; 1 = Yoshi's Island; 2 = Vanilla Dome;
+; 3 = Forest of Illusion; 4 = Valley of Bowser; 5 = Special World; and
+; 6 = Star World.
+overworld:
+; Insert files here
+
+; Game mode list. Valid values: 00-FF.
+gamemode:
+    03 GM03.asm
+    0C GM0C.asm
+    0D GM0D.asm
+    0F GM0F.asm
+    10 GM10.asm
+    11 GM11.asm
+    12 GM12.asm
+    13 GM13.asm
+    14 GM14.asm
+    16 GM16.asm
+    19 GM19.asm
+
+
+global:		other/global_code.asm	; global code.
+statusbar:	other/status_code.asm	; status bar code.
+macrolib:	other/macro_library.asm	; macro library.
+sprite:		$7FAC80 ; 38 (SNES) or 68 (SA-1) bytes of free RAM.

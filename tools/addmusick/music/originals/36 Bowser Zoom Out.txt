@@ -1,0 +1,135 @@
+#amk 2
+#option smwvtable
+#option noloop
+
+;Bowser Zoom Out from Super Mario World
+;Original by Koji Kondo
+;Original sound driver this originated from by Nintendo
+;(N-SPC/Koji Kondo, the same build that AddmusicK was based off of, at that)
+;AddmusicK Port by KungFuFurby
+
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Bowser Zoom Out"
+	#game "Super Mario World"
+}
+
+"VCMD_PANFADE=$DC"
+"VCMD_SLIDETONOTE=$DD"
+"VCMD_SONGVOLFADE=$E1"
+
+#0
+;Phrase $1B9A
+;Pattern $1F4B
+@17t25w200
+VCMD_SONGVOLFADE$60$64
+y20 VCMD_PANFADE$30$0A
+q7eo4e8VCMD_SLIDETONOTE$00$0CbVCMD_SLIDETONOTE$00$0Cd
+q7do4g8VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$0C<e
+q7co4b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7bo5d8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0Cc
+
+;Phrase $1AAA
+;Pattern $2025
+;@17w100y10 ;Carried over from previous phrase
+VCMD_SONGVOLFADE$60$FF VCMD_PANFADE$60$14
+q7bo5d8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0Cc
+q7bo4b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7co4g8VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$0C<e
+q7co4e8VCMD_SLIDETONOTE$00$0CbVCMD_SLIDETONOTE$00$0C>d
+q7do4c8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0Cb
+q7eo3a8VCMD_SLIDETONOTE$00$0C>eVCMD_SLIDETONOTE$00$0C<g
+q7fo3f8..VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$1E<e
+
+#1
+;Phrase $1B9A
+;Pattern $1F86
+@17y0
+VCMD_PANFADE$30$0A
+r32
+q7eo4e8VCMD_SLIDETONOTE$00$0CbVCMD_SLIDETONOTE$00$0Cd
+q7do4g8VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$0C<e
+q7co4b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7bo5d8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0Cc
+;Interrupted a 32nd of a note prior to completing the phrase.
+;No phrase end marker either in the original data.
+
+;Phrase $1AAA
+;Pattern $207F
+;Starts offset a 32nd of a note (this is not possible when using phrases,
+;but the original data has rests in both areas, which allows me to treat
+;this as a continuous rest, though with some adjustments)
+;y10 ;Carried over from previous phrase
+VCMD_PANFADE$60$00
+;r32 ;Original delay length: removed due to a rest carrying over from a previous phrase
+q7bo5d8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0Cc
+q7bo4b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7co4g8VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$0C<e
+q7co4e8VCMD_SLIDETONOTE$00$0CbVCMD_SLIDETONOTE$00$0C>d
+q7do4c8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0Cb
+q7eo3a8VCMD_SLIDETONOTE$00$0C>eVCMD_SLIDETONOTE$00$0C<g
+q7fo3f8.VCMD_SLIDETONOTE$00$0C>cVCMD_SLIDETONOTE$00$18<e
+
+#2
+;Phrase $1B9A
+;Pattern $1FBB
+@17y15
+VCMD_PANFADE$30$0A
+r16
+q7eo3g8VCMD_SLIDETONOTE$00$0C>dVCMD_SLIDETONOTE$00$0C<f
+q7do3b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7co4d8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0Cc
+q7bo4f8VCMD_SLIDETONOTE$00$0Cb;VCMD_SLIDETONOTE$00$0Ce
+;Interrupted by a phrase end marker from a previous channel a 16th of a note
+;prior to actually ending.
+;The second pitch slide of the last note is commented out because the
+;interruption causes the command to fail to execute.
+;No phrase end marker either in the original data.
+
+;Phrase $1AAA
+;Pattern $20D3
+;Starts offset a 16th of a note (this is not possible when using phrases,
+;but the original data has rests in both areas, which allows me to treat
+;this as a continuous rest, though with some adjustments)
+;y10 ;Carried over from previous phrase
+VCMD_PANFADE$60$0F
+;r16 ;Original delay length: removed due to a rest carrying over from a previous phrase
+q7bo4f8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0C<e
+q7bo4d8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0Cc
+q7co3b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7co3g8VCMD_SLIDETONOTE$00$0C>dVCMD_SLIDETONOTE$00$0C<f
+q7do3e8VCMD_SLIDETONOTE$00$0CbVCMD_SLIDETONOTE$00$0Cd
+q7eo3c8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0C<b
+q7fo2a8^32VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$12<g
+
+#3
+;Phrase $1B9A
+;Pattern $1FF0
+@17y15 ;Carried over from previous phrase
+VCMD_PANFADE$30$0A
+r16.
+q7eo3g8VCMD_SLIDETONOTE$00$0C>dVCMD_SLIDETONOTE$00$0C<f
+q7do3b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7co4d8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0Cc
+q7bo4f8VCMD_SLIDETONOTE$00$0Cb;VCMD_SLIDETONOTE$00$0Ce
+;Interrupted a dotted 16th of a note prior to completing the phrase.
+;The second pitch slide of the last note is commented out because the
+;interruption causes the command to fail to execute.
+;No phrase end marker either in the original data.
+
+;Phrase $1AAA
+;Pattern $2127
+;Starts offset a dotted 16th of a note (this is not possible when using
+;phrases, but the original data has rests in both areas, which allows me to
+;treat this as a continuous rest, though with some adjustments)
+;y10 ;Carried over from previous phrase
+VCMD_PANFADE$60$05
+;r16. ;Original delay length: removed due to a rest carrying over from a previous phrase
+q7bo4f8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0C<e
+q7bo4d8VCMD_SLIDETONOTE$00$0CgVCMD_SLIDETONOTE$00$0Cc
+q7co3b8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<a
+q7co3g8VCMD_SLIDETONOTE$00$0C>dVCMD_SLIDETONOTE$00$0C<f
+q7do3e8VCMD_SLIDETONOTE$00$0CbVCMD_SLIDETONOTE$00$0Cd
+q7eo3c8VCMD_SLIDETONOTE$00$0CaVCMD_SLIDETONOTE$00$0C<b
+q7fo2a8VCMD_SLIDETONOTE$00$0C>fVCMD_SLIDETONOTE$00$0C<g

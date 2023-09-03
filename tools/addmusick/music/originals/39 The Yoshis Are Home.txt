@@ -1,0 +1,91 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Title = Yoshis' Home  ;;
+;; Ported by LadiesMan217 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+#option smwvtable
+
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Yoshis' Home"
+	#game "Super Mario World"
+	#length "0:15" 
+}
+?
+"VCMD_VIBRATO_ON=$de"
+
+"PATCH001=@1 h0 $ed $7a $6a"
+"PATCH002=@2 h0 $ed $2e $2f"
+
+
+#0
+PATCH001
+t18
+y10
+VCMD_VIBRATO_ON $14 $19 $28
+q7c
+o4 d+8 e16 g16 a16 g4 a16 b16 ^16 b16 a4 d+16 e16 g16 a16 g4 g+16 a16 ^16 a16 g2 q77
+^2 
+
+#1
+PATCH001
+y12
+VCMD_VIBRATO_ON $14 $19 $28
+^32 q79
+o4 d+8 e16 g16 a16 g4 a16 b16 ^16 b16 a4 d+16 e16 g16 a16 g4 g+16 a16 ^16 a16 g2 q75
+^2 
+; warning: 6 ticks truncated
+
+
+#2
+PATCH001
+y10
+VCMD_VIBRATO_ON $14 $19 $28
+q7b
+r8 o3 c2 < b2 a+2 a2 ^2 ^2 
+; warning: 60 ticks truncated
+
+
+#3
+PATCH002
+y10
+q79
+o4 d+8 e16 g16 a16 g4 a16 b16 ^16 b16 a4 d+16 e16 g16 a16 g4 g+16 a16 ^16 a16 g2 ^2 
+
+#4
+PATCH001
+y10
+VCMD_VIBRATO_ON $14 $19 $28
+q7b
+r8 r16 o3 g8. > > c4 r16 < < g8. > b4 r16 < g8. > a+4 r16 < g8. > > c+4 ^2 ^2 
+; warning: 60 ticks truncated
+
+
+#5
+PATCH001
+y10
+VCMD_VIBRATO_ON $14 $19 $28
+q7b
+r8 r8 o4 e4. r8 d+4. r8 d4. r8 c+4. ^2 ^2 
+; warning: 60 ticks truncated
+
+
+#6
+PATCH001
+y10
+VCMD_VIBRATO_ON $14 $19 $28
+q7b
+r8 r8. o4 g6... r8. g6... r8. g6... r8. g6... ^2 ^2 
+; warning: 60 ticks truncated
+
+
+#7
+PATCH001
+y10
+VCMD_VIBRATO_ON $14 $19 $28
+q7b
+r8 r4 o5 e4 r4 d+4 r4 d4 r4 e4 ^2 ^2 
+; warning: 60 ticks truncated
+
+#amk 2

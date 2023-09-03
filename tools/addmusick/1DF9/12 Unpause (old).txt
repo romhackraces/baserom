@@ -1,0 +1,13 @@
+$E0 $FF #jsr changePause $DA $02 $0C $54 $B4 $B0 $B4 $18 $B0
+
+#asm changePause
+{
+	mov a, !SpeedUpBackUp	;\
+	mov $0387, a			;/ Restore the tempo.
+
+	mov a, #$00
+	mov !PauseMusic, a
+	
+	clr1 !NCKValue.6		; Unset the mute flag.
+	jmp SetFLGFromNCKValue
+}

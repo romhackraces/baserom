@@ -1,0 +1,35 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Egg is rescued"
+	#game "Super Mario World"
+}
+#option smwvtable
+?
+;ported by gocha
+
+"VCMD_VIBRATO_ON=$de"
+
+
+#0	@1 t45
+	VCMD_VIBRATO_ON $14 $14 $20
+	y5 q5d o5 l4 edc<b2^2^
+
+	; halt
+	
+
+#1	@1
+	VCMD_VIBRATO_ON $14 $14 $20
+	y15 q5d o5 l4 c<bag2^2^
+
+#2	@1
+	VCMD_VIBRATO_ON $14 $14 $20
+	y10 q5d o5 l16 gagagagagaga l32 gagagaga g2 q59 > g2
+
+#3	@0
+	VCMD_VIBRATO_ON $14 $14 $20
+	y10 q59 o5 l16 gagagagagaga l32 gagagaga g2 ^2
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

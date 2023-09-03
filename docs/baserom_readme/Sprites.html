@@ -1,0 +1,67 @@
+-----------------------
+Enhanced Normal Sprites
+-----------------------
+
+A number of vanilla sprites have been enhanced to have functionality enabled or their behaviour toggled by setting the extra bit.
+
+To insert a sprite with an extra bit setting either use the "Edit > Insert manual..." menu action or press the "Insert" key while in Lunar Magic's Sprite editing mode.
+
+Alternatively, you can place a sprite and Alt+Right-Click on the sprite to show the "Modify Sprite Manual (in hex)" window.
+
+Sprite Extra Bit Settings
+-------------------------
+
+All Chucks
+- extra bit = 0: normal
+- extra bit = 1: keeps their behaviour, doesn't chase Mario
+
+Shells
+- extra bit = 0: normal
+- extra bit = 1: disco shell
+
+Big Koopas
+- extra bit = 0: normal
+- extra bit = 1: kicked shell of same color
+
+Green Parakoopa
+- extra bit = 0: normal
+- extra bit = 1: kicked double bounce shell
+
+Buzzy Beetle
+- extra bit = 0: normal
+- extra bit = 1: kicked buzzy shell
+
+Throw Block
+- extra bit = 0: normal, stationary
+- extra bit = 1: kicked
+
+3 Platforms on Chains
+- extra bit = 0: normal, grey platforms
+- extra bit = 1: triple spike ball
+
+Monty Moles
+- extra bit = 0: fast digging
+- extra bit = 1: slow digging
+
+Amazing Flying Hammer Bro
+- extra bit = 0: unfrequent throwing
+- extra bit = 1: frequent throwing
+
+Dry Bones, stay on ledge
+- extra bit = 0: throws bones
+- extra bit = 1: doesn't throw bones
+
+Rex
+- extra bit = 0: normal
+- extra bit = 1: squished
+
+Growing Pipe
+- extra bit = 0: normal
+- extra bit = 1: exit-enabled
+
+---------------------------------
+Custom Sprites inserted with PIXI
+---------------------------------
+
+A0 : Companion sprite for the Donut Lift block
+ - do NOT use this, insert the donut lift object from map16 into your levels instead

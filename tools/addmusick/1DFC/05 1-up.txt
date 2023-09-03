@@ -1,0 +1,3 @@
+;Uncomment to use vanilla priority
+;$E0 $40
+$DA $02 $08 $59 $B4 $B7 $C0 $BC $BE $0C $C3

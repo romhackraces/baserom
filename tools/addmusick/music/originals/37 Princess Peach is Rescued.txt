@@ -1,0 +1,130 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Princess Rescued"
+	#game "Super Mario World"
+}
+?
+
+#option smwvtable
+
+"VCMD_VIBRATO_ON=$de"
+
+"PATCH000=@0 h0 $ed $7e $6a"
+"PATCH018=@1 h0 $ed $69 $6a"
+
+#0
+PATCH018
+t20
+VCMD_VIBRATO_ON $14 $14 $20
+y10
+q6d
+o4 f+16 q3d
+a16 q6d
+e16 q3d
+a16 q6d
+d16 q3d
+a16 q6d
+> d8 a2 ^2 
+; $1BF8 / $1C79
+PATCH018
+t35
+VCMD_VIBRATO_ON $14 $14 $20
+y10
+q6d
+o4 d8 e8 q6d
+g4. q3d
+e16 g16 q6d
+b4. q3d
+g16 b16 q6e
+> d8 q3e
+< b16 > d16 q6e
+e8 q3e
+d16 e16 q6f
+g4 b4 > d2 ^2 
+
+
+#1
+PATCH018
+y10
+r32 q6b
+o4 f+16 q3b
+a16 q6b
+e16 q3b
+a16 q6b
+d16 q3b
+a16 q6b
+> d8 a=66 PATCH000
+q4b
+a24 d24 d24 a24 a24 > d24 d4. 
+; $1BF8 / $1CDC
+PATCH018
+VCMD_VIBRATO_ON $14 $14 $20
+y15
+r4 q6d
+< < e4. ^8 g4. ^8 b8 ^8 > c8 ^8 e4 g4 b2 ^2 
+
+
+#2
+PATCH018
+VCMD_VIBRATO_ON $14 $14 $20
+y10
+q5d
+o3 d8 c+8 c8 < b8 a+2 ^2 
+; $1BF8 / $1D33
+PATCH018
+VCMD_VIBRATO_ON $14 $14 $20
+y10
+r4 q6d
+d4. ^8 d4. ^8 d8 ^8 d8 ^8 d4 d4 g2 ^2 
+
+
+#3
+; 288 ticks
+r=288
+
+; $1BF8 / $1CF9
+PATCH018
+VCMD_VIBRATO_ON $14 $14 $20
+y5
+r4 q6d
+o4 c4. ^8 e4. ^8 g8 ^8 a8 ^8 > c4 e4 f+2 ^2 
+
+
+#4
+; 288 ticks
+r=288
+
+; $1BF8 / $1D16
+PATCH018
+VCMD_VIBRATO_ON $14 $14 $20
+y10
+r4 q6d
+o3 a4. ^8 > c4. ^8 e8 ^8 g8 ^8 a4 > c4 d2 ^2 
+
+
+#5
+; 288 ticks
+r=288
+
+; $1BF8 / $1CAB
+PATCH018
+VCMD_VIBRATO_ON $14 $14 $20
+y10
+r32 q6b
+o4 d8 e8 q6b
+g4. q3b
+e16 g16 q6b
+b4. q3b
+g16 b16 q6b
+> d8 q3b
+< b16 > d16 q6b
+e8 q3b
+d16 e16 q6c
+g4 b4 > d2 ^2 
+; warning: 6 ticks truncated
+
+
+                
+
+#amk 2

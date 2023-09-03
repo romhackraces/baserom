@@ -1,0 +1,6 @@
+$E0 $FF $DA $02 $0C $54 $B4 $B0 $B4 $18 $B0 #jsr changePause1
+
+#asm changePause1
+{
+	jmp PauseMusic
+}

@@ -1,0 +1,80 @@
+01	0	Miss!
+01	1	Miss!
+02	0	Game Over
+02	1	Game Over
+03	0	Boss Clear
+03	1	Boss Clear
+04	0	Stage Clear
+04	1	Stage Clear
+05	0	Starman
+05	1	Starman
+06	0	P-Switch
+06	1	P-Switch
+07	0	Keyhole
+07	1	Keyhole
+08	0	Iris Out
+08	1	Iris Out
+09	0	Bonus Game Clear
+09	1	Bonus Game Clear
+0A	0	Piano
+0A	1	Piano
+0B	0	Here We Go!
+0B	1	Here We Go!
+0C	0	Water
+0C	1	Water
+0D	0	Bowser
+0D	1	Bowser
+0E	0	Boss
+0E	1	Boss
+0F	0	Cave
+0F	1	Cave
+10	0	Ghost House
+10	1	Ghost House
+11	0	Castle
+11	1	Castle
+12	0	Switch Palace
+12	1	Switch Palace
+13	0	Welcome
+13	1	Welcome
+14	0	Egg is rescued
+14	1	Egg is rescued
+15	0	Title
+15	1	Title
+16	0	Valley of Bowser Appears
+16	1	Valley of Bowser Appears
+17	0	Overworld
+17	1	Overworld
+18	0	Yoshi's Island
+18	1	Yoshi's Island
+19	0	Vanilla Dome
+19	1	Vanilla Dome
+1A	0	Star Road
+1A	1	Star Road
+1B	0	Forest of Illusion
+1B	1	Forest of Illusion
+1C	0	Valley of Bowser
+1C	1	Valley of Bowser
+1D	0	Special World
+1D	1	Special World
+1E	0	30 IntroScreen.txt
+1E	1	30 IntroScreen.txt
+1F	0	Bowser Scene 2
+1F	1	Bowser Scene 2
+20	0	Bowser Scene 3
+20	1	Bowser Scene 3
+21	0	Bowser Defeated
+21	1	Bowser Defeated
+22	0	Bowser Interlude
+22	1	Bowser Interlude
+23	0	Bowser Zoom In
+23	1	Bowser Zoom In
+24	0	Bowser Zoom Out
+24	1	Bowser Zoom Out
+25	0	Princess Rescued
+25	1	Princess Rescued
+26	0	Staff Roll
+26	1	Staff Roll
+27	0	Yoshis' Home
+27	1	Yoshis' Home
+28	0	Cast List
+28	1	Cast List

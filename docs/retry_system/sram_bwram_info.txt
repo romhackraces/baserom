@@ -1,0 +1,45 @@
+As the standard Retry patch, this Retry includes a built-in SRAM expansion patch that's used by default to save the custom checkpoints and death counter. Differently from the normal Retry, the patch also works on SA-1 (using BW-RAM instead of SRAM, but the result is the same), so this can be effectively used as an alternative to the SRAM/BW-RAM Plus patch and the likes. Note, though, that if you've already patched one of those, this feature will be turned off automatically (they can't coexist). Unlike SRAM Plus, this patch should also work on SNES Classic, so you should use it if you care about compatibility with that console. Also, the maximum amount of bytes you can save per save file is 2389 bytes.
+To use it, just open "retry_config/tables.asm" and go to the "save" table. There, you can add your own addresses to save (more info in the file). Similarly to SRAM/BW-RAM Plus, for each address you put in the table, you also need to specify its default value(s) for when a new save file is loaded in the "sram_defaults" tables.
+
+Some examples of addresses that may be useful (you can find more at https://www.smwcentral.net/?p=memorymap&game=smw&region=ram):
+
+    ; 1-UP checkpoints flags.
+    dl $7E1F3C : dw 12      ; $401F3C on SA-1.
+
+    ; 5 Dragon Coins collected flags.
+    dl $7E1F2F : dw 12      ; $401F2F on SA-1.
+
+    ; Individual Dragon Coin Save patch tables. If you use that patch, you should include these.
+    dl $7E1F2F : dw 12      ; $401F2F on SA-1.
+    dl $7FA660 : dw $0300   ; $40A660 on SA-1.
+
+(for all of these, the default values need to be all $00).
+
+Q: I'm using SRAM/BW-RAM Plus and I want to save Retry's stuff with them. How do I do it?
+A: If you really need to use those, then you can add these to the "sram_table"/"bw_ram_table":
+    
+    dl !ram_checkpoint    : dw 192
+    dl !ram_death_counter : dw 5
+
+[Note: to have the Retry ram defines available in the patch, copy the contents of "ram.asm" at the top of the SRAM+/BW-RAM+ table file. Also, if you're not using the death counter, you can omit the second line].
+
+Then add these tables to the "sram_defaults"/"bw_ram_defaults":
+
+    ; Checkpoints.
+    dw $0000,$0001,$0002,$0003,$0004,$0005,$0006,$0007
+    dw $0008,$0009,$000A,$000B,$000C,$000D,$000E,$000F
+    dw $0010,$0011,$0012,$0013,$0014,$0015,$0016,$0017
+    dw $0018,$0019,$001A,$001B,$001C,$001D,$001E,$001F
+    dw $0020,$0021,$0022,$0023,$0024,$0101,$0102,$0103
+    dw $0104,$0105,$0106,$0107,$0108,$0109,$010A,$010B
+    dw $010C,$010D,$010E,$010F,$0110,$0111,$0112,$0113
+    dw $0114,$0115,$0116,$0117,$0118,$0119,$011A,$011B
+    dw $011C,$011D,$011E,$011F,$0120,$0121,$0122,$0123
+    dw $0124,$0125,$0126,$0127,$0128,$0129,$012A,$012B
+    dw $012C,$012D,$012E,$012F,$0130,$0131,$0132,$0133
+    dw $0134,$0135,$0136,$0137,$0138,$0139,$013A,$013B
+
+    ; Death counter.
+    db $00,$00,$00,$00,$00
+
+[Note: if you omitted the death counter in the previous table, then do it here too.]

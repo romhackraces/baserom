@@ -1,0 +1,264 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Title"
+	#game "Super Mario World"
+}
+
+#option smwvtable
+
+#0
+@3 t60 w230
+y15 q3e
+o5 d8 d8 d8 < d8 > d8 d8 d8 < d8 >	; ËßËßËßÎßËßËßËßÎß
+[d+32 c32]8  d8 < a8 d8			; Ëß°¯Îß
+
+/
+
+
+@2 h0 w200
+y0 q4b
+o5 (1)[d8 b8 b8 b8]3 b16 > c16 < b4 a8
+[d8 a8 a8 a8]3 a16 b16 a4 g8
+y0 q4b
+o5 (1)3 a16 b16 > c4 e4
+d8 d8 d8 < d8 > c8 c8 c8 < f+8 g4. r4.
+
+
+@0 y5 q6d
+o4 [b8. a16 b2 > d2 c2 e2]1
+f+4 g4 a4 > c4 < b2 r4 
+q6d
+o4 *1
+> f+4 f8 f+8 > c4. < f+8 g2 r4. 
+
+[
+	@0
+	w220
+	y10
+	q6e
+	o5 d+8 e8 e8 e8 f+8 g4 > c4
+	@1 w170
+	<< b12 > c12 < b12 a12 b12 a12 g4 d8 
+]2
+
+$DE $23 $12 $40
+q6e @0 w220
+o5 d+8 e8 e8 e8 f+8 g4 > c4
+@1 q2e
+< d8 c+8 d8 < a8 d8 c+8 d8 < a8 w150
+$E1 $60 $fa
+q5e
+> d+2
+@3 y15 q1e
+d8 a8 > d8 a8 > d8 r4.
+@1 y10 q5d
+<< d4.
+
+
+
+
+
+#1
+@0
+y10
+v250
+$DE $23 $13 $40
+q4e
+o6 d8 d8 d8 < d8 > d8 d8 d8 < d8
+$E1$0c$96 > d+16 $E1 $54 $fa ^4..
+w230
+d8 r4
+
+/
+
+
+@0 y10 v220
+$DE $23 $13 $40
+(2)[
+	q4c < d8 b8 b8
+	q4d b16 r16
+]3
+q4c b16 > c16 < b4 a8
+
+[
+	q4c d8 a8 a8
+	q4d a16 r16
+]3
+q4c a16 b16 a4 g8
+(2)3
+q4c a16 b16 > c4 e4
+d8 d8
+q4d d16 r16
+q4c < d8 > c8 c8
+q4d c16 r16
+q4c < f+8 g4. r4.
+
+@1 v240
+$DE $23 $13 $40
+q6e
+(3)[d8. c16 < b4 > d4 g4. f+8 d+4 e4 a4. g8]1
+@3 y15
+f+32 < a32 > f+32 < a32 > f+32 < a32 > f+32 r32
+g32 < b32 > g32 < b32 > g32 < b32 > g32 r32
+a32 c32 a32 c32 a32 c32 a32 r32 >
+c32 < e32 > c32 < e32 > c32 < e32 > c32 r32 <
+[b32 d32]8
+$E8 $30 $60 *4
+
+@1 y10 v250 q6e
+(3)1
+@3 y15
+f+32 < a32 > f+32 < a32 > f+32 < a32 > f+32 r32
+f32 < a32 > f32 r32 f+32 < a32 > f+32 r32 >
+[c32 < d32 >]5 c32 r32 < f+32 < a32 > f+32 r32
+[g32 < b32 >]8
+$E8 $30 $60 *4 r8 <
+
+
+[
+	@2 h0
+	y5 v250
+	q6e
+	r8 < c32 d32 e32 f32 g32 a32 b32 > c32 d32 e32 f32 g32 a32 b32 > c16 r2
+	@1 y10
+	< g12 a12 g12 f+12 g12 f+12 d4 < b8
+]2
+
+@2 h0
+y5
+q6e
+r8 c32 d32 e32 f32 g32 a32 b32 > c32 d32 e32 f32 g32 a32 b32 > c16 r2
+@1 y10
+< a8 r8 r8 a8 a8 r8 r8 a8 < d+2
+@0 y5
+q1e
+> d8 a8 > d8 a8 > d8 r4.
+@1 q5d
+<<< a4. 
+
+
+
+
+
+#2
+
+r2r2r2r4.
+
+/
+
+
+@1 y15
+q6e
+[r8 r8 o3 b8 b8]3 [r8 r8 a8 a8]3 r8 r8 a8 r8 a8 r8 b8 b8
+r8 r8 b8 b8 r8 r8 > f8 f8 r8 r8 g8 g8 r8 r8 g8 g8
+r8 r8 d8 d8 r8 r8 c8 c8 r8 < b8 r8 g8 r8 b8
+
+
+@4
+$DE $23 $11 $40
+y10 q6c
+r4. o2 g2 b2 > c2 c+2 d2 < a2 b2 g2
+q6d
+g2 b2 > c2 c+2 d2 < f+2 g2 ^2
+
+[
+	@1 y10 q6e
+	> c4. c8 c4 r4 < b2 g2 
+]2
+
+> c4. c8 c4 r4
+d8 r8 r8 r8 d8 r8 r8 r8 a2 d8 r2..
+q6e
+< d4. 
+
+
+
+
+
+#3
+@1
+y10
+v250
+$DE $23 $12 $40
+q4e
+o4 d8 d8 d8 < d8 > d8 d8 d8 < d8 > a2 f+8 r4
+
+/
+
+
+@1
+y10
+q6e
+[r8 << g8 >> g8 g8]3 [r8 << d8 >> f+8 f+8]3 r8 << d8 >> f+8 r8 f+8 << g8 >> g8 g8 
+r8 << g8 >> g8 g8 r8 << b8 >> b8 b8 r8 < c8 >> c8 c8 r8 << c+8 >> c+8 c+8
+r8 << d8 > a8 a8 r8 << f+8 >> f+8 f+8 r8 << g8 r8 d8 r8 g8 r8 
+
+
+@1
+y20
+r4 o3 g8 b8 > d8 < b8 g8 b8 > d8 < b8 > [c8 e8 g8 e8 c+8 e8 g8 e8]1
+d8 f+8 a8 f+8 d8 f+8 a8 f+8 < g8 b8 > d8 < b8 g8 b8
+r4 g8 b8 > d8 < b8 b8 > d8 f8 d8 *1
+d8 f+8 a8 f+8 < a8 > d8 f+8 d8 < b8 > d8 < a8 > d8 < g4. r8
+
+
+y10 q6e
+[g4. g8 g4 r4 g2 d2]2
+g4. g8 g4 r4
+a8 r4. a8 r4. f2 f+8 r2.. q5d f+4. 
+
+
+
+
+
+
+#4
+@0 y10
+v250
+$DE $23 $11 $40
+q4e
+r2r2 o3 f2 d8 r4
+
+/
+
+
+@3 y15
+q6e
+r8 r8 d8 g8 r8 r8 d8 g8 r8 r8 d8 b8 r8 a8 r8 a8
+r8 r8 d8 a8 r8 r8 d8 a8 r8 r8 d8 f+8 r8 g8 r8 g8
+r8 r8 d8 g8 r8 r8 f8 b8 r8 r8 g8 > c8 r8 c+8 r8 c+8
+r8 r8 < a8 > d8 r8 r8 < f+8 > c8 r8 < d8 r8 < b8 r8 g8 r8
+
+[r2]26
+@1
+y20
+q6e
+r8 r8 > f+8 r4. f+8 r4. > c2 < a8 r2.. q5d > c4. 
+
+
+
+
+
+
+#6
+r2r2r2..
+
+/
+
+
+*8
+
+
+@1 y5
+$DE $23 $12 $40
+q6c
+r8 w200
+$E1 $ff $f0 o5 g2 f2 e2 d+2
+$E1 $64 $c8 d2 c2 < b2..
+
+*32 r8
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

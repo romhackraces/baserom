@@ -1,0 +1,87 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Star Road"
+	#game "Super Mario World"
+}
+#option smwvtable
+
+#0
+$F0 @4 t25
+y10 q3b
+[
+	o5 c16 c16 c16 < d16 > c8 < d16
+	b16 ^16 b16 b16 c16 b16 a16 a+16 b16
+]2
+o5 c16 c16 c16 < d16 > c8 < d16
+b16^16 b16 b16 b16 b16 r8.
+
+
+
+
+
+#1
+@8 y10 q3e
+[
+	o2 d8. a16 > d8. < a16
+	c8. g16 > c16 c16 < g16^16 
+]2
+d8. a16 > d8. < a16
+c16 c16 c16 c16 c16^16^16 g16 
+
+
+
+
+
+#2
+@4 y0 q3b
+[
+	o4 f16 f16 f16 r16 f8 r16
+	e16^16 e16 e16 r16 e16 r16 r16 r16
+]2
+f16 f16 f16 r16 f8 r16
+e16^16 e16 e16 e16 e16 r16 r16 r16 
+
+
+
+
+
+#3
+y20
+
+[
+	r8 q6b @23c4 q69
+	@22c16 @22c16
+]4
+
+r8 q69 @23c4 q69
+@22c16 @22c16 q6b
+r16 @22c16 q69
+@22c16 q6b
+@22c16 q6c
+@22c4
+
+
+
+
+
+#4
+@4 y0 q3b
+[
+	o4 a16 a16 a16 r16 a8 r16
+	g16^16 g16 g16 r16 g16 r8.
+]2
+a16 a16 a16 r16 a8 r16
+g16^16 g16 g16 g16 g16 r8.
+
+
+
+
+#5
+@12 h0 y0 q6f
+[o4 d16^16 a16^16^16 a16 < b16 b16]5
+> d16^16 a16 a16 a16^16 > c16^16 
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

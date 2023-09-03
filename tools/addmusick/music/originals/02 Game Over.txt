@@ -1,0 +1,96 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Game Over"
+	#game "Super Mario World"
+}
+
+;ported by gocha
+
+"VCMD_ECHO_OFF=$f0"
+
+#option TempoImmunity
+#option NoLoop
+
+#0	VCMD_ECHO_OFF
+
+	@13 t48 y13 q6d
+	o3 g4 ^4 ^=20 ;^4-=28
+
+	; $15A8 / $3C25
+	;y13 q6d
+	l2 c ^=9 ;^2-=87
+
+	; $15AA / $3C63
+	;y13 q6d
+	l2 f^^
+
+	; halt
+
+
+#1	@13 y12 r48 q6c
+	o4 l4 d^ ^=20 ;^4-=32^48
+	; $15A8 / $3C2C
+	;y12 q6c
+	< g2 ^=9 ;^2-=91^48
+	; $15AA / $3C6B
+	;y12 q6c
+	> l2 c^ ^=92 ;^2-=4
+
+#2	@13 y11 r24 q6c
+	o4 l4 f^ ^=20 ;^4-=36^24
+	; $15A8 / $3C35
+	;y11 q6c
+	< l2 a+ ^=9 ;^2-=95^24
+	; $15AA / $3C74
+	;y11 q6c
+	> e4. l4 ^>>g l2 ^ ^=16 ;^2-=80
+
+#3	@13 r=11 q6c
+	o4 l4 a+^ ^=9 ;^4-=39
+	; $15A8 / $3C3E
+	;y10 q6c
+	l4 a+g ^=10 ;^4-=39^192
+	; $15AA / $3C81
+	;y10 q6c
+	a4.>a4.^4. ^=71 ;^4.-=1
+
+#4	@13 y9 r24.. q6c
+	o5 l4 d^ ^=9 ;^4-=42^64
+	; $15A8 / $3C46
+	;y9 q6c
+	l4 c+<a+ ^=9 ;^4-=42^64
+	; $15AA / $3C8B
+	;y9 q6c
+	>c4.^8> l2 d ^=93 ;^2-=3
+
+#5	@13 y8 r=17 q6c
+	o5 f4 q6d
+	f4 ^=9 ;^4-=45^32
+
+	; $15A8 / $3C50
+	;y8
+	q6c
+	l4 e4c+ ^=8 ;^4-=45^=5
+
+	; $15AA / $3C97
+	;y8 q6c
+	l2 e^ ^=91 ;^2-=5
+
+#6	@13 y7 r=20 q6d
+	o5 a4 q6d
+	l8 ^c
+
+	; $15A8 / $3C5A
+	;y7 q6d
+	^32.
+	o5 l4 ae
+
+	; $15AA / $3CA0
+	;y7 q6d
+	^48..
+	o5 l2 g^ ^=89 ;^2-=7
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

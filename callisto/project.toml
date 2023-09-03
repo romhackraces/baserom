@@ -1,0 +1,64 @@
+[settings]
+
+project_root = "../"
+check_conflicts = "hijacks"
+conflict_log_file = "conflicts.txt"
+
+ignored_conflict_symbols = [
+	"InitialPatch",
+
+    "Overworld",
+    "TitleScreen",
+    "Credits",
+    "GlobalExAnimation",
+
+    "SharedPalettes",
+
+    "ExGraphics",
+    "Graphics",
+
+    "Levels",
+
+    "Map16"
+]
+
+use_text_map16_format = false
+enable_automatic_exports = true
+enable_automatic_reloads = true
+
+[output]
+
+output_rom = "workspace/RHRv5.smc"
+temporary_folder = "workspace/temp"
+bps_package = "workspace/RHRv5.bps"
+
+# Build order configuration
+[orders]
+build_order = [
+    "InitialPatch",             # Apply initial patch
+
+    # "Modules",                  # Insert modules
+
+    "Graphics",                 # Insert GFX
+    "ExGraphics",               # Insert ExGFX
+    "Map16",                    # Insert Map16
+
+	# "TitleScreenMovement",      # Uncomment this if you're inserting title moves
+
+    "SharedPalettes",           # Insert Shared Palettes
+    "Overworld",                # Insert Overworld
+    "TitleScreen",              # Insert Titlescren
+    "Credits",                  # Insert Credits
+    "GlobalExAnimation",        # Insert Global ExAnimation
+
+    "Patches",                  # Insert all remaining patches from the patches list that
+                                # are not explicitly mentioned in this build order
+
+
+    "PIXI",                     # Insert custom sprites
+    "Levels",                   # Insert all levels
+
+    "GPS",                      # Insert custom blocks
+    "AddMusicK",                # Insert custom music
+    "UberASM",                  # Insert UberASM code
+]

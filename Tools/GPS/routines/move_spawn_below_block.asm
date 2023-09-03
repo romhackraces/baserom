@@ -1,0 +1,18 @@
+;~@sa1
+	PHX
+	TAX
+	LDA $98
+	AND #$F0
+	CLC
+	ADC #$10
+	STA !D8,x
+	LDA $99
+	ADC #$00
+	STA !14D4,x
+	LDA $9A
+	AND #$F0
+	STA !E4,x
+	LDA $9B
+	STA !14E0,x
+	PLX
+	RTL

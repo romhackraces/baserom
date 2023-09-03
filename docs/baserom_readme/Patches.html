@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<style>td:nth-child(1){width: 240px};</style>
+<body>
+<section>
+<a href="../../README.html" class="back">&larr;</a>
+<h2>Patches</h2>
+<p>The Romhack Races baserom comes with a significant number of patches to the base game. They are listed below with a brief summary to explain why they are used.</p>
+<!-- Contents -->
+<h3>Contents</h3>
+<ol>
+<li><a href="#bug-fixes">Bug Fixes</a></li>
+<li><a href="#sprite-fixes">Sprite Fixes</a></li>
+<li><a href="#visual-fixes">Visual Glitch Fixes</a></li>
+<li><a href="#consistency">Changes for Consistency</a></li>
+<li><a href="#optimizations">Optimizations</a></li>
+<li><a href="#additional-patches">Additional Patches</a></li>
+<li><a href="#features">New Features</a></li>
+<li><a href="#enhancements">Enhancements</a></li>
+<li><a href="#tweaks">Tweaks</a></li>
+</ol>
+<!-- Section -->
+<h3 id="bug-fixes">Bug Fixes</h3>
+<table border="1">
+<tr><td><a href="https://smwc.me/s/8771">P-Balloon and Cloud Clipping Fix</a></td><td>removes the glitch where if you press left and right simultaneously you can pass through blocks while in the cloud or p-balloon</td></tr>
+<tr><td><a href="https://smwc.me/s/29094">Question Block Item Collision Fix</a></td><td>removes collision from sprites spawned from blocks for a short time so they can't interact with other sprites</td></tr>
+<tr><td><a href="https://smwc.me/s/29085">Horizontal Scroll Snap Fix</a></td><td>fixes an issue where the screen snaps horizontally when the player isn't in the middle of the screen</td></tr>
+<tr><td><a href="https://smwc.me/s/26926">Proximity Wraparound fix</a></td><td>fixes a bug in the proximity-to-sprites check where it can wrap the screen border</td></tr>
+<tr><td><a href="https://smwc.me/s/25647">Bounce Blocks Death Fix</a></td><td>fixes an issue where Mario can trigger blocks that have a bounce sprite when dying</td></tr>
+<tr><td><a href="https://smwc.me/s/23847">Line Guide Acts-Like Fix</a></td><td>allows you to use the line guide tiles outside of the Rope graphics header</td></tr>
+<tr><td><a href="https://smwc.me/s/22611">P-Switch Duplication with Yoshi Fix</a></td><td>prevents the Glitch where you can grab and spit out a used p-switch with Yoshi to get another</td></tr>
+<tr><td><a href="https://smwc.me/s/21413">Layer 2+3 Wallrun Triangle Fix</a></td><td>enables the wall run triangle to be used on Layer 2</td></tr>
+<tr><td><a href="https://smwc.me/s/19932">Walljump/Note Block Glitch Fix</a></td><td>prevents Mario from catching on solid tiles when he jumps at a wall</td></tr>
+<tr><td><a href="https://smwc.me/s/19456">Dark Room Background Fix</a></td><td>allows the spotlight/dark room effect to be used in other level modes (besides 11) and not erase the background</td></tr>
+<tr><td><a href="https://smwc.me/s/19333">Feather Autoscroll Freeze Fix</a></td><td>fixes a game crash that occurs if you collect a feather while offscreen in an autoscroller</td></tr>
+<tr><td><a href="https://smwc.me/s/19222">No Sprite Interaction Fix</a></td><td>fixes an issue in sprite interaction where sometimes a sprite in a given slot won't interact with another</td></tr>
+<tr><td><a href="https://smwc.me/s/18413">Block Duplication Fix</a></td><td>patches out the ability to use a held sprite to duplicate a block; the baserom has modified this patch to make this toggleable via FreeRAM</td></tr>
+<tr><td><a href="https://smwc.me/s/18320">Item Box Mushroom Priority Fix</a></td><td>changes the Mushroom to be a lower priority sprite in the item box, not overriding a reserve Flower</td></tr>
+<tr><td><a href="https://smwc.me/s/18319">$13FB Game Crash Fix</a></td><td>this fixes a crash that occurs during sprite collision, notably when collecting a fire flower and eating a berry on Yoshi</td></tr>
+<tr><td><a href="https://smwc.me/s/15110">Time Up Fix</a></td><td>prevents &quot;TIME UP&quot; from appearing when you die in a zero time limit level</td></tr>
+<tr><td><a href="https://smwc.me/s/14053">Rollover Fix</a></td><td>fixes an issue where if you exceed 255 door entries, enemy bounces, or shell hits the game will overflow</td></tr>
+<tr><td><a href="https://smwc.me/s/12328">Cape Layer 2 Position Fix</a></td><td>fixes an issue with the Capespin hitbox persisting if the game is frozen, e.g. during power-up/down, etc.</td></tr>
+<tr><td><a href="https://smwc.me/s/11618">Cluster Boo Ducking Fix</a></td><td>fixes a bug where ducking doesn't actually work with cluster boos/bats.</td></tr>
+</table>
+<!-- Section -->
+<h3 id="sprite-fixes">Sprite Fixes</h3>
+<table border="1">
+<tr><td><a href="https://smwc.me/s/8784">Rope Fix</a></td><td>fixes the bug where being pushed off a rope by a wall will leave Mario in climbing state</td></tr>
+<tr><td><a href="https://smwc.me/s/29595">Dead Spring Fix</a></td><td>fixes an issue where springs can warp Mario if they are killed (usually by sprite-kill blocks)</td></tr>
+<tr><td><a href="https://smwc.me/s/22833">Vertical Spawn/Despawn Fix</a></td><td>fixes a glitch where sprites despawn when (re)entering the screen vertically</td></tr>
+<tr><td><a href="https://smwc.me/s/22761">Ball n' Chain and Yoshi Interaction Fix</a></td><td>this fixes an issue where Yoshi can be hurt by the middle of a ball n' chain</td></tr>
+<tr><td><a href="https://smwc.me/s/22084">Springboard Fixes</a></td><td>this patch prevents Mario from being able to regrab a springboard very briefly after it's been kicked as well as prevents Mario from losing his x speed on the same frame one is picked up</td></tr>
+<tr><td><a href="https://smwc.me/s/21707">Triple Rotating Platform Vertical Level Fix</a></td><td>a fix for the rotating platform not spawning when placed in vertical levels</td></tr>
+<tr><td><a href="https://smwc.me/s/20145">Skull Raft Fix</a></td><td>removes the issue in the skull raft where Mario can get stuck between two skulls</td></tr>
+<tr><td><a href="https://smwc.me/s/18948">Line-Guided Rope Length Fix</a></td><td>changes the Rope so it's length isn't sprite memory dependent</td></tr>
+<tr><td><a href="https://smwc.me/s/18722">Hammer Bro Fix</a></td><td>allows more than one Hammer Brother to be placed</td></tr>
+<tr><td><a href="https://smwc.me/s/18721">Moving Castle Block Offscreen Handling Fix</a></td><td>fixes an issue in the Castle block where it doesn't despawn when offscreen</td></tr>
+<tr><td><a href="https://smwc.me/s/16781">Vertical Level Bowser Statue Fireball Fix</a></td><td>fixes a bug where Bowser statue fireballs don't despawn offscreen in vertical levels</td></tr>
+<tr><td><a href="https://smwc.me/s/14697">Sprite Ceiling Fix</a></td><td>fixes an issue with a number of sprite's collision where they will pass through a ceiling when they come in contact with it</td></tr>
+<tr><td><a href="https://smwc.me/s/13675">Sprite Scroll Fix</a></td><td>fixes an issue with sprite despawning during screen scroll (not via L/R)</td></tr>
+</table>
+<!-- Section -->
+<h3 id="visual-fixes">Visual Glitch Fixes</h3>
+<table border="1">
+<tr><td><a href="https://smwc.me/s/32380">BG Candle Flames Priority Fix (for SA-1 MaxTile)</a></td><td>if using SA-1 there is an issue with the candle flames having priority over other sprites, this fixes that</td></tr>
+<tr><td><a href="https://smwc.me/s/24684">Bob-omb Kicked Palette Fix</a></td><td>fixes an issue in the bob-omb where when it is kicked while flashing it sticks in that palette</td></tr>
+<tr><td><a href="https://smwc.me/s/32586">Climbing Net Door on Subscreen Boundary</a></td><td>fixes a mostly visual bug in the Net door sprite where it doesn't fully erase tiles behind it when on a screen boundary</td></tr>
+<tr><td><a href="https://smwc.me/s/17740">Spike Swim Fix</a></td><td>fixes an issue where when Mario takes damage underwater during a swim his graphics appear garbled</td></tr>
+<tr><td><a href="https://smwc.me/s/30709">Star/Slide Kill GFX Fix</a></td><td>fixes the garbled graphics when you kill a sprite via slide or star that does not have death graphics</td></tr>
+<tr><td><a href="https://smwc.me/s/8975">Title Window Cleaner</a></td><td>removes garbage tiles from the title screen that appear when certain sprites are on positions in the overworld</td></tr>
+<tr><td><a href="https://smwc.me/s/26503">Torpedo Ted Offscreen Smoke Fix</a></td><td>patches out Torpedo Teds smoke appearing when vertically offscreen</td></tr>
+<tr><td><a href="https://smwc.me/s/22372">Victory Pose Fix</a></td><td>fixes a visual issue with Mario's head being squish at level end when small and on Yoshi</td></tr>
+<tr><td><a href="https://smwc.me/s/30127">Yoshi Pipe Animation Fix</a></td><td>fixes an issue where a dismounted Yoshi will use an entering-a-pipe pose when Mario enters a pipe</td></tr>
+</table>
+<!-- Section -->
+<h3 id="consistency">Changes for Consistency</h3>
+<table border="1">
+<tr><td>Capespin Direction Consistency</td><td>makes it so pressing spin while in flight will consistently turn Mario around; the baserom has modified this patch to make this toggleable via FreeRAM</td></tr>
+<tr><td>Capespin Hitbox Consistency + Net Punching Hitbox Correction</td><td>this patch makes the capespin hitbox is always active on both sides of Mario, check for interaction with sprites every single frame, and check for interaction with tiles either on the left or right side of Mario based on whether the frame is even or odd.</td>
+</tr>
+<tr><td><a href="https://smwc.me/s/13400">Double Spinjump Antifail</a></td><td>prevents Mario from dying when spinjumping on two sprites at once</td></tr>
+<tr><td>Item Release Consistency Fix</td><td>this largely makes item throwing and dropping consistent with Mario's movement or the direction on the D-pad being held</td>
+</tr>
+<tr><td><a href="https://smwc.me/s/24862">Player X Speed Fix</a></td><td>patches Mario's x-speed oscillation to be consistent when he is at max speed as well as his inability to jump when going at high speed</td></tr>
+</table>
+<!-- Section -->
+<h3 id="optimizations">Optimizations</h3>
+<table border="1">
+<tr><td><a href="https://smwc.me/s/31950">Optimize 1F0</a></td><td>fixes an issue where placing sprites on slope-assist tiles runs up the CPU usage and could potentially cause slowdown</td></tr>
+<tr><td><a href="https://smwc.me/s/18596">Fixed Color Data NMI Optimizer</a></td><td>improves how the background colour is stored so there's fewer cycles used during NMI</td></tr>
+<tr><td><a href="https://smwc.me/s/28028">Lunar Magic's &quot;VRAM Patch&quot; Optimization</a></td><td>optimizes Lunar Magic's handling of VRAM</td></tr>
+<tr><td><a href="https://smwc.me/s/16366">Layer 2 Buoyancy Optimization</a></td><td>fixes slowdown that may occur if use Lunar Magic's second buoyancy option but still have water tiles on Layer 2</td></tr>
+<tr><td><a href="https://smwc.me/s/33996">Status Bar NMI Optimizer</a></td><td>faster NMI for the Status Bar saving more scanlines</td></tr>
+</table><!-- Section -->
+<h3 id="additional-patches">Additional Patches</h3>
+<table border="1">
+<tr><td><a href="https://smwc.me/s/24816">No More Sprite Tile Limits</a></td><td>allows more sprite tiles to be displayed on screen simulateneously</td></tr>
+<td>Free Up Tile 69</td><td>patch to re-assign the empty tile at $69 in SP1 to $83 to allow it to be used for other purposes</td>
+</table>
+<!-- Section -->
+<h3 id="features">New Features</h3>
+<table border="1">
+<tr><td><a href="https://smwc.me/s/22888">Individual Dragon Coin Save</a></td><td>patches the Dragon Coin system so they are saved when collected</td></tr>
+<tr><td><a href="https://smwc.me/s/24217">ObjecTool 0.5</a></td><td>this system allows for the insertion of custom objects, the baserom makes use of this to enable toggleable features</td></tr>
+<tr><td><a href="https://smwc.me/s/26002">Mario's 8x8 Tiles DMA-er</a></td><td>this moves all of the small 8x8 tiles used by Mario when he is climbing or swimming or caping, to be a dynamic asset freeing up a bunch of sprite tiles space in SP1</td></tr>
+<tr><td><a href="https://smwc.me/s/20355">RAM Specific L/R Scroll Disable</a></td><td>rather than a global solution disabling L/R scroll this enabled it to be toggled via FreeRAM</td></tr>
+<tr><td><a href="https://smwc.me/s/28449">RAM Toggled Status Bar</a></td><td>allows the status bar to be toggled via FreeRAM instead of patched out globally</td></tr>
+</table>
+<!-- Section -->
+<h3 id="enhancements">Enhancements</h3>
+<table border="1">
+<tr><td>Double Bounce Shell Palette</td><td>used to display the double bounce shell as grey in-game to distinguish it from the normal green shell</td></tr>
+<tr><td><a href="https://smwc.me/s/30450">Monty Mole, Hammer Bro and Dry Bone Behavior on Extra Bit</a></td><td>these three sprite typically have a sub-map specific behaviour in vanilla, this patch changes that to be enabled by extra bit instead</td></tr>
+<tr><td><a href="https://smwc.me/s/28579">Pitchin' Chuck Won't Turn On Extra Bit</a></td><td>with this patch all types of chucks will persist in their behaviour after jumping on them, instead of chasing Mario</td></tr>
+<tr><td><a href="https://smwc.me/s/22809">Placeable (Kicked) Throw Block</a></td><td>this allows for placing a throw block without the need for the block object, it can be put in kicked state with extra bit</td></tr>
+<tr><td><a href="https://smwc.me/s/21597">Placeable Disco Shell</a></td><td>enables a disco shell to be placed directly without the need for a yellow koopa and shell set up, saving a sprite slot</td></tr>
+<tr><td><a href="https://smwc.me/s/28994">Placeable Kicked Shell</a></td><td>enables a kicked shell to be spawned  without the need for a kicking koopa, saving a sprite slot</td></tr>
+<tr><td><a href="https://smwc.me/s/20440">Poison Mushroom</a></td><td>replaces one of the unused vanilla sprites with a Poison mushroom</td></tr>
+<tr><td><a href="https://smwc.me/s/32080">Red Stem Piranha Plants on Extra Bit + Stem Fix</a></td><td>fixes the incorrect stem of the pirahna plants in the Vanilla game but also enhances them with extra bit functionality to have them ignore Mario</td></tr>
+<tkr><td><a href="https://smwc.me/s/27788">Rexes With Extra Bit Set Are Squished</a></td><td>starts a Rex in squished state</td></tr>
+<tr><td><a href="https://smwc.me/s/18949">Spike Top Ceiling Cling</a></td><td>patch to allow spinies to be placed on the ceiling</td></tr>
+<tr><td><a href="https://smwc.me/s/19256">Triple Ball 'n' Chain</a></td><td>enhances the triple grey platform sprite to be a triple ball n' chain when the extra bit is set</td></tr>
+</table>
+<!-- Section -->
+<h3 id="tweaks">Tweaks</h3>
+<p>Many minor fixes or edits have been made to the base game via <a href="https://github.com/romhackraces/baserom/blob/main/Tools/Asar/Tweaks.asm">hex edits</a>.</p>
+<!-- Section -->
+<h4 id="gameplay-changes">Gameplay Changes</h4>
+<p>Some minor changes have been made to the game to optimize it for building Kaizo levels:</p>
+<ul>
+<li>Doors have been edited to have larger enterable region (similar to the boss door).</li>
+<li>Mario-Sprite interaction has been patched to be every frame (colloquially known as the &quot;Frame Rules&quot; patch).</li>
+<li>Bob-Omb explosions now interact with Mario and other sprites every frame</li>
+<li>the rescue message when Yoshi hatches from an egg has been removed</li>
+<li>the bridge will no longer break in the Reznor fight</li>
+<li>the framerule on yellow koopa jumping has been removed</li>
+<li>Horizontal pipes now have an exit sound.</li>
+<li>RNG has been removed from jumping fireballs/podobos</li>
+<li>the timeout on the intro message has been shortened</li>
+<li>Mario won't shoot fireballs while spin jumping</li>
+</ul>
+<h4 id="fixed-bugs-glitches">Fixed Bugs &amp; Glitches</h4>
+<p>A number of bugs and glitches have been patched out of the original game so they will not impact your levels:</p>
+<ul>
+<li>Yoshi stomp hitbox will no longer wrap the screen</li>
+<li>horizontal pipes now make an exit sound</li>
+<li>music won't disappear overworld when boss defeated</li>
+<li>game will no longer crash if trying to stop layer 3 smash with generator D2</li>
+<li>an issue where ? block sprites are immune to fire has been fixed</li>
+<li>beating a boss in sublevel 18 will no longer glitch Yoshi and stop Mario from walking past a goal tape</li>
+<li>a bug where the message box closing removes sprite tiles has been fixed</li>
+</ul>
+<h4 id="visual-changes-fixes">Visual Changes &amp; Fixes</h4>
+<p>Several minor visual problems and oversights in the vanilla game have been fixed or corrected:</p>
+<ul>
+<li>the chuck arm's palette has been fixed</li>
+<li>dolphin tails will no longer appear when they are vertically off screen</li>
+<li>the backwards end tile on the turn block bridge sprites have been corrected</li>
+<li>the palette error on the &quot;S&quot; of MARIO START has been corrected</li>
+<li>Wendy's bow animation has been fixed</li>
+<li>the Swooper ceiling and dead Swooper graphics have been fixed</li>
+<li>an incorrect tile in the keyhole iris effect has been fixed</li>
+<li>the Erase Game darkening has been removed</li>
+<li>the incorrect tile color in the layer 3 cave background has been fixed</li>
+<li>magikoopa's palette cycle has been corrected</li>
+<li>a number of bugs when using HDMA have be fixed</li>
+</ul>
+</section>
+</body>
+</html>

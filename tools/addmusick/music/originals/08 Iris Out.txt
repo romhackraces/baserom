@@ -1,0 +1,22 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Iris Out"
+	#game "Super Mario World"
+}
+
+#option TempoImmunity
+#option NoLoop
+
+#0
+@0 t70 y0
+$DC$60$14 q7E o5 f=108 $DD$18$24$A4 $DD$00$18$B0 $DD$00$0C$B5 
+
+#1
+@0 y20
+$DC$60$00 q7E o4 f=108 $DD$18$24$98 $DD$00$18$A4 $DD$00$0C$A9
+
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

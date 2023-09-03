@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<section>
+<a href="../../README.html" class="back">&larr;</a>
+<h2>Frequently Asked Questions</h2>
+<h3 id="callisto">"What is Callisto?"</h3>
+<p>It's a build system that makes it easier to build the rom from scratch, by doing this it avoids potential conflicts between resources and insures your hack is built cleanly.</p>
+<h3 id="removing-things">"How do I remove things from the baserom?"</h3>
+<p>Callisto makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts. Removing resources, like blocks or sprites, is as straightforward as editing the list of the respective tool and running Lunar Helper's "(Re)Build" action. You can then delete those resources, if desired.</p>
+<h3 id="hide-statusbar">"How do I hide the status bar?"</h3>
+This baserom comes with several objects to toggle feature on/off in levels, including the Status bar. Check out the <a href="UberASM Objects.html">UberASM Objects</a> documentation for details.
+<h3 id="fast-retry">"Does this have Fast Retry?"</h3>
+<p>Yes! You can turn on the retry in a level using a custom object. The <a href="UberASM Objects.html#retry-objects">UberASM Objects</a> has a section for the retry system with details.</p>
+<h3 id="block-graphics">"Why are my block graphics not looking right?"</h3>
+The custom block graphics in the baserom use ExGraphics, loading E17 into the FG2 slot in the graphics override dialog will make the blocks appear as they are intended to in other levels.
+<h3 id="sa1">"Is the baserom SA-1 compatible?"</h3>
+<p>Yes! The baserom's resources are all compatible with SA-1, but the baserom itself is configured to be FastROM by default. However to use SA-1 it only takes a couple steps to switch over to it:</p>
+<ol>
+    <li>In the "project.toml" file in the Callisto folder, change the "initial_patch" setting to use the SA-1 option.</li>
+    <li>Rebuild your project in Callisto to make the change</li>
+</ol>
+</section>
+</body>
+</html>

@@ -1,0 +1,182 @@
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Welcome"
+	#game "Super Mario World"
+}
+#option smwvtable
+
+#0
+@1
+t50
+$DE $14 $14 $20
+y10
+q5d
+r8 o5 g16 a16 > e16 r16 < g16 a16 > e4 ^4 r8 < g16 a16 > f16 r16 < g16 a16 > f4 ^4 r8 < g16 g+16 > f16 r16 < g16 g+16 > f4 ^4 r8 < g16 a16 > e16 r16 < g16 a16 > e4 ^4 
+; $1A3A / $2886
+o4 f2 ^2 q7c
+g8 > d8 g8 a8 a+4 b4 ^2 
+
+/
+r2
+
+
+
+#1
+@1
+$DE $14 $15 $20
+y15
+q5d
+r8 o5 e16 f16 > c16 r16 < e16 f16 > c4 ^4 r8 < e16 f16 > d16 r16 < e16 f16 > d4 ^4 r8 < d16 f16 > d16 r16 < d16 f16 > d4 ^4 r8 < e16 f16 > c16 r16 < e16 f16 > c4 ^4 
+; $1A3A / $28A9
+q5b
+^4 < a4 f4 d4 c2 < b2 ^2 
+
+/
+r2
+
+
+
+#2
+@1
+y5
+$DE $14 $14 $20
+q5e
+o3 c2 ^4. c8 c2 ^4. c8 c2 ^4. c8 c2 ^4. c8 
+; $1A3A / $28EE
+d2 ^2 g2 ^2 ^2 
+
+/
+r2
+
+
+
+
+#3
+@4
+y10
+$DE $14 $13 $20
+q5e
+o2 c2 ^4. c8 c2 ^4. c8 c2 ^4. c8 c2 ^4. c8 
+; $1A3A / $28CD
+d2 ^2 g2 ^2 ^2 
+
+/
+r2
+
+
+
+
+#4
+@0
+$DE $14 $13 $20
+y10
+q59
+r2 r4 o5 g16 a16 g16 a16 g2 r4 g16 a16 g16 a16 g2 r4 g16 g+16 g16 g+16 g16 e16 c16 < a16 > c16 < a16 g16 e16 g16 e16 c16 < a16 g4
+; $1A3A / $28B4
+
+; warning: 48 ticks truncated;;;;;;;;;;;;;;;;;;;;
+@0
+y10
+$DE $14 $14 $20
+q5d
+r8 > d16 c+16 d8 f8 a8 f8 a8 > f8 e2 d2 ^2 
+
+/
+r2
+
+
+
+#5
+@1
+y15
+$DE $14 $15 $20
+v170
+$E8 $c0 $f0
+q3e
+r8 o4 g16 g16 g8 g8 g8 g8 g8 g8 v170
+$E8 $c0 $f0
+r8 a16 a16 a8 a8 a8 a8 a8 a8 v170
+$E8 $c0 $f0
+r8 g+16 g+16 g+8 g+8 g+8 g+8 g+8 g+8 v170
+$E8 $c0 $f0
+r8 g16 g16 g8 g8 g8 g8 g8 g8 
+; $1A3A / $28D4
+@1
+y10
+q6d
+< a2 ^2 b2 @16 h0
+q6d
+> g32 b32 > d32 f32 g32 b32 > d32 f32 g4 ^2 
+
+/
+r2
+
+
+
+
+#6
+@1
+y5
+
+; VCMD_SUBROUTINE $67 $28 $04
+[
+v220
+$E8 $60 $64
+q7e
+$E6 $00
+@28 c32
+$E6 $0F
+v170
+r4. q5e
+@27 c8 
+]4
+
+
+; $1A3A / $28F5
+
+v200 $E8 $30 $64
+q7e
+$E6 $00
+@28 c32
+$E6 $07
+r4 r2 
+v200 $E8 $60 $64
+q7e
+$E6 $00
+@28 c32
+$E6 $1F 
+r2 
+
+/
+r2
+
+
+
+
+
+#7
+@1
+y15
+$DE $14 $14 $20
+v170
+$E8 $c0 $f0
+q3e
+r8 o4 e16 e16 e8 e8 e8 e8 e8 e8 v170
+$E8 $c0 $f0
+r8 f16 f16 f8 f8 f8 f8 f8 f8 v170
+$E8 $c0 $f0
+r8 f16 f16 f8 f8 f8 f8 f8 f8 v170
+$E8 $c0 $f0
+r8 e16 e16 e8 e8 e8 e8 e8 e8 
+; $1A3A / $2895
+
+$DE $14 $15 $20
+q7c
+c2 ^2 < b8 > f8 b8 > c8 c+4 d4 ^2 
+
+/
+r2                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

@@ -1,0 +1,60 @@
+;本家SMW 洞窟　by ◆oL7G5poF4c 
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Cave"
+	#game "Super Mario World"
+}
+
+#samples
+{
+	#default
+}
+
+
+#option smwvtable
+
+ #0 q4e t35 @3 y0
+$ef $f6 $00 $00
+$f1 $04 $6c $00
+$f2 $dc $16 $16
+$F4 $00				;ヨッシー制御オン
+r8.
+(1)[o1f8a+8g+16a+16r16f16r16f16a+16r16g+8a+8]2/
+(1)10
+[o1a+8>d8c16d16r16<a16r16a16>d16r16c8d8<g+8>d8c16d16r16<g16r16g16>d16r16c8d8]2
+
+ #1 q6b y15
+r8.
+(2)[r2]4/
+(2)4
+r32(3)[@8h0
+$de $14 $08 $50
+r8o3g+8f8.c16d16f2r16c8f16>c8<g+2 $dd $0c $3c $a1  $DF ^2^1^2^16]2
+(4)[$de $14 $08 $50
+a8.f8.c8a8.f4r16g+16f16c8g+8.g2]1 r16
+(4)1 r32
+
+ #2 y5
+r8.
+(2)4/
+(2)4
+[@8h0 q6e
+$de $14 $08 $50
+r8o3g+8f8.c16d16f2r16c8f16>c8<g+2 $dd $0c $3c $a1  $DF ^2^1^2^16]2
+[q5e $de $14 $08 $50
+a8.f8.c8a8.f4r16g+16f16c8g+8.g2r16]2
+
+ #3 q4e @3 y20
+r8.
+(5)[o2f16c16d+16c16c+16<b16>d+16c+16]4/
+(5)28
+
+ #5 q6d @12 h0
+r8.
+(6)[o4f16d32d32f16d8c16c8]4/
+(6)28
+                
+
+#amk 2
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                

@@ -1,0 +1,17 @@
+$E0 $FF $DA $02 $0C $54 $B4 $B0 $B4 $18 $B0 #jsr changePause1
+
+#asm changePause1
+{
+	mov a, $0387			;\
+	mov !SpeedUpBackUp, a	;| Set the tempo increase to 0 and save it.
+	mov a, #$00				;|
+	mov $0387, a			;/
+
+	inc a
+	mov !PauseMusic, a
+	
+	set1  !NCKValue.6	; Set the mute flag.
+	;ModifyNoise, called when restoring the noise frequency, will handle
+	;setting the FLG DSP register.
+	ret
+}

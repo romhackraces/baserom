@@ -1,0 +1,2140 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;    Title = Cast List   ;;
+;; Ported by LadiesMan217 ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+#option smwvtable
+
+#SPC
+{
+	#author "Koji Kondo"
+	#title "Cast List"
+	#game "Super Mario World"
+	#length "2:19"  
+}
+?
+"VCMD_VIBRATO_ON=$de"
+"VCMD_TEMPO_FADE=$e3"
+"VCMD_GLOBAL_TRANSPOSE=$e4"
+
+"PATCH000=@0 h0 $ed $7e $6a"
+"PATCH001=@1 h0 $ed $7a $6a"
+"PATCH004=@4 h0 $ed $29 $6a"
+"PATCH005=@4 h0 $ed $7f $e0"
+"PATCH006=@6 h0 $ed $7a $6a"
+"PATCH008=@8 h0 $ed $2e $26"
+"PATCH013=@13 h0 $ed $7e $6a"
+"PATCH018=@1 h0 $ed $69 $6a"
+
+"PERC000N=@21c"
+"PERC001N=@22c"
+"PERC002N=@23c"
+"PERC000X=@21c"
+"PERC001X=@22c"
+
+#0
+t28
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $18 $14
+q5d
+o4 g+24 a24 r24 b24 > c24 r24 < a8. r16 g+24 g24 r24 g+24 a24 r24 > e8. r16 r24 
+; $14F4 / $20A6
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q4d
+o5 e8 r24 r24 e24 VCMD_TEMPO_FADE $60 $18
+e8 r24 r24 g24 g8 r24 r24 g24 g8 r8 
+; $14F6 / $163D
+PATCH018
+t30
+y10
+VCMD_VIBRATO_ON $14 $19 $27
+q6d
+o5 e16 q2e
+g16 a16 q6e
+g4 q2d
+a16 q6e
+b16 ^16 q2d
+b16 q6e
+a4 q2d
+d+16 q6e
+e16 q2d
+g16 a16 q6e
+g4 q2d
+g+16 q6e
+a16 ^16 q2d
+a16 q6e
+g4 q2d
+g+16 
+; $14F8 / $1800
+q6e
+o5 a16 q2d
+b16 > c16 q6e
+< a4 q2d
+g+16 q6e
+g16 q2d
+g+16 a16 q6e
+e4 r16 q6e
+e16. q6d
+d+32 q2c
+d16 q6e
+e16. q6d
+d+32 q2c
+d16 q2e
+e16 d16 q4e
+g4 ^4 
+; $14FA / $163D
+PATCH018
+t30
+y10
+VCMD_VIBRATO_ON $14 $19 $27
+q6d
+o5 e16 q2e
+g16 a16 q6e
+g4 q2d
+a16 q6e
+b16 ^16 q2d
+b16 q6e
+a4 q2d
+d+16 q6e
+e16 q2d
+g16 a16 q6e
+g4 q2d
+g+16 q6e
+a16 ^16 q2d
+a16 q6e
+g4 q2d
+g+16 
+; $14FC / $1931
+q6e
+o5 a16 q2d
+b16 > c16 q6e
+< a4 q2d
+g+16 q6e
+g16 q2d
+g+16 a16 q6e
+> e4 r16 q6e
+e16 q2d
+d+16 e16 q6e
+c8 q2e
+c16 q6e
+< a8 q4e
+> c4 ^4 
+; $14FE / $1AC8
+PATCH018
+q6d
+o4 a8 > e16 r16 r16 q2d
+e16 q6e
+d+16 q2d
+e16 q6e
+f16 q2d
+e16 c+16 q6e
+< a4 q2d
+a16 q6e
+> e16 q2d
+d16 q6d
+e16 q2d
+d16 q6e
+e16 q2d
+d16 r16 q6d
+< a16 ^4 r4 
+; $1500 / $1BED
+q6d
+o4 g8 > d16 r16 r16 q2d
+d16 q6e
+c+16 q2d
+d16 q6e
+e16 q2d
+d16 < b16 q6e
+g4 q2d
+> d16 q4e
+c8 c8 q6d
+c12 q6e
+d12 q6e
+d+12 e4 r4 
+; $1502 / $1AC8
+PATCH018
+q6d
+o4 a8 > e16 r16 r16 q2d
+e16 q6e
+d+16 q2d
+e16 q6e
+f16 q2d
+e16 c+16 q6e
+< a4 q2d
+a16 q6e
+> e16 q2d
+d16 q6d
+e16 q2d
+d16 q6e
+e16 q2d
+d16 r16 q6d
+< a16 ^4 r4 
+; $1504 / $1CB0
+q6d
+o4 g8 > d16 r16 r16 q2d
+d16 q6e
+c+16 q2d
+d16 q6e
+e16 q2d
+d16 r16 q6e
+< g4 q2d
+> d16 q4e
+c8 c8 q6d
+c12 q6e
+d12 q6e
+d+12 q2e
+e8 r8 q4e
+g4 
+; $1506 / $163D
+PATCH018
+t30
+y10
+VCMD_VIBRATO_ON $14 $19 $27
+q6d
+o5 e16 q2e
+g16 a16 q6e
+g4 q2d
+a16 q6e
+b16 ^16 q2d
+b16 q6e
+a4 q2d
+d+16 q6e
+e16 q2d
+g16 a16 q6e
+g4 q2d
+g+16 q6e
+a16 ^16 q2d
+a16 q6e
+g4 q2d
+g+16 
+; $1508 / $1800
+q6e
+o5 a16 q2d
+b16 > c16 q6e
+< a4 q2d
+g+16 q6e
+g16 q2d
+g+16 a16 q6e
+e4 r16 q6e
+e16. q6d
+d+32 q2c
+d16 q6e
+e16. q6d
+d+32 q2c
+d16 q2e
+e16 d16 q4e
+g4 ^4 
+; $150A / $163D
+PATCH018
+t30
+y10
+VCMD_VIBRATO_ON $14 $19 $27
+q6d
+o5 e16 q2e
+g16 a16 q6e
+g4 q2d
+a16 q6e
+b16 ^16 q2d
+b16 q6e
+a4 q2d
+d+16 q6e
+e16 q2d
+g16 a16 q6e
+g4 q2d
+g+16 q6e
+a16 ^16 q2d
+a16 q6e
+g4 q2d
+g+16 
+; $150C / $1A26
+q6e
+o5 a16 q2d
+b16 > c16 q6e
+< a4 q2d
+g+16 q6e
+g16 q2d
+g+16 a16 q6e
+> e4 r16 
+; $150E / $1632
+PATCH004
+t22
+VCMD_TEMPO_FADE $90 $1b
+
+; $1510 / $2197
+PATCH004
+t22
+VCMD_TEMPO_FADE $90 $1c
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q4c
+o5 e8 r24 r24 e24 e8 r24 r24 g24 g8 r24 r24 g24 g8 r8 
+; $1512 / $22D1
+q5d
+o4 e24 r24 g24 a24 r24 g8. r16 a24 b24 r24 > c24 < b24 a+24 a8. r16 d+24 e24 r24 g24 a24 r24 g8. r16 g+24 a24 r24 a+24 a24 g+24 g8. r16 g+24 
+; $1514 / $2814
+o4 a24 r24 b24 > c24 r24 < a8. r16 g+24 g24 r24 g+24 a24 r24 > e8. r16 r24 
+; $1516 / $2A47
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5d
+o6 e8 r24 r24 e24 e8 r24 r24 g24 g8 r24 r24 g24 g8 g8 
+; $1518 / $2B79
+VCMD_VIBRATO_ON $16 $18 $30
+y10
+q4e
+o4 a24 ^24 g24 a24 ^24 g8. ^16 a24 b24 ^24 r24 b24 ^24 a8. ^16 ^24 a24 ^24 g24 a24 ^24 g8. r16 g+24 a24 ^24 r24 a24 ^24 g8. ^16 g+24 
+; $151A / $2C47
+o4 a24 ^24 b24 > c24 ^24 < a8. ^16 g+24 g24 ^24 g+24 a24 ^24 > e8. ^16 ^24 
+; $151C / $2A47
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5d
+o6 e8 r24 r24 e24 e8 r24 r24 g24 g8 r24 r24 g24 g8 g8 
+; $151E / $163A
+VCMD_GLOBAL_TRANSPOSE $01
+
+; $1520 / $2A47
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5d
+o6 e8 r24 r24 e24 e8 r24 r24 g24 g8 r24 r24 g24 g8 g8 
+; $1522 / $2B79
+VCMD_VIBRATO_ON $16 $18 $30
+y10
+q4e
+o4 a24 ^24 g24 a24 ^24 g8. ^16 a24 b24 ^24 r24 b24 ^24 a8. ^16 ^24 a24 ^24 g24 a24 ^24 g8. r16 g+24 a24 ^24 r24 a24 ^24 g8. ^16 g+24 
+; $1524 / $2C47
+o4 a24 ^24 b24 > c24 ^24 < a8. ^16 g+24 g24 ^24 g+24 a24 ^24 > e8. ^16 ^24 
+; $1526 / $2A25
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5d
+o6 e8 r24 r24 e24 VCMD_TEMPO_FADE $78 $18
+e8 r24 r24 g24 g8 r24 r24 g24 g8 g8 
+; $1528 / $1DC1
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5e
+o6 c2 ^2 PATCH001
+^2 ^2 ^2 
+
+#1
+PATCH013
+y15
+VCMD_VIBRATO_ON $22 $18 $14
+r192 r24 q4e
+r8 o3 f12 r6 f+12 r6 g12 r6 g12
+r48 r64 
+; $14F4 / $20C8
+
+; warning: 1 ticks truncated
+PATCH004
+y8
+VCMD_VIBRATO_ON $20 $18 $36
+q4d
+> c8 r24 r24 c24 c8 r24 r24 d+24 d+8 r24 r24 d+24 d+8 r8 
+; $14F6 / $1793
+PATCH004
+y8
+VCMD_VIBRATO_ON $14 $19 $28
+q3b
+r16 < e16 r16 e16 r16 e16 r16 e16 r16 d+16 r16 d+16 r16 d+16 r16 d+16 r16 d16 r16 d16 r16 d16 r16 d16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 
+; $14F8 / $18EF
+r16 f16 r16 f16 r16 f+16 r16 f+16 r16 e16 r16 e16 r16 c+16 r16 c+16 r16 d16 r16 d16 r16 d16 r16 d16 r16 < b16 r16 b16 r16 b16 r16 b16 
+; $14FA / $1793
+PATCH004
+y8
+VCMD_VIBRATO_ON $14 $19 $28
+q3b
+r16 > e16 r16 e16 r16 e16 r16 e16 r16 d+16 r16 d+16 r16 d+16 r16 d+16 r16 d16 r16 d16 r16 d16 r16 d16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 
+; $14FC / $19E4
+r16 c16 r16 c16 r16 c16 r16 c16 r16 e16 r16 e16 r16 c+16 r16 c+16 r16 < a16 r16 a16 r16 b16 r16 b16 r16 > e16 r16 e16 r16 e16 r16 e16 
+; $14FE / $1BAB
+r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c16 r16 c16 r16 c16 r16 c16 r16 c16 r16 c16 r16 c16 r16 c16 
+; $1500 / $1C6E
+r16 < b16 r16 b16 r16 b16 r16 b16 r16 b16 r16 b16 r16 b16 r16 b16 r16 > e16 r16 e16 r16 e16 r16 e16 r16 < b16 r16 b16 r16 b16 r16 b16 
+; $1502 / $1BAB
+r16 > c+16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 r16 c16 r16 c16 r16 c16 r16 c16 r16 c16 r16 c16 r16 c16 r16 c16 
+; $1504 / $1D70
+r16 < b16 r16 b16 r16 b16 r16 b16 r16 b16 r16 b16 r16 b16 r16 b16 r16 > e16 r16 e16 r16 e16 r16 e16 PATCH001
+> b8 r8 d+8 ^8 
+; $1506 / $1793
+PATCH004
+y8
+VCMD_VIBRATO_ON $14 $19 $28
+q3b
+r16 < e16 r16 e16 r16 e16 r16 e16 r16 d+16 r16 d+16 r16 d+16 r16 d+16 r16 d16 r16 d16 r16 d16 r16 d16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 
+; $1508 / $18EF
+r16 f16 r16 f16 r16 f+16 r16 f+16 r16 e16 r16 e16 r16 c+16 r16 c+16 r16 d16 r16 d16 r16 d16 r16 d16 r16 < b16 r16 b16 r16 b16 r16 b16 
+; $150A / $1793
+PATCH004
+y8
+VCMD_VIBRATO_ON $14 $19 $28
+q3b
+r16 > e16 r16 e16 r16 e16 r16 e16 r16 d+16 r16 d+16 r16 d+16 r16 d+16 r16 d16 r16 d16 r16 d16 r16 d16 r16 c+16 r16 c+16 r16 c+16 r16 c+16 
+; $150C / $1AA6
+r16 c16 r16 c16 r16 c16 r16 c16 r16 e16 r16 e16 r16 c+16 r16 c+16 
+; $150E / $0000
+
+; $1510 / $21BB
+PATCH004
+y8
+VCMD_VIBRATO_ON $20 $18 $36
+q4c
+> c8 r24 r24 c24 c8 r24 r24 d+24 d+8 r24 r24 d+24 d+8 r8 
+; $1512 / $29BE
+PATCH006
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q6f
+> e24 r24 g24 a24 r24 g8. r16 a24 b24 r24 > c24 < b24 a+24 a8. r16 d+24 e24 r24 g24 a24 r24 g8. r16 g+24 a24 r24 a+24 a24 g+24 g8. r16 g+24 
+; $1514 / $29F5
+o5 a24 r24 b24 > c24 r24 < a8. r16 g+24 g24 r24 g+24 a24 r24 > e8. r16 r24 
+; $1516 / $2A66
+PATCH004
+y8
+VCMD_VIBRATO_ON $20 $18 $36
+q5d
+o4 c8 r24 r24 c24 c8 r24 r24 d+24 d+8 r24 r24 d+24 d+8 d+8 
+; $1518 / $2B43
+PATCH004
+VCMD_VIBRATO_ON $14 $19 $30
+y10
+q4f
+> a24 ^24 g24 a24 ^24 g8. ^16 a24 b24 ^24 r24 b24 ^24 a8. ^16 ^24 a24 ^24 g24 a24 ^24 g8. ^16 g+24 a24 ^24 r24 a24 ^24 g8. ^16 g+24 
+; $151A / $2C18
+a24 ^24 b24 > c24 ^24 < a8. ^16 g+24 g24 ^24 g+24 a24 ^24 > e8. ^16 ^24 
+; $151C / $2A66
+PATCH004
+y8
+VCMD_VIBRATO_ON $20 $18 $36
+q5d
+o4 c8 r24 r24 c24 c8 r24 r24 d+24 d+8 r24 r24 d+24 d+8 d+8 
+; $151E / $0000
+
+; $1520 / $2A66
+PATCH004
+y8
+VCMD_VIBRATO_ON $20 $18 $36
+q5d
+c8 r24 r24 c24 c8 r24 r24 d+24 d+8 r24 r24 d+24 d+8 d+8 
+; $1522 / $2B43
+PATCH004
+VCMD_VIBRATO_ON $14 $19 $30
+y10
+q4f
+> a24 ^24 g24 a24 ^24 g8. ^16 a24 b24 ^24 r24 b24 ^24 a8. ^16 ^24 a24 ^24 g24 a24 ^24 g8. ^16 g+24 a24 ^24 r24 a24 ^24 g8. ^16 g+24 
+; $1524 / $2C18
+a24 ^24 b24 > c24 ^24 < a8. ^16 g+24 g24 ^24 g+24 a24 ^24 > e8. ^16 ^24 
+; $1526 / $2A66
+PATCH004
+y8
+VCMD_VIBRATO_ON $20 $18 $36
+q5d
+o4 c8 r24 r24 c24 c8 r24 r24 d+24 d+8 r24 r24 d+24 d+8 d+8 
+; $1528 / $1DD4
+PATCH004
+y8
+VCMD_VIBRATO_ON $20 $18 $36
+q5d
+> e2 ^2 PATCH001
+^2 ^2 ^2 
+
+#2
+PATCH008
+y10
+VCMD_VIBRATO_ON $22 $18 $14
+r24 q5f
+o2 f8 r24 r24 f24 f+8 r24 r24 f+24 g8 r24 r24 g24 a8 a24 e24 d+24 
+; $14F4 / $215A
+PATCH008
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5f
+r24 r24 d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r8 q7f
+g8 
+; $14F6 / $17BD
+PATCH008
+y12
+VCMD_VIBRATO_ON $14 $19 $28
+q6e
+> c16 g16 < g16 > g16 c16 g16 < g16 > g16 < b16 > g16 < g16 > g16 < b16 > g16 < g16 > g16 < a+16 > g16 < g16 > g16 < a+16 > g16 < g16 > g16 < a16 > e16 < e16 > e16 < a16 > e16 < e16 > e16 
+; $14F8 / $1910
+< f16 > a16 c16 a16 < f+16 > a16 c16 a16 < g16 > g16 c16 g16 < a16 > g16 < e16 > g16 < d16 > f16 < a16 > f16 < d16 > f16 < e16 f16 g16 > f16 < d16 > f16 < g16 > f16 < d16 > f16 
+; $14FA / $17BD
+PATCH008
+y12
+VCMD_VIBRATO_ON $14 $19 $28
+q6e
+c16 g16 < g16 > g16 c16 g16 < g16 > g16 < b16 > g16 < g16 > g16 < b16 > g16 < g16 > g16 < a+16 > g16 < g16 > g16 < a+16 > g16 < g16 > g16 < a16 > e16 < e16 > e16 < a16 > e16 < e16 > e16 
+; $14FC / $1A05
+< f16 > f16 c16 f16 < f+16 > f+16 c16 f+16 < g16 > g16 d16 g16 < a16 > a16 e16 a16 < d16 > d16 < a16 > d16 < g16 > g16 d16 g16 c16 g16 < g16 > g16 c16 c16 < b16 a+16 
+; $14FE / $1BCC
+a16 > g16 < e16 > g16 < a16 > g16 < e16 > g16 < a16 > g16 < e16 > g16 < a16 > g16 < e16 d+16 d16 > f+16 < a16 > f+16 < d16 > f+16 < a16 > f+16 < d16 > f+16 < a16 > f+16 < d16 > f+16 < e16 f+16 
+; $1500 / $1C8F
+g16 > f16 < d16 > f16 < g16 > f16 < d16 > f16 < g16 > f16 < d16 > f16 < g16 > f16 < a16 b16 > c16 g16 < g16 > g16 c16 g16 < g16 > g16 < e16 > g+16 < b16 > g+16 < e16 > g+16 < f+16 g+16 
+; $1502 / $1BCC
+a16 > g16 < e16 > g16 < a16 > g16 < e16 > g16 < a16 > g16 < e16 > g16 < a16 > g16 < e16 d+16 d16 > f+16 < a16 > f+16 < d16 > f+16 < a16 > f+16 < d16 > f+16 < a16 > f+16 < d16 > f+16 < e16 f+16 
+; $1504 / $1D90
+g16 > f16 < d16 > f16 < g16 > f16 < d16 > f16 < g16 > f16 < d16 > f16 < g16 > f16 < a16 b16 > c16 g16 < g16 > g16 c16 g16 < g16 > g16 < c8 r8 g8 ^8 
+; $1506 / $17BD
+PATCH008
+y12
+VCMD_VIBRATO_ON $14 $19 $28
+q6e
+> c16 g16 < g16 > g16 c16 g16 < g16 > g16 < b16 > g16 < g16 > g16 < b16 > g16 < g16 > g16 < a+16 > g16 < g16 > g16 < a+16 > g16 < g16 > g16 < a16 > e16 < e16 > e16 < a16 > e16 < e16 > e16 
+; $1508 / $1910
+< f16 > a16 c16 a16 < f+16 > a16 c16 a16 < g16 > g16 c16 g16 < a16 > g16 < e16 > g16 < d16 > f16 < a16 > f16 < d16 > f16 < e16 f16 g16 > f16 < d16 > f16 < g16 > f16 < d16 > f16 
+; $150A / $17BD
+PATCH008
+y12
+VCMD_VIBRATO_ON $14 $19 $28
+q6e
+c16 g16 < g16 > g16 c16 g16 < g16 > g16 < b16 > g16 < g16 > g16 < b16 > g16 < g16 > g16 < a+16 > g16 < g16 > g16 < a+16 > g16 < g16 > g16 < a16 > e16 < e16 > e16 < a16 > e16 < e16 > e16 
+; $150C / $1AB7
+< f16 > f16 c16 f16 < f+16 > f+16 c16 f+16 < g16 > g16 d16 g16 < a16 > a16 e16 a16 
+; $150E / $0000
+
+; $1510 / $2251
+PATCH008
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5e
+r24 r24 < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 r24 q7f
+g8 
+; $1512 / $23E2
+PATCH008
+y10
+VCMD_VIBRATO_ON $14 $1f $30
+q6f
+> c8 r8 < g8 r24 r24 g24 b8 r8 g8 r24 r24 g24 a+8 r8 g8 r24 r24 g24 a8 r8 e8 r24 r24 e24 
+; $1514 / $2A0D
+f8 r24 r24 f24 f+8 r24 r24 f+24 g8 r24 r24 g24 a8 r24 r24 a24 
+; $1516 / $2B00
+PATCH008
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5f
+r24 r24 d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 r24 q7f
+r24 r24 g24 
+; $1518 / $23E2
+PATCH008
+y10
+VCMD_VIBRATO_ON $14 $1f $30
+q6f
+> c8 r8 < g8 r24 r24 g24 b8 r8 g8 r24 r24 g24 a+8 r8 g8 r24 r24 g24 a8 r8 e8 r24 r24 e24 
+; $151A / $2A0D
+f8 r24 r24 f24 f+8 r24 r24 f+24 g8 r24 r24 g24 a8 r24 r24 a24 
+; $151C / $2B00
+PATCH008
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5f
+r24 r24 d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 r24 q7f
+r24 r24 g24 
+; $151E / $0000
+
+; $1520 / $2B00
+PATCH008
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5f
+r24 r24 d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 r24 q7f
+r24 r24 g24 
+; $1522 / $23E2
+PATCH008
+y10
+VCMD_VIBRATO_ON $14 $1f $30
+q6f
+> c8 r8 < g8 r24 r24 g24 b8 r8 g8 r24 r24 g24 a+8 r8 g8 r24 r24 g24 a8 r8 e8 r24 r24 e24 
+; $1524 / $2A0D
+f8 r24 r24 f24 f+8 r24 r24 f+24 g8 r24 r24 g24 a8 r24 r24 a24 
+; $1526 / $2B00
+PATCH008
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5f
+r24 r24 d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 r24 q7f
+r24 r24 g24 
+; $1528 / $1E58
+PATCH008
+y10
+VCMD_VIBRATO_ON $22 $19 $38
+q5d
+c12 c12 c12 e12 e12 e12 f12 f12 f12 f+12 f+12 f+12 g4 g8. c=108 ^2 
+
+#3
+PATCH006
+y10
+VCMD_VIBRATO_ON $22 $18 $14
+q5d
+o5 g+24 a24 r24 b24 > c24 r24 < a8. r16 g+24 g24 r24 g+24 a24 r24 > e8. r16 r24 
+; $14F4 / $2104
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $18 $36
+q4d
+< < f8 r24 r24 f24 f8 r24 r24 g24 g8 r24 r24 g24 g8 r8 
+; $14F6 / $171B
+PATCH018
+y8
+VCMD_VIBRATO_ON $14 $1f $25
+q6d
+> c16 q2e
+e16 e16 q6e
+e4 q2d
+e16 q6e
+g16 ^16 q2d
+g16 q6e
+d+4 q2d
+< b16 q6e
+a+16 q2d
+> d16 d16 q6e
+d4 q2d
+d16 q6e
+e16 ^16 q2d
+e16 q6e
+e4 q2d
+e16 
+; $14F8 / $1889
+q6e
+f16 q2d
+f16 a16 q6e
+f+4 q2d
+f+16 q6e
+e16 q2d
+e16 e16 q6e
+c+4 r16 q6e
+< a16. q6d
+a32 q2c
+a16 q6e
+a16. q6d
+a32 q2c
+a16 q2e
+a16 a16 q4e
+> d4 ^4 
+; $14FA / $171B
+PATCH018
+y8
+VCMD_VIBRATO_ON $14 $1f $25
+q6d
+c16 q2e
+e16 e16 q6e
+e4 q2d
+e16 q6e
+g16 ^16 q2d
+g16 q6e
+d+4 q2d
+< b16 q6e
+a+16 q2d
+> d16 d16 q6e
+d4 q2d
+d16 q6e
+e16 ^16 q2d
+e16 q6e
+e4 q2d
+e16 
+; $14FC / $198A
+q6e
+f16 q2d
+f16 a16 q6e
+f+4 q2d
+f+16 q6e
+e16 q2d
+e16 e16 q6e
+> c+4 r16 q6e
+< a16 q2d
+a16 a16 q6e
+a8 q2e
+f16 q6e
+f8 q4e
+g4 ^4 
+; $14FE / $1B3F
+PATCH018
+q6d
+< e8 g16 r16 r16 q2d
+g16 q6e
+f+16 q2d
+g16 q6e
+a16 q2d
+g16 e16 q6e
+c+4 q2d
+c+16 q6e
+g16 q2d
+f+16 q6d
+g16 q2d
+f+16 q6e
+g16 q2d
+f+16 r16 q6d
+c16 ^4 r4 
+; $1500 / $1C1B
+q6d
+< b8 > f16 r16 r16 q2d
+f16 q6e
+e16 q2d
+f16 q6e
+g16 q2d
+f16 d16 q6e
+< b4 q2d
+> f16 q4e
+e8 e8 q6d
+e12 q6e
+f12 q6e
+f+12 g+4 r4 
+; $1502 / $1B3F
+PATCH018
+q6d
+e8 g16 r16 r16 q2d
+g16 q6e
+f+16 q2d
+g16 q6e
+a16 q2d
+g16 e16 q6e
+c+4 q2d
+c+16 q6e
+g16 q2d
+f+16 q6d
+g16 q2d
+f+16 q6e
+g16 q2d
+f+16 r16 q6d
+c16 ^4 r4 
+; $1504 / $1D19
+q6d
+< b8 > f16 r16 r16 q2d
+f16 q6e
+e16 q2d
+f16 q6e
+g16 q2d
+f16 r16 q6e
+< b4 q2d
+> f16 q4e
+e8 e8 q6d
+e12 q6e
+f12 q6e
+f+12 q2e
+g8 r8 q4e
+b4 
+; $1506 / $171B
+PATCH018
+y8
+VCMD_VIBRATO_ON $14 $1f $25
+q6d
+> c16 q2e
+e16 e16 q6e
+e4 q2d
+e16 q6e
+g16 ^16 q2d
+g16 q6e
+d+4 q2d
+< b16 q6e
+a+16 q2d
+> d16 d16 q6e
+d4 q2d
+d16 q6e
+e16 ^16 q2d
+e16 q6e
+e4 q2d
+e16 
+; $1508 / $1889
+q6e
+f16 q2d
+f16 a16 q6e
+f+4 q2d
+f+16 q6e
+e16 q2d
+e16 e16 q6e
+c+4 r16 q6e
+< a16. q6d
+a32 q2c
+a16 q6e
+a16. q6d
+a32 q2c
+a16 q2e
+a16 a16 q4e
+> d4 ^4 
+; $150A / $171B
+PATCH018
+y8
+VCMD_VIBRATO_ON $14 $1f $25
+q6d
+c16 q2e
+e16 e16 q6e
+e4 q2d
+e16 q6e
+g16 ^16 q2d
+g16 q6e
+d+4 q2d
+< b16 q6e
+a+16 q2d
+> d16 d16 q6e
+d4 q2d
+d16 q6e
+e16 ^16 q2d
+e16 q6e
+e4 q2d
+e16 
+; $150C / $1A4E
+q6e
+f16 q2d
+f16 a16 q6e
+f+4 q2d
+f+16 q6e
+e16 q2d
+e16 e16 q6e
+> c+4 r16 
+; $150E / $0000
+
+; $1510 / $21F7
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $18 $36
+q4c
+< < f8 r24 r24 f24 f8 r24 r24 g24 g8 r24 r24 g24 g8 r8 
+; $1512 / $2300
+PATCH018
+y5
+VCMD_VIBRATO_ON $22 $19 $28
+q6b
+> e2 d+4 ^24 ^24 d+24 b24 ^24 a24 g4. d8 c+2 
+; $1514 / $284C
+c4. < a24 ^24 > c24 e2 
+; $1516 / $2AA2
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $18 $36
+q5d
+< f8 r24 r24 f24 f8 r24 r24 g24 g8 r24 r24 g24 g8 g8 
+; $1518 / $2300
+PATCH018
+y5
+VCMD_VIBRATO_ON $22 $19 $28
+q6b
+> e2 d+4 ^24 ^24 d+24 b24 ^24 a24 g4. d8 c+2 
+; $151A / $284C
+c4. < a24 ^24 > c24 e2 
+; $151C / $2AA2
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $18 $36
+q5d
+< f8 r24 r24 f24 f8 r24 r24 g24 g8 r24 r24 g24 g8 g8 
+; $151E / $0000
+
+; $1520 / $2AA2
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $18 $36
+q5d
+f8 r24 r24 f24 f8 r24 r24 g24 g8 r24 r24 g24 g8 g8 
+; $1522 / $2300
+PATCH018
+y5
+VCMD_VIBRATO_ON $22 $19 $28
+q6b
+> e2 d+4 ^24 ^24 d+24 b24 ^24 a24 g4. d8 c+2 
+; $1524 / $284C
+c4. < a24 ^24 > c24 e2 
+; $1526 / $2AA2
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $18 $36
+q5d
+< f8 r24 r24 f24 f8 r24 r24 g24 g8 r24 r24 g24 g8 g8 
+; $1528 / $1DF8
+PATCH004
+y10
+VCMD_VIBRATO_ON $22 $18 $36
+q5d
+c2 ^2 PATCH001
+^2 ^2 ^2 
+
+#4
+PATCH004
+y12
+VCMD_VIBRATO_ON $22 $18 $14
+q5c
+r24 o4 c24 r24 c24 f24 r24 c8. r16 c24 c24 r24 c24 c24 r24 c+8. r16 r24 
+; $14F4 / $213E
+PATCH004
+y15
+q4c
+r24 r24 < < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r8 q7e
+g8 
+; $14F6 / $1757
+PATCH018
+y12
+VCMD_VIBRATO_ON $14 $1b $26
+q6d
+> > g16 q2e
+> c16 c16 q6e
+c4 q2d
+c16 q6e
+d+16 ^16 q2d
+d+16 q6e
+< b4 q2d
+g16 q6e
+g16 q2e
+a+16 a+16 q6e
+a+4 q2d
+a+16 q6e
+> c+16 ^16 q2d
+c+16 q6e
+c+4 q2d
+c+16 
+; $14F8 / $18BC
+q6e
+c16 q2d
+c16 f16 q6e
+c4 q2d
+c16 q6e
+c16 q2d
+c16 c16 q6e
+< g4 r16 q6e
+f16. q6d
+f32 q2c
+f16 q6e
+f16. q6d
+f32 q2c
+f16 q2e
+f16 f16 q4e
+b4 ^4 
+; $14FA / $1757
+PATCH018
+y12
+VCMD_VIBRATO_ON $14 $1b $26
+q6d
+g16 q2e
+> c16 c16 q6e
+c4 q2d
+c16 q6e
+d+16 ^16 q2d
+d+16 q6e
+< b4 q2d
+g16 q6e
+g16 q2e
+a+16 a+16 q6e
+a+4 q2d
+a+16 q6e
+> c+16 ^16 q2d
+c+16 q6e
+c+4 q2d
+c+16 
+; $14FC / $19B7
+q6e
+c16 q2d
+c16 f16 q6e
+c4 q2d
+c16 q6e
+c16 q2d
+c16 c16 q6e
+g4 r16 q6e
+f16 q2d
+f16 f16 q6e
+f8 q2e
+d16 q6e
+d8 q4e
+e4 ^4 
+; $14FE / $1B77
+y5
+VCMD_VIBRATO_ON $19 $19 $35
+PATCH000
+q6b
+< e4 ^16 d+16 e16 a16 > e4. d+16 e16 a4 e4 d2 
+; $1500 / $1C48
+q69
+< g4 ^16 f16 g16 b16 > d4. c16 d16 c4. d8 e2 
+; $1502 / $1B77
+y5
+VCMD_VIBRATO_ON $19 $19 $35
+PATCH000
+q6b
+< e4 ^16 d+16 e16 a16 > e4. d+16 e16 a4 e4 d2 
+; $1504 / $1D4A
+q69
+< g4 ^16 f16 g16 b16 > d4. c16 d16 c4 d4 e4 d+4 
+; $1506 / $1757
+PATCH018
+y12
+VCMD_VIBRATO_ON $14 $1b $26
+q6d
+< g16 q2e
+> c16 c16 q6e
+c4 q2d
+c16 q6e
+d+16 ^16 q2d
+d+16 q6e
+< b4 q2d
+g16 q6e
+g16 q2e
+a+16 a+16 q6e
+a+4 q2d
+a+16 q6e
+> c+16 ^16 q2d
+c+16 q6e
+c+4 q2d
+c+16 
+; $1508 / $18BC
+q6e
+c16 q2d
+c16 f16 q6e
+c4 q2d
+c16 q6e
+c16 q2d
+c16 c16 q6e
+< g4 r16 q6e
+f16. q6d
+f32 q2c
+f16 q6e
+f16. q6d
+f32 q2c
+f16 q2e
+f16 f16 q4e
+b4 ^4 
+; $150A / $1757
+PATCH018
+y12
+VCMD_VIBRATO_ON $14 $1b $26
+q6d
+g16 q2e
+> c16 c16 q6e
+c4 q2d
+c16 q6e
+d+16 ^16 q2d
+d+16 q6e
+< b4 q2d
+g16 q6e
+g16 q2e
+a+16 a+16 q6e
+a+4 q2d
+a+16 q6e
+> c+16 ^16 q2d
+c+16 q6e
+c+4 q2d
+c+16 
+; $150C / $1A67
+q6e
+c16 q2d
+c16 f16 q6e
+c4 q2d
+c16 q6e
+c16 q2d
+c16 c16 q6e
+g4 r16 
+; $150E / $0000
+
+; $1510 / $2233
+PATCH004
+y15
+q4b
+r24 r24 < < < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 r24 q7e
+g8 
+; $1512 / $237E
+PATCH006
+y12
+VCMD_VIBRATO_ON $14 $1f $30
+q6d
+> g24 r24 > e24 c24 r24 e8. r16 c24 d+24 r24 d+24 g24 g24 < b8. r16 g24 g24 r24 a+24 a+24 r24 a+8. r16 a+24 > c+24 r24 e24 c+24 c+24 c+8. r16 c+24 
+; $1514 / $282C
+PATCH004
+y12
+VCMD_VIBRATO_ON $22 $18 $14
+q5c
+c24 r24 c24 f24 r24 c8. r16 c24 c24 r24 c24 c24 r24 c+8. r16 r24 
+; $1516 / $2AE0
+PATCH004
+y15
+q5c
+r24 r24 < < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 g24 q7e
+r24 r24 g24 
+; $1518 / $2BE2
+PATCH006
+y12
+VCMD_VIBRATO_ON $14 $1a $30
+q4e
+> > c24 ^24 c24 c24 ^24 c8. ^16 c24 d+24 ^24 r24 d+24 ^24 < b8. ^16 ^24 a+24 ^24 a+24 a+24 ^24 a+8. ^16 a+24 > c+24 ^24 r24 c+24 ^24 c+8. ^16 c+24 
+; $151A / $2C5F
+PATCH004
+y12
+VCMD_VIBRATO_ON $22 $18 $14
+q5c
+c24 ^24 c24 f24 ^24 c8. ^16 c24 c24 ^24 c24 c24 ^24 c+8. ^16 ^24 
+; $151C / $2AE0
+PATCH004
+y15
+q5c
+r24 r24 < < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 g24 q7e
+r24 r24 g24 
+; $151E / $0000
+
+; $1520 / $2AE0
+PATCH004
+y15
+q5c
+r24 r24 d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 g24 q7e
+r24 r24 g24 
+; $1522 / $2BE2
+PATCH006
+y12
+VCMD_VIBRATO_ON $14 $1a $30
+q4e
+> > c24 ^24 c24 c24 ^24 c8. ^16 c24 d+24 ^24 r24 d+24 ^24 < b8. ^16 ^24 a+24 ^24 a+24 a+24 ^24 a+8. ^16 a+24 > c+24 ^24 r24 c+24 ^24 c+8. ^16 c+24 
+; $1524 / $2C5F
+PATCH004
+y12
+VCMD_VIBRATO_ON $22 $18 $14
+q5c
+c24 ^24 c24 f24 ^24 c8. ^16 c24 c24 ^24 c24 c24 ^24 c+8. ^16 ^24 
+; $1526 / $2AE0
+PATCH004
+y15
+q5c
+r24 r24 < < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 g24 q7e
+r24 r24 g24 
+; $1528 / $1E3E
+PATCH004
+y15
+q5d
+> > e12 r12 e12 c12 r12 c12 c12 r12 c12 c12 r12 c12 < b4 f8. e=108 ^2 
+
+#5
+PATCH004
+y8
+VCMD_VIBRATO_ON $22 $18 $14
+q5c
+r24 o4 f24 r24 f24 a24 r24 f+8. r16 f24 e24 r24 e24 e24 r24 g8. r16 r24 
+; $14F4 / $2122
+PATCH004
+y15
+q4d
+r24 r24 < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r8 q7d
+g8 
+; $14F6 / $1699
+PATCH000
+y5
+VCMD_VIBRATO_ON $14 $19 $27
+q6b
+r4 r16 > > g16 q2c
+a16 > c16 q7b
+< b32 > c32 q69
+< b16 ^8 r16 d+16 q2c
+g16 b16 q7b
+a32 b32 q69
+a16 ^8 r16 d16 q2c
+e16 a16 q7b
+g32 a32 q69
+g16 ^8 r16 q4b
+< a32 b32 > c32 d32 e32 f32 
+; $14F8 / $1855
+q7b
+e32 f32 q69
+e16 ^8 r16 q4b
+< b32 > c32 d32 e32 f32 f+32 q7b
+g32 a32 q69
+g16 ^8 r16 q4b
+d32 e32 f32 g32 a32 b32 > c4 ^4 < b4 r16 q4b
+b32 > c32 < b32 a32 g32 f32 
+; $14FA / $16DE
+q6b
+e4 r16 g16 q2c
+a16 > c16 q7b
+< b32 > c32 q69
+< b16 ^8 r16 d+16 q2c
+g16 b16 q7b
+a32 b32 q69
+a16 ^8 r16 d16 q2c
+e16 a16 q7b
+g32 a32 q69
+g16 ^8 r16 q4b
+< a32 b32 > c32 d32 e32 f32 
+; $14FC / $195F
+q7b
+e32 f32 q69
+e16 ^8 r16 q4b
+< b32 > c32 d32 e32 f32 f+32 q7b
+g32 a32 q69
+g16 ^8 r16 q4b
+d32 e32 f32 g32 a32 b32 > c4 < b4 > c2 
+; $14FE / $1B91
+y8
+VCMD_VIBRATO_ON $19 $18 $34
+PATCH000
+q6b
+< < < g4 ^16 f+16 g16 > c+16 g4. f+16 g16 > e4 < g4 f+2 
+; $1500 / $1C5B
+q69
+< b4 ^16 b16 > d16 f16 g4. f16 g16 e4. g8 g+2 
+; $1502 / $1B91
+y8
+VCMD_VIBRATO_ON $19 $18 $34
+PATCH000
+q6b
+< g4 ^16 f+16 g16 > c+16 g4. f+16 g16 > e4 < g4 f+2 
+; $1504 / $1D5D
+q69
+< b4 ^16 b16 > d16 f16 g4. f16 g16 e4 g4 g4 b4 
+; $1506 / $1699
+PATCH000
+y5
+VCMD_VIBRATO_ON $14 $19 $27
+q6b
+r4 r16 > g16 q2c
+a16 > c16 q7b
+< b32 > c32 q69
+< b16 ^8 r16 d+16 q2c
+g16 b16 q7b
+a32 b32 q69
+a16 ^8 r16 d16 q2c
+e16 a16 q7b
+g32 a32 q69
+g16 ^8 r16 q4b
+< a32 b32 > c32 d32 e32 f32 
+; $1508 / $1855
+q7b
+e32 f32 q69
+e16 ^8 r16 q4b
+< b32 > c32 d32 e32 f32 f+32 q7b
+g32 a32 q69
+g16 ^8 r16 q4b
+d32 e32 f32 g32 a32 b32 > c4 ^4 < b4 r16 q4b
+b32 > c32 < b32 a32 g32 f32 
+; $150A / $16DE
+q6b
+e4 r16 g16 q2c
+a16 > c16 q7b
+< b32 > c32 q69
+< b16 ^8 r16 d+16 q2c
+g16 b16 q7b
+a32 b32 q69
+a16 ^8 r16 d16 q2c
+e16 a16 q7b
+g32 a32 q69
+g16 ^8 r16 q4b
+< a32 b32 > c32 d32 e32 f32 
+; $150C / $1A80
+q7b
+e32 f32 q69
+e16 ^8 r16 q4b
+< b32 > c32 d32 e32 f32 f+32 q7b
+g32 a32 q69
+g16 ^8 r16 q4b
+d32 e32 f32 g32 a32 b32 
+; $150E / $0000
+
+; $1510 / $2215
+PATCH004
+y15
+q4c
+r24 r24 < < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 r24 q7d
+g8 
+; $1512 / $2350
+q6d
+> c24 r24 c24 e24 r24 c8. r16 e24 g24 r24 g24 d+24 d+24 d+8. r16 < b24 a+24 r24 > d24 d24 r24 d8. r16 d24 e24 r24 g24 e24 e24 e8. r16 e24 
+; $1514 / $27FD
+f24 r24 f24 a24 r24 f+8. r16 f24 e24 r24 e24 e24 r24 g8. r16 r24 
+; $1516 / $2AC0
+PATCH004
+y15
+q5d
+r24 r24 < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 g24 q7d
+r24 r24 g24 
+; $1518 / $2BAE
+VCMD_VIBRATO_ON $15 $19 $31
+y8
+q4e
+> e24 ^24 c24 e24 ^24 e8. ^16 e24 g24 ^24 r24 g24 ^24 d+8. ^16 ^24 d24 ^24 d24 d24 ^24 d8. ^16 d24 e24 ^24 r24 e24 ^24 e8. ^16 e24 
+; $151A / $2C30
+f24 ^24 f24 a24 ^24 f+8. ^16 f24 e24 ^24 e24 e24 ^24 g8. ^16 ^24 
+; $151C / $2AC0
+PATCH004
+y15
+q5d
+r24 r24 < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 g24 q7d
+r24 r24 g24 
+; $151E / $0000
+
+; $1520 / $2AC0
+PATCH004
+y15
+q5d
+r24 r24 d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 g24 q7d
+r24 r24 g24 
+; $1522 / $2BAE
+VCMD_VIBRATO_ON $15 $19 $31
+y8
+q4e
+> e24 ^24 c24 e24 ^24 e8. ^16 e24 g24 ^24 r24 g24 ^24 d+8. ^16 ^24 d24 ^24 d24 d24 ^24 d8. ^16 d24 e24 ^24 r24 e24 ^24 e8. ^16 e24 
+; $1524 / $2C30
+f24 ^24 f24 a24 ^24 f+8. ^16 f24 e24 ^24 e24 e24 ^24 g8. ^16 ^24 
+; $1526 / $2AC0
+PATCH004
+y15
+q5d
+r24 r24 < d24 d8 r24 r24 d24 d8 r24 r24 g24 g8 r24 r24 g24 q7d
+r24 r24 g24 
+; $1528 / $1E0A
+PATCH004
+y15
+q5d
+> > c12 r12 c12 < a+12 r12 a+12 a12 r12 a12 g+12 r12 g+12 g4 d+8. d=108 ^2 
+
+#6
+PATCH013
+y15
+VCMD_VIBRATO_ON $22 $18 $14
+r24 q4e
+r8 o3 c8 r8 c8 r8 d8 r8 c+8 
+; $14F4 / $20E6
+PATCH004
+y12
+VCMD_VIBRATO_ON $21 $1a $37
+q4d
+> a8 r24 r24 a24 a8 r24 r24 b24 b8 r24 r24 b24 b8 r8 
+; $14F6 / $0000
+; 384 ticks
+r=384
+
+; $14F8 / $0000
+; 384 ticks
+r=384
+
+; $14FA / $0000
+; 384 ticks
+r=384
+
+; $14FC / $0000
+; 384 ticks
+r=384
+
+; $14FE / $0000
+; 384 ticks
+r=384
+
+; $1500 / $0000
+; 384 ticks
+r=384
+
+; $1502 / $1B01
+y15
+VCMD_VIBRATO_ON $14 $14 $20
+PATCH018
+q6d
+> a8 > e16 r16 r16 q2d
+e16 q6e
+d+16 q2d
+e16 q6e
+f16 q2d
+e16 c+16 q6e
+< a4 q2d
+a16 q6e
+> e16 q2d
+d16 q6d
+e16 q2d
+d16 q6e
+e16 q2d
+d16 r16 q6d
+< a16 ^4 r4 
+; $1504 / $1CE2
+q6d
+g8 > d16 r16 r16 q2d
+d16 q6e
+c+16 q2d
+d16 q6e
+e16 q2d
+d16 r16 q6e
+< g4 q2d
+> d16 q4e
+c8 c8 q6d
+c12 q6e
+d12 q6e
+d+12 q2e
+e8 r8 r32 < < g32 a32 b32 > c32 d32 e32 f32 
+; $1506 / $167C
+PATCH018
+y15
+VCMD_VIBRATO_ON $14 $14 $20
+q6d
+g4. a8 g4. e16 f16 g4 ^16 a16 g16 a16 g4. e8 
+; $1508 / $1834
+q6d
+c4 ^16 < b16 ^16 a16 g16 g+16 a16 > e16 ^4 e8. c8 < b16 > c16 c+16 d4 r32 < g32 a32 b32 > c32 d32 e32 f32 
+; $150A / $167C
+PATCH018
+y15
+VCMD_VIBRATO_ON $14 $14 $20
+q6d
+g4. a8 g4. e16 f16 g4 ^16 a16 g16 a16 g4. e8 
+; $150C / $1A40
+q6d
+c4 ^16 < b16 ^16 a16 g16 g+16 a16 > e16 ^4 
+; $150E / $0000
+
+; $1510 / $21D9
+PATCH004
+y12
+VCMD_VIBRATO_ON $21 $1a $37
+q4c
+< a8 r24 r24 a24 a8 r24 r24 b24 b8 r24 r24 b24 b8 r8 
+; $1512 / $23CC
+PATCH013
+y15
+q4e
+r8 < e8 r8 e8 r8 d+8 r8 d+8 r8 d8 r8 d8 r8 c+8 r8 c+8 
+; $1514 / $286B
+r8 c8 r8 c8 r8 d8 r8 c+8 
+; $1516 / $2A84
+PATCH004
+y12
+VCMD_VIBRATO_ON $21 $1a $37
+q5d
+> > a8 r24 r24 a24 a8 r24 r24 b24 b8 r24 r24 b24 b8 b8 
+; $1518 / $23CC
+PATCH013
+y15
+q4e
+r8 < < e8 r8 e8 r8 d+8 r8 d+8 r8 d8 r8 d8 r8 c+8 r8 c+8 
+; $151A / $286B
+r8 c8 r8 c8 r8 d8 r8 c+8 
+; $151C / $2A84
+PATCH004
+y12
+VCMD_VIBRATO_ON $21 $1a $37
+q5d
+> > a8 r24 r24 a24 a8 r24 r24 b24 b8 r24 r24 b24 b8 b8 
+; $151E / $0000
+
+; $1520 / $2A84
+PATCH004
+y12
+VCMD_VIBRATO_ON $21 $1a $37
+q5d
+a8 r24 r24 a24 a8 r24 r24 b24 b8 r24 r24 b24 b8 b8 
+; $1522 / $23CC
+PATCH013
+y15
+q4e
+r8 < < e8 r8 e8 r8 d+8 r8 d+8 r8 d8 r8 d8 r8 c+8 r8 c+8 
+; $1524 / $286B
+r8 c8 r8 c8 r8 d8 r8 c+8 
+; $1526 / $2A84
+PATCH004
+y12
+VCMD_VIBRATO_ON $21 $1a $37
+q5d
+> > a8 r24 r24 a24 a8 r24 r24 b24 b8 r24 r24 b24 b8 b8 
+; $1528 / $1DE6
+PATCH004
+y12
+VCMD_VIBRATO_ON $21 $1a $37
+q5d
+< g2 ^2 PATCH001
+^2 ^2 ^2 
+
+#7
+PATCH004
+y20
+r24 q6c
+PERC001N8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 
+; $14F4 / $217A
+PATCH000
+y10
+q6c
+r24 r24 PERC000N24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r8 PERC000X8 
+; $14F6 / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $14F8 / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $14FA / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $14FC / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $14FE / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $1500 / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $1502 / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $1504 / $1DAE
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $06
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+q4c
+PERC001N8 r8 q6d
+PERC002N4 
+; $1506 / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $1508 / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $150A / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 3
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 2
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 1
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / return
+
+; $150C / $17E7
+PATCH005
+y20
+VCMD_VIBRATO_ON $00 $00 $00
+
+; VCMD_SUBROUTINE $f3 $17 $08
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 7
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 6
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 5
+q4b
+PERC001N16 q4c
+PERC002N16 q49
+PERC001N16 q4b
+PERC002N16 
+; subroutine / loop 4
+
+; $150E / $0000
+
+; $1510 / $2273
+PATCH000
+y10
+q6b
+r24 r24 PERC000N24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r8 PERC000X24 y20
+PERC001N24 PERC001X24 
+; $1512 / $240F
+PATCH000
+y20
+q6b
+PERC001N8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 
+; $1514 / $28A4
+PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 
+; $1516 / $2B24
+PATCH000
+y10
+q6c
+r24 r24 PERC000N24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r8 PERC000X24 y20
+PERC001N24 PERC001X24 
+; $1518 / $240F
+PATCH000
+y20
+q6b
+PERC001N8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 
+; $151A / $28A4
+PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 
+; $151C / $2B24
+PATCH000
+y10
+q6c
+r24 r24 PERC000N24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r8 PERC000X24 y20
+PERC001N24 PERC001X24 
+; $151E / $0000
+
+; $1520 / $2B24
+PATCH000
+y10
+q6c
+r24 r24 PERC000N24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r8 PERC000X24 y20
+PERC001N24 PERC001X24 
+; $1522 / $240F
+PATCH000
+y20
+q6b
+PERC001N8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 
+; $1524 / $28A4
+PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X8 PERC002N24 r24 PERC001N24 PERC001X24 r24 PERC001X24 PERC002N24 PERC001N24 PERC001X24 
+; $1526 / $2B24
+PATCH000
+y10
+q6c
+r24 r24 PERC000N24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r24 r24 PERC000X24 PERC000X8 r8 PERC000X24 y20
+PERC001N24 PERC001X24 
+; $1528 / $1E24
+PATCH004
+y15
+q5d
+o4 g12 r12 g12 e12 r12 e12 f12 r12 f12 f12 r12 f12 d4 < b8. a+=108 ^2 
+
+
+#amk 2

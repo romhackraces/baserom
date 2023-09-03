@@ -1,0 +1,99 @@
+[resources]
+
+# Fastrom initial patch
+initial_patch = "resources/initial_patches/fastrom.bps"
+
+# Uncomment the line below if you would like to use SA-1.
+# and comment out the one above
+#initial_patch = "resources/initial_patches/sa1.bps"
+
+# Exported resources
+levels = "resources/levels"
+shared_palettes = "resources/shared_palettes.pal"
+map16 = "resources/all_map16.map16"
+
+# Global resources
+credits = "resources/global/credits.bps"
+overworld = "resources/global/overworld.bps"
+titlescreen = "resources/global/titlescreen.bps"
+global_exanimation = "resources/global/exanimation.bps"
+
+# Patches
+patches = [
+	"resources/patches/consistency/capespin_direction.asm",
+	"resources/patches/consistency/capespin_net_hitbox.asm",
+	"resources/patches/consistency/item_release.asm",
+	"resources/patches/consistency/player_xspeed_fix.asm",
+	"resources/patches/enhancements/charles_remembers.asm",
+	"resources/patches/enhancements/double_bounce_palette.asm",
+	"resources/patches/enhancements/exit-enabled_growing_pipe_extra_bit.asm",
+	"resources/patches/enhancements/fix_piranhas_red_stem_extra_bit.asm",
+	"resources/patches/enhancements/placeable_disco_shell.asm",
+	"resources/patches/enhancements/placeable_kicked_shell.asm",
+	"resources/patches/enhancements/placeable_throw_block.asm",
+	"resources/patches/enhancements/poison_mushroom.asm",
+	"resources/patches/enhancements/spiketop_ceiling_fix.asm",
+	"resources/patches/enhancements/sprite_submap_behaviour_extra_bit.asm",
+	"resources/patches/enhancements/squished_rex_extra_bit.asm",
+	"resources/patches/enhancements/triple_ball_n_chain.asm",
+	"resources/patches/features/dragon_coin_save.asm",
+	"resources/patches/features/ram_toggled_screen_scroll.asm",
+	"resources/patches/features/ram_toggled_statusbar.asm",
+	"resources/patches/fixes/autoscroll_lr_fix.asm",
+	"resources/patches/fixes/ball_chain_yoshi_fix.asm",
+	"resources/patches/fixes/block_duplication_fix.asm",
+	"resources/patches/fixes/bomb_palette_fix.asm",
+	"resources/patches/fixes/bounce_block_death_fix.asm",
+	"resources/patches/fixes/bowser_fire_despawn_fix.asm",
+	"resources/patches/fixes/candle_flames_fix.asm",
+	"resources/patches/fixes/capespin_hitbox_position_fix.asm",
+	"resources/patches/fixes/castle_block_fix.asm",
+	"resources/patches/fixes/cluster_boo_ducking_fix.asm",
+	"resources/patches/fixes/dark_room_background_fix.asm",
+	"resources/patches/fixes/dead_spring_fix.asm",
+	"resources/patches/fixes/double_spin_fix.asm",
+	"resources/patches/fixes/feather_during_autoscroll_fix.asm",
+	"resources/patches/fixes/fire_berry_fix.asm",
+	"resources/patches/fixes/hammer_bro_fix.asm",
+	"resources/patches/fixes/horizontal_scroll_fix.asm",
+	"resources/patches/fixes/layer2+3_triangles_fix.asm",
+	"resources/patches/fixes/line_guide_actas_fix.asm",
+	"resources/patches/fixes/line_rope_length_fix.asm",
+	"resources/patches/fixes/net_screen_boundary_fix.asm",
+	"resources/patches/fixes/no_sprite_interaction_fix.asm",
+	"resources/patches/fixes/p-balloon_cloud_fix.asm",
+	"resources/patches/fixes/player_pose_fix.asm",
+	"resources/patches/fixes/power_up_priority_fix.asm",
+	"resources/patches/fixes/pressed_switch_yoshi_fix.asm",
+	"resources/patches/fixes/proximity_wrap_fix.asm",
+	"resources/patches/fixes/question_block_collision_fix.asm",
+	"resources/patches/fixes/rollover_fix.asm",
+	"resources/patches/fixes/rope_fix.asm",
+	"resources/patches/fixes/screen_scrolling_pipes_fixes.asm",
+	"resources/patches/fixes/skull_raft_fix.asm",
+	"resources/patches/fixes/slide_kill_gfx_fix.asm",
+	"resources/patches/fixes/spike_swim_fix.asm",
+	"resources/patches/fixes/springboard_fixes.asm",
+	"resources/patches/fixes/sprite_ceiling_fix.asm",
+	"resources/patches/fixes/sprite_scroll_fix.asm",
+	"resources/patches/fixes/time_up_fix.asm",
+	"resources/patches/fixes/titlescreen_sprite_cleaner.asm",
+	"resources/patches/fixes/torpedo_offscreen_smoke_fix.asm",
+	"resources/patches/fixes/triple_rotating_platform_vertical_level_fix.asm",
+	"resources/patches/fixes/vertical_despawn_fix.asm",
+	"resources/patches/fixes/wall_jump_noteblock_clipping_fix.asm",
+	"resources/patches/fixes/yoshi_pipe_animation_fix.asm",
+	"resources/patches/objectool/objectool.asm",
+	"resources/patches/optimizations/fixed_color_data_nmi_optimize.asm",
+	"resources/patches/optimizations/layer2_buoyancy_optimize.asm",
+	"resources/patches/optimizations/optimize_1f0.asm",
+	"resources/patches/optimizations/optimize_statusbar_nmi.asm",
+	"resources/patches/optimizations/vram_optimize.asm",
+	# "resources/patches/other/extended_no_more_sprite_tile_limits.asm",
+	"resources/patches/other/free_up_blank_tile.asm",
+	"resources/patches/other/mario_gfx_dma.asm",
+	"resources/patches/other/no_more_sprite_tile_limits.asm",
+	"resources/patches/other/puff_of_smoke_sprite.asm",
+	"resources/patches/sprite_remaps.asm",
+	"resources/patches/tweaks.asm"
+]
