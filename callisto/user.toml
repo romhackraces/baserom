@@ -1,0 +1,5 @@
+[settings]
+
+# You can specify your emulators like this, you can have as many as you want
+# [emulators.snes9x]
+# executable = "path/to/my/emulators/snes9x.exe"

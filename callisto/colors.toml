@@ -1,0 +1,37 @@
+# This config file contains the color configurations
+# callisto will use in its console output
+
+# You can customize these as you please!
+# Both `fg` (foreground) and `bg` (background)
+# colors can be set as hexadecimal RGB codes.
+
+# In addition, you can specifiy which emphasis
+# to use as a list. You can use multiple if you want!
+# Some valid emphasis values are `bold`, `underlined`,
+# `italic` and `strikethrough`
+
+[colors.terminal.action_start]
+fg = 0x7BADE2
+emphasis = [ "bold" ]
+
+[colors.terminal.resource]
+fg = 0xC384D7
+
+[colors.terminal.success]
+fg = 0x26CEAA
+emphasis = [ "bold" ]
+
+[colors.terminal.partial_success]
+fg = 0x9AE8C1
+
+[colors.terminal.notification]
+fg = 0xFF9856
+
+[colors.terminal.exception]
+fg = 0xA50162
+
+[colors.terminal.warning]
+fg = 0xEF7427
+
+[colors.terminal.callisto]
+fg = 0xA359BB

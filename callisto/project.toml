@@ -1,8 +1,10 @@
 [settings]
-
 project_root = "../"
 check_conflicts = "hijacks"
 conflict_log_file = "conflicts.txt"
+
+# path to the clean SMW rom file
+clean_rom = "resources/clean.smc"
 
 ignored_conflict_symbols = [
 	"InitialPatch",
@@ -27,7 +29,6 @@ enable_automatic_exports = true
 enable_automatic_reloads = true
 
 [output]
-
 output_rom = "workspace/RHRv5.smc"
 temporary_folder = "workspace/temp"
 bps_package = "workspace/RHRv5.bps"
