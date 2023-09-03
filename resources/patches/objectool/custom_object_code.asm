@@ -2,69 +2,35 @@
 
 incsrc "../../../shared/freeram.asm"
 
-!level_flags = !objectool_level_flags_freeram ; FreeRAM to activate certain UberASM code (cleared at level load)
-
+; Load object macro
+macro LoadObject(object_id)
+    REP #$20
+    LDA.w #1<<<object_id> : TSB !objectool_level_flags_freeram
+    SEP #$20
+    RTS
+endmacro
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-;
 ; code for extended objects 98-FF
-;
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-; Toggle status bar
 CustExObj98:
-	LDA #$01 : STA !toggle_statusbar_freeram
-	RTS
-
-; Enable L/R scroll
+	%LoadObject(0)
 CustExObj99:
-	LDA #$01 : STA !toggle_lr_scroll_freeram
-	RTS
-
-; Lock horizontal scroll
+	%LoadObject(1)
 CustExObj9A:
-	STZ $1411|!addr
-	RTS
-
-; Free vertical scroll
+	%LoadObject(2)
 CustExObj9B:
-	REP #$20
-	LDA.w #$0001 : TSB !level_flags
-	SEP #$20
-	RTS
-
-; Set ON/OFF state to OFF
+	%LoadObject(3)
 CustExObj9C:
-	lda #$01 : sta $14AF|!addr
-	RTS
-
-; Enable SFX Echo
+	%LoadObject(4)
 CustExObj9D:
-	REP #$20
-	LDA.w #$0002 : TSB !level_flags
-	SEP #$20
-	RTS
-
-; Enable 8 frame float
+	%LoadObject(5)
 CustExObj9E:
-	REP #$20
-	LDA.w #$0004 : TSB !level_flags
-	SEP #$20
-	RTS
-
-; Vanilla Cape Turn-around
+	%LoadObject(6)
 CustExObj9F:
-	REP #$20
-	LDA.w #$0008 : TSB !level_flags
-	SEP #$20
-	RTS
-
-; Toggleable block dupes
+	%LoadObject(7)
 CustExObjA0:
-	REP #$20
-	LDA.w #$0016 : TSB !level_flags
-	SEP #$20
-	RTS
-
+	%LoadObject(8)
 CustExObjA1:
 CustExObjA2:
 CustExObjA3:
@@ -83,26 +49,13 @@ CustExObjAF:
 	RTS
 
 CustExObjB0:
-	; Instant Retry
-	LDA #$03 : sta !retry_freeram+$11
-	RTS
-
+	%LoadObject(9)
 CustExObjB1:
-	; Prompt Retry
-	LDA #$02 : sta !retry_freeram+$11
-	RTS
-
+	%LoadObject(10)
 CustExObjB2:
-	; Bottom left retry prompt
-	lda #$09 : sta !retry_freeram+$15
-	lda #$D0 : sta !retry_freeram+$16
-	RTS
-
+	%LoadObject(11)
 CustExObjB3:
-	; No powerup from Midway
-	lda #$00 : sta !retry_freeram+$10
-	RTS
-
+	%LoadObject(12)
 CustExObjB4:
 CustExObjB5:
 CustExObjB6:

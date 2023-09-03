@@ -5,44 +5,116 @@ macro RunCode(code_id, code)
     LDA !objectool_level_flags_freeram
     AND.w #1<<<code_id>
     SEP #$20
-    BEQ +
-    JSL <code>
-+
+    BEQ ?+
+    JSR <code>
+?+
 endmacro
 
 init:
-    %RunCode(3, vanilla_turnaround)
-    %RunCode(4, block_duplication)
-.Return
-    RTL
+    %RunCode(2, set_state_to_off)
+    %RunCode(3, block_duplication)
+    %RunCode(4, toggle_status_bar)
+    %RunCode(7, vanilla_turnaround)
+.return
+    rtl
 
 main:
     %RunCode(0, free_vertical_scroll)
-    %RunCode(1, enable_sfx_echo)
-    %RunCode(2, eight_frame_float)
-.Return
-    RTL
+    %RunCode(1, no_horizontal_scroll)
+    %RunCode(5, toggle_lr_scroll)
+    %RunCode(6, eight_frame_float)
+    %RunCode(8, enable_sfx_echo)
+    %RunCode(9, retry_instant)
+    %RunCode(10, retry_prompt)
+    %RunCode(11, retry_bottom_left)
+    %RunCode(12, retry_no_midway_powerup)
+.return
+    rtl
 
+;---------------------------------------------------------------------
+; Code to run for each object
+; Object IDs correspond to patches/objectool/custom_object_code.asm
+;---------------------------------------------------------------------
+
+; Object 98
+; Free vertical scrolling
 free_vertical_scroll:
     lda #$01 : sta $1404|!addr
-    RTL
+    rts
 
-enable_sfx_echo:
-    lda $1DFA|!addr : bne +
-    LDA #$06 : STA $1DFA|!addr
-    +
-    RTL
+; Object 99
+; lock horizontal scroll
+no_horizontal_scroll:
+    stz $1411|!addr
+    rts
 
-eight_frame_float:
-    LDA $15 : AND #$80 : BEQ +
-    LDA #$08 : STA $14A5|!addr
-    +
-    RTL
+; Object 9A
+; Toggle block duplication
+set_state_to_off:
+    lda #$01 : sta $14AF|!addr
+    rts
 
-vanilla_turnaround:
-    lda #$01 : sta !toggle_vanilla_turnaround
-    RTL
-
+; Object 9B
+; Toggle block duplication
 block_duplication:
     lda #$01 : sta !toggle_block_duplication
-    RTL
+    rts
+
+; Object 9C
+; Toggle status bar
+toggle_status_bar:
+    lda #$01 : sta !toggle_statusbar_freeram
+    rts
+
+; Object 9D
+; Toggle l/r scroll
+toggle_lr_scroll:
+    lda #$01 : sta !toggle_lr_scroll_freeram
+    rts
+
+; Object 9E
+; Enable eight frame float with cape
+eight_frame_float:
+    lda $15 : and #$80 : beq +
+    lda #$08 : sta $14A5|!addr
+    +
+    rts
+
+; Object 9F
+; Toggle vanilla cape spin in air
+vanilla_turnaround:
+    lda #$01 : sta !toggle_vanilla_turnaround
+    rts
+
+; Object A0
+; Enable Echo channel in inserted music
+enable_sfx_echo:
+    lda $1DFA|!addr : bne +
+    lda #$06 : sta $1DFA|!addr
+    +
+    rts
+
+; Object B0
+; Use instant retry
+retry_instant:
+    lda #$03 : sta !retry_freeram+$11
+    rts
+
+; Object B1
+; Use prompt retry
+retry_prompt:
+    lda #$02 : sta !retry_freeram+$11
+    rts
+
+; Object B2
+; Display retry prompt in bottom left
+retry_bottom_left:
+    lda #$09 : sta !retry_freeram+$15
+    lda #$d0 : sta !retry_freeram+$16
+    rts
+
+; Object B3
+; No powerup from midways
+retry_no_midway_powerup:
+    lda #$00 : sta !retry_freeram+$10
+    rts
