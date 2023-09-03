@@ -12,16 +12,25 @@
 <p>First things first, you'll need to provide a clean copy of a headered, USA version Super Mario World ROM renamed to 'clean.smc' (take care to ensure the file extension* is <code>.smc</code> and not <code>.sfc</code>). Place this file in the "workspace" folder.</p>
 <small>*this may require you to turn on extensions in Windows' File Explorer.</small>
 <h3 id="initialize-the-baserom">Initialize the Baserom</h3>
-<p>To start using the baserom you will first have to initialize the project. You can do this by running the provided PowerShell script: <code>!initialize_baserom.ps1</code> by right clicking on it and choosing "Run". When you run this script it will prompt you with some options:</p>
+<p>To start using the baserom you will first have to initialize the project folder with all the tools. You can do this by running the provided PowerShell script: <code>!initialize_baserom.ps1</code>. This can be done in Windowe by either right clicking on it and choosing "Run" or executing it from a Terminal or the Command Line.</p>
+<p> When you run this script it will prompt you with some options:</p>
 <pre>
 1. Download and Setup all Baserom Tools
 2. Restore Baserom list files.
 3. Setup Baserom's custom Lunar Magic toolbar.
 0. Exit
 </pre>
-<p>The only required step is: <code>Download and Setup all Baserom Tools</code>. Running this will check for all of the tools required by the baserom, and download them on demand. This is done to keep the baserom pretty lean and avoid distributing a lot of executables and binary files.</p>
+<p>Option 1 will check for all of the tools required by the baserom, and download them on demand. This is done to keep the baserom pretty lean and avoid distributing a lot of executables and binary files.</p>
+<p>Option 2 will restore the pre-configured list files for the tools in the baserom, if you don't do this step the blocks and sprites and things will fail to be inserted.</p>
+<p>Option 3 is optional, but it will install the a custom user toolbar that will display some useful buttons in Lunar Magic.</p>
 <h3 id="building-the-baserom">Building the Baserom</h3>
-<p>To make life easier for you as a hacker, this baserom comes with a build tool called Callisto that will run all the tools needed to build and update your hack everytime you want to make changes to it It will also monitor your project to keep things up-to-date. You can find it by running <code>callisto.exe</code> in the "callisto" folder.</p>
+<p>This baserom comes with a build tool called "Callisto" that will perform all actions needed to build and update your hack everytime you want to make changes. It executes all the common tools behind the scenes with a single command. Callisto will also monitor your project and export changes to keep things up-to-dat (provided you are using it's <b>Edit</b> functionality).</p>
+
+<p>You can start it by running <code>callisto.exe</code> in the "callisto" folder. After which you will see a short menu, to build the baserom:</p>
+<pre>
+Rebuild (R)
+</pre>
+<p>If everything has been set-up correctly, Callisto will build the baserom in its entirety to be ready for use.</p>
 <p>See the Callisto readmes in the docs folder for more information.</p>
 </section>
 </body>
