@@ -2,8 +2,6 @@ tools/addmusick/*.pl
 tools/addmusick/Addmusic_*.txt
 tools/addmusick/asm/SNES/bin/*.bin
 tools/addmusick/asm/SNES/SongSampleList.asm
-tools/addmusick/readme_files/
-tools/addmusick/readme.html
 tools/addmusick/SPCs/*.spc
 tools/addmusick/stats/*.txt
 tools/addmusick/temp*
@@ -19,6 +17,8 @@ workspace/temp/*
 conflicts.txt
 .callisto
 .is_setup
+temp/*
+temp.*
 *.*~
 *.chm
 *.chw

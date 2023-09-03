@@ -11,7 +11,6 @@ $ListsDir = "$WorkingDir\resources\initial_lists\"
 
 # Dot includes
 . $ToolsDir\common\tool_defines.ps1
-# . $ToolsDir\common\build_script_common.ps1
 
 # Make TempDir if it doesn't exist
 if (-not (Test-Path -Path $TempDir -PathType Container)) {
