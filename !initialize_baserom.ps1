@@ -17,9 +17,6 @@ if (-not (Test-Path -Path $TempDir -PathType Container)) {
     New-Item -Path $TempDir -ItemType Directory | Out-Null
 }
 
-# Display a menu
-$UserChoice = $null
-
 # Aliases for the menu item actions
 $ChoiceAliases = @{
     "0" = "Exit"
@@ -29,7 +26,9 @@ $ChoiceAliases = @{
 }
 
 # Start the main menu loop
+$UserChoice = $null
 while ($UserChoice -ne "4") {
+    # Display a menu
     Write-Host "------------------------------"
     Write-Host "Initialize Baserom"
     Write-Host "------------------------------`n"
@@ -39,6 +38,7 @@ while ($UserChoice -ne "4") {
     Write-Host "3. Setup Baserom's custom Lunar Magic toolbar."
     Write-Host "0. Exit`n"
 
+    # Await user input
     $UserChoice = Read-Host "Enter the number of your choice"
 
     # Check if the input is not in the valid range
@@ -49,7 +49,7 @@ while ($UserChoice -ne "4") {
 
     # Change the alias to the actual option
     $Action = $ChoiceAliases[$UserChoice]
-    # Process option input
+    # Process user input
     switch ($Action) {
 
         # Initialize Tools
@@ -152,6 +152,7 @@ while ($UserChoice -ne "4") {
                     Write-Host "An error occurred setting up $ToolName."
                 }
             }
+
             # Check if PIXI directory has set-up checkfile
             $ToolName = "PIXI"
             if (Test-Path "$PIXI_Dir.is_setup" -PathType Leaf) {
