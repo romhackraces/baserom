@@ -15,6 +15,7 @@ example.asm
 sysLMRestore
 workspace/temp/*
 conflicts.txt
+failed_save.txt
 .callisto
 .is_setup
 temp/*
