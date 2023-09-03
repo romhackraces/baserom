@@ -5,7 +5,9 @@ incsrc "../../../shared/freeram.asm"
 ; Load object macro
 macro LoadObject(object_id)
     REP #$20
-    LDA.w #1<<<object_id> : TSB !objectool_level_flags_freeram
+    LDA.w #1<<(<object_id>%16)
+    ORA !objectool_level_flags_freeram+(<object_id>/16)
+    STA !objectool_level_flags_freeram+(<object_id>/16)
     SEP #$20
     RTS
 endmacro
@@ -32,7 +34,9 @@ CustExObj9F:
 CustExObjA0:
 	%LoadObject(8)
 CustExObjA1:
+	; skip since it loads a door tile
 CustExObjA2:
+	%LoadObject(9)
 CustExObjA3:
 CustExObjA4:
 CustExObjA5:
@@ -46,16 +50,14 @@ CustExObjAC:
 CustExObjAD:
 CustExObjAE:
 CustExObjAF:
-	RTS
-
 CustExObjB0:
-	%LoadObject(9)
+	%LoadObject(24)
 CustExObjB1:
-	%LoadObject(10)
+	%LoadObject(25)
 CustExObjB2:
-	%LoadObject(11)
+	%LoadObject(26)
 CustExObjB3:
-	%LoadObject(12)
+	%LoadObject(27)
 CustExObjB4:
 CustExObjB5:
 CustExObjB6:

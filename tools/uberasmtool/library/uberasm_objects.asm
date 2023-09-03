@@ -1,9 +1,11 @@
+; run in gamemode 13
 incsrc "../../../shared/freeram.asm"
 
+; run code macro
 macro RunCode(code_id, code)
     REP #$20
-    LDA !objectool_level_flags_freeram
-    AND.w #1<<<code_id>
+    LDA !objectool_level_flags_freeram+(<code_id>/16)
+    AND.w #1<<(<code_id>%16)
     SEP #$20
     BEQ ?+
     JSR <code>
@@ -18,6 +20,7 @@ init:
 +
     %RunCode(2, set_state_to_off)
     %RunCode(3, block_duplication)
+    %RunCode(4, toggle_status_bar)
     %RunCode(7, vanilla_turnaround)
 .return
     rtl
@@ -30,14 +33,13 @@ main:
 +
     %RunCode(0, free_vertical_scroll)
     %RunCode(1, no_horizontal_scroll)
-    %RunCode(4, toggle_status_bar)
     %RunCode(5, toggle_lr_scroll)
     %RunCode(6, eight_frame_float)
     %RunCode(8, enable_sfx_echo)
-    %RunCode(9, retry_instant)
-    %RunCode(10, retry_prompt)
-    %RunCode(11, retry_bottom_left)
-    %RunCode(12, retry_no_midway_powerup)
+    %RunCode(24, retry_instant)
+    %RunCode(25, retry_prompt)
+    %RunCode(26, retry_bottom_left)
+    %RunCode(27, retry_no_midway_powerup)
 .return
     rtl
 
@@ -104,6 +106,9 @@ enable_sfx_echo:
     +
     rts
 
+; Object A1 (is skipped because of door)
+
+
 ; Object B0
 ; Use instant retry
 retry_instant:
@@ -126,5 +131,5 @@ retry_bottom_left:
 ; Object B3
 ; No powerup from midways
 retry_no_midway_powerup:
-    stz !retry_freeram+$10
+    lda #$00 : sta !retry_freeram+$10
     rts
