@@ -1,0 +1,32 @@
+; UberASM Tool list file.
+; See the readme for detailed information on its format.
+
+; sets verbose level, optional
+verbose: on
+
+; Level resources
+level:
+    * uberasm_objects.asm
+
+; Overworld resources
+overworld:
+
+; Game mode resources
+gamemode:
+    03 GM03.asm
+    0C GM0C.asm
+    0D GM0D.asm
+    0F GM0F.asm
+    10 GM10.asm
+    11 GM11.asm
+    12 GM12.asm
+    13 GM13.asm
+    14 GM14.asm
+    16 GM16.asm
+    19 GM19.asm
+
+; Other code files and free RAM setting.  These don't usually need to be changed.
+global:         other/global_code.asm
+statusbar:      other/status_code.asm
+macrolib:       other/macro_library.asm
+freeram:        $7FAC80                    ; 2 bytes of free RAM
