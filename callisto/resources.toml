@@ -24,6 +24,7 @@ patches = [
 	"resources/patches/consistency/capespin_net_hitbox.asm",
 	"resources/patches/consistency/item_release.asm",
 	"resources/patches/consistency/player_xspeed_fix.asm",
+	"resources/patches/enhancements/bullet_bill_sfx_extra_bit.asm",
 	"resources/patches/enhancements/charles_remembers.asm",
 	"resources/patches/enhancements/double_bounce_palette.asm",
 	"resources/patches/enhancements/exit-enabled_growing_pipe_extra_bit.asm",
