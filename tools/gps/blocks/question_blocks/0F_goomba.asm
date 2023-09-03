@@ -9,7 +9,7 @@ print "Question block that always spawns a Galoomba."
 				; Carryable sprites uses it as the stun timer
 
 !Placement = %move_spawn_above_block()
-		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block() 
+		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block()
 
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide
 JMP SpriteV : JMP SpriteH
@@ -34,7 +34,7 @@ SpriteV:
 	LDA !14C8,x
 	CMP #$09
 	BCC Return
-	LDA $AA,x
+	LDA !AA,x
 	BPL Return
 	LDA #$10
 	STA !AA,x

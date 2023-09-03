@@ -34,7 +34,7 @@ SpriteV:
 	LDA !14C8,x
 	CMP #$09
 	BCC Return
-	LDA $AA,x
+	LDA !AA,x
 	BPL Return
 	LDA #$10
 	STA !AA,x

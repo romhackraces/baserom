@@ -103,6 +103,9 @@ org $03C511 : db $0C
 ;; GFX Tweaks & Fixes ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
+; remove dark palette on "Erase Game" screen (interferes with some backgrounds)
+org $009D30 : db $EA,$EA,$EA,$EA,$EA
+
 ; fix palette of the white tile in the cave layer 3 background
 org $05A312 : db $15
 org $05A4B2 : db $15
