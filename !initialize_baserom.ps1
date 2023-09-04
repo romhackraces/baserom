@@ -15,17 +15,19 @@ $ListsDir = "$WorkingDir\resources\initial_lists\"
 $ChoiceAliases = @{
     "0" = "Exit"
     "1" = "InitializeTools"
+    "2" = "RunFirstBuild"
 }
 
 # Start the main menu loop
 $UserChoice = $null
 while ($UserChoice -ne "4") {
     # Display a menu
-    Write-Host "------------------------------"
+    Write-Host "`n------------------------------"
     Write-Host "Initialize Baserom"
     Write-Host "------------------------------`n"
     Write-Host "What would you like to to?`n"
     Write-Host "1. Download and Setup all Baserom Tools"
+    Write-Host "2. Run first build of the Baserom"
     Write-Host "0. Exit`n"
 
     # Await user input
@@ -56,7 +58,7 @@ while ($UserChoice -ne "4") {
                     Invoke-WebRequest -Uri $AddMusicK_Download -OutFile $env:temp\$AddMusicK_Archive
                     Expand-Archive -Path $env:temp\$AddMusicK_Archive -DestinationPath $env:temp\ -Force
                     # AddMusicK specific actions because zip is subfolder >:(
-                    Copy-Item "$env:temp\AddmusicK_*\*" -Destination $AddMusicK_Dir -Recurse | Out-Null
+                    Copy-Item "$env:temp\AddmusicK_*\*" -Destination $AddMusicK_Dir -Recurse -Force | Out-Null
                     # Delete junk files
                     foreach ($item in $AddMusicK_Junk) {
                         if (Test-Path -Path $AddMusicK_Dir$item) {
@@ -290,9 +292,40 @@ while ($UserChoice -ne "4") {
                 }
             }
             # Done
-            Write-Host "All done. `n"
+            Write-Host "All done."
             continue
 
+        }
+
+        # Run first build
+        "RunFirstBuild" {
+
+            # Check if Callisto directory has set-up checkfile
+            if (Test-Path "$Callisto_Dir.is_setup" -PathType Leaf) {
+                Clear-Host
+                if (Test-Path "$Callisto_Dir.first_build_done" -PathType Leaf) {
+                    Write-Host "First build already performed.`n`nYou can now use Callisto for working on your project by running it from the 'callisto' folder."
+                } else {
+                    try {
+                        Write-Host "Running a first-build in Callisto..."
+                        # Run build
+                        $command = "$Callisto_Dir\callisto.exe"
+                        $args = "rebuild"
+                        $process = Start-Process -FilePath $command -ArgumentList $args -PassThru -Wait
+                        # Create first_build_done checkfile
+                        New-Item -Path "$Callisto_Dir.first_build_done" -ItemType File -Force | Out-Null
+                        Set-ItemProperty -Path "$Callisto_Dir.first_build_done" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                        # Success
+                        Write-Host "First build done."
+                    } catch {
+                        # Failure
+                        Write-Host "First build did not complete successfully. Please try again."
+                    }
+                }
+            } else {
+                Write-Host "`n Callisto is not set up please run Step 1 first."
+            }
+            continue
         }
 
         # Exit

@@ -9,6 +9,9 @@ line-height: 1.4em;
 section {
 margin: 0 3em;
 }
+small {
+opacity: 0.5;
+}
 pre {
 background-color: #222;
 color: #eee;
