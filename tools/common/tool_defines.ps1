@@ -47,4 +47,4 @@ $PIXI_Junk = @("removedResources.txt", "changelog.txt", "README.html", "CONTRIBU
 $UberASMTool_Dir = "$ToolsDir\uberasmtool\"
 $UberASMTool_Download = "https://github.com/Underrout/UberASMTool/releases/download/2.0-beta2/UberASMTool20Beta2Standalone.zip"
 $UberASMTool_Archive = "UberASMTool20Beta2Standalone.zip"
-$UberASMTool_Junk = @("readme.txt", "changelog.txt", "incompatibilities.txt")
+$UberASMTool_Junk = @("readme.txt", "readme.html", "changelog.txt", "incompatibilities.txt")
