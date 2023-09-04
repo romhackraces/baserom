@@ -1,7 +1,7 @@
 [settings]
 project_root = "../"
 check_conflicts = "hijacks"
-conflict_log_file = "callisto/conflicts.txt"
+conflict_log_file = "buildtool/conflicts.txt"
 
 # path to the clean SMW rom file
 clean_rom = "resources/clean.smc"

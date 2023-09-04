@@ -46,6 +46,8 @@ while ($UserChoice -ne "4") {
 
         # Initialize Tools
         "InitializeTools" {
+            Clear-Host
+            Write-Host "Checking state of tools...`n"
 
             # Check if AddMusicK directory has set-up checkfile
             $ToolName = "AddMusicK"
@@ -58,7 +60,7 @@ while ($UserChoice -ne "4") {
                     Invoke-WebRequest -Uri $AddMusicK_Download -OutFile $env:temp\$AddMusicK_Archive
                     Expand-Archive -Path $env:temp\$AddMusicK_Archive -DestinationPath $env:temp\ -Force
                     # AddMusicK specific actions because zip is subfolder >:(
-                    Copy-Item "$env:temp\AddmusicK_*\*" -Destination $AddMusicK_Dir -Recurse -Force | Out-Null
+                    Copy-Item "$env:temp\AddmusicK_*\*" -Destination $AddMusicK_Dir -Recurse | Out-Null
                     # Delete junk files
                     foreach ($item in $AddMusicK_Junk) {
                         if (Test-Path -Path $AddMusicK_Dir$item) {
@@ -292,7 +294,7 @@ while ($UserChoice -ne "4") {
                 }
             }
             # Done
-            Write-Host "All done."
+            Write-Host "`nAll done."
             continue
 
         }
@@ -304,19 +306,25 @@ while ($UserChoice -ne "4") {
             if (Test-Path "$Callisto_Dir.is_setup" -PathType Leaf) {
                 Clear-Host
                 if (Test-Path "$Callisto_Dir.first_build_done" -PathType Leaf) {
-                    Write-Host "First build already performed.`n`nYou can now use Callisto for working on your project by running it from the 'callisto' folder."
+                    Write-Host "First build already performed.`n`nYou can now use Callisto for working on your project by running it from the 'buildtool' folder."
                 } else {
                     try {
-                        Write-Host "Running a first-build in Callisto..."
+                        Write-Host "Running a first-build in Callisto...`n"
                         # Run build
                         $command = "$Callisto_Dir\callisto.exe"
                         $args = "rebuild"
-                        $process = Start-Process -FilePath $command -ArgumentList $args -PassThru -Wait
-                        # Create first_build_done checkfile
-                        New-Item -Path "$Callisto_Dir.first_build_done" -ItemType File -Force | Out-Null
-                        Set-ItemProperty -Path "$Callisto_Dir.first_build_done" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
-                        # Success
-                        Write-Host "First build done."
+                        $process = Start-Process -FilePath $command -ArgumentList $args -Wait -PassThru
+                        # Check the exit code
+                        $exitCode = $process.ExitCode
+                        if ($exitCode -eq 0) {
+                            # Create first_build_done checkfile
+                            New-Item -Path "$Callisto_Dir.first_build_done" -ItemType File -Force | Out-Null
+                            Set-ItemProperty -Path "$Callisto_Dir.first_build_done" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
+                            # Success
+                            Write-Host "First build done."
+                        } else {
+                            Write-Host "Baserom failed to build. Please run Callisto manually from the 'buildtool' folder to see any errors."
+                        }
                     } catch {
                         # Failure
                         Write-Host "First build did not complete successfully. Please try again."
@@ -331,7 +339,7 @@ while ($UserChoice -ne "4") {
         # Exit
         "Exit" {
             Clear-Host
-            Write-Host "Have a nice day ^_^`n"
+            Write-Host "Exiting...`nHave a nice day ^_^`n"
             exit 0
         }
     }
