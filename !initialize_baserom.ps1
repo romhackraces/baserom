@@ -6,23 +6,15 @@ Clear-Host
 # Directory Definitions
 $WorkingDir = Get-Location
 $ToolsDir = "$WorkingDir\tools"
-$TempDir = "$WorkingDir\temp\"
 $ListsDir = "$WorkingDir\resources\initial_lists\"
 
 # Dot includes
 . $ToolsDir\common\tool_defines.ps1
 
-# Make TempDir if it doesn't exist
-if (-not (Test-Path -Path $TempDir -PathType Container)) {
-    New-Item -Path $TempDir -ItemType Directory | Out-Null
-}
-
 # Aliases for the menu item actions
 $ChoiceAliases = @{
     "0" = "Exit"
     "1" = "InitializeTools"
-    "2" = "InitializeListFiles"
-    "3" = "SetupUserToolbar"
 }
 
 # Start the main menu loop
@@ -34,8 +26,6 @@ while ($UserChoice -ne "4") {
     Write-Host "------------------------------`n"
     Write-Host "What would you like to to?`n"
     Write-Host "1. Download and Setup all Baserom Tools"
-    Write-Host "2. Restore Baserom list files."
-    Write-Host "3. Setup Baserom's custom Lunar Magic toolbar."
     Write-Host "0. Exit`n"
 
     # Await user input
@@ -63,10 +53,10 @@ while ($UserChoice -ne "4") {
                 try {
                     Write-Host "$ToolName is not set up. `nDownloading..."
                     # Download zip file
-                    Invoke-WebRequest -Uri $AddMusicK_Download -OutFile $TempDir$AddMusicK_Archive
-                    Expand-Archive -Path $TempDir$AddMusicK_Archive -DestinationPath $TempDir -Force
+                    Invoke-WebRequest -Uri $AddMusicK_Download -OutFile $env:temp\$AddMusicK_Archive
+                    Expand-Archive -Path $env:temp\$AddMusicK_Archive -DestinationPath $env:temp\ -Force
                     # AddMusicK specific actions because zip is subfolder >:(
-                    Copy-Item "$TempDir\AddmusicK_*\*" -Destination $AddMusicK_Dir -Recurse | Out-Null
+                    Copy-Item "$env:temp\AddmusicK_*\*" -Destination $AddMusicK_Dir -Recurse | Out-Null
                     # Delete junk files
                     foreach ($item in $AddMusicK_Junk) {
                         if (Test-Path -Path $AddMusicK_Dir$item) {
@@ -79,6 +69,8 @@ while ($UserChoice -ne "4") {
                             }
                         }
                     }
+                    # Copy pre-existing list file to tool directory
+                    Copy-Item -Path "$ListsDir\Addmusic*" -Destination $AddMusicK_Dir
                     # Create is_setup checkfile
                     New-Item -Path "$AddMusicK_Dir.is_setup" -ItemType File | Out-Null
                     Set-ItemProperty -Path "$AddMusicK_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
@@ -97,8 +89,8 @@ while ($UserChoice -ne "4") {
                 try {
                     Write-Host "$ToolName is not set up. `nDownloading..."
                     # Download zip file
-                    Invoke-WebRequest -Uri $Flips_Download -OutFile $TempDir$Flips_Archive
-                    Expand-Archive -Path $TempDir$Flips_Archive -DestinationPath $Flips_Dir -Force
+                    Invoke-WebRequest -Uri $Flips_Download -OutFile $env:temp\$Flips_Archive
+                    Expand-Archive -Path $env:temp\$Flips_Archive -DestinationPath $Flips_Dir -Force
                     # Delete junk files
                     foreach ($item in $Flips_Junk) {
                         if (Test-Path -Path $Flips_Dir$item) {
@@ -129,8 +121,8 @@ while ($UserChoice -ne "4") {
                 try {
                     Write-Host "$ToolName is not set up. `nDownloading..."
                     # Download zip file
-                    Invoke-WebRequest -Uri $GPS_Download -OutFile $TempDir$GPS_Archive
-                    Expand-Archive -Path $TempDir$GPS_Archive -DestinationPath $GPS_Dir -Force
+                    Invoke-WebRequest -Uri $GPS_Download -OutFile $env:temp\$GPS_Archive
+                    Expand-Archive -Path $env:temp\$GPS_Archive -DestinationPath $GPS_Dir -Force
                     # Delete junk files
                     foreach ($item in $GPS_Junk) {
                         if (Test-Path -Path $GPS_Dir$item) {
@@ -143,6 +135,8 @@ while ($UserChoice -ne "4") {
                             }
                         }
                     }
+                    # Copy pre-existing list file to tool directory
+                    Copy-Item -Path "$ListsDir\list_gps.txt" -Destination $GPS_Dir\list.txt
                     # Create is_setup checkfile
                     New-Item -Path "$GPS_Dir.is_setup" -ItemType File | Out-Null
                     Set-ItemProperty -Path "$GPS_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
@@ -161,8 +155,8 @@ while ($UserChoice -ne "4") {
                 try {
                     Write-Host "$ToolName is not set up. `nDownloading..."
                     # Download zip file
-                    Invoke-WebRequest -Uri $PIXI_Download -OutFile $TempDir$PIXI_Archive
-                    Expand-Archive -Path $TempDir$PIXI_Archive -DestinationPath $PIXI_Dir -Force
+                    Invoke-WebRequest -Uri $PIXI_Download -OutFile $env:temp\$PIXI_Archive
+                    Expand-Archive -Path $env:temp\$PIXI_Archive -DestinationPath $PIXI_Dir -Force
                     # Delete junk files
                     foreach ($item in $PIXI_Junk) {
                         if (Test-Path -Path $PIXI_Dir$item) {
@@ -175,6 +169,8 @@ while ($UserChoice -ne "4") {
                             }
                         }
                     }
+                    # Copy pre-existing list file to tool directory
+                    Copy-Item -Path "$ListsDir\list_pixi.txt" -Destination $PIXI_Dir\list.txt
                     # Create is_setup checkfile
                     New-Item -Path "$PIXI_Dir.is_setup" -ItemType File | Out-Null
                     Set-ItemProperty -Path "$PIXI_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
@@ -193,8 +189,8 @@ while ($UserChoice -ne "4") {
                 try {
                     Write-Host "$ToolName is not set up. `nDownloading..."
                     # Download zip file
-                    Invoke-WebRequest -Uri $LunarMagic_Download -OutFile $TempDir$LunarMagic_Archive
-                    Expand-Archive -Path $TempDir$LunarMagic_Archive -DestinationPath $LunarMagic_Dir -Force
+                    Invoke-WebRequest -Uri $LunarMagic_Download -OutFile $env:temp\$LunarMagic_Archive
+                    Expand-Archive -Path $env:temp\$LunarMagic_Archive -DestinationPath $LunarMagic_Dir -Force
                     # Delete junk files
                     foreach ($item in $LunarMagic_Junk) {
                         if (Test-Path -Path $LunarMagic_Dir$item) {
@@ -207,6 +203,12 @@ while ($UserChoice -ne "4") {
                             }
                         }
                     }
+                    # copy usertoolbar files to Lunar Magic directory
+                    Write-Host "Setting up custom Lunar Magic toolbar..."
+                    Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir
+                    Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir
+                    Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir
+                    # Done
                     # Create is_setup checkfile
                     New-Item -Path "$LunarMagic_Dir.is_setup" -ItemType File | Out-Null
                     Set-ItemProperty -Path "$LunarMagic_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
@@ -225,8 +227,8 @@ while ($UserChoice -ne "4") {
                 try {
                     Write-Host "$ToolName is not set up. `nDownloading..."
                     # Download zip file
-                    Invoke-WebRequest -Uri $UberASMTool_Download -OutFile $TempDir$UberASMTool_Archive
-                    Expand-Archive -Path $TempDir$UberASMTool_Archive -DestinationPath $UberASMTool_Dir -Force
+                    Invoke-WebRequest -Uri $UberASMTool_Download -OutFile $env:temp\$UberASMTool_Archive
+                    Expand-Archive -Path $env:temp\$UberASMTool_Archive -DestinationPath $UberASMTool_Dir -Force
                     # Delete junk files
                     foreach ($item in $UberASMTool_Junk) {
                         if (Test-Path -Path $UberASMTool_Dir$item) {
@@ -239,6 +241,8 @@ while ($UserChoice -ne "4") {
                             }
                         }
                     }
+                    # Copy pre-existing list file to tool directory
+                    Copy-Item -Path "$ListsDir\list_uberasm.txt" -Destination $UberASMTool_Dir\list.txt
                     # Create is_setup checkfile
                     New-Item -Path "$UberASMTool_Dir.is_setup" -ItemType File | Out-Null
                     Set-ItemProperty -Path "$UberASMTool_Dir.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
@@ -257,8 +261,8 @@ while ($UserChoice -ne "4") {
                 try {
                     Write-Host "$ToolName is not set up. `nDownloading..."
                     # Download zip file
-                    Invoke-WebRequest -Uri $Callisto_Download -OutFile $TempDir$Callisto_Archive
-                    Expand-Archive -Path $TempDir$Callisto_Archive -DestinationPath $Callisto_Dir -Force
+                    Invoke-WebRequest -Uri $Callisto_Download -OutFile $env:temp\$Callisto_Archive
+                    Expand-Archive -Path $env:temp\$Callisto_Archive -DestinationPath $Callisto_Dir -Force
                     # Install Callisto's modified asar dll.
                     Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $GPS_Dir
                     Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $AddMusicK_Dir | Remove-Item $AddMusicK_Dir\asar.exe
@@ -291,40 +295,10 @@ while ($UserChoice -ne "4") {
 
         }
 
-        # Initialize Baserom tool list files
-        "InitializeListFiles" {
-            try {
-                # Copy in existing list file(s) to respective folders
-                Write-Host "Copying pre-configured list files to respective Tools folders..."
-                Copy-Item -Path "$ListsDir\Addmusic*" -Destination $AddMusicK_Dir
-                Copy-Item -Path "$ListsDir\list_gps.txt" -Destination $GPS_Dir\list.txt
-                Copy-Item -Path "$ListsDir\list_pixi.txt" -Destination $PIXI_Dir\list.txt
-                Copy-Item -Path "$ListsDir\list_uberasm.txt" -Destination $UberASMTool_Dir\list.txt
-            } catch {
-                Write-Host "An error occurred setting up list files."
-            }
-            continue
-        }
-
-        # Setup Lunar Magic usertoolbar
-        "SetupUserToolbar" {
-            # copy usertoolbar files to Lunar Magic directory
-            Write-Host "Setting up custom Lunar Magic toolbar..."
-            Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir
-            Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir
-            Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir
-            # Done
-            Write-Host "Done.`n"
-            continue
-        }
-
         # Exit
         "Exit" {
-            # Remove temporary items
-            Remove-Item $TempDir -Recurse
             Clear-Host
             Write-Host "Have a nice day ^_^`n"
-
             exit 0
         }
     }
