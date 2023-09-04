@@ -2,11 +2,6 @@
 ;otherwise it will let them pass.
 ;behaves $25
 
-!using_boost	= 0		;>if you are using boost blocks, set this to 1
-				;so mario cannot glitch through them in the opposite
-				;direction
-
-print "Solid if anything goes right"
 db $37
 JMP return : JMP return : JMP Check : JMP return : JMP SpriteH : JMP return
 JMP MarioFireBall : JMP return : JMP Check : JMP Check : JMP wall : JMP Check
@@ -49,7 +44,7 @@ SpriteH:
 	CMP $00			;>Compare with sprite's x position
 	SEP #$20
 	BMI return		;>If block is too far to the left (sprite to the right) far enough, don't push sprite.
-	
+
 	LDA $0A			;\Teleport sprite to the front of the block.
 	AND #$F0		;|
 	SEC			;|
@@ -65,3 +60,5 @@ solid:
 	STA $1693|!addr		;/
 return:
 	RTL
+
+print "Solid if anything goes right"

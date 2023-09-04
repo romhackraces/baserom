@@ -1,9 +1,9 @@
 ; act as 130
 
 db $42
-JMP ++ : JMP ++ : JMP ++
-JMP SpriteV : JMP SpriteH : JMP ++ : JMP ++
-JMP ++ : JMP ++
+JMP Return : JMP Return : JMP Return
+JMP SpriteV : JMP SpriteH : JMP Return : JMP Return
+JMP Return : JMP Return
 
 SpriteV:
 	%check_sprite_kicked_vertical()
@@ -16,6 +16,7 @@ SpriteH:
 Shatter:
 	%sprite_block_position()
 	%shatter_block()
-++	rtl
+Return:
+	rtl
 
 print "A block that shatters when a sprite is thrown at it."

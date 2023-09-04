@@ -56,11 +56,11 @@ MarioSide:				; Make the block's hitbox similar to how muncher's behave.
 	CMP $94
 	BCC Return2			; If the carry is still set, Return.
 	SEP #$20
-	
+
 	LDA $1490|!addr		; Check if Mario has a star.
 	ORA $13ED|!addr		; Check if Mario is landing with a cape, or sliding.
 	BNE Star			; If he does, ignore the modified hitbox below.
-	
+
 	LDA $72				; Check if Mario is in the air.
 	ORA $187A|!addr		; Check if Mario is riding Yoshi.
 	BEQ Damage2			; If touching the sides while on the ground and not riding Yoshi, damage.
@@ -71,7 +71,7 @@ MarioAbove:
 	ORA $13ED|!addr		; Check if Mario is landing with a cape, or sliding.
 	BNE Star			; If he does, destroy block.
 	BRA Bounce			; If not, go to bounce.
-	
+
 SpriteV:
 SpriteH:
 	LDA !9E,x			; Load the sprite's number.
@@ -96,10 +96,10 @@ SpriteH:
 	LDA $7B
 	STA !B6,x			; Give it Mario's X speed after dying.
 	RTL
-	
+
 Return2:
 	BRA Return
-	
+
 Damage2:
 	BRA Damage
 
@@ -115,7 +115,7 @@ if !fireballcoin
 	STA !AA,x
 +
 endif
-	
+
 MarioCape:
 	%hundred_points()	; Give points to the player.
 	BRA Poof
@@ -124,7 +124,7 @@ Star:
 Poof:
 	%erase_block()		; Erase block.
 	%create_smoke()		; Create smoke effect.
-	
+
 Return:
 	SEP #$20			; Make A 8 bit.
 	RTL
@@ -137,7 +137,7 @@ HeadInside:
 	SBC #$000E			; Subtract 000E.
 	CMP $94				; Compare with the value in $94 (Player's X position within the level)
 	BCS Return			; If the carry is still set, Return.
-	CLC	
+	CLC
 	ADC #$001A			; Add 1A with carry.
 	CMP $94				; Compare with $94.
 	BCC Return			; If the carry is clear, Return.
@@ -147,7 +147,7 @@ HeadInside:
 MarioBelow:
 	LDA $187A|!addr		; Check if Mario is riding Yoshi.
 	BNE Return			; Return if he does.
-	
+
 BodyInside:
 	LDA $1490|!addr		; Check if Mario has a star.
 	ORA $13ED|!addr		; Check if Mario is landing with a cape, or sliding.
@@ -168,18 +168,18 @@ if !sa1					; Code stolen from Koopster. If Mario rides Yoshi, lose him when tou
 	STA $CC				; than rewriting the routine, this workaround is needed".
 	SEP #$20
 endif
-	
+
 	PEA $01|(PushReturn>>16<<8)	; Push current bank then bank $01.
 	PLB					; Pull $01 to data bank register.
-	
+
 	PHK
 	PEA PushReturn-1
 	PEA $80CA-1			; Koopster: "jslrts to yoshi runs away routine to force it to happen".
 	JML $01F70E|!bank
-	
+
 PushReturn:				; Restore our data bank register.
 	PLB
-	
+
 Damage:
 	PHY
 	JSL $00F5B7|!bank	; Hurt subroutine.

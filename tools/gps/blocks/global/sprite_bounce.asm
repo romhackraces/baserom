@@ -3,11 +3,12 @@
 ;coded by dogemaster
 
 db $42
-!SpriteBounce = #$A8
 
-JMP Mario : JMP Mario : JMP Mario
+!BounceSpeed = #$A8
+
+JMP Return : JMP Return : JMP Return
 JMP Sprite : JMP Sprite : JMP Return : JMP Return
-JMP Mario : JMP Mario : JMP Mario
+JMP Return : JMP Return : JMP Return
 
 Sprite:
 	LDA !D8,x			; sprites reset their y speed when on ground so this snippet make the sprite rise by 2 pixels so y speed is changeable
@@ -22,11 +23,9 @@ Sprite:
 	LDA !14C8,x			; \ The address thingy that has the value if something is alive and other shit
 	CMP #$08			; | comparing to see if alive
 	BCC Return			; /
-	LDA !SpriteBounce
+	LDA !BounceSpeed
 	STA !AA,x
-RTL
-Mario:
 Return:
-RTL
+	RTL
 
 print "A block that bounces sprites! But is passable by Mario."

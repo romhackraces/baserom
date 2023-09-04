@@ -1,10 +1,10 @@
 db $42
-JMP Mario : JMP Mario : JMP Mario : JMP End : JMP End : JMP End : JMP End
-JMP End : JMP End : JMP End
+JMP Mario : JMP Mario : JMP Mario : JMP Return : JMP Return : JMP Return : JMP Return
+JMP Return : JMP Return : JMP Return
 
 Mario:
 	LDA #$01 : STA $1412|!addr
-End:
+Return:
 	RTL
 
-print "Enable vertical camera scroll."
+print "Enable vertical camera scroll. (Remove graphics in Map16 when finished.)"

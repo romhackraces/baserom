@@ -9,26 +9,17 @@ print "Question block that always spawns a P-Balloon."
 				; Carryable sprites uses it as the stun timer
 
 !Placement = %move_spawn_into_block()
-		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block() 
+		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block()
 
-JMP MarioBelow : JMP MarioAbove : JMP MarioSide
+JMP MarioBelow : JMP Return : JMP Return
 JMP SpriteV : JMP SpriteH
-JMP Cape : JMP Fireball
-JMP MarioCorner : JMP MarioInside : JMP MarioHead
-
-Return:
-MarioAbove:
-MarioSide:
-Fireball:
-MarioCorner:
-MarioInside:
-MarioHead:
-RTL
+JMP Cape : JMP Return
+JMP Return : JMP Return : JMP Return
 
 SpriteH:
 	%check_sprite_kicked_horizontal()
 	BCS SpriteShared
-RTL
+	RTL
 
 SpriteV:
 	LDA !14C8,x
@@ -74,10 +65,11 @@ SpawnItem:
 	STA !154C,x
 
 	LDA !190F,x
-	BPL Return2
+	BPL +
 	LDA #$10
 	STA !15AC,x
-Return2:
++
 	PLY
 	PLX
-RTL
+Return:
+	RTL

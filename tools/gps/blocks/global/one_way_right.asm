@@ -2,7 +2,6 @@
 ;otherwise it will let them pass.
 ;behaves $25
 
-print "Solid if anything goes left"
 db $37
 JMP return : JMP return : JMP Check : JMP return : JMP SpriteH : JMP return
 JMP MarioFireBall : JMP return : JMP Check : JMP Check : JMP wall : JMP Check
@@ -66,3 +65,5 @@ solid:
 	STA $1693|!addr		;/
 return:
 	RTL
+
+print "Solid if anything goes left"

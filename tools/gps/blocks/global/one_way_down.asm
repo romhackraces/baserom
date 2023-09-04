@@ -2,7 +2,6 @@
 ;otherwise it will let them pass.
 ;behaves $25
 
-print "Solid if anything goes up"
 db $37
 JMP MarioBelow : JMP return : JMP return : JMP SpriteV : JMP return : JMP return
 JMP MarioFireBall : JMP return : JMP return : JMP return : JMP return : JMP solid
@@ -24,3 +23,5 @@ solid:
 	STA $1693|!addr	;/
 return:
 	RTL
+
+print "Solid if anything goes up"

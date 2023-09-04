@@ -1,4 +1,4 @@
-; act as 25
+; insert act as 25
 db $42
 JMP Mario : JMP Mario : JMP Mario : JMP Return : JMP Return : JMP Return : JMP Return
 JMP Mario : JMP Mario : JMP Mario
@@ -13,10 +13,10 @@ Mario:
     STA $13ED|!addr             ;/
 
     LDA $13F3|!addr             ;\ check if in balloon
-    BEQ Return                  ;/ otherwise skip
+    BEQ +                  ;/ otherwise skip
     LDA #$01 : STA $1891|!addr  ;> set p-balloon timer to 1 frame (can't do zero here)
     STZ $13F3|!addr             ;> make sure not in balloon
-
+    +
 Return:
     RTL
 

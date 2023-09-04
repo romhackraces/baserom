@@ -1,4 +1,4 @@
-; act as 130
+; insert act as 130
 db $42
 
 JMP Return : JMP Mario : JMP Return : JMP Return : JMP Return : JMP Return : JMP Return

@@ -4,11 +4,12 @@
 
 db $42
 
-jmp ++ : jmp ++ : jmp ++
-jmp + : jmp + : jmp ++ : jmp ++
-jmp ++ : jmp ++ : jmp ++
+jmp Return : jmp Return : jmp Return
+jmp Sprite : jmp Sprite : jmp Return : jmp Return
+jmp Return : jmp Return : jmp Return
 
-+   ; Spawn the smoke sprite
+Sprite:
+    ; Spawn the smoke sprite
     lda.b #!smoke_num
     clc
     phx
@@ -19,12 +20,12 @@ jmp ++ : jmp ++ : jmp ++
     stz !14C8,x
 
     ; Move the new sprite where the old one was
-    bcs ++
+    bcs Return
     sta $04
     %move_spawn_to_sprite()
 
     ; If the block is on Layer 2, fix the sprite position
-    lda $185E|!addr : beq ++
+    lda $185E|!addr : beq Return
     phx
     ldx $04
     lda !sprite_x_low,x : sec : sbc $26 : sta !sprite_x_low,x
@@ -32,6 +33,7 @@ jmp ++ : jmp ++ : jmp ++
     lda !sprite_y_low,x : sec : sbc $28 : sta !sprite_y_low,x
     lda !sprite_y_high,x : sbc $29 : sta !sprite_y_high,x
     plx
-++  rtl
+Return:
+    rtl
 
 print "A block that kills sprites."

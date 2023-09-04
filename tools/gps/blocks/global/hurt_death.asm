@@ -36,10 +36,10 @@ MarioCorner:
         LDA $187A|!addr		    ; \ if the player is riding Yoshi
         BNE MarioAboveReturn    ; / let him live
     endif
-    
+
     LDA $7D         ; \ only hurt the player
-    BPL HurtOrKill  ; / if he's moving downward    
-    
+    BPL HurtOrKill  ; / if he's moving downward
+
     MarioAboveReturn:
     RTL
 
@@ -50,10 +50,10 @@ SidePixelTable:
 MarioHead:
 MarioSide:
     PHY                     ; > y is used for act as -> preserve it
-    LDY $93                 ; \ 
+    LDY $93                 ; \
     LDA $94                 ; | use proper muncher hitbox for the side
     AND.B #$0F              ; | so the block doesn't stick out by 1 pixel
-    CMP.W SidePixelTable,Y  ; / 
+    CMP.W SidePixelTable,Y  ; /
     BNE HurtOrKillPopY
     PLY
     RTL
@@ -69,17 +69,17 @@ WallRun:
 
 SpriteStuff:
     if !solid_for_sprites = 1
-        LDA #$30				; \ 
+        LDA #$30				; \
         STA $1693|!addr		    ; | act as tile 130 (cement block)
-        LDY #$01				; / 
+        LDY #$01				; /
     elseif  !solid_for_sprites = 0
-        LDA #$48				; \ 
+        LDA #$48				; \
         STA $1693|!addr			; | act as tile 48 (always turning block)
-        LDY #$00				; / 
-    else 
-        LDA #$25				; \ 
+        LDY #$00				; /
+    else
+        LDA #$25				; \
         STA $1693|!addr			; | act as tile 25 (air)
-        LDY #$00				; / 
+        LDY #$00				; /
     endif
     RTL
 
@@ -110,5 +110,5 @@ endmacro
 %select_text(text_2, yoshi_can_walk_on_top, "(even on yoshi)", "(unless he's on yoshi)")
 %select_text(text_3, solid_for_sprites, "passable", "solid")
 %select_text(text_4, allow_wall_run, "!text_1 on", "supports")
-    
+
 print "Block that !text_1 the player !text_2, is !text_3 for sprites and !text_4 wall running."

@@ -20,6 +20,12 @@
 2a3	0	Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it.
 2a4	0	A block that will teleport Mario to the current screen exit.
 2a5	0	A single-use bounce block.
+2aa	0	Scroll camera left. (Remove graphics in Map16 when finished.)
+2ab	0	Scroll camera right. (Remove graphics in Map16 when finished.)
+2ac	0	Enable horizontal camera scroll. (Remove graphics in Map16 when finished.)
+2ad	0	Disable horizontal camera scroll. (Remove graphics in Map16 when finished.)
+2ae	0	Enable vertical camera scroll. (Remove graphics in Map16 when finished.)
+2af	0	Disable vertical camera scroll. (Remove graphics in Map16 when finished.)
 2b0	0	Question block that always spawns a Mushroom.
 2b1	0	Question block that always spawns a Fire Flower.
 2b2	0	Question block that always spawns a Cape Feather.
@@ -33,12 +39,6 @@
 2ba	0	Question block that always spawns a Blue P-Switch/POW.
 2bb	0	Question block that always spawns a Silver P-Switch/POW.
 2bc	0	Question block that always spawns a Spring.
-2fa	0	Scroll camera left.
-2fb	0	Scroll camera right.
-2fc	0	Enable horizontal camera scroll.
-2fd	0	Disable horizontal camera scroll.
-2fe	0	Enable vertical camera scroll.
-2ff	0	Disable vertical camera scroll.
 300	0	Top-left cap piece of vertical 2-way pipe.
 301	0	Top-right cap piece of vertical 2-way pipe.
 302	0	Part of pipe that is passable.

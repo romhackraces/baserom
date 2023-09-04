@@ -11,26 +11,17 @@ print "Question block that always spawns a Silver P-Switch/POW."
 !Placement = %move_spawn_above_block()
 		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block()
 
-JMP MarioBelow : JMP MarioAbove : JMP MarioSide
-JMP SpriteV : JMP SpriteH
-JMP Cape : JMP Fireball
-JMP MarioCorner : JMP MarioInside : JMP MarioHead
-
 SwitchPalette: db $06,$02
 
-Return:
-MarioAbove:
-MarioSide:
-Fireball:
-MarioCorner:
-MarioInside:
-MarioHead:
-RTL
+JMP MarioBelow : JMP Return : JMP Return
+JMP SpriteV : JMP SpriteH
+JMP Cape : JMP Return
+JMP Return : JMP Return : JMP Return
 
 SpriteH:
 	%check_sprite_kicked_horizontal()
 	BCS SpriteShared
-RTL
+	RTL
 
 SpriteV:
 	LDA !14C8,x
@@ -53,6 +44,8 @@ SpawnItem:
 	LDX #$0D
 	LDY #$00
 	%spawn_bounce_sprite()
+	LDA #$00
+	STA $1901,y
 
 	LDA #$02
 	STA $1DFC|!addr
@@ -65,10 +58,10 @@ SpawnItem:
 	!Placement
 
 	; P-Switch specific things
-	LDA #$01 ; silver
+	LDA #$01 ; 00 for blue, 01 for silver
 	STA !151C,x
 	PHY
-	LDY #$01 ; silver
+	LDY #$01 ; 00 for blue, 01 for silver
 	LDA SwitchPalette,y
 	STA !15F6,x
 	PLY
@@ -83,10 +76,11 @@ SpawnItem:
 	STA !154C,x
 
 	LDA !190F,x
-	BPL Return2
+	BPL +
 	LDA #$10
 	STA !15AC,x
-Return2:
++
 	PLY
 	PLX
-RTL
+Return:
+	RTL

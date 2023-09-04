@@ -1,8 +1,6 @@
-
-
 ; PAGE 02 OF MAP16 ----------------------------------------;
-;
-; 209-28F ; Occupied with vanilla Tiles
+; 200-20A - reserved for layer 3 Tide act-as feature
+; 209-28F - occupied with vanilla Tiles
 
 ; CUSTOM GLOBAL BLOCKS (DO NOT MODIFY) --------------------;
 0290:0130 global/mario_passable.asm
@@ -16,17 +14,27 @@
 0298:0130 global/breakable_by_item.asm
 0299:0025 global/sprite_killer.asm
 029A:0130 global/hurt_death.asm
-029B:0025 global/hurt_death_sprite_passthrough.asm
+029B:0025 global/hurt_death+sprite_passthrough.asm
 029C:0025 global/remove_powerup.asm
 029D:0100 global/donut_lift.asm
 029E:0130 global/endless_throwblock.asm
 029F:0025 global/ledge_vine.asm
-02A0:0025 global/spinyblock.asm
-02A1:0025 global/swooperblock.asm
+02A0:0025 global/fake_spiny.asm
+02A1:0025 global/fake_swooper.asm
 02A2:0025 global/set_to_on.asm
 02A3:0025 global/set_to_off.asm
 02A4:0025 global/teleport.asm
 02A5:0130 global/single_use_bounce_block.asm
+;02A6 reserved by baserom
+;02A7 reserved by baserom
+;02A8 reserved by baserom
+;02A9 reserved by baserom
+02AA:0025 camera/scroll_left.asm
+02AB:0025 camera/scroll_right.asm
+02AC:0025 camera/horz_start.asm
+02AD:0025 camera/horz_stop.asm
+02AE:0025 camera/vert_start.asm
+02AF:0025 camera/vert_stop.asm
 
 ; CUSTOM QUESTION BLOCKS (DO NOT MODIFY) ------------------;
 02B0:0130 question_blocks/74_mushroom.asm
@@ -43,13 +51,6 @@
 02BB:0130 question_blocks/3E_silver_pswitch.asm
 02BC:0130 question_blocks/2F_spring.asm
 
-; CAMERA BLOCKS (DO NOT MODIFY) ---------------------------;
-02FA:0025 camera/scroll_left.asm
-02FB:0025 camera/scroll_right.asm
-02FC:0025 camera/horz_start.asm
-02FD:0025 camera/horz_stop.asm
-02FE:0025 camera/vert_start.asm
-02FF:0025 camera/vert_stop.asm
 
 ; SCREEN SCROLLING PIPES (DO NOT MODIFY) ------------------;
 
@@ -155,6 +156,7 @@
 
 
 ; PLACE YOUR CUSTOM BLOCKS ABOVE --------------------------;
+
 ; Addtional Tile Descriptions
 @dsc
 200 0 Block that can be used for Lunar Magic's tide Act As feature.
