@@ -25,6 +25,13 @@ This baserom comes with several objects to toggle features in levels, including 
     <li>In the "project.toml" file in the <b>buildtool</b> folder, change the <code>initial_patch</code> setting to use the SA-1 option.</li>
     <li>Rebuild your project in Callisto to make the change.</li>
 </ol>
+<h3 id="script-cannot-run">"Why can't I run the initialization script?"</h3>
+<p>This is due to something in Windows called <a target="_blank" href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies">Execution Policies</a> which is a security and safety feature to prevent the execution of malicious scripts, by preventing any script from being run at all (among other things).</p>
+<p>You can however change the Execution Policy to something more permissive to allow you to run scripts on your computer. To do this launch PowerShell with the <b>Run as administrator</b> option, paste the following and hit Enter.</p>
+<pre>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned</pre>
+<p>Now you should be able to run the initialization script. When you are all finished you can set it back to the default for your computer:</p>
+<pre>Set-ExecutionPolicy -ExecutionPolicy Default</pre>
+<a href="#" class="go-to-top"></a>
 </section>
 </body>
 </html>
