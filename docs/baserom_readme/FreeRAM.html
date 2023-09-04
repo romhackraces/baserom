@@ -4,9 +4,10 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+<style>td:nth-child(1){width:44px;font:larger monospace;min-width: 120px;}</style>
 <body>
 <section>
-<a href="../../README.html" class="back">➽</a>
+<a href="../../README.html" class="back">🠈</a>
 <h2>FreeRAM Usage</h2>
 <h3 id="#">Contents</h3>
 <ul>
@@ -19,35 +20,35 @@
 <p>Keep in mind some of these use a range of values, e.g. if it's starting at $60 and is 4 bytes it's using addresses 60, 61, 62 and 63.</p>
 <table border="1" class="full">
 <tr><th>Address</th><th>Bytesize</th><th>Resource</th></tr>
-<tr><td>$57</td><td>1 byte</td><td>Skull Raft Fix</td></tr>
-<tr><td>$79</td><td>1 byte</td><td>RAM-toggled statusbar patch</td></tr>
-<tr><td>$7C</td><td>1 byte</td><td>RAM-toggled Screen Scroll patch</td></tr>
-<tr><td>$87</td><td>1 byte</td><td>Used by SA-1 (if using)</td></tr>
-<tr><td>$0DC3</td><td>4 bytes</td><td>Sprite Scroll Fix patch</td></tr>
-<tr><td>$13E6</td><td>2 bytes</td><td>Block duplication Fix patch</td></tr>
-<tr><td>$13E7</td><td>1 byte</td><td>RAM Toggle for block duplication</td></tr>
-<tr><td>$140B</td><td>2 bytes</td><td>FreeRAM to activate certain UberASM code (cleared at level load)</td></tr>
-<tr><td>$146C</td><td>1 byte</td><td>Used by Lunar Magic</td></tr>
-<tr><td>$1487</td><td>4 bytes</td><td>Sprite Scroll Fix patch</td></tr>
-<tr><td>$14BE</td><td>1 byte</td><td>Layer 2 and 3 wall triangle Fix patch</td></tr>
-<tr><td>$1869</td><td>2 bytes</td><td>Cape spin consistency patch</td></tr>
-<tr><td>$186A</td><td>1 byte</td><td>RAM Toggle for vanilla turnaround</td></tr>
-<tr><td>$18C5</td><td>5 bytes</td><td>Screen Scrolling Pipes</td></tr>
-<tr><td>$1DFD</td><td>1 byte</td><td>ON/OFF double-hit Fix</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E0057">$57</a></td><td>1 byte</td><td>Skull Raft Fix</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E0079">$79</a></td><td>1 byte</td><td>RAM-toggled statusbar patch</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E007C">$7C</a></td><td>1 byte</td><td>RAM-toggled Screen Scroll patch</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E0087">$87</a></td><td>1 byte</td><td>Used by SA-1 (if using)</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E0DC3">$0DC3</a></td><td>4 bytes</td><td>Sprite Scroll Fix patch</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E13E6">$13E6</a></td><td>2 bytes</td><td>Block duplication Fix patch</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E13E7">$13E7</a></td><td>1 byte</td><td>RAM Toggle for block duplication</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E146C">$146C</a></td><td>1 byte</td><td>Used by Lunar Magic</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E1487">$1487</a></td><td>4 bytes</td><td>Sprite Scroll Fix patch</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E14BE">$14BE</a></td><td>1 byte</td><td>Layer 2 and 3 wall triangle Fix patch</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E1869">$1869</a></td><td>2 bytes</td><td>Cape spin consistency patch</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E186A">$186A</a></td><td>1 byte</td><td>RAM Toggle for vanilla turnaround</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E18C5">$18C5</a></td><td>5 bytes</td><td>Screen Scrolling Pipes</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7E1DFD">$1DFD</a></td><td>1 byte</td><td>ON/OFF double-hit Fix</td></tr>
 </table>
 <h3 id="large-blocks">Large Blocks of FreeRAM</h3>
 <p>These are resources that use huge ranges of freeram to function.</p>
 <table border="1" class="full">
 <tr><th>Addresses*</th><th>Bytesize</th><th>Resource</th></tr>
-<tr><td>$A660</td><td>300 bytes</td><td>Dragon Coin Save</td></tr>
-<tr><td>$A960</td><td>8 bytes</td><td>Dragon Coin Save</td></tr>
-<tr><td>$B000</td><td>2 to 1032 bytes</td><td>AddMusicK</td></tr>
-<tr><td>$B400</td><td>230 bytes ( +1 for every midway)</td><td>Retry System</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7FA400">$A400</a></td><td>13 bytes</td><td>UberASM Object System</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7FA660">$A660</a></td><td>300 bytes</td><td>Dragon Coin Save</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7FA960">$A960</a></td><td>8 bytes</td><td>Dragon Coin Save</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7FB000">$B000</a></td><td>2 to 1032 bytes</td><td>AddMusicK</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7FB400">$B400</a></td><td>230 bytes ( +1 for every midway)</td><td>Retry System</td></tr>
 </table>
 <small>*These may be different on SA-1.</small>
 <h3 id="changing-freeram">Changing FreeRAM</h3>
 <p>For easy configuration, the baserom uses a shared config file in <code>shared/freeram.asm</code> to define FreeRAM values with, so they can be called independently of resources that use them and easily be referenced.</p>
-<br><a href="#">Go to Top</a>
+<br><a href="#" class="go-to-top"></a>
 </section>
 </body>
 </html>

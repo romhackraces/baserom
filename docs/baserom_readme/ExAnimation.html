@@ -4,70 +4,86 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+<style>table{width: 500px}td:nth-child(1){width:160px};</style>
 <body>
 <section>
-<a href="../../README.html" class="back">➽</a>
+<a href="../../README.html" class="back">🠈</a>
 <h2>ExAnimation</h2>
 <p>If you're not animating a large amount of tiles using Level ExAnimation, or if you're not animating any tiles at all, this document is not for you. If you are, see Lunar Magic's help file for instructions and technical documentation.</p>
 <p>Each item is categorized by where they are applied, either Global or Level. The number following the name in brackets is the number of frames, 	followed by the details of the ExAnimation.</p>
-<h3 id="global-exanimation">Global ExAnimation</h3>
+
+<h3 id="#">Contents</h3>
+<ul>
+    <li><a href="#global">Global ExAnimation</a></li>
+    <li><a href="#level">Level ExAnimation</a></li>
+</ul>
+<h3 id="global">Global ExAnimation</h3>
 <p>The destinations for these global animations are the final row of BG3 and will override any graphics loaded into this slot. You can disable these in particular levels by going to: "Level &rarr; Edit Animation Settings" and uncheck "Enable Lunar Magic's global animations" for that level.</p>
-<p>ON/OFF Blocks (2 frames)</p>
+<h4>ON/OFF Blocks (2 frames)</h4>
 <table border="1">
-<tr><td>Alternate ExGraphics</td><td>61</td></tr>
+<tr><th>Property</th><th>Value</th></tr>
 <tr><td>Slot</td><td>00</td></tr>
 <tr><td>Type</td><td>10 8x8s line</td></tr>
 <tr><td>Frames</td><td>1060,1080</td></tr>
 <tr><td>Destination</td><td>2F0 (BG3)</td></tr>
+<tr><td>Uses Alt ExGraphics</td><td>61</td></tr>
 </table>
-<p>Swooper Block (2 frames)</p>
+<h4>Swooper Block (2 frames)</h4>
 <table border="1">
-<tr><td>Alternate ExGraphics</td><td>61</td></tr>
+<tr><th>Property</th><th>Value</th></tr>
 <tr><td>Slot</td><td>01</td></tr>
 <tr><td>Type</td><td>4 8x8s line</td></tr>
 <tr><td>Frames</td><td>1048,104C</td></tr>
 <tr><td>Destination</td><td>2E0 (BG3)</td></tr>
+<tr><td>Uses Alt ExGraphics</td><td>61</td></tr>
 </table>
-<p>Spiny Blocks (2 frames) & Line Guide Ends (2 frames)</p>
+<h4>Spiny Blocks (2 frames) & Line Guide Ends (2 frames)</h4>
 <table border="1">
+<tr><th>Property</th><th>Value</th></tr
 <tr><td>Slot</td><td>02</td></tr>
 <tr><td>Type</td><td>2 8x8s</td></tr>
 <tr><td>Frames</td><td>686,686</td></tr>
 <tr><td>Destination</td><td>96 (FG2)</td></tr>
 </table>
-<p>Sprite Bounce Block (4)</p>
+<h4>Sprite Bounce Block (4 frames)</h4>
 <table border="1">
-<tr><td>Alternate ExGraphics</td><td>61</td></tr>
+<tr><th>Property</th><th>Value</th></tr>
 <tr><td>Slot</td><td>03</td></tr>
 <tr><td>Type</td><td>4 8x8s: 16x16</td></tr>
 <tr><td>Frames</td><td>100C,101C,102C,103C</td></tr>
 <tr><td>Destination</td><td>2E4 (BG3)</td></tr>
+<tr><td>Uses Alt ExGraphics</td><td>61</td></tr>
 </table>
-<p>Death Spikes (4)</p>
+<h4>Death Spikes (4 frames)</h4>
 <table border="1">
-<tr><td>Alternate ExGraphics</td><td>61</td></tr>
+<tr><th>Property</th><th>Value</th></tr>
 <tr><td>Slot</td><td>04</td></tr>
 <tr><td>Type</td><td>4 8x8s line</td></tr>
 <tr><td>Frames</td><td>1058,1058,105C,105C</td></tr>
 <tr><td>Destination</td><td>2E8 (BG3)</td></tr>
+<tr><td>Uses Alt ExGraphics</td><td>61</td></tr>
 </table>
-<p>One-Ways, horizontal & vertical (5 frames)</p>
+<h4>One-Ways, horizontal & vertical (5 frames)</h4>
 <table border="1">
-<tr><td>Alternate ExGraphics</td><td>61</td></tr>
+<tr><th>Property</th><th>Value</th></tr>
 <tr><td>Slot</td><td>05</td></tr>
 <tr><td>Type</td><td>2 8x8s: stacked</td></tr>
 <tr><td>Frames</td><td>1000,1010,1020,1030,1040</td></tr>
 <tr><td>Destination</td><td>2EC (BG3)</td></tr>
+<tr><td>Uses Alt ExGraphics</td><td>61</td></tr>
 </table>
-<h3 id="level-exanimation">Level ExAnimation</h3>
-<p>Spinning throwblock (4)</p>
+<h3 id="level">Level ExAnimation</h3>
+<p>This ExAnimation is per-level and entirely optional, it is active in the Demo level.</p>
+<h4>Spinning throwblock (4 frames)</h4>
 <table border="1">
-<tr><td>Alternate ExGraphics</td><td>61</td></tr>
+<tr><th>Property</th><th>Value</th></tr>
 <tr><td>Slot</td><td>03</td></tr>
 <tr><td>Type</td><td>4 8x8s: line</td></tr>
 <tr><td>Frames</td><td>1008,1018,1028,1038</td></tr>
 <tr><td>Destination</td><td>AC (FG2)</td></tr>
+<tr><td>Uses Alt ExGraphics</td><td>61</td></tr>
 </table>
+<a href="#" class="go-to-top"></a>
 </section>
 </body>
 </html>
