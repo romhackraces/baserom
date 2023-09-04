@@ -83,6 +83,7 @@ Yoshi Pipe Animation Fix - Kevin - https://smwc.me/s/30127
 Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
 Retry System v0.5.1 - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.5.1
+UberASM Objects System - AmperSam, underway, MarioFanGamer
 
 -- Blocks --
 Basic Baserom Blocks - AmperSam
