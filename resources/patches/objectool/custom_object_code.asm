@@ -2,41 +2,21 @@
 
 incsrc "../../../shared/freeram.asm"
 
-; Load object macro
-macro LoadObject(object_id)
-    REP #$20
-    LDA.w #1<<(<object_id>%16)
-    ORA !objectool_level_flags_freeram+(<object_id>/16)
-    STA !objectool_level_flags_freeram+(<object_id>/16)
-    SEP #$20
-    RTS
-endmacro
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ; code for extended objects 98-FF
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 CustExObj98:
-	%LoadObject(0)
 CustExObj99:
-	%LoadObject(1)
 CustExObj9A:
-	%LoadObject(2)
 CustExObj9B:
-	%LoadObject(3)
 CustExObj9C:
-	%LoadObject(4)
 CustExObj9D:
-	%LoadObject(5)
 CustExObj9E:
-	%LoadObject(6)
 CustExObj9F:
-	%LoadObject(7)
 CustExObjA0:
-	%LoadObject(8)
 CustExObjA1:
-	; skip since it loads a door tile
 CustExObjA2:
-	%LoadObject(9)
 CustExObjA3:
 CustExObjA4:
 CustExObjA5:
@@ -51,13 +31,9 @@ CustExObjAD:
 CustExObjAE:
 CustExObjAF:
 CustExObjB0:
-	%LoadObject(24)
 CustExObjB1:
-	%LoadObject(25)
 CustExObjB2:
-	%LoadObject(26)
 CustExObjB3:
-	%LoadObject(27)
 CustExObjB4:
 CustExObjB5:
 CustExObjB6:
@@ -134,7 +110,23 @@ CustExObjFC:
 CustExObjFD:
 CustExObjFE:
 CustExObjFF:
-		RTS
+
+.set_object_flag
+    TXA				; get 2 * object number from X
+    LSR  			; divide by 2 since X was a word index
+	TAY  			; cache in Y
+	LSR #3			; divide by 8 since we have 8 bits/flags per byte
+	TAX				; use as index into the FreeRAM later
+	TYA				; restore object number from Y
+	AND #$07		; modulo 8 since we have 8 bits/flags per byte
+	TAY				; use result as loop variable
+	LDA ..masks,y	; load correct bit mask for corresponding bit
+    ORA !objectool_level_flags_freeram,x   ; account for previously set flags
+    STA !objectool_level_flags_freeram,x   ; store flag byte
+    RTS
+
+..masks
+	db 1,2,4,8,16,32,64,128
 
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;

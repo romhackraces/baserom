@@ -1,47 +1,123 @@
 ; run in gamemode 13
 incsrc "../../../shared/freeram.asm"
 
-; run code macro
-macro RunCode(code_id, code)
-    REP #$20
-    LDA !objectool_level_flags_freeram+(<code_id>/16)
-    AND.w #1<<(<code_id>%16)
-    SEP #$20
-    BEQ ?+
-    JSR <code>
-?+
+
+macro ObjectRoutine(object_number, routine)
+    db <object_number>-$98 : dw <routine>
 endmacro
 
+
+routines:
+.init
+    %ObjectRoutine($9A, set_state_to_off)
+    %ObjectRoutine($9B, block_duplication)
+    %ObjectRoutine($9C, toggle_status_bar)
+    %ObjectRoutine($9F, vanilla_turnaround)
+..end
+
+.main
+    %ObjectRoutine($98, free_vertical_scroll)
+    %ObjectRoutine($99, no_horizontal_scroll)
+    %ObjectRoutine($9D, toggle_lr_scroll)
+    %ObjectRoutine($9E, eight_frame_float)
+    %ObjectRoutine($A0, enable_sfx_echo)
+    %ObjectRoutine($B0, retry_instant)
+    %ObjectRoutine($B1, retry_prompt)
+    %ObjectRoutine($B2, retry_bottom_left)
+    %ObjectRoutine($B3, retry_no_midway_powerup)
+..end
+
+
 init:
-    LDA $71
-    CMP #$0A
-    BNE +
-    JMP .return
-+
-    %RunCode(2, set_state_to_off)
-    %RunCode(3, block_duplication)
-    %RunCode(4, toggle_status_bar)
-    %RunCode(7, vanilla_turnaround)
+    lda $71
+    cmp #$0A
+    bne .not_castle_entrance
+    rtl
+.not_castle_entrance
+
+    phb
+    phk
+    plb
+    lda.b #routines_init&$FF
+    sta $00
+    lda.b #routines_init>>8
+    sta $01
+    rep #$10
+    ldy.w #routines_init_end-routines_init-3
+    jsr run_routines
+    plb
+
 .return
     rtl
 
 main:
-    LDA $71
-    CMP #$0A
-    BNE +
-    JMP .return
-+
-    %RunCode(0, free_vertical_scroll)
-    %RunCode(1, no_horizontal_scroll)
-    %RunCode(5, toggle_lr_scroll)
-    %RunCode(6, eight_frame_float)
-    %RunCode(8, enable_sfx_echo)
-    %RunCode(24, retry_instant)
-    %RunCode(25, retry_prompt)
-    %RunCode(26, retry_bottom_left)
-    %RunCode(27, retry_no_midway_powerup)
+    lda $71
+    cmp #$0A
+    bne .not_castle_entrance
+    rtl
+.not_castle_entrance
+
+    phb
+    phk
+    plb
+    lda.b #routines_main&$FF
+    sta $00
+    lda.b #routines_main>>8
+    sta $01
+    rep #$10
+    ldy.w #routines_main_end-routines_main-3
+    jsr run_routines
+    plb
+
 .return
     rtl
+
+
+; word routine table pointer in $00-$01
+; table size - 3 (in bytes) in 16-bit Y (16-bit needed since 3 * 0x68 > 0xFF)
+; clobbers: $02, $03, $04
+run_routines:
+    lda #$00
+    xba             ; zero out high byte of A so we can transfer to 16-bit X later
+.loop
+    lda ($00),y     ; load current custom object number
+    sta $02         ; cache in $02
+    lsr #3          ; divide custom object number by 8 to get byte index into FreeRAM
+    sta $03         ; cache in $03
+    stz $04         ; zero out $04 so 16-bit X can load index later
+    lda $02         ; restore custom object number from $02
+    and #$07        ; modulo 8 to get bit index
+    tax
+    lda ..masks,x   ; load correct mask for the bit
+    ldx $03         ; load byte index from $03-$04
+    and !objectool_level_flags_freeram,x
+    beq ..next      ; if bit not set skip the routine
+
+    iny
+    lda ($00),y
+    sta $02
+    iny
+    lda ($00),y
+    sta $03         ; otherwise, load word routine address into $02-$03
+
+    phy             ; pushing current table index rather than caching in scratch so routines can use scratch
+    sep #$10        ; ensuring routines get 8-bit everything
+    ldx #$00
+    jsr ($0002,x)   ; jump to object routine in $02-$03
+    rep #$10        ; restore 16-bit X/Y
+    ply             ; restore current table index
+
+    dey #2          ; need to undo the two iny's from earlier
+
+..next
+    dey #3          ; move to next table entry
+    bpl .loop
+    sep #$10
+    rts
+
+..masks
+    db 1,2,4,8,16,32,64,128
+
 
 ;---------------------------------------------------------------------
 ; Code to run for each object
