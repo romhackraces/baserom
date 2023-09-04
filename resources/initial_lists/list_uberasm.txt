@@ -6,7 +6,6 @@ verbose: on
 
 ; Level resources
 level:
-    * uberasm_objects.asm
 
 ; Overworld resources
 overworld:
