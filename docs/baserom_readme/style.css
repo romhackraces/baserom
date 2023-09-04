@@ -71,7 +71,7 @@ color: #5880e5 !important;
 background-color: #f3f3ff;
 width: 100%;
 display: block;
-padding: 4px;
+padding: 4px 0;
 margin: 3em 0;
 text-align: center;
 border-radius: 8px;
@@ -80,6 +80,29 @@ font-family: monospace;
 }
 a.go-to-top:after {
 content: "⇑ Go To Top of Page ⇑";
+}
+.infobox {
+width: 100%;
+display: block;
+padding: 8px 0;
+font-size: 0.9em;
+margin: 2em 0;
+text-align: center;
+border-radius: 8px;
+color: #9a7d0a !important;
+background-color: #f3e09e;
+}
+hr {
+border: none;
+margin: 2em auto;
+text-align: center;
+width: 100%;
+font-size: smaller;
+opacity: 0.2;
+letter-spacing: 0.5em;
+}
+hr:after {
+content: "✤✤✤";
 }
 a.go-to-top:hover {
 border: 1px solid #cad6f6;
