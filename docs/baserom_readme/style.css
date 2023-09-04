@@ -1,6 +1,7 @@
 body{
 font-family: sans-serif;
 max-width: 900px;
+padding-top: 20px;
 padding-bottom: 200px;
 margin: 0 auto;
 line-height: 1.4em;
@@ -41,6 +42,10 @@ font-weight: bold;
 font-size: larger;display: inline-block;
 float: left;
 margin-left: -2em;
+transform: scale(-1, 1);
+}
+a.back:hover {
+text-decoration: underline;
 }
 h3 {
 margin-top: 2em;

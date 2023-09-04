@@ -1,77 +1,47 @@
-- POINT OF ADVICE -
-You should use Lunar Magic's "Add Objects" window as much as possible to construct your levels instead of placing tiles directly from map16. Objects that are composed of several tiles take up fewer bytes in-ROM when placed in levels over individual map16 tiles. Each tile placed from map16 counts as its own object in the level and this can dramatically increase the bytesize of levels if there are many tiles, and this will impact level load times.
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<style>td:nth-child(1){width:44px;font:larger monospace;}td:nth-child(4):first-letter{text-transform: capitalize;}</style>
+<body>
+<section>
+<a href="../../README.html" class="back">➽</a>
+<h2>Map16</h2>
 
-=======
-Page 02
-=======
+<h3>Point of Advice</h3>
+<p>You should use Lunar Magic's "Add Objects" window as much as possible to construct your levels instead of placing tiles directly from map16. Objects that are composed of several tiles take up fewer bytes in-ROM when placed in levels. When you use direct map16, each tile placed in a level counts as its own object in the level and this can dramatically increase the bytesize of levels if there are many many tiles.</p>
 
-200-20A
--------
-These tiles are reserved for Lunar Magic's layer 3 "Make tides act as" setting. Any block that is inserted here (or used as an act as) will be the tile the Layer 3 tide works as instead of water or lava or any of the other options.
-
-20B-20F
--------
-Tiles for flipped muncher, "anon" block, outlined note and coin block, as well as 1F0.
-
-210-28F
--------
-A bunch of common ground tiles and uncommon net tiles.
-
-290-2AF
--------
-The tiles for the custom blocks inserted by GPS, see "What's What - Blocks" document for more details.
-
-2B0-2BC
--------
-Tiles for a variety of custom question blocks, also inserted by GPS.
-
-2C0,2D0,2E0
------------
-Upside down bullet bill shooter.
-
-2C1,2D1
--------
-Vine ends
-
-2C2
----
-Upside-down lava tile.
-
-2D2
----
-Upside-down water tile.
-
-2C3,2C4,2D3,2D4
-2E3,2E4,2F3,2F4
----------------
-Alternative One-ways.
-
-2C5,2C6,2D5,2D6
----------------
-General purpose arrow indicators.
-
-2E1
----
-Green coin
-
-2F0
----
-Alternative death block
-
-=======
-Page 03
-=======
-
-This page has the tiles for the screenscrolling pipes and global line guides laid out in a fairly intuitive way.
-
-==========
-Page 40,41
-==========
-
-Tiles for all the in-level text in the Demo Level (105), these can be deleted from your ROM if you delete the Demo Level.
-
-=======
-Page 50
-=======
-
-Tiles for ExGraphic big bush and big pipe tiles.
+<h3>Map16 Pages</h3>
+<p>The following are all the modified pages in the baserom.</p>
+<h4>Page 02</h4>
+<img width="256" border="2" src="img/map16_page02.png">
+<table border="1">
+    <tr><th>Tile Num</th><th>Description</th></tr>
+    <tr><td>200-20A</td><td>These tiles are reserved for Lunar Magic's layer 3 "Make tides act as" setting. Any block that is inserted here (or used as an act as) will be the tile the Layer 3 tide works as instead of water or lava or any of the other options.</td></tr>
+    <tr><td>20B-20F</td><td>Tiles for flipped muncher, "anon" block, outlined note and coin block, as well as 1F0.</td></tr>
+    <tr><td>210-28F</td><td>A bunch of common vanilla ground tiles and uncommon net tiles.</td></tr>
+    <tr><td>290-2AF</td><td>The tiles for the custom blocks inserted by GPS, see <a href="Blocks.html">Blocks</a> document for more details.</td></tr>
+    <tr><td>2B0-2BC</td><td>Tiles for a variety of custom question blocks, also inserted by GPS.</td></tr>
+    <tr><td>2C0,2C1,2D0,2D1</td><td>Rope-styled one-ways.</td></tr>
+    <tr><td>2C2,2C3,2D3,2D4</td><td>Mechanical-styled one-ways.</td></tr>
+    <tr><td>2C4,2C5,2D4,2D5</td><td>General purpose arrow indicators.</td></tr>
+    <tr><td>2C6-2C8,2D6-2D8</td><td>Additional sprite killer tiles.</td></tr>
+    <tr><td>2F0</td><td>Skull-styled death block.</td></tr>
+    <tr><td>2FA-2FF</td><td>Camera control blocks.</td></tr>
+</table>
+<h4>Page 03</h4>
+<p>This page has the tiles for the screenscrolling pipes and global line guides laid out in a fairly intuitive way.</p>
+<img width="256" border="2" src="img/map16_page03.png">
+<h4>Page 04</h4>
+<p>An optional page of extra vanilla tiles, some of which are graphics header dependent. A map16 file to import can be found in <b>resources/map16</b>.</p>
+<img width="256" border="2" src="img/map16_page04.png">
+<h4>Page 40,41</h4>
+<p>Tiles for all the in-level text in the Demo Level (105), these can be deleted from your ROM if you delete the Demo Level.</p>
+<h4>Page 50</h4>
+<p>Tiles for ExGraphic big bush and big pipe tiles.</p>
+<a href="#">Go to Top</a>
+</section>
+</body>
+</html>
