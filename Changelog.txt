@@ -1,4 +1,5 @@
 v5.0
 - new Callisto workflow Baserom
 - revamped uberasm objects system
+- rewrote all documentation in html
 - initialization script is now in Powershell
