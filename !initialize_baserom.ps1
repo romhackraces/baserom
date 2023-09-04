@@ -303,8 +303,8 @@ while ($UserChoice -ne "4") {
         "RunFirstBuild" {
 
             # Check if Callisto directory has set-up checkfile
+            Clear-Host
             if (Test-Path "$Callisto_Dir.is_setup" -PathType Leaf) {
-                Clear-Host
                 if (Test-Path "$Callisto_Dir.first_build_done" -PathType Leaf) {
                     Write-Host "First build already performed.`n`nYou can now use Callisto for working on your project by running it from the 'buildtool' folder."
                 } else {
@@ -331,7 +331,7 @@ while ($UserChoice -ne "4") {
                     }
                 }
             } else {
-                Write-Host "`n Callisto is not set up please run Step 1 first."
+                Write-Host "`nCallisto is not set up please run Step 1 first."
             }
             continue
         }
