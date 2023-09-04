@@ -1,3 +1,9 @@
+-- Baserom --
+AmperSam - Compilation and documentation
+
+-- Help, Testing & Issue Reporting --
+Fernap, Kevin, underway, F'en
+
 -- Patches --
 Bullet Bill Sound Effect on Extra Bit - AmperSam - https://smwc.me/s/34948
 Double Bounce Shell Palette - Fernap
