@@ -323,7 +323,7 @@ while ($UserChoice -ne "4") {
                             # Success
                             Write-Host "First build done."
                         } else {
-                            Write-Host "Baserom failed to build. Please run Callisto manually from the 'buildtool' folder to see any errors."
+                            Write-Host "Baserom failed to build. Please run Callisto manually from the 'buildtool' folder, and perform a 'Rebuild' to see any errors."
                         }
                     } catch {
                         # Failure
