@@ -13,9 +13,12 @@ $ListsDir = "$WorkingDir\resources\initial_lists\"
 
 # Function to remove junk files
 function Remove-Junk($Directory, $JunkFiles) {
+    # Iterate through list of "junk"
     foreach ($item in $JunkFiles) {
+        # Get path of item
         $itemPath = Join-Path -Path $Directory -ChildPath $item
         if (Test-Path -Path $itemPath) {
+            # Check if file or directory and delete accordingly
             if (Test-Path -Path $itemPath -PathType Leaf) {
                 Remove-Item -Path $itemPath -Force
             } else {
@@ -29,6 +32,7 @@ function Remove-Junk($Directory, $JunkFiles) {
 function CheckFile-Create($Directory) {
     # Create is_setup checkfile
     New-Item -Path "$Directory.is_setup" -ItemType File | Out-Null
+    # Make it a hidden file
     Set-ItemProperty -Path "$Directory.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
 }
 
@@ -38,7 +42,7 @@ function Download-Tool($Name, $Url) {
     Invoke-WebRequest -Uri $Url -OutFile "$env:temp\$Name.zip"
 }
 
-# Function to set up a tool
+# Generic function to set up a tool
 function SetupTool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $ListFile) {
     if (Test-Path "$DestinationDir.is_setup" -PathType Leaf) {
         Write-Host "-- $ToolName already is set up in: $DestinationDir"
@@ -52,7 +56,7 @@ function SetupTool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $ListFi
             Remove-Junk $DestinationDir $JunkFiles
             # Copy pre-existing list file (if it exists)
             if ($ListFile -ne "") {
-                Copy-Item -Path "$ListsDir\$ListFile" -Destination "$DestinationDir\list.txt"
+                Copy-Item -Path "$ListsDir\$ListFile" -Destination "$DestinationDir\list.txt" -Force
             }
             # Create is_setup checkfile
             CheckFile-Create $DestinationDir
@@ -66,13 +70,13 @@ function SetupTool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $ListFi
     # Lunar Magic
     if ($ToolName -eq "Lunar Magic") {
         # copy usertoolbar files to Lunar Magic directory
-        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir
-        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir
-        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir
+        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir -Force
+        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir -Force
+        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir -Force
     }
 }
 
-# Function to set up a tool
+# Specific function to set AddMusicK
 function SetupAMK($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
     if (Test-Path "$DestinationDir.is_setup" -PathType Leaf) {
         Write-Host "-- $ToolName already is set up in: $DestinationDir"
@@ -97,7 +101,7 @@ function SetupAMK($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
     }
 }
 
-# Function to set up a tool
+# Specific function to set up Callisto
 function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
     if (Test-Path "$DestinationDir.is_setup" -PathType Leaf) {
         Write-Host "-- $ToolName already is set up in: $DestinationDir"
@@ -108,10 +112,10 @@ function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
             # Expand Archive
             Expand-Archive -Path "$env:temp\$ToolName.zip" -DestinationPath $DestinationDir -Force
             # Install Callisto's modified asar dll.
-            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $GPS_Dir
-            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $AddMusicK_Dir | Remove-Item $AddMusicK_Dir\asar.exe
-            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $UberASMTool_Dir
-            Copy-Item -Path "$Callisto_Dir\asar\64-bit\asar.dll" -Destination $PIXI_Dir
+            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $GPS_Dir -Force
+            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
+            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
+            Copy-Item -Path "$Callisto_Dir\asar\64-bit\asar.dll" -Destination $PIXI_Dir -Force
             # Clean up junk files
             Remove-Junk $DestinationDir $JunkFiles
             # Create is_setup checkfile
@@ -127,7 +131,7 @@ function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
 # Start the main menu loop
 $UserChoice = $null
 while ($UserChoice -ne "4") {
-    Write-Host "`n------------------------------"
+    Write-Host "------------------------------"
     Write-Host "Initialize Baserom"
     Write-Host "------------------------------`n"
     Write-Host "What would you like to do?`n"
@@ -158,24 +162,30 @@ while ($UserChoice -ne "4") {
             Write-Host "`nAll done."
         }
 
-        # Run first build of the Baserom
+        # Ensure user has run first build of Callisto so the baserom exists
         "2" {
             Clear-Host
+            # Check if Callisto is setup
             if (Test-Path "$Callisto_Dir.is_setup" -PathType Leaf) {
+                # Check if first-build was already done
                 if (Test-Path "$Callisto_Dir.first_build_done" -PathType Leaf) {
                     Write-Host "First build already performed.`n`nYou can now use Callisto for working on your project by running it from the 'buildtool' folder."
                 } else {
+                    # Try performing a first-build
                     try {
                         Write-Host "Running a first-build in Callisto...`n"
                         $command = "$Callisto_Dir\callisto.exe"
                         $args = "rebuild"
                         $process = Start-Process -FilePath $command -ArgumentList $args -Wait -PassThru
                         $exitCode = $process.ExitCode
+                        # If callisto succeeds, create checkfile, if not don't.
                         if ($exitCode -eq 0) {
+                            # Create checkfile if all goes well
                             New-Item -Path "$Callisto_Dir.first_build_done" -ItemType File -Force | Out-Null
                             Set-ItemProperty -Path "$Callisto_Dir.first_build_done" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
-                            Write-Host "First build done."
+                            Write-Host "First build completed successfully.`n`nYou can now use Callisto for working on your project by running it from the 'buildtool' folder."
                         } else {
+                            # Prompt users to run Callisto manually if there was an error
                             Write-Host "Baserom failed to build. Please run Callisto manually from the 'buildtool' folder, and perform a 'Rebuild' to see any errors."
                         }
                     } catch {
@@ -183,6 +193,7 @@ while ($UserChoice -ne "4") {
                     }
                 }
             } else {
+                # Prompt to run step 1 if not setup
                 Write-Host "`nCallisto is not set up, please run Step 1 first."
             }
         }
