@@ -223,7 +223,7 @@ includeonce
 ;Default setting: !true (!false in AddmusicK 1.0.8 and earlier)
 ;Vanilla SMW setting: !true
 ;---------------
-; If you set this to true, then the P-switch and star global songs will 
+; If you set this to true, then the P-switch and star global songs will
 ; restart whenever they're called again (i.e., by pressing another P-switch
 ; or collecting another star).
 ;=======================================
@@ -234,10 +234,10 @@ includeonce
 ; For example, if you changed the "Stage Clear" music to be number 9,
 ; Then you'd change "!StageClear = $04" to "!StageClear = $09".
 !Starman	= $05
-!Miss		= $01			
-!GameOver	= $02			
-!BossClear	= $03			
-!StageClear	= $04			
+!Miss		= $01
+!GameOver	= $02
+!BossClear	= $03
+!StageClear	= $04
 !PSwitch	= $06
 !Keyhole	= $07
 !IrisOut	= $08
