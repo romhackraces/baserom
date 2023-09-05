@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>FAQ - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<link rel="icon" href="img/flop.gif" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -27,17 +29,17 @@ This baserom comes with several objects to toggle features in levels, including 
 <h3 id="sa1">"Is the baserom SA-1 compatible?"</h3>
 <p>Yes! The baserom's resources are all compatible with SA-1, but the baserom itself is configured to be FastROM by default. However to use SA-1 it only takes a couple steps to switch over to it:</p>
 <ol>
-    <li>In the "project.toml" file in the <b>buildtool</b> folder, change the <code>initial_patch</code> setting to use the SA-1 option.</li>
-    <li>Rebuild your project in Callisto to make the change.</li>
+<li>In the "project.toml" file in the <b>buildtool</b> folder, change the <code>initial_patch</code> setting to use the SA-1 option.</li>
+<li>Rebuild your project in Callisto to make the change.</li>
 </ol>
 <hr>
-<h3 id="script-cannot-run">"Why can't I run the initialization script?"</h3>
+<!-- <h3 id="script-cannot-run">"Why can't I run the initialization script?"</h3>
 <p>This is due to something in Windows called <a target="_blank" href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies">Execution Policies</a> which is a security and safety feature to prevent the execution of malicious scripts, by preventing any script from being run at all (among other things).</p>
 <p>You can however change the Execution Policy to something more permissive to allow you to run scripts on your computer. To do this launch PowerShell with the <b>Run as administrator</b> option, type or paste the following, and hit Enter.</p>
 <pre>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned</pre>
 <p>Now you should be able to run the initialization script. When you are all finished you can set it back to the default for your computer.</p>
 <pre>Set-ExecutionPolicy -ExecutionPolicy Default</pre>
-<p></p>
+<p></p> -->
 <a href="#" class="go-to-top"></a>
 </section>
 </body>

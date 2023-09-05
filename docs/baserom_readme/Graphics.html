@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Graphics - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<link rel="icon" href="img/flop.gif" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <style>li:first-letter{text-transform: capitalize;}</style>
@@ -23,101 +25,100 @@
 
 <h4>GFX00 : Global Sprite Graphics (SP1)*</h4>
 <ul>
-<li>the 8x8 tiles for Mario have been removed as they are now dynamically inserted.</li>
-<li>tiles for the bounce sprites for the ON/OFF and Note blocks have been remapped here.</li>
-<li>8x8 tiles for lava splashes, Yoshi's tongue and throat have been remapped here also.</li>
-<li>a frame for the blue sliding koopa has been moved to GFX01.</li>
-<li>space was reserved for dynamic retry tiles.</li>
+    <li>the 8x8 tiles for Mario have been removed as they are now dynamically inserted.</li>
+    <li>tiles for the bounce sprites for the ON/OFF and Note blocks have been remapped here.</li>
+    <li>8x8 tiles for lava splashes, Yoshi's tongue and throat have been remapped here also.</li>
+    <li>a frame for the blue sliding koopa has been moved to GFX01.</li>
+    <li>space was reserved for dynamic retry tiles.</li>
 </ul>
 
 <h4>GFX01 : Global Sprite Graphics (SP2)*</h4>
 <ul>
-<li>graphic for the donut block sprite replaces the Smiley coin.</li>
-<li>tile for Piranha plant stem was added here.</li>
-<li>a frame for the blue sliding koopa from GFX00 was added here.</li>
-<li>flopping fish graphics were moved to GFX13.</li>
-<li>Smiley coin was remapped to use other sprite coin tile.</li>
-<li>tile for blue sliding koopa has been remapped and Poison Mushroom was added in its place.</li>
+    <li>graphic for the donut block sprite replaces the Smiley coin.</li>
+    <li>tile for Piranha plant stem was added here.</li>
+    <li>a frame for the blue sliding koopa from GFX00 was added here.</li>
+    <li>flopping fish graphics were moved to GFX13.</li>
+    <li>Smiley coin was remapped to use other sprite coin tile.</li>
+    <li>tile for blue sliding koopa has been remapped and Poison Mushroom was added in its place.</li>
 </ul>
 
 <h4>GFX08 : Switch Palace (FG3)</h4>
 <ul>
-<li>Sunken ship tiles were moved to GFX1E.</li>
-<li>Additional corner tiles for Switch palace foreground were added.</li>
+    <li>Sunken ship tiles were moved to GFX1E.</li>
+    <li>Additional corner tiles for Switch palace foreground were added.</li>
 </ul>
 
 <h4>GFX13 : Sprite Tiles (SP3)*</h4>
 <ul>
-<li>note block bounce sprite frame moved to GFX00.</li>
-<li>tiles for the flopping fish from GFX01 were added here.</li>
-<li>a frame of the hammer has been moved.</li>
-<li>8x8 tiles for the small note and egg fragment have been moved.</li>
+    <li>note block bounce sprite frame moved to GFX00.</li>
+    <li>tiles for the flopping fish from GFX01 were added here.</li>
+    <li>a frame of the hammer has been moved.</li>
+    <li>8x8 tiles for the small note and egg fragment have been moved.</li>
 </ul>
 
 <h4>GFX14 : Global Foreground Tiles (FG1)</h4>
 <ul>
-<li>Some unused tiles here were replaced with sideways cloud graphics and vertical rope.</li>
-<li>The turnblock has been replaced with the graphics for the donut block.</li>
+    <li>Some unused tiles here were replaced with sideways cloud graphics and vertical rope.</li>
+    <li>The turnblock has been replaced with the graphics for the donut block.</li>
 </ul>
 
 <h4>GFX16 : Rope Foreground (FG3)</h4>
 <ul>
-<li>tiles for the mushroom platform were shifted so a proper rope corner could be added.</li>
+    <li>tiles for the mushroom platform were shifted so a proper rope corner could be added.</li>
 </ul>
 
 <h4>GFX17 : Global Foreground Tiles (FG2)</h4>
 <ul>
-<li>a duplicate tile in the door and the unused pressed P-switch tile were reserved for some animation.</li>
+    <li>a duplicate tile in the door and the unused pressed P-switch tile were reserved for some animation.</li>
 </ul>
 
 <h4>GFX1E : Overworld (FG4)</h4>
 <ul>
-<li>Half sunken ship was moved into blank tile space.</li>
+    <li>Half sunken ship was moved into blank tile space.</li>
 </ul>
 
 <h4>GFX2A : Layer 3 tiles (LG3)</h4>
 <ul>
-    <li>The unused graphics for "AND" have been removed, and part of "Nintendo" has ben moved here from GFX2B.</li>
+        <li>The unused graphics for "AND" have been removed, and part of "Nintendo" has ben moved here from GFX2B.</li>
 </ul>
 
 <h4>GFX2B : Layer 3 tiles (LG4)</h4>
 <ul>
-<li>The unused graphics for "Super Mario Bros. 4" has been replaced with "Romhack Races Baserom".</li>
-<li>Part of "Nintendo" has been moved to GFX2A, and an "8" and "9" tile has been added to make it usable when typing those numbers into info messages.</li>
+    <li>The unused graphics for "Super Mario Bros. 4" has been replaced with "Romhack Races Baserom".</li>
+    <li>Part of "Nintendo" has been moved to GFX2A, and an "8" and "9" tile has been added to make it usable when typing those numbers into info messages.</li>
 </ul>
 
 <h4>GFX33 : Global Animation Tiles</h4>
 <ul>
-<li>the midway animation frames have been fixed.</li>
-<li>always turning block animation was lightly edited.</li>
-<li>the castle conveyor/stairs have been fixed to use the the castle's brick pattern.</li>
+    <li>the midway animation frames have been fixed.</li>
+    <li>always turning block animation was lightly edited.</li>
+    <li>the castle conveyor/stairs have been fixed to use the the castle's brick pattern.</li>
 </ul>
 
 <small>*See the <code>resources/patches/sprite_remaps.asm</code> file for detailed remapping information.</small>
-<a href="#" class="go-to-top"></a>
 <h3 id="exgraphics">ExGraphics</h3>
 
 <h4>ExGFX61: Global ExAnimation (Alternate ExGraphic)</h4>
 <ul>
-<li>contains all global animation frames, for ON/OFF tiles, one-Ways, the sprite note block, etc.</li>
-<li>see the <a href="ExAnimation.html">Exanimation</a> page for more details.</li>
+    <li>contains all global animation frames, for ON/OFF tiles, one-Ways, the sprite note block, etc.</li>
+    <li>see the <a href="ExAnimation.html">Exanimation</a> page for more details.</li>
 </ul>
 
 <h4>ExGFXB54: ExGraphic Version of Big Bush and Pipe (BG2)</h4>
 <ul>
-<li>contains optional animation tiles for the bushes and big pipe that can be used as ExGraphics.</li>
-<li>must be loaded into slot FG2, and their Map16 Files are found in <code>resources/map16</code>. See demo level for example.</li>
+    <li>contains optional animation tiles for the bushes and big pipe that can be used as ExGraphics.</li>
+    <li>must be loaded into slot FG2, and their Map16 Files are found in <code>resources/map16</code>. See demo level for example.</li>
 </ul>
 
 <h4>ExGFXE17: Custom Global Block Tiles (FG2)</h4>
 <ul>
-<li>contains all tiles for custom global blocks and the global line guide and screen scrolling pipe tiles.</li>
-<li>this resource is arranged to be drop in replacement for GFX17 (FG2) as the custom blocks use tiles normally used for the Big Bush and Large Slanted Pipe objects.</li>
+    <li>contains all tiles for custom global blocks and the global line guide and screen scrolling pipe tiles.</li>
+    <li>this resource is arranged to be drop in replacement for GFX17 (FG2) as the custom blocks use tiles normally used for the Big Bush and Large Slanted Pipe objects.</li>
 </ul>
 
 <h4>ExGFXFF: Font (BG3)</h4>
 <ul>
-<li>a basic 8x8 font and symbol set for in-level text, used in the Demo level.</li>
+    <li>a basic 8x8 font and symbol set for in-level text, used in the Demo level.</li>
 </ul>
 <a href="#" class="go-to-top"></a>
 </section>

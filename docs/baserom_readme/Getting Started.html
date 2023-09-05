@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Getting Started - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<link rel="icon" href="img/flop.gif" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
@@ -13,9 +15,9 @@
 <p>If you have forgot this step the build tool will prompt you about it.</p>
 <small>*this may require you to turn on extensions in Windows' File Explorer.</small>
 <h3 id="initialize-the-baserom">Initialize the Baserom</h3>
-<p>To start using the baserom you will first have to initialize the project as it comes without any of the tools bundled. You can do this by running the provided PowerShell script: <code>!initialize_baserom.ps1</code>. This can be done in Windows by either right clicking on it and choosing "Run" or executing it from a Terminal or the Command Line.</p>
-<p class="infobox">If there is an issue running the script, see <a href="FAQ.html#script-cannot-run">this part of the FAQ</a> on how to address it.</p>
-<p>When you run it, a new command line window will appear and prompt you with the following menu. Both actions are required.</p>
+<p>To start using the baserom you will first have to initialize the project as it comes without any of the tools bundled. You can do this by running the provided script: <code>!initialize_baserom.bat</code>. In Windows, this can be done by double clicking on it in File Explorer, or executing it from a Terminal or the Command Line.</p>
+<!-- <p class="infobox">If there is an issue running the script, see <a href="FAQ.html#script-cannot-run">this part of the FAQ</a> on how to address it.</p> -->
+<p>When ran, a new command line window will appear and prompt you with the following menu. <b>Both actions are required for set up.</b></p>
 <pre>
 ------------------------------
 Initialize Baserom
@@ -29,10 +31,11 @@ What would you like to to?
 
 Enter the number of your choice:
 </pre>
-<h4>Step 1</h4>
-<p>The "Download and Setup all Baserom Tools" action will check for all of the tools required by the baserom, and download them on demand. This is done to keep the baserom pretty lean and avoid distributing a lot of executables and binary files.</p>
-<h4>Step 2</h4>
-<p>The "Run first build of the Baserom" action will build the baserom from scratch using Callisto so you can get right to hacking on your project.</p>
+<h4>Step 1 - Download and Setup all Baserom Tools</h4>
+<p>This action will check for all of the tools required by the baserom, and download them on demand. This is done to keep the baserom pretty lean and avoid distributing a lot of executables and binary files.</p>
+<h4>Step 2 - Run first build of the Baserom</h4>
+<p>This step will build the baserom from scratch using Callisto so you can get right to hacking on your project.</p>
+<p class="infobox">If this fails, run Callisto manually from the "buildtool" folder so you can see what went wrong.</p>
 <h3 id="building-the-baserom">Building the Baserom</h3>
 <p>This baserom comes with a build tool called "Callisto" that will perform all actions needed to build and update your hack everytime you want to make changes. It executes all the common tools behind the scenes with a single command. Callisto will also monitor your project and export changes to keep things up-to-date (provided you are using it's <b>Edit</b> functionality).</p>
 
