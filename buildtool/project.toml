@@ -30,7 +30,6 @@ enable_automatic_reloads = true
 
 [output]
 output_rom = "workspace/RHRv5.smc"
-temporary_folder = "workspace/temp"
 bps_package = "workspace/RHRv5.bps"
 
 # Build order configuration

@@ -15,8 +15,8 @@ $AddMusicK_Junk = @("readme_files", "src.zip", "addmusicMRemover.pl", "readme.ht
 
 # Callisto
 $Callisto_Dir = "$WorkingDir\buildtool\"
-$Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.1.0/callisto-v0.1.0.zip"
-$Callisto_Archive = "callisto-v0.1.0.zip"
+$Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.2.0/callisto-v0.2.0.zip"
+$Callisto_Archive = "callisto-v0.2.0.zip"
 $Callisto_Junk = @("ASAR_LICENSE", "LICENSE", "documentation", "config", "asar", "initial_patches")
 
 # Flips
