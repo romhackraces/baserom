@@ -61,4 +61,4 @@ solid:
 return:
 	RTL
 
-print "Solid if anything goes right"
+print "Solid to anything moving rightwards."

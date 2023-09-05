@@ -24,4 +24,4 @@ solid:
 return:
 	RTL
 
-print "Solid if anything goes up"
+print "Solid to anything moving upwards."

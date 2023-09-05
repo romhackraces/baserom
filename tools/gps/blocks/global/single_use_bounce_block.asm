@@ -4,7 +4,10 @@ db $42
 JMP Return : JMP Mario : JMP Return : JMP Return : JMP Return : JMP Return : JMP Return
 JMP Mario : JMP Return : JMP Return
 
-!Height = $A0   ; $A0 is noteblock height, $80 is springboard max (this is very high)
+!NoteBlock = $A0        ; $A0 is noteblock height,
+!SpringBoard = $80      ; $80 is springboard max (this is very high)
+
+!Height = !NoteBlock
 !NegateSpin = 0
 
 Mario:
@@ -22,4 +25,4 @@ Mario:
 Return:
     RTL
 
-print "A single-use bounce block."
+print "A single-use bounce block. Noteblock bounce height, doesn't negate spin"

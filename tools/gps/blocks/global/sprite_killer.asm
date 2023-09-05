@@ -36,4 +36,4 @@ Sprite:
 Return:
     rtl
 
-print "A block that kills sprites."
+print "A block that kills sprites. Does not work for sprites that do not have object interaction."

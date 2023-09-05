@@ -1,16 +1,16 @@
 290	0	A block that is only passable by Mario. To sprites, it will obey the Act as setting.
 291	0	A block that is passable by sprites. To Mario, it will obey the Act as setting.
 292	0	A block that bounces sprites! But is passable by Mario.
-293	0	Solid if anything goes up
-294	0	Solid if anything goes right
-295	0	Solid if anything goes left
+293	0	Solid to anything moving upwards.
+294	0	Solid to anything moving rightwards.
+295	0	Solid to anything moving leftwards.
 296	0	Block that is solid when ON/OFF switch is OFF.
 297	0	Block that is solid when ON/OFF switch is ON.
 298	0	A block that shatters when a sprite is thrown at it.
-299	0	A block that kills sprites.
+299	0	A block that kills sprites. Does not work for sprites that do not have object interaction.
 29a	0	Block that kills the player (even on yoshi), is solid for sprites and kills on wall running.
 29b	0	Block that kills the player (even on yoshi), is passable for sprites and kills on wall running.
-29c	0	Block that makes Mario small, clears item box and removes balloon, flight, and slide state
+29c	0	Makes Mario small, clears item box and removes balloon, flight, and slide states.
 29d	0	A Donut Lift, which will fall shortly after being stepped on.
 29e	0	Block with an endless supply of throwblocks.
 29f	0	A ledge vine that the player automatically hops above.
@@ -19,7 +19,7 @@
 2a2	0	Sets the ON/OFF status to ON when anything (incl. dead sprites) passes through it.
 2a3	0	Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it.
 2a4	0	A block that will teleport Mario to the current screen exit.
-2a5	0	A single-use bounce block.
+2a5	0	A single-use bounce block. Noteblock bounce height, doesn't negate spin
 2aa	0	Scroll camera left. (Remove graphics in Map16 when finished.)
 2ab	0	Scroll camera right. (Remove graphics in Map16 when finished.)
 2ac	0	Enable horizontal camera scroll. (Remove graphics in Map16 when finished.)

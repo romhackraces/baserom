@@ -13,11 +13,11 @@ Mario:
     STA $13ED|!addr             ;/
 
     LDA $13F3|!addr             ;\ check if in balloon
-    BEQ +                  ;/ otherwise skip
+    BEQ +                       ;/ otherwise skip
     LDA #$01 : STA $1891|!addr  ;> set p-balloon timer to 1 frame (can't do zero here)
     STZ $13F3|!addr             ;> make sure not in balloon
     +
 Return:
     RTL
 
-print "Block that makes Mario small, clears item box and removes balloon, flight, and slide state"
+print "Makes Mario small, clears item box and removes balloon, flight, and slide states."
