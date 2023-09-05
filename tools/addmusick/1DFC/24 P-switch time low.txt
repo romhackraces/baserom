@@ -1,3 +1,0 @@
-;Uncomment to use vanilla priority
-;$E0 $C0
-$DA $06 $03 $54 $AB $A6 $03 $46 $AD $A8 $03 $38 $AF $A9 $03 $2A $B0 $AB $C7 $03 $54 $AB $A6 $03 $46 $AD $A8 $03 $38 $AF $A9 $03 $2A $B0 $AB $C7 $03 $54 $AB $A6 $03 $46 $AD $A8 $03 $38 $AF $A9 $03 $2A $B0 $AB $03 $20 $B2 $AD $03 $16 $B4 $AF $03 $0C $B5 $B0

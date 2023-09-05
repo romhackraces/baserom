@@ -1,11 +1,15 @@
-tools/addmusick/*.pl
-tools/addmusick/Addmusic_*.txt
-tools/addmusick/asm/SNES/bin/*.bin
-tools/addmusick/asm/SNES/SongSampleList.asm
+tools/addmusick/asm/*
+tools/addmusick/asm/!UserDefines.asm
 tools/addmusick/SPCs/*.spc
 tools/addmusick/stats/*.txt
 tools/addmusick/music/originals/*
+tools/addmusick/samples*
 tools/addmusick/temp*
+tools/addmusick/1DF9/*
+tools/addmusick/1DFC/*
+tools/addmusick/1DFC/!Death Prelude.txt
+tools/addmusick/*.pl
+tools/addmusick/Addmusic_*.txt
 tools/gps/rom.txt
 tools/flips/flipscfg.bin
 tools/lunar_magic/usertoolbar*
