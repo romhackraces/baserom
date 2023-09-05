@@ -1,158 +1,142 @@
-;-----------------------------------------------------------------------------------------
-; Better Donut by AmperSam
-;-----------------------------------------------------------------------------------------
-; config
-;-----------------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Donut Lift (sprite portion), by mikeyk
+;; asar support by JackTheSpades
+;;
+;; Description:
+;;
+;; NOTE: This sprite works in conjunction with a custom block. The MAP16 number for
+;; the block must be specified where it says !DONUT_MAP16_NUM, likewise, the in the block
+;; you have to set the sprite number to whatever you insert this sprite as.
+;;
+;;
+;; Uses first extra bit: NO
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    !map16_block = $029F        ; map16 value of the donut block in hex
-    !sprite_tile = $C2          ; graphic tile to use for donut sprite
-    !direction = 0              ; 0 = vertical, 1 = horizontal
-    !speed_value = $30          ;\ positive (00-7F) values = down/right,
-    !max_speed = $38            ;/ negative (80-FF) values = up/left
+        !DONUT_MAP16_NUM = $029D             ; map16 value of the donut block in hex
+        !DONUT_SPRITE_TILE = $C2             ; graphic tile to use for donut sprite
 
-;-----------------------------------------------------------------------------------------
-; definitions
-;-----------------------------------------------------------------------------------------
-
-; DO NOT CHANGE
-if !direction == 1
-    !position_change = !sprite_speed_x,x
-else
-    !position_change = !sprite_speed_y,x
-endif
-
-;-----------------------------------------------------------------------------------------
-; init
-;-----------------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; init JSL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 print "INIT ",pc
-    RTL
+		RTL
 
-;-----------------------------------------------------------------------------------------
-; main
-;-----------------------------------------------------------------------------------------
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; main sprite JSL
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 print "MAIN ",pc
-    PHB
-    PHK
-    PLB
-    JSR Donut
-    PLB
-    RTL
+		PHB                     ; \
+		PHK                     ;  |
+		PLB                     ;  |
+		JSR DONUT_CODE_START    ;  |
+		PLB                     ;  |
+		RTL                     ; /
 
-;-----------------------------------------------------------------------------------------
-; sprite routine
-;-----------------------------------------------------------------------------------------
 
-Donut:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; donut main code
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    JSR donut_gfx
+DONUT_CODE_START:
 
-    LDA #$00
-    %SubOffScreen()
+		JSR DONUT_GRAPHICS      ;gfx routine
+		LDA #$00
+		%SubOffScreen()			;Sub_Off_Screen_X0
 
-    LDA $9D
-    BNE return
-    LDA !14C8,x
-    CMP #$08
-    BNE return
+		LDA $9D                 ; \ if sprites locked, RETURN
+		BNE .return             ; /
+		LDA !14C8,x
+		CMP #$08
+		BNE .return
 
-    LDA !position_change
-    BEQ ++
+		LDA !AA,x               ;if y speed = 0, jumps to timer code
+		BEQ .timer
 
-    LDA !position_change
-    CMP #!max_speed
-    BMI +
-    SEC
-    SBC #$02
-    STA !position_change
-+
-    if !direction == 1
-        JSL $018022|!BankB      ;load x position subroutine
-    else
-        JSL $01801A|!BankB      ;load y position subroutine
-    endif
+		LDA !AA,x               ;caps y speed at #$38
+		CMP #$38
+		BPL +
+		CLC : ADC #$02
+		STA !AA,x
++		JSL $01801A             ;sets speed
 
-    LDA #$01
-    STA !1558,x
-++
-    JSL $01B44F|!BankB
-    BCC draw_map16
+		LDA #$01						;keep timer at #$01 timer (we're falling already)
+		STA !1558,x
 
-    LDA !1558,x
-    BNE +
-    LDA #$28
-    STA !1558,x
-+
-    DEC A
-    STA !1558,x
-    CMP #$01
-    BNE +
-    LDA #!speed_value
-    STA !position_change
-+
--
-    JSL $01A7DC|!BankB
-    BCC +
-    LDA $77
-    AND #$08
-    BEQ +
-    JSL $00F606|!BankB
-+
-return:
-    RTS
+.timer
+		JSL $01B44F             ;interact with sprite
+		BCC MAKE_BLOCK          ;if not on donut lift, change sprite to map16 block
 
-draw_map16:
-    LDA !position_change
-    BNE -
+		LDA !1558,x             ;if the timer hasn't been set, set timer
+		BNE +
+		LDA #$28
+		STA !1558,x
 
-    STZ !sprite_status,x
-    STZ !1558,x
++		DEC A                   ;decrements timer
+		STA !1558,x
+		CMP #$01                ;if the timer is down to 1, set y speed
+		BNE .return
+		LDA #$0B                ;y speed=0B
+		STA !AA,x
+.return
+		RTS
 
-    LDA !sprite_y_low,x
-    STA $98
-    LDA !sprite_y_high,x
-    STA $99
-    LDA !sprite_x_low,x
-    STA $9A
-    LDA !sprite_x_high,x
-    STA $9B
+MAKE_BLOCK:
+		LDA !AA,x
+		BNE Return
+		STZ !14C8,x             ; destroy the sprite
+		STZ !1558,x             ; reset timer
 
-    PHP
-    REP #$30
-    LDA #!map16_block
-    %ChangeMap16()
-    PLP
-    RTS
+		LDA !E4,x               ; \  setup block properties
+		STA $9A                 ;  |
+		LDA !14E0,x             ;  |
+		STA $9B                 ;  |
+		LDA !D8,x               ;  |
+		STA $98                 ;  |
+		LDA !14D4,x             ;  |
+		STA $99                 ; /
 
-;-----------------------------------------------------------------------------------------
-; graphics routine
-;-----------------------------------------------------------------------------------------
+		PHP
+		REP #$30                ; \ change sprite to block
+		LDA.w #!DONUT_MAP16_NUM ;  |
+		%ChangeMap16()          ;  |
+		PLP                     ; /
+Return:
+		RTS
 
-donut_gfx:
-   %GetDrawInfo()
 
-    LDA !position_change
-    BNE +
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; donut graphics routine - specific
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-    LDA $14
-    AND #$02
-    BNE +
-    LDA !1558,x
-    BEQ +
+DONUT_GRAPHICS:
+		%GetDrawInfo()
 
-+   DEC $00
+		LDA !AA,x
+		BNE +
 
-    lda $00
-    sta $0300|!Base2,y
-    lda $01
-    sta $0301|!Base2,y
-    lda #!sprite_tile
-    sta $0302|!Base2,y
-    LDA !15F6,x
-	ORA $64
-    sta $0303|!Base2,y
-    lda #$00
-    ldy #$02
-    jsl $01B7B3|!BankB
-    rts
+		LDA $14
+		AND #$02
+		BNE +
+		LDA !1558,x
+		BEQ +
+
+		DEC $00
+
++		LDA $00                 ; \ tile x position = sprite x location ($00)
+		STA $0300|!Base2,y      ; /
+		LDA $01                 ; \ tile y position = sprite y location ($01)
+		STA $0301|!Base2,y      ; /
+
+		LDA !15F6,x             ; tile properties xyppccct, format
+		ORA $64                 ; add in tile priority of level
+		STA $0303|!Base2,y      ; store tile properties
+
+		LDA #!DONUT_SPRITE_TILE ; \ store tile
+		STA $0302|!Base2,y      ; /
+
+		LDY #$02                ; \ 460 = 2 (all 16x16 tiles)
+		LDA #$00                ;  | A = (number of tiles drawn - 1)
+		JSL $01B7B3             ; / don't draw if offscreen
+		RTS                     ; RETURN
