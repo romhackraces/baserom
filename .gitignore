@@ -4,6 +4,7 @@ tools/addmusick/asm/SNES/bin/*.bin
 tools/addmusick/asm/SNES/SongSampleList.asm
 tools/addmusick/SPCs/*.spc
 tools/addmusick/stats/*.txt
+tools/addmusick/music/originals/*
 tools/addmusick/temp*
 tools/gps/rom.txt
 tools/flips/flipscfg.bin
