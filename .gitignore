@@ -1,4 +1,5 @@
 tools/addmusick/asm/*
+# Keep UserDefines
 tools/addmusick/asm/!UserDefines.asm
 tools/addmusick/SPCs/*.spc
 tools/addmusick/stats/*.txt
@@ -7,7 +8,9 @@ tools/addmusick/samples*
 tools/addmusick/temp*
 tools/addmusick/1DF9/*
 tools/addmusick/1DFC/*
+# Keep Custom SFX
 tools/addmusick/1DFC/!Death Prelude.txt
+tools/addmusick/Visualizations/*
 tools/addmusick/*.pl
 tools/addmusick/Addmusic_*.txt
 tools/gps/rom.txt
@@ -21,6 +24,7 @@ sysLMRestore
 workspace/temp/*
 conflicts.txt
 failed_save.txt
+.dependencies
 .callisto
 .is_setup
 temp/*
