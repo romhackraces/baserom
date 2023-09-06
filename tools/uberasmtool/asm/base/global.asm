@@ -6,22 +6,22 @@
 db "uber"
 incsrc "../work/pointer_list.asm"
 db "tool"
-
+    
 GlobalInit:
     sta $7F8182                    ; restore clobbered end of oam clear routine upload
-
+    
     lda #$00
     sta !previous_mode+1           ; always 00, so that !previous_mode can be accessed in 16-bit mode
     dec
     sta !previous_mode
-
+        
 ; we're restoring the original code, so this isn't needed anymore
 ; this overwrites the "JMP $806F" with "RTS"
 ;    if !sa1
 ;        lda #$60
 ;        sta $1E93                  ; edit SA-1 main loop to allow simple usage of it
 ;    endif
-
+    
     jsr GlobalCode_init
 ; return from hijack (starts the spc engine upload)
     jml $008052|!bank

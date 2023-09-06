@@ -43,7 +43,7 @@ CallLevelLoad:
 .return:
     sep #$30
     jml $058091|!bank
-
+    
 ;--------------------------------------------------
 
 ; called with A/X/Y already 16-bit
@@ -80,7 +80,7 @@ CallLevelMain:
     lda $13D4|!addr
     beq +
     jml $00A25B|!bank
-+
++    
     jml $00A28A|!bank
 
 ;--------------------------------------

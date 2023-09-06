@@ -26,7 +26,7 @@
     STY $0C
     SEP #$30
     LDA $5B
-    LDX $1933|!Base2
+    LDX $1933|!addr
     BEQ ?.layer1
     LSR A
 ?.layer1:
@@ -43,7 +43,7 @@
         BCS ?.verticalCheck
         REP #$20
         LDA $98
-        CMP $13D7|!Base2
+        CMP $13D7|!addr
         SEP #$20
         BRA ?.check
     endif
@@ -99,7 +99,7 @@
     LSR A
     TSB $08
 
-    LDA $1925|!Base2
+    LDA $1925|!addr
     ASL A
     REP #$31
     ADC $00BEA8|!BankB,x
