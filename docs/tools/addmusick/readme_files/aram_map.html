@@ -1,0 +1,1472 @@
+<html>
+<head>
+	<title>ARAM Map - AddmusicK Readme</title>
+	<link href="readme.css" type="text/css" rel="stylesheet">
+
+</head>
+<body text="#FFFFFF">
+	<h1>ARAM Map</h1><br><br>
+The following contains ARAM usage past and present, including the latest version of AddmusicK. These mostly only cover the stable ARAM locations from $0000-$04FF, with some exceptions. Please note that they are sorted by when memory locations were discontinued (or changed), with the latest version containing all of the current memory locations sorted by source (New meaning that it debuted in the latest version).<br>
+
+Romi's Addmusic (Addmusic404)'s custom code used no new memory locations, and therefore is de facto not included in this list.<br>
+
+	<h2>Latest Version</h2>
+		NOTE: $0400-$04FF are omitted from here and AddmusicK because the SPC700 program starts at $0400 rather than $0500.
+		<table border="3">
+			<tr>
+				<th>Memory Locations</th>
+				<th>Description</th>
+				<th>UserDefine.asm Requirement</th>
+				<th>Source</th>
+			</tr>
+			<tr>
+				<td>$00-$03</td>
+				<td>CPUIO register input from $2140-$2143 on the SNES side to $F4-$F7 on the SPC side. Cleared at a rate of (256/56)*16 timer 0 ticks (or 1 SFX tempo tick).</td>
+				<td>$03 only (others are N/A)<br>!noSFX = false</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$04</td>
+				<td>Last CPUIO0 SFX ID allocated and played.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK<br>(dates back to Vanilla, but output functionality was overwritten by $0166 starting with AddmusicM, then it later lost its ability to be zeroed out when it was done playing with AddmusicK)</td>
+			</tr>
+			<tr>
+				<td>$05</td>
+				<td>CPUIO1 SFX ID currently playing.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK<br>(dates back to Vanilla, but output functionality was overwritten by $0167 starting with AddmusicK)</td>
+			</tr>
+			<tr>
+				<td>$06</td>
+				<td>CPUIO2 music ID currently playing.</td>
+				<td>N/A</td>
+				<td>AddmusicK<br>(dates back to Vanilla, but output functionality was overwritten by $0168 starting with AddmusicK)</td>
+			</tr>
+			<tr>
+				<td>$07</td>
+				<td>Last CPUIO3 SFX ID allocated and played.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK<br>(dates back to Vanilla, but output functionality was overwritten by $0167 in AddmusicM, then it was overwritten by $0169 and lost its ability to be zeroed out when it was done playing starting with AddmusicK)</td>
+			</tr>
+			<tr>
+				<td>$08-$0B</td>
+				<td>CPUIO register input from $2140-$2143 on the SNES side to $F4-$F7 on the SPC side. Unlike $00-$03, these are not cleared regularly, and thus store the last value read.</td>
+				<td>$0B only (others are N/A)<br>!noSFX = false</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0C</td>
+				<td>Tick counter for the song to initialize itself.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0D</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0E-$0F</td>
+				<td>Always zero. Read for a few operations where YA needs to have its bits inverted via subtracting a stored value.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$10-$17</td>
+				<td>Scratch RAM. Used for a variety of temporary purposes.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$18</td>
+				<td>Voice bit being processed for SFX.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$19</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$1A</td>
+				<td>Voice bits whose VxVOL DSP registers were cleared due to using noise and their noise frequency not matching the one currently in use.</td>
+				<td>!noSFX = false</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$1B</td>
+				<td>Voice bits indicating which voices the P-Switch as SFX are being used for.</td>
+				<td>!noSFX = false<br>!PSwitchIsSFX = true</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$1C</td>
+				<td>Tick counter for CPUIO1 SFX.</td>
+				<td>!noSFX = false<br>!useSFXSequenceFor1DFASFX = !false</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$1D</td>
+				<td>Voice bits indicating which ones are being used for SFX.</td>
+				<td>!noSFX = false</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$1E</td>
+				<td><u>When !noiseFrequencyMatchChecks = false</u><br>Noise frequency of the SFX instance with the highest priority.<br>
+<u>When !noiseFrequencyMatchChecks = true</u><br>Voice ID times 2 of the SFX instance with the highest priority.</td>
+				<td>!noSFX = false</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$1F</td>
+				<td>Highest priority of the SFX instance that is using noise.</td>
+				<td>!noSFX = false</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$20-$2F</td>
+				<td>SFX pointer. One pointer per voice.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$30-$3F</td>
+				<td>Music track pointer. One pointer per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$40-$41</td>
+				<td>Phrase pointer.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$42</td>
+				<td>Phrase jump counter.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$43</td>
+				<td>Global transposition.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$44</td>
+				<td>Fractional counter for the CPUIO polling/SFX tempo ticker (running at a tempo of $38).</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$45</td>
+				<td>Counter for the CPUIO polling/SFX tempo ticker (running at a tempo of $38).</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$46</td>
+				<td>Current voice ID being processed times 2.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$47</td>
+				<td>Voice bit indicating which channels should be keyed on in the music. Cleared every music tempo tick.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$48</td>
+				<td>Voice bit being processed for music.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$49</td>
+				<td>Fractional counter for the music tempo ticker.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$4A</td>
+				<td>Voice bit indicating which voices have pitch modulation currently active for music.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$4B</td>
+				<td>Voice bit indicating which voices have noise currently active for music.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$4C</td>
+				<td>Voice bit indicating which voices have echo currently active for music.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$4D</td>
+				<td>Voice bit indicating which voices have pitch modulation currently active for SFX.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$4E</td>
+				<td>Voice bit indicating which voices have noise currently active for SFX.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$4F</td>
+				<td>Voice bit indicating which voices have echo currently active for SFX.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$50</td>
+				<td>Fractional part of music tempo.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$51</td>
+				<td>Music tempo.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$52</td>
+				<td>Music tempo fade tick counter. Ends up reused as fractional part of target tempo once zero.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$53</td>
+				<td>Target music tempo.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$54</td>
+				<td>Music tempo fade rate per music tempo tick, fraction portion.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$55</td>
+				<td>Music tempo fade rate per music tempo tick, whole portion.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$56</td>
+				<td>Fractional part of song volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$57</td>
+				<td>Song volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$58</td>
+				<td>Song volume fade tick counter. Ends up reused as fractional part of target song volume once zero.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$59</td>
+				<td>Target song volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$5A</td>
+				<td>Song volume fade rate per music tempo tick, fraction portion.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$5B</td>
+				<td>Song volume fade rate per music tempo tick, whole portion.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$5C</td>
+				<td>Voice bits used to indicate which voices need their VxVOL DSP registers changed. Bypassed if a pan fade is required, thus requiring a VxVOL DSP register write anyways.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$5D</td>
+				<td>EDL (echo delay) DSP register mirror.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$5E</td>
+				<td>Voice bits used to indicate which voices are reserved for Yoshi Drums, and thus are muted accordingly until CPUIO1 command ID $02 is sent.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$5F</td>
+				<td>FLG DSP register mirror (including the noise clock frequency).</td>
+				<td>N/A</td>
+				<td>AddmusicK<br>(moved from $2E in Vanilla SMW)</td>
+			</tr>
+			<tr>
+				<td>$60</td>
+				<td>Echo volume fade tick counter.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$61</td>
+				<td>Fractional part of left echo volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$62</td>
+				<td>Left echo volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$63</td>
+				<td>Fractional part of right echo volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$64</td>
+				<td>Right echo volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$65</td>
+				<td>Left echo volume fade rate per music tempo tick, fraction portion.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$66</td>
+				<td>Left echo volume fade rate per music tempo tick, whole portion.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$67</td>
+				<td>Right echo volume fade rate per music tempo tick, fraction portion.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$68</td>
+				<td>Right echo volume fade rate per music tempo tick, whole portion.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$69</td>
+				<td>Target left echo volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$6A</td>
+				<td>Target right echo volume.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$6B</td>
+				<td>Number of music tempo ticks before the end of the note prior to forcibly keying it off.</td>
+				<td>N/A</td>
+				<td>AddmusicK<br>(moved from $10A8, or being embedded in code, in Vanilla SMW)</td>
+			</tr>
+			<tr>
+				<td>$6C-$6D</td>
+				<td>Pointer to a set of instruments defined by the song currently playing.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$6E</td>
+				<td>Which voices are being reserved for Yoshi drums.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$6F</td>
+				<td>Velocity table ID.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$70, $72, $74, $76, $78, $7A, $7C, $7E</td>
+				<td>Music note duration, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$71, $73, $75, $77, $79, $7B, $7D, $7F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$80, $82, $84, $86, $88, $8A, $8C, $8E</td>
+				<td>Track volume fade tick counter, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$81, $83, $85, $87, $89, $8B, $8D, $8F</td>
+				<td>Track panning fade tick counter, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$90, $92, $94, $96, $98, $9A, $9C, $9E</td>
+				<td>Pitch slide tick counter, one byte per voice. Shared by both music and SFX.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$91, $93, $95, $97, $99, $9B, $9D, $9F</td>
+				<td>Pitch slide delay in music tempo ticks, one byte per voice. Shared by both music and SFX.</td>
+				<td>N/A</td>
+				<td>New<br>(dates back to Vanilla, but was only properly implemented for music)</td>
+			</tr>
+			<tr>
+				<td>$A0, $A2, $A4, $A6, $A8, $AA, $AC, $AE</td>
+				<td>Vibrato tick counter, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$A1, $A3, $A5, $A7, $A9, $AB, $AD, $AF</td>
+				<td>Maximum pitch offset for vibrato, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$B0, $B2, $B4, $B6, $B8, $BA, $BC, $BE</td>
+				<td>Tremolo tick counter, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$B1, $B3, $B5, $B7, $B9, $BB, $BD, $BF</td>
+				<td>Maximum volume offset for tremolo, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$C0, $C2, $C4, $C6, $C8, $CA, $CC, $CE</td>
+				<td>Subroutine ($E9 command) loop counter, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$C1, $C3, $C5, $C7, $C9, $CB, $CD, $CF</td>
+				<td>Current instrument ID, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$D0-$DF</td>
+				<td>Stores the VxVOL DSP register values of voices using noise that have had their volumes zeroed out due to not using the frequency currently being used. One word per voice.</td>
+				<td>!noSFX = false</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$E0-$EF</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0100, $0102, $0104, $0106, $0108, $010A, $010C, $010E</td>
+				<td>Music note duration after quantization, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0101, $0103, $0105, $0107, $0109, $010B, $010D, $010F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0110, $0112, $0114, $0116, $0118, $011A, $011C, $011E</td>
+				<td>Vibrato fade tick counter, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0111, $0113, $0115, $0117, $0119, $011B, $011D, $011F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0120, $0122, $0124, $0126, $0128, $012A, $012C, $012E</td>
+				<td>Transposition, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK<br>(Moved from $6727-$672E and being located in the middle of code in Addmusic405)</td>
+			</tr>
+			<tr>
+				<td>$0121, $0123, $0125, $0127, $0129, $012B, $012D, $012F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0130-$015F</td>
+				<td>Instrument backup table. Six bytes per voice.</td>
+				<td>N/A</td>
+				<td>carol's MORE.bin</td>
+			</tr>
+			<tr>
+				<td>$0160</td>
+				<td>Contains various flags for various purposes, stored as %??????xy<br>See below for a list of bits that are currently used.</td>
+				<td>N/A</td>
+				<td>Varies by bit</td>
+			</tr>
+			<tr>
+				<td>$0160 bit 0 (%???????y)</td>
+				<td>Used to indicate whether any voices have been reserved for Yoshi Drums.</td>
+				<td>N/A</td>
+				<td>New<br>(Dates back to AddmusicM, but was used to indicate Yoshi Drums on #5. This was not properly adapted when ported over to AddmusicK, which supported multiple channels containing Yoshi Drums and de facto abandoned this bit's original usage, but it has been updated to reflect the correct indicator)</td>
+			</tr>
+			<tr>
+				<td>$0160 bit 1 (%??????x?)</td>
+				<td>Used to indicate whether sync mode is on. When enabled, $0166 and $0167 are used as a 16-bit music tempo tick counter.</td>
+				<td>N/A</td>
+				<td>AddmusicM</td>
+			</tr>
+			<tr>
+				<td>$0161</td>
+				<td>Voice bit indicating whether legato is on.</td>
+				<td>N/A</td>
+				<td>AddmusicM</td>
+			</tr>
+			<tr>
+				<td>$0162</td>
+				<td>Voice bit indicating which voices can be keyed off once their note durations have elapsed.</td>
+				<td>N/A</td>
+				<td>AddmusicM</td>
+			</tr>
+			<tr>
+				<td>$0163-$0165</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0166</td>
+				<td>CPUIO0 output from $F4 on the SPC side to $2140 on the SNES side. Also used as part of a 16-bit music tempo tick counter if bit 1 of $0160 is set.</td>
+				<td>N/A</td>
+				<td>AddmusicM</td>
+			</tr>
+			<tr>
+				<td>$0167</td>
+				<td>CPUIO1 output from $F5 on the SPC side to $2141 on the SNES side. Also used as part of a 16-bit music tempo tick counter if bit 1 of $0160 is set.</td>
+				<td>N/A</td>
+				<td>AddmusicK<br>(Dates back to AddmusicM, but instead outputs from $F7 on the SPC side to $2143 on the SNES side)</td>
+			</tr>
+			<tr>
+				<td>$0168</td>
+				<td>CPUIO2 output from $F6 on the SPC side to $2142 on the SNES side.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0169</td>
+				<td>CPUIO3 output from $F7 on the SPC side to $2143 on the SNES side.</td>
+				<td>N/A</td>
+				<td>AddmusicK<br>(Moved from $0167 in AddmusicM, but only from where it outputs: the music tempo tick usage doesn't carry over here)</td>
+			</tr>
+			<tr>
+				<td>$016A-$016F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0170, $0172, $0174, $0176, $0178, $017A, $017C, $017E</td>
+				<td>Backup remote gain values, in case they are overwritten by SFX. One byte per voice.</td>
+				<td>N/A</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$0171, $0173, $0175, $0177, $0179, $017B, $017D, $017F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0180-$018F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0190-$019F</td>
+				<td>Remote code pointer for negative event IDs (on note start), one pointer per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$01A0, $01A2, $01A4, $01A6, $01A8, $01AA, $01AC, $01AE</td>
+				<td>Number of tempo ticks before the note has ended to execute remote code event type 2. One byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$01A1, $01A3, $01A5, $01A7, $01A9, $01AB, $01AD, $01AF</td>
+				<td>Indicates whether the note currently playing is a rest. One byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$01B0-$01CF</td>
+				<td colspan="3"><div style="text-align:center"><b>Reserved for stack.</b><br>(this is actually implicit, though, as it just indicates the maximum amount of stack space allocated due to unused memory locations)</div></td>
+			</tr>
+			<tr>
+				<td>$01D0, $01D2, $01D4, $01D6, $01D8, $01DA, $01DC, $01DE</td>
+				<td>SFX note duration. One byte per voice.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$01D1, $01D3, $01D5, $01D7, $01D9, $01DB, $01DD, $01DF</td>
+				<td>SFX priority. One byte per voice.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$01E0-$01EF</td>
+				<td>Track pointer for the superloop ($E6 command) to jump back to, one pointer per voice.</td>
+				<td>N/A</td>
+				<td>carol's MORE.bin<br>(shows up again in AddmusicM, but not Addmusic405)</td>
+			</tr>
+			<tr>
+				<td>$01F0, $01F2, $01F4, $01F6, $01F8, $01FA, $01FC, $01FE</td>
+				<td>Repeat counter for the superloop ($E6 command), one byte per voice.</td>
+				<td>N/A</td>
+				<td>carol's MORE.bin<br>(shows up again in AddmusicM, but not Addmusic405)</td>
+			</tr>
+			<tr>
+				<td>$01F1, $01F3, $01F5, $01F7, $01F9, $01FB, $01FD, $01FF</td>
+				<td>Noise frequency for each SFX, one byte per voice.</td>
+				<td>!noSFX = false<br>!noiseFrequencySFXInstanceResolution = true</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$0200, $0202, $0204, $0206, $0208, $020A, $020C, $020E</td>
+				<td>Saved note duration for music, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0201, $0203, $0205, $0207, $0209, $020B, $020D, $020F</td>
+				<td>Quantization, which is in 256ths of a note. One byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0210, $0212, $0214, $0216, $0218, $021A, $021C, $021E</td>
+				<td>Pitch base multiplier, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0211, $0213, $0215, $0217, $0219, $021B, $021D, $021F</td>
+				<td>Note velocity, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0220, $0222, $0224, $0226, $0228, $022A, $022C, $022E</td>
+				<td>Contains various flags for various purposes, stored as %xy??????. One byte per voice.<br>See below for a list of bits whose usages don't match the latest version.</td>
+				<td>N/A</td>
+				<td>New<br>(At least one of the bits dates back to AddmusicK representing the entire byte, but was moved)</td>
+			</tr>
+			<tr>
+				<td>$0220, $0222, $0224, $0226, $0228, $022A, $022C, $022E bit 6 (%?y??????)</td>
+				<td>Flag indicating that instrument data has been modified, and thus must be restored via the backup tables at $0130-$015F. One byte per voice.</td>
+				<td>N/A</td>
+				<td>New<br>(was also in AddmusicK representing the entire byte)</td>
+			</tr>
+			<tr>
+				<td>$0220, $0222, $0224, $0226, $0228, $022A, $022C, $022E bit 7 (%x???????)</td>
+				<td>Flag indicating that remote gain has been used, and thus must be restored via the backup tables at $0170, $0172, $0174, $0176, $0178, $017A, $017C, $017E. One byte per voice.</td>
+				<td>N/A</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$0221, $0223, $0225, $0227, $0229, $022B, $022D, $022F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0230, $0232, $0234, $0236, $0238, $023A, $023C, $023E</td>
+				<td>Arpeggio note index: specifically, the offset from the currently playing arpeggio. One byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0231, $0233, $0235, $0237, $0239, $023B, $023D, $023F</td>
+				<td>Arpeggio type, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0240, $0242, $0244, $0246, $0248, $024A, $024C, $024E</td>
+				<td>Fractional part of track volume for music, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0241, $0243, $0245, $0247, $0249, $024B, $024D, $024F</td>
+				<td>Track volume for music, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0250, $0252, $0254, $0256, $0258, $025A, $025C, $025E</td>
+				<td>Track volume fade rate per music tempo tick, fraction portion. One byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0251, $0253, $0255, $0257, $0259, $025B, $025D, $025F</td>
+				<td>Track volume fade rate per music tempo tick, whole portion. One byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0260, $0262, $0264, $0266, $0268, $026A, $026C, $026E</td>
+				<td>Target track volume, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0261, $0263, $0265, $0267, $0269, $026B, $026D, $026F</td>
+				<td>Number of notes in the current arpeggio, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0270, $0272, $0274, $0276, $0278, $027A, $027C, $027E</td>
+				<td>Current arpeggio pitch offset in semitones, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0271, $0273, $0275, $0277, $0279, $027B, $027D, $027F</td>
+				<td>The most recently played note to use to offset from for arpeggio, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0280, $0282, $0284, $0286, $0288, $028A, $028C, $028E</td>
+				<td>Fractional part of panning for music, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0281, $0283, $0285, $0287, $0289, $028B, $028D, $028F</td>
+				<td>Panning for music, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0290, $0292, $0294, $0296, $0298, $029A, $029C, $029E</td>
+				<td>Panning fade rate per music tempo tick, fraction portion, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0291, $0293, $0295, $0297, $0299, $029B, $029D, $029F</td>
+				<td>Panning fade rate per music tempo tick, whole portion, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02A0, $02A2, $02A4, $02A6, $02A8, $02AA, $02AC, $02AE</td>
+				<td>Target panning, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02A1, $02A3, $02A5, $02A7, $02A9, $02AB, $02AD, $02AF</td>
+				<td>Panning with phase inversion settings, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02B0, $02B2, $02B4, $02B6, $02B8, $02BA, $02BC, $02BE</td>
+				<td>Note for music track, fractional, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02B1, $02B3, $02B5, $02B7, $02B9, $02BB, $02BD, $02BF</td>
+				<td>Note for music track, whole, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02C0, $02C2, $02C4, $02C6, $02C8, $02CA, $02CC, $02CE</td>
+				<td>Pitch slide rate per music tempo tick, fraction of a note, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02C1, $02C3, $02C5, $02C7, $02C9, $02CB, $02CD, $02CF</td>
+				<td>Pitch slide rate per music tempo tick, whole note, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02D0, $02D2, $02D4, $02D6, $02D8, $02DA, $02DC, $02DE</td>
+				<td>Target note, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02D1, $02D3, $02D5, $02D7, $02D9, $02DB, $02DD, $02DF</td>
+				<td>Fine tune, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$02E0, $02E2, $02E4, $02E6, $02E8, $02EA, $02EC, $02EE</td>
+				<td>Two different purposes: either stores the pitch offset when using trill/glissando, or stores the loop point for a normal arpeggio. One byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$02E1, $02E3, $02E5, $02E7, $02E9, $02EB, $02ED, $02EF</td>
+				<td>Volume amplification multiplier, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$02F0, $02F2, $02F4, $02F6, $02F8, $02FA, $02FC, $02FE</td>
+				<td>Pitch base fractional multiplier, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$02F1, $02F3, $02F5, $02F7, $02F9, $02FB, $02FD, $02FF</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0300, $0302, $0304, $0306, $0308, $030A, $030C, $030E</td>
+				<td>Pitch envelope slide length in music tempo ticks, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0301, $0303, $0305, $0307, $0309, $030B, $030D, $030F</td>
+				<td>Number of music tempo ticks to delay the pitch envelope for, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0310, $0312, $0314, $0316, $0318, $031A, $031C, $031E</td>
+				<td>Number of music tempo ticks per arpeggio note, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0311, $0313, $0315, $0317, $0319, $031B, $031D, $031F</td>
+				<td>Music tempo ticks remaining before the next arpeggio note is played, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0320, $0322, $0324, $0326, $0328, $032A, $032C, $032E</td>
+				<td>Pitch envelope sign, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0321, $0323, $0325, $0327, $0329, $032B, $032D, $032F</td>
+				<td>Pitch envelope offset in semitones, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0330, $0332, $0334, $0336, $0338, $033A, $033C, $033E</td>
+				<td>Current vibrato pitch offset, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0331, $0333, $0335, $0337, $0339, $033B, $033D, $033F</td>
+				<td>Vibrato pitch offset per music tempo tick, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0340, $0342, $0344, $0346, $0348, $034A, $034C, $034E</td>
+				<td>Vibrato delay in music tempo ticks, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0341, $0343, $0345, $0347, $0349, $034B, $034D, $034F</td>
+				<td>Vibrato fade length in music tempo ticks, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0350, $0352, $0354, $0356, $0358, $035A, $035C, $035E</td>
+				<td>Vibrato fade rate in music tempo ticks, one byte per voice. There is no fractional portion involved.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0351, $0353, $0355, $0357, $0359, $035B, $035D, $035F</td>
+				<td>Target vibrato maximum pitch offset for fade in, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0360, $0362, $0364, $0366, $0368, $036A, $036C, $036E</td>
+				<td>Current tremolo volume offset, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0361, $0363, $0365, $0367, $0369, $036B, $036D, $036F</td>
+				<td>Tremolo volume offset per music tempo tick, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK<br>(Dates back to Vanilla, but was off a byte, thus using $0362+x by mistake and making tremolo non-functional. carol's MORE.bin made it functional, but relocated it to $01F1, $01F3, $01F5, $01F7, $01F9, $01FB, $01FD, $01FF, and AddmusicK reverted the memory relocation without the byte offset bug of Vanilla SMW.)</td>
+			</tr>
+			<tr>
+				<td>$0370, $0372, $0374, $0376, $0378, $037A, $037C, $037E</td>
+				<td>Tremolo delay in music tempo ticks, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0371, $0373, $0375, $0377, $0379, $037B, $037D, $037F</td>
+				<td>Final voice volume for music prior to adjustments just before writing to DSP, one byte per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0380-$0381</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0382</td>
+				<td>Voice bits indicating voices that are currently playing by either music or SFX.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0383</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0384</td>
+				<td>Backup of the offset for the music tempo.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0385-$0386</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0387</td>
+				<td>Number of music tempo ticks to offset. Done by the Hurry Up! command through CPUIO0.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$0388</td>
+				<td>Pause music switch.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$0389</td>
+				<td>Noise frequency for the music.</td>
+				<td>!noSFX = false</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$038A</td>
+				<td>Anti-interruption switch for CPUIO0 SFX.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$038B</td>
+				<td>Anti-interruption switch for CPUIO3 SFX.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$038C</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$038D</td>
+				<td>The highest EDL (echo delay) currently permitted.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$038E-$038F</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0390-$039F</td>
+				<td>Remote code pointer for all events except negative event IDs. One pointer per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$03A0, $03A2, $03A4, $03A6, $03A8, $03AA, $03AC, $03AE</td>
+				<td>Remote code type ID for positive event IDs, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$03A1, $03A3, $03A5, $03A7, $03A9, $03AB, $03AD, $03AF</td>
+				<td>Time remaining in music tempo ticks before executing remote code, one byte per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$03B0-$03BF</td>
+				<td>Pointer to the list of arpeggio notes currently playing, one pointer per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$03C0-$03CF</td>
+				<td>Pointer to the beginning of the SFX, one pointer per voice.</td>
+				<td>N/A</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$03D0, $03D2, $03D4, $03D6, $03D8, $03DA, $03DC, $03DE</td>
+				<td>Remote code type ID for negative event IDs (on note start), one byte per voice.</td>
+				<td>N/A</td>
+				<td>New</td>
+			</tr>
+			<tr>
+				<td>$03D1, $03D3, $03D5, $03D7, $03D9, $03DB, $03DD, $03DF</td>
+				<td>Saved SFX note duration, one byte per voice.</td>
+				<td>!noSFX = false</td>
+				<td>AddmusicK</td>
+			</tr>
+			<tr>
+				<td>$03E0-$03EF</td>
+				<td>Pointer to return to once exiting the subroutine ($E9 command) and all loops have been executed. One pointer per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+			<tr>
+				<td>$03F0-$03FF</td>
+				<td>Start of subroutine ($E9 command) pointer, used when looping. One pointer per voice.</td>
+				<td>N/A</td>
+				<td>Vanilla</td>
+			</tr>
+		</table>
+
+	<h2>AddmusicK 1.0-1.0.8</h2>
+		<table border="3">
+			<tr>
+				<th>Memory Locations</th>
+				<th>Description</th>
+				<th>Moved From</th>
+				<th>Moved To</th>
+			</tr>
+			<tr>
+				<td>$0220, $0222, $0224, $0226, $0228, $022A, $022C, $022E</td>
+				<td>Flag indicating that instrument data has been modified, and thus must be restored via the backup tables at $0130-$015F. One byte per voice.</td>
+				<td>N/A (New)</td>
+				<td>$0220, $0222, $0224, $0226, $0228, $022A, $022C, $022E bit 6 (%?y??????)</td>
+			</tr>
+			<tr>
+				<td>$0380</td>
+				<td>Flag set while running remote code.</td>
+				<td>N/A (New)</td>
+				<td>N/A (Turned into an opcode gate, and thus embedded into the code)</td>
+			</tr>
+		</table>
+	<h2>AddmusicK Beta</h2>
+		<table border="3">
+			<tr>
+				<th>Memory Locations</th>
+				<th>Description</th>
+				<th>Moved From</th>
+				<th>Moved To</th>
+			</tr>
+			<tr>
+				<td>$01D1, $01D3, $01D5, $01D7, $01D9, $01DB, $01DD, $01DF</td>
+				<td>Number of SFX tempo ticks to wait before playing the next SFX ID on this voice. One byte per voice.</td>
+				<td>N/A (New)</td>
+				<td>N/A (This memory location's purpose has been recycled into $01D0, $01D2, $01D4, $01D6, $01D8, $01DA, $01DC, $01DE)</td>
+			</tr>
+			<tr>
+				<td>$0221-$0230</td>
+				<td>Pointer to the list of arpeggio notes currently playing, one pointer per voice. Yes, they really are off a byte, and therefore overwrite the instrument data modification flag if used.</td>
+				<td>N/A (New)</td>
+				<td>$03B0-$03BF</td>
+			</tr>
+			<tr>
+				<td>$0390, $0392, $0394, $0396, $0398, $039A, $039C, $039E</td>
+				<td>The gain value to use instead of keying off the note in a rest. One byte per voice.</td>
+				<td>N/A (New)</td>
+				<td>N/A (Replaced by remote code)</td>
+			</tr>
+			<tr>
+				<td>$0391, $0393, $0395, $0397, $0399, $039B, $039D, $039F</td>
+				<td>Indicates whether the note currently playing is a rest. One byte per voice.</td>
+				<td>N/A (New)</td>
+				<td>$01A1, $01A3, $01A5, $01A7, $01A9, $01AB, $01AD, $01AF</td>
+			</tr>
+			<tr>
+				<td>$03A0, $03A2, $03A4, $03A6, $03A8, $03AA, $03AC, $03AE</td>
+				<td>The gain value to use when triggering remote gain. One byte per voice.</td>
+				<td>N/A (New)</td>
+				<td>N/A (Replaced by remote code)</td>
+			</tr>
+			<tr>
+				<td>$03A1, $03A3, $03A5, $03A7, $03A9, $03AB, $03AD, $03AF</td>
+				<td>Number of tempo ticks before the note has ended to apply remote gain to. One byte per voice.</td>
+				<td>N/A (New)</td>
+				<td>$01A0, $01A2, $01A4, $01A6, $01A8, $01AA, $01AC, $01AE (Adapted for remote code event type 2)</td>
+			</tr>
+
+		</table>
+	<h2>AddmusicM (by homing)</h2>
+	Contains the majority of carol's MORE.bin except for global transposition ($E4 command) due to sending staccato to its own hex command slot and not checking for $20 as a song ID, tremolo ($E5 command) due to sending set sample to its own hex command slot and not checking for $20 as a song ID, and tremolo off ($E6 command) by overwriting it with the repeat section hex command.
+		<table border="3">
+			<tr>
+				<th>Memory Locations</th>
+				<th>Description</th>
+				<th>Moved From</th>
+				<th>Moved To</th>
+			</tr>
+			<tr>
+			<tr>
+				<td>$04</td>
+				<td>CPUIO0 SFX ID currently playing.</td>
+				<td>N/A (existed in Vanilla, but lost its output functionality here due to being overwritten by $0166)</td>
+				<td>N/A (still exists, but it doesn't zero out anymore once it is done playing)</td>
+			</tr>
+			<tr>
+				<td>$07</td>
+				<td>CPUIO3 SFX ID currently playing.</td>
+				<td>N/A (existed in Vanilla, but lost its output functionality here due to being overwritten by $0167)</td>
+				<td>N/A (still exists, but it is now overwritten by $0169 and doesn't zero out anymore once it is done playing)</td>
+			</tr>
+			<tr>
+				<td>$20-$21</td>
+				<td>Memory location to write to. Used exclusively by the ARAM Write ($F7) command.</td>
+				<td>N/A (New)</td>
+				<td>N/A (moved to scratch RAM at $10-$17, thus it no longer has a permanent allocation... plus, it's currently disabled for safety reasons)</td>
+			</tr>
+			<tr>
+				<td>$2D</td>
+				<td>FLG DSP register mirror for the music (including the noise clock frequency). Unfortunately, this contains the same vanilla SMW bug by accidentally enabling echo writes in the process.</td>
+				<td>N/A (split from $2E)</td>
+				<td>N/A (recombined into $2E, unless we only count the noise frequency portion: then it gets moved to $0389)</td>
+			</tr>
+			<tr>
+				<td>$0160</td>
+				<td>Contains various flags for various purposes, stored as %??????xy<br>See below for a list of bits whose usages don't match the latest version.</td>
+				<td>N/A (New)</td>
+				<td>N/A (At least one of the bits' purpose has been modified somewhat since then, but it has otherwise not moved.)</td>
+			</tr>
+			<tr>
+				<td>$0160 bit 0 (%???????y)</td>
+				<td>Used to indicate whether to reserve voice #5 for Yoshi Drums.</td>
+				<td>N/A (New)</td>
+				<td>N/A (Purpose was changed so that this is on if any voice is reserved for Yoshi Drums)</td>
+			</tr>
+			<tr>
+				<td>$0163</td>
+				<td>Fractional counter for the special pulse wave tempo ticker.</td>
+				<td>N/A (New)</td>
+				<td>N/A (Was not reimplemented into AddmusicK)</td>
+			</tr>
+			<tr>
+				<td>$0164</td>
+				<td>Counter for the special pulse wave tempo ticker: a de-facto oscillation position variable.</td>
+				<td>N/A (New)</td>
+				<td>N/A (Was not reimplemented into AddmusicK)</td>
+			</tr>
+			<tr>
+				<td>$0165</td>
+				<td>Amount to shift the special wave width per 256/x timer 0 ticks. Yes, this is a tempo value independent of the SFX and music tempos.</td>
+				<td>N/A (New)</td>
+				<td>N/A (Was not reimplemented into AddmusicK)</td>
+			</tr>
+			<tr>
+				<td>$0167</td>
+				<td>CPUIO3 output from $F7 on the SPC side to $2143 on the SNES side. Also used as part of a 16-bit music tempo tick counter if bit 1 of $0160 is set.</td>
+				<td>N/A (New)</td>
+				<td>$0169<br>(NOTE: This only applies to the actual output: the music tempo tick counter does not move from this location.)</td>
+			</tr>
+			<tr>
+				<td>$0168</td>
+				<td>Only zeroes are ever written here. The memory location references this overwrites causes the tempo offset caused by the Hurry Up! SFX to last beyond loading new data and from fixed music IDs that would normally zero out the tempo offset. As for why this bypass is here? Because of the ARAM write ($F7) command, which is used instead to stop the tempo offset by writing a zero directly to $0387.</td>
+				<td>N/A (New)</td>
+				<td>N/A (The bypass was removed in AddmusicK, and instead a special hex command is used to reset tempo offsets caused by the Hurry Up! SFX)</td>
+			</tr>
+			<tr>
+				<td>$0400-$04FF</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Reserved for code. (the start of the SPC700 program is still at $0500)</div></td>
+			</tr>
+			<tr>
+				<td>$2450-$247C<br><i>(stored within a sample directory table)</i></td>
+				<td>The special pulse wave BRR sample.</td>
+				<td>N/A (New)</td>
+				<td>N/A (Was not reimplemented into AddmusicK)</td>
+			</tr>
+		</table>
+
+	<h2>Addmusic405 (by HuFlungDu)</h2>
+	Contains the majority of carol's MORE.bin except for the repeat section ($E6) command (which was previously limited to song IDs $20 and up) and the ADSR ($ED) command, which is instead from Romi's Addmusic (Addmusic404), which doesn't utilize the backup instrument table, nor did it support setting the GAIN DSP register directly (instead it forces ADSR mode when used).
+		<table border="3">
+			<tr>
+				<th>Memory Locations</th>
+				<th>Description</th>
+				<th>Moved From</th>
+				<th>Moved To</th>
+			</tr>
+			<tr>
+				<td>$0400-$04FF</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Reserved for code. (the start of the SPC700 program is still at $0500)</div></td>
+			</tr>
+			<tr>
+				<td>$6727-$672E<br><i>(stored within code)</i></td>
+				<td>Transposition, one byte per voice.</td>
+				<td>N/A (New)</td>
+				<td>$0120, $0122, $0124, $0126, $0128, $012A, $012C, $012E</td>
+			</tr>
+		</table>
+
+	<h2>carol's MORE.bin</h2>
+		<table border="3">
+			<tr>
+				<th>Memory Locations</th>
+				<th>Description</th>
+				<th>Moved From (Vanilla)</th>
+				<th>Moved To</th>
+			</tr>
+			<tr>
+				<td>$E0</td>
+				<td>Used as scratch RAM for two purposes: it either stores the SRCN ID last defined by what is now the $F3 command, or it stores the first of two bytes of the $ED command (GAIN/ADSR switch specifically).</td>
+				<td>N/A (New)</td>
+				<td>N/A (the storage mechanism was removed)</td>
+			</tr>
+			<tr>
+				<td>$E1</td>
+				<td>Used as scratch RAM for two purposes: it either stores the pitch base multiplier last defined by what is now the $F3 command, or it stores the second of two bytes of the $ED command (either VxADSR2 or VxGAIN, depending on what the first byte was).</td>
+				<td>N/A (New)</td>
+				<td>N/A (the storage mechanism was removed)</td>
+			</tr>
+			<tr>
+				<td>$E2-$E3</td>
+				<td>Used as a pointer for a replaced instrument routine.</td>
+				<td>N/A (was originally exclusively used by scratch RAM at $10-$17)</td>
+				<td>N/A (moved to scratch RAM at $10-$17, thus it no longer has a permanent allocation)</td>
+			</tr>
+			<tr>
+				<td>$0162-$01A6</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Reserved for code.</div></td>
+			</tr>
+			<tr>
+				<td>$01F1, $01F3, $01F5, $01F7, $01F9, $01FB, $01FD, $01FF</td>
+				<td>Tremolo volume offset per music tempo tick, one byte per voice.</td>
+				<td>$0361, $0363, $0365, $0367, $0369, $036B, $036D, $036F (was initially nonfunctional due to using $0362+x for its references by mistake)</td>
+				<td>$0361, $0363, $0365, $0367, $0369, $036B, $036D, $036F</td>
+			</tr>
+			<tr>
+				<td>$0400-$04FF</td>
+				<td colspan="3"><div style="text-align:center; font-weight: bold;">Reserved for code. (the start of the SPC700 program is still at $0500)</div></td>
+			</tr>
+		</table>
+
+	<h2>Vanilla</h2>
+		<table border="3">
+			<tr>
+				<th>Memory Locations</th>
+				<th>Description</th>
+				<th>Moved To</th>
+			</tr>
+			<tr>
+				<td>$04</td>
+				<td>CPUIO0 SFX ID currently playing. Outputs from $F4 on the SPC side to $2140 on the SNES side.</td>
+				<td>N/A (still exists, but no longer acts as output in AMK, and it doesn't zero out anymore once it is done playing)</td>
+			</tr>
+			<tr>
+				<td>$05</td>
+				<td>CPUIO1 SFX ID currently playing. Outputs from $F5 on the SPC side to $2141 on the SNES side.</td>
+				<td>N/A (still exists, but no longer acts as output in AMK)</td>
+			</tr>
+			<tr>
+				<td>$06</td>
+				<td>CPUIO2 music ID currently playing. Outputs from $F6 on the SPC side to $2142 on the SNES side.</td>
+				<td>N/A (still exists, but no longer acts as output in AMK)</td>
+			</tr>
+			<tr>
+				<td>$07</td>
+				<td>CPUIO3 SFX ID currently playing. Outputs from $F7 on the SPC side to $2143 on the SNES side.</td>
+				<td>N/A (still exists, but no longer acts as output in AMK, and it doesn't zero out anymore once it is done playing)</td>
+			</tr>
+			<tr>
+				<td>$0D</td>
+				<td>Number of SFX tempo ticks to wait before playing the next SFX ID from CPUIO3.</td>
+				<td>N/A (Merged with note duration for SFX, see $0384 under Vanilla)</td>
+			</tr>
+			<tr>
+				<td>$18-$19</td>
+				<td>Pointer for CPUIO0 SFX.</td>
+				<td>Varies by voice ID (going by vanilla default (#4), it's $28-$29, and going by AMK default (#6), it's $2C-$2D)</td>
+			</tr>
+			<tr>
+				<td>$1A-$1B</td>
+				<td>Pointer for CPUIO3 SFX.</td>
+				<td>Varies by voice ID (going by vanilla default (#6), it's $2C-$2D, and going by AMK default (#7), it's $2E-$2F)</td>
+			</tr>
+			<tr>
+				<td>$1E-$2D</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$2E</td>
+				<td>FLG DSP register mirror (including the noise clock frequency). There is a vanilla SMW bug where this inadvertently enables echo writes when noise SFX is played due to not accounting for this when setting the noise frequency.</td>
+				<td>$5F</td>
+			</tr>
+			<tr>
+				<td>$2F</td>
+				<td>NON (noise on) DSP register mirror. Interestingly, in vanilla SMW, for SFX, you can only enable noise with the $DA command for CPUIO3 SFX, and no other known voices to my knowledge can do this because noise is not implemented for music, not even its instruments.</td>
+				<td>De-facto split between $4B for music and $4E for SFX. Within the context of the actual utilization of this memory location, though, it's $4E.</td>
+			</tr>
+			<tr>
+				<td>$4A-$4F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$5D-$5F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$6B-$6F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$71, $73, $75, $77, $79, $7B, $7D, $7F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$D0-$EF</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0101, $0103, $0105, $0107, $0109, $010B, $010D, $010F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0111, $0113, $0115, $0117, $0119, $011B, $011D, $011F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0120-$01CF</td>
+				<td colspan="2"><div style="text-align:center"><b>Reserved for stack.</b><br>(this is actually implicit, though, as it just indicates the maximum amount of stack space allocated due to unused memory locations)</div></td>
+			</tr>
+			<tr>
+				<td>$01D0-$01FF</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0220-$023F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0261, $0263, $0265, $0267, $0269, $026B, $026D, $026F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0270-$027F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$02E0-$02FF</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0310-$031F</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0361, $0363, $0365, $0367, $0369, $036B, $036D, $036F</td>
+				<td>Supposed to be tremolo volume offset per music tempo tick, one byte per voice. However, vanilla SMW uses $0362+x in the opcodes rather than $0361+x. Therefore, this causes the tremolo hex commands to be de-facto non-functional.</td>
+				<td>$0361, $0363, $0365, $0367, $0369, $036B, $036D, $036F</td>
+			</tr>
+			<tr>
+				<td>$0380</td>
+				<td>Note duration for CPUIO0 SFX.</td>
+				<td>Varies by voice ID (going by vanilla default (#4), it's $01D8, and going by AMK default (#6), it's $01DC)</td>
+			</tr>
+			<tr>
+				<td>$0381</td>
+				<td>Saved note duration for CPUIO0 SFX.</td>
+				<td>Varies by voice ID (going by vanilla default (#4), it's $01D9, and going by AMK default (#6), it's $01DD)</td>
+			</tr>
+			<tr>
+				<td>$0382</td>
+				<td>Number of SFX tempo ticks to wait before playing the next SFX ID from CPUIO0.</td>
+				<td>N/A (Merged with note duration for SFX, see $0380 under Vanilla)</td>
+			</tr>
+			<tr>
+				<td>$0383</td>
+				<td>Number of SFX tempo ticks to wait before playing the next SFX ID from CPUIO1.</td>
+				<td>N/A (This memory location's purpose has been recycled into $1C after AddmusicK 1.0.8)</td>
+			</tr>
+			<tr>
+				<td>$0384</td>
+				<td>Note duration for CPUIO3 SFX.</td>
+				<td>Varies by voice ID (going by vanilla default (#6), it's $01DC, and going by AMK default (#7), it's $01DE)</td>
+			</tr>
+			<tr>
+				<td>$0385</td>
+				<td>Saved note duration for CPUIO3 SFX.</td>
+				<td>Varies by voice ID (going by vanilla default (#6), it's $03DD, and going by AMK default (#7), it's $03DF)</td>
+			</tr>
+			<tr>
+				<td>$0386</td>
+				<td>Yoshi Drum switch, set via CPUIO1 commands.</td>
+				<td>N/A (Turned into an opcode switch after AddmusicK 1.0.8, and thus embedded into the code)</td>
+			</tr>
+			<tr>
+				<td>$0389</td>
+				<td>EON (echo on) DSP register mirror. Only ever set by the music.</td>
+				<td>De-facto split between $4C for music and $4F for SFX. Within the context of the actual utilization of this memory location, though, it's $4C.</td>
+			</tr>
+			<tr>
+				<td>$038A-$03DF</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$0400-$04FF</td>
+				<td colspan="2"><div style="text-align:center; font-weight: bold;">Unused.</div></td>
+			</tr>
+			<tr>
+				<td>$10A8<br><i>(embedded in code)</i></td>
+				<td>Number of music tempo ticks before the end of the note prior to forcibly keying it off.<br><i>(NOTE: This memory location was first directly modified in carol's MORE.bin, hence its inclusion)</i></td>
+				<td>$6B</td>
+			</tr>
+			
+		</table>
+
+	<br><br><p>Return to the <a href="../readme.html">main page</a></p><br>
+</body>
+</html>

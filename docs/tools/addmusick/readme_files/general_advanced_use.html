@@ -1,0 +1,104 @@
+<html>
+<head>
+	<title>Advanced Use - AddmusicK Readme</title>
+	<link href="readme.css" type="text/css" rel="stylesheet">
+
+</head>
+<body text="#FFFFFF">
+	<h1>Advanced Use</h1><br><br>
+	
+	<h2>Global vs. Local Music</h2>
+	
+	Open up "Addmusic_list.txt".  In it you should see two sections: One named
+	"Globals" and another named "Locals".  Any song listed under the Globals
+	section can be used at any time in the game with no delay.  Song loading
+	is a normally an incredibly slow process, taking several seconds to
+	complete at times.  Any song listed under Globals, however, will always
+	be available; they never need to be transferred.  Note, however, that
+	this comes at a slight cost.  Space in ARAM (audio RAM) is very limited.
+	It is shared between the music program, the music itself, the sound
+	effects, the sound samples, and the echo data.  The more global music
+	you put in, the less space you have for all those other things.  Only
+	put a song here if you are sure that this is something that could
+	spontaneously play at any given time in the game, such as the P-Switch
+	music or the Starman music.  Be warned: Just because a global song is loaded does not mean its correct samples are also loaded.  You are responsible for ensuring that the correct samples are loaded.<br>
+	<br>
+	Adding more music here may result in more "Echo buffer exceeded total space in ARAM" messages.
+	
+	
+	<br><br><h2>Command Line Arguments</h2>
+	There are several command line arguments that you may pass to this program.  To do this, run the program using cmd.exe and use any of these options along with your ROM name.  Note that using these when the program asks for your ROM name <i>will not work</i>!
+	<ul>
+	<li><p>-c: Turn off conversion.  The program changes certain things to make songs made with both Addmusic 4.05 and AddmusicM compatible with this program.  Changes mostly include ignoring the header at the start of AM 4.05 songs, converting $ED $8X commands, etc.  If this is not functioning correctly for some reason, use this argument to turn this behavior off.</p></li>
+	<li><p>-e: Turn off echo buffer bounds checking.  By default the program will examine your songs, the samples they include, and the echo buffer sizes it uses.  If it detects that their total is too large to fit into ARAM, it will give an error and stop.  You can use this to turn that behavior off if it, for some reason, is not working.  Turning this off, however, will disable SPC generation.</p></li>
+	<li><p>-b: Turn off bank optimizations.  By default, if your ROM is 4MB, the program will attempt to save data in banks $40+, so that ASM code can stay in the lower banks.  This is normally what you want, but you can use this option to turn that off.</p></li>
+	<li><p>-v: Turn on verbosity.  This will display extra information, like what the program is currently doing and how much space each channel of a song takes up.</p></li>
+	<li><p>-a: Turn on aggressive free space finding.  If this is on, all data not protected by a RATS tag beyond SMW's normal data boundary is fair game.  Using this is not necessarily recommended due to the fact that it is perfectly reasonable to expect that there is data in a ROM accidentally not RATS protected, but if you really need the extra space, and have nothing to lose, go for it.</p></li>
+	<li><p>-d: Turns sample duplicate checking for samples.  Extremely useless, as turning this on means that each song has its own unique set of samples and an enormous amount of space will be wasted.  This used to be only for sample bank samples, but now it's pretty much just here for fun. Turning this on will basically eat up all your freespace (though you can reverse the damage by just running the program again without this option).</p></li>
+	<li><p>-h: Turn off hex command validation.  Use this if you're defining your own hex commands in the SPC program or, if for whatever reason, the normal validation system that the program uses isn't working.  Normally the program attempts to validate hex command input and will give an error if it comes across something invalid.</p></li>
+	<li><p>-p: Do not modify the ROM; only generate patches, .bin files, .spc files, etc.  Also turns off the cleaning up of temporary files.  You may find the generated patch in "asm/SNES/temppatch.asm"; patching that to the ROM with asar will accomplish the same thing as not using this option.</p></li>
+	<li><p>-u: Turn off sample optimizations.  Normally, the program will not insert any samples into a song that are not used (barring "important" samples).  If you specify this option, that behavior will be turned off.</p></li>
+	<li><p>-s: Turn off SA-1 addressing.   By default, if $00FFD5 in the ROM is $23, then the program will use SA-1 addressing for the generated patch.  If this option is used, that behavior will be disabled.  Note that this will only affect addressing used for generated features; for the full effect, you must make some minor changes in asm/SNES/patch.asm.
+	<li><p>-noblock: Normally if AMK encounters an error while running, it will display the error(s) and then wait for the user to press the enter key to continue.  This flag will turn this behavior off, so on failure the program will simply quit.
+	<li><p>-norom: Only do what's necessary to generate SPC files; this makes it possible to generate SPCs without a Super Mario World ROM.  After using this option, you must specify the files you wish to compile (with quotes if they contain spaces).  For example, <code>-norom test.txt "test2.txt"</code>.  Please note that global songs and sound effects must still be parsed, so Addmusic_list.txt, Addmusic_sound effects.txt, and Addmusic_sample groups.txt must all be valid.</p></li>
+	<li><p>-sfxdump/-dumpsfx: Dumps all sound effects to the SPC folder inside their respective SFX directories. Note the samples used will be from the song you specify or, when modifying a ROM, the lowest numbered local song. Please make sure !noSFX is set to !false in asm/UserDefines.asm: otherwise, this option will not work.</p></li>
+	<li><p>-visualize: Creates a series of PNG files for the memory usage of local song(s). Each PNG contains a set of color strips, 16 bytes per column, that contains the following memory usage data:
+		<ul>
+			<li><b>Red:</b> Variable storage</li>
+			<li><b>Yellow:</b> Sound engine code + embedded variables + data</li>
+			<li><b>Dark Green:</b> Song + custom instrument data</li>
+			<li><b>Light Green:</b> Sample directory table (4 bytes per sample: two for the starting pointer, and two for the loop point)</li>
+			<li><b>Cyan:</b> Important sample. Changes shade on a per-sample basis.</li>
+			<li><b>Blue:</b> Non-important sample. Changes shade on a per-sample basis.</li>
+			<li><b>Purple:</b> Echo buffer</li>
+			<li><b>Black:</b> Unused data</li>
+		</ul>
+	</p></li>
+	<li><p>Finally, inputting your ROM name as an argument at any point will cause the program to load that ROM without prompting you for its name.</p></li></ul>
+	<br>
+	<br>Be aware that turning off hex command validation implicitly turns off
+	echo buffer bounds checking (-e) as well as some Addmusic 4/AddmusicM
+	conversion (-c).</p></li>
+	<br><br>Finally, if the file "Addmusic_options.txt" exists, then the contents of that file will be used instead of any arguments passed to the program.  Plain text, one line per argument.
+	
+	</span>
+	
+	<br><br><h2>UserDefines.asm</h2>
+	<p>This file, located in the asm directory, is a quick and easy way to customize the sound driver functionality without digging too deep into the code.
+           Some of the defines affect the SNES side only, while other affect the SPC700 side, while others affect both.
+           If you find yourself using too much memory on the SPC side, then disabling some code fragments through these defines might help save some ARAM.</p>
+
+	<br><br><h2>Sample Groups</h2>
+	<p>A "sample group" is just what it sounds like: a group of samples.  Whenever a song is loaded, so is its sample group and any auxilary samples it uses (which, in a song, is defined by the #samples command).
+	There are two sample groups included by default, #default, and #optimized.  The first contains all the samples the normal SMW ROM contains, so any song that uses #default will also use all those samples.
+	The second is #optimized, which only contains the samples necessary for the game's sound effects and global music (which saves space in ARAM).
+	You may add your own sample groups as well, or modify the default ones.  You may use these in your own songs if you wish.</p>
+	<p>If a sample name has an ! after it, then it marks the sample it succeeds as being used in a sound effect or global song.  If you are using different sound effects/global songs, then you may change which samples are marked as "important", which may free some space in ARAM.</p>
+	<p>If a song does not define which samples it uses, then the program will
+assume that the song uses the group "default."  If this group does not exist,
+you will get an error.</p>
+	<br><br><h2>Other</h2>
+	
+	<ul>
+	<li><p>Storing a value to $1DFB will automatically upload the specified song.  If the song does not exist, or is $FF, then the music will fade out instead.</p></li>
+	<li><p>By default, echo for sound effects is disabled, even if the song itself has echo (this is to prevent sound effects from echoing during, for example, songs that play in the sky but use echo).  By writing #$06 to $1DFA, you can instead force the sound effects to use echo as long as the song itself has echo enabled in some manner (and sending #$05 to $1DFA will once again disable it).</p>
+	<li><p>You may modify the engine in any way you wish (see main.asm and related files).  Just note that you may break compatibility with existing songs if you change certain things.</p></li>
+	<li><p>You may upload arbitrary data at any point to ARAM; look at <code>UploadSPCDataDynamic</code> in patch2.asm for more information.</p></li>
+	<li><p>When you switch songs, all the samples included with that song will also be switched unless you set !FREERAM+1 to a non-zero value or you are switching to or from a global song.  If either of those conditions are met, then only the song data will be transferred to the SPC.  Most users shouldn't have to worry about this, however; it is knowledge useful mostly to ASMers (like most everything else in this section).</p></li>
+	<li><p>Consecutive transfers, the way SMW does them, are no longer possible.  Normally SMW keeps sending data to the SPC until it comes across a block of data whose size is 0.  Now, to send consecutive data, just make the upload address be #!ExpARAMRet and then keep uploading as you would normally.</p></li>
+	<li><p>If you disable sample loading by setting FREESPACE+$01 to a non-zero value, you run the risk of overwriting the sample table as well as the samples themselves in ARAM, as these two things are stored immediately after the song (aligned to a boundary of 0x100 bytes) in order to save space.  Make sure that, if you use this feature, any songs that you upload are smaller than or the same size as the first song (typically by using #pad).</p></li>
+	<li><p>Echo is disabled upon upload.  If you ever plan to do any sort of manual poking at the SPC, you will need to re-enable it yourself (note that is is reenabled in songs that use echo, so most users shouldn't have to worry about this at all).  A simple DSP write should do the trick, though be absolutely sure you know what you're doing and where everything is.  A rogue echo buffer can cause irreparable damage.  Remember that moving the echo buffer has a delay associated with it of up to EDL * 16 ms, though you can call ModifyEchoDelay and that will handle moving the buffer for you.</p></li>
+	<li><p>For any other information you need, all the SPC ASM source can be found in the asm directory, and the SNES ASM source can be found in the asm/SNES directory.</p></li>
+	<li><p>This program requires Asar to run; it must be placed within the program's directory.  However, either asar.dll or asar.exe may be used (asar.dll will take priority).</p></li>
+	<li><p>In Addmusic_sound effects.txt, a "?" before the filename indicates that that AddmusicK should not automatically put a $00 (which ends the sound effect) at the end.  Use this if you're using $FF or $FE repeat commands in the sound effect.</p></li>
+	<li><p>In Addmusic_sound effects.txt, a "*" before the filename indicates that that sound effect should only be a pointer to the indicated sound effect.  Use this if you want two values to play the same sound effect, but don't want to waste ARAM.</p></li>
+	<li><p>In Addmusic_sample groups.txt, a "!" after the filename indicates that this sample is "important"; i.e. it should always be in ARAM no matter what.  This is used so that the samples used by sound effects and global songs are always kept in ARAM.  You may remove the "!" from some samples if you need some extra space in ARAM and you don't mind losing some sound effects' samples.</p></li></ul>
+
+<br><br><p>As a final note, consider this to be the "golden rule" of porting with this tool: If you ever find any bugs, <i>please</i> do not exploit them, even if they have useful side effects--just report them.  While I will always do my best to keep compatibility between songs that use different versions of Addmusic, I will not do the same for songs that abuse glitches.  In a similar vein, if there are any features that you believe this tool should have, please do not try to find some glitchy way to implement it (the old way of creating custom instruments by abusing the $ED $81 command is a perfect example).  Rather, contact me (or, in the future, if I am not available, someone capable) and request it to be implemented; it makes keeping compatibility <i>so</i> much easier when it's not necessary to take into account every way that some feature was abused.</p>
+<br>
+<p>Thank you.</p>
+	
+	<br><br><p>Return to the <a href="../readme.html">main page</a></p><br>
+	
+</body>
+</html>

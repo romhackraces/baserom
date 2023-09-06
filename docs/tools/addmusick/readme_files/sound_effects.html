@@ -1,0 +1,48 @@
+<html>
+<head>
+	<title>Sound Effects - AddmusicK Readme</title>
+	<link href="readme.css" type="text/css" rel="stylesheet">
+
+</head>
+<body text="#FFFFFF">
+	<h1>Sound Effects</h1><br><br>
+	
+	<h2>How to insert</h2>
+	
+	Like Romi's Addmusic (and its successors), AddmusicK can insert custom sound effects.  The method for doing so
+	is very similar to adding custom songs; add your custom sound effect file to either the "1DF9" or "1DFC" folder,
+	and add its filename to Addmusic_sound effects.txt (if you added the file to "1DF9", then you'd add the filename
+	under the "SFX1DF9" section.  Likewise for the "1DFC" folder.  (The difference between the two is which SPC channel
+	it plays on; by default, 1DF9 plays on channel #6, and 1DFC plays on channel #7).
+	You can redefine the channel that each sound effect plays on by using the !1DF9SFXChannel and !1DFCSFXChannel
+	defines stored in the asm/UserDefines.asm file. Vanilla SMW used channel #4 for 1DF9 and channel #6 for 1DFC, if you want
+	to use the same channels that vanilla SMW used. Please make sure that !noSFX is set to !false: otherwise, the sound
+	effects will not be inserted into the final build because the code to play them will not exist.
+
+	
+	
+	<br><br><h2>How to create</h2>
+	Sound effects use almost the same syntax as normal music, and for information on how that works, read <a href="syntax_reference.html">here</a>.  The following are the available commands:
+	<ul>
+	<li><p>c, d, e, f, g, a, b, r, ^ (notes, rests, and ties)</p></li>
+	<li><p>oX, &lt;, &gt; (Switch to octave X, lower the octave, raise the octave)</p></li>
+	<li><p>lXX (Specify the default note length as XX)</p></li>
+	<li><p>@XX (Switch to instrument XX.  SFX instruments are different than music instruments)</p></li>
+	<li><p>@XX,YY (Switch to instrument XX, but use noise instead of the instrument's sample.  The noise's pitch will be the hex value YY.)</p></li>
+	<li><p>vXXX (Set the volume to XXX.  Maximum is 127, not 255!)</p></li>
+	<li><p>vXXX, YYY (Set the left volume to XXX and the right volume to YYY.)</p></li>
+	<li><p>& (Pitch slide)</p></li>
+	<li><p>$XX (Insert the hex value XX directly.  Unlike music, SFX hex commands are not validated.
+		<ul><li>$E0 $XX sets SFX priority, with $XX being the priority. This is only valid at the very beginning of the SFX prior to all other data. If this value is less than the priority of the SFX currently playing, then this SFX will not play on top of the other SFX. If not present, then the default value is zero.</li>
+		<li>$FF will repeat the last note.</li>
+		<li>$FE will repeat the sound effect.</li>
+		<li>$DD $WW $XX $YY $ZZ is a pitch slide command ($WW is the starting note, $XX is the delay, $YY is the duration, and $ZZ is the final note).
+		<li>$EB $XX $YY $ZZ is another pitch slide command, which works exactly the same as $DD but without the first argument.</li></ul>
+	</p> </li>
+	<li><p>#asm <name> and #jsr <name>.  #asm <name> will insert some assembled SPC-700 code into this sound effect and give it the name you specify.  The ASM code is delimited by curly braces and may use labels and defines in main.asm, commands.asm, etc.  #jsr will execute the code with the given name.  For a specific example of how to use this, see "11 Pause.txt" and "12 Unpause.txt", as they use this command to pause and unpause the music.  You can use this to easily run SPC code on command from the SNES.</p></li> 
+	</ul>
+
+	<br><br><p>Return to the <a href="../readme.html">main page</a></p><br>
+	
+</body>
+</html>

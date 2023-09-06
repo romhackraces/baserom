@@ -1,0 +1,180 @@
+<html>
+<head>
+	<title>Basic Use - AddmusicK Readme</title>
+	<link href="readme.css" type="text/css" rel="stylesheet">
+
+</head>
+<body text="#FFFFFF">
+	<h1>Basic Use</h1><br><br>
+	
+	<h2>Table of Contents</h2>
+	<ul>
+	<li><a href="#HowDoIInsertedMusic">How do I insert music?</a></li>
+	<li><a href="#EvilDotNetFramework">What if I can't use AMKGUI? Or I don't want to? Or my religion disallows it?</a></li>
+	<li><a href="#StillUsingOutdatedTXTFiles">What if the music was made for Addmusic405?</a></li>
+	<li><a href="#OhAddmusicMYouWerePrettyRevolutionaryButYouSureMadeThingsDifficultDidntYou">What about AddmusicM songs?</a></li>
+	<li><a href="#Hey64KilobytesOfARAMIsQuiteALotThankYouVeryMuch">Echo buffer exceeded total space in ARAM?</a></li>
+	<li><a href="#GottaGoFast">When the timer drops below 100 seconds and I die, the music doesn't slow back down!</a></li>
+	<li><a href="#WhyAreThereTwoIdenticalOverworldMusicTablesAnyway">The overworld songs are mixed up! The "Welcome to Dinosaur Land" music isn't playing!</a></li>
+	<li><a href="#ItAlwaysBuggedMeWhenSkyLevelsSoundedLikeTheyTakePlaceInACaveBecauseOfTheSongTheyUsed">My sound effects aren't echoing correctly!</a></li>
+	<li><a href="#StickToSlowerTemposGuys">This song seems to be slowing down randomly...</a></li>
+	<li><a href="#AhBackwardsCompatibilityAlwaysAFavoriteOfProgrammersEverywhere">Converting older hacks</a></li></ol>
+	
+	
+	<br><br><hr><br><br>
+	
+	
+	<h2><a id="HowDoIInsertedMusic">How do I insert music?</a></h2>
+	
+	It's pretty easy.  Just follow these instructions:
+	<ol>
+	<li><p>Obtain the custom music you with to use.  A large collection of songs to use may be obtained <a href="http://www.smwcentral.net/?p=section&s=smwmusic">here</a>.  Please note that MIDI, MP3, WAV, and other files will not work!  Only the file types obtained at that link are guaranteed to work.</p></li>
+	<li><p>Download the song and save the whole ZIP file in the folder labelled "music".</li></p>
+	<li><p>Right click the ZIP folder and select "Extract All" if you're using Windows. If you are not using Windows or this option is not available for whatever reason, create a new folder in your "music" folder (named whatever you want) and copy the contents of the ZIP file into this new folder.  You can delete the ZIP file at this point if you wish.</p></li>
+	<li><p>Run "AMKGUI" (if you cannot, see below for manual instructions).  To add a new song, simply drag and drop the text file that's in the folder you just created into AMKGUI.  The song will be inserted after your currently selected song.  Alternatively, you can click the "Add new song" button, navigate to the folder you created earlier, and select the text file that contains the music (e.g. "SMB1 Theme.txt").  You can change or remove songs as well by clicking on their appropriate buttons.</p></li>
+	<li><p>When you have made the changes you want, hit the "Run" button, then select your ROM.  After a few moments, a window showing the results given by AddmusicK will appear.  If it says that the insertion was successful, then you can just close the program and continue.  Otherwise, see below for solutions to common problems.</p></li>
+	<li><p>You can now use custom music.  A file named &ltROMNAME&gt.msc should have appeared when you ran the program.  Lunar Magic can use this to determine the names of your songs, so be sure to keep it in the same directory as your ROM.  Of note: If Lunar Magic is not displaying the song names for some reason, don't worry: your songs are still there. Just use the number beside the song name in AMKGUI in Lunar Magic.<br><br>
+	</ol>
+	
+	<h2><a id="EvilDotNetFramework">What if I can't use AMKGUI? Or I don't want to? Or my religion disallows it?</a></h2>
+	
+	<ol><li><p>Once you have your song in its own folder in the "music" folder, open up "Addmusic_list.txt".</p></li>
+	<li><p>Add a new line at the bottom of the file, type in an unused number, and then the song's filename (including the folder you put it in).  For example, "My Song/My Song.txt" (without the quotes). Make sure not to include the "music" folder in the path ("music/My Song/My Song.txt" without the quotes will not work correctly). This will be the song number that you will use in Lunar Magic.</p></li>
+	<li><p>Run the program.  You will be prompted for your ROM name.  Make sure that your ROM is in the same directory as the program and that its name does not contain any spaces, then type in the name and hit ENTER.</p></li>
+	<li><p>Some text will appear on the screen describing details of each song you've inserted.  Examine it if you like, then exit the program.</p>
+	</ol>
+	<br>
+	And that's it!  All other instructions are the same as above.
+	
+	<br><br><h2><a id="StillUsingOutdatedTXTFiles">What if the music was made for Addmusic405?</a></h2>
+	<ol>
+	<li><p>Open up your song's text file and type "#am4" (without quotes) at the top of the file.  Make sure it's on its own line. Now save the file.</li></p>
+	<li><p><i>If your song is sampled</i>, there is one extra step.  Just below the "#am4" you just typed, copy and paste this in there:
+	<br>
+	<br><code>
+	#samples<br>
+	{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"XXXXXXXX.bnk"<br>
+	}</code><br>
+	<br>
+	where XXXXXXXX.bnk is the name of the bank file that was included in your song.  So, for example,
+	<br>
+	<br><code>
+	#samples<br>
+	{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"samples.bnk"<br>
+	}</code><br>
+	<br>
+	
+	Save your file again.
+	
+	</li></p>
+	</ol>
+
+	<br><br><h2><a id="OhAddmusicMYouWerePrettyRevolutionaryButYouSureMadeThingsDifficultDidntYou">What about AddmusicM songs?</a></h2>
+	AddmusicM songs require some extra steps:
+	<ol>
+	<li><p>Open up your song's text file and type "#amm" (without quotes) at the top of the file.  Make sure it's on its own line.  Now save the file.</p></li>
+	<li><p>Look for a line or lines that look like sXX_10_14_13_12_16_15_FF or something similar.</p></li>
+	<li><p>At the top of the file, add the following text:
+		<br><code>
+	#samples<br>
+	{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#default<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#AMM<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample10.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample14.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample13.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample12.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample16.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample15.brr"<br>
+	}</code><br>
+	<br>	
+	Where "sample10.brr" is the sample in blist.txt at slot 10, "sample14.brr" is the sample in blist.txt at slot 14, etc.  The order of the samples must be in the order that the sXX line specified, so be careful! 
+	
+	</p></li>
+	
+	<li><p>Delete the sXX line, save the file, and then exit.</p></li>
+	<li><p>Copy the sample files (probably in a folder named "brr" or "samples") into your sample folder.</p></li>
+	</ol>
+	<br><br>
+	Let's look at an example:  
+	<ol><li>Suppose the music file's "s" line looks like s09_10_11_14_12_FF.</li>
+	<li>Now suppose that that music's "blist.txt" looks something like this:<br>
+	<pre>	10  Trumpet.brr
+	11  Strings.brr
+	12  Bass.brr
+	13  Snare.brr
+	14  Cymbal.brr
+	15  Organ.brr
+	16  Choir.brr</pre></li><br>
+	<li>Add the #samples definition.</li>
+	<li>The first sample would be "Trumpet.brr".  The second, "Strings.brr".  The third, "Cymbal.brr.  The fourth, "Bass.brr".</li>
+	<li>All in all, the #samples definition should look like this:<br><code>
+	#samples<br>
+	{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#default<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#AMM<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Trumpet.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Strings.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Cymbal.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Bass.brr"<br>
+	}</code><br>
+	<br></li></ol>
+	
+	
+	<br><br><h2><a id="Hey64KilobytesOfARAMIsQuiteALotThankYouVeryMuch">Echo buffer exceeded total space in ARAM?</a></h2>
+	This is an error that may occur with some frequency with older songs (and some new ones under certain circumstances).  If you get this error, there are three possible solutions.  In order of effectiveness:
+	<ol>
+	<li><p>Open the offending file.  Find the text "#default" and replace it with "#optimized".  If this text does not exist (and the text "#samples" also does not exist), then add the following to the top of the file:	<br><code>
+	#samples<br>
+	{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#optimized<br>
+	}</code><br>
+	<br>
+	Otherwise, move on to the next step.</p></li>
+	<li><p>Find something that looks like "$F1 $XX $YY $ZZ", where XX YY and ZZ are numbers.  Decrease $XX until you don't get any more errors.  This may make the song sound a bit different, however.</p></li>
+	<li><p>If you've reached this step, this song is simply too big for your hack.  You will either have to delete some sound effects, filter out some code or remove a global song (explained in the <a href="general_advanced_use.html">advanced section</a>).  This should hopefully never happen, however.</p></li>
+	</ol>
+	
+	<br><br><h2><a id="GottaGoFast">When the timer drops below 100 seconds and I die, the music doesn't slow back down!</a></h2>
+	This is a very simple error to fix.  Simply find all songs that should be "immune" to this increase in tempo (such as the death theme, the game over theme, or whatever), and add "#option tempoimmunity" (without the quotes) to the top of the music text file.  That should solve the problem.
+	
+	<br><br><h2><a id="WhyAreThereTwoIdenticalOverworldMusicTablesAnyway">The overworld songs are mixed up! The "Welcome to Dinosaur Land" music isn't playing!</a></h2>
+	Ah, yeah.  This might happen the first time you run the program.  The fixes for these are simple: just reset them in Lunar Magic.  You'll only have to do this once.
+	
+	<br><br><h2><a id="ItAlwaysBuggedMeWhenSkyLevelsSoundedLikeTheyTakePlaceInACaveBecauseOfTheSongTheyUsed">My sound effects aren't echoing correctly!</a></h2>
+	By default AddmusicK disables echo for sound effects.  This is so that, for example, if you're using a song in a sky level, and that song uses an echo effect, your sound effects won't also echo and sound weird.  To turn echo on, here is what you do:
+	<ol><li>Download uberASM from SMWCentral's <a href="http://www.smwcentral.net/?p=section&s=smwpatches">patches</a> section.</li>
+	<li>In the "code" folder, open up "level_init_code.asm"</li>
+	<li>You should see a bunch of labels that look like "<code>levelinit0</code>", "<code>levelinit1</code>", etc.  Go to the label that corresponds to the level you want echoey sound effects in.  For example, for level 105 you'd go to "<code>levelinit105</code>".
+	<li>Insert this code <i>after</i> the label but <i>before</i> the <code>RTS</code>:<br><code>
+	LDA #$06<br>
+	STA $1DFA</code><br>
+	<br>
+	So all in all, that part of the file should look like this (if we're using level 105):<br><code>
+levelinit105:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDA #$06<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STA $1DFA<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTS<br>
+levelinit106:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTS<br>
+</code><br>
+	(etc.)
+	<br>
+	
+	<br></li>
+	<li>And that's it!  Patch uberASM to your hack, and just repeat steps 2 - 5 for any level in which you want sound effects to echo.</li></ol>
+	
+	<br><br><h2><a id="StickToSlowerTemposGuys">This song seems to be slowing down randomly...</a></h2>
+	Add the text "#halvetempo" (without the quotes) at the top of the song's text file before anything else.  Note that this may not work for all songs, however.
+	
+	
+	<br><br><h2><a id="AhBackwardsCompatibilityAlwaysAFavoriteOfProgrammersEverywhere">Converting older hacks</a></h2>
+	No extra steps should be necessary in order to convert hacks that currently use AM4 or AMM; just run the program like normal.  However, it is <i><b>highly</b></i> recommended that you make a backup before attempting this!<br>
+	<br>
+	Note, however, that you will need to either redownload your old songs or convert them manually.  AM4Batch.exe and AMMBatch.exe may help if you decide to go with the latter, as they will automatically add the correct #am4 or #amm identifiers (though you will still need to add the #samples command).
+	
+	<br><br><p>Return to the <a href="../readme.html">main page</a></p><br>
+</body>
+</html>

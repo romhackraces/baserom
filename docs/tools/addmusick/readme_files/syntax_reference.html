@@ -1,0 +1,449 @@
+<html>
+<head>
+	<title>Syntax Reference - AddmusicK Readme</title>
+	<link href="readme.css" type="text/css" rel="stylesheet">
+
+</head>
+<body text="#FFFFFF">
+	<h1>Syntax Reference</h1><br><br>
+	<h2>Standard commands:</h2>
+	The following is a list of commands that are available in music.  With only a few noted exceptions, they may all be used <i>anywhere</i> within a song.  Also, unless otherwise noted, valid values for all commands are from 0 to 255.
+	
+	<table border="1">
+	<tr>
+		<th>Command</th>
+		<th>Purpose</th>
+		<th>Discription</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>#</td>
+		<td>Channel</td>
+		<td>Which channel all the following commands will be written to.  Valid values are 0 to 7.  Note that channels 6 and 7 are shared by sound effects, and may cut out temporarily when a sound effect plays on that channel.</td>
+		<td>#0</td>
+	</tr>
+	<tr>
+		<td>c, d, e, f, g, a, b</td>
+		<td>Note</td>
+		<td>Use + or - after the letter to specify a sharp or flat, respectively.  
+		A number should appear after the note; this number should denote the note's duration.  1 is a whole note, 2 is a half note, 4 a quarter note, 8 an eighth note, etc.  There are ways to specify notes of other durations; see below.  If no duration is specified, then the duration will be the value specified by the <code>l</code> command</td>
+		<td>c16 g+8 a-1</td>
+	</tr>
+	<tr>
+		<td>r</td>
+		<td>Rest</td>
+		<td>Similar to a normal note, the number after it defines its length.</td>
+		<td>r16 r8 r1</td>
+		</tr>
+	<tr>
+		<td>^</td>
+		<td>Tie</td>
+		<td>Attach this to a note or rest to extend its length.  The number after it defines its length.</td>
+		<td>c4^8 r1^2</td>
+	</tr>
+	<tr>
+		<td>h</td>
+		<td>Tune</td>
+		<td>Changes the value of all subsequent notes by the value specified.  All integers, even negative ones, are valid.  Note that this only affects how AddmusicK interprets the notes.</td>
+		<td>h4 h-3</td>
+	</tr>
+	<tr>
+		<td>o</td>
+		<td>Octave</td>
+		<td>Specifies what octave the following notes should be read as.  Valid values are 1 to 6.  Note that this command only affects how AddmusicK interprets the notes; the SPC program does not have an "octave" command.</td>
+		<td>o3 c16 o2 c16</td>
+	</tr>
+	<tr>
+		<td>&lt;</td>
+		<td>Lower octave</td>
+		<td>Lowers the current octave by one.</td>
+		<td>o3 c16 &gt; c16</td>
+	</tr>
+	<tr>
+		<td>&gt;</td>
+		<td>Raise octave</td>
+		<td>Rasies the current octave by one.</td>
+		<td>o3 c16 &lt; c16</td>
+	</tr>
+	<tr>
+		<td>l</td>
+		<td>Default length</td>
+		<td>Specifies the length of notes, rests, or ties whose lengths are not specified.  The value's duration is measured in the same manner as that of a note (e.g. 1 is a whole note, 2 is a half note, etc.).  This command <i>does not</i> decrease the song's size.  It exists solely to make the song more readable.</td>
+		<td>l8</td>
+	</tr>
+	<tr>
+		<td>{ }</td>
+		<td>Triplet</td>
+		<td>Any notes surrounded by curly braces will be treated as triplets (i.e. their durations will be multiplied by 2/3).</td>
+		<td>{c4 d4 c4}</td>
+	</tr>
+	<tr>
+		<td>@</td>
+		<td>Instrument</td>
+		<td>Specify the instrument to play.  Valid values are 0 - 18, 21-29, and 30+.  30 and above are "custom" instruments, which are described below.</td>
+		<td>@28</td>
+	</tr>
+	<tr>
+		<td>v</td>
+		<td>Volume</td>
+		<td>Sets the volume for the currently playing channel.  Valid values are 0 to 255.  If you specify an extra argument, the command fades to the value, with the first value representing the duration. The duration is measured as is if = was placed next to a note (thus, by the number of ticks).</td>
+		<td>v24,240</td>
+	</tr>
+	<tr>
+		<td>w</td>
+		<td>Global volume</td>
+		<td>Sets the volume for the entire song.  Valid values are 0 to 255.  If you specify an extra argument, the command fades to the value, with the first value representing the duration. The duration is measured as is if = was placed next to a note (thus, by the number of ticks).</td>
+		<td>w24,200</td>
+	</tr>
+	<tr>
+		<td>y</td>
+		<td>Pan</td>
+		<td>Set the pan for the current channel.  Valid values are from 0 to 20; is all the way to the right, and 20 is all the way to the left.  10 is centered.  If two extra arguments are specified, then a 1 will indicate that that speaker (left,right) should have surround sound enabled.</td>
+		<td>y10 y10,0,1</td>
+	</tr>
+	<tr>
+		<td>q</td>
+		<td>Quantization</td>
+		<td>This command is specified in hex.  The first digit specifies how long of a delay there is between each note.  Valid values are from 0 to 7, with 7 having the smallest delay.  The second digit controls the volume.  Valid values are from 0 to F, with F being the loudest.  The volume portion of this command is compatible with the v command.</td>
+		<td>q7F q70</td>
+	</tr>
+	<tr>
+		<td>t</td>
+		<td>Tempo</td>
+		<td>How quickly the song should play.  To convert from BPM to this, multiply the BPM by 0.4 (or if you want higher precision, multiply by 8192, then divide by 20025).  Please be aware that the higher the tempo is, the more likely your song is to experience slowdown.  In general, tempos below t60 should be safe.  Keep in mind that if t60 seems too slow, you can halve your note lengths to simulate doubling the tempo.  If you specify an extra argument, the command fades to the value, with the first value representing the duration. The duration is measured as is if = was placed next to a note (thus, by the number of ticks).</td>
+		<td>t24,40</td>
+	</tr>
+	<tr>
+		<td>p</td>
+		<td>Vibrato</td>
+		<td>Pulsate the pitch over a period of time.  There may be either two or three arguments to this command, separated by commas.  If there are two arguments, then the first is the rate (speed) and the second is the extent (amplitude).  If there are three values, then the first is the duration of the delay before the vibrato starts, the second is the rate, and the third is the extent.  The delay and rate are measured as if = was placed next to a note (thus, by the number of ticks).</td>
+		<td>p24,12,8 p12,8</td>
+	</tr>
+	<tr>
+		<td>n</td>
+		<td>Noise</td>
+		<td>Starts playing noise on the current channel instead of using the current instrument's sample.  ADSR and such are preserved, and the effect can be cancelled by using an instrument.  The value must be a hex value between 0 and 1F.</td>
+		<td>n5 n1F</td>
+	</tr>
+	<tr>
+		<td>&</td>
+		<td>Pitch slide</td>
+		<td>Slides the pitch between the note that came before this command and the note that comes after it.  While this is the easiest way to do this, the $DD hex command offers more flexibility.</td>
+		<td>c4&d4</td>
+	</tr>
+	<tr>
+		<td>?</td>
+		<td>Misc.</td>
+		<td>Causes this song to not loop (useful for, for example, victory themes).</td>
+		<td>?</td>
+	</tr>
+	<tr>
+		<td>/</td>
+		<td>Intro</td>
+		<td>This will mark the intro to this song.  An intro only plays once; when a song "ends" it will jump back to the position specified by this intro marker (if this command is not specified, then it simply jumps back to the song's start).</td>
+		<td>/</td>
+	</tr>
+	<tr>
+		<td>("", $)</td>
+		<td>Sample load</td>
+		<td>Loads the sample specified in quotes, with a tuning value specified in hex after the $.  The tuning value multiplies the pitch by this value (so 1 does not alter the pitch, 2 doubles it, etc).  While the use of custom instruments is generally preferred over raw sample loading for space saving concerns, this command may still be useful.</td>
+		<td>("Sample.brr", $04)</td>
+	</tr>
+	<tr>
+		<td>[]</td>
+		<td>Loop</td>
+		<td>Repeats whatever is contained within the brackets by the value spcified.  Extremely useful for saving space.  Loops may not be nested.</td>
+		<td>[c8 d8]16</td>
+	</tr>
+	<tr>
+		<td>()[]</td>
+		<td>Label loop</td>
+		<td>Exactly the same as the normal loop command, but assigns a value to it as specified by the parentheses.  See the next command for more information.  Loops may not be nested.</td>
+		<td>(6)[c8 d8]16</td>
+	</tr>
+	<tr>
+		<td>()</td>
+		<td>Label loop call</td>
+		<td>Calls the specified loop.  Define a loop with the previous command, and then call that loop with this command.  Loops may not be nested.</td>
+		<td>(6)32</td>
+	</tr>
+	<tr>
+		<td>*</td>
+		<td>Loop recall</td>
+		<td>Calls the most recently used loop.</td>
+		<td>*8</td>
+	</tr>
+	<tr>
+		<td>(!)[]</td>
+		<td>Remote code definition</td>
+		<td>Defines a set of hex commands or other non-note non-loop commands that you can set to be called automatically at certain "events", such as whenever a note starts or some number of ticks before a note ends. These function very similarly to label loops (in fact, you can call their data from a normal label loop), but they have two major differences: They cannot contain note data in any shape or form which makes them essentially zero tick label loops (they also cannot be repeated, but that's only useful for notes anyway), and they must be defined before any channel data.  This means they won't actually take effect until you call them with the next command.<br><br>I recommend you combine this with the replacement command ("=", see below) to keep your code readable if you have multiple remote codes. This way you can give each remote code a name.</td>
+		<td>(!6)[$FA $01 $55]<br>(!7)[$FA $01 $00 v250]</td>
+	</tr>
+	<tr>
+		<td>(!)</td>
+		<td>Remote code call</td>
+		<td>This command will set up an event with the data contained in the remote code you specify.  You must also specify the "trigger" for this code, or the event type (see below).  Finally, certain events require an argument.  For this you may either specify a hex value or a note value (e.g. 2 would be a half note).  Note that you can only have one remote code running at any given time.  There are only two exceptions: You may have a "run code when a note is keyed on" remote code at any time, and the "run once right now" event type may also be run at any time.  You can use this command inside loops.<br><br>
+		Available event types:<br>
+				0: Disable the remote commands for this channel, including the "key on" event type if it's also running. Note that whatever code is used for this event is not run, so any code can be used.<br>
+				1: Run code some amount of time after a note begins.  Ties and rests won't trigger this event.  If you want to run code <i>as</i> a note begins, use -1. This requires a third argument: the amount of time to wait. If the time to wait is longer than the current note, the code will never be triggered.<br>
+				2: Run code until some amount of time before a note ends.  Relative to the qXX command.  This will only work on notes shorter than 80 ticks (a little more than a half note) due to the internal method in which the NSPC engine handles ties and such, so anything beyond that you'll have to use events 3 or 4.  This requires a third argument: the amount of time to wait. If the time to wait is longer than the current note, the code will never be triggered.<br>
+				3: Run code whenever a note is keyed off. This is also relative to the qXX command.  Unlike 2, this cancels the note cut event, so the note keeps playing.  The note is absolutely keyed off, however, before the next note begins (this does not trigger this event).<br>
+				4: Run once, right now. This is also compatible with all other events, and because it can be used within loops, it effectively allows you to have a third layer of nested loops (see [[ ]] for the second layer), though with the same limitation as before on not being able to use notes.<br>
+				5: Reserved.  Do not use this event type.<br>
+				6: Reserved.  Do not use this event type.<br>
+				7: Disable the remote commands for this channel, except for the "key on" event type. Note that whatever code is used for this event is not run, so any code can be used.<br>
+				8: Disable the remote command for the "key on" event type. Note that whatever code is used for this event is not run, so any code can be used.<br>
+				-1: Run code whenever a note is keyed on. This will allow you to undo the changes done by other events. It can be run alongside other event types.<br><br>
+				More values may be added in the future.</td>
+		<td>(!6, 1, 4) (!7, -1)</td>
+	</tr>
+	<tr>
+		<td>(!!)</td>
+		<td>Stop remote code</td>
+		<td>Disables a remote code event by number. Note that currently they're technically split into "key on" (by using -1) and "non-key on" types (any other number), with 0 disabling both, since currently they don't all run at the same time.</td>
+		<td>(!!-1) (!!0) (!!3)</td>
+	</tr>
+	<tr>
+		<td>[[ ]]</td>
+		<td>Superloop</td>
+		<td>A special loop variation.  Normal loops may go inside of this and this may be placed in normal loops.  You may not assign a value to this kind of a loop with parantheses, nor may you call it with the * command.</td>
+		<td>[[c8 d8]]32</td>
+	</tr>
+	<tr>
+		<td>$</td>
+		<td>Hex</td>
+		<td>Inserts a hex command.  Hex commands may do many other things not included in this list of "normal" commands, such as fade the volume over time.  See <a href="hex_command_reference.html">here</a> for a list of all available hex commands.</td>
+		<td>$DA $01</td>
+	</tr>
+	<tr>
+		<td>"="</td>
+		<td>Replacement</td>
+		<td>Replaces what is on the right side of the equals sign with what is on the left side.  The result can be used almost anywhere (so you could, for example, use this to give label loops names instead of just numbers, or to assign custom instruments names, etc.).  Note that only replacement candidates found <i>after</i> this command are actually replaced.  In addition, this command is greedy; i.e. if you create a "B" command and a "BB" command, "BB" in your music file will not be treated as two separate "B" commands, but as one "BB" command. This may seem obvious, but be careful just in case.  Also note that this command can be recursive and its relations transitive; if you say that "AB=BC" and "BC=CD" then "AB" will be converted to "CD".</td>
+		<td>"cymbal=@38"<br>"drumloop=6"</td>
+	</tr>
+	</table>
+	
+	<br><br><h2>Special commands</h2>
+	
+	
+	<br><br><h3>#samples</h3>
+	
+	This command will define which samples this song uses.  Syntax is the following:
+	<br>
+	<br><code>#samples<br>
+	{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#samplegroup<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample1.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample2.brr"<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample3.brr"<br>
+	}
+	</code><br><br>
+	Where "#samplegroup" is the name of the sample group you want to use (typically #default or #optimized), and "sample1.brr" (etc.) are the file paths of the samples to use.  You may use any number of samples, or none at all.  If this command is not used, then the song is assumed to use the #default sample group.<br><br>See also #path.
+	
+	
+	
+	<br><br><h3>#instruments</h3>
+	
+	This command will define any custom instruments to use.  Syntax is the following:
+	<br>
+	<br><code>#instruments<br>
+	{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample1.brr" $aa $bb $cc $dd $ee<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"sample2.brr" $aa $bb $cc $dd $ee<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@0 $aa $bb $cc $dd $ee<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n1F $aa $bb $cc $dd $ee<br>
+	}<br>
+	</code><br>
+	Where "sample1.brr" (etc.) is the name of the sample to use for this instrument (it must match up with a sample loaded by the #samples command).  Alternatively, it may be @ followed by a non-custom instrument, which will load the sample that that instrument uses, or n and a hex value from 0 - 1F, which will play noise with the specified clock (pitch).<br>
+	aa is the first ADSR value (to use ADSR, make sure that it is >= $80.  Otherwise GAIN is used.).<br>
+	bb is the second ADSR value.<br>
+	cc is the GAIN value.<br>
+	dd is the tuning multiplier.<br>
+	ee is the tuning submultiplier (so dd and ee together are something like "dd.ee"; ee is the decimal/fractional portion).<br>
+	All of those values are in hex.<br><br>
+	
+	If you're using custom samples for your instruments, then this command must always be preceded by the #samples command.
+	
+	<br><br><h3>#pad</h3>
+	Specifies a minimumm size for this song.  This isn't so much useful for porters, but more for ASMers.  It will guarantee that a song is at least the specified size.  For example, <code>#pad $2F0</code>
+	
+	<br><br><h3>#spc, #author, #game, #comment, #title, #length</h3>
+	This command will let you define the tags that will be inserted into each song's automatically generated SPC.  The command, when used, looks like this:
+	<pre>#spc
+{
+	#author "Author's name"
+	#game	"Game's name"
+	#comment "A comment"
+	#title	"Song's name"
+}</pre><br>
+	The fields may be in any order and any may be ommitted.  There is also the
+optional #length field; if used, it defines how long this song's generated SPC
+file will play for.  Normally the program will attempt to figure this out if
+#length is ommitted, but it will fail if the tempo changes during the song's
+run.  When this is the case, use #length "2:00" (or however long your song is)
+to overcome this.
+
+
+	<br><br><h3>#path</h3>
+	
+	This will specify the default path in which to look for custom samples for this song.  For example, this:<br><br><br>
+	<code>#samples<br>
+	{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"SMB1 Overworld/Sample1.brr"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"SMB2 Overworld/Sample2.brr"<br>
+	}</code>
+	<br><br><br>Is equivalent to this:<br><br><br>
+	<code>#path "SMB1 Overworld"<br>
+	<br>
+	#samples<br>
+	{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#default<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Sample1.brr"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"Sample2.brr"<br>
+	}</code>
+	
+	<br><br><br>This applies to anywhere else a sample name is used as well (such as the #instruments command).  You should <i>not</i> include the final '/'.
+	
+	<br><br><h3>#halvetempo</h3>
+	
+	This will halve a song's tempo, notes, and all hex commands that use a "duration" field.  Use this if your song is suffering from slowdown, which is mostly a result of using high tempos (higher than t60 or so usually).
+
+	<br><br><h3>#option</h3>
+	Handles various miscellaneous song options.  You must put these at the top of your song file before any channel data.
+	<table border="1">
+	<tr>
+		<th>Parameter</th>
+		<th>Discription</th>
+	</tr>
+	<tr>
+		<td>tempoimmunity</td>
+		<td>This command will disable the "tempo hike" effect caused by the timer going below 100 seconds.  Use this, for example, in the death theme, game over theme, level clear theme, etc.</td>
+	</tr>
+	<tr>
+		<td>dividetempo</td>
+		<td>Same as #halvetempo, but allows you to specify a value that's not a power of 2.</td>
+	</tr>
+	<tr>
+		<td>smwvtable</td>
+		<td>Forces the song to use SMW's velocity table instead of the default N-SPC one.</td>
+	</tr>
+	<tr>
+		<td>noloop</td>
+		<td>Lets AddmusicK know that this song should only play once and not loop one it is finished.</td>
+	</tr>
+	<tr>
+		<td>amk109hotpatch</td>
+		<td>Activates a series of optional hot patches that were created for AddmusicK 1.0.9 to repair some playback quirks, but were not activated by default to avoid breaking older ports. The complete list of patches applied are as following:
+		<ul>
+			<li>Glissando only runs for one note instead of two (as it previously mistakenly did).</li>
+			<li>Echo writes are not enabled if the echo delay is set to zero and echo is otherwise not used. For extremely large songs, this prevents $FF00-$FF03 from being overwritten, giving you an extra 256 bytes to work with.</li>
+			<li>$F3 command previously failed to zero out the fractional pitch base due to the code not being added on when ported from AddmusicM (which did not have this kind of feature) to AddmusicK.</li>
+			<li>$FA $02 (Semitone tune) is not ignored by the $DD command for its target note.</li>
+			<li>Readahead looks inside loops and superloops.</li>
+			<li>When setting up an instrument (and for other commands that recycle the instrument setup code via using the updated backup table, such as $FA $01 (GAIN)), GAIN is written to first, then the ADSR voice DSP registers.</li>
+			<li>Arpeggio notes will not play during rests.</li>
+		</ul>
+		</td>
+	</tr>
+	</table>
+	
+	<br>
+	Usage is simple.  Example: <code>#option noloop</code>.  Or <code>#option dividetempo 3</code>.  Etc.  Remember, once again, that these must come <i>before</i> any channel data!
+	
+	
+	<br><br><h3>#define, #undef, #ifdef, #ifndef, #if, #endif, #error</h3>
+	Preprocessing directives (these are read and processed before <i>everything</i> else).  Note when using these, they <i>must</i> be the first and only thing on their line. This is to make sure that all preprocessor functions are as agnostic to the music format as possible.
+	<table border="1">
+	<tr>
+		<th>Command</th>
+		<th>Purpose</th>
+		<th>Discription</th>
+		<th>Example</th>
+	</tr>
+	<tr>
+		<td>#define</td>
+		<td>Definition</td>
+		<td>Defines a constant as existing, and optionally gives it a value.</td>
+		<td>#define SAMPLED<br>#define VERSION 5</td>
+	</tr>
+	<tr>
+		<td>#undef</td>
+		<td>Un-definition</td>
+		<td>Defines a constant as not existing.</td>
+		<td>#undef SAMPLED</td>
+	</tr>
+	<tr>
+		<td>#ifdef</td>
+		<td>Test</td>
+		<td>Anything from this point to the next #endif will only be compiled if the specified value has been defined by #define.</td>
+		<td>#ifdef SAMPLED</td>
+	</tr>
+	<tr>
+		<td>#ifndef</td>
+		<td>Test</td>
+		<td>Anything from this point to the next #endif will only be compiled if the specified value has not been defined by #define.</td>
+		<td>#ifndef SAMPLED</td>
+	</tr>
+	<tr>
+		<td>#if</td>
+		<td>Test</td>
+		<td>Tests the relationship between the specified constant and an integer.  Valid relations are ==, <, >, <=, >=, and !=.  If the relationship holds true, then everything from this point to the next #endif is compiled.</td>
+		<td>#if VERSION >= 4</td>
+	</tr>
+	<tr>
+		<td>#endif</td>
+		<td>End</td>
+		<td>Compliment to the other tests.  Ends their range of effect.</td>
+		<td>#endif</td>
+	</tr>
+	<tr>
+		<td>#error</td>
+		<td>Error checking</td>
+		<td>Throws an error and stops compilation.  Obviously, you'll want to use this with #ifs, #ifdefs, etc.</td>
+		<td>#endif</td>
+	</tr>
+	</table>
+
+<br><br><h3>#amk</h3>
+	Specifies which AddmusicK "song parser" this song was designed for.  It is inserted automatically by AddmusicK to the bottom of every song if that song does not already contain it or an alternative (such as #am4 or #amm).  The equals sign should be followed by an integer value.  The "correct" value to use will only change if future features are added AddmusicK that make older song files incompatible with new ones, so that these older files may be identified and parsed correctly.  Because this command is inserted automatically, you should not need to worry about it.  As with the preprocessor directives, this should be the first and only thing on any line it's on.  Finally, #am4 and #amm override #amk in all circumstances, with no warnings, even if they come before #amk.
+
+<br><br>The latest parser version is currently 4. This is a changelog between parser versions (as well as a brief explanation of their original source):
+
+	<h4>#amk=1</h4>
+	This is the original parser version used in AddmusicK Beta.
+
+	<h4>#amk 2</h4>
+	This was used in AddmusicK versions 1.0 to 1.0.8.
+	<ul>
+	<li>Anticipation gain ($FA $05 command) and remote gain ($FC) were replaced with remote code (!), which debuts in this parser version.</li>
+	<li>Added #option directives.</li>
+	<li>Velocity table defaults to N-SPC instead of Super Mario World. These directives, although still valid, are de-facto rendered redundant:
+		<ul>
+		<li>#nspcvtable</li>
+		<li>#louder</li>
+		</ul>
+	</li>
+	</ul>
+
+	<h4>#amk 3</h4>
+	This was used in Codec's AddmusicK Beta. <i>Implementation of this parser version is incomplete (and thus is currently not supported): all of the changes listed below are the ones that have been implemented and are accessible through #amk 4.</i>
+	<ul>
+	<li>Added remote command reset syntax via (!!0), (!!-1), (!!1), etc.</li>
+	<li>Added fade support to the v (volume), t (tempo) and w (global volume) MML commands.</li>
+	</ul>
+
+	<h4>#amk 4</h4>
+	This is the latest parser version to be released for AddmusicK 1.0.9. It doesn't directly incorporate all of #amk 3 due to not yet having all of the extra hex commands to completely implement them: it only has remote code reset and fade support for v, t and w, the former being included as a side effect of the restoration of remote and anticipation gain as part of the update for AddmusicK 1.0.9.
+	<ul>
+	<li>Exact tick note lengths and default note lengths via the l MML command can now be used with note length modifiers for music.</li>
+	<li>Fixed a bug where #halvetempo and #option dividetempo were not dividing the tempo ratio at all because they were immediately returning. Multiplication was working fine, though. Note that if the tempo ratio is 1, this will still immediately return since it is redundant.</li>
+	<li>A new option was added: #option amk109hotpatch</li>
+	</ul>
+
+<br><br><br>Note that all "special" commands are case insensitive.
+	
+	<br><br><p>Return to the <a href="../readme.html">main page</a></p><br>
+	
+</body>
+</html>
