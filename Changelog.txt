@@ -3,3 +3,5 @@ v5.0
 - revamped uberasm objects system
 - rewrote all documentation in html
 - initialization script is now in Powershell
+- updated ExGraphics and Map16
+- tidied up block code
