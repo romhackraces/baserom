@@ -1,6 +1,3 @@
-# ---------------------------------------------------------
-# Baserom initialization PowerShell script
-# ---------------------------------------------------------
 Clear-Host
 
 # Directory Definitions
@@ -9,7 +6,7 @@ $ToolsDir = "$WorkingDir\tools"
 $ListsDir = "$WorkingDir\resources\initial_lists\"
 
 # Dot includes
-. $ToolsDir\common\tool_defines.ps1
+. $ToolsDir\init\tool_defines.ps1
 
 # Function to remove junk files
 function Remove-Junk($Directory, $JunkFiles) {
@@ -70,9 +67,9 @@ function SetupTool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $ListFi
     # Lunar Magic
     if ($ToolName -eq "Lunar Magic") {
         # copy usertoolbar files to Lunar Magic directory
-        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir -Force
-        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir -Force
-        Copy-Item -Path "$ToolsDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir -Force
+        Copy-Item -Path "$ToolsDir\init\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir -Force
+        Copy-Item -Path "$ToolsDir\init\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir -Force
+        Copy-Item -Path "$ToolsDir\init\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir -Force
     }
 }
 
@@ -131,11 +128,11 @@ function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
 # Start the main menu loop
 $UserChoice = $null
 while ($UserChoice -ne "4") {
-    Write-Host "------------------------------"
-    Write-Host "Initialize Baserom"
-    Write-Host "------------------------------`n"
-    Write-Host "What would you like to do?`n"
-    Write-Host "1. Download and Setup all Baserom Tools"
+    Write-Host "-----------------------------------"
+    Write-Host "RHR Baserom (v5.0) - Initialization"
+    Write-Host "-----------------------------------`n"
+    Write-Host "Welcome! To get started with the baserom, run both of the following steps:`n"
+    Write-Host "1. Download and set up all baserom tools"
     Write-Host "2. Run first build of the Baserom"
     Write-Host "0. Exit`n"
 
@@ -201,7 +198,7 @@ while ($UserChoice -ne "4") {
         # Exit
         "0" {
             Clear-Host
-            Write-Host "Exiting...`nHave a nice day ^_^`n"
+            Write-Host "Have a nice day ^_^`n"
             exit 0
         }
     }

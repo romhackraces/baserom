@@ -27,6 +27,7 @@ failed_save.txt
 .dependencies
 .callisto
 .is_setup
+.first_build_done
 temp/*
 temp.*
 *.*~
