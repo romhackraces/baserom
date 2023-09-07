@@ -59,7 +59,7 @@ Sprite Ceiling Fix - Davros - https://smwc.me/s/14697
 Sprite Scroll Fix - HammerBrother - https://smwc.me/s/13675
 Star/Slide Kill GFX Fix - Kevin - https://smwc.me/s/30709
 Time Up Fix - Alcaro - https://smwc.me/s/15110
-Title Window Cleaner - Alcaro - Title Window Cleaner
+Title Window Cleaner - Alcaro - https://smwc.me/s/8975
 Torpedo Ted Offscreen Smoke Fix - Kevin - https://smwc.me/s/26503
 Triple Rotating Platform Vertical Level Fix - Karisa - https://smwc.me/s/21707
 Vertical Level Bowser Statue Fireball Fix - Medic, Telinc1 - https://smwc.me/s/16781
