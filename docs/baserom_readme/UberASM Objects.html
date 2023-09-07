@@ -5,6 +5,7 @@
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+<style>td:nth-child(1){width:28px;font:larger monospace;}td:nth-child(2){width:200px;}</style>
 <body>
 <section>
 <a href="../../README.html" class="back">🠈</a>
@@ -28,16 +29,19 @@
 <h3 id="toggle-objects">Feature Toggles</h3>
 <p>The following objects can be used to enable or toggle features in levels in the baserom.</p>
 <table border="1" class="full">
-<tr><th>Number</th><th>Object</th><th>Description</th></tr>
+<tr><th>#</th><th>Object</th><th>Description</th></tr>
 <tr><td>98</td><td>Free Vertical Scroll</td><td>Makes the camera follow Mario up and down.</td></tr>
 <tr><td>99</td><td>Lock Horizontal Scroll</td><td>Prevents the camera from scrolling left or right.</td></tr>
-<tr><td>9A</td><td>Start in OFF State</td><td>Starts the level with the ON/OFF state in the OFF state at the start of the level.</td></tr>
+<tr><td>9A</td><td>Start in OFF State</td><td>Starts the level with the ON/OFF state in the OFF state on level load.</td></tr>
 <tr><td>9B</td><td>Toggle Block Duplication</td><td>Block duplication is patched in the baserom. This object will set a flag to disable the patch that prevents block duplication.</td></tr>
 <tr><td>9C</td><td>Toggle Statusbar</td><td>Completely hide the in game statusbar, note: this does not disable the item box.</td></tr>
 <tr><td>9D</td><td>Toggle Screen Scroll</td><td>Scrolling the screen with L or R is disabled by default in the baserom but this will enable it.</td></tr>
-<tr><td>9E</td><td>Enable 8-frame Cape Float</td><td>Cape floating is vanilla in the baserom but using this object will apply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.</td></tr>
-<tr><td>9F</td><td>Enable Vanilla Cape Turnaround</td><td>The baserom has patched turning around in the air with spin during cape to make it guaranteed on button press. Using this object will disable that consistency.</td></tr>
-<tr><td>A0</td><td>Enable SFX Echo</td><td>Enabled the echo for sound effects, provided your level has custom music with echo enabled.</td></tr>
+<tr><td>9E</td><td>Enable SFX Echo</td><td>Enabled the echo for sound effects, provided your level has custom music with echo enabled.</td></tr>
+<tr><td>A0</td><td>No Power Ups</td><td>Use this object to prevent power-up collection.</td></tr>
+<tr><td>A2</td><td>Enable Vanilla Cape Turnaround</td><td>The baserom has patched turning around in the air with spin during cape to make it guaranteed on button press. Using this object will disable that consistency.</td></tr>
+<tr><td>A3</td><td>Enable 8-frame Cape Float</td><td>Cape floating is vanilla in the baserom but using this object will apply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.</td></tr>
+<tr><td>A4</td><td>Zero Cape Float Delay</td><td>Using this object will remove the delay before Mario starts floating with cape.</td></tr>
+<tr><td>A5</td><td>Death on Power-up Loss</td><td>Makes it so losing a power up will kill Mario instantly.</td></tr>
 </table>
 </section>
 <section>
@@ -45,7 +49,7 @@
 <h3 id="retry-objects">Retry System Settings</h3>
 <p>Inserting these objects into your level can override the default settings of the retry system.</p>
 <table border="1" class="full">
-<tr><th>Number</th><th>Object</th><th>Description</th></tr>
+<tr><th>#</th><th>Object</th><th>Description</th></tr>
 <tr><td>B0</td><td>Instant Retry</td><td>Make the retry skip using prompt and restart instantly after dying.</td></tr>
 <tr><td>B1</td><td>Prompt Retry</td><td>Set the retry system to use a prompt that says "Retry" in the middle of the screen.</td></tr>
 <tr><td>B2</td><td>Bottom Left Retry Prompt</td><td>Move the retry prompt to the bottom left (by default it's in the middle) if Prompt retry is active.</td></tr>

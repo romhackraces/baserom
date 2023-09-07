@@ -1,32 +1,34 @@
-; run in gamemode 13
-incsrc "../../../shared/freeram.asm"
+; UberASM Objects system
+; run the init in gamemode 12 (level load) and the main in gamemode 14 (in level)
 
+incsrc "../../../shared/freeram.asm"
 
 macro ObjectRoutine(object_number, routine)
     db <object_number>-$98 : dw <routine>
 endmacro
 
-
 routines:
 .init
     %ObjectRoutine($9A, set_state_to_off)
-    %ObjectRoutine($9B, block_duplication)
     %ObjectRoutine($9C, toggle_status_bar)
-    %ObjectRoutine($9F, vanilla_turnaround)
 ..end
 
 .main
     %ObjectRoutine($98, free_vertical_scroll)
     %ObjectRoutine($99, no_horizontal_scroll)
+    %ObjectRoutine($9B, block_duplication)
     %ObjectRoutine($9D, toggle_lr_scroll)
-    %ObjectRoutine($9E, eight_frame_float)
-    %ObjectRoutine($A0, enable_sfx_echo)
+    %ObjectRoutine($9E, enable_sfx_echo)
+    %ObjectRoutine($A0, no_powerups)
+    %ObjectRoutine($A2, vanilla_turnaround)
+    %ObjectRoutine($A3, eight_frame_float)
+    %ObjectRoutine($A4, zero_float_delay)
+    %ObjectRoutine($A5, death_on_power_up_loss)
     %ObjectRoutine($B0, retry_instant)
     %ObjectRoutine($B1, retry_prompt)
     %ObjectRoutine($B2, retry_bottom_left)
     %ObjectRoutine($B3, retry_no_midway_powerup)
 ..end
-
 
 init:
     lda $71
@@ -120,61 +122,47 @@ run_routines:
 
 
 ;---------------------------------------------------------------------
-; Code to run for each object
-; Object IDs correspond to patches/objectool/custom_object_code.asm
+; Code to run for each extended object
+; IDs correspond to patches/objectool/custom_object_code.asm
 ;---------------------------------------------------------------------
 
-; Object 98
+; Extended Object 98
 ; Free vertical scrolling
 free_vertical_scroll:
     lda #$01 : sta $1404|!addr
     rts
 
-; Object 99
+; Extended Object 99
 ; lock horizontal scroll
 no_horizontal_scroll:
     stz $1411|!addr
     rts
 
-; Object 9A
+; Extended Object 9A
 ; Set ON/OFF state to OFF
 set_state_to_off:
     lda #$01 : sta $14AF|!addr
     rts
 
-; Object 9B
+; Extended Object 9B
 ; Toggle block duplication
 block_duplication:
     lda #$01 : sta !toggle_block_duplication
     rts
 
-; Object 9C
+; Extended Object 9C
 ; Toggle status bar
 toggle_status_bar:
     lda #$01 : sta !toggle_statusbar_freeram
     rts
 
-; Object 9D
+; Extended Object 9D
 ; Toggle l/r scroll
 toggle_lr_scroll:
     lda #$01 : sta !toggle_lr_scroll_freeram
     rts
 
-; Object 9E
-; Enable eight frame float with cape
-eight_frame_float:
-    lda $15 : and #$80 : beq +
-    lda #$08 : sta $14A5|!addr
-    +
-    rts
-
-; Object 9F
-; Toggle vanilla cape spin in air
-vanilla_turnaround:
-    lda #$01 : sta !toggle_vanilla_turnaround
-    rts
-
-; Object A0
+; Extended Object 9E
 ; Enable Echo channel in inserted music
 enable_sfx_echo:
     lda $1DFA|!addr : bne +
@@ -182,29 +170,88 @@ enable_sfx_echo:
     +
     rts
 
-; Object A1 (is skipped because of door)
+; Extended Object 9F (skipped because it loads a door tile)
 
+; Extended Object A0
+; Cannot collect power-ups in the level
+no_powerups:
+    stz $19             ; Reset powerup.
+    stz $0DC2|!addr     ; Reset item box.
+    RTS
 
-; Object B0
+; Extended Object A1 (skipped because it loads a door tile)
+
+; Extended Object A2
+; Toggle vanilla cape spin in air
+vanilla_turnaround:
+    lda #$01 : sta !toggle_vanilla_turnaround
+    rts
+
+; Extended Object A3
+; Enable eight frame float with cape
+eight_frame_float:
+    lda $15             ;\ Check if button is being pressed
+    and #$80            ;/
+    beq +
+    lda #$08            ;\ Store 8 frames to cape float
+    sta $14A5|!addr     ;/
+    +
+    rts
+
+; Extended Object A4
+; Zero float delay with cape
+zero_float_delay:
+    LDA $187A|!addr	    ;\ Check if Mario is riding Yoshi with wings...
+    AND $141E|!addr     ;/
+    BNE +
+    STZ $14A5|!addr     ; Disable the float timer
+    +
+    rts
+
+; Extended Object A5
+; death on power up loss
+death_on_power_up_loss:
+    LDA $71             ;\ Check mario's power-up state
+    CMP #$01            ;/
+    BNE +
+    LDA #$38            ;\ Play death SFX (match retry setting)
+    STA $1DFC|!addr     ;/
+    JSL $00F606|!bank   ; Kill
++
+    rts
+
+; Extended Object A6 (is skipped because it loads a door tile)
+
+; Extended Object A7
+; Extended Object A8
+; Extended Object A9
+; Extended Object AA
+; Extended Object AB
+; Extended Object AC
+; Extended Object AD
+; Extended Object AE
+; Extended Object AF
+
+; Extended Object B0
 ; Use instant retry
 retry_instant:
     lda #$03 : sta !retry_freeram+$11
     rts
 
-; Object B1
+; Extended Object B1
 ; Use prompt retry
 retry_prompt:
     lda #$02 : sta !retry_freeram+$11
     rts
 
-; Object B2
+; Extended Object B2
 ; Display retry prompt in bottom left
 retry_bottom_left:
     lda #$09 : sta !retry_freeram+$15
     lda #$d0 : sta !retry_freeram+$16
     rts
 
-; Object B3
+; Extended Object B3
 ; No powerup from midways
 retry_no_midway_powerup:
     lda #$00 : sta !retry_freeram+$10
