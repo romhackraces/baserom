@@ -79,6 +79,7 @@ patches = [
 	"resources/patches/fixes/springboard_fixes.asm",
 	"resources/patches/fixes/sprite_ceiling_fix.asm",
 	"resources/patches/fixes/sprite_scroll_fix.asm",
+	"resources/patches/fixes/tide_current_fix.asm",
 	"resources/patches/fixes/time_up_fix.asm",
 	"resources/patches/fixes/titlescreen_sprite_cleaner.asm",
 	"resources/patches/fixes/torpedo_offscreen_smoke_fix.asm",

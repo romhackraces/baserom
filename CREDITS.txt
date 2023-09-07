@@ -60,6 +60,7 @@ Springboard Fixes - MiracleWater - https://smwc.me/s/22084
 Sprite Ceiling Fix - Davros - https://smwc.me/s/14697
 Sprite Scroll Fix - HammerBrother - https://smwc.me/s/13675
 Star/Slide Kill GFX Fix - Kevin - https://smwc.me/s/30709
+Tide Current Fix - Koopster - https://smwc.me/s/26825
 Time Up Fix - Alcaro - https://smwc.me/s/15110
 Title Window Cleaner - Alcaro - https://smwc.me/s/8975
 Torpedo Ted Offscreen Smoke Fix - Kevin - https://smwc.me/s/26503
