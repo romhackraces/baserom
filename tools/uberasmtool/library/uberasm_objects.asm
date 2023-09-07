@@ -147,7 +147,7 @@ set_state_to_off:
 ; Extended Object 9B
 ; Toggle block duplication
 block_duplication:
-    lda #$01 : sta !toggle_block_duplication
+    lda #$01 : sta !toggle_block_duplication_freeram
     rts
 
 ; Extended Object 9C
@@ -184,7 +184,7 @@ no_powerups:
 ; Extended Object A2
 ; Toggle vanilla cape spin in air
 vanilla_turnaround:
-    lda #$01 : sta !toggle_vanilla_turnaround
+    lda #$01 : sta !toggle_vanilla_turnaround_freeram
     rts
 
 ; Extended Object A3

@@ -27,7 +27,7 @@ endif
 ; 1 = unpatched turnarounds, setting flag patches turnarounds
 !default = 0
 ; FreeRAM for toggle, cleared on level load
-!Toggle = !toggle_vanilla_turnaround
+!Toggle = !toggle_vanilla_turnaround_freeram
 
 
 org $00D076|!bank

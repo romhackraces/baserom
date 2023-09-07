@@ -32,7 +32,7 @@ incsrc "../../../shared/freeram.asm"
 !default = 0
 
 ; FreeRAM for toggle, cleared on level load
-!Toggle = !toggle_block_duplication
+!Toggle = !toggle_block_duplication_freeram
 
 
 !addr = $0000
