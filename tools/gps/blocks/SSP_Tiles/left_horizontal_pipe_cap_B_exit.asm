@@ -58,7 +58,7 @@ exit:
 	STZ $7B			;\Prevent centering, and then displaced by xy speeds.
 	STZ $7D			;/
 	STZ $76			;>don't exit backwards.
-	%FaceYoshi()
+	%face_yoshi()
 return:
 	RTL
 passable:

@@ -59,7 +59,7 @@ exit:
 	STZ $7D			;/
 	LDA #$01		;\don't exit backwards.
 	STA $76			;/
-	%FaceYoshi()
+	%face_yoshi()
 return:
 	RTL
 passable:

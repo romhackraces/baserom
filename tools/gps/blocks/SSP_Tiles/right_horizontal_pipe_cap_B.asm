@@ -122,7 +122,7 @@ exit:
 	STZ $7D			;/
 	LDA #$01		;\mario faces right
 	STA $76			;/
-	%FaceYoshi()
+	%face_yoshi()
 return1:
 	RTL
 passable:

@@ -121,7 +121,7 @@ exit:
 	STZ $7D			;/
 	STZ $76			;>mario faces left.
 
-	%FaceYoshi()
+	%face_yoshi()
 return1:
 	RTL
 passable:
