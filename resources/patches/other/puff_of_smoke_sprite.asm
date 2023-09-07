@@ -1,5 +1,5 @@
-; Vanilla sprite  numberto use
-!num = $69
+; Unused Vanilla sprite number to use
+!num = $12
 
 ; Tweaker $1656
 org $07F26C+!num : db $00

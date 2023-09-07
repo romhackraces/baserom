@@ -1,6 +1,7 @@
 ; act as 25
 
-!smoke_num = $69
+; Smoke sprite number from puff_of_smoke.asm patch
+!smoke_num = $12
 
 db $42
 
