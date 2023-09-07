@@ -37,6 +37,7 @@ Dark Room Background Fix - Roy - https://smwc.me/s/19456
 Dead Spring Fix - Kevin - https://smwc.me/s/29595
 Double Spinjump Antifail - Alcaro - https://smwc.me/s/13400
 Feather Autoscroll Freeze Fix - Romi - https://smwc.me/s/19333
+Fix Turning On NMI - spooonsss - https://smwc.me/s/34149
 Hammer Bro Fix v1.1 - Tattletale, yoshifanatic - https://smwc.me/s/18722
 Horizontal Scroll Snap Fix - Kevin - https://smwc.me/s/29085
 Item Box Mushroom Priority Fix - Alcaro - https://smwc.me/s/18320
