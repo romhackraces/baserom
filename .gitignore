@@ -1,6 +1,4 @@
 tools/addmusick/asm/*
-# Keep UserDefines
-tools/addmusick/asm/!UserDefines.asm
 tools/addmusick/SPCs/*.spc
 tools/addmusick/stats/*.txt
 tools/addmusick/music/originals/*
@@ -8,8 +6,6 @@ tools/addmusick/samples*
 tools/addmusick/temp*
 tools/addmusick/1DF9/*
 tools/addmusick/1DFC/*
-# Keep Custom SFX
-tools/addmusick/1DFC/!Death Prelude.txt
 tools/addmusick/Visualizations/*
 tools/addmusick/*.pl
 tools/addmusick/Addmusic_*.txt
@@ -43,3 +39,6 @@ temp.*
 *.smc~
 *.spc
 *.zip
+# Keep particular files
+tools/addmusick/asm/!UserDefines.asm
+tools/addmusick/1DFC/!Death Prelude.txt
