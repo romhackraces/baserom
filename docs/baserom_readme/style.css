@@ -85,9 +85,9 @@ a.go-to-top:hover {
   background-color: #e6edff
 }
 .infobox {
-  width: 100%;
+  width: calc(100% - 16px);
   display: block;
-  padding: 8px 0;
+  padding: 8px;
   font-size: .9em;
   margin: 2em 0;
   text-align: center;

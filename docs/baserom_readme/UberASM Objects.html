@@ -10,12 +10,21 @@
 <a href="../../README.html" class="back">🠈</a>
 <h2>UberASM objects</h2>
 <p>The baserom uses a framework of custom objects to allow you to toggle or activate some UberASM features that are in the baserom. This are activated simply by inserting a custom extension object into whichever levels you want.</p>
-<h3 id="inserting-objects">Inserting Objects</h3>
-<p>To insert a custom object either use the "Edit > Insert manual..." menu action or press the <code>Insert</code> key while in Lunar Magic's Object editing mode.</p>
-<p>Multiple custom UberASM objects can be active in one level and they can be inserted one at time by putting its value in the <b>Size/Type/Ext (0-FF)</b> field.</p>
+<!-- Contents -->
+<h3 id="#">Contents</h3>
+<ul>
+<li><a href="#inserting-objects">Inserting Custom Objects</a></li>
+<li><a href="#toggle-objects">Feature Toggles</a></li>
+<li><a href="#retry-objects">Retry System Settings</a></li>
+</ul>
+<!-- Section -->
+<h3 id="inserting-objects">Inserting Custom Objects</h3>
+<p>To insert a custom object either use the "Edit > Insert manual..." menu action or press the <code>Insert</code> key while in Lunar Magic's Object editing mode to bring up the following window.</p>
 <center><img src="img/insert_object_manual.png"></center>
+<p>To insert a custom UberASM object put its value from the tables below in the <b>Size/Type/Ext</b> field seen above. Multiple custom UberASM objects can be active in one level when they are inserted one at time.</p>
 <p>When inserted, custom objects will look garbled in Lunar Magic since they load a "null" object but they won't actually appear in game. The tiles they are made up of may occasionally use an exit-enabled (door) tile which may display a warning depending on your Lunar Magic settings.</p>
 <center><img src="img/garbled_extension_objects.png"></center>
+<!-- Section -->
 <h3 id="toggle-objects">Feature Toggles</h3>
 <p>The following objects can be used to enable or toggle features in levels in the baserom.</p>
 <table border="1" class="full">
@@ -32,6 +41,7 @@
 </table>
 </section>
 <section>
+<!-- Section -->
 <h3 id="retry-objects">Retry System Settings</h3>
 <p>Inserting these objects into your level can override the default settings of the retry system.</p>
 <table border="1" class="full">

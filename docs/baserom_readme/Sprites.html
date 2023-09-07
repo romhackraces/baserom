@@ -17,14 +17,12 @@
 <p>A couple global sprites have been patched into the baserom for ease of use.</p>
 <table border="1" class="full">
     <tr><th>#</th><th>Sprite</th><th>Description</th></tr>
-    <tr><td>53</td><td>Throw Block Mushroom</td><td>Placeable throwblock</td></tr>
     <tr><td>85</td><td>Poison Mushroom</td><td>Mushroom that kills the player.</td></tr>
 </table>
 <h3>Sprite Extra Bit Settings</h3>
 <p>A number of vanilla sprites have been enhanced to have their behaviour changed by setting the extra bit.</p>
 <table border="1" class="full">
     <tr><th>#</th><th>Sprite</th><th>Extra Bit Clear (0)</th><th>Extra Bit Set (1)</th></tr>
-    <tr><td>--</td><td>All Chucks</td><td>Normal</td><td>keeps their behaviour, doesn't chase Mario</td></tr>
     <tr><td>04-07</td><td>Big Koopas</td><td>Normal</td><td>Kicked shell of same color</td></tr>
     <tr><td>08</td><td>Green Parakoopa</td><td>Normal</td><td>Kicked double-bounce shell</td></tr>
     <tr><td>11</td><td>Buzzy Beetle</td><td>Normal</td><td>Kicked buzzy beetle shell</td></tr>
@@ -39,6 +37,7 @@
     <tr><td>AB</td><td>Rex</td><td>Normal</td><td>Squished</td></tr>
     <tr><td>E0</td><td>3 Platforms on Chains</td><td>Normal, grey platforms</td><td>Triple Ball n' Chain</td></tr>
     <tr><td>DA-DF</td><td>Shells</td><td>Normal</td><td>Disco shell</td></tr>
+    <tr><td>--</td><td>All Chucks</td><td>Normal</td><td>keeps their behaviour, won't chase Mario</td></tr>
 </table>
 <p>To insert a sprite with an extra bit setting either use the "Edit > Insert manual..." menu action or press the <code>Insert</code> key while in Lunar Magic's Sprite editing mode. Alternatively, you can place a sprite and <code>Alt + Right-Click</code> on the sprite to show the "Modify Sprite Manual (in hex)" window.</p>
 <center><img src="img/modify_sprite.png"></center>

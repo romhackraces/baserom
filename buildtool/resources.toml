@@ -18,7 +18,8 @@ overworld = "resources/global/overworld.bps"
 titlescreen = "resources/global/titlescreen.bps"
 global_exanimation = "resources/global/exanimation.bps"
 
-# Patches
+# These are the Asar patches Callisto applies at build time.
+# You can remove or comment out (append a # to the line) from this file to "un-apply" a patch.
 patches = [
 	"resources/patches/consistency/capespin_direction.asm",
 	"resources/patches/consistency/capespin_net_hitbox.asm",

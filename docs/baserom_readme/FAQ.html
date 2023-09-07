@@ -17,11 +17,14 @@
 <h3 id="build-scripts">"What happened to the build scripts?"</h3>
 <p>In an effort to keep the baserom lean, we're going all-in on the Callisto build tool. The build batch files, while useful, were also a bit of maintainance burden and didn't work for some people.</p>
 <hr>
+<h3 id="no-bps">"Where is the BPS patch to use the baserom?"</h3>
+<p>To get people familiar with the build process of the baserom we've opted to not include the BPS patch to create a ready-to-use baserom. The very simple initialization steps will create a clean slate to get started on a project. If you are in need of a BPS file, Callisto can create one with the <code>Package</code> action.</p>
+<hr>
 <h3 id="removing-things">"How do I remove things from the baserom?"</h3>
-<p>Callisto makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts. Removing resources, like blocks or sprites, is as straightforward as editing the list of the respective tool, or removing things from the "resources.toml" in the buildtool folder and running the <code>Update</code> action. Afterwards you can then delete those resources, if desired.</p>
+<p>Callisto makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts.</p><p> Removing resources, like blocks, sprites, music, etc., follows the usual process for each tool, <b>but</b> you simply run an <code>Update</code> action from Callisto instead of running the tool itself.</p><p>Removing patches is also relatively straightforward, you can remove them from the <code>[patches]</code> section of <a href="../../buildtool/resources.toml">resources.toml</a> in the buildtool folder, and also run an <code>Update</code> action in Callisto.</p>
 <hr>
 <h3 id="hide-statusbar">"How do I hide the status bar?"</h3>
-This baserom comes with several objects to toggle features in levels, including the status bar. Check out the <a href="UberASM Objects.html">UberASM Objects</a> documentation for details.
+<p>This baserom comes with several objects to toggle features in levels, including one to hide the status bar. Check out the <a href="UberASM Objects.html">UberASM Objects</a> documentation for details.</p>
 <hr>
 <h3 id="fast-retry">"Does this have Fast Retry?"</h3>
 <p>Yes! By default the baserom is configured to be "vanilla" but you can turn on the retry in a level using a custom object. The <a href="UberASM Objects.html#retry-objects">UberASM Objects</a> has a section for the retry system with details. Otherwise you can make hack-wide changes to the retry system, by editing its config files in <code>tools/uberasmtool/retry_config</code>.</p>
@@ -37,13 +40,6 @@ This baserom comes with several objects to toggle features in levels, including 
 <li>Rebuild your project in Callisto to make the change.</li>
 </ol>
 <hr>
-<!-- <h3 id="script-cannot-run">"Why can't I run the initialization script?"</h3>
-<p>This is due to something in Windows called <a target="_blank" href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies">Execution Policies</a> which is a security and safety feature to prevent the execution of malicious scripts, by preventing any script from being run at all (among other things).</p>
-<p>You can however change the Execution Policy to something more permissive to allow you to run scripts on your computer. To do this launch PowerShell with the <b>Run as administrator</b> option, type or paste the following, and hit Enter.</p>
-<pre>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned</pre>
-<p>Now you should be able to run the initialization script. When you are all finished you can set it back to the default for your computer.</p>
-<pre>Set-ExecutionPolicy -ExecutionPolicy Default</pre>
-<p></p> -->
 <a href="#" class="go-to-top"></a>
 </section>
 </body>
