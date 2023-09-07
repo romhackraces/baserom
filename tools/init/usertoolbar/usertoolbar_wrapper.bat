@@ -1,10 +1,9 @@
 @echo off
 cls
-:start
 
 :: Working Directory
 setlocal DisableDelayedExpansion
-set WORKING_DIR=%~dp0
+set WORKING_DIR=%~sdp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
@@ -12,31 +11,51 @@ setlocal EnableDelayedExpansion
 set "ROOT_DIR=%WORKING_DIR:\tools\lunar_magic=%"
 
 :: Other Defines
-set TOOLS_DIR=%ROOT_DIR%tools\
+set tools_dir=%ROOT_DIR%tools\
 
 :: addmusick
-set amk_path=!TOOLS_DIR!addmusick
+set amk_path=!tools_dir!addmusick
 set amk_list=!amk_path!\Addmusic_list.txt
 :: pixi
-set pixi_path=!TOOLS_DIR!pixi
+set pixi_path=!tools_dir!pixi
 set pixi_list=!pixi_path!\list.txt
 :: gps
-set gps_path=!TOOLS_DIR!gps
+set gps_path=!tools_dir!gps
 set gps_list=!gps_path!\list.txt
 :: uberasm
-set uber_path=!TOOLS_DIR!uberasmtool
+set uber_path=!tools_dir!uberasmtool
 set uber_list=!uber_path!\list.txt
 
-go
-set p=%~2
-set p=%~3 & set p2=%p:'="%
-set p=%~4 & set p3=%p:'="%
-set p=%~5 & set p4=%p:'="%
-set p=%~6 & set p5=%p:'="%
-set p=%~7 & set p6=%p:'="%
-set p=%~8 & set p7=%p:'="%
-set p=%~9 & set p8=%p:'="%
-set p=%~9 & set p9=%p:'="%
+setlocal enabledelayedexpansion
 
-start "" %p2% %p3% %p4% %p5% %p6% %p7% %p8% %p9%
+:ParseArgs
+if "%~1"=="" goto :EOF
+
+if /i "%~1"=="--file" (
+    set file=%~2
+    goto :RunEditor
+)
+if /i "%~1"=="--path" (
+    set path=%~2
+    goto :OpenDir
+)
+if /i "%~1"=="--app" (
+    set app=%~2
+    goto :OpenApp
+)
+goto :ParseArgs
+
+:RunEditor
+start "" /b %file%
+goto :Exit
+
+:OpenDir
+start "" /b %path%
+goto :Exit
+
+:OpenApp
+start "" /b "%app%"
+goto :Exit
+
+:Exit
 exit
