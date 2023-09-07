@@ -44,6 +44,7 @@ patches = [
 	"resources/patches/fixes/autoscroll_lr_fix.asm",
 	"resources/patches/fixes/ball_chain_yoshi_fix.asm",
 	"resources/patches/fixes/block_duplication_fix.asm",
+	"resources/patches/fixes/block_snake_fix.asm",
 	"resources/patches/fixes/bomb_palette_fix.asm",
 	"resources/patches/fixes/bounce_block_death_fix.asm",
 	"resources/patches/fixes/bowser_fire_despawn_fix.asm",
