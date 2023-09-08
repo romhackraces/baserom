@@ -3,15 +3,15 @@ cls
 
 :: Working Directory
 setlocal DisableDelayedExpansion
-set WORKING_DIR=%~sdp0
+set WORKING_DIR=%~dp0
 set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: get root directory since this script runs from the LM folder
-set "ROOT_DIR=%WORKING_DIR:\tools\lunar_magic=%"
+set "ROOT_DIR=!WORKING_DIR:\tools\lunar_magic=!"
 
 :: Other Defines
-set tools_dir=%ROOT_DIR%tools\
+set tools_dir=!ROOT_DIR!tools\
 
 :: addmusick
 set amk_path=!tools_dir!addmusick
