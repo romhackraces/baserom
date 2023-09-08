@@ -57,7 +57,6 @@ patches = [
 	"resources/patches/fixes/double_spin_fix.asm",
 	"resources/patches/fixes/feather_during_autoscroll_fix.asm",
 	"resources/patches/fixes/fire_berry_fix.asm",
-	"resources/patches/fixes/fix_turning_on_nmi.asm",
 	"resources/patches/fixes/hammer_bro_fix.asm",
 	"resources/patches/fixes/horizontal_scroll_fix.asm",
 	"resources/patches/fixes/layer2+3_triangles_fix.asm",

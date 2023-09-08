@@ -46,12 +46,6 @@ if !Replace = 0
 	!lowertile = #$0025
 endif
 
-lorom
-
-!SA1   = 0
-!base2 = $0000
-!base3 = $800000
-
 if read1($00ffd5) == $23
 	sa1rom
 	!SA1		= 1
@@ -59,6 +53,11 @@ if read1($00ffd5) == $23
 	!base3		= $000000
 	!FreeRAM	= !FreeRAM_SA1
 	!buffer = !buffer_SA1
+else
+	lorom
+	!SA1   = 0
+	!base2 = $0000
+	!base3 = $800000
 endif
 
 !table1 = !FreeRAM

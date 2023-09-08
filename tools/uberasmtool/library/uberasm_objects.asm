@@ -105,7 +105,7 @@ run_routines:
     phy             ; pushing current table index rather than caching in scratch so routines can use scratch
     sep #$10        ; ensuring routines get 8-bit everything
     ldx #$00
-    jsr ($0002,x)   ; jump to object routine in $02-$03
+    jsr ($0002|!dp,x)   ; jump to object routine in $02-$03
     rep #$10        ; restore 16-bit X/Y
     ply             ; restore current table index
 

@@ -1,7 +1,11 @@
-!sa1 = 0
 if read1($00FFD5) == $23
-  sa1rom
-  !sa1 = 1
+	sa1rom
+	!sa1	= 1
+	!bank	= $000000
+else
+	lorom
+	!sa1	= 0
+	!bank	= $800000
 endif
 
 !Scratch = $0D
@@ -39,9 +43,9 @@ LDA #$9E		;ball 'n chain
 
 .L2
 STA !Scratch		;store sprite number to scratch ram
-JML $02AF41		;
+JML $02AF41|!bank		;
 
 StoreSprite:
 LDA !Scratch		;
 STA $3200,x		;sprite number
-JML $07F7D2		;restore sprite table reset call
+JML $07F7D2|!bank		;restore sprite table reset call

@@ -1,7 +1,11 @@
 if read1($00FFD5) == $23
-    sa1rom
+	sa1rom
+	!sa1	= 1
+	!bank	= $000000
 else
-    lorom
+	lorom
+	!sa1	= 0
+	!bank	= $800000
 endif
 
 org $02FEAB
@@ -14,4 +18,4 @@ LDY $73
 BNE +
 LDA.w #$0020
 +
-JML $02FEB0
+JML $02FEB0|!bank

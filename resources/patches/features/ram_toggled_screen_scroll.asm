@@ -6,6 +6,12 @@ incsrc "../../../shared/freeram.asm"
 
 if read1($00FFD5) == $23
 	sa1rom
+	!sa1	= 1
+	!bank	= $000000
+else
+	lorom
+	!sa1	= 0
+	!bank	= $800000
 endif
 
 !Freeram = !toggle_lr_scroll_freeram ;Set this to freeram
@@ -19,7 +25,7 @@ LRcheck:
 	BEQ DisableLR
 	LDA $17
 	AND.b #$CF
-	JML $00CDFA
+	JML $00CDFA|!bank
 
 DisableLR:
-	JML $00CE49
+	JML $00CE49|!bank
