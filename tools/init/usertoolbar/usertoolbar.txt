@@ -29,7 +29,7 @@ LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 LM_SPACER
 
 ***START***
-usertoolbar_wrapper.bat "--app" "!pixi_path!\CFG editor.exe"
+usertoolbar_wrapper.bat "--app" "!pixi_path!" "CFG editor.exe"
 20,Launch CFG Editor
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 

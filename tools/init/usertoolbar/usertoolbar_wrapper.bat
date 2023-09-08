@@ -11,22 +11,20 @@ setlocal EnableDelayedExpansion
 set "ROOT_DIR=!WORKING_DIR:\tools\lunar_magic=!"
 
 :: Other Defines
-set tools_dir=!ROOT_DIR!tools\
+set "tools_dir=!ROOT_DIR!tools\"
 
 :: addmusick
-set amk_path=!tools_dir!addmusick
-set amk_list=!amk_path!\Addmusic_list.txt
+set "amk_path=!tools_dir!addmusick"
+set "amk_list=!amk_path!\Addmusic_list.txt"
 :: pixi
-set pixi_path=!tools_dir!pixi
-set pixi_list=!pixi_path!\list.txt
+set "pixi_path=!tools_dir!pixi"
+set "pixi_list=!pixi_path!\list.txt"
 :: gps
-set gps_path=!tools_dir!gps
-set gps_list=!gps_path!\list.txt
+set "gps_path=!tools_dir!gps"
+set "gps_list=!gps_path!\list.txt"
 :: uberasm
-set uber_path=!tools_dir!uberasmtool
-set uber_list=!uber_path!\list.txt
-
-setlocal enabledelayedexpansion
+set "uber_path=!tools_dir!uberasmtool"
+set "uber_list=!uber_path!\list.txt"
 
 :ParseArgs
 if "%~1"=="" goto :EOF
@@ -40,21 +38,22 @@ if /i "%~1"=="--path" (
     goto :OpenDir
 )
 if /i "%~1"=="--app" (
-    set app=%~2
+    set path=%~2
+    set app=%~3
     goto :OpenApp
 )
 goto :ParseArgs
 
 :RunEditor
-start "" /b %file%
+start "" /b "%file%"
 goto :Exit
 
 :OpenDir
-start "" /b %path%
+start "" /b "%path%"
 goto :Exit
 
 :OpenApp
-start "" /b "%app%"
+start "" /b "%path%\%app%"
 goto :Exit
 
 :Exit
