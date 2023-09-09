@@ -18,7 +18,7 @@
 2a1	0	A block that acts like a stationary Swooper.
 2a2	0	Sets the ON/OFF status to ON when anything (incl. dead sprites) passes through it.
 2a3	0	Sets the ON/OFF status to OFF when anything (incl. dead sprites) passes through it.
-2a4	0	A block that will teleport Mario to the current screen exit.
+2a4	0	A block that will teleport Mario to set current screen exit.
 2a5	0	A single-use bounce block. Noteblock bounce height, doesn't negate spin
 2aa	0	Scroll camera left. (Remove graphics in Map16 when finished.)
 2ab	0	Scroll camera right. (Remove graphics in Map16 when finished.)
