@@ -4,7 +4,8 @@ Clear-Host
 $WorkingDir = Get-Location
 $ToolsDir = "$WorkingDir\tools"
 $DocsDir = "$WorkingDir\docs\tools"
-$ListsDir = "$WorkingDir\resources\initial_lists\"
+$ResourcesDir = "$WorkingDir\resources\"
+$ListsDir = "$ResourcesDir\initial_lists\"
 
 # Dot includes
 . $ToolsDir\init\tool_defines.ps1
@@ -45,13 +46,12 @@ function Move-Docs($ToolName, $DocFiles, $Directory) {
             if (Test-Path -Path $sourcePath) {
                 if (Test-Path -Path $sourcePath -PathType Container) {
                     # Move directories recursively
-                    Move-Item -Path $sourcePath -Destination $destinationPath -Force
+                    Copy-Item -Path $sourcePath -Destination $destinationPath -Force
+                    Remove-Item -Path $sourcePath -Recurse -Force
                 } else {
                     # Move files
                     Move-Item -Path $sourcePath -Destination $destinationPath -Force
                 }
-            } else {
-                Write-Host "Item '$sourcePath' does not exist."
             }
         }
     }
@@ -144,6 +144,9 @@ function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $Do
             Download-Tool $ToolName $DownloadUrl
             # Expand Archive
             Expand-Archive -Path "$env:temp\$ToolName.zip" -DestinationPath $DestinationDir -Force
+            # Copy over Callisto's initial BPS patches
+            Copy-Item -Path "$Callisto_Dir\initial_patches\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
+            Copy-Item -Path "$Callisto_Dir\initial_patches\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
             # Install Callisto's modified asar dll.
             Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $GPS_Dir -Force
             Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
