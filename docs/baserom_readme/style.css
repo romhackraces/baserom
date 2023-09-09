@@ -8,6 +8,13 @@ body {
   background-color: #fff;
   color: #000
 }
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 section {
   margin: 0 3em
 }
@@ -22,7 +29,7 @@ pre {
   border-radius: 6px
 }
 img {
-  margin: 1em 0;
+  margin: 0.5em;
   display: block;
   max-width: 100%;
   height: auto

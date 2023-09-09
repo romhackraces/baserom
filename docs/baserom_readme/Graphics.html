@@ -11,7 +11,7 @@
 <section>
 <a href="../../README.html" class="back">🠈</a>
 <h2>Graphics</h2>
-<p>The baserom does a good amount of shuffling and remapping to fit in some useful sprite and block resources.</p>
+<p>The baserom remaps a bunch of sprites and shuffles some graphics around to fit in some useful sprite and block resources. Below is a breakdown of all of the graphical modifications made to the Vanilla game, if you are interested in seeing what those changes are or want to revert them.</p>
 
 <h3 id="#">Contents</h3>
 <ul>
@@ -19,6 +19,7 @@
 <ul>
     <li><a href="#edited_GFX00">GFX00</a>, <a href="#edited_GFX01">GFX01</a>, <a href="#edited_GFX08">GFX08</a>, <a href="#edited_GFX13">GFX13</a>, <a href="#edited_GFX14">GFX14</a>, <a href="#edited_GFX16">GFX16</a>, <a href="#edited_GFX17">GFX17</a>, <a href="#edited_GFX1E">GFX1E</a>, <a href="#edited_GFX2A">GFX2A</a>, <a href="#edited_GFX2B">GFX2B</a></li>
 </ul>
+<li><a href="#remapped-graphics">Remapped Graphics</a></li>
 <li><a href="#exgraphics">ExGraphics</a></li>
 <li><a href="#alt-exgfx">Alternate ExGraphics</a></li>
 </ul>
@@ -96,6 +97,19 @@
 <li>the castle conveyor/stairs have been fixed to use the the castle's brick pattern.</li>
 </ul>
 <small>*See the <a href="../../resources/patches/sprite_remaps.asm">resources/patches/sprite_remaps.asm</a> file for detailed remapping information.</small>
+<hr>
+<!-- Section -->
+<h3 id="remapped-graphics">Remapped Graphics</h3>
+<p>In resources that formerly contained tiles for remapped sprites (namely the lava splash tiles, Yoshi tongue tiles, and the ON/OFF bounce sprite tiles) there will be placeholder graphics in the freed-up space.</p>
+<div class="flex">
+    <center><code>GFX03</code><img src="img/edited_GFX03.png"></center>
+    <center><code>GFX04</code><img src="img/edited_GFX04.png"></center>
+    <center><code>GFX05</code><img src="img/edited_GFX05.png"></center>
+    <center><code>GFX06</code><img src="img/edited_GFX06.png"></center>
+    <center><code>GFX0D</code><img src="img/edited_GFX0D.png"></center>
+    <center><code>GFX0E</code><img src="img/edited_GFX0E.png"></center>
+</div>
+<hr>
 <!-- Section -->
 <h3 id="exgraphics">ExGraphics</h3>
 <h4 id="edited_ExGFX">ExGFXB54: ExGraphic Version of Big Bush and Pipe (BG2)</h4>
@@ -113,6 +127,7 @@
 <ul>
 <li>a basic 8x8 font and symbol set for in-level text, used in the Demo level.</li>
 </ul>
+<hr>
 <!-- Section -->
 <h3 id="alt-exgfx">Alternate ExGraphics</h3>
 <p>Lunar Magic supports a special sort of ExGraphic called "Alternate ExGFX" which is used for ExAnimation to store frames that are globally available in the ROM (opposed to slot AN2, which is per-level) these are limited to ExGFX60-63</p>
