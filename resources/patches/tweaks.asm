@@ -126,6 +126,9 @@ org $07F69C : db $25
 ; fix bat ceiling gfx
 org $02FDB8 : db $AE,$AE,$C0,$E8
 
+; fix reflecting fireball displaying garbage tiles when entering lava
+org $07F57D : db $01
+
 ; fix the last tile of the Turnblock Bridge being X flipped.
 org $01B79D : db $20
 
