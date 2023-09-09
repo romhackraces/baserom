@@ -8,7 +8,11 @@
 05 0010 A red shell that spawns kicked towards the player.
 06 0010 A blue hell that spawns kicked towards the player.
 07 0010 A yellow shell that spawns kicked towards the player.
-08 0010 A double hit green shell that spawns kicked towards the player.
+08 0010 A double hit grey/green shell that spawns kicked towards the player.
+
+; Green Parakoopa Shell
+DF 0002 0,0,21E
+DF 0000 A Green Para-Koopa shell, takes two hits to stop. Appears grey but turns green after the first hit.
 
 ; Kicked Buzzy Beetle
 11 0012 0,0,D 0,0,10A
