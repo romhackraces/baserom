@@ -16,9 +16,8 @@
 <h3>Contents</h3>
 <ol>
 <li><a href="#bug-fixes">Bug Fixes</a></li>
-<li><a href="#bug-fixes">Bug Fixes</a></li>
 <li><a href="#sprite-fixes">Sprite Fixes</a></li>
-<li><a href="#visual-fixes">Visual Glitch Fixes</a></li>
+<li><a href="#graphical-fixes">Graphical Fixes</a></li>
 <li><a href="#consistency">Changes for Consistency</a></li>
 <li><a href="#optimizations">Optimizations</a></li>
 <li><a href="#additional-patches">Additional Patches</a></li>
@@ -70,7 +69,7 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/16781">Vertical Level Bowser Statue Fireball Fix</a>↗</td><td>fixes a bug where Bowser statue fireballs don't despawn offscreen in vertical levels</td></tr>
 </table>
 <!-- Section -->
-<h3 id="visual-fixes">Visual Glitch Fixes</h3>
+<h3 id="graphical-fixes">Graphical Fixes</h3>
 <table border="1">
 <tr><td><a target="_blank" href="https://smwc.me/s/32380">BG Candle Flames Priority Fix (for SA-1 MaxTile)</a>↗</td><td>if using SA-1 there is an issue with the candle flames having priority over other sprites, this fixes that</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/24684">Bob-omb Kicked Palette Fix</a>↗</td><td>fixes an issue in the bob-omb where when it is kicked while flashing it sticks in that palette</td></tr>
@@ -139,43 +138,45 @@
 <h4 id="gameplay-changes">Gameplay Changes</h4>
 <p>Some minor changes have been made to the game to optimize it for building Kaizo levels:</p>
 <ul>
-<li>Doors have been edited to have larger enterable region (similar to the boss door).</li>
+<li>Doors have been changed to have larger enterable region (similar to the Boss door).</li>
 <li>Mario-Sprite interaction has been patched to be every frame (colloquially known as the &quot;Frame Rules&quot; patch).</li>
-<li>Bob-Omb explosions now interact with Mario and other sprites every frame</li>
-<li>the rescue message when Yoshi hatches from an egg has been removed</li>
-<li>the bridge will no longer break in the Reznor fight</li>
-<li>the framerule on yellow koopa jumping has been removed</li>
+<li>Bob-omb explosions now interact with Mario and other sprites every frame.</li>
+<li>The rescue message when Yoshi hatches from an egg has been removed.</li>
+<li>The bridge will no longer break in the Reznor fight (useful for using Reznor outside the mode7 room).</li>
+<li>The framerule on Yellow shellless koopa jumping has been removed.</li>
 <li>Horizontal pipes now have an exit sound.</li>
-<li>RNG has been removed from jumping fireballs/podobos</li>
-<li>the timeout on the intro message has been shortened</li>
-<li>Mario won't shoot fireballs while spin jumping</li>
+<li>RNG has been removed from jumping fireballs/podobos.</li>
+<li>The timeout on the intro message has been shortened.</li>
+<li>Mario won't shoot fireballs while spin jumping.</li>
 </ul>
 <h4 id="fixed-bugs-glitches">Fixed Bugs &amp; Glitches</h4>
 <p>A number of bugs and glitches have been patched out of the original game so they will not impact your levels:</p>
 <ul>
-<li>Yoshi stomp hitbox will no longer wrap the screen</li>
-<li>horizontal pipes now make an exit sound</li>
-<li>music won't disappear overworld when boss defeated</li>
-<li>game will no longer crash if trying to stop layer 3 smash with generator D2</li>
-<li>an issue where ? block sprites are immune to fire has been fixed</li>
-<li>beating a boss in sublevel 18 will no longer glitch Yoshi and stop Mario from walking past a goal tape</li>
-<li>a bug where the message box closing removes sprite tiles has been fixed</li>
+<li>Yoshi stomp hitbox will no longer wrap the screen.</li>
+<li>Music won't disappear overworld when boss defeated.</li>
+<li>Game will no longer crash if trying to stop layer 3 smash with generator D2</li>
+<li>Fixed an issue where sprites that spawn from a question block are immune to fire</li>
+<li>Beating a boss in sublevel 18 will no longer glitch Yoshi and stop Mario from walking past a goal tape</li>
+<li>A bug where the message box closing removes sprite tiles has been fixed</li>
+<li>Picking up throw blocks in levels with buoyancy will no longer splash</li>
+<li>A number of small bugs when using HDMA have be fixed</li>
 </ul>
 <h4 id="visual-changes-fixes">Visual Changes &amp; Fixes</h4>
 <p>Several minor visual problems and oversights in the vanilla game have been fixed or corrected:</p>
 <ul>
-<li>the chuck arm's palette has been fixed</li>
-<li>dolphin tails will no longer appear when they are vertically off screen</li>
-<li>the backwards end tile on the turn block bridge sprites have been corrected</li>
-<li>the palette error on the &quot;S&quot; of MARIO START has been corrected</li>
-<li>Wendy's bow animation has been fixed</li>
-<li>the Swooper ceiling and dead Swooper graphics have been fixed</li>
-<li>an incorrect tile in the keyhole iris effect has been fixed</li>
-<li>the Erase Game darkening has been removed</li>
-<li>reflecting fireballs no longer turn into garbage tiles when they enter lava</li>
-<li>the incorrect tile color in the layer 3 cave background has been fixed</li>
-<li>magikoopa's palette cycle has been corrected</li>
-<li>a number of bugs when using HDMA have be fixed</li>
+<li>The shoulder tile of Chucks now uses the same palette as the rest/</li>
+<li>Dolphin tails will no longer appear when they are vertically off screen/</li>
+<li>The backwards tile on the end of a turn block bridge sprite has been corrected.</li>
+<li>An incorrectly coloured tile in the layer 3 cave has been corrected.</li>
+<li>The palette error on the &quot;S&quot; of MARIO START has been corrected.</li>
+<li>The tiles of Wendy's bow animation has been fixed.</li>
+<li>The Swooper ceiling and dead Swooper graphics have been fixed.</li>
+<li>An incorrect tile in the keyhole iris effect has been fixed.</li>
+<li>The "Erase Game" menu darkening has been removed so it doesn't look bad on some custom backgrounds.</li>
+<li>Reflecting fireballs no longer turn into garbage tiles when they enter lava.</li>
+<li>The incorrect tile color in the layer 3 cave background has been fixed.</li>
+<li>Magikoopa's palette cycle has been corrected.</li>
+<li>Some small fixes to layer 2 priority in vertical levels.</li>
 </ul>
 <a href="#" class="go-to-top"></a>
 </section>
