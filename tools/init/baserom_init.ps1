@@ -173,7 +173,7 @@ while ($UserChoice -ne "4") {
                         Write-Host "Running a first-build in Callisto...`n"
                         $command = "$Callisto_Dir\callisto.exe"
                         $args = "rebuild"
-                        $process = Start-Process -FilePath $command -ArgumentList $args -Wait -PassThru
+                        $process = Start-Process -FilePath $command -ArgumentList $args -Wait -PassThru -NoNewWindow
                         $exitCode = $process.ExitCode
                         # If callisto succeeds, create checkfile, if not don't.
                         if ($exitCode -eq 0) {
