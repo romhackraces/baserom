@@ -46,7 +46,7 @@ function Move-Docs($ToolName, $DocFiles, $Directory) {
             if (Test-Path -Path $sourcePath) {
                 if (Test-Path -Path $sourcePath -PathType Container) {
                     # Move directories recursively
-                    Copy-Item -Path $sourcePath -Destination $destinationPath -Force
+                    Copy-Item -Path $sourcePath -Destination $destinationPath -Force -Recurse
                     Remove-Item -Path $sourcePath -Recurse -Force
                 } else {
                     # Move files
