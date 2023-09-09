@@ -1,3 +1,4 @@
+docs/tools/*
 tools/addmusick/asm/*
 tools/addmusick/SPCs/*.spc
 tools/addmusick/stats/*.txt
@@ -40,5 +41,6 @@ temp.*
 *.spc
 *.zip
 # Keep particular files
+!.gitkeep
 tools/addmusick/asm/!UserDefines.asm
 tools/addmusick/1DFC/!Death Prelude.txt

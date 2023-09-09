@@ -3,6 +3,7 @@ Clear-Host
 # Directory Definitions
 $WorkingDir = Get-Location
 $ToolsDir = "$WorkingDir\tools"
+$DocsDir = "$WorkingDir\docs\tools"
 $ListsDir = "$WorkingDir\resources\initial_lists\"
 
 # Dot includes
@@ -25,6 +26,32 @@ function Remove-Junk($Directory, $JunkFiles) {
     }
 }
 
+# Function to move documentation files
+function Move-Docs($ToolName, $DocFiles, $Directory) {
+
+    if (-not (Test-Path -Path "$DocsDir\$ToolName" -PathType Container)) {
+        New-Item -Path "$DocsDir\$ToolName" -ItemType Directory -Force | Out-Null
+    }
+
+    if ($DocFiles -ne $null -and $DocFiles.Count -gt 0) {
+        foreach ($file in $DocFiles) {
+            $sourcePath = Join-Path -Path $Directory -ChildPath $file
+            $destinationPath = Join-Path -Path $DocsDir -ChildPath $ToolName
+            if (Test-Path -Path $sourcePath) {
+                if (Test-Path -Path $sourcePath -PathType Container) {
+                    # Move directories recursively
+                    Move-Item -Path $sourcePath -Destination $destinationPath -Force
+                } else {
+                    # Move files
+                    Move-Item -Path $sourcePath -Destination $destinationPath -Force
+                }
+            } else {
+                Write-Host "Item '$sourcePath' does not exist."
+            }
+        }
+    }
+}
+
 # Function to create .is_setup check file
 function CheckFile-Create($Directory) {
     # Create is_setup checkfile
@@ -40,7 +67,7 @@ function Download-Tool($Name, $Url) {
 }
 
 # Generic function to set up a tool
-function SetupTool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $ListFile) {
+function SetupTool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $DocFiles, $ListFile) {
     if (Test-Path "$DestinationDir.is_setup" -PathType Leaf) {
         Write-Host "-- $ToolName already is set up in: $DestinationDir"
     } else {
@@ -49,6 +76,8 @@ function SetupTool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $ListFi
             Download-Tool $ToolName $DownloadUrl
             # Expand Archive
             Expand-Archive -Path "$env:temp\$ToolName.zip" -DestinationPath $DestinationDir -Force
+            # Move Readme files
+            Move-Docs $ToolName $DocFiles $DestinationDir
             # Clean up junk files
             Remove-Junk $DestinationDir $JunkFiles
             # Copy pre-existing list file (if it exists)
@@ -74,7 +103,7 @@ function SetupTool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $ListFi
 }
 
 # Specific function to set AddMusicK
-function SetupAMK($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
+function SetupAMK($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $DocFiles) {
     if (Test-Path "$DestinationDir.is_setup" -PathType Leaf) {
         Write-Host "-- $ToolName already is set up in: $DestinationDir"
     } else {
@@ -83,7 +112,9 @@ function SetupAMK($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
             Download-Tool $ToolName $DownloadUrl
             # AddMusicK specific actions because zip is subfolder >:(
             Expand-Archive -Path $env:temp\$ToolName.zip -DestinationPath $env:temp\ -Force
-            Copy-Item "$env:temp\AddmusicK_*\*" -Destination $AddMusicK_Dir -Recurse -Force
+            Copy-Item "$env:temp\AddmusicK_*\*" -Destination $DestinationDir -Recurse -Force
+            # Move Readme files
+            Move-Docs $ToolName $DocFiles $DestinationDir
             # Clean up junk files
             Remove-Junk $DestinationDir $JunkFiles
             # Copy AddMusicK list files to tool directory
@@ -99,7 +130,7 @@ function SetupAMK($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
 }
 
 # Specific function to set up Callisto
-function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
+function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $DocFiles) {
     if (Test-Path "$DestinationDir.is_setup" -PathType Leaf) {
         Write-Host "-- $ToolName already is set up in: $DestinationDir"
     } else {
@@ -113,6 +144,8 @@ function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles) {
             Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
             Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
             Copy-Item -Path "$Callisto_Dir\asar\64-bit\asar.dll" -Destination $PIXI_Dir -Force
+            # Move Readme files
+            Move-Docs $ToolName $DocFiles $DestinationDir
             # Clean up junk files
             Remove-Junk $DestinationDir $JunkFiles
             # Create is_setup checkfile
@@ -149,13 +182,13 @@ while ($UserChoice -ne "4") {
         "1" {
             Clear-Host
             Write-Host "Checking state of tools...`n"
-            SetupAMK  "AddMusicK" $AddMusicK_Download $AddMusicK_Dir $AddMusicK_Junk ""
-            SetupTool "Flips" $Flips_Download $Flips_Dir $Flips_Junk ""
-            SetupTool "GPS" $GPS_Download $GPS_Dir $GPS_Junk "list_gps.txt" # name of list in initial_lists
-            SetupTool "PIXI" $PIXI_Download $PIXI_Dir $PIXI_Junk "list_pixi.txt" # name of list in initial_lists
-            SetupTool "Lunar Magic" $LunarMagic_Download $LunarMagic_Dir $LunarMagic_Junk ""
-            SetupTool "UberASMTool" $UberASMTool_Download $UberASMTool_Dir $UberASMTool_Junk "list_uberasm.txt" # name of list in initial_lists
-            SetupCallisto "Callisto" $Callisto_Download $Callisto_Dir $Callisto_Junk ""
+            SetupAMK  "AddMusicK" $AddMusicK_Download $AddMusicK_Dir $AddMusicK_Junk $AddMusicK_Docs ""
+            SetupTool "Flips" $Flips_Download $Flips_Dir $Flips_Junk $Flips_Docs ""
+            SetupTool "GPS" $GPS_Download $GPS_Dir $GPS_Junk $GPS_Docs "list_gps.txt" # name of list in initial_lists
+            SetupTool "PIXI" $PIXI_Download $PIXI_Dir $PIXI_Junk $PIXI_Docs "list_pixi.txt" # name of list in initial_lists
+            SetupTool "Lunar Magic" $LunarMagic_Download $LunarMagic_Dir $LunarMagic_Junk $LunarMagic_Docs ""
+            SetupTool "UberASMTool" $UberASMTool_Download $UberASMTool_Dir $UberASMTool_Junk $UberASMTool_Docs "list_uberasm.txt" # name of list in initial_lists
+            SetupCallisto "Callisto" $Callisto_Download $Callisto_Dir $Callisto_Junk $Callisto_Docs ""
             Write-Host "`nAll done."
         }
 
