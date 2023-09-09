@@ -20,8 +20,7 @@ endif
 ; check for interaction every single frame (as opposed to every other frame)
 org $02A0B2 : db $00 ; fireball-sprite
 org $01A7EF : db $00 ; mario-sprite
-; made redundant by CapespinNetHitboxConsistency.asm
-;org $029500 : db $00 ; capespin-sprite
+;org $029500 : db $00 ; capespin-sprite -- made redundant by capespin consistency patch
 
 ; make Bob-Omb explosions interact with Mario and other sprites every frame
 org $0280A8 : bra $05
