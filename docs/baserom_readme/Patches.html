@@ -36,7 +36,6 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/19456">Dark Room Background Fix</a>↗</td><td>allows the spotlight/dark room effect to be used in other level modes (besides 11) and not erase the background</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/26543">Eating Blocks Freeze Fix</a>↗</td><td>Fixes the bug where spawning an eating/creating block while another one is moving will make the other one stop. </td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/19333">Feather Autoscroll Freeze Fix</a>↗</td><td>fixes a game crash that occurs if you collect a feather while offscreen in an autoscroller</td></tr>
-<tr><td><a target="_blank" href="https://smwc.me/s/34149">Fix Turning On NMI</a>↗</td><td>Fixes how NMI is turned on, which can make HDMAs malfunction for a frame after level loading.</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/29085">Horizontal Scroll Snap Fix</a>↗</td><td>fixes an issue where the screen snaps horizontally when the player isn't in the middle of the screen</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/18320">Item Box Mushroom Priority Fix</a>↗</td><td>changes the Mushroom to be a lower priority sprite in the item box, not overriding a reserve Flower</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/21413">Layer 2+3 Wallrun Triangle Fix</a>↗</td><td>enables the wall run triangle to be used on Layer 2</td></tr>
@@ -61,7 +60,7 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/18721">Moving Castle Block Offscreen Handling Fix</a>↗</td><td>fixes an issue in the Castle block where it doesn't despawn when offscreen</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/08784">Rope Fix</a>↗</td><td>fixes the bug where being pushed off a rope by a wall will leave Mario in climbing state</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/20145">Skull Raft Fix</a>↗</td><td>removes the issue in the skull raft where Mario can get stuck between two skulls</td></tr>
-<tr><td><a target="_blank" href="https://smwc.me/s/22084">Springboard Fixes</a>↗</td><td>this patch prevents Mario from being able to regrab a springboard very briefly after it's been kicked as well as prevents Mario from losing his x speed on the same frame one is picked up</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/s/22084">Springboard Fixes</a>↗</td><td>this patch prevents Mario from being able to regrab a springboard very briefly after it's been kicked as well as prevents Mario from losing his X-speed on the same frame one is picked up</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/14697">Sprite Ceiling Fix</a>↗</td><td>fixes an issue with a number of sprite's collision where they will pass through a ceiling when they come in contact with it</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/13675">Sprite Scroll Fix</a>↗</td><td>fixes an issue with sprite despawning during screen scroll (not via L/R)</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/21707">Triple Rotating Platform Vertical Level Fix</a>↗</td><td>a fix for the rotating platform not spawning when placed in vertical levels</td></tr>
@@ -71,9 +70,9 @@
 <!-- Section -->
 <h3 id="graphical-fixes">Graphical Fixes</h3>
 <table border="1">
-<tr><td><a target="_blank" href="https://smwc.me/s/32380">BG Candle Flames Priority Fix (for SA-1 MaxTile)</a>↗</td><td>if using SA-1 there is an issue with the candle flames having priority over other sprites, this fixes that</td></tr>
-<tr><td><a target="_blank" href="https://smwc.me/s/24684">Bob-omb Kicked Palette Fix</a>↗</td><td>fixes an issue in the bob-omb where when it is kicked while flashing it sticks in that palette</td></tr>
-<tr><td><a target="_blank" href="https://smwc.me/s/32586">Climbing Net Door on Subscreen Boundary</a>↗</td><td>fixes a mostly visual bug in the Net door sprite where it doesn't fully erase tiles behind it when on a screen boundary</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/s/32380">BG Candle Flames Priority Fix (for SA-1 MaxTile)</a>↗</td><td>if using SA-1, there is an issue with the candle flames having priority over other sprites, this fixes that</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/s/24684">Bob-omb Kicked Palette Fix</a>↗</td><td>fixes an issue in the Bob-omb where when it is kicked while flashing it gets stuck in that palette.</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/s/32586">Climbing Net Door on Subscreen Boundary</a>↗</td><td>fixes a bug in the Net door sprite where it doesn't fully erase tiles behind it when on a screen boundary</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/17740">Spike Swim Fix</a>↗</td><td>fixes an issue where when Mario takes damage underwater during a swim his graphics appear garbled</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/30709">Star/Slide Kill GFX Fix</a>↗</td><td>fixes the garbled graphics when you kill a sprite via slide or star that does not have death graphics</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/08975">Title Window Cleaner</a>↗</td><td>removes garbage tiles from the title screen that appear when certain sprites are on positions in the overworld</td></tr>
@@ -102,16 +101,16 @@
 </table><!-- Section -->
 <h3 id="additional-patches">Additional Patches</h3>
 <table border="1">
-<tr><td><a target="_blank" href="https://smwc.me/s/32381">Extended No More Sprite Tile Limits</a>↗</td><td>Allow more <i>extended</i> sprite tiles to be displayed.</td></tr>
-<td>Free Up Tile 69</td><td>patch to re-assign the empty tile at $69 in SP1 to $83 to allow it to be used for other purposes</td>
-<tr><td>Free Up RAM</td><td>Frees up 32KiB of RAM at 7F0000 for use during levels.</td></tr>
+<td>Free Up Tile 69</td><td>patch to re-assign the empty tile at <code>0x469</code> (SP1) to <code>0x483</code> (SP2) to allow it to be used for other purposes.</td>
+<tr><td>Free Up RAM</td><td>Frees up ~32KiB of RAM at 7F0000 for use during levels.</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/24816">No More Sprite Tile Limits</a>↗</td><td>allows more sprite tiles to be displayed on screen simultaneously</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/s/32381">Extended No More Sprite Tile Limits</a>↗</td><td>Allow more <i>extended</i> sprite tiles to be displayed.</td></tr>
 </table>
 <!-- Section -->
 <h3 id="features">New Features</h3>
 <table border="1">
 <tr><td><a target="_blank" href="https://smwc.me/s/22888">Individual Dragon Coin Save</a>↗</td><td>patches the Dragon Coin system so they are saved when collected</td></tr>
-<tr><td><a target="_blank" href="https://smwc.me/s/24217">ObjecTool 0.5</a>↗</td><td>this system allows for the insertion of custom objects, the baserom makes use of this to enable toggleable features</td></tr>
+<tr><td><a target="_blank" href="https://smwc.me/s/24217">ObjecTool 0.5</a>↗</td><td>this allows for the insertion of custom objects, the baserom makes use of this to enable <a href="UberASM Objects.html">UberASM Objects</a>.</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/26002">Mario's 8x8 Tiles DMA-er</a>↗</td><td>this moves all of the small 8x8 tiles used by Mario when he is climbing or swimming or caping, to be a dynamic asset freeing up a bunch of sprite tiles space in SP1</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/20355">RAM Specific L/R Scroll Disable</a>↗</td><td>rather than a global solution disabling L/R scroll this enabled it to be toggled via FreeRAM</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/28449">RAM Toggled Status Bar</a>↗</td><td>allows the status bar to be toggled via FreeRAM instead of patched out globally</td></tr>

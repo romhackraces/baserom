@@ -11,29 +11,29 @@
 <section>
 <a href="../../README.html" class="back">🠈</a>
 <h2>Map16</h2>
-
+<!-- Section -->
 <h3>Point of Advice</h3>
 <p>You should use Lunar Magic's "Add Objects" window as much as possible to construct your levels instead of placing tiles directly from map16. Objects that are composed of several tiles take up fewer bytes in-ROM when placed in levels. When you use direct map16, each tile placed in a level counts as its own object in the level and this can dramatically increase the bytesize of levels if there are many many tiles.</p>
-
+<!-- Section -->
 <h3>Map16 Pages</h3>
 <p>The following are all the modified pages in the baserom.</p>
 <b>Page 02</b>
 <p>This page has the global tiles for the baserom, which includes come common vanilla ground tiles, as well as all the custom <a href="Blocks.html">blocks</a>.</p>
 <center><img width="512" border="2" src="img/map16_page02.png" title="Map16 Page 02 of the base rom" alt="Map16 Page 02 of the base rom"></center>
 <table border="1">
-    <tr><th>Tile Num</th><th>Description</th></tr>
-    <tr><td>200-20A</td><td>These tiles are reserved for Lunar Magic's layer 3 "Make tides act as" setting. Any block that is inserted here (or used as an act as) will be the tile the Layer 3 tide works as instead of water or lava or any of the other options.</td></tr>
-    <tr><td>20B-20F</td><td>Tiles for flipped muncher, "anon" block, outlined note and coin block, as well as 1F0.</td></tr>
-    <tr><td>210-28F</td><td>A bunch of common vanilla ground tiles and uncommon net tiles.</td></tr>
-    <tr><td>290-2AF</td><td>The tiles for the custom blocks inserted by GPS, see <a href="Blocks.html">Blocks</a> document for more details.</td></tr>
-    <tr><td>2B0-2BC</td><td>Tiles for a variety of custom question blocks, also inserted by GPS.</td></tr>
-    <tr><td>2C0,2C1,2D0,2D1</td><td>Rope-styled one-ways.</td></tr>
-    <tr><td>2C2,2C3,2D3,2D4</td><td>Mechanical-styled one-ways.</td></tr>
-    <tr><td>2C4,2C5,2D4,2D5</td><td>General purpose arrow indicators.</td></tr>
-    <tr><td>2C6-2C8,2D6-2D8</td><td>Additional sprite killer tiles.</td></tr>
-    <tr><td>2C9</td><td>Skull-styled death block.</td></tr>
-    <tr><td>2CA,2DA</td><td>Vine ends.</td></tr>
-    <tr><td>2D9</td><td>Green coin.</td></tr>
+<tr><th>Tile Num</th><th>Description</th></tr>
+<tr><td>200-20A</td><td>These tiles are reserved for Lunar Magic's layer 3 "Make tides act as" setting. Any block that is inserted here (or used as an act as) will be the tile the Layer 3 tide works as instead of water or lava or any of the other options.</td></tr>
+<tr><td>20B-20F</td><td>Tiles for flipped muncher, "anon" block, outlined note and coin block, as well as 1F0.</td></tr>
+<tr><td>210-28F</td><td>A bunch of common vanilla ground tiles and uncommon net tiles.</td></tr>
+<tr><td>290-2AF</td><td>The tiles for the custom blocks inserted by GPS, see <a href="Blocks.html">Blocks</a> document for more details.</td></tr>
+<tr><td>2B0-2BC</td><td>Tiles for a variety of custom question blocks, also inserted by GPS.</td></tr>
+<tr><td>2C0,2C1,2D0,2D1</td><td>Rope-styled one-ways.</td></tr>
+<tr><td>2C2,2C3,2D3,2D4</td><td>Mechanical-styled one-ways.</td></tr>
+<tr><td>2C4,2C5,2D4,2D5</td><td>General purpose arrow indicators.</td></tr>
+<tr><td>2C6-2C8,2D6-2D8</td><td>Additional sprite killer tiles.</td></tr>
+<tr><td>2C9</td><td>Skull-styled death block.</td></tr>
+<tr><td>2CA,2DA</td><td>Vine ends.</td></tr>
+<tr><td>2D9</td><td>Green coin.</td></tr>
 </table>
 <b>Page 03</b>
 <p>This page has the tiles for the screenscrolling pipes and global line guides laid out in a fairly intuitive way.</p>
