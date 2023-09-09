@@ -3,9 +3,7 @@
 05 0012 0,0,31 0,0,10A
 06 0012 0,0,32 0,0,10A
 07 0012 0,0,33 0,0,10A
-DF 0002 0,0,21E
 08 0012 0,0,21E 0,0,10A
-
 04 0010 A green shell that spawns kicked towards the player.
 05 0010 A red shell that spawns kicked towards the player.
 06 0010 A blue hell that spawns kicked towards the player.
@@ -87,4 +85,6 @@ E0 0112 1,16,1D6 3,32,1D6 0,48,1C4 16,48,1C5 0,64,1D4 16,64,1D5 12,-10,1D6 24,-2
 
 ; Poison mushroom
 85 0002 0,0,214
-85 0000 A poison mushroom which hurts the player.
+85 0012 0,0,225 0,-8,10A
+85 0000 A poison mushroom. Hurts or kills depending on extra bit settings. Currently set to Hurt.
+85 0010 A poison mushroom. Hurts or kills depending on extra bit settings. Currently set to Kill.

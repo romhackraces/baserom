@@ -19,4 +19,4 @@ autoclean JSL Clean
 freespace noram
 Clean:
 JSL $04F675|!bank
-JML $7F8000|!bank
+JML $7F8000
