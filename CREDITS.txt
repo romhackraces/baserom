@@ -19,7 +19,7 @@ Triple Ball 'n' Chain - imamelia - https://smwc.me/s/19256
 
 -- Feature Patches --
 Individual Dragon Coin Save - JackTheSpades, lx5, worldpeace - https://smwc.me/s/22888
-ObjecTool 0.5 - 0x400, imamelia - https://smwc.me/s/24217
+ObjecTool 0.5* - 0x400, imamelia - https://smwc.me/s/24217
 RAM Specific L/R Scroll Disable - Chdata - https://smwc.me/s/20355
 RAM Toggled Status Bar (& IRQ) - Kevin - https://smwc.me/s/28449
 
@@ -27,7 +27,7 @@ RAM Toggled Status Bar (& IRQ) - Kevin - https://smwc.me/s/28449
 $13FB Game Crash Fix (Fireberry) - p4plus2 - https://smwc.me/s/18319
 Ball n' Chain and Yoshi Interaction Fix - Kevin - https://smwc.me/s/22761
 BG Candle Flames Priority Fix (for SA-1 MaxTile) - Kevin - https://smwc.me/s/32380
-Block Duplication Fix v1.5 - Tattletale, lolcats439 - https://smwc.me/s/18413
+Block Duplication Fix v1.5* - Tattletale, lolcats439 - https://smwc.me/s/18413
 Bob-omb Kicked Palette Fix - Koopster - https://smwc.me/s/24684
 Bounce Blocks Death Fix - Kevin - https://smwc.me/s/25647
 Cape Layer 2 Position Fix - HammerBrother - https://smwc.me/s/12328
