@@ -1,7 +1,9 @@
 v5.0
-- new Callisto workflow Baserom
-- revamped uberasm objects system
+- new Callisto-based workflow Baserom
+- entirely revamped uberasm objects system
 - rewrote all documentation in html
 - initialization script is now in Powershell
 - updated ExGraphics and Map16
+- leaner baserom overall
 - tidied up block code
+- major tool updates to UberASMTool 2.0 and AddMusicK 1.0.9

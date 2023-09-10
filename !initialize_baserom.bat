@@ -12,7 +12,8 @@ if exist "%cleanRom%" (
     echo -- Cannot Proceed --
     echo.
     echo You have not provided a clean Super Mario World ROM for use with the baserom tools.
-    echo Please put a copy of your ROM in ^"resources^" folder renamed to ^"clean.smc^"
+    echo Please put a copy of your ROM in ^"resources^" folder renamed to ^"clean.smc^" or
+    echo consult the README for details.
     echo.
 )
 pause
