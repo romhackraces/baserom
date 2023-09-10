@@ -28,6 +28,7 @@ failed_save.txt
 temp/*
 temp.*
 *.*~
+*.bps
 *.chm
 *.chw
 *.dll

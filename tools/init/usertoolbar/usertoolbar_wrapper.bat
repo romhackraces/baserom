@@ -13,6 +13,8 @@ set "ROOT_DIR=!WORKING_DIR:\tools\lunar_magic=!"
 :: Other Defines
 set "tools_dir=!ROOT_DIR!tools\"
 
+:: callisto
+set "callisto_path=!ROOT_DIR!buildtool"
 :: addmusick
 set "amk_path=!tools_dir!addmusick"
 set "amk_list=!amk_path!\Addmusic_list.txt"
@@ -40,6 +42,7 @@ if /i "%~1"=="--path" (
 if /i "%~1"=="--app" (
     set path=%~2
     set app=%~3
+    set param=%~4
     goto :OpenApp
 )
 goto :ParseArgs
@@ -53,7 +56,7 @@ start "" /b "%path%"
 goto :Exit
 
 :OpenApp
-start "" /b "%path%\%app%"
+start "" /i /wait "%path%\%app%" %param%
 goto :Exit
 
 :Exit

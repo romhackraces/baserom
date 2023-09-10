@@ -13,6 +13,24 @@ LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 ***START***
 LM_SPACER
 
+***START***
+usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" ""
+8,Open Callisto
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" "update"
+9,Run Callisto Update
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" "package"
+10, Make a BPS patch with Callisto
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
+LM_SPACER
+
 ; PIXI
 
 ***START***
@@ -26,7 +44,7 @@ usertoolbar_wrapper.bat "--file" "!pixi_list!"
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
-usertoolbar_wrapper.bat "--app" "!pixi_path!" "CFG editor.exe"
+usertoolbar_wrapper.bat "--app" "!pixi_path!" "CFG editor.exe" ""
 3,Launch CFG Editor
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
