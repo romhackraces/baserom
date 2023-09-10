@@ -9,8 +9,8 @@ initial_patch = "resources/initial_patches/fastrom.bps"
 
 # Exported resources
 levels = "resources/levels"
-shared_palettes = "resources/shared_palettes.pal"
-map16 = "resources/all_map16.map16"
+shared_palettes = "resources/palettes/Shared.pal"
+map16 = "resources/map16/All.map16"
 
 # Global resources
 credits = "resources/global/credits.bps"
