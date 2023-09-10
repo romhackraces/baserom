@@ -96,4 +96,13 @@ usertoolbar_wrapper.bat "--file" "!amk_list!"
 2,Edit Music List
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
+***START***
+LM_SPACER
+
+***START***
+usertoolbar_wrapper.bat "--file" "!readme!"
+0,Open Baserom Readme
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+
 ***END***
