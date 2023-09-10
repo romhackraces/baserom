@@ -4,8 +4,8 @@ Clear-Host
 $WorkingDir = Get-Location
 $ToolsDir = "$WorkingDir\tools"
 $DocsDir = "$WorkingDir\docs\tools"
-$ResourcesDir = "$WorkingDir\resources\"
-$ListsDir = "$ResourcesDir\initial_lists\"
+$ResourcesDir = "$WorkingDir\resources"
+$ListsDir = "$ToolsDir\init\lists"
 
 # Dot includes
 . $ToolsDir\init\tool_defines.ps1
