@@ -7,7 +7,7 @@ LM_SPACER
 
 ***START***
 explorer.exe %2
-6,Open Current ROM Directory
+1,Open Current ROM Directory
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
@@ -17,20 +17,17 @@ LM_SPACER
 
 ***START***
 usertoolbar_wrapper.bat "--path" "!pixi_path!"
-17,Open PIXI Directory
+4,Open PIXI Directory
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
 usertoolbar_wrapper.bat "--file" "!pixi_list!"
-18,Edit Sprite List
+2,Edit Sprite List
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
-LM_SPACER
-
-***START***
 usertoolbar_wrapper.bat "--app" "!pixi_path!" "CFG editor.exe"
-20,Launch CFG Editor
+3,Launch CFG Editor
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
@@ -41,12 +38,12 @@ LM_SPACER
 
 ***START***
 usertoolbar_wrapper.bat "--path" "!gps_path!"
-23,Open GPS Directory
+5,Open GPS Directory
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
 usertoolbar_wrapper.bat "--file" "!gps_list!"
-24,Edit Custom Block List
+2,Edit Custom Block List
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
@@ -57,12 +54,12 @@ LM_SPACER
 
 ***START***
 usertoolbar_wrapper.bat "--path" "!uber_path!"
-27,Open UberASMTool Directory
+6,Open UberASMTool Directory
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
 usertoolbar_wrapper.bat "--file" "!uber_list!"
-28,Edit UberASM list
+2,Edit UberASM list
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
@@ -73,12 +70,12 @@ LM_SPACER
 
 ***START***
 usertoolbar_wrapper.bat "--path" "!amk_path!"
-30,Open AddMusicK Directory
+7,Open AddMusicK Directory
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***
 usertoolbar_wrapper.bat "--file" "!amk_list!"
-31,Edit Music List
+2,Edit Music List
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***END***

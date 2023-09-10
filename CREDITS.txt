@@ -112,7 +112,4 @@ Lunar Magic 3.33 - FuSoYa - https://fusoya.eludevisibility.org/lm/program.html
 PIXI v1.40 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/32277
 UberASMTool 2.0 - Vitor Vilela, Fernap - https://github.com/Fernap/UberASMTool
 
--- Other Credits --
-Burning Loaf - Icons taken from Trinkets (https://smwc.me/s/32272) for custom toolbar actions.
-
 * modified for use in the baserom
