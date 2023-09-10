@@ -1,11 +1,11 @@
 db $42
 
-print "Question block that always spawns a Galoomba."
+print "Question block that always spawns Roulette power up."
 ;print "Spawns sprite $",hex(!Sprite),"."
 
-!Sprite = $0F	; sprite number
+!Sprite = $81	; sprite number
 !State = $08	; $08 for normal, $09 for carryable sprites
-!1540_val = $3E	; If you use powerups, this should be $3E
+!1540_val = $00	; If you use powerups, this should be $3E
 				; Carryable sprites uses it as the stun timer
 
 !Placement = %move_spawn_above_block()

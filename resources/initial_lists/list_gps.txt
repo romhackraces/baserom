@@ -50,7 +50,9 @@
 02BA:0130 question_blocks/3E_blue_pswitch.asm
 02BB:0130 question_blocks/3E_silver_pswitch.asm
 02BC:0130 question_blocks/2F_spring.asm
-
+02BD:0130 question_blocks/81_roulette_power-up.asm
+;02BE ; reserved by baserom
+;02BF ; reserved by baserom
 
 ; SCREEN SCROLLING PIPES (DO NOT MODIFY) ------------------;
 

@@ -39,6 +39,7 @@
 2ba	0	Question block that always spawns a Blue P-Switch/POW.
 2bb	0	Question block that always spawns a Silver P-Switch/POW.
 2bc	0	Question block that always spawns a Spring.
+2bd	0	Question block that always spawns Roulette power up.
 300	0	Top-left cap piece of vertical 2-way pipe.
 301	0	Top-right cap piece of vertical 2-way pipe.
 302	0	Part of pipe that is passable.

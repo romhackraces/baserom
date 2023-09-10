@@ -18,6 +18,9 @@ JMP SpriteV : JMP SpriteH
 JMP Cape : JMP Return
 JMP Return : JMP Return : JMP Return
 
+Return:
+	RTL
+
 SpriteH:
 	%check_sprite_kicked_horizontal()
 	BCS SpriteShared
@@ -82,5 +85,4 @@ SpawnItem:
 +
 	PLY
 	PLX
-Return:
 	RTL
