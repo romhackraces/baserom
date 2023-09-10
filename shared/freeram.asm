@@ -22,5 +22,5 @@ if read1($00FFD5) == $23
     !retry_freeram =  $40A400
 else
     !objectool_level_flags_freeram = $7FA400 ; 13 bytes
-	!retry_freeram = $7FB400
+    !retry_freeram = $7FB400
 endif
