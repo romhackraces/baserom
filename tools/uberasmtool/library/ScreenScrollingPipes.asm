@@ -264,7 +264,7 @@ main:
 	..Horiz
 	LDA $187A|!addr		;\if mario is riding yoshi, then
 	BNE ...YoshiFaceHoriz	;/use "ride yoshi" pose
-	LDA #$00
+	LDA #$3C
 	BRA ..SetPose
 
 	...YoshiFaceHoriz
