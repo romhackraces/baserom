@@ -6,6 +6,8 @@ incsrc "../../../shared/freeram.asm"
 ; code for extended objects 98-FF
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+; Extended Objects 98-CF reserved by UberASM Object system
+
 CustExObj98:
 CustExObj99:
 CustExObj9A:
@@ -62,6 +64,23 @@ CustExObjCC:
 CustExObjCD:
 CustExObjCE:
 CustExObjCF:
+.set_object_flag
+    TXA				; get 2 * object number from X
+    LSR  			; divide by 2 since X was a word index
+	TAY  			; cache in Y
+	LSR #3			; divide by 8 since we have 8 bits/flags per byte
+	TAX				; use as index into the FreeRAM later
+	TYA				; restore object number from Y
+	AND #$07		; modulo 8 since we have 8 bits/flags per byte
+	TAY				; use result as loop variable
+	LDA ..masks,y	; load correct bit mask for corresponding bit
+    ORA !objectool_level_flags_freeram,x   ; account for previously set flags
+    STA !objectool_level_flags_freeram,x   ; store flag byte
+    RTS
+
+..masks
+	db 1,2,4,8,16,32,64,128
+
 CustExObjD0:
 CustExObjD1:
 CustExObjD2:
@@ -110,23 +129,7 @@ CustExObjFC:
 CustExObjFD:
 CustExObjFE:
 CustExObjFF:
-
-.set_object_flag
-    TXA				; get 2 * object number from X
-    LSR  			; divide by 2 since X was a word index
-	TAY  			; cache in Y
-	LSR #3			; divide by 8 since we have 8 bits/flags per byte
-	TAX				; use as index into the FreeRAM later
-	TYA				; restore object number from Y
-	AND #$07		; modulo 8 since we have 8 bits/flags per byte
-	TAY				; use result as loop variable
-	LDA ..masks,y	; load correct bit mask for corresponding bit
-    ORA !objectool_level_flags_freeram,x   ; account for previously set flags
-    STA !objectool_level_flags_freeram,x   ; store flag byte
-    RTS
-
-..masks
-	db 1,2,4,8,16,32,64,128
+	RTS
 
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ;

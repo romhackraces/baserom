@@ -1,7 +1,11 @@
-; UberASM Objects system
-; run the init in gamemode 12 (level load) and the main in gamemode 14 (in level)
-
 incsrc "../../../shared/freeram.asm"
+
+; UberASM Objects system
+;
+; run the init in gamemode 12 (level load) and the main in gamemode 14 (in level)
+;
+; This system requires ObjecTool and reserves Extended objects 98-CF
+; see patches/objectool/custom_object_code.asm for details
 
 macro ObjectRoutine(object_number, routine)
     db <object_number>-$98 : dw <routine>
@@ -265,3 +269,32 @@ retry_bottom_left:
 retry_no_midway_powerup:
     lda #$00 : sta !retry_freeram+$10
     rts
+
+; Extended Object B4
+; Extended Object B5
+; Extended Object B6
+; Extended Object B7
+; Extended Object B8
+; Extended Object B9
+; Extended Object BA
+; Extended Object BB
+; Extended Object BC
+; Extended Object BD
+; Extended Object BE
+; Extended Object BF
+; Extended Object C0
+; Extended Object C1
+; Extended Object C2
+; Extended Object C3
+; Extended Object C4
+; Extended Object C5
+; Extended Object C6
+; Extended Object C7
+; Extended Object C8
+; Extended Object C9
+; Extended Object CA
+; Extended Object CB
+; Extended Object CC
+; Extended Object CD
+; Extended Object CE
+; Extended Object CF
