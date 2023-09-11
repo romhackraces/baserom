@@ -24,6 +24,7 @@ routines:
     %ObjectRoutine($A3, eight_frame_float)
     %ObjectRoutine($A4, zero_float_delay)
     %ObjectRoutine($A5, death_on_power_up_loss)
+    %ObjectRoutine($A7, press_lr_to_die)
     %ObjectRoutine($B0, retry_instant)
     %ObjectRoutine($B1, retry_prompt)
     %ObjectRoutine($B2, retry_bottom_left)
@@ -223,6 +224,14 @@ death_on_power_up_loss:
 ; Extended Object A6 (is skipped because it loads a door tile)
 
 ; Extended Object A7
+press_lr_to_die:
+	LDA $18             ;\ Check if L & R are pressed
+	AND #%00110000      ;|
+	BEQ +               ;/
+	JSL $00F606|!bank   ; kill
+    +
+    rts
+
 ; Extended Object A8
 ; Extended Object A9
 ; Extended Object AA
