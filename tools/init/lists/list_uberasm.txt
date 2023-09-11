@@ -12,6 +12,9 @@ overworld:
 
 ; Game mode resources
 gamemode:
+
+    ; Gamemode ASM
+    ; Use the library method to add to these files.
     03 GM03.asm
     0C GM0C.asm
     0D GM0D.asm

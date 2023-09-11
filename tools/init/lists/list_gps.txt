@@ -1,8 +1,25 @@
-; PAGE 02 OF MAP16 ----------------------------------------;
+; GPS CUSTOM BLOCKS LIST --------------------------------------------;
+; Place your custom blocks in this list file like so:
+;
+;    <map 16 tile number>:<block act-as> custom_block.asm
+;
+; Be sure not to use a tile value already in use by the baserom.
+; -------------------------------------------------------------------;
+
+; 400:130 example.asm
+
+
+; BASEROM RESERVED BLOCKS BELOW -------------------------------------;
+; The following blocks are largely on Pages 02 and 03 of Map16
+; To be safe, start listing your additions on Page 04 (400).
+; -------------------------------------------------------------------;
+
+; PAGE 02 OF MAP16 --------------------------------------------------;
 ; 200-20A - reserved for layer 3 Tide act-as feature
 ; 209-28F - occupied with vanilla Tiles
 
-; CUSTOM GLOBAL BLOCKS (DO NOT MODIFY) --------------------;
+; Custom Global Blocks
+
 0290:0130 global/mario_passable.asm
 0291:0130 global/sprite_passable.asm
 0292:0025 global/sprite_bounce.asm
@@ -36,7 +53,7 @@
 02AE:0025 camera/vert_start.asm
 02AF:0025 camera/vert_stop.asm
 
-; CUSTOM QUESTION BLOCKS (DO NOT MODIFY) ------------------;
+; Custom Question Blocks
 02B0:0130 question_blocks/74_mushroom.asm
 02B1:0130 question_blocks/75_fire_flower.asm
 02B2:0130 question_blocks/77_feather.asm
@@ -54,7 +71,9 @@
 ;02BE ; reserved by baserom
 ;02BF ; reserved by baserom
 
-; SCREEN SCROLLING PIPES (DO NOT MODIFY) ------------------;
+; PAGE 03 OF MAP16 --------------------------------------------------;
+
+; Screen Scrolling Pipes
 
 ; Large Vertical Two-Way Pipe
 0300:0130 SSP_Tiles/top_vertical_pipe_cap_L.asm
@@ -152,12 +171,6 @@
 ; Filter Pipe
 0332-0335:0130 SSP_Tiles/pass_if_in_pipe_and_filter.asm
 0342-0345:0130 SSP_Tiles/pass_if_in_pipe_and_filter.asm
-
-; PLACE YOUR CUSTOM BLOCKS BELOW --------------------------;
-
-
-
-; PLACE YOUR CUSTOM BLOCKS ABOVE --------------------------;
 
 ; Addtional Tile Descriptions
 @dsc

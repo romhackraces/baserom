@@ -1,3 +1,6 @@
-; For use with the Donut block.
-; If you remove or change this be sure to update the donut_lift.asm block
+; Place your custom sprites in this list file, like the following: "00 custom_sprite.cfg/json"
+; Custom normal sprites can start at ID 00 and go up to BF.
+; Other sprite types have special considerations, see PIXI's readme for more details.
+
+; For use with the Donut block. If you remove or change this be sure to update the donut_lift.asm block
 A0 donut_sprite.cfg
