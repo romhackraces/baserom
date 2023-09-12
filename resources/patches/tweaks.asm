@@ -61,6 +61,9 @@ org $00D093 : db $80
 ;; Minor Fixes ;;
 ;;;;;;;;;;;;;;;;;
 
+; fix glitch with blocks not activating when hit with thrown sprites
+org $0195A5 : db $00
+
 ; fix throwblocks having splashes in buoyancy-enabled levels
 org $028648 : db $A5
 
