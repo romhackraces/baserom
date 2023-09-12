@@ -1,3 +1,6 @@
+# This config file contains settings for the whole project
+
+# Common configurations
 [settings]
 project_root = "../"
 check_conflicts = "hijacks"
@@ -28,10 +31,12 @@ use_text_map16_format = false
 enable_automatic_exports = true
 enable_automatic_reloads = true
 
+# Project output configuration
 [output]
 output_rom = "workspace/RHRv5.smc"
 temporary_folder = "workspace/temp"
 bps_package = "workspace/RHRv5.bps"
+
 
 # Build order configuration
 [orders]
