@@ -10,7 +10,9 @@ tools/addmusick/1DFC/*
 tools/addmusick/Visualizations/*
 tools/addmusick/*.pl
 tools/addmusick/Addmusic_*.txt
+tools/gps/block_boilerplate.asm
 tools/gps/rom.txt
+tools/gps/shared.asm
 tools/flips/flipscfg.bin
 tools/lunar_magic/usertoolbar*
 tools/uberasmtool/*.pdb

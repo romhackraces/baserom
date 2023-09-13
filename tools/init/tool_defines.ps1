@@ -10,7 +10,7 @@ $AddMusicK_Docs = @("readme_files", "readme.html")
 
 # Callisto
 $Callisto_Dir = "$WorkingDir\buildtool\"
-$Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.2.6/callisto-v0.2.6.zip"
+$Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.2.7/callisto-v0.2.7.zip"
 $Callisto_Junk = @("ASAR_LICENSE", "LICENSE", "config", "asar", "initial_patches")
 $Callisto_Docs = @("documentation")
 
@@ -28,7 +28,7 @@ $GPS_Docs = @("README.txt")
 
 # Lunar Magic
 $LunarMagic_Dir = "$ToolsDir\lunar_magic\"
-$LunarMagic_Download = "https://fusoya.eludevisibility.org/lm/download/lm333.zip"
+$LunarMagic_Download = "https://dl.smwcentral.net/32211/lm333.zip"
 $LunarMagic_Junk = "readme.txt"
 $LunarMagic_Docs = @("")
 

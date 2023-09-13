@@ -79,7 +79,7 @@ org $02D421 : db $6B
 ; fix bug in yoshi stomp hitbox
 org $0286D7 : db $D5
 
-; fix bug where ? block sprites are immune to fire
+; fix bug where ? sprites above slot $09 are immune to fire
 if !sa1 == 1
     org $02A0B9 : db $15
 else
