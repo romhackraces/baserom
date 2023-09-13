@@ -6,6 +6,11 @@ LM_ADDIMAGE "usertoolbar_icons.bmp"
 LM_SPACER
 
 ***START***
+LM_FILE_EMULATOR_RUN
+11,Run ROM in Emulator
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+
+***START***
 explorer.exe %2
 1,Open Current ROM Directory
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
@@ -103,6 +108,5 @@ LM_SPACER
 usertoolbar_wrapper.bat "--file" "!readme!"
 0,Open Baserom Readme
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
-
 
 ***END***
