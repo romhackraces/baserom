@@ -33,6 +33,7 @@ routines:
     %ObjectRoutine($B1, retry_prompt)
     %ObjectRoutine($B2, retry_bottom_left)
     %ObjectRoutine($B3, retry_no_midway_powerup)
+    %ObjectRoutine($B4, retry_vanilla)
 ..end
 
 init:
@@ -271,6 +272,10 @@ retry_no_midway_powerup:
     rts
 
 ; Extended Object B4
+; Vanilla death sequence
+retry_vanilla:
+    lda #$04 : sta !retry_freeram+$11
+    rts
 ; Extended Object B5
 ; Extended Object B6
 ; Extended Object B7

@@ -1,4 +1,5 @@
 init:
+    jsl retry_reset_init
     jsl double_hit_fix_init
     rtl
 
