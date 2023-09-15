@@ -7,7 +7,7 @@ LM_SPACER
 
 ***START***
 LM_FILE_EMULATOR_RUN
-11,Run ROM in Emulator
+11,Run ROM in Emulator (F4)
 LM_USEIMAGE_LIST
 
 ***START***
@@ -20,18 +20,21 @@ LM_SPACER
 
 ***START***
 usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" ""
-8,Open Callisto
+8,Open Callisto (Ctrl+B)
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+'b',VK_CONTROL
 
 ***START***
 usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" "update"
-9,Run Callisto Update
+9,Run Callisto Update (Ctrl+U)
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+'u',VK_CONTROL
 
 ***START***
 usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" "package"
-10, Make a BPS patch with Callisto
+10, Make a BPS patch with Callisto (Ctrl+P)
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+'p',VK_CONTROL
 
 ***START***
 LM_SPACER
@@ -106,23 +109,23 @@ LM_SPACER
 
 ***START***
 LM_VIEW_SURFACE_OUTLINE
-12,View Tile Outlines
+12,View Tile Outlines (Ctrl+F2)
 LM_USEIMAGE_LIST
 
 ***START***
 LM_VIEW_POW
-13,View Blue P-Switch/POW Effects
+13,View Blue P-Switch/POW Effects (F12)
 LM_USEIMAGE_LIST
 
 ***START***
 LM_VIEW_SILVER_POW
-14,View Silver P-Switch/POW Effects
+14,View Silver P-Switch/POW Effects (F11)
 LM_USEIMAGE_LIST
 LM_USEIMAGE_LIST
 
 ***START***
 LM_VIEW_LINE_ON
-15,Toggle ON/OFF Switch Animation
+15,Toggle ON/OFF Switch Animation (0)
 LM_USEIMAGE_LIST
 
 ***START***
@@ -130,7 +133,7 @@ LM_SPACER
 
 ***START***
 usertoolbar_wrapper.bat "--file" "!readme!"
-0,Open Baserom Readme
+0,Open Baserom Readme (Ctrl+H)
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
-
+'h',VK_CONTROL
 ***END***
