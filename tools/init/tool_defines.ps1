@@ -28,7 +28,7 @@ $GPS_Docs = @("README.txt")
 
 # Lunar Magic
 $LunarMagic_Dir = "$ToolsDir\lunar_magic\"
-$LunarMagic_Download = "https://dl.smwcentral.net/32211/lm333.zip"
+$LunarMagic_Download = "https://dl.smwcentral.net/35121/lm340.zip"
 $LunarMagic_Junk = "readme.txt"
 $LunarMagic_Docs = @("")
 

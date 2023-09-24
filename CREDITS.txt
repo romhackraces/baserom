@@ -109,7 +109,7 @@ Asar v1.81 - Alcaro et al. - https://smwc.me/s/25953
 Callisto v0.2.2 - underway - https://github.com/Underrout/callisto
 Flips v1.31 - Alcaro - https://smwc.me/s/11474
 GPS V1.4.4 - TheBiob, p4plus2 - https://smwc.me/s/29130
-Lunar Magic 3.33 - FuSoYa - https://fusoya.eludevisibility.org/lm/program.html
+Lunar Magic 3.40 - FuSoYa - https://fusoya.eludevisibility.org/lm/program.html
 PIXI v1.40 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/32277
 UberASMTool 2.0 - Vitor Vilela, Fernap - https://github.com/Fernap/UberASMTool
 
