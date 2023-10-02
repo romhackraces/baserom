@@ -1,3 +1,9 @@
+v5.1
+- fix small issue in the usertoolbar
+- update Callisto to 0.2.9
+- update to Lunar Magic 3.40
+- fix incorrect tile in retry settings
+
 v5.0
 - new Callisto-based workflow Baserom
 - entirely revamped uberasm objects system
