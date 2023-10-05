@@ -23,7 +23,6 @@ load_title:
 ;=====================================
 reset:
     ; Feel free to put your code here.
-    stz $0F5E|!addr ; matches clear_score_sprites.asm
     rts
 
 ;=====================================
