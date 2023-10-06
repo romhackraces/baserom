@@ -118,6 +118,9 @@ h3 {
   margin-top: 2em
 }
 @media (max-width:768px) {
+  body {
+    font-size: larger;
+  }
   a.back {
     float: none;
     margin: 0;
