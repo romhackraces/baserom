@@ -80,7 +80,6 @@ Status Bar NMI Optimizer v1.1 - Kevin - https://smwc.me/s/33996
 -- Misc. Patches --
 Extended No Sprite Tile Limits v4.0 - DiscoTheBat, Kevin, Roy, imamelia, worldpeace - https://smwc.me/s/32381
 Free Up RAM - dtothefourth, RPG Hacker, Erik/Kaijyuu
-Free Up Tile 69 - Kevin
 Mario's 8x8 Tiles DMA-er - Ladida, lx5 - https://smwc.me/s/26002
 No More Sprite Tile Limits v1.2.1 - Arujus, MathOnNapkins, Tattletale, NoelYoshi, Vitor Vilela, edit1754 - https://smwc.me/s/24816
 SA-1 Pack v1.40** - Arujus, Vitor Vilela - https://smwc.me/s/25938

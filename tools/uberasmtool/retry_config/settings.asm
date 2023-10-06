@@ -238,14 +238,14 @@
 ; Note: when the prompt box is enabled, !tile_curs and !tile_blk actually use 2 adjacent 8x8 tiles.
 ; For example, !tile_curs = $24 means both $24 and $25 will be overwritten.
 ; Also, obviously these aren't used if you don't use the Retry prompt.
-    !tile_curs = $69
-    !tile_blk  = $32
+    !tile_curs = $46
+    !tile_blk  = $56
     !tile_r    = $44
     !tile_e    = $45
     !tile_t    = $54
     !tile_y    = $55
-    !tile_x    = $46
-    !tile_i    = $47
+    !tile_x    = $29
+    !tile_i    = $39
 
 ;======================== Sprite Status Bar =============================;
 

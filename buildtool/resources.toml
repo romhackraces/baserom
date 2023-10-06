@@ -94,7 +94,6 @@ patches = [
 	"resources/patches/optimizations/optimize_statusbar_nmi.asm",
 	"resources/patches/optimizations/vram_optimize.asm",
 	"resources/patches/other/extended_no_more_sprite_tile_limits.asm",
-	"resources/patches/other/free_up_blank_tile.asm",
 	"resources/patches/other/free_up_ram.asm",
 	"resources/patches/other/mario_gfx_dma.asm",
 	"resources/patches/other/no_more_sprite_tile_limits.asm",
