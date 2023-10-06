@@ -7,8 +7,6 @@ body {
   line-height: 1.4em;
   background-color: #fff;
   color: #000
-  word-wrap: break-word;
-  text-align: justify;
 }
 
 .flex {
@@ -28,7 +26,8 @@ pre {
   color: #eee;
   font-size: larger;
   padding: 4px 12px;
-  border-radius: 6px
+  border-radius: 6px;
+  white-space: pre-wrap;
 }
 img {
   margin: 0.5em;
