@@ -169,9 +169,9 @@ function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $Do
 # Start the main menu loop
 $UserChoice = $null
 while ($UserChoice -ne "4") {
-    Write-Host "`n---------------------------------"
-    Write-Host "RHR Baserom (v5) - Initialization"
-    Write-Host "---------------------------------`n"
+    Write-Host "`n-------------------------------"
+    Write-Host "RHR Baserom v5 - Initialization"
+    Write-Host "-------------------------------`n"
     Write-Host "Welcome! To get started with the baserom, run both of the following steps:`n"
     Write-Host "1. Download and set up all baserom tools"
     Write-Host "2. Run a first build of the baserom in Callisto"
