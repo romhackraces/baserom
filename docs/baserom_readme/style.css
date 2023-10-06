@@ -57,19 +57,18 @@ td,
 th {
   padding: 4px
 }
-a.back {
+a.home {
   text-decoration: none!important;
   font-weight: 700;
   font-size: larger;
   float: left;
   margin-left: -2.5em;
-  margin-top: -6px;
-  color: #5880e5;
-  background-color: #eef3ff;
-  padding: 6px 8px;
+  margin-top: -8px;
+  background-color: transparent;
+  padding: 8px 6px;
   border-radius: 100%
 }
-a.back:hover {
+a.home:hover {
   background-color: #e6edff
 }
 a.go-to-top {
@@ -119,7 +118,7 @@ h3 {
   margin-top: 2em
 }
 @media (max-width:768px) {
-  a.back {
+  a.home {
     float: none;
     margin: 0;
     width: 100%;
