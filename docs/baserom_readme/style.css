@@ -7,6 +7,8 @@ body {
   line-height: 1.4em;
   background-color: #fff;
   color: #000
+  word-wrap: break-word;
+  text-align: justify;
 }
 
 .flex {
@@ -118,9 +120,6 @@ h3 {
   margin-top: 2em
 }
 @media (max-width:768px) {
-  body {
-    font-size: larger;
-  }
   a.back {
     float: none;
     margin: 0;
