@@ -54,8 +54,6 @@ org $018898 : BRA $05
 ; shorten intro message skip timer
 org $00A09C : db $04
 
-; don't shoot fireballs while spinjumping (default: $F0)
-org $00D093 : db $80
 
 ;;;;;;;;;;;;;;;;;
 ;; Minor Fixes ;;

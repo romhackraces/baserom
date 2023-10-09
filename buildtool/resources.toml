@@ -40,6 +40,7 @@ patches = [
 	"resources/patches/enhancements/triple_ball_n_chain.asm",
 	"resources/patches/features/dragon_coin_save.asm",
 	"resources/patches/features/ram_toggled_screen_scroll.asm",
+	"resources/patches/features/ram_toggled_spin_jump_fireballs.asm",
 	"resources/patches/features/ram_toggled_statusbar.asm",
 	"resources/patches/fixes/autoscroll_lr_fix.asm",
 	"resources/patches/fixes/ball_chain_yoshi_fix.asm",

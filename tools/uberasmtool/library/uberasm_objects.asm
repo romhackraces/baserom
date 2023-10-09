@@ -29,6 +29,7 @@ routines:
     %ObjectRoutine($A4, zero_float_delay)
     %ObjectRoutine($A5, death_on_power_up_loss)
     %ObjectRoutine($A7, press_lr_to_die)
+    %ObjectRoutine($A9, spinjump_fireballs)
     %ObjectRoutine($B0, retry_instant)
     %ObjectRoutine($B1, retry_prompt)
     %ObjectRoutine($B2, retry_bottom_left)
@@ -237,8 +238,13 @@ press_lr_to_die:
     +
     rts
 
-; Extended Object A8
+; Extended Object A8 (is skipped because it loads a door tile)
+
 ; Extended Object A9
+; toggle spin jump fireballs
+spinjump_fireballs:
+    lda #$01 : sta !toggle_spinjump_fireball_freeram
+    rts
 ; Extended Object AA
 ; Extended Object AB
 ; Extended Object AC

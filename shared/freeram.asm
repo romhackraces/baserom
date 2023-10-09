@@ -14,6 +14,7 @@ includeonce
 !toggle_lr_scroll_freeram = $7C ; 1 byte
 !toggle_statusbar_freeram = $79 ; 1 byte
 !toggle_vanilla_turnaround_freeram = $186A|!addr ; 1 byte
+!toggle_spinjump_fireball_freeram = $13E6|!addr ; 1 byte
 !toggle_block_duplication_freeram = $13E7|!addr ; 1 byte
 
 ; Large blocks of ram
