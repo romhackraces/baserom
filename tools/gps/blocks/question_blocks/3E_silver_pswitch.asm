@@ -11,8 +11,6 @@ print "Question block that always spawns a Silver P-Switch/POW."
 !Placement = %move_spawn_above_block()
 		; Use %move_spawn_above_block() if the sprite should appear above the block, otherwise %move_spawn_into_block()
 
-SwitchPalette: db $06,$02
-
 JMP MarioBelow : JMP Return : JMP Return
 JMP SpriteV : JMP SpriteH
 JMP Cape : JMP Return
@@ -86,3 +84,5 @@ SpawnItem:
 	PLY
 	PLX
 	RTL
+
+SwitchPalette: db $06,$02
