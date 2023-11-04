@@ -8,18 +8,13 @@ body {
   background-color: #fff;
   color: #000
 }
-
 .flex {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
-
 section {
   margin: 0 3em
-}
-small {
-  color: #777
 }
 pre {
   background-color: #222;
@@ -48,7 +43,8 @@ table {
 small {
   display: block;
   width: 100%;
-  text-align: right
+  text-align: right;
+  color: #777;
 }
 table.full {
   width: 100%
