@@ -1,5 +1,7 @@
 v5.2
 - add new "Baserom Basics" documentation
+- other README edits
+- added statusbar toggle uberasm to library
 - reconfigure Retry prompt tile address settings
 - drop unneeded "Free Up 69" patch
 
