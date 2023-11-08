@@ -11,12 +11,6 @@
 li {
 margin: 6px 0;
 }
-span {
-display: inline-block;
-width: 16px;
-height: 16px;
-background: url(img/usertoolbar_buttons.png) no-repeat;
-}
 </style>
 <body>
 <section>
@@ -35,7 +29,7 @@ background: url(img/usertoolbar_buttons.png) no-repeat;
 <hr>
 <!-- Section -->
 <h3 id="patches">Adding or Removing Asar Patches</h3>
-<p>In the baserom, Asar <a href="Patches.html">patches</a> are managed by the Callisto build tool and are all applied at build time. The files for all included patches are kept in the <a href="../../resources/patches/" target="_blank">resources/patches</a> folder, and referenced in the <a href="../../buildtool/resources.toml" target="_blank">buildtool/resources.toml</a>.</p>
+<p>In the baserom, Asar <a href="Patches.html">patches</a> are managed by the Callisto build tool and are all applied at build time. The files for all included patches are kept in the <b>resources/patches</b> folder, and referenced in the "buildtool/resources.toml".</p>
 <ul>
 <li>To <b>add</b> a new patch, download your Asar patch from SMW Central (or wherever), save it to the "patches" folder, and add its path to the list in "resources.toml".</li>
 <li>To <b>remove</b> a patch, delete the reference to that patch from that same list in "resources.toml" and Rebuild your project in Callisto</li>
@@ -46,9 +40,9 @@ background: url(img/usertoolbar_buttons.png) no-repeat;
 <h3 id="sprites">Adding Sprites with PIXI</h3>
 <p>To add downloaded sprites to your project:</p>
 <ol>
-<li>Open the <a href="../../tools/pixi/" target="_blank">tools/pixi</a> folder (you can do this right from Lunar Magic with the <span style="background-position:calc(-16px * 4);"></span> button) and add your sprite files to the relevant folders in this directory.</li>
-<li>Update PIXI's <a href="../../tools/pixi/list.txt" target="_blank">list.txt</a> with the new sprite. The <span style="background-position:calc(-16px * 2);"></span> button will quickly open the list for editing.</li>
-<li><b>Do not run the pixi.exe</b>. Since this baserom uses Callisto, you can either run the "Update" action in an open Callisto window or press the "Callisto Update" button in Lunar Magic <span style="background-position:calc(-16px * 9);"></span> to insert the new sprites.</li>
+<li>Open the <b>tools/pixi</b> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 4);"></span> button) and add your sprite files to the relevant folders in this directory.</li>
+<li>Update PIXI's "list.txt" with the new sprite. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
+<li><b>Do not run pixi.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new sprites.</li>
 </ol>
 <p>For a more in-depth explanation of how to use PIXI, check out <a href="https://smwc.me/t/91190" target="_blank">this tutorial on SMW Central</a>.</p>
 <hr>
@@ -56,9 +50,9 @@ background: url(img/usertoolbar_buttons.png) no-repeat;
 <h3 id="blocks">Adding Blocks with GPS</h3>
 <p>To add downloaded blocks to your project:</p>
 <ol>
-<li>Open the <a href="../../tools/gps/" target="_blank">tools/gps</a> folder (you can do this right from Lunar Magic with the <span style="background-position:calc(-16px * 5);"></span> button) and add your block files to the relevant folders in this directory.</li>
-<li>Update GPS's <a href="../../tools/gps/list.txt" target="_blank">list.txt</a> with the new blocks, take care to not overwrite blocks that are already present in the baserom or use a Block ID that is already used. The <span style="background-position:calc(-16px * 2);"></span> button will quickly open the list for editing.</li>
-<li><b>Do not run the gps.exe</b>. Since this baserom uses Callisto, you can either run the "Update" action in an open Callisto window or press the "Callisto Update" button in Lunar Magic <span style="background-position:calc(-16px * 9);"></span> to insert the new blocks.</li>
+<li>Open the <b>tools/gps</b> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 5);"></span> button) and add your block files to the relevant folders in this directory.</li>
+<li>Update GPS's "list.txt" with the new blocks, take care to not overwrite blocks that are already present in the baserom or use a Block ID that is already used. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
+<li><b>Do not run gps.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new blocks.</li>
 </ol>
 <p>For a more in-depth explanation of how to use GPS, check out <a href="https://smwc.me/t/88423" target="_blank">this tutorial on SMW Central</a>.</p>
 <hr>
@@ -66,9 +60,9 @@ background: url(img/usertoolbar_buttons.png) no-repeat;
 <h3 id="uberasm">Adding UberASM with UberASMTool</h3>
 <p>To add new UberASM to your project:</p>
 <ol>
-<li>Open the <a href="../../tools/uberasmtool/" target="_blank">tools/uberasmtool</a> folder (you can do this right from Lunar Magic with the <span style="background-position:calc(-16px * 6);"></span> button) and add your UberASM files to the relevant folders in this directory.</li>
-<li>Update UberASMTool's <a href="../../tools/uberasmtool/list.txt" target="_blank">list.txt</a> with your changes, take care to not remove UberASM that is already present in the baserom. The <span style="background-position:calc(-16px * 2);"></span> button will quickly open the list for editing.</li>
-<li><b>Do not run the UberASMTool.exe</b>. Since this baserom uses Callisto, you can either run the "Update" action in an open Callisto window or press the "Callisto Update" button in Lunar Magic <span style="background-position:calc(-16px * 9);"></span> to insert the new UberASM.</li>
+<li>Open the <b>tools/uberasmtool</b> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 6);"></span> button) and add your UberASM files to the relevant folders in this directory.</li>
+<li>Update UberASMTool's "list.txt" with your changes, take care to not remove UberASM that is already present in the baserom. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
+<li><b>Do not run UberASMTool.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new UberASM.</li>
 </ol>
 <p>For a more in-depth explanation of how to use UberASMTool, check out <a href="../../docs/tools/UberASMTool/readme.html" target="_blank">UberASMTool's included README</a>.</p>
 <hr>
@@ -76,9 +70,9 @@ background: url(img/usertoolbar_buttons.png) no-repeat;
 <h3 id="music">Adding Music with AddMusicK</h3>
 <p>To add new music to your project:</p>
 <ol>
-<li>Open the <a href="../../tools/addmusick/" target="_blank">tools/addmusick</a> folder (you can do this right from Lunar Magic with the <span style="background-position:calc(-16px * 7);"></span> button) and add your music files to the relevant folders in this directory.</li>
-<li>Update the <a href="../../tools/addmusick/Addmusic_list.txt" target="_blank">Addmusic_list.txt</a>  with your changes. The <span style="background-position:calc(-16px * 2);"></span> button will quickly open the list for editing.</li>
-<li><b>Do not run any AddMusicK .exe manually</b>. Since this baserom uses Callisto, you can either run the "Update" action in an open Callisto window or press the "Callisto Update" button in Lunar Magic <span style="background-position:calc(-16px * 9);"></span> to insert the new music or sound effects.</li>
+<li>Open the <b>tools/addmusick</b> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 7);"></span> button) and add your music files to the relevant folders in this directory.</li>
+<li>Update the "Addmusic_list.txt" with your changes. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
+<li><b>Do not run any AddMusicK .exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new music or sound effects.</li>
 </ol>
 <p>For a more in-depth explanation of how to use AddMusicK, check out <a href="../../docs/tools/AddMusicK/readme.html" target="_blank">AddMusicK's included README</a>.</p>
 <hr>

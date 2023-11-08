@@ -113,6 +113,12 @@ hr:after {
 h3 {
   margin-top: 2em
 }
+span.usertoolbar-button {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: url('img/usertoolbar_buttons.png') no-repeat;
+}
 @media (max-width:768px) {
   a.home {
     float: none;

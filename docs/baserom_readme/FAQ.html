@@ -11,26 +11,42 @@
 <section>
 <a href="./index.html" class="home">🏠</a>
 <h2>Frequently Asked Questions</h2>
-<h3 id="callisto">"What is Callisto?"</h3>
+<h3>Contents</h3>
+<ol>
+<li><a href="#callisto">What is Callisto?</a></li>
+<li><a href="#lunar-helper">What happened to Lunar Helper?</a></li>
+<li><a href="#build-scripts">What happened to the build scripts?</a></li>
+<li><a href="#no-bps">Where is the BPS patch to use the baserom?</a></li>
+<li><a href="#removing-things">How do I remove things from the baserom?</a></li>
+<li><a href="#hide-statusbar">How do I hide the status bar?</a></li>
+<li><a href="#fast-retry">Does this have Fast Retry?</a></li>
+<li><a href="#block-graphics">Why are my block graphics not looking right?</a></li>
+<li><a href="#sa1">Is the baserom SA-1 compatible?</a></li>
+</ol>
+<hr>
+<h3 id="callisto">What is Callisto?</h3>
 <p>It's a build tool that manages your project and does all the usual romhacking things through a simple user interface with a few actions. Callisto designed to run tools only when needed and avoid potential conflicts between resources, this way it insures your hack is cleanly constructed whenever you make changes. The big upside of using this is if something goes wrong then you can easily pinpoint what that was and remove or fix it so the next time you build it is not included in your project.</p>
-<p>See the Callisto readmes in the <a href="../">docs</a> folder for more details information about how to use this tool.</p>
+<p>Read the Callisto documentation in the <b>docs</b> folder for more details information about how to use this tool.</p>
 <hr>
-<h3 id="lunar-helper">"What happened to Lunar Helper?"</h3>
-<p>Lunar Helper has been succeeded by Callisto, which is detailed above. Callisto functions in much the same way as Lunar Helper, as a tool that handles all other tools controlled with simple commands, but it was rebuilt to be having better cross-platform support and improved performance.</p>
+<h3 id="lunar-helper">What happened to Lunar Helper?</h3>
+<p>Lunar Helper has been succeeded by Callisto, which is detailed above. Callisto functions in much the same way as Lunar Helper&ndash;as a tool that handles all other tools, and builds and updates your project with simple commands&ndash;but it was rebuilt to have better cross-platform support and improved performance.</p>
 <hr>
-<h3 id="build-scripts">"What happened to the build scripts?"</h3>
+<h3 id="build-scripts">What happened to the build scripts?</h3>
 <p>In an effort to keep the baserom lean, we're going all-in on the Callisto build tool. The build batch files, while useful, were also a bit of maintainance burden and didn't work for some people.</p>
 <hr>
-<h3 id="no-bps">"Where is the BPS patch to use the baserom?"</h3>
-<p>To get people familiar with the build process of the baserom we've opted to not include the BPS patch to create a ready-to-use baserom. The very simple initialization steps will create a clean slate to get started on a project. If you are in need of a BPS file, Callisto can create one with the <b>Package</b> action, or from a button on the included <a href="User Toolbar.html">User Toolbar</a>.</p>
+<h3 id="no-bps">Where is the BPS patch to use the baserom?</h3>
+<p>To get people familiar with the build process of the baserom we've opted to not include the BPS patch to create a ready-to-use baserom. The very simple initialization steps will create a clean slate to get started on a project.</p>
+<p> If you are in need of a BPS file, Callisto can create one with the <b>Package</b> action, or from the <span class="usertoolbar-button" style="background-position:calc(-16px * 10);"></span> button on the included <a href="User Toolbar.html">User Toolbar</a>.</p>
 <hr>
-<h3 id="removing-things">"How do I remove things from the baserom?"</h3>
-<p>Callisto makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts.</p><p> Removing resources, like blocks, sprites, music, etc., follows the usual process for each tool, <b>but</b> you simply run an <b>Update</b> action from Callisto instead of running the tool itself.</p><p>Removing patches is also relatively straightforward, you can remove them from the <code>[patches]</code> section of <a href="../../buildtool/resources.toml">resources.toml</a> in the buildtool folder, and also run an <b>Update</b> action in Callisto.</p>
+<h3 id="removing-things">How do I remove things from the baserom?</h3>
+<p>Callisto makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts.</p>
+<p>Removing resources, like blocks, sprites, music, etc., follows the usual process for each tool, but instead of running a tool manually you simply run an <b>Update</b> action from Callisto to make the changes.</p>
+<p>Removing patches is also relatively straightforward, you can remove them from the <code>[patches]</code> section of "resources.toml" in the <b>buildtool</b> folder, and also run an <b>Update</b> action in Callisto.</p>
 <p>See the <a href="Basics.html">Baserom Basics page</a> for more details on that.</p>
 <hr>
-<h3 id="hide-statusbar">"How do I hide the status bar?"</h3>
-<p>If you just want to disable it in a single level, this baserom comes with several objects to toggle features per-level. including one to hide the status bar. Check out the <a href="UberASM Objects.html">UberASM Objects</a> documentation for details.</p>
-<p>If you would like to disable it hack-wide: open "GM12.asm" from the <b>tools/uberasmtool/gamemode</b> folder and you'll see the following.</p>
+<h3 id="hide-statusbar">How do I hide the status bar?</h3>
+<p>If you just want to disable it in a single level, this baserom comes with several insertable custom objects to toggle features per-level. including one to hide the status bar. Check out the <a href="UberASM Objects.html">UberASM Objects</a> documentation for details.</p>
+<p>If you would like to disable it hack-wide there is a method to doing that as well. Open "GM12.asm" from the <b>tools/uberasmtool/gamemode</b> folder and you'll see the following.</p>
 <pre>
 init:
     jsl retry_level_init_2_init
@@ -38,28 +54,35 @@ init:
     ;jsl toggle_statusbar_init
     rtl
 </pre>
-<p>Remove the semi-colon in front of <code>jsl toggle_statusbar_init</code> and save the file. Run Update in Callisto to insert the UberASM changes in your project.</p>
+<p>Remove the semi-colon in front of <code>jsl toggle_statusbar_init</code> and save the file. Run <b>Update</b> in Callisto to insert the UberASM changes in your project.</p>
 <hr>
-<h3 id="fast-retry">"Does this have Fast Retry?"</h3>
-<p>Yes! By default the baserom is configured to use the vanilla death routine but you can enable retry in a level using a custom object. The <a href="UberASM Objects.html#retry-objects">UberASM Objects</a> has a section for the retry system with details.</p>
-<p>For hack-wide changes to the Retry System you can edit its global configuration files in <b>tools/uberasmtool/retry_config</b></p>
+<h3 id="fast-retry">Does this have Fast Retry?</h3>
+<p>Yes! By default the baserom is configured to use the vanilla death routine but you can enable retry in a level using a custom object. The <a href="UberASM Objects.html#retry-objects">UberASM Objects</a> page has a section for the retry system with details.</p>
+<p>For hack-wide changes to the Retry System you can edit its global configuration files in <b>tools/uberasmtool/retry_config</b>.</p>
 <ul>
     <li><code>settings.asm</code> &ndash; Change the global settings for the retry system.</li>
     <li><code>tables.asm</code> &ndash; Several options tables for changing per-level settings.</li>
     <li><code>sprite_status_bar_tables.asm</code> &ndash; More configuration tables for displaying the sprite status bar items.</li>
 </ul>
-<p>After making changes to any of the above, run Update in Callisto to insert the UberASM changes in your project.</p>
+<p>After making changes to any of the above, run <b>Update</b> in Callisto to insert the UberASM changes in your project.</p>
 <hr>
-<h3 id="block-graphics">"Why are my block graphics not looking right?"</h3>
+<h3 id="block-graphics">Why are my block graphics not looking right?</h3>
 <center><img src="img/garbled_map16.png" title="Custom block tiles missing ExGraphics"></center>
-<p>Many of the custom global block in the baserom use ExGraphics, loading <code>E17</code> into the <b>FG2</b> slot in the Super GFX Bypass dialog will make the blocks appear as they are intended to in other levels.</p>
+<p>Many of the custom global block in the baserom use ExGraphics, loading <code>E17</code> into the <bFG2</b> slot in the Super GFX Bypass dialog will make the blocks appear as they are intended to in other levels.</p>
 <hr>
-<h3 id="sa1">"Is the baserom SA-1 compatible?"</h3>
+<h3 id="sa1">Is the baserom SA-1 compatible?</h3>
 <p>Yes! The baserom's resources are all compatible with SA-1, but the baserom itself is configured to be FastROM by default. However to use SA-1 it only takes a couple steps to switch over to it:</p>
-<ol>
-<li>In the "project.toml" file in the <b>buildtool</b> folder, change the <code>initial_patch</code> setting to use the SA-1 option.</li>
-<li>Rebuild your project in Callisto to make the change.</li>
-</ol>
+<p>In the <b>buildtool</b> folder, open the "resources.toml" file. You will see the following.</p>
+<pre>
+# Fastrom initial patch
+initial_patch = "resources/initial_patches/fastrom.bps"
+
+# Uncomment the line below if you would like to use SA-1.
+# and comment out the one above
+#initial_patch = "resources/initial_patches/sa1.bps"
+</pre>
+<p>Change which <code>initial_patch</code> line is commented out (i.e. move the "#") and <b>Rebuild</b> your project in Callisto to make the change.</p>
+<p class="infobox">You will have to check if any additional resources that you add are SA-1 compatible when doing this.</p>
 <hr>
 <a href="#" class="go-to-top"></a>
 </section>
