@@ -17,11 +17,11 @@ section {
   margin: 0 3em
 }
 pre {
-  background-color: #222;
-  color: #eee;
+  background-color: #3f4651;
+  color: #d0d4dc;
   font-size: larger;
-  padding: 4px 12px;
-  border-radius: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
   white-space: pre-wrap;
 }
 img {
