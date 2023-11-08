@@ -1,13 +1,19 @@
 includeonce
 
+; Shared FreeRAM Definitions
+;
+; If you're looking to update or add freeram definitions do check the RAM Map first:
+; https://www.smwcentral.net/?p=memorymap&game=smw&region[]=ram&type=Empty
+
 ; Resource Freeram
 !block_duplication_freeram = $13E6|!addr ; 2 bytes
 !capespin_direction_freeram = $1869|!addr ; 2 bytes
 !double_hit_fix_freeram = $1DFD|!addr ; 1 byte
+!goal_point_reward_fix_freeram  = $15E8|!addr ; 1 byte
 !screen_scrolling_pipes_freeram = $18C5|!addr ; 5 bytes
 !skull_raft_fix_freeram = $18E6|!addr ; 1 byte
-!sprite_scroll_fix_position_freeram = $0DC3|!addr ; 4 bytes
 !sprite_scroll_fix_displacement_freeram = $1487|!addr ; 4 bytes
+!sprite_scroll_fix_position_freeram = $0DC3|!addr ; 4 bytes
 !triangles_fix_freeram = $14BE|!addr ; 1 byte
 
 ; Flags
