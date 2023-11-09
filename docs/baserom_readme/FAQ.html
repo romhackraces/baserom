@@ -22,6 +22,7 @@
 <li><a href="#fast-retry">Does this have Fast Retry?</a></li>
 <li><a href="#block-graphics">Why are my block graphics not looking right?</a></li>
 <li><a href="#sa1">Is the baserom SA-1 compatible?</a></li>
+<li><a href="#conflicts">Help, Callisto is reporting conflict(s)!</a></li>
 </ol>
 <hr>
 <h3 id="callisto">What is Callisto?</h3>
@@ -83,6 +84,17 @@ initial_patch = "resources/initial_patches/fastrom.bps"
 </pre>
 <p>Change which <code>initial_patch</code> line is commented out (i.e. move the "#") and <b>Rebuild</b> your project in Callisto to make the change.</p>
 <p class="infobox">You will have to check if any additional resources that you add are SA-1 compatible when doing this.</p>
+<hr>
+<h3 id="conflicts">Help, Callisto is reporting conflict(s)!</h3>
+<p>If you're worrying about this, it's likely because you've ran a Callisto action and are seeing something scary like the following:</p>
+<pre>
+Caching modules
+<span style="color: orange;">2 conflict(s) logged to C:\path\project\buildtool\conflicts.txt</span>
+Moving temporary files to final output
+</pre>
+<p>One of the features of the Callisto tool is to detect when two or more resources are modifying the same parts of the ROM. This is to help you address resource conflicts by showing you which bytes are in conflict and compare them to the original ROM bytes.</p>
+<p>Unfortunately, some of the tools in the baserom are writing to the same bytes so there are some unavoidable conflicts occuring. But not to worry as they seem to have no adverse affect.</p>
+<p>However, if you are seeing more than those 2 known conflicts, something else may be at issue in your project.</p>
 <hr>
 <a href="#" class="go-to-top"></a>
 </section>
