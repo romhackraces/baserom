@@ -11,8 +11,8 @@ $ListsDir = "$ToolsDir\init\lists"
 . $ToolsDir\init\tool_defines.ps1
 
 # Hide git-related files
-$filePatterns = @("*.gitkeep", "*.gitignore")
-$filesToHide = Get-ChildItem -Path $WorkingDir -File -Recurse -Include $filePatterns
+$filePatterns = @("*.gitkeep", "*.gitignore", "*.github")
+$filesToHide = Get-ChildItem -Path $WorkingDir -Recurse -Include $filePatterns
 foreach ($file in $filesToHide) {$file.Attributes += [System.IO.FileAttributes]::Hidden}
 
 # Function to remove junk files
