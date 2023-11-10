@@ -191,7 +191,7 @@ no_powerups:
 ; Extended Object A2
 ; Toggle vanilla cape spin in air
 vanilla_turnaround:
-    lda #$01 : sta !toggle_vanilla_turnaround_freeram
+    lda #$01 : sta !toggle_capespin_direction_freeram
     rts
 
 ; Extended Object A3
