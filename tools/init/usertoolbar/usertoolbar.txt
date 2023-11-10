@@ -19,21 +19,21 @@ LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 LM_SPACER
 
 ***START***
-usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" ""
+usertoolbar_wrapper.bat "--callisto" ""
 8,Open Callisto (Ctrl+B)
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 'b',VK_CONTROL
 
 ***START***
-usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" "update"
+usertoolbar_wrapper.bat "--callisto" "update"
 9,Run Callisto Update (Ctrl+U)
-LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM
 'u',VK_CONTROL
 
 ***START***
-usertoolbar_wrapper.bat "--app" "!callisto_path!" "callisto.exe" "package"
+usertoolbar_wrapper.bat "--callisto" "package"
 10, Make a BPS patch with Callisto (Ctrl+P)
-LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
+LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM
 'p',VK_CONTROL
 
 ***START***

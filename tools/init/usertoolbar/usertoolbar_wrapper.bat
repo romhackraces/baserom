@@ -16,7 +16,7 @@ set "tools_dir=!ROOT_DIR!tools\"
 :: readme
 set "readme=!ROOT_DIR!README.html"
 :: callisto
-set "callisto_path=!ROOT_DIR!buildtool"
+set "callisto_path=!ROOT_DIR!buildtool\callisto.exe"
 :: addmusick
 set "amk_path=!tools_dir!addmusick"
 set "amk_list=!amk_path!\Addmusic_list.txt"
@@ -47,10 +47,25 @@ if /i "%~1"=="--app" (
     set param=%~4
     goto :OpenApp
 )
+if /i "%~1"=="--callisto" (
+    set param=%~2
+    goto :RunCallisto
+)
 goto :ParseArgs
 
 :RunEditor
 start "" /b "%file%"
+goto :Exit
+
+:RunCallisto
+setlocal enabledelayedexpansion
+if "!param!"=="" (
+    start /i /wait !callisto_path!
+) else (
+    start /b /i /wait !callisto_path! !param!
+    pause
+)
+endlocal
 goto :Exit
 
 :OpenDir
