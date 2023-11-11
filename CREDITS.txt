@@ -2,7 +2,7 @@
 AmperSam - Compilation and documentation
 
 -- Help, Testing & Issue Reporting --
-F'en, Fernap, Kevin, TheJavaBrew, underway
+Fen, Fernap, Kevin, LouisDoucet, TheJavaBrew, underway
 
 -- Enhancement Patches --
 Bullet Bill Sound Effect on Extra Bit - AmperSam - https://smwc.me/s/34948
