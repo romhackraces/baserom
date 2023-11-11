@@ -12,7 +12,7 @@
 <section>
 <a href="./index.html" class="home">🏠</a>
 <h2>UberASM objects</h2>
-<p>The baserom uses a framework of custom objects to allow you to toggle or activate some simple UberASM codes that are in the baserom, most of which are very basic utility features. They are activated simply by inserting a custom extension object into whichever levels you want with no real limit. These objects work in conjunction with any level UberASM you may want to use as well.</p>
+<p>The baserom uses a framework of custom objects to allow you to toggle or activate some simple UberASM codes that are in the baserom, most of which are very basic utility features. They are activated simply by inserting a custom extension object into whichever levels you want with no limit. These objects work alongside any level UberASM you may want to use as well.</p>
 <!-- Contents -->
 <h3 id="#">Contents</h3>
 <ul>
@@ -27,17 +27,18 @@
 <tr><td>98</td><td>Free Vertical Scroll</td><td>Makes the camera follow Mario up and down.</td></tr>
 <tr><td>99</td><td>Lock Horizontal Scroll</td><td>Prevents the camera from scrolling left or right.</td></tr>
 <tr><td>9A</td><td>Start in OFF State</td><td>Starts the level with the ON/OFF state in the OFF state on level load.</td></tr>
-<tr><td>9B</td><td>Toggle Block Duplication</td><td>Block duplication is patched in the baserom. This object will set a flag to disable the patch that prevents block duplication.</td></tr>
-<tr><td>9C</td><td>Toggle Statusbar</td><td>Completely hide the in game statusbar, note: this does not disable the item box.</td></tr>
-<tr><td>9D</td><td>Toggle Screen Scroll</td><td>Scrolling the screen with L or R is disabled by default in the baserom but this will enable it.</td></tr>
-<tr><td>9E</td><td>Enable SFX Echo</td><td>Enabled the echo for sound effects, provided your level has custom music with echo enabled.</td></tr>
-<tr><td>A0</td><td>No Power Ups</td><td>Use this object to prevent power-up collection.</td></tr>
-<tr><td>A2</td><td>Enable Vanilla Cape Turnaround</td><td>The baserom has patched turning around in the air with spin during cape to make it guaranteed on button press. Using this object will disable that consistency.</td></tr>
-<tr><td>A3</td><td>Enable 8-frame Cape Float</td><td>Cape floating is vanilla in the baserom but using this object will apply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.</td></tr>
-<tr><td>A4</td><td>Zero Cape Float Delay</td><td>Using this object will remove the delay before Mario starts floating with cape.</td></tr>
-<tr><td>A5</td><td>Death on Power-up Loss</td><td>Makes it so losing a power up will kill Mario instantly.</td></tr>
+<tr><td>9B</td><td>Enable Block Duplication</td><td>Disable the effects of a patch that prevents block duplication.</td></tr>
+<tr><td>9C</td><td>Hide Statusbar</td><td>Hide the statusbar. This does not disable the item box.</td></tr>
+<tr><td>9D</td><td>Enable Screen Scroll</td><td>Disable the effects of a patch that prevents scrolling the screen with L or R.</td></tr>
+<tr><td>9E</td><td>Enable SFX Echo</td><td>Enable the echo for sound effects. Requires your level to have custom music with echo enabled.</td></tr>
+<tr><td>A0</td><td>No Power-up Collection</td><td>Prevent Mario from collecting any power-ups (including to the item box).</td></tr>
+<tr><td>A2</td><td>Disable Cape Turnaround Consistency</td><td>Disable the effects of the patch that makes turning around with cape consistent on button press.</td></tr>
+<tr><td>A3</td><td>Enable 8-frame Cape Float</td><td>Apply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.</td></tr>
+<tr><td>A4</td><td>Remove Cape Float Delay</td><td>Set the delay before Mario starts floating with cape to zero frames.</td></tr>
+<tr><td>A5</td><td>Death on Power-up Loss</td><td>Losing a power up will kill Mario instantly. (Makes all hurt blocks death blocks.)</td></tr>
 <tr><td>A7</td><td>Press L &amp; R To Die</td><td>Kills the player if L and R are pressed. Useful for a quick reset.</td></tr>
-<tr><td>A9</td><td>Disable Spin Jump Fireballs</td><td>Use this object to disable Mario's fireballs when spin jumping.</td></tr>
+<tr><td>A9</td><td>Disable Spin Jump Fireballs</td><td>Prevent Mario from shooting fireballs while spin jumping.</td></tr>
+<tr><td>AA</td><td>Restore Springboard Behaviour</td><td>Disable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).</td></tr>
 </table>
 </section>
 <br>

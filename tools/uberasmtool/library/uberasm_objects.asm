@@ -30,6 +30,7 @@ routines:
     %ObjectRoutine($A5, death_on_power_up_loss)
     %ObjectRoutine($A7, press_lr_to_die)
     %ObjectRoutine($A9, spinjump_fireballs)
+    %ObjectRoutine($AA, springboard_fixes)
     %ObjectRoutine($B0, retry_instant)
     %ObjectRoutine($B1, retry_prompt)
     %ObjectRoutine($B2, retry_bottom_left)
@@ -245,7 +246,13 @@ press_lr_to_die:
 spinjump_fireballs:
     lda #$01 : sta !toggle_spinjump_fireball_freeram
     rts
+
 ; Extended Object AA
+; toggle springboard fixes
+springboard_fixes:
+    lda #$01 : sta !toggle_springboard_fixes_freeram
+    rts
+
 ; Extended Object AB
 ; Extended Object AC
 ; Extended Object AD

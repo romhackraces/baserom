@@ -1,28 +1,30 @@
 includeonce
 
 ; Shared FreeRAM Definitions
-;
+
 ; If you're looking to update or add freeram definitions do check the RAM Map first:
 ; https://www.smwcentral.net/?p=memorymap&game=smw&region[]=ram&type=Empty
 
-; Resource Freeram (sorted by used address)
+; Resource FreeRAM (sorted by used address)
 !sprite_scroll_fix_position_freeram         = $0DC3|!addr ; 4 bytes
-!block_duplication_freeram                  = $13E6|!addr ; 2 bytes
+!block_duplication_freeram                  = $13E6|!addr ; 1 byte
 !sprite_scroll_fix_displacement_freeram     = $1487|!addr ; 4 bytes
 !triangles_fix_freeram                      = $14BE|!addr ; 1 byte
 !goal_point_reward_fix_freeram              = $15E8|!addr ; 1 byte
+!extended_nstl_freeram                      = $1869|!addr ; 2 bytes
 !screen_scrolling_pipes_freeram             = $18C5|!addr ; 5 bytes
 !skull_raft_fix_freeram                     = $18E6|!addr ; 1 byte
-!extended_nstl_freeram                      = $1869|!addr ; 2 bytes
 !capespin_direction_freeram                 = $1923|!addr ; 1 byte
 !double_hit_fix_freeram                     = $1DFD|!addr ; 1 byte
 
-; Flags
+; FreeRAM Toggles
+; addresses used by some resources to toggle their behaviour
 !toggle_lr_scroll_freeram                   = $7C ; 1 byte
 !toggle_statusbar_freeram                   = $79 ; 1 byte
 !toggle_spinjump_fireball_freeram           = $0DA1|!addr ; 1 byte
 !toggle_block_duplication_freeram           = $13E7|!addr ; 1 byte
 !toggle_capespin_direction_freeram          = $1924|!addr ; 1 byte
+!toggle_springboard_fixes_freeram           = $192C|!addr ; 1 byte
 
 ; Large blocks of ram
 if read1($00FFD5) == $23
