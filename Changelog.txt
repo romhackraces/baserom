@@ -3,6 +3,7 @@ v5.3
 - update FreeRAM documentation
 - make springboard fixes patch ram-toggleable (midairs are back)
 - fix usertoolbar actions hiding Callisto output
+- README updates; new page about initialization
 
 v5.2
 - add new "Baserom Basics" documentation
