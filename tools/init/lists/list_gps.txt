@@ -6,6 +6,7 @@
 ; Be sure not to use a tile value already in use by the baserom.
 ; -------------------------------------------------------------------;
 
+; Add your blocks here
 ; 400:130 example.asm
 
 
@@ -189,3 +190,6 @@
 2C5 0 Arrow pointing left.
 2D4 0 Arrow pointing right.
 2D5 0 Arrow pointing up.
+
+; Don't add blocks here!
+; Blocks must be added to the list above the "@dsc" section.
