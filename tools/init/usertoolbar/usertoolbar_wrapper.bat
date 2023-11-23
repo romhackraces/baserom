@@ -29,6 +29,10 @@ set "gps_list=!gps_path!\list.txt"
 :: uberasm
 set "uber_path=!tools_dir!uberasmtool"
 set "uber_list=!uber_path!\list.txt"
+:: asar patches
+set "patches_path=!ROOT_DIR!resources\patches"
+set "patches_list=!ROOT_DIR!buildtool\resources.toml"
+
 
 :ParseArgs
 if "%~1"=="" goto :EOF
@@ -59,10 +63,10 @@ goto :Exit
 
 :RunCallisto
 setlocal enabledelayedexpansion
-if "!param!"=="" (
-    start /i /wait !callisto_path!
+if "%param%"=="" (
+    start "" /i /wait "%callisto_path%"
 ) else (
-    start /b /i /wait !callisto_path! !param!
+    start "" /b /i /wait "%callisto_path%" "%param%"
     pause
 )
 endlocal
