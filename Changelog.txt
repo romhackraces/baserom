@@ -1,3 +1,12 @@
+v5.4
+- added patch related buttons to the toolbar
+- added LM back and forward buttons
+- added throw block bumper block
+- added safety mechanism to the retry system for clearing CP
+- documentation updates
+- update Callisto to 0.2.10
+- fix monty mole display and descriptions
+
 v5.3
 - fix FreeRAM conflict between ExNSTL and turnaround patch
 - update FreeRAM documentation
