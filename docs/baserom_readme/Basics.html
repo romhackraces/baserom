@@ -29,11 +29,17 @@ margin: 6px 0;
 <hr>
 <!-- Section -->
 <h3 id="patches">Adding or Removing Asar Patches</h3>
-<p>In the baserom, Asar <a href="Patches.html">patches</a> are managed by the Callisto build tool and are all applied at build time. The files for all included patches are kept in the <b>resources/patches</b> folder, and referenced in the "buildtool/resources.toml".</p>
-<ul>
-<li>To <b>add</b> a new patch, download your Asar patch from SMW Central (or wherever), save it to the "patches" folder, and add its path to the list in "resources.toml".</li>
-<li>To <b>remove</b> a patch, delete the reference to that patch from that same list in "resources.toml" and Rebuild your project in Callisto</li>
-</ul>
+<p>In the baserom, Asar <a href="Patches.html">patches</a> are managed by the Callisto build tool and are all applied at build time. The files for all included patches are kept in subfolders the <b>resources/patches</b> folder.</p>
+<p>To <b>add</b> a new patch:</p>
+<ol>
+<li>Copy the your patch file into to the <b>resources/patches</b> folder. You can quickly get there using the <span class="usertoolbar-button" style="background-position:calc(-16px * 19);"></span> button in Lunar Magic.</li>
+<li>Add its path to the list in "resources.toml". Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
+</ol>
+<p>To <b>remove</b> a patch:</p>
+<ol>
+<li>Delete (or comment out) the reference to that patch from that same list in "resources.toml"</li>
+<li>You are free to delete the patch file from <b>resources/patches</b>, but this isn't necessary</li>
+</ol>
 <p>Any changes made to the patches list will be applied the next time you run the <code>Rebuild</code> or <code>Update</code> action.</p>
 <hr>
 <!-- Section -->
