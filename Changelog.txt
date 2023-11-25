@@ -4,7 +4,6 @@ v5.4
 - added throw block bumper block
 - added safety mechanism to the retry system for clearing CP
 - documentation updates
-- update Callisto to 0.2.10
 - fix monty mole display and descriptions
 
 v5.3
