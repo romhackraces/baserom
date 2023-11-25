@@ -43,7 +43,7 @@
 02A3:0025 global/set_to_off.asm
 02A4:0025 global/teleport.asm
 02A5:0130 global/single_use_bounce_block.asm
-;02A6 reserved by baserom
+02A6:0130 global/bumper.asm
 ;02A7 reserved by baserom
 ;02A8 reserved by baserom
 ;02A9 reserved by baserom
