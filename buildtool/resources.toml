@@ -52,6 +52,7 @@ patches = [
 	"resources/patches/fixes/candle_flames_fix.asm",
 	"resources/patches/fixes/capespin_hitbox_position_fix.asm",
 	"resources/patches/fixes/castle_block_fix.asm",
+	"resources/patches/fixes/castle_ledge_fix.asm",
 	"resources/patches/fixes/cluster_boo_ducking_fix.asm",
 	"resources/patches/fixes/dark_room_background_fix.asm",
 	"resources/patches/fixes/dead_spring_fix.asm",
