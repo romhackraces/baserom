@@ -10,7 +10,7 @@ $AddMusicK_Docs = @("readme_files", "readme.html")
 
 # Callisto
 $Callisto_Dir = "$WorkingDir\buildtool\"
-$Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.2.9/callisto-v0.2.9.zip"
+$Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.2.11/callisto-v0.2.11.zip"
 $Callisto_Junk = @("ASAR_LICENSE", "LICENSE", "config", "asar", "initial_patches")
 $Callisto_Docs = @("documentation")
 
