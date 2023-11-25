@@ -5,6 +5,7 @@ v5.4
 - added safety mechanism to the retry system for clearing CP
 - documentation updates
 - fix monty mole display and descriptions
+- revamped the baserom's included levels
 
 v5.3
 - fix FreeRAM conflict between ExNSTL and turnaround patch
