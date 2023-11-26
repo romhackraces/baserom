@@ -1,5 +1,4 @@
 incsrc "../retry_config/ram.asm"
-incsrc "../retry_config/settings.asm"
 
 ; Safety button combo to clear saved checkpoints (set to 1 to use in the combo)
 
@@ -26,14 +25,11 @@ main:
     ora $0DA6|!addr,y
     and #!Combo
     cmp #!Combo
-    beq clear_saved_cp
+    beq clear_saved_checkpoints
 .return
     rtl
 
-clear_saved_cp:
-
-; do nothing if retry isn't configured for cp saving
-if !save_on_checkpoint
+clear_saved_checkpoints:
 
 ; reset the checkpoint state (all CPs)
 .reset_checkpoint
@@ -69,6 +65,6 @@ if !save_on_checkpoint
 
     ; play sound effect
     lda #$0F : sta $1DF9|!addr
-endif
+
 .return
     rtl
