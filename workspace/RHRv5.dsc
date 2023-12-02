@@ -118,18 +118,61 @@
 35c	0	Changes the pipe direction from left to up or down to right.
 35d	0	Changes the pipe direction from down to left or right to up.
 36f	0	Part of pipe that is passable.
-200 0 Block that can be used for Lunar Magic's tide Act As feature.
-201 0 Block that can be used for Lunar Magic's tide Act As feature.
-202 0 Block that can be used for Lunar Magic's tide Act As feature.
-203 0 Block that can be used for Lunar Magic's tide Act As feature.
-204 0 Block that can be used for Lunar Magic's tide Act As feature.
-205 0 Block that can be used for Lunar Magic's tide Act As feature.
-206 0 Block that can be used for Lunar Magic's tide Act As feature.
-207 0 Block that can be used for Lunar Magic's tide Act As feature.
-208 0 Block that can be used for Lunar Magic's tide Act As feature.
-209 0 Block that can be used for Lunar Magic's tide Act As feature.
-20A 0 Block that can be used for Lunar Magic's tide Act As feature.
+200 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+201 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+202 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+203 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+204 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+205 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+206 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+207 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+208 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+209 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
+20A 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
 2C4 0 Arrow pointing down.
 2C5 0 Arrow pointing left.
 2D4 0 Arrow pointing right.
-2D5 0 Arrow pointing up.
+2D5 0 Arrow pointing up.
+3C6 0 Upper left part of large circular line guide.
+3C7 0 Upper left part of large circular line guide.
+3D6 0 Upper left part of large circular line guide.
+3D7 0 Upper left part of large circular line guide.
+3E6 0 Lower left part of large circular line guide.
+3E7 0 Lower left part of large circular line guide.
+3F6 0 Lower left part of large circular line guide.
+3F7 0 Lower left part of large circular line guide.
+3C8 0 Upper right part of large circular line guide.
+3C9 0 Upper right part of large circular line guide.
+3D8 0 Upper right part of large circular line guide.
+3D9 0 Upper right part of large circular line guide.
+3E8 0 Lower right part of large circular line guide.
+3E9 0 Lower right part of large circular line guide.
+3F8 0 Lower right part of large circular line guide.
+3F9 0 Lower right part of large circular line guide.
+3CE 0 Upper left part of small circular line guide.
+3CF 0 Upper right part of small circular line guide.
+3DE 0 Lower left part of small circular line guide.
+3DF 0 Lower right part of small circular line guide.
+3CA 0 Horizontal line guide. Sprite can be placed one tile ABOVE and still be on the line.
+3DA 0 Horizontal line guide. Sprite can be placed one tile BELOW and still be on the line.
+3CB 0 Horizontal line guide end.
+3DB 0 Horizontal line guide end.
+3EA 0 Vertical line guide. Sprite can be placed one tile LEFT and still be on the line.
+3EB 0 Vertical line guide. Sprite can be placed one tile RIGHT and still be on the line.
+3FA 0 Vertical line guide end.
+3FB 0 Vertical line guide end.
+3EC 0 -45 degree line guide.
+3ED 0 45 degree line guide.
+3FC 0 45 degree ON/OFF line guide.
+3FD 0 -45 degree ON/OFF line guide.
+3CC 0 Part of leftward steep line guide.
+3DC 0 Part of leftward steep line guide.
+3CD 0 Part of rightward steep line guide.
+3DD 0 Part of rightward steep line guide.
+3EE 0 Part of rightward gradual line guide.
+3EF 0 Part of rightward gradual line guide.
+3FE 0 Part of leftward gradual line guide.
+3FF 0 Part of leftward gradual line guide.
+
+; Don't add blocks here!
+; Blocks must be added to the list above the "@dsc" section.
