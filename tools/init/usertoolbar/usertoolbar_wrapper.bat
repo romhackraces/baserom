@@ -64,9 +64,9 @@ goto :Exit
 :RunCallisto
 setlocal enabledelayedexpansion
 if "%param%"=="" (
-    start "" /i /wait "%callisto_path%"
+    start "" /i "%callisto_path%"
 ) else (
-    start "" /b /i /wait "%callisto_path%" "%param%"
+    start "" /b /i "%callisto_path%" "%param%"
     pause
 )
 endlocal
