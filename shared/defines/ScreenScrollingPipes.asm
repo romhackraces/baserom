@@ -15,6 +15,7 @@ incsrc "../freeram.asm"
 !Setting_SSP_PipeDebug     = 0
 !Setting_SSP_YoshiAllowed  = 1
 !Setting_SSP_CarryAllowed  = 1
+!Setting_SSP_FreezeTime	   = 0
 
 ; Pipe Timings
 !SSP_PipeTimer_Enter_Leftwards           = $06
