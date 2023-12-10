@@ -2,10 +2,10 @@ incsrc "../retry_config/ram.asm"
 
 ; Safety button combo to clear saved checkpoints (set to 1 to use in the combo)
 
-!b = 1		; B
+!b = 0		; B
 !y = 0		; Y
 !e = 1		; Select
-!t = 0		; Start
+!t = 1		; Start
 !U = 0		; Up
 !D = 1		; Down
 !L = 0		; Left
@@ -31,19 +31,32 @@ main:
 
 clear_saved_checkpoints:
 
-; reset the checkpoint state (all CPs)
-.reset_checkpoint
-    phx
-    phy
-    lda $13BF|!addr : tay
-    rep #$30
-    and #$00FF : asl : tax
-    lsr : cmp #$0025 : bcc +
-    clc : adc #$00DC
-+   sta !ram_checkpoint,x
-    sta !ram_respawn
+    ; Taken from the retry's API file
+    ; A/X/Y 8 bits
+    phx : phy : php
     sep #$30
+
+    ; Initialize the checkpoint ram table.
+    ldx #$BE
+    ldy #$5F
+-   tya : cmp #$25 : bcc +
+    clc : adc #$DC
++   sta !ram_checkpoint,x
+    lda #$00 : adc #$00 : sta !ram_checkpoint+1,x
     lda $1EA2|!addr,y : and #~$40 : sta $1EA2|!addr,y
+    dex #2
+    dey : bpl -
+
+    ; Initialize respawn RAM in case it's called inside a level.
+    lda $13BF|!addr : asl : tax
+    rep #$20
+    lda !ram_checkpoint,x : sta !ram_respawn
+
+    ; Initialize "set checkpoint" handle to $FFFF.
+    lda #$FFFF : sta !ram_set_checkpoint
+
+    ; Restore X/Y/P
+    plp : ply : plx
 
 ; save the game to replace a bad save
 .save_game
@@ -60,10 +73,8 @@ clear_saved_checkpoints:
     ; Save to SRAM/BW-RAM.
     jsl $009BC9|!bank
 
-    ply
-    plx
-
-    ; play sound effect
+; play sound effect
+.play_sfx
     lda #$0F : sta $1DF9|!addr
 
 .return

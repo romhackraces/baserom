@@ -16,14 +16,18 @@ gamemode:
     ; Gamemode ASM
     ; Use the library method to add to these files.
     03 GM03.asm
+    06 GM06.asm
+    07 GM07.asm
     0C GM0C.asm
     0D GM0D.asm
+    0E GM0E.asm
     0F GM0F.asm
     10 GM10.asm
     11 GM11.asm
     12 GM12.asm
     13 GM13.asm
     14 GM14.asm
+    15 GM15.asm
     16 GM16.asm
     19 GM19.asm
 
