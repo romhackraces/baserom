@@ -3,6 +3,7 @@
 ; - custom normal sprites can start at ID 00 and go up to BF.
 ; - other sprite types have special considerations, see PIXI's readme for more details.
 
+; Add your sprites here
 ; 00 example.cfg
 
 ; For use with the Donut block. If you remove or change this be sure to update the donut_lift.asm block

@@ -44,8 +44,8 @@
 02A4:0025 global/teleport.asm
 02A5:0130 global/single_use_bounce_block.asm
 02A6:0130 global/bumper.asm
-;02A7 reserved by baserom
-;02A8 reserved by baserom
+02A7:0025 global/collectable_set_to_on.asm
+02A8:0025 global/collectable_set_to_off.asm
 ;02A9 reserved by baserom
 02AA:0025 camera/scroll_left.asm
 02AB:0025 camera/scroll_right.asm
