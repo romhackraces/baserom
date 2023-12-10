@@ -70,6 +70,18 @@ function gfx_size(num)     = (num*$20)
 ; Routine to get the prompt type for the current level.
 ;================================================
 get_prompt_type:
+    ; If in title screen, override the normal settings.
+    lda $0100|!addr : cmp #$07 : bne .level
+
+.title:
+if !title_death_behavior < 2
+    lda #$04
+else
+    lda #$03
+endif
+    rts
+
+.level:
     ; If the override address is set, skip the rest.
     lda !ram_prompt_override : bne .not_default
 

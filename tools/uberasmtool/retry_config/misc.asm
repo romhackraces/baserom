@@ -4,7 +4,7 @@
 ; Retry version number (Va.b.c) to write in ROM.
 !version_a = 0
 !version_b = 5
-!version_c = 1
+!version_c = 2
 
 ; What button exits the level while the game is paused (by default, select).
 !exit_level_buttons_addr = $16
@@ -34,6 +34,14 @@
 ; In case of patches editing the area around $00F346 (except for the
 ; "Per Level Yoshi Coins Amount" patch) then this value will be used.
 !default_dc_amount = 5
+
+; Default X/Y position values for the Retry prompt text.
+; These values are used when the black box is enabled, otherwise the values
+; in setting.asm (or in the respective RAM addresses if used) are used. 
+; These are not recommended to be changed unless you also change the
+; black box windowing configuration.
+!default_text_x_pos = $58
+!default_text_y_pos = $6F
 
 ; Stripe image table defines.
 !stripe_index = $7F837B
