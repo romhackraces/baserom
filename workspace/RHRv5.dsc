@@ -21,6 +21,8 @@
 2a4	0	A block that will teleport Mario to set current screen exit.
 2a5	0	A single-use bounce block. Noteblock bounce height, doesn't negate spin
 2a6	0	A block that bounces throw blocks from the side.
+2a7	0	A coin that changes the ON/OFF state to ON.
+2a8	0	A coin that changes the ON/OFF state to OFF.
 2aa	0	Scroll camera left. (Remove graphics in Map16 when finished.)
 2ab	0	Scroll camera right. (Remove graphics in Map16 when finished.)
 2ac	0	Enable horizontal camera scroll. (Remove graphics in Map16 when finished.)
