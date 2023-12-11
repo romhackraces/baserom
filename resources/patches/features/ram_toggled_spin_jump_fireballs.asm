@@ -26,16 +26,6 @@ endif
 
 !Freeram = !toggle_spinjump_fireball_freeram ;Set this to freeram
 
-; check flag macro
-macro check_flag()
-    LDA !Freeram
-if !default
-    BEQ .enable
-else
-    BNE .enable
-endif
-endmacro
-
 ; Hijack
 org $00D090
 	autoclean JML ToggledFireballs
@@ -47,7 +37,12 @@ ToggledFireballs:
     LDA $140D|!addr    ; original code
     BEQ .disable       ; check if spin jumping
 
-    %check_flag()
+    LDA !Freeram
+	if !default
+		BEQ .enable
+	else
+		BNE .enable
+	endif
 .disable
 	JML $00D0AD|!bank
 .enable

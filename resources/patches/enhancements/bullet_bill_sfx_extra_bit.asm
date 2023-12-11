@@ -30,14 +30,14 @@ macro define_sprite_table(name, addr, addr_sa1)
 endmacro
 
 ; define extra bits
-%define_sprite_table("extra_bits",$7FAB10,$400040)
+%define_sprite_table("extra_bits",$7FAB10,$6040)
 
 ; Sound effect defines
 !SFX = $09                  ; the SFX number of the Bullet Bill
 !SFXBank = $1DFC|!addr      ; the bank from which the SFX is gotten
 
 ; Hijack of the Bullet Bill's init code
-org $0184E3|!bank : autoclean jml BulletSFXExtraBit
+org $0184E3|!bank : autoclean jml BulletSFXExtraBit : nop
 
 freedata
 
