@@ -1,3 +1,14 @@
+v5.5
+- cleaned up the screen-scrolling pipes ASM
+- new visuals for pass-through death block
+- revamped the ExGraphics and ExAnimation
+- added new collectable "coin" on/off blocks
+- updated retry system to 0.5.2
+- updated the clear checkpoints asm to run on OW and use any combo of keys
+- updated tile descriptions for blocks
+- updated usertoolbar script
+- new documentation for the features in the baserom
+
 v5.4
 - added patch related buttons to the toolbar
 - added LM back and forward buttons
