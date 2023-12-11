@@ -14,7 +14,7 @@ set "ROOT_DIR=!WORKING_DIR:\tools\lunar_magic=!"
 set "tools_dir=!ROOT_DIR!tools\"
 
 :: readme
-set "readme=!ROOT_DIR!README.html"
+set "readme=!ROOT_DIR!Readme.html"
 :: callisto
 set "callisto_path=!ROOT_DIR!buildtool\callisto.exe"
 :: addmusick
