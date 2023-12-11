@@ -88,7 +88,7 @@ No More Sprite Tile Limits v1.2.1 - Arujus, MathOnNapkins, Tattletale, NoelYoshi
 SA-1 Pack v1.40** - Arujus, Vitor Vilela - https://smwc.me/s/25938
 
 -- UberASM --
-Consistent 8 Frame Cape Float Delay - DJLocks, xHF01x - https://smwc.me/s/28534
+Consistent 8 Frame Cape Float Delay* - DJLocks, xHF01x - https://smwc.me/s/28534
 ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
 Retry System v0.5.2 - Kevin - https://github.com/kkevinm/retry-system/releases/tag/v0.5.2
 UberASM Objects System - AmperSam, underway, MarioFanGamer
@@ -114,6 +114,9 @@ GPS V1.4.4 - TheBiob, p4plus2 - https://smwc.me/s/29130
 Lunar Magic 3.40 - FuSoYa - https://fusoya.eludevisibility.org/lm/program.html
 PIXI v1.40 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/32277
 UberASMTool 2.0 - Vitor Vilela, Fernap - https://github.com/Fernap/UberASMTool
+
+-- Other --
+Custom User Toolbar - AmperSam
 
 * modified for use in the baserom
 ** if using SA-1 initial build patch
