@@ -48,8 +48,8 @@
 <!-- Section -->
 <h3 id="clear-checkpoints">Clear Saved Checkpoints</h3>
 <p>Included in the baserom is an UberASM "safety mechanism" that clears all collected checkpoints (both midways and those given by the retry system) and saves the game when the player presses a key combo. This is to fix any save files and release the player from any potential checkpoint-related softlocks.</p>
-<p>This UberASM runs on the overworld and can be invoked with the following key combo: <span class="key">Start</span> + <span class="key">Select</span> + <span class="key">Down</span>. After which a sound will play to indicate CPs have been cleared and the game will be saved.</p>
-<p>If you would like to change the key combination you can do so by editing the "retry_clear_saved_cp.asm" in the "tools/uberasmtool/library" folder, keep in mind using either the A or B button in this combo while on the Overworld will enter a level.</p>
+<p>This UberASM runs on the overworld and can be invoked with the following key combo: <span class="key">L</span> + <span class="key">R</span> + <span class="key">Select</span>. After which a sound will play to indicate CPs have been cleared and the game will be saved.</p>
+<p>If you would like to change the key combination you can do so by editing the "retry_clear_saved_cp.asm" in the "tools/uberasmtool/library" folder, keep in mind using either any of the face buttons (ABXY) in this combo while on the Overworld will enter a level.</p>
 <p>If you would like to disable this feature, you can open "GM0E.asm" in the "tools/uberasmtool/gamemode" folder and add a semi-colon as done to line you see below.</p>
 <pre>
 main:
