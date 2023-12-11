@@ -31,7 +31,7 @@
 
 ; don't change
 !no_display = $0000 ; flag to not display any status bar items
-!always_off = $0000 ; a flag to ensure it's always disabled on title level, that's different from !no_display
+!always_off = $0000 ; a flag to ensure it's always disabled on title level, don't remove it from the tables below
 
 item_box:
     ;       0           1           2           3           4           5           6           7           8           9           A           B           C            D          E           F
