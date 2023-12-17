@@ -16,22 +16,14 @@ endmacro
 
 routines:
 .init
-    %ObjectRoutine($9A, set_state_to_off)
-    %ObjectRoutine($9C, toggle_status_bar)
-..end
-
-.main
     %ObjectRoutine($98, free_vertical_scroll)
     %ObjectRoutine($99, no_horizontal_scroll)
+    %ObjectRoutine($9A, set_state_to_off)
     %ObjectRoutine($9B, block_duplication)
+    %ObjectRoutine($9C, toggle_status_bar)
     %ObjectRoutine($9D, toggle_lr_scroll)
     %ObjectRoutine($9E, enable_sfx_echo)
-    %ObjectRoutine($A0, no_powerups)
     %ObjectRoutine($A2, vanilla_turnaround)
-    %ObjectRoutine($A3, eight_frame_float)
-    %ObjectRoutine($A4, zero_float_delay)
-    %ObjectRoutine($A5, death_on_power_up_loss)
-    %ObjectRoutine($A7, press_lr_to_die)
     %ObjectRoutine($A9, spinjump_fireballs)
     %ObjectRoutine($AA, springboard_fixes)
     %ObjectRoutine($B0, retry_instant)
@@ -39,6 +31,14 @@ routines:
     %ObjectRoutine($B2, retry_bottom_left)
     %ObjectRoutine($B3, retry_no_midway_powerup)
     %ObjectRoutine($B4, retry_vanilla)
+..end
+
+.main
+    %ObjectRoutine($A0, no_powerups)
+    %ObjectRoutine($A3, eight_frame_float)
+    %ObjectRoutine($A4, zero_float_delay)
+    %ObjectRoutine($A5, death_on_power_up_loss)
+    %ObjectRoutine($A7, press_lr_to_die)
 ..end
 
 init:
