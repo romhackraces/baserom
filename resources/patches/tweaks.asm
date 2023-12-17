@@ -54,6 +54,8 @@ org $018898 : BRA $05
 ; shorten intro message skip timer
 org $00A09C : db $04
 
+; reset frame counter at level load
+org $00A5FA : db $FF
 
 ;;;;;;;;;;;;;;;;;
 ;; Minor Fixes ;;
