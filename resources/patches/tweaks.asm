@@ -54,9 +54,6 @@ org $018898 : BRA $05
 ; shorten intro message skip timer
 org $00A09C : db $04
 
-; reset frame counter at level load
-org $00A5FA : db $FF
-
 ;;;;;;;;;;;;;;;;;
 ;; Minor Fixes ;;
 ;;;;;;;;;;;;;;;;;
@@ -104,6 +101,9 @@ org $03C511 : db $0C
 ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; GFX Tweaks & Fixes ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
+
+; reset animation frame counter at level load
+org $00A5FA : db $FF
 
 ; remove dark palette on "Erase Game" screen (interferes with some backgrounds)
 org $009D30 : db $EA,$EA,$EA,$EA,$EA
