@@ -1,4 +1,7 @@
+; include common freeram
 incsrc "../../../shared/freeram.asm"
+; include retry definitions
+incsrc "../retry_config/ram.asm"
 
 ; UberASM Objects system
 ;
@@ -262,32 +265,32 @@ springboard_fixes:
 ; Extended Object B0
 ; Use instant retry
 retry_instant:
-    lda #$03 : sta !retry_freeram+$11
+    lda #$03 : sta !retry_ram_prompt_override
     rts
 
 ; Extended Object B1
 ; Use prompt retry
 retry_prompt:
-    lda #$02 : sta !retry_freeram+$11
+    lda #$02 : sta !retry_ram_prompt_override
     rts
 
 ; Extended Object B2
 ; Display retry prompt in bottom left
 retry_bottom_left:
-    lda #$09 : sta !retry_freeram+$15
-    lda #$d0 : sta !retry_freeram+$16
+    lda #$09 : sta !retry_ram_prompt_x_pos
+    lda #$d0 : sta !retry_ram_prompt_y_pos
     rts
 
 ; Extended Object B3
 ; No powerup from midways
 retry_no_midway_powerup:
-    lda #$00 : sta !retry_freeram+$10
+    lda #$00 : sta !retry_ram_midway_powerup
     rts
 
 ; Extended Object B4
 ; Vanilla death sequence
 retry_vanilla:
-    lda #$04 : sta !retry_freeram+$11
+    lda #$04 : sta !retry_ram_prompt_override
     rts
 ; Extended Object B5
 ; Extended Object B6
