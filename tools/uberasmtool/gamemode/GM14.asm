@@ -1,3 +1,4 @@
+; Gamemode 14 - Level
 init:
     jsl double_hit_fix_init
     rtl
