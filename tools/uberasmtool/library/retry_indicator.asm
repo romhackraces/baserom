@@ -8,7 +8,7 @@ incsrc "../retry_config/ram.asm"
 ; See here: https://www.smwcentral.net/?p=memorymap&a=detail&game=smw&region=ram&detail=f2a5bf492c3e
 
 ; Where on the status bar to show the tile
-!Location = $0EFE|!addr
+!Location = $0F19|!addr
 
 ; This location is a single 8x8 tile, to change the location check the diagram here:
 ; https://www.smwcentral.net/?p=memorymap&a=detail&game=smw&region=ram&detail=a70ec5339321
