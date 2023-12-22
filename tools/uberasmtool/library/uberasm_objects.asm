@@ -188,7 +188,7 @@ enable_sfx_echo:
 no_powerups:
     stz $19             ; Reset powerup.
     stz $0DC2|!addr     ; Reset item box.
-    RTS
+    rts
 
 ; Extended Object A1 (skipped because it loads a door tile)
 
@@ -201,7 +201,7 @@ vanilla_turnaround:
 ; Extended Object A3
 ; Enable eight frame float with cape
 eight_frame_float:
-    lda $15             ;\ Check if button is being pressed
+    lda $15             ;\ Check if A or B button is being held
     and #$80            ;/
     beq +
     lda #$08            ;\ Store 8 frames to cape float
@@ -212,22 +212,20 @@ eight_frame_float:
 ; Extended Object A4
 ; Zero float delay with cape
 zero_float_delay:
-    LDA $187A|!addr	    ;\ Check if Mario is riding Yoshi with wings...
-    AND $141E|!addr     ;/
-    BNE +
-    STZ $14A5|!addr     ; Disable the float timer
+    lda $187A|!addr     ;\ Check if Mario is riding Yoshi with wings...
+    and $141E|!addr     ;/
+    bne +
+    stz $14A5|!addr     ; Disable the float timer
     +
     rts
 
 ; Extended Object A5
 ; death on power up loss
 death_on_power_up_loss:
-    LDA $71             ;\ Check mario's power-up state
-    CMP #$01            ;/
-    BNE +
-    LDA #$38            ;\ Play death SFX (match retry setting)
-    STA $1DFC|!addr     ;/
-    JSL $00F606|!bank   ; Kill
+    lda $71             ;\ Check if mario is in hurt state
+    cmp #$01            ;/
+    bne +
+    jsl $00F606|!bank   ; Kill the player
 +
     rts
 
@@ -235,11 +233,12 @@ death_on_power_up_loss:
 
 ; Extended Object A7
 press_lr_to_die:
-	LDA $18             ;\ Check if L & R are pressed
-	AND #%00110000      ;|
-	BEQ +               ;/
-	JSL $00F606|!bank   ; kill
-    +
+    lda $17             ;\ Check if L & R are pressed
+    and #%00110000      ;|
+    cmp #$30            ;/
+    bne +
+    jsl $00F606|!bank   ; Kill the player
++
     rts
 
 ; Extended Object A8 (is skipped because it loads a door tile)
