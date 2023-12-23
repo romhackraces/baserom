@@ -10,6 +10,7 @@
 <body>
 <header><div class="home"><a href="./index.html">🏠</a></div><span>Baserom Initialization</span></header>
 <section>
+<h3>Initialization</h3>
 <p>As part of the <a href="Getting Started.html">Getting Started</a> process, this baserom uses a set-up script to initialize your baserom project. The main purpose of the script is to keep the GitHub project free from the binary files and executables that come with tools to avoid being in the sticky situation of re-distributing them with the baserom.</p>
 
 <p>The batch script <code>!initialize_baserom.bat</code> in the main folder is actually just calling a Powershell file: <code>baserom_init.ps1</code> (that you can find in the "tools/init" folder). This Powershell script is the majority of the initialization process and has few main functions:</p>
@@ -18,7 +19,7 @@
     <li><a href="#set-up-tools">Pre-load baserom configuration files</a></li>
     <li><a href="#run-first-build">Run a first build of Callisto</a></li>
 </ol>
-<h3 id="download-tools">Download Tools</h3>
+<h4 id="download-tools">Download Tools</h4>
 <p>A supplementary script (<code>tool_defines.ps1</code>) comes with the initialization script that contains all the information about the tools used. Definitions for each tool's download location, what directory in the baserom it gets installed into, what "junk" files come in its zip, and what documentation files come with it are in this file.</p>
 <p>These definitions are used in a number of functions in the main script to: download a tool to a temporary directory, extract its files into the "tools" folder, clean up any junk files, as well as copy any of its documentation into the "docs" folder. What the script does in steps is:</p>
 <ol>
@@ -29,11 +30,14 @@
     <li>Copy the pre-existing configuration files into the appropriate place in the tool's folder.</li>
     <li>Create a small, hidden checkfile ".is_setup" to say the setup completed successfully. (This prevents the script from setting up the same tool twice.)</li>
 </ol>
-<h3 id="set-up-tools">Pre-load Configuration Files</h3>
+<h4 id="set-up-tools">Pre-load Configuration Files</h4>
 <p>Most tool's files are copied as-is into their respective directories but during tool set-up the script copies a few files into the appropriate tool folders to either "fill" empty list files, or install additional functionality.</p>
 <p>These files are mainly: pre-filled "list.txt" files that are used for AddMusicK, GPS, PIXI and UberASM Tool, as well as things for the custom <a href="User Toolbar.html">Magic User Toolbar</a>. You can find the files in "tools/init/lists" and "tools/init/usertoolbar" folders.</p>
-<h3 id="run-first-build">Callisto First Build</h3>
+<h4 id="run-first-build">Callisto First Build</h4>
 <p>Technically this step isn't strictly necessary but is included to ensure that your project can build successfully after initialization and to catch any problems. If it runs successfully you can move on to working on the project.</p>
+<hr>
+<h3>Re-Initialization</h3>
+<p>At some point you may want to re-initialize the baserom, or update a tool. You can do this in the baserom by deleting the <code>.is_setup</code> file in a given tool's folder and running the "Download Tools" step of the initialization script again.</p>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>
