@@ -39,6 +39,7 @@ routines:
     %ObjectRoutine($A4, zero_float_delay)
     %ObjectRoutine($A5, death_on_power_up_loss)
     %ObjectRoutine($A7, press_lr_to_die)
+    %ObjectRoutine($AB, disable_cape_flight)
 ..end
 
 init:
@@ -256,6 +257,11 @@ springboard_fixes:
     rts
 
 ; Extended Object AB
+; disable cape flight
+disable_cape_flight:
+    stz $149F|!addr     ; store zero to the flight timer to prevent take off
+    rts
+
 ; Extended Object AC
 ; Extended Object AD
 ; Extended Object AE
