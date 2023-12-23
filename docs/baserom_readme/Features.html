@@ -24,14 +24,14 @@
 <p>There is framework of custom objects (built on ObjecTool) in the baserom to allow you to toggle or activate some simple utility features, but the <a href="./UberASM Objects.html">UberASM Objects</a> page goes into greater detail on this feature.</p>
 <hr>
 <h3 id="dragon-coin-saving">Dragon Coin Saving</h3>
-<p>This is pretty self-explanatory: the baserom has been patched to save dragon (Yoshi) coins as they are collected, but only if a player reached a checkpoint or goal point. If you would like to disable this saving, open "sram_tables.asm" found in the "tools/uberasmtool/retry_config" and change <code>!DragonCoinSaving = 1</code> to equal zero (0).</p>
-<p>This patch has some other features that are not on by default, like changing the collected dragon coin into something else (you may have seen outline coins in other hacks) and those can be configured in its ASM file: "resources/patches/features/dragon_coin_save.asm"</p>
+<p>This is pretty self-explanatory: the baserom has been patched to save dragon (Yoshi) coins as they are collected, but only if a player reached a checkpoint or goal point. If you would like to reconfigure how dragon coins save, open "sram_tables.asm" found in the <span class="dir">tools/uberasmtool/retry_config"</span> and change <code>!DragonCoinSaving = 1</code> to equal zero (0).</p>
+<p>This patch has some other features that are not on by default, like changing the collected dragon coin into something else (you may have seen outline coins in other hacks) and those can be configured in the "dragon_coin_save.asm" file found in <span class="dir">resources/patches/features</span>.</p>
 <hr>
 <h3 id="sprite-status-bar">Sprite Status Bar</h3>
 <p>As part of the retry system, there is a per-level sprite-tile-based status bar which allows you to display parts of the HUD while the vanilla layer 3 status bar is hidden and with layer 3 backgrounds, you can see it active in the <a href="./Levels.html#demo-level">Demo Level</a>: </p>
-<center><img src="./img/sprite_status_bar.png"></center>
+<center><img src="./img/sprite_status_bar.png" alt="Screenshot of the sprite status bar in action in-game" title="Screenshot of the sprite status bar in action in-game"></center>
 <b>Configuring</b>
-<p>Currently it is a bit cumbersome to set-up but you can open the "sprite_status_bar_tables.asm" file found in the "tools/uberasmtool/retry_config" folder to edit some big option tables to enable or disable bits of the HUD for each level.</p>
+<p>Currently it is a bit cumbersome to set-up but you can open the "sprite_status_bar_tables.asm" file found in the <span class="dir">tools/uberasmtool/retry_config</span> folder to edit some big option tables to enable or disable bits of the HUD for each level.</p>
 <p>You will see a three big of tables: one for the Item Box labelled <code>item_box</code>, one for the timer labelled <code>timer</code>, and one for both normal and Yoshi coins labelled <code>coins</code> all three filled with pre-defined flags. Each row of the table corresponds to level addresses, 16 per row starting at <code>00</code>, so if you would like to enable/disable part of the sprite status bar for a particular level you will have to change the flag set at each level's particular address.</p>
 <p>You can add numerical values to the tables manually by following the instructions at the top of the ASM file but these flags are a baserom modification so you don't have to remember what value the baserom uses for each tile:</p>
 <ul>
@@ -45,8 +45,8 @@
 <h3 id="clear-checkpoints">Clear Saved Checkpoints</h3>
 <p>Included in the baserom is an UberASM "safety mechanism" that clears all collected checkpoints (both midways and those given by the retry system) and saves the game when the player presses a key combo. This is to fix any save files and release the player from any potential checkpoint-related softlocks.</p>
 <p>This UberASM runs on the overworld and can be invoked with the following key combo: <span class="key">L</span> + <span class="key">R</span> + <span class="key">Select</span>. Pressing this will play a sound to indicate checkpoints have been cleared and the game has been saved.</p>
-<p>If you would like to change the key combination you can do so by editing the "retry_clear_saved_cp.asm" in the "tools/uberasmtool/library" folder, keep in mind using either any of the face buttons (ABXY) in this combo while on the Overworld will enter a level.</p>
-<p>If you would like to disable this feature, you can open "GM0E.asm" in the "tools/uberasmtool/gamemode" folder and add a semi-colon as done to the line you see below.</p>
+<p>If you would like to change the key combination you can do so by editing the "retry_clear_saved_cp.asm" in the <span class="dir">tools/uberasmtool/library</span> folder, keep in mind using either any of the face buttons (ABXY) in this combo while on the Overworld will enter a level.</p>
+<p>If you would like to disable this feature, you can open "GM0E.asm" in the <span class="dir">tools/uberasmtool/gamemode</span> folder and add a semi-colon as done to the line you see below.</p>
 <pre>
 main:
     ;jsl retry_clear_saved_cp_main
@@ -56,8 +56,8 @@ main:
 <hr>
 <h3 id="retry-indicator">Retry Indicator</h3>
 <p>If you are still using the Vanilla layer 3 status bar, and have retry enabled in a level (or project-wide) you'll see the following icon in the HUD:</p>
-<center><img src="./img/retry_indicator.png"></center>
-<p>If you would like to disable this, open "GM13.asm" in the "tools/uberasmtool/gamemode" folder and add a semi-colon as done to the line you see below.</p>
+<center><img src="./img/retry_indicator.png" alt="Screenshot of the retry indicator in the layer 3 status bar" title="Screenshot of the retry indicator in the layer 3 status bar"></center>
+<p>If you would like to disable this, open "GM13.asm" in the <span class="dir">tools/uberasmtool/gamemode</span> folder and add a semi-colon as done to the line you see below.</p>
 <pre>
 main:
     ;jsl retry_indicator_main

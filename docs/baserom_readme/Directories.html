@@ -20,19 +20,28 @@
 <li><a href="#workspace">"workspace" Folder</a></li>
 </ul>
 <hr>
-<h3 id="buildtool">"buildtool"</h3>
-<p>This folder contains <a href="FAQ.html#callisto">Callisto</a>, which is the build tool used by the baserom to assemble your project. Here you can find the files to configure Callisto itself, as well as any build options for the baserom.</p>
+<h3 id="buildtool">"buildtool" Folder</h3>
+<p>This folder contains <a href="FAQ.html#callisto">Callisto</a>, which is the build tool used by the baserom to assemble your project. Here you can find the configuration files for Callisto, in .toml format, as well as any other build tool related files for the baserom.</p>
+<table border="1" class="full">
+<tr><th>Item</th><th>Description</th></tr>
+<tr><td>colors.toml</td><td>Configuration for the colors seen in Callisto's console output.</td></tr>
+<tr><td>project.toml</td><td>Contains Callisto settings for the whole project.</td></tr>
+<tr><td>resources.toml</td><td>Contains configuration options for resources used by Callisto.</td></tr>
+<tr><td>tools.toml</td><td>Contains configuration options related to tools used by Callisto.</td></tr>
+<tr><td>user.toml</td><td>Contains user-specific configuration options, such as the default emulator used by Callisto.</td></tr>
+</table>
+<p></p>
 <hr>
-<h3 id="docs">"docs"</h3>
-<p>Contains all the readme files for the baserom (like the one you're currently reading) and those for other included resources and tools.</p>
+<h3 id="docs">"docs" Folder</h3>
+<p>All the readme files for the baserom (like the one you're currently reading) and those for other included resources and tools are stored here for your convenience.</p>
 <table border="1" class="full">
 <tr><th>Item</th><th>Description</th></tr>
 <tr><td>baserom_readme</td><td>The folder containing all the baserom's readme files.</td></tr>
 <tr><td>retry_system</td><td>The readme files for the retry system.</td></tr>
-<tr><td>tools</td><td>In in an initialized baserom, all the readme files for each tool.</td></tr>
+<tr><td>tools</td><td>In an initialized baserom, all the readme files for each tool will be here.</td></tr>
 </table>
 <hr>
-<h3 id="resources">"resources"</h3>
+<h3 id="resources">"resources" Folder</h3>
 <p>All the build resources for you project are in here. Patches, initial setup files, map16, palettes, etc.</p>
 <table border="1" class="full">
 <tr><th>Item</th><th>Description</th></tr>
@@ -47,7 +56,7 @@
 <tr><td>Info Level.mwl</td><td>A back-up copy of the baserom's information level.</td></tr>
 </table>
 <hr>
-<h3 id="shared">"shared"</h3>
+<h3 id="shared">"shared" Folder</h3>
 <p>This folder contains files that are shared between tools and resources, typically variable definitions and configuration files.</p>
 <table border="1" class="full">
 <tr><th>Item</th><th>Description</th></tr>
@@ -55,7 +64,7 @@
 <tr><td>freeram.asm</td><td>A file containing all used FreeRAM as shared defines.</td></tr>
 </table>
 <hr>
-<h3 id="tools">"tools"</h3>
+<h3 id="tools">"tools" Folder</h3>
 <p>This folder is where all the baserom tools are kept as well as any files and resources they use. If you are adding things to your project, you are adding them to the folders in this folder.</p>
 <p class="infobox">Do not run the tools from these folder directly. Callisto takes care of running all tools when using it.</p>
 <table border="1" class="full">
@@ -63,13 +72,13 @@
 <tr><td>addmusick</td><td>The folder for AddMusicK and related files.   </td></tr>
 <tr><td>flips</td><td>Contains Floating IPS tool for creating BPS patches.</td></tr>
 <tr><td>gps</td><td>Contains the GPS block insertion tool and related files.</td></tr>
-<tr><td>init</td><td>A folder with files used by the initialization script.</td></tr>
+<tr><td>init</td><td>A folder with files used by the <a href="./Initialization.html">initialization</a> script.</td></tr>
 <tr><td>lunar_magic</td><td>Folder for Lunar Magic.</td></tr>
 <tr><td>pixi</td><td>Contains the PIXI sprite insertion tool and related files.</td></tr>
 <tr><td>uberasmtool</td><td>Contains UberASMTool and all related files.</td></tr>
 </table>
 <hr>
-<h3 id="workspace">"workspace"</h3>
+<h3 id="workspace">"workspace" Folder</h3>
 <p>This folder is where your project lives and is the output directory for the build process. It will contain your project's rom, its Graphcs and ExGraphics, as well as any auxillary files used by the tools.</p>
 <table border="1" class="full">
 <tr><th>Item</th><th>Description</th></tr>

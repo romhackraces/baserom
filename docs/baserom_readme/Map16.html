@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Map16 - Romhack Races Baserom</title>
+<title>Map 16 - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./img/flop.gif" type="image/x-icon">
@@ -9,15 +9,14 @@
 </head>
 <style>td:nth-child(1){width:44px;font:larger monospace;}td:nth-child(4):first-letter{text-transform: capitalize;}</style>
 <body>
-<header><div class="home"><a href="./index.html">🏠</a></div><span>Map16</span></header>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Map 16</span></header>
 <section>
 <h3>Point of Advice</h3>
-<p>You should use Lunar Magic's "Add Objects" window as much as possible to construct your levels instead of placing tiles directly from map16. Objects that are composed of several tiles take up fewer bytes in-ROM when placed in levels. When you use direct map16, each tile placed in a level counts as its own object in the level and this can dramatically increase the bytesize of levels if there are many many tiles.</p>
-<h3>Map16 Pages</h3>
-<p>If you're viewing this Readme on the web, any of the below may appear different depending on which version of the baserom you are using.</p>
+<p>You should use Lunar Magic's "Add Objects" window as much as possible to construct your levels instead of placing tiles directly from map 16. Objects that are composed of several tiles take up fewer bytes in-ROM when placed in levels.</p><p>When you use Direct Map 16 (i.e. placing tiles directly in your level from the 16x16 editor), each tile placed in a level counts as its own object in the level and this can dramatically increase the bytesize of levels if there are many many tiles.</p>
+<h3>Map 16 Pages</h3>
 <h4>Page 02</h4>
 <p>This page has the global tiles for the baserom, which includes come common vanilla ground tiles, as well as all the custom <a href="Blocks.html">blocks</a>.</p>
-<center><img width="512" src="img/map16_page02.png" title="Map16 Page 02 of the base rom" alt="Map16 Page 02 of the base rom"></center>
+<center><img src="img/map16_page02.png" title="Map 16 Page 02 of the base rom" alt="Map 16 Page 02 of the base rom"></center>
 <table border="1">
 <tr><th>Tile Num</th><th>Description</th></tr>
 <tr><td>200-20A</td><td>These tiles are reserved for Lunar Magic's layer 3 "Make tides act as" setting. Any block that is inserted here (or used as an act as) will be the tile the Layer 3 tide works as instead of water or lava or any of the other options.</td></tr>
@@ -37,14 +36,14 @@
 </table>
 <h4>Page 03</h4>
 <p>This page has the tiles for the screen-scrolling pipes and global line guides laid out in a fairly intuitive way. Includes optional ExGraphic screen-scrolling pipe corners.</p>
-<center><img width="512" src="img/map16_page03.png" title="Map16 Page 03 of the base rom" alt="Map16 Page 03 of the base rom"></center>
+<center><img src="img/map16_page03.png" title="Map 16 Page 03 of the base rom" alt="Map 16 Page 03 of the base rom"></center>
 <h4>Page 05</h4>
-<p>An optional page of extra vanilla tiles, some of which are graphics header dependent. A map16 file to import can be found in <b>resources/map16</b>.</p>
-<center><img width="512" src="img/map16_page05.png" title="Map16 Page 04 of the base rom" alt="Map16 Page 04 of the base rom"></center>
-<h4>Page 40,41</h4>
-<p>Tiles for all the in-level text in the Demo Level (105), these can be deleted from your ROM if you delete the Demo Level.</p>
+<p>An optional page of extra vanilla tiles, some of which are graphics header dependent, that isn't inserted into the baserom. A map 16 file to import can be found in <span class="dir">resources/map 16</span>.</p>
+<center><img src="img/map16_page05.png" title="Map 16 Page 04 of the base rom" alt="Map 16 Page 04 of the base rom"></center>
+<h4>Pages 40,41</h4>
+<p>Tiles for all the in-level text seen in the <a href="./Levels.html#info-level">Info Level</a>. These pages can safely be deleted from your ROM if you delete that level from your project.</p>
 <h4>Page 50</h4>
-<p>Tiles for ExGraphic big bush and big pipe tiles.</p>
+<p>Tiles for ExGraphic big bush and big pipe tiles. A map 16 file to import these tiles can be found in <span class="dir">resources/map 16</span>.</p>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>

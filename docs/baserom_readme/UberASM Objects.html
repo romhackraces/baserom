@@ -12,16 +12,15 @@
 <header><div class="home"><a href="./index.html">🏠</a></div><span>UberASM objects</span></header>
 <section>
 <p>The baserom uses a framework of custom objects to allow you to toggle or activate some simple UberASM codes that are in the baserom, most of which are very basic utility features. They are activated simply by inserting a custom extension object into whichever levels you want with no limit. These objects work alongside any level UberASM you may want to use as well.</p>
-<!-- Contents -->
 <h3 id="#">Contents</h3>
 <ul>
     <li><a href="#available-objects">Available Objects</a></li>
     <li><a href="#inserting-objects">Inserting Custom Objects</a></li>
 </ul>
 <h3 id="available-objects">Available Objects</h3>
-<p>The following objects can be used to enable or toggle features or settings in the baserom.</p>
+<p>The following objects can be used to enable or toggle features or settings in the baserom. Each object has an ID number that corresponds to its Extension value to be used when <a href="#inserting-objects">inserting</a> it as a Custom Object.</p>
 <table border="1" class="full">
-<tr><th>#</th><th>Object</th><th>Description</th></tr>
+<tr><th>ID</th><th>Object</th><th>Description</th></tr>
 <tr><td>98</td><td>Free Vertical Scroll</td><td>Makes the camera follow Mario up and down.</td></tr>
 <tr><td>99</td><td>Lock Horizontal Scroll</td><td>Prevents the camera from scrolling left or right.</td></tr>
 <tr><td>9A</td><td>Start in OFF State</td><td>Starts the level with the ON/OFF state in the OFF state on level load.</td></tr>
@@ -46,7 +45,7 @@
 <h4 id="retry-objects">Retry System Settings</h4>
 <p>Inserting these objects into your level to override the default settings of the retry system or even change the retry settings between sublevels.</p>
 <table border="1" class="full">
-<tr><th>#</th><th>Object</th><th>Description</th></tr>
+<tr><th>ID</th><th>Object</th><th>Description</th></tr>
 <tr><td>B0</td><td>Instant Retry</td><td>Make the retry skip using prompt and restart instantly after dying.</td></tr>
 <tr><td>B1</td><td>Prompt Retry</td><td>Set the retry system to use a prompt that says "Retry" in the middle of the screen.</td></tr>
 <tr><td>B2</td><td>Bottom Left Retry Prompt</td><td>Move the retry prompt to the bottom left (by default it's in the middle) if Prompt retry is active.</td></tr>
@@ -55,11 +54,13 @@
 </table>
 <hr>
 <h3 id="inserting-objects">Inserting Custom Objects</h3>
-<p>To insert a custom object either use the "Edit > Insert manual..." menu action or press the <code>Insert</code> key while in Lunar Magic's Object editing mode to bring up the following window.</p>
-<center><img src="img/insert_object_manual.png"></center>
-<p>To insert a custom UberASM object put its value from the tables below in the <b>Size/Type/Ext</b> field seen above. Multiple custom UberASM objects can be active in one level when they are inserted one at time.</p>
-<p>When inserted, custom objects will look garbled in Lunar Magic since they load a "null" object but they won't actually appear in game. The tiles they are made up of may occasionally use an exit-enabled (door) tile which may display a warning depending on your Lunar Magic settings.</p>
-<center><img src="img/garbled_extension_objects.png"></center>
+<p>To insert a custom object, open the "Add Object Manual (hex)" window either from the "Edit &rarr; Insert manual..." menu action, or by pressing the <span class="key">Insert</span class="key"> key while in Lunar Magic's Object editing mode. This will bring up the following dialog window.</p>
+<center><img src="img/insert_object_manual.png" alt="Lunar Magic's Add Object Manual (hex) Window" title="Lunar Magic's Add Object Manual (hex) Window"></center>
+<p>Next, type the ID value for the UberASM Object from the tables above into the "Size/Type/Ext" field of this dialog, and press "OK" to insert.</p>
+<p class="infobox">Multiple custom UberASM objects can be inserted and active in one level.</p>
+<p>When inserted, custom objects will look like a pair of garbage tiles in Lunar Magic since they load a "null" object, but these objects won't actually appear in game.</p>
+<center><img src="img/garbled_extension_objects.png" alt="Garbled Custom object tiles in Lunar Magic" title="Garbled Custom object tiles in Lunar Magic"></center>
+<p>The tiles they are made up of may occasionally use an exit-enabled (door) tile which may display a warning depending on your Lunar Magic settings.</p>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>

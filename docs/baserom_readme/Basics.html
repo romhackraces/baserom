@@ -29,20 +29,20 @@ margin: 6px 0;
 <p>In the baserom, Asar <a href="Patches.html">patches</a> are managed by the Callisto build tool and are all applied at build time. The files for all included patches are kept in subfolders the <b>resources/patches</b> folder.</p>
 <p>To <b>add</b> a new patch:</p>
 <ol>
-<li>Copy the your patch file into to the <b>resources/patches</b> folder. You can quickly get there using the <span class="usertoolbar-button" style="background-position:calc(-16px * 19);"></span> button in Lunar Magic.</li>
+<li>Copy the your patch file into to the <span class="dir">resources/patches</span> folder. You can quickly get there using the <span class="usertoolbar-button" style="background-position:calc(-16px * 19);"></span> button in Lunar Magic.</li>
 <li>Add its path to the list in "resources.toml". Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
 </ol>
 <p>To <b>remove</b> a patch:</p>
 <ol>
 <li>Delete (or comment out) the reference to that patch from that same list in "resources.toml"</li>
-<li>You are free to delete the patch file from <b>resources/patches</b>, but this isn't necessary</li>
+<li>You are free to delete the patch file from <span class="dir">resources/patches</span>, but this isn't necessary</li>
 </ol>
 <p>Any changes made to the patches list will be applied the next time you run the <code>Rebuild</code> or <code>Update</code> action.</p>
 <hr>
 <h3 id="sprites">Adding Sprites with PIXI</h3>
 <p>To add downloaded sprites to your project:</p>
 <ol>
-<li>Open the <b>tools/pixi</b> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 4);"></span> button) and add your sprite files to the relevant folders in this directory.</li>
+<li>Open the <span class="dir">tools/pixi</span> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 4);"></span> button) and add your sprite files to the relevant folders in this directory.</li>
 <li>Update PIXI's "list.txt" with the new sprite. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
 <li><b>Do not run pixi.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new sprites.</li>
 </ol>
@@ -51,7 +51,7 @@ margin: 6px 0;
 <h3 id="blocks">Adding Blocks with GPS</h3>
 <p>To add downloaded blocks to your project:</p>
 <ol>
-<li>Open the <b>tools/gps</b> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 5);"></span> button) and add your block files to the relevant folders in this directory.</li>
+<li>Open the <span class="dir">tools/gps</span> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 5);"></span> button) and add your block files to the relevant folders in this directory.</li>
 <li>Update GPS's "list.txt" with the new blocks, take care to not overwrite blocks that are already present in the baserom or use a Block ID that is already used. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
 <li><b>Do not run gps.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new blocks.</li>
 </ol>
@@ -61,7 +61,7 @@ margin: 6px 0;
 <h3 id="uberasm">Adding UberASM with UberASMTool</h3>
 <p>To add new UberASM to your project:</p>
 <ol>
-<li>Open the <b>tools/uberasmtool</b> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 6);"></span> button) and add your UberASM files to the relevant folders in this directory.</li>
+<li>Open the <span class="dir">tools/uberasmtool</span> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 6);"></span> button) and add your UberASM files to the relevant folders in this directory.</li>
 <li>Update UberASMTool's "list.txt" with your changes, take care to not remove UberASM that is already present in the baserom. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
 <li><b>Do not run UberASMTool.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new UberASM.</li>
 </ol>
@@ -70,12 +70,11 @@ margin: 6px 0;
 <h3 id="music">Adding Music with AddMusicK</h3>
 <p>To add new music to your project:</p>
 <ol>
-<li>Open the <b>tools/addmusick</b> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 7);"></span> button) and add your music files to the relevant folders in this directory.</li>
+<li>Open the <span class="dir">tools/addmusick</span> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 7);"></span> button) and add your music files to the relevant folders in this directory.</li>
 <li>Update the "Addmusic_list.txt" with your changes. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
 <li><b>Do not run any AddMusicK .exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new music or sound effects.</li>
 </ol>
 <p>For a more in-depth explanation of how to use AddMusicK, check out <a href="../../docs/tools/AddMusicK/readme.html" target="_blank">AddMusicK's included README</a>.</p>
-<hr>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>

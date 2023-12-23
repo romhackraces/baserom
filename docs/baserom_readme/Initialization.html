@@ -13,7 +13,7 @@
 <h3>Initialization</h3>
 <p>As part of the <a href="Getting Started.html">Getting Started</a> process, this baserom uses a set-up script to initialize your baserom project. The main purpose of the script is to keep the GitHub project free from the binary files and executables that come with tools to avoid being in the sticky situation of re-distributing them with the baserom.</p>
 
-<p>The batch script <code>!initialize_baserom.bat</code> in the main folder is actually just calling a Powershell file: <code>baserom_init.ps1</code> (that you can find in the "tools/init" folder). This Powershell script is the majority of the initialization process and has few main functions:</p>
+<p>The batch script <code>!initialize_baserom.bat</code> in the main folder is actually just calling a Powershell file: <code>baserom_init.ps1</code> (that you can find in the <span class="dir">tools/init</span> folder). This Powershell script is the majority of the initialization process and has few main functions:</p>
 <ol>
     <li><a href="#download-tools">Download and set-up the necessary tools</a></li>
     <li><a href="#set-up-tools">Pre-load baserom configuration files</a></li>
@@ -31,13 +31,14 @@
     <li>Create a small, hidden checkfile ".is_setup" to say the setup completed successfully. (This prevents the script from setting up the same tool twice.)</li>
 </ol>
 <h4 id="set-up-tools">Pre-load Configuration Files</h4>
-<p>Most tool's files are copied as-is into their respective directories but during tool set-up the script copies a few files into the appropriate tool folders to either "fill" empty list files, or install additional functionality.</p>
-<p>These files are mainly: pre-filled "list.txt" files that are used for AddMusicK, GPS, PIXI and UberASM Tool, as well as things for the custom <a href="User Toolbar.html">Magic User Toolbar</a>. You can find the files in "tools/init/lists" and "tools/init/usertoolbar" folders.</p>
+<p>Most tools files are copied as-is into their respective directories but during tool set-up the script copies a few files into the appropriate tool folders to either "fill" empty list files, or install additional functionality.</p>
+<p>These files are mainly: pre-filled "list.txt" files that are used for AddMusicK, GPS, PIXI and UberASM Tool, as well as things for the custom <a href="User Toolbar.html">User Toolbar</a>. You can find the files in <span class="dir">tools/init/lists</span> and <span class="dir">tools/init/usertoolbar</span> folders.</p>
 <h4 id="run-first-build">Callisto First Build</h4>
 <p>Technically this step isn't strictly necessary but is included to ensure that your project can build successfully after initialization and to catch any problems. If it runs successfully you can move on to working on the project.</p>
 <hr>
 <h3>Re-Initialization</h3>
 <p>At some point you may want to re-initialize the baserom, or update a tool. You can do this in the baserom by deleting the <code>.is_setup</code> file in a given tool's folder and running the "Download Tools" step of the initialization script again.</p>
+<p><b>Important: </b>Callisto uses a modified Asar DLL to track dependencies in a project and the initialization process replaces instances of Asar in each tool with Callisto's. So, if you are updating a tool you will need a copy of the modded DLL to make use of dependencies tracking.</p>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>
