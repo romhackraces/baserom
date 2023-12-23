@@ -8,9 +8,8 @@
 <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Baserom Features</span></header>
 <section>
-<a href="./index.html" class="home">🏠</a>
-<h2>Baserom Features</h2>
 <p>The baserom has a few useful features that are included either for quality of life reasons, are part of other features, or are there to help making levels easier.</p>
 <h3 id="#">Contents</h3>
 <ul>
@@ -21,16 +20,13 @@
     <li><a href="#retry-indicator">Retry Indicator</a></li>
 </ul>
 <hr>
-<!-- Section -->
 <h3 id="uberasm-objects">UberASM Objects</h3>
 <p>There is framework of custom objects (built on ObjecTool) in the baserom to allow you to toggle or activate some simple utility features, but the <a href="./UberASM Objects.html">UberASM Objects</a> page goes into greater detail on this feature.</p>
 <hr>
-<!-- Section -->
 <h3 id="dragon-coin-saving">Dragon Coin Saving</h3>
 <p>This is pretty self-explanatory: the baserom has been patched to save dragon (Yoshi) coins as they are collected, but only if a player reached a checkpoint or goal point. If you would like to disable this saving, open "sram_tables.asm" found in the "tools/uberasmtool/retry_config" and change <code>!DragonCoinSaving = 1</code> to equal zero (0).</p>
 <p>This patch has some other features that are not on by default, like changing the collected dragon coin into something else (you may have seen outline coins in other hacks) and those can be configured in its ASM file: "resources/patches/features/dragon_coin_save.asm"</p>
 <hr>
-<!-- Section -->
 <h3 id="sprite-status-bar">Sprite Status Bar</h3>
 <p>As part of the retry system, there is a per-level sprite-tile-based status bar which allows you to display parts of the HUD while the vanilla layer 3 status bar is hidden and with layer 3 backgrounds, you can see it active in the <a href="./Levels.html#demo-level">Demo Level</a>: </p>
 <center><img src="./img/sprite_status_bar.png"></center>
@@ -46,7 +42,6 @@
     <li><code>!always_off</code> same as above but should always be left in place in the tables.</li>
 </ul>
 <hr>
-<!-- Section -->
 <h3 id="clear-checkpoints">Clear Saved Checkpoints</h3>
 <p>Included in the baserom is an UberASM "safety mechanism" that clears all collected checkpoints (both midways and those given by the retry system) and saves the game when the player presses a key combo. This is to fix any save files and release the player from any potential checkpoint-related softlocks.</p>
 <p>This UberASM runs on the overworld and can be invoked with the following key combo: <span class="key">L</span> + <span class="key">R</span> + <span class="key">Select</span>. Pressing this will play a sound to indicate checkpoints have been cleared and the game has been saved.</p>
@@ -59,7 +54,6 @@ main:
 </pre>
 <small>Found in version 5.4 of baserom or later. (Runs in gamemode 14 in version 5.4).</small>
 <hr>
-<!-- Section -->
 <h3 id="retry-indicator">Retry Indicator</h3>
 <p>If you are still using the Vanilla layer 3 status bar, and have retry enabled in a level (or project-wide) you'll see the following icon in the HUD:</p>
 <center><img src="./img/retry_indicator.png"></center>
@@ -72,7 +66,7 @@ main:
 </pre>
 <p>Then run <b>Update</b> in Callisto to make the UberASM changes to your project.</p>
 <small>Found in version 5.6 of baserom or later.</small>
-<a href="#" class="go-to-top"></a>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

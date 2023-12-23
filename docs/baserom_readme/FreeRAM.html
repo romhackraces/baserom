@@ -9,9 +9,8 @@
 </head>
 <style>td:nth-child(1){width:44px;font:larger monospace;min-width: 120px;}</style>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>FreeRAM</span></header>
 <section>
-<a href="./index.html" class="home">🏠</a>
-<h2>FreeRAM</h2>
 <p>The term "FreeRAM" is shorthand for describing addresses in the SNES memory that are "empty", cleared, or unused when it comes to Super Mario World. (You view a list of empty addresses <a href="https://www.smwcentral.net/?p=memorymap&game=smw&u=0&region[]=ram&type=Empty" target="_blank">on SMW Central's RAM map</a>).</p>
 <p>Available empty addresses are used by a variety of custom resources for their own functionality, and it is good practice to not have resources use the same address as this could lead to problems. When this happens it can lead to FreeRAM conflict and result in one or both ASM resources not working.</p>
 <h3 id="#">Contents</h3>
@@ -19,7 +18,7 @@
 <li><a href="#reserved">Reserved FreeRAM</a></li>
 <li><a href="#changing-freeram">Changing FreeRAM</a></li>
 </ul>
-<!-- Section -->
+<hr>
 <h3 id="reserved">Reserved FreeRAM</h3>
 <p>The below is a list of resources in the baserom and the FreeRAM they use sorted by starting RAM address, name of resource and number of bytes.</p>
 <p>Keep in mind some of these use a range of values, e.g. if it's starting at $60 and is 4 bytes it's using addresses 60, 61, 62 and 63.</p>
@@ -55,10 +54,10 @@
 <tr><td><a target="_blank" href="https://smwc.me/m/smw/ram/7FB400">$7FB400</a></td><td>230 bytes ( +1 for every midway)</td><td>Retry System</td></tr>
 </table>
 <small>*These addresses may be different on SA-1.</small>
-<!-- Section -->
+<hr>
 <h3 id="changing-freeram">Changing FreeRAM</h3>
 <p>For easy configuration, the baserom uses a shared config file in <code>shared/freeram.asm</code> to define FreeRAM values with, so they can be called independently of resources that use them and easily be referenced.</p>
-<br><a href="#" class="go-to-top"></a>
-</section>
+<br></section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

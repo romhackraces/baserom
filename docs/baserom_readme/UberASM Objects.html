@@ -9,9 +9,8 @@
 </head>
 <style>td:nth-child(1){width:28px;font:larger monospace;text-align:center;}td:nth-child(2){width:200px;}</style>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>UberASM objects</span></header>
 <section>
-<a href="./index.html" class="home">🏠</a>
-<h2>UberASM objects</h2>
 <p>The baserom uses a framework of custom objects to allow you to toggle or activate some simple UberASM codes that are in the baserom, most of which are very basic utility features. They are activated simply by inserting a custom extension object into whichever levels you want with no limit. These objects work alongside any level UberASM you may want to use as well.</p>
 <!-- Contents -->
 <h3 id="#">Contents</h3>
@@ -19,7 +18,6 @@
     <li><a href="#available-objects">Available Objects</a></li>
     <li><a href="#inserting-objects">Inserting Custom Objects</a></li>
 </ul>
-<!-- Section -->
 <h3 id="available-objects">Available Objects</h3>
 <p>The following objects can be used to enable or toggle features or settings in the baserom.</p>
 <table border="1" class="full">
@@ -44,7 +42,6 @@
 <small>Earlier versions of the baserom may have fewer objects.</small>
 </section>
 <br>
-<!-- Section -->
 <section>
 <h4 id="retry-objects">Retry System Settings</h4>
 <p>Inserting these objects into your level to override the default settings of the retry system or even change the retry settings between sublevels.</p>
@@ -57,14 +54,13 @@
 <tr><td>B4</td><td>Vanilla Retry</td><td>Set the retry system back to using Vanilla death routine.</td></tr>
 </table>
 <hr>
-<!-- Section -->
 <h3 id="inserting-objects">Inserting Custom Objects</h3>
 <p>To insert a custom object either use the "Edit > Insert manual..." menu action or press the <code>Insert</code> key while in Lunar Magic's Object editing mode to bring up the following window.</p>
 <center><img src="img/insert_object_manual.png"></center>
 <p>To insert a custom UberASM object put its value from the tables below in the <b>Size/Type/Ext</b> field seen above. Multiple custom UberASM objects can be active in one level when they are inserted one at time.</p>
 <p>When inserted, custom objects will look garbled in Lunar Magic since they load a "null" object but they won't actually appear in game. The tiles they are made up of may occasionally use an exit-enabled (door) tile which may display a warning depending on your Lunar Magic settings.</p>
 <center><img src="img/garbled_extension_objects.png"></center>
-<a href="#" class="go-to-top"></a>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

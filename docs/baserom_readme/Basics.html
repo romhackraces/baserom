@@ -13,11 +13,9 @@ margin: 6px 0;
 }
 </style>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Baserom Basics</span></header>
 <section>
-<a href="./index.html" class="home">🏠</a>
-<h2>Baserom Basics</h2>
 <p>This article will go into some basic tasks when it comes to using the tools included in the baserom since it is a little different from a typical setup.</p>
-<!-- Section -->
 <h3 id="#">Contents</h3>
 <ul>
 <li><a href="#patches">Adding or Removing Asar Patches</a></li>
@@ -27,7 +25,6 @@ margin: 6px 0;
 <li><a href="#music">Adding Music with AddMusicK</a></li>
 </ul>
 <hr>
-<!-- Section -->
 <h3 id="patches">Adding or Removing Asar Patches</h3>
 <p>In the baserom, Asar <a href="Patches.html">patches</a> are managed by the Callisto build tool and are all applied at build time. The files for all included patches are kept in subfolders the <b>resources/patches</b> folder.</p>
 <p>To <b>add</b> a new patch:</p>
@@ -42,7 +39,6 @@ margin: 6px 0;
 </ol>
 <p>Any changes made to the patches list will be applied the next time you run the <code>Rebuild</code> or <code>Update</code> action.</p>
 <hr>
-<!-- Section -->
 <h3 id="sprites">Adding Sprites with PIXI</h3>
 <p>To add downloaded sprites to your project:</p>
 <ol>
@@ -52,7 +48,6 @@ margin: 6px 0;
 </ol>
 <p>For a more in-depth explanation of how to use PIXI, check out <a href="https://smwc.me/t/91190" target="_blank">this tutorial on SMW Central</a>.</p>
 <hr>
-<!-- Section -->
 <h3 id="blocks">Adding Blocks with GPS</h3>
 <p>To add downloaded blocks to your project:</p>
 <ol>
@@ -60,9 +55,9 @@ margin: 6px 0;
 <li>Update GPS's "list.txt" with the new blocks, take care to not overwrite blocks that are already present in the baserom or use a Block ID that is already used. Pressing the <span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span> button in Lunar Magic will open this list in a text editor.</li>
 <li><b>Do not run gps.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span> button in Lunar Magic to insert the new blocks.</li>
 </ol>
+<p class="infobox">When inserting. it is recommended to start with Page 4 addresses to avoid conflicts with the <a href="./Blocks.html">baserom's blocks</a>.</p>
 <p>For a more in-depth explanation of how to use GPS, check out <a href="https://smwc.me/t/88423" target="_blank">this tutorial on SMW Central</a>.</p>
 <hr>
-<!-- Section -->
 <h3 id="uberasm">Adding UberASM with UberASMTool</h3>
 <p>To add new UberASM to your project:</p>
 <ol>
@@ -72,7 +67,6 @@ margin: 6px 0;
 </ol>
 <p>For a more in-depth explanation of how to use UberASMTool, check out <a href="../../docs/tools/UberASMTool/readme.html" target="_blank">UberASMTool's included README</a>.</p>
 <hr>
-<!-- Section -->
 <h3 id="music">Adding Music with AddMusicK</h3>
 <p>To add new music to your project:</p>
 <ol>
@@ -82,7 +76,7 @@ margin: 6px 0;
 </ol>
 <p>For a more in-depth explanation of how to use AddMusicK, check out <a href="../../docs/tools/AddMusicK/readme.html" target="_blank">AddMusicK's included README</a>.</p>
 <hr>
-<a href="#" class="go-to-top"></a>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

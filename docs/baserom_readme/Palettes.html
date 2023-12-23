@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Palettes - Romhack Races Baserom</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="./img/flop.gif" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+<section>
+<a href="./index.html" class="home">🏠</a><h2>Palettes</h2>
+<!-- Contents -->
+<h3>Contents</h3>
+<ul>
+    <li><a href="#pink-berry">Pink Berry</a></li>
+    <li><a href="#poison-mushroom">Poison Mushroom</a></li>
+    <li><a href="#custom-blocks">Custom Blocks</a></li>
+</ul>
+<!-- Section -->
+<h3 id="palettes">Palettes</h3>
+<p>For the most part the baserom doesn't touch the palettes of the Vanilla game, however the palette row for the Pink Berry (object 1E) has been changed to row <code>5</code> from row <code>3</code> so it will appear blank in Lunar Magic.</p>
+<center><img src="img/pink-berry-palette.png"></center>
+<p>This change was made to make some room for some a global colors in the Shared palette that is used by graphics for some of the custom blocks in the baserom.</p>
+<center><img src="img/edited_shared-palette.png"></center>
+<h4 id="pink-berry">Pink Berry</h4>
+<p>The original Pink Berry's palette can be restored if you import the <code>resources/palettes/PinkBerry.pal</code> file, should you end up using them in your level(s).</p>
+<center><img src="img/pink-berry-imported-palette.png"></center>
+<h4 id="poison-mushroom">Poison Mushroom</h4>
+<p>The Poison mushroom is the only sprite in the baserom using a custom palette&ndash;palette row <code>A</code> for the hurt mushroom and row <code>B</code> for the kill variety&ndash;you can import it from <code>resources/palettes/PoisonMushroom.pal</code> to use in your level(s).</p>
+<center><img src="img/poison-mushroom-palette.png"></center>
+<h4 id="custom-blocks">Custom Blocks</h4>
+<p>If you happen to overwrite or lose the palette for the custom blocks mentioned above, you can re-import it from <code>resources/palettes/CustomBlocks.pal</code> to use in your level(s).</p>
+<a href="#" class="go-to-top"></a>
+</section>
+</body>
+</html>

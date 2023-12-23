@@ -9,9 +9,8 @@
 </head>
 <style>td:nth-child(1){width: 240px;}td:nth-child(2):first-letter{text-transform: capitalize;}</style>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Patches</span></header>
 <section>
-<a href="./index.html" class="home">🏠</a>
-<h2>Patches</h2>
 <p>The Romhack Races baserom comes with a significant number of patches to the base game. They are listed below with a brief summary to explain why they are used. Patches without a link are either written for the baserom or not published on a site like SMW Central.</p>
 <!-- Contents -->
 <h3>Contents</h3>
@@ -26,7 +25,6 @@
 <li><a href="#enhancements">Enhancements</a></li>
 <li><a href="#tweaks">Tweaks</a></li>
 </ol>
-<!-- Section -->
 <h3 id="bug-fixes">Bug Fixes</h3>
 <table border="1">
 <tr><td><a target="_blank" href="https://smwc.me/s/18319">$13FB Game Crash Fix</a>↗</td><td>this fixes a crash that occurs during sprite collision, notably when collecting a fire flower and eating a berry on Yoshi</td></tr>
@@ -52,7 +50,6 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/26825">Tide Current Fix</a>↗</td><td>Fixes an issue where layer 3 tide current is present in other swimmable blocks that are not part of the tide. </td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/19932">Walljump/Note Block Glitch Fix</a>↗</td><td>prevents Mario from catching on solid tiles when he jumps at a wall</td></tr>
 </table>
-<!-- Section -->
 <h3 id="sprite-fixes">Sprite Fixes</h3>
 <table border="1">
 <tr><td><a target="_blank" href="https://smwc.me/s/22761">Ball n' Chain and Yoshi Interaction Fix</a>↗</td><td>this fixes an issue where Yoshi can be hurt by the middle of a ball n' chain</td></tr>
@@ -69,7 +66,6 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/22833">Vertical Spawn/Despawn Fix</a>↗</td><td>fixes a glitch where sprites despawn when (re)entering the screen vertically</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/16781">Vertical Level Bowser Statue Fireball Fix</a>↗</td><td>fixes a bug where Bowser statue fireballs don't despawn offscreen in vertical levels</td></tr>
 </table>
-<!-- Section -->
 <h3 id="graphical-fixes">Graphical Fixes</h3>
 <table border="1">
 <tr><td><a target="_blank" href="https://smwc.me/s/32380">BG Candle Flames Priority Fix (for SA-1 MaxTile)</a>↗</td><td>if using SA-1, there is an issue with the candle flames having priority over other sprites, this fixes that</td></tr>
@@ -82,7 +78,6 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/22372">Victory Pose Fix</a>↗</td><td>fixes a visual issue with Mario's head being squish at level end when small and on Yoshi</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/30127">Yoshi Pipe Animation Fix</a>↗</td><td>fixes an issue where a dismounted Yoshi will use an entering-a-pipe pose when Mario enters a pipe</td></tr>
 </table>
-<!-- Section -->
 <h3 id="consistency">Changes for Consistency</h3>
 <table border="1">
 <tr><td>Capespin Direction Consistency</td><td>makes it so pressing spin while in flight will consistently turn Mario around; the baserom has modified this patch to make this toggleable via FreeRAM</td></tr>
@@ -92,7 +87,6 @@
 </tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/24862">Player X Speed Fix</a>↗</td><td>patches Mario's x-speed oscillation to be consistent when he is at max speed as well as his inability to jump when going at high speed</td></tr>
 </table>
-<!-- Section -->
 <h3 id="optimizations">Optimizations</h3>
 <table border="1">
 <tr><td><a target="_blank" href="https://smwc.me/s/31950">Optimize 1F0</a>↗</td><td>fixes an issue where placing successive sprites on slope-assist tiles (not just 1F0) runs up the CPU usage and could potentially cause slowdown</td></tr>
@@ -100,14 +94,12 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/16366">Layer 2 Buoyancy Optimization</a>↗</td><td>fixes slowdown that may occur if use Lunar Magic's second buoyancy option but still have water tiles on Layer 2</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/28028">Lunar Magic's &quot;VRAM Patch&quot; Optimization</a>↗</td><td>optimizes Lunar Magic's handling of VRAM.</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/33996">Status Bar NMI Optimizer</a>↗</td><td>faster NMI for the Status Bar saving more scanlines</td></tr>
-</table><!-- Section -->
-<h3 id="additional-patches">Additional Patches</h3>
+</table><h3 id="additional-patches">Additional Patches</h3>
 <table border="1">
 <tr><td>Free Up RAM</td><td>Frees up ~32KiB of RAM at 7F0000 for use during levels.</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/24816">No More Sprite Tile Limits</a>↗</td><td>allows more sprite tiles to be displayed on screen simultaneously</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/32381">Extended No More Sprite Tile Limits</a>↗</td><td>Allow more <i>extended</i> sprite tiles to be displayed.</td></tr>
 </table>
-<!-- Section -->
 <h3 id="features">New Features</h3>
 <table border="1">
 <tr><td><a target="_blank" href="https://smwc.me/s/22888">Individual Dragon Coin Save</a>↗</td><td>patches the Dragon Coin system so they are saved when collected</td></tr>
@@ -117,7 +109,6 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/28449">RAM Toggled Status Bar</a>↗</td><td>allows the status bar to be toggled via FreeRAM instead of patched out globally</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/35220">RAM-Toggled Spin Jump Fireballs</a>↗</td><td>enables using a FreeRAM flag to make mairo stop using fireballs when he spin jumps.</td></tr>
 </table>
-<!-- Section -->
 <h3 id="enhancements">Enhancements</h3>
 <table border="1">
 <tr><td>Double Bounce Shell Palette</td><td>used to display the double bounce shell as grey in-game to distinguish it from the normal green shell</td></tr>
@@ -132,10 +123,8 @@
 <tr><td><a target="_blank" href="https://smwc.me/s/18949">Spike Top Ceiling Cling</a>↗</td><td>patch to allow spinies to be placed on the ceiling</td></tr>
 <tr><td><a target="_blank" href="https://smwc.me/s/19256">Triple Ball 'n' Chain</a>↗</td><td>enhances the triple grey platform sprite to be a triple ball n' chain when the extra bit is set</td></tr>
 </table>
-<!-- Section -->
 <h3 id="tweaks">Tweaks</h3>
 <p>Many minor fixes or edits have been made to the base game via hex edits. Open the "tweaks.asm" file in the "resources/patches" folder for details.</p>
-<!-- Section -->
 <h4 id="gameplay-changes">Gameplay Changes</h4>
 <p>Some minor changes have been made to the game to optimize it for building Kaizo levels:</p>
 <ul>
@@ -179,7 +168,7 @@
 <li>Some small fixes to layer 2 priority in vertical levels.</li>
 <li>The animation reset frame counter has been patched to be at level load.</li>
 </ul>
-<a href="#" class="go-to-top"></a>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>
