@@ -1,3 +1,11 @@
+v5.6
+- new layer 3 status bar indicator for levels that use retry
+- big set of edits to the baserom's documentation to clean it up and improve it
+- clean up of the tweaks.asm code; added tweak for animation resetting
+- tidying up of the UberASM objects code
+- new UberASM object for Disabling cape flight
+- cleared out unneeded, unmodified tools files
+
 v5.5
 - cleaned up the screen-scrolling pipes ASM
 - new visuals for pass-through death block
