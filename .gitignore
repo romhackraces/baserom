@@ -1,4 +1,9 @@
+# This gitignore is for managing the baserom project, if you are tracking your hack project with git, delete this ignore file.
+
+# Things to ignore on an initialized baserom
+# ignore readme files
 docs/tools/*
+# ignore AddMusicK files
 tools/addmusick/asm/*
 tools/addmusick/SPCs/*.spc
 tools/addmusick/stats/*.txt
@@ -10,15 +15,29 @@ tools/addmusick/1DFC/*
 tools/addmusick/Visualizations/*
 tools/addmusick/*.pl
 tools/addmusick/Addmusic_*.txt
+# ignore GPS files
+tools/gps/blocks/template.asm
 tools/gps/block_boilerplate.asm
 tools/gps/rom.txt
+tools/gps/main.asm
+tools/gps/defines.asm
 tools/gps/shared.asm
+tools/gps/routines
+# ignore Flips Files
 tools/flips/flipscfg.bin
+# ignore Lunar Magic Files
 tools/lunar_magic/usertoolbar*
+# ignore PIXI files
+tools/pixi/asm
+tools/pixi/routines
+tools/pixi/*/_header.asm
+tools/pixi/*/*/_header.asm
+# ignore UberASMTool Files
 tools/uberasmtool/*.pdb
-tools/uberasmtool/asm/work/*.asm
+tools/uberasmtool/asm
+tools/uberasmtool/routines
+# ignore list files
 tools/*/list.txt
-example.asm
 sysLMRestore
 workspace/temp/*
 conflicts.txt
@@ -29,6 +48,7 @@ failed_save.txt
 .first_build_done
 temp/*
 temp.*
+# Ignore particular file types
 *.*~
 *.bps
 *.chm
@@ -45,5 +65,13 @@ temp.*
 *.zip
 # Keep particular files
 !.gitkeep
+# keep GPS files
+tools/gps/routines/!face_yoshi.asm
+tools/gps/routines/!hundred_points.asm
+tools/gps/routines/!row_points.asm
+tools/gps/routines/!star_points.asm
+tools/gps/routines/!stomped_points.asm
+tools/gps/routines/!teleport_direct.asm
+# keep AMK files
 tools/addmusick/asm/!UserDefines.asm
 tools/addmusick/1DFC/!Death Prelude.txt
