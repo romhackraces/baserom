@@ -9,12 +9,12 @@
   --fg_color_a10: #22222210;
 
   --link_color: #5880e5;
-  --link_color_alpha: #5880e520;
-  --link_color_visited: #973ce1;
+  --link_color_a20: #5880e520;
+  --link_color_a10: #5880e510;
 
   --info_color: #7b6408;
   --info_bg_color: #f3e7be;
-  --info_link_color: #f9f3e2;
+  --info_link_color: #927e2d;
 
   --code_bg_color: #3f4651;
   --code_fg_color: #d0d4dc;
@@ -32,12 +32,15 @@
     --fg_color_a10: #cfcfcf10;
 
     --link_color: #88a5f0;
-    --link_color_alpha: #9db7fa20;
-    --link_color_visited: #c258e5;
+    --link_color_a20: #88a5f020;
+    --link_color_a10: #88a5f010;
 
     --info_color: #d0c69b;
     --info_bg_color: #5a5440;
     --info_link_color: #e5debf;
+
+    --code_bg_color: #1a1e24;
+    --code_fg_color: #b4b5b7;
   }
 }
 
@@ -90,7 +93,7 @@ header div.home a:hover {
 }
 section {
   margin: 0 3em;
-  margin-bottom: 2em;
+  margin-bottom: 2em !important;
 }
 pre {
   background-color: var(--code_bg_color);
@@ -106,10 +109,33 @@ li {
 }
 li::marker {
 }
+ul.resources {
+  margin: 0;
+  margin-bottom: 2em;
+  padding: 0;
+  list-style: none;
+  display: block;
+  width: 100%;
+  float: left;
+}
+ul.resources li a {
+  width: calc(50% - 32px);
+  display: inline-block;
+  float: left;
+  border-radius: 8px;
+  margin: 4px;
+  padding: 8px 12px;
+  text-decoration: none;
+  color: var(--link_color);
+  background-color: var(--link_color_a10);
+}
+ul.resources li a:hover {
+  background-color: var(--link_color_a20);
+}
 img {
   margin: 1em;
   display: block;
-  max-width: 100%;
+  max-width: 90%;
   height: auto;
 }
 code {
@@ -129,8 +155,8 @@ span.key {
   font-weight: bold;
   padding: 3px 5px;
   border-radius: 4px;
-  color: var(--bg_color);
-  background-color: var(--fg_color);
+  color: var(--fg_color);
+  background-color: var(--fg_color_a40);
   box-shadow: inset 0 -2px 0 0 rgba(0,0,0,0.2);
 }
 small {
@@ -158,15 +184,18 @@ td,th {
 a {
   color: var(--link_color);
 }
+a:hover {
+  text-decoration: none;
+}
 a:visited {
-  color: var(--link_color_visited);
+  color: var(--link_color);
 }
 a.go-to-top {
   display: block;
   font-weight: bold;
   text-decoration: none;
   color: var(--link_color);
-  background-color: var(--link_color_alpha);
+  background-color: var(--link_color_a10);
   max-width: 90%;
   display: block;
   padding: 4px 0;
@@ -175,19 +204,18 @@ a.go-to-top {
   border-radius: 6px;
   text-transform: lowercase;
   font-family: monospace;
-  opacity: 0.8;
 }
 a.go-to-top:after {
   content: "⇑ Go To Top of Page ⇑"
 }
 a.go-to-top:hover {
   opacity: 1;
-  background-color: var(--link_color_alpha);
+  background-color: var(--link_color_a20);
 }
 .infobox {
-  width: calc(100% - 16px);
+  width: calc(100% - 32px);
   display: block;
-  padding: 8px;
+  padding: 8px 16px;
   font-size: .9em;
   margin: 2em 0;
   text-align: center;
@@ -201,6 +229,12 @@ a.go-to-top:hover {
 .infobox a:hover {
   text-decoration: none;
 }
+
+.infobox * {
+  color: inherit !important;
+}
+
+
 hr {
   border: none;
   margin: 2em auto;
@@ -241,5 +275,11 @@ span.usertoolbar-button {
   header,
   section {
     margin: 0 1em
+  }
+  table {
+    font-size: smaller;
+  }
+  ul.resources li a {
+    width: calc(100% - 32px);
   }
 }

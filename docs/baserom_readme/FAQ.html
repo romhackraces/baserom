@@ -36,7 +36,7 @@
 <hr>
 <h3 id="no-bps">Where is the BPS patch to use the baserom?</h3>
 <p>To get people familiar with the build process of the baserom we've opted to not include the BPS patch to create a ready-to-use baserom. The very simple initialization steps will create a clean slate to get started on a project.</p>
-<p> If you are in need of a BPS file, Callisto can create one with the <code>Package</code> action, or from the <span class="usertoolbar-button" style="background-position:calc(-16px * 10);"></span> button on the included <a href="./User Toolbar.html">User Toolbar</a>.</p>
+<p> If you are in need of a BPS file, Callisto can create one with the "Package" action, or from the <span class="usertoolbar-button" style="background-position:calc(-16px * 10);"></span> button on the included <a href="./User Toolbar.html">User Toolbar</a>.</p>
 <hr>
 <h3 id="removing-things">How do I remove things from the baserom?</h3>
 <p>Callisto makes it easy to remove items from the baserom without a problem as it re-builds your ROM from scratch avoiding resource conflicts. See the <a href="./Basics.html">Baserom Basics page</a> for more details on that.</p>
@@ -52,9 +52,9 @@ init:
     jsl uberasm_objects_init
     ;jsl toggle_statusbar_init
     rtl
-</pre></li>
+</pre>.</li>
     <li>Remove the semi-colon in front of <code>jsl toggle_statusbar_init</code> and save the file.</li>
-    <li>Run <code>Update</code> in Callisto to insert the UberASM changes in your project.</li>
+    <li>Run "Update" in Callisto to insert the UberASM changes in your project.</li>
 </ul>
 <hr>
 <h3 id="fast-retry">Does this have Fast Retry?</h3>
@@ -65,7 +65,7 @@ init:
     <li><code>tables.asm</code> &ndash; Several options tables for changing per-level settings.</li>
     <li><code>sprite_status_bar_tables.asm</code> &ndash; More configuration tables for displaying the sprite status bar items.</li>
 </ul>
-<p>After making changes to any of the above, run <b>Update</b> in Callisto to insert the UberASM changes in your project.</p>
+<p>After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
 <hr>
 <h3 id="block-graphics">Why are my block graphics not looking right?</h3>
 <center><img src="img/garbled_map16.png" title="Custom block tiles missing ExGraphics"></center>
@@ -82,7 +82,7 @@ initial_patch = "resources/initial_patches/fastrom.bps"
 # and comment out the one above
 #initial_patch = "resources/initial_patches/sa1.bps"
 </pre>
-<p>To change which initial patch is used, comment out (i.e. move the "#") the relevant <code>initial_patch</code> line, and <code>Rebuild</code> your project in Callisto to make the change.</p>
+<p>To change which initial patch is used, comment out (i.e. move the "#") the relevant <code>initial_patch</code> line, and "Rebuild" your project in Callisto to make the change.</p>
 <p class="infobox">You will have to check if any additional resources that you add are SA-1 compatible when doing this.</p>
 <hr>
 <h3 id="conflicts">Help, Callisto is reporting conflict(s)!</h3>
