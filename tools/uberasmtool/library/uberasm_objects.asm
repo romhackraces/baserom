@@ -40,6 +40,7 @@ routines:
     %ObjectRoutine($A5, death_on_power_up_loss)
     %ObjectRoutine($A7, press_lr_to_die)
     %ObjectRoutine($AB, disable_cape_flight)
+    %ObjectRoutine($AC, disable_screen_shake)
 ..end
 
 init:
@@ -263,6 +264,11 @@ disable_cape_flight:
     rts
 
 ; Extended Object AC
+; disable screen shake
+disable_screen_shake:
+    sta $1887|!addr       ; store zero to the layer 1 shake timer
+    rts
+
 ; Extended Object AD
 ; Extended Object AE
 ; Extended Object AF
