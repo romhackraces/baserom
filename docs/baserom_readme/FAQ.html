@@ -22,6 +22,7 @@
 <li><a href="#block-graphics">Why are my block graphics not looking right?</a></li>
 <li><a href="#sa1">Is the baserom SA-1 compatible?</a></li>
 <li><a href="#conflicts">Help, Callisto is reporting conflict(s)!</a></li>
+<li><a href="#lunar-magic-restore-system-issue">Help, I'm seeing a "Restore System Issue"!</a></li>
 </ol>
 <hr>
 <h3 id="callisto">What is Callisto?</h3>
@@ -95,6 +96,14 @@ Moving temporary files to final output
 <p>One of the features of the Callisto tool is to detect when two or more resources are modifying the same parts of the ROM. This is to help you address resource conflicts by showing you which bytes are in conflict and compare them to the original ROM bytes.</p>
 <p>Unfortunately, some of the tools in the baserom are writing to the same bytes so there are some unavoidable conflicts occuring. But not to worry as they seem to have no adverse affect.</p>
 <p>However, if you are seeing more than those 2 known conflicts, something else may be at issue in your project.</p>
+<hr>
+<h3 id="lunar-magic-restore-system-issue">Lunar Magic Restore System Issue</h3>
+<p>If you have never used Lunar Magic before, it automatically tries to set up its built-in restore system so you don't lose edits and can recover from any problems that occur on your ROM. When setting up the baserom, you may therefore encounter an error like the following.</p>
+<pre>The restore system cannot locate a copy of the original unmodified ROM with header, which is required for an operation about to be performed. Would you like to browse for a copy of this file now? (Y/N)</pre>
+<p>If you do see this and a File Chooser window appears, simply browse for a clean, headered copy of your Super Mario World ROM and open it so Lunar Magic can be satisfied.</p>
+<p>Additionally, newer versions of Lunar Magic (3.40+) have changed how the restore system works by keeping the location of a known clean ROM in the Windows registry so if you haven't yet used a newer version of Lunar Magic you may also see this message. You can resolve it by opening Lunar Magic outside of the baserom project and following its prompt to find a clean ROM.</p>
+<p>You can confirm it's set up by opening Windows' Registry Editor, browsing to <code>HKEY_CURRENT_USER\Software\LunarianConcepts\LunarMagic\Settings</code> you can find Lunar Magic's stored settings, and checking for the "OrigROM0" key.</p>
+<hr>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>

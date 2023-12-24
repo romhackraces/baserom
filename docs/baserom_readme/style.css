@@ -144,9 +144,11 @@ code {
   border-radius: 4px;
   color: var(--fg_color) !important;
   background-color: var(--fg_color_a10);
+  word-break: break-all;
 }
 span.dir {
   text-decoration: underline;
+  word-break: break-all;
 }
 span.key {
   display: inline;

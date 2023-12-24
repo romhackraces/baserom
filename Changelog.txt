@@ -4,6 +4,7 @@ v5.6
 - clean up of the tweaks.asm code; added tweak for animation resetting
 - tidying up of the UberASM objects code
 - new UberASM object for Disabling cape flight
+- new UberASM object for Disabling screen shake
 - cleared out unneeded, unmodified tools files
 
 v5.5
