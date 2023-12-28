@@ -16,10 +16,9 @@
 ; The default settings replace the berry, flopping fish and smiling coin tiles.
 ;
 ; NOTE: enabling the coin counter also enables the display of the Yoshi Coins collected.
-;
-; NOTE: while the coin counter uses one 16x16 tile, the bottom right 8x8 tile is not used or overwritten,
-; so it's safe to use for anything else.
-
+; By default the Yoshi Coins are displayed with the same coin tile as the coin counter, but you can
+; edit it to a different tile by editing the "gfx/coin.bin" file (the first tile is used for the coin counter,
+; the second for the Yoshi Coins display).
 
 ; default settings for the baserom
 !itemb_tile = $3080 ; with item_box table

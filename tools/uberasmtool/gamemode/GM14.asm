@@ -13,3 +13,7 @@ main:
 nmi:
     jsl retry_nmi_level
     rtl
+
+end:
+    jsl retry_indicator_end
+    rtl

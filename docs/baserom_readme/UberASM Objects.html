@@ -14,10 +14,11 @@
 <p>The baserom uses a framework of custom objects to allow you to toggle or activate some simple UberASM codes that are in the baserom, most of which are very basic utility features. They are activated simply by inserting a custom extension object into whichever levels you want with no limit. These objects work alongside any level UberASM you may want to use as well.</p>
 <h3 id="#">Contents</h3>
 <ul>
-    <li><a href="#available-objects">Available Objects</a></li>
+    <li><a href="#available-objects">Available Feature Objects</a></li>
+    <ul><li><a href="#retry-objects">Retry System Settings</a></li></ul>
     <li><a href="#inserting-objects">Inserting Custom Objects</a></li>
 </ul>
-<h3 id="available-objects">Available Objects</h3>
+<h3 id="available-objects">Available Feature Objects</h3>
 <p>The following objects can be used to enable or toggle features or settings in the baserom. Each object has an ID number that corresponds to its Extension value to be used when <a href="#inserting-objects">inserting</a> it as a Custom Object.</p>
 <table border="1" class="full">
 <tr><th>ID</th><th>Object</th><th>Description</th></tr>
@@ -50,6 +51,7 @@
 <tr><td>B2</td><td>Bottom Left Retry Prompt</td><td>Move the retry prompt to the bottom left (by default it's in the middle) if Prompt retry is active.</td></tr>
 <tr><td>B3</td><td>No Power Ups from Midways</td><td>Disable gaining a power-up (mushroom) from a midway point.</td></tr>
 <tr><td>B4</td><td>Vanilla Retry</td><td>Set the retry system back to using Vanilla death routine.</td></tr>
+<tr><td>B6</td><td>Enable Retry Indicator</td><td>Display <a href="./Features.html#retry-indicator">an indicator</a> for a level using retry in the HUD.</td></tr>
 </table>
 <hr>
 <h3 id="inserting-objects">Inserting Custom Objects</h3>

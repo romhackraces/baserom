@@ -45,7 +45,9 @@
 <h3 id="clear-checkpoints">Clear Saved Checkpoints</h3>
 <p>Included in the baserom is an UberASM "safety mechanism" that clears all collected checkpoints (both midways and those given by the retry system) and saves the game when the player presses a key combo. This is to fix any save files and release the player from any potential checkpoint-related softlocks.</p>
 <p>This UberASM runs on the overworld and can be invoked with the following key combo: <span class="key">L</span> + <span class="key">R</span> + <span class="key">Select</span>. Pressing this will play a sound to indicate checkpoints have been cleared and the game has been saved.</p>
+<h4>Configuring</h4>
 <p>If you would like to change the key combination you can do so by editing the "retry_clear_saved_cp.asm" in the <span class="dir">tools/uberasmtool/library</span> folder, keep in mind using either any of the face buttons (ABXY) in this combo while on the Overworld will enter a level.</p>
+<h4>Disabling</h4>
 <p>If you would like to disable this feature, you can open "GM0E.asm" in the <span class="dir">tools/uberasmtool/gamemode</span> folder and add a semi-colon as done to the line you see below.</p>
 <pre>
 main:
@@ -55,18 +57,22 @@ main:
 <small>Found in version 5.4 of baserom or later. (Runs in gamemode 14 in version 5.4).</small>
 <hr>
 <h3 id="retry-indicator">Retry Indicator</h3>
-<p>If you are still using the Vanilla layer 3 status bar, and have retry enabled in a level (or project-wide) you'll see the following icon in the HUD:</p>
+<p>The baserom comes with the Retry System (which is off by default but can be enabled with <a href="./UberASM Objects.html#retry-objects">UberASM Objects</a>) but a supplementary feature has been included for displaying an indicator in the HUD in levels that have retry enabled. This was included to be useful to projects that may have a mix of retry types among levels or for collaboration hacks.</p>
+<h4>Enabling</h4>
+<p>The indicator can be enabled with an <a href="./UberASM Objects.html#retry-objects">UberASM object</a> and once enabled it will appear in the status area in one of two ways:</p>
+<ul>
+    <li>if you are still using the vanilla layer 3 status bar, you'll see the following icon in the HUD.</li>
+</ul>
 <center><img src="./img/retry_indicator.png" alt="Screenshot of the retry indicator in the layer 3 status bar" title="Screenshot of the retry indicator in the layer 3 status bar"></center>
-<p>If you would like to disable this, open "GM13.asm" in the <span class="dir">tools/uberasmtool/gamemode</span> folder and add a semi-colon as done to the line you see below.</p>
-<pre>
-main:
-    ;jsl retry_indicator_main
-    jsl retry_level_init_3_main
-    rtl
-</pre>
-<p>Then run "Update" in Callisto to make the UberASM changes to your project.</p>
-<small>Found in version 5.6 of baserom or later.</small>
+<ul>
+<li>if the layer 3 status bar is hidden, a sprite indicator will appear in the upper left.</li>
+</ul>
+<center><img src="./img/retry_indicator_sprite.png" alt="Screenshot of the sprite tile retry indicator" title="Screenshot of the sprite tile retry indicator"></center>
+<h4>Configuring</h4>
+<p>This feature has a number of configuration options, if you would like to change how it displays you can edit the "retry_indicator.asm" in the <span class="dir">tools/uberasmtool/library folder</span>.</p>
+<small>Found in version 5.6 of baserom or later. Sprite tile indicator in version 5.7 or later.</small>
 </section>
+<hr>
 <a href="#" class="go-to-top"></a>
 </body>
 </html>

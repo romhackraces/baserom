@@ -19,18 +19,19 @@ routines:
     %ObjectRoutine($98, free_vertical_scroll)
     %ObjectRoutine($99, no_horizontal_scroll)
     %ObjectRoutine($9A, set_state_to_off)
-    %ObjectRoutine($9B, block_duplication)
+    %ObjectRoutine($9B, toggle_block_duplication)
     %ObjectRoutine($9C, toggle_status_bar)
     %ObjectRoutine($9D, toggle_lr_scroll)
     %ObjectRoutine($9E, enable_sfx_echo)
-    %ObjectRoutine($A2, vanilla_turnaround)
-    %ObjectRoutine($A9, spinjump_fireballs)
-    %ObjectRoutine($AA, springboard_fixes)
+    %ObjectRoutine($A2, toggle_vanilla_turnaround)
+    %ObjectRoutine($A9, toggle_spinjump_fireballs)
+    %ObjectRoutine($AA, toggle_springboard_fixes)
     %ObjectRoutine($B0, retry_instant)
     %ObjectRoutine($B1, retry_prompt)
     %ObjectRoutine($B2, retry_bottom_left)
     %ObjectRoutine($B3, retry_no_midway_powerup)
     %ObjectRoutine($B4, retry_vanilla)
+    %ObjectRoutine($B6, toggle_retry_indicator)
 ..end
 
 .main
@@ -159,7 +160,7 @@ set_state_to_off:
 
 ; Extended Object 9B
 ; Toggle block duplication
-block_duplication:
+toggle_block_duplication:
     lda #$01 : sta !toggle_block_duplication_freeram
     rts
 
@@ -196,7 +197,7 @@ no_powerups:
 
 ; Extended Object A2
 ; Toggle vanilla cape spin in air
-vanilla_turnaround:
+toggle_vanilla_turnaround:
     lda #$01 : sta !toggle_capespin_direction_freeram
     rts
 
@@ -247,13 +248,13 @@ press_lr_to_die:
 
 ; Extended Object A9
 ; toggle spin jump fireballs
-spinjump_fireballs:
+toggle_spinjump_fireballs:
     lda #$01 : sta !toggle_spinjump_fireball_freeram
     rts
 
 ; Extended Object AA
 ; toggle springboard fixes
-springboard_fixes:
+toggle_springboard_fixes:
     lda #$01 : sta !toggle_springboard_fixes_freeram
     rts
 
@@ -303,8 +304,15 @@ retry_no_midway_powerup:
 retry_vanilla:
     lda #$04 : sta !retry_ram_prompt_override
     rts
-; Extended Object B5
+
+; Extended Object B5 (skipped because it uses a door tile)
+
 ; Extended Object B6
+; Toggle retry indicator
+toggle_retry_indicator:
+    lda #$01 : sta !toggle_retry_indicator_freeram
+    rts
+
 ; Extended Object B7
 ; Extended Object B8
 ; Extended Object B9
