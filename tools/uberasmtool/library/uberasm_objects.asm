@@ -267,7 +267,7 @@ disable_cape_flight:
 ; Extended Object AC
 ; disable screen shake
 disable_screen_shake:
-    sta $1887|!addr       ; store zero to the layer 1 shake timer
+    stz $1887|!addr       ; store zero to the layer 1 shake timer
     rts
 
 ; Extended Object AD
