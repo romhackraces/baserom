@@ -14,6 +14,7 @@
 <h3 id="#">Contents</h3>
 <ul>
     <li><a href="#uberasm-objects">UberASM Objects</a></li>
+    <li><a href="#retry-system">Retry System + Multiple Checkpoints</a></li>
     <li><a href="#dragon-coin-saving">Dragon Coin Saving</a></li>
     <li><a href="#sprite-status-bar">Sprite Status Bar</a></li>
     <li><a href="#clear-checkpoints">Clear Saved Checkpoints</a></li>
@@ -22,6 +23,22 @@
 <hr>
 <h3 id="uberasm-objects">UberASM Objects</h3>
 <p>There is framework of custom objects (built on ObjecTool) in the baserom to allow you to toggle or activate some simple utility features, but the <a href="./UberASM Objects.html">UberASM Objects</a> page goes into greater detail on this feature.</p>
+<hr>
+<h3 id="retry-system">Retry System + Multiple Checkpoints</h3>
+<p>The baserom comes with an <a href="https://github.com/kkevinm/retry-system/" target="_blank">UberASM version of the Retry System</a> that performs better and has more features than the Asar patch version you can get from SMW Central.  You can read more about the retry system in its included documentation in <span class="dir">docs/retry_system</span>.</p>
+
+<h4>Configuring</h4>
+<p>The retry system is configured to use vanilla death routine globally but different retry types can be set per-level with <a href="./UberASM Objects.html#retry-objects">UberASM Objects</a>.</p>
+
+<p>To change the Retry System's global settings you can edit its configuration files in <span class="dir">tools/uberasmtool/retry_config</span>.</p>
+<ul>
+    <li><code>settings.asm</code> &ndash; Change the global settings for the retry system.</li>
+    <li><code>tables.asm</code> &ndash; Several options tables for changing per-level settings.</li>
+    <li><code>sprite_status_bar_tables.asm</code> &ndash; More configuration tables for displaying the sprite status bar items.</li>
+</ul>
+<p>After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
+<h4>Multiple Checkpoints</h4>
+<p>A feature of the retry system a custom checkpoint that you can insert into levels to allow for more than just the single vanilla midpoint. You can read more about it in the <a href="../retry_system/midway_instruction.html">included docuementation</a> </p>
 <hr>
 <h3 id="dragon-coin-saving">Dragon Coin Saving</h3>
 <p>This is pretty self-explanatory: the baserom has been patched to save dragon (Yoshi) coins as they are collected, but only if a player reached a checkpoint or goal point. If you would like to reconfigure how dragon coins save, open "sram_tables.asm" found in the <span class="dir">tools/uberasmtool/retry_config"</span> and change <code>!DragonCoinSaving = 1</code> to equal zero (0).</p>
@@ -57,7 +74,7 @@ main:
 <small>Found in version 5.4 of baserom or later. (Runs in gamemode 14 in version 5.4).</small>
 <hr>
 <h3 id="retry-indicator">Retry Indicator</h3>
-<p>The baserom comes with the Retry System (which is off by default but can be enabled with <a href="./UberASM Objects.html#retry-objects">UberASM Objects</a>) but a supplementary feature has been included for displaying an indicator in the HUD in levels that have retry enabled. This was included to be useful to projects that may have a mix of retry types among levels or for collaboration hacks.</p>
+<p>The baserom has a supplementary feature to the retry system that can display an indicator in the HUD in levels that have quick retry enabled. This was included to be useful to projects that may have a mix of retry types among levels or for collaboration hacks.</p>
 <h4>Enabling</h4>
 <p>The indicator can be enabled with an <a href="./UberASM Objects.html#retry-objects">UberASM object</a> and once enabled it will appear in the status area in one of two ways:</p>
 <ul>
