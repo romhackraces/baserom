@@ -7,24 +7,31 @@
 <link rel="icon" href="./img/flop.gif" type="image/x-icon">
 <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
-<style>td:nth-child(1){width:28px;font:larger monospace;text-align:center;}</style>
+<style>td:first-child{width:28px;font:larger monospace;text-align:center;}td:nth-child(2){min-width: 33%;};</style>
 <body>
 <header><div class="home"><a href="./index.html">🏠</a></div><span>UberASM objects</span></header>
 <section>
 <p>The baserom uses a framework of custom objects to allow you to toggle or activate some simple UberASM codes that are in the baserom, most of which are very basic utility features. They are activated simply by inserting a custom extended object into whichever levels you want with no limit. These objects work alongside any level UberASM you may want to use as well.</p>
 <h3 id="#">Contents</h3>
 <ul>
-    <li><a href="#available-objects">Available Feature Objects</a></li>
-    <ul><li><a href="#retry-objects">Retry System Settings</a></li></ul>
+    <li><a href="#available-objects">Available Objects</a></li>
+    <ul>
+        <li><a href="#feature-toggles">Feature Toggles</a></li>
+        <li><a href="#retry-objects">Retry System Settings</a></li>
+        <li><a href="#player-state the level ">Initial Player States</a></li>
+    </ul>
     <li><a href="#inserting-objects">Inserting Custom Objects</a></li>
 </ul>
-<h3 id="available-objects">Available Feature Objects</h3>
-<p>The following objects can be used to enable or toggle features or settings in the baserom. Each object has an ID number that corresponds to its Extension value to be used when <a href="#inserting-objects">inserting</a> it as a Custom Object.</p>
+<hr>
+<h3 id="available-objects">Available Objects</h3>
+<p>In the tables below, each object has a unique ID number that corresponds to its "extended object" value that is to be used when <a href="#inserting-objects">inserting</a> it as a Custom Object in Lunar Magic. Simply make note of the ID(s) of object(s) you would like you use and insert them in your level manually.</p>
+<h4 id="feature-toggles">Feature Toggles</h4>
+<p>The following objects can be used to enable or toggle features or settings in the baserom, or activate a simple UberASM.</p>
 <table border="1" class="full">
 <tr><th>ID</th><th>Object</th><th>Description</th></tr>
 <tr><td>98</td><td>Free Vertical Scroll</td><td>Makes the camera follow Mario up and down.</td></tr>
 <tr><td>99</td><td>Lock Horizontal Scroll</td><td>Prevents the camera from scrolling left or right.</td></tr>
-<tr><td>9A</td><td>Start in OFF State</td><td>Starts the level with the ON/OFF state in the OFF state on level load.</td></tr>
+<tr><td>9A</td><td>Start in OFF State</td><td>Starts the level with the ON/OFF state in the OFF state.</td></tr>
 <tr><td>9B</td><td>Enable Block Duplication</td><td>Disable the effects of a patch that prevents block duplication.</td></tr>
 <tr><td>9C</td><td>Hide Statusbar</td><td>Hide the statusbar. This does not disable the item box.</td></tr>
 <tr><td>9D</td><td>Enable Screen Scroll</td><td>Disable the effects of a patch that prevents scrolling the screen with L or R.</td></tr>
@@ -33,7 +40,7 @@
 <tr><td>A2</td><td>Disable Cape Turnaround Consistency</td><td>Disable the effects of the patch that makes turning around with cape consistent on button press.</td></tr>
 <tr><td>A3</td><td>Enable 8-frame Cape Float</td><td>Apply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.</td></tr>
 <tr><td>A4</td><td>Remove Cape Float Delay</td><td>Set the delay before Mario starts floating with cape to zero frames.</td></tr>
-<tr><td>A5</td><td>Death on Power-up Loss</td><td>Losing a power up will kill Mario instantly. (Makes all hurt blocks death blocks.).</td></tr>
+<tr><td>A5</td><td>Death on Power-up Loss</td><td>Losing a power up will kill Mario instantly. (Makes all hurt blocks death blocks and all damaging sprites lethal).</td></tr>
 <tr><td>A7</td><td>Press L &amp; R To Die</td><td>Kills the player if L and R are pressed. Useful for a quick reset.</td></tr>
 <tr><td>A9</td><td>Disable Spin Jump Fireballs</td><td>Prevent Mario from shooting fireballs while spin jumping.</td></tr>
 <tr><td>AA</td><td>Restore Springboard Behaviour</td><td>Disable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).</td></tr>
@@ -41,18 +48,33 @@
 <tr><td>AC</td><td>Disable Screen Shake</td><td>Stops all vanilla sources of Layer 1 screen shake.</td></tr>
 </table>
 <small>Earlier versions of the baserom may have fewer objects.</small>
-<br>
 <h4 id="retry-objects">Retry System Settings</h4>
 <p>Inserting these objects into your level to override the default settings of the retry system or even change the retry settings between sublevels.</p>
 <table border="1" class="full">
 <tr><th>ID</th><th>Object</th><th>Description</th></tr>
 <tr><td>B0</td><td>Instant Retry</td><td>Make the retry skip using prompt and restart instantly after dying.</td></tr>
 <tr><td>B1</td><td>Prompt Retry</td><td>Set the retry system to use a prompt that says "Retry" in the middle of the screen.</td></tr>
-<tr><td>B2</td><td>Bottom Left Retry Prompt</td><td>Move the retry prompt to the bottom left (by default it's in the middle) if Prompt retry is active.</td></tr>
+<tr><td>B2</td><td>Bottom Left Retry Prompt</td><td>Move the retry prompt to the bottom left if Prompt Retry is active (by default it's in the middle).</td></tr>
 <tr><td>B3</td><td>No Power Ups from Midways</td><td>Disable gaining a power-up (mushroom) from a midway point.</td></tr>
 <tr><td>B4</td><td>Vanilla Retry</td><td>Set the retry system back to using Vanilla death routine.</td></tr>
 <tr><td>B6</td><td>Enable Retry Indicator</td><td>Display <a href="./Features.html#retry-indicator">an indicator</a> for a level using retry in the HUD.</td></tr>
 </table>
+<small>Retry indicator only in version 5.7 or later of the baserom.</small>
+<h4 id="player-state the level ">Initial Player States</h4>
+<p>You can use these objects to start the player in various states. Due to how the memory works for the power-up or Yoshi states <b>you can only have one of each object type active at a time</b>.</p>
+<table border="1" class="full">
+<tr><th>ID</th><th>Object</th><th>Description</th></tr>
+<tr><td>C0</td><td>Start with a Mushroom</td><td>Have the player start the level with a Mushroom.</td></tr>
+<tr><td>C1</td><td>Start with Cape</td><td>Have the player start the level with a Cape.</td></tr>
+<tr><td>C2</td><td>Start with Fire Flower</td><td>Have the player start the level with a Fire Flower.</td></tr>
+<tr><td>C3</td><td>Start with Star Power</td><td>Have the player start the level with Star Power. Not infinite, lasts as long as a normal Star.</td></tr>
+<tr><td>C4</td><td>Start on Green Yoshi</td><td>Have the player start the level on a Green Yoshi.</td></tr>
+<tr><td>C5</td><td>Start on Yellow Yoshi</td><td>Have the player start the level on a Yellow Yoshi.</td></tr>
+<tr><td>C6</td><td>Start on Blue Yoshi</td><td>Have the player start the level on a Blue Yoshi.</td></tr>
+<tr><td>C7</td><td>Start on Red Yoshi</td><td>Have the player start the level on a Red Yoshi.</td></tr>
+<tr><td>C8</td><td>Start in Spin Jump State</td><td>Have the player start the level spinning (most useful when Mario is in the air).</td></tr>
+</table>
+<small>These objects are in version 5.7 or later of the baserom.</small>
 <hr>
 <h3 id="inserting-objects">Inserting Custom Objects</h3>
 <p>To insert a custom UberASM object, make note of the custom ID value from the tables above.</p>
