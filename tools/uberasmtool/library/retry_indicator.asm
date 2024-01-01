@@ -55,8 +55,8 @@ draw_layer3_tile:
 !prop = $22     ; YXPCCCTT properties
 
 ; OAM Settings
-!index = $48
-!oam_index #= !index*4
+!slot = $20
+!oam_index #= !slot*4
 
 draw_sprite_tile:
     LDA.b #!xpos
