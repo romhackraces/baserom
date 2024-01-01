@@ -61,7 +61,7 @@
 </table>
 <small>Retry indicator only in version 5.7 or later of the baserom.</small>
 <h4 id="player-state the level ">Initial Player States</h4>
-<p>You can use these objects to start the player in various states. Due to how the memory works for the power-up or Yoshi states <b>you can only have one of each object type active at a time</b>, i.e. you can't have Cape and Flower or two Yoshi objects.</p>
+<p>You can use these objects to start the player in various states when they enter the level at any point.</p>
 <table border="1" class="full">
 <tr><th>ID</th><th>Object</th><th>Description</th></tr>
 <tr><td>C0</td><td>Start with a Mushroom</td><td>Have the player start the level with a Mushroom.</td></tr>
@@ -75,6 +75,7 @@
 <tr><td>C8</td><td>Start in Spin Jump State</td><td>Have the player start the level spinning (most useful when Mario is in the air).</td></tr>
 </table>
 <small>These objects are in version 5.7 or later of the baserom.</small>
+<p>Due to how the memory works for the power-up or Yoshi states <i>you can only have one of each of those objects active at a time</i>, you can't have Cape and Flower or two Yoshi objects.</p>
 <hr>
 <h3 id="inserting-objects">Inserting Custom Objects</h3>
 <p>To insert a custom UberASM object, make note of the custom ID value from the tables above.</p>
