@@ -9,9 +9,9 @@
 </head>
 <style>td:first-child{width:28px;font:larger monospace;text-align:center;}td:nth-child(2){min-width: 33%;};</style>
 <body>
-<header><div class="home"><a href="./index.html">🏠</a></div><span>UberASM objects</span></header>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>UberASM Objects</span></header>
 <section>
-<p>The baserom uses a framework of custom objects to allow you to toggle or activate some simple UberASM codes that are in the baserom, most of which are very basic utility features. They are activated simply by inserting a custom extended object into whichever levels you want with no limit. These objects work alongside any level UberASM you may want to use as well.</p>
+<p>The baserom uses a framework of custom objects to allow you to toggle or activate some simple UberASM codes that are in the baserom, most of which are very basic utility features or simple state changes. They are activated simply by inserting a custom extended object into whichever levels you want with no limit. These objects work alongside any level UberASM you may want to use as well.</p>
 <h3 id="#">Contents</h3>
 <ul>
     <li><a href="#available-objects">Available Objects</a></li>
@@ -24,7 +24,7 @@
 </ul>
 <hr>
 <h3 id="available-objects">Available Objects</h3>
-<p>In the tables below, each object has a unique ID number that corresponds to its "extended object" value that is to be used when <a href="#inserting-objects">inserting</a> it as a Custom Object in Lunar Magic. Simply make note of the ID(s) of object(s) you would like you use and insert them in your level manually.</p>
+<p>The tables below detail the objects available in the baserom and what their purpose is. Each object has a unique ID number that corresponds to its "extended object" value that is to be used when <a href="#inserting-objects">inserting</a> it as a Custom Object in Lunar Magic. Simply make note of the ID(s) of object(s) you would like you use and insert them in your level manually.</p>
 <h4 id="feature-toggles">Feature Toggles</h4>
 <p>The following objects can be used to enable or toggle features or settings in the baserom, or activate a simple UberASM.</p>
 <table border="1" class="full">
@@ -33,19 +33,19 @@
 <tr><td>99</td><td>Lock Horizontal Scroll</td><td>Prevents the camera from scrolling left or right.</td></tr>
 <tr><td>9A</td><td>Start in OFF State</td><td>Starts the level with the ON/OFF state in the OFF state.</td></tr>
 <tr><td>9B</td><td>Enable Block Duplication</td><td>Disable the effects of a patch that prevents block duplication.</td></tr>
-<tr><td>9C</td><td>Hide Statusbar</td><td>Hide the statusbar. This does not disable the item box.</td></tr>
+<tr><td>9C</td><td>Hide Statusbar</td><td>Hides the Layer 3 statusbar. This does not disable the score, coin counters, timer or item box.</td></tr>
 <tr><td>9D</td><td>Enable Screen Scroll</td><td>Disable the effects of a patch that prevents scrolling the screen with L or R.</td></tr>
 <tr><td>9E</td><td>Enable SFX Echo</td><td>Enable the echo for sound effects. Requires your level to have custom music with echo enabled.</td></tr>
-<tr><td>A0</td><td>No Power-up Collection</td><td>Prevent Mario from collecting any power-ups (including to the item box).</td></tr>
+<tr><td>A0</td><td>No Power-up Collection</td><td>Prevent Mario from collecting any power-ups including to the item box. Keeps Mario small.</td></tr>
 <tr><td>A2</td><td>Disable Cape Turnaround Consistency</td><td>Disable the effects of the patch that makes turning around with cape consistent on button press.</td></tr>
 <tr><td>A3</td><td>Enable 8-frame Cape Float</td><td>Apply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.</td></tr>
 <tr><td>A4</td><td>Remove Cape Float Delay</td><td>Set the delay before Mario starts floating with cape to zero frames.</td></tr>
-<tr><td>A5</td><td>Death on Power-up Loss</td><td>Losing a power up will kill Mario instantly. (Makes all hurt blocks death blocks and all damaging sprites lethal).</td></tr>
+<tr><td>A5</td><td>Death on Power-up Loss</td><td>Losing a power up will kill Mario instantly. Makes all hurt blocks death blocks and all damaging sprites lethal.</td></tr>
 <tr><td>A7</td><td>Press L &amp; R To Die</td><td>Kills the player if L and R are pressed. Useful for a quick reset.</td></tr>
 <tr><td>A9</td><td>Disable Spin Jump Fireballs</td><td>Prevent Mario from shooting fireballs while spin jumping.</td></tr>
-<tr><td>AA</td><td>Restore Springboard Behaviour</td><td>Disable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).</td></tr>
+<tr><td>AA</td><td>Restore Vanilla Springboard Quirks</td><td>Disable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).</td></tr>
 <tr><td>AB</td><td>Disable Cape Flight</td><td>Prevents Mario from ever entering flight with cape.</td></tr>
-<tr><td>AC</td><td>Disable Screen Shake</td><td>Stops all vanilla sources of Layer 1 screen shake.</td></tr>
+<tr><td>AC</td><td>Disable Screen Shake</td><td>Stops all Vanilla sources of Layer 1 screen shake.</td></tr>
 </table>
 <small>Earlier versions of the baserom may have fewer objects.</small>
 <h4 id="retry-objects">Retry System Settings</h4>
@@ -54,14 +54,14 @@
 <tr><th>ID</th><th>Object</th><th>Description</th></tr>
 <tr><td>B0</td><td>Instant Retry</td><td>Make the retry skip using prompt and restart instantly after dying.</td></tr>
 <tr><td>B1</td><td>Prompt Retry</td><td>Set the retry system to use a prompt that says "Retry" in the middle of the screen.</td></tr>
-<tr><td>B2</td><td>Bottom Left Retry Prompt</td><td>Move the retry prompt to the bottom left if Prompt Retry is active (by default it's in the middle).</td></tr>
+<tr><td>B2</td><td>Bottom Left Retry Prompt</td><td>Move the "Retry" prompt to the bottom left if Prompt Retry is active (by default it's in the middle).</td></tr>
 <tr><td>B3</td><td>No Power Ups from Midways</td><td>Disable gaining a power-up (mushroom) from a midway point.</td></tr>
 <tr><td>B4</td><td>Vanilla Retry</td><td>Set the retry system back to using Vanilla death routine.</td></tr>
-<tr><td>B6</td><td>Enable Retry Indicator</td><td>Display <a href="./Features.html#retry-indicator">an indicator</a> for a level using retry in the HUD.</td></tr>
+<tr><td>B6</td><td>Enable Retry Indicator</td><td>Display <a href="./Features.html#retry-indicator">an indicator</a> in the HUD when a level using fast retry.</td></tr>
 </table>
 <small>Retry indicator only in version 5.7 or later of the baserom.</small>
 <h4 id="player-state the level ">Initial Player States</h4>
-<p>You can use these objects to start the player in various states. Due to how the memory works for the power-up or Yoshi states <b>you can only have one of each object type active at a time</b>.</p>
+<p>You can use these objects to start the player in various states. Due to how the memory works for the power-up or Yoshi states <b>you can only have one of each object type active at a time</b>, i.e. you can't have Cape and Flower or two Yoshi objects.</p>
 <table border="1" class="full">
 <tr><th>ID</th><th>Object</th><th>Description</th></tr>
 <tr><td>C0</td><td>Start with a Mushroom</td><td>Have the player start the level with a Mushroom.</td></tr>
@@ -78,12 +78,14 @@
 <hr>
 <h3 id="inserting-objects">Inserting Custom Objects</h3>
 <p>To insert a custom UberASM object, make note of the custom ID value from the tables above.</p>
-<p>Next, open the "Add Object Manual (hex)" window, either from the "Edit &rarr; Insert manual..." menu action, or by pressing the <span class="key">Insert</span> key while in Lunar Magic's "Layer 1 editing" mode.</p>
-<p>In this window type the ID value for the UberASM Object into the "Size/Type/Ext (0-FF)" field, and press "OK" to insert.</p>
+<p>Next, open the "Add Object Manual (hex)" window while in Lunar Magic's "Layer 1 editing" mode, either from the "Edit &rarr; Insert manual..." menu action, or by pressing the <span class="key">Insert</span> key in this mode.</p>
+<p>In the window that appears, type the ID value for the UberASM Object of your choice into the "Size/Type/Ext" field, leaving the other fields at zero (0), and press OK to insert.</p>
 <center><img src="img/insert_object_manual.png" alt="Lunar Magic's Add Object Manual (hex) Window" title="Lunar Magic's Add Object Manual (hex) Window"></center>
-<p>When inserted, custom objects will look like a pair of garbage tiles in Lunar Magic since they load a "null" object, but these objects won't actually appear in game. An object may occasionally use an exit-enabled (door) tile which may display a warning depending on your Lunar Magic settings.</p>
+<p>Multiple custom extended objects can be inserted by repeating the steps above for each UberASM object.</p>
+<h4>Appearance in Lunar Magic</h4>
+<p>When inserted, custom extended objects will look like a pair of garbage tiles in Lunar Magic, but these objects won't actually appear in game.</p>
 <center><img src="img/garbled_extension_objects.png" alt="Garbled Custom object tiles in Lunar Magic" title="Garbled Custom object tiles in Lunar Magic"></center>
-<p>Multiple custom UberASM objects can be inserted and active in one level by repeating the steps above for each object.</p>
+<p>An object may occasionally use an exit-enabled (door) tile which may display a warning depending on your Lunar Magic settings (the included objects avoid this by skipping some IDs).</p>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>
