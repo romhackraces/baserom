@@ -48,7 +48,7 @@ draw_layer3_tile:
 
 ; Tile position
 !xpos = $08
-!ypos = $07
+!ypos = $08
 
 ; Tile properties
 !tile = $69     ; Tile number, in SP1

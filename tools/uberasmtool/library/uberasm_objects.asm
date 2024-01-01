@@ -289,7 +289,7 @@ retry_prompt:
 ; Extended Object B2
 ; Display retry prompt in bottom left
 retry_bottom_left:
-    lda #$09 : sta !retry_ram_prompt_x_pos
+    lda #$08 : sta !retry_ram_prompt_x_pos
     lda #$d0 : sta !retry_ram_prompt_y_pos
     rts
 

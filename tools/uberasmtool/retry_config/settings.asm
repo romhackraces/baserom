@@ -281,8 +281,8 @@
     !timer_y_pos        = $0F
     !coin_counter_x_pos = $D0
     !coin_counter_y_pos = $17
-    !dc_counter_x_pos   = $9A
-    !dc_counter_y_pos   = $0F
+    !dc_counter_x_pos   = $98
+    !dc_counter_y_pos   = $10
 
 ; If 1, the item box will always be drawn (if set to be drawn for the specific level).
 ; Otherwise, it will only be drawn when having an item in reserve.
