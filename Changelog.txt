@@ -1,3 +1,10 @@
+v5.7
+- retry indicator now as a sprite tile component for when the layer 3 HUD is hidden and can be toggled on with an UberASM object
+- some changes to sprite tiles were required for this
+- UberASM objects have been expanded to include initial player state objects
+- retry documentation has been improved, with a new Tips page
+- nitpicky changes were made to retry settings
+
 v5.6
 - new layer 3 status bar indicator for levels that use retry
 - big set of edits to the baserom's documentation to clean it up and improve it
