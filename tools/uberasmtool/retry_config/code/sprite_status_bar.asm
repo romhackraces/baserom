@@ -432,11 +432,17 @@ draw_yoshi_coins:
     lda.w .mask,y : sta $02
     lda $13BF|!addr : lsr #3 : tay
     lda $1F2F|!addr,y : and $02 : beq .not_all
+
+if !draw_all_dc_collected
+    ; If all DCs collected, calculate how many they were.
     jsr get_total_dc_amount
     bne .shared
+endif
+
     rts
 
 .not_all:
+    ; If not all DCs collected, get their amount from $1422.
     lda $1422|!addr : beq .return
 
 .shared:
@@ -485,6 +491,7 @@ endif
 .mask:
     db $80,$40,$20,$10,$08,$04,$02,$01
 
+if !draw_all_dc_collected
 get_total_dc_amount:
     ; If CMP #$XX, return $XX
     lda.l !rom_dc_amount_cmp_byte : cmp #$C9 : bne .hijack
@@ -511,5 +518,6 @@ get_total_dc_amount:
     ; If detection failed, load the default amount.
     lda.b #!default_dc_amount
     rts
+endif
 
 endif

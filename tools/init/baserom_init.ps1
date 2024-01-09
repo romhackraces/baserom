@@ -11,8 +11,8 @@ $ListsDir = "$ToolsDir\init\lists"
 . $ToolsDir\init\tool_defines.ps1
 
 # Hide git-related files
-$filePatterns = @("*.gitkeep", "*.gitignore")
-$filesToHide = Get-ChildItem -Path $WorkingDir -File -Recurse -Include $filePatterns
+$filePatterns = @("*.gitkeep", "*.gitignore", "*.github")
+$filesToHide = Get-ChildItem -Path $WorkingDir -Recurse -Include $filePatterns
 foreach ($file in $filesToHide) {$file.Attributes += [System.IO.FileAttributes]::Hidden}
 
 # Function to remove junk files
@@ -221,7 +221,7 @@ while ($UserChoice -ne "4") {
                             # Create checkfile if all goes well
                             New-Item -Path "$Callisto_Dir.first_build_done" -ItemType File -Force | Out-Null
                             Set-ItemProperty -Path "$Callisto_Dir.first_build_done" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
-                            Write-Host "First build completed successfully.`n`nYou can get started on your project by running Callisto from the 'buildtool' folder."
+                            Write-Host "First build completed successfully.`n`nYou will likely have seen Callisto report conflict(s), this is normal for the first build.`n`nYou can get started on your project by running Callisto from the 'buildtool' folder."
                         } else {
                             # Prompt users to run Callisto manually if there was an error
                             Write-Host "Baserom failed to build. Please run Callisto manually from the 'buildtool' folder, and perform a 'Rebuild' to see any errors."

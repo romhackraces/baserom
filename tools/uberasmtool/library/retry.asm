@@ -76,6 +76,7 @@ endif
     %incsrc(code,game_over)
     %incsrc(code,time_up)
     %incsrc(code,sprite_status_bar)
+    %incsrc(code,api)
 
 ;=====================================
 ; Load the hijacks.

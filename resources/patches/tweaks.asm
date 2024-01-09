@@ -1,10 +1,26 @@
-; SA-1 Check
+@asar 1.70
+
+math pri on
+math round off
+
+!sa1 = 0                ; SA-1 flag
+!dp = $0000             ; Direct Page remap ($0000 - LoROM/FastROM, $3000 - SA-1 ROM)
+!addr = $0000           ; Address remap ($0000 - LoROM/FastROM, $6000 - SA-1 ROM)
+!ram = $7E0000          ; WRAM/BW-RAM remap ($7E0000 - LoROM/FastROM, $400000 - SA-1 ROM)
+!bank = $800000         ; Long address remap ($800000 - FastROM, $000000 - SA-1 ROM)
+!bank8 = $80            ; Bank byte remap ($80 - FastROM, $00 - SA-1 ROM)
+!SprSize = $0C          ; Number of sprite slots (12 - FastROM, 22 - SA-1 ROM)
+
+; SA-1 detection code
 if read1($00FFD5) == $23
     sa1rom
     !sa1 = 1
-else
-    lorom
-    !sa1 = 0
+    !dp = $3000
+    !addr = $6000
+    !ram = $400000
+    !bank = $000000
+    !bank8 = $00
+    !SprSize = $16
 endif
 
 ; EXLEVEL Check
@@ -39,10 +55,10 @@ org $01EC36 : db $80
 ; stop the bridge breaking in the Reznor fight
 org $03989F : db $EA,$EA,$EA,$EA
 
-; disable losing lives a.k.a. infinite lives (not needed with retry)
+; disable losing lives a.k.a. infinite lives -- not needed with retry system
 ;org $00D0D8 : NOP #3
 
-; disable gaining lives & fix halo Mario (not needed with retry)
+; disable gaining lives & fix halo Mario -- not needed with retry system
 ;org $028AD2 : NOP #3
 
 ; remove RNG from Podobos/Jumping Fireballs
@@ -54,6 +70,8 @@ org $018898 : BRA $05
 ; shorten intro message skip timer
 org $00A09C : db $04
 
+; disable L/R Scrolling -- not needed with toggleable scrolling patch
+;org $00CDFC : db $80
 
 ;;;;;;;;;;;;;;;;;
 ;; Minor Fixes ;;
@@ -103,8 +121,14 @@ org $03C511 : db $0C
 ;; GFX Tweaks & Fixes ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
+; reset animation frame counter at level load
+org $00A5FA : db $FF
+
 ; remove dark palette on "Erase Game" screen (interferes with some backgrounds)
 org $009D30 : db $EA,$EA,$EA,$EA,$EA
+
+; fix the bug where some sprite tiles get erased when closing a message
+org $05B31B : db $60
 
 ; fix palette of the white tile in the cave layer 3 background
 org $05A312 : db $15
@@ -123,11 +147,8 @@ org $02CAFA : db $4B,$0B
 ; fix the Dolphin tails showing up when they're vertically off-screen
 org $07F69C : db $25
 
-; fix bat ceiling gfx
-org $02FDB8 : db $AE,$AE,$C0,$E8
-
-; fix reflecting fireball displaying garbage tiles when entering lava
-org $07F57D : db $01
+; fix incorrect tile in the Swooper death bat ceiling (Sprite E4)
+org $02FDBB : db $E8
 
 ; fix the last tile of the Turnblock Bridge being X flipped.
 org $01B79D : db $20

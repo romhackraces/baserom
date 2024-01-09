@@ -1,3 +1,5 @@
+incsrc "../../../shared/freeram.asm"
+
 ;===================================================================================================================================
 ; Extended No Sprite Tile Limits v4.0
 ;  by imamelia, improved by DiscoTheBat, extra code by Roy and worldpeace
@@ -17,14 +19,14 @@
 ;===================================================================================================================================
 !FindFree = $04A1FC			; location of the jump to the OAM slot-finding routine (in case you want to use it for your own sprites)
 !Default = $00				; the slot to overwrite when all are full
-!RAM_ExtOAMIndex = $1869	; the free RAM address to use for the OAM index (must be $0000-$1FFF)
+!RAM_ExtOAMIndex = !extended_nstl_freeram	; the free RAM address to use for the OAM index (must be $0000-$1FFF)
 ;===================================================================================================================================
 
 if read1($00FFD5) == $23
 	sa1rom
 	!addr = $6000
 	!bank = $000000
-	!RAM_ExtOAMIndex #= !RAM_ExtOAMIndex|!addr
+	; !RAM_ExtOAMIndex #= !RAM_ExtOAMIndex|!addr
 else
 	lorom
 	!addr = $0000

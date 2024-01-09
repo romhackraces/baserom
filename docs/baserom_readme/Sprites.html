@@ -4,54 +4,62 @@
 <title>Sprites - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="img/flop.gif" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" href="./img/flop.gif" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <style>td:nth-child(1){width:44px;font:larger monospace;}td:nth-child(4):first-letter{text-transform: capitalize;}</style>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Sprites</span></header>
 <section>
-<a href="../../README.html" class="home">🏠</a>
-<h2>Sprites</h2>
 <p>The baserom doesn't insert any custom sprites beyond what is needed, but it has extended a bunch of vanilla sprites to bring new functionality to the game.</p>
-
-<h3>Additional Global Sprites</h3>
+<h3 id="#">Contents</h3>
+<ul>
+    <li><a href="#additional-global-sprites">Additional Global Sprites</a></li>
+    <li><a href="#sprite-extra-bit">Sprite Extra Bit Settings</a></li>
+    <li><a href="#custom-pixi-sprites">Custom Sprites inserted with PIXI</a></li>
+</ul>
+<hr>
+<h3 id="additional-global-sprites">Additional Global Sprites</h3>
 <p>A couple new sprites have been patched into the baserom in unused vanilla sprite slots for ease of access.</p>
 <table border="1" class="full">
 <tr><th>#</th><th>Sprite</th><th>Description</th></tr>
 <tr><td>12</td><td>Puff of Smoke</td><td>Just a puff of smoke. Used by the sprite killer block.</td></tr>
 <tr><td>85</td><td>Poison Mushroom</td><td>Mushroom that behaves like a power-up mushroom but is dangerous.</td></tr>
 </table>
-<h3>Sprite Extra Bit Settings</h3>
+<hr>
+<h3 id="sprite-extra-bit">Sprite Extra Bit Settings</h3>
 <p>A number of vanilla sprites have been "enhanced" to have their behaviour changed or extended by setting the extra bit in Lunar Magic.</p>
 <table border="1" class="full">
 <tr><th>#</th><th>Sprite</th><th>Extra Bit Clear (0)</th><th>Extra Bit Set (1)</th></tr>
-<tr><td>04-07</td><td>Big Koopas</td><td>Normal</td><td>Kicked shell of same color</td></tr>
-<tr><td>08</td><td>Green Parakoopa</td><td>Normal</td><td>Kicked double-bounce shell</td></tr>
-<tr><td>11</td><td>Buzzy Beetle</td><td>Normal</td><td>Kicked buzzy beetle shell</td></tr>
-<tr><td>DA-DF</td><td>Shells</td><td>Normal</td><td>Disco shell</td></tr>
-<tr><td>1C</td><td>Bullet Bill</td><td>Normal, silent</td><td>Plays sound-effect</td></tr>
-<tr><td>1A</td><td>Classic Piranha Plant</td><td>Normal</td><td>Red, ignores Mario</td></tr>
-<tr><td>2A</td><td>Upside-down Piranha Plant</td><td>Normal</td><td>Red, ignores Mario</td></tr>
-<tr><td>32</td><td>Dry Bones, stay on ledge</td><td>Throws bones</td><td>Doesn't throw bones</td></tr>
-<tr><td>4D,4E</td><td>Monty Moles</td><td>Fast digging</td><td>Slow digging</td></tr>
-<tr><td>49</td><td>Growing Pipe</td><td>Normal</td><td>exit-enabled</td></tr>
-<tr><td>53</td><td>Throw Block</td><td>Normal, stationary</td><td>Kicked state</td></tr>
-<tr><td>85</td><td>Poison Mushroom</td><td>Hurts the player</td><td>Kills the player</td></tr>
-<tr><td>9B</td><td>Hammer Bro</td><td>Infrequent throwing</td><td>Frequent throwing</td></tr>
-<tr><td>AB</td><td>Rex</td><td>Normal</td><td>Squished</td></tr>
-<tr><td>E0</td><td>3 Platforms on Chains</td><td>Normal, grey platforms</td><td>Triple Ball n' Chain</td></tr>
-<tr><td>--</td><td>All Chucks</td><td>Normal</td><td>keeps their behaviour, won't chase Mario</td></tr>
+<tr><td>04-07</td><td>Big Koopas</td><td>Normal</td><td>Kicked shell of same color.</td></tr>
+<tr><td>08</td><td>Green Parakoopa</td><td>Normal</td><td>Kicked double-bounce shell.</td></tr>
+<tr><td>11</td><td>Buzzy Beetle</td><td>Normal</td><td>Kicked buzzy beetle shell.</td></tr>
+<tr><td>DA-DF</td><td>Shells</td><td>Normal</td><td>Disco shell.</td></tr>
+<tr><td>1C</td><td>Bullet Bill</td><td>Normal, silent</td><td>Plays sound-effect.</td></tr>
+<tr><td>1A</td><td>Classic Piranha Plant</td><td>Normal</td><td>Red, ignores Mario.</td></tr>
+<tr><td>2A</td><td>Upside-down Piranha Plant</td><td>Normal</td><td>Red, ignores Mario.</td></tr>
+<tr><td>32</td><td>Dry Bones, stay on ledge</td><td>Throws bones</td><td>Doesn't throw bones.</td></tr>
+<tr><td>4D,4E</td><td>Monty Moles</td><td>Fast digging</td><td>Slow digging.</td></tr>
+<tr><td>49</td><td>Growing Pipe</td><td>Normal</td><td>exit-enabled.</td></tr>
+<tr><td>53</td><td>Throw Block</td><td>Normal, stationary</td><td>Kicked state.</td></tr>
+<tr><td>85</td><td>Poison Mushroom</td><td>Hurts the player</td><td>Kills the player.</td></tr>
+<tr><td>9B</td><td>Hammer Bro</td><td>Infrequent throwing</td><td>Frequent throwing.</td></tr>
+<tr><td>AB</td><td>Rex</td><td>Normal</td><td>Squished.</td></tr>
+<tr><td>E0</td><td>3 Platforms on Chains</td><td>Normal, grey platforms</td><td>Triple Ball n' Chain.</td></tr>
+<tr><td>--</td><td>All Chucks</td><td>Normal</td><td>keeps their behaviour, won't chase Mario.</td></tr>
 </table>
-<p>To insert a sprite with an extra bit setting either use the "Edit > Insert manual..." menu action or press the <code>Insert</code> key while in Lunar Magic's Sprite editing mode. Alternatively, you can place a sprite and <code>Alt + Right-Click</code> on the sprite to show the "Modify Sprite Manual (in hex)" window.</p>
-<center><img src="img/modify_sprite.png"></center>
+<h4 id="changing-sprite-extra-bit">Changing A Sprite's Extra Bits</h4>
+<p>To insert a sprite with an extra bit setting either use the "Edit &rarr; Insert manual..." menu action or press the <span class="key">Insert</span> key while in Lunar Magic's Sprite editing mode. Alternatively, you can place a sprite and <span class="key">Alt</span> + <span class="key">Right-Click</span> on the sprite to show the "Modify Sprite Manual (in hex)" window.</p>
+<center><img src="img/modify_sprite.png" alt="Lunar Magic's Modify Sprite Manual (hex) Window" title="Lunar Magic's Modify Sprite Manual (hex) Window"></center>
 <p> However, the baserom has provided some metadata files so these variants are visible in the "Add Sprites Window" under "Custom Collections of Sprites".</p>
-<center><img src="img/enhanced_sprites.png"></center>
-<h3>Custom Sprites inserted with PIXI</h3>
+<center><img src="img/enhanced_sprites.png" alt="Lunar Magic's Add Sprite Window" title="Lunar Magic's Add Sprite Window"></center>
+<hr>
+<h3 id="custom-pixi-sprites">Custom Sprites inserted with PIXI</h3>
 <table border="1" class="full">
 <tr><th>Num</th><th>Sprite</th><th>Description</th></tr>
 <tr><td>A0</td><td>Donut Lift</td><td>Companion sprite for the Donut Lift block, unusable.</td></tr>
 </table>
-<a href="#" class="go-to-top"></a>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

@@ -16,10 +16,9 @@
 ; The default settings replace the berry, flopping fish and smiling coin tiles.
 ;
 ; NOTE: enabling the coin counter also enables the display of the Yoshi Coins collected.
-;
-; NOTE: while the coin counter uses one 16x16 tile, the bottom right 8x8 tile is not used or overwritten,
-; so it's safe to use for anything else.
-
+; By default the Yoshi Coins are displayed with the same coin tile as the coin counter, but you can
+; edit it to a different tile by editing the "gfx/coin.bin" file (the first tile is used for the coin counter,
+; the second for the Yoshi Coins display).
 
 ; default settings for the baserom
 !itemb_tile = $3080 ; with item_box table
@@ -31,7 +30,7 @@
 
 ; don't change
 !no_display = $0000 ; flag to not display any status bar items
-!always_off = $0000 ; a flag to ensure it's always disabled on title level, that's different from !no_display
+!always_off = $0000 ; a flag to ensure it's always disabled on title level, don't remove it from the tables below
 
 item_box:
     ;       0           1           2           3           4           5           6           7           8           9           A           B           C            D          E           F
@@ -51,10 +50,10 @@ item_box:
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0D0-0DF
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0E0-0EF
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0F0-0FF
-    dw !no_display,!no_display,!no_display,!no_display,!no_display,!itemb_tile,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 100-10F
+    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 100-10F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 110-11F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 120-12F
-    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 130-13F
+    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!itemb_tile,!no_display,!no_display,!no_display,!no_display ; 130-13F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 140-14F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 150-15F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 160-16F
@@ -86,10 +85,10 @@ timer:
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0D0-0DF
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0E0-0EF
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0F0-0FF
-    dw !no_display,!no_display,!no_display,!no_display,!no_display,!timer_tile,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 100-10F
+    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 100-10F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 110-11F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 120-12F
-    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 130-13F
+    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!timer_tile,!no_display,!no_display,!no_display,!no_display ; 130-13F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 140-14F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 150-15F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 160-16F
@@ -121,10 +120,10 @@ coins:
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0D0-0DF
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0E0-0EF
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 0F0-0FF
-    dw !no_display,!no_display,!no_display,!no_display,!no_display,!coins_tile,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 100-10F
+    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 100-10F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 110-11F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 120-12F
-    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 130-13F
+    dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!coins_tile,!no_display,!no_display,!no_display,!no_display ; 130-13F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 140-14F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 150-15F
     dw !no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display,!no_display ; 160-16F

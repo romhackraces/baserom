@@ -1,5 +1,5 @@
+; Gamemode 14 - Level
 init:
-    jsl retry_reset_init
     jsl double_hit_fix_init
     rtl
 
@@ -12,4 +12,8 @@ main:
 
 nmi:
     jsl retry_nmi_level
+    rtl
+
+end:
+    jsl retry_indicator_end
     rtl

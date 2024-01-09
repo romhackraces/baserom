@@ -4,40 +4,43 @@
 <title>Graphics - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="img/flop.gif" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" href="./img/flop.gif" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
-<style>li:first-letter{text-transform: capitalize;}</style>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Graphics</span></header>
 <section>
-<a href="../../README.html" class="home">🏠</a>
-<h2>Graphics</h2>
 <p>The baserom remaps a bunch of sprites and shuffles some graphics around to fit in some useful sprite and block resources. Below is a breakdown of all of the graphical modifications made to the Vanilla game, if you are interested in seeing what those changes are or want to revert them.</p>
-
 <h3 id="#">Contents</h3>
 <ul>
-<li><a href="#edited-graphics">Edited Graphics</a></li>
-<ul>
-    <li><a href="#edited_GFX00">GFX00</a>, <a href="#edited_GFX01">GFX01</a>, <a href="#edited_GFX08">GFX08</a>, <a href="#edited_GFX13">GFX13</a>, <a href="#edited_GFX14">GFX14</a>, <a href="#edited_GFX16">GFX16</a>, <a href="#edited_GFX17">GFX17</a>, <a href="#edited_GFX1E">GFX1E</a>, <a href="#edited_GFX2A">GFX2A</a>, <a href="#edited_GFX2B">GFX2B</a></li>
+    <li><a href="#edited-graphics">Edited Graphics</a></li>
+    <ul>
+        <li><a href="#edited_GFX00">GFX00</a>, <a href="#edited_GFX01">GFX01</a>, <a href="#edited_GFX08">GFX08</a>, <a href="#edited_GFX13">GFX13</a>, <a href="#edited_GFX14">GFX14</a>, <a href="#edited_GFX16">GFX16</a>, <a href="#edited_GFX17">GFX17</a>, <a href="#edited_GFX1E">GFX1E</a>, <a href="#edited_GFX2A">GFX2A</a>, <a href="#edited_GFX2B">GFX2B</a></li>
+    </ul>
+    <li><a href="#remapped-graphics">Remapped Graphics</a></li>
+    <li><a href="#exgraphics">ExGraphics</a></li>
+    <li><a href="#alt-exgfx">Alternate ExGraphics</a></li>
+    <li><a href="#palettes">Palettes</a></li>
+    <ul>
+        <li><a href="#pink-berry">Pink Berry</a>, <a href="#poison-mushroom">Poison Mushroom</a>, <a href="#custom-blocks">Custom Blocks</a></li>
+    </ul>
+    <li><a href="#mario-gfxdma">Mario's 8x8 Graphics</a></li>
 </ul>
-<li><a href="#remapped-graphics">Remapped Graphics</a></li>
-<li><a href="#exgraphics">ExGraphics</a></li>
-<li><a href="#alt-exgfx">Alternate ExGraphics</a></li>
-</ul>
-
+<hr>
 <h3 id="edited-graphics">Edited Graphics</h3>
-<p>The following is a breakdown of modifications to original graphics files. Originals can be found in the <code>resources/original_graphics</code> folder.</p>
+<p>The following is a breakdown of modifications to original graphics files. Originals can be found in the <span class="dir">resources/original_graphics</span> folder.</p>
 <h4 id="edited_GFX00">GFX00 : Global Sprite Graphics (SP1)*</h4>
-<center><img src="img/edited_GFX00.png"></center>
+<center><img alt="Edited version of GFX00.bin" title="Edited version of GFX00.bin" src="img/edited_GFX00.png"></center>
 <ul>
-<li>the 8x8 tiles for Mario have been removed as they are now dynamically inserted using the "Mario 8x8 DMA-er" patch.</li>
-<li>tiles for the bounce sprites for the ON/OFF and Note blocks have been moved here.</li>
+<li>The 8x8 tiles for Mario have been removed as they are now dynamically inserted using the "Mario 8x8 DMA-er" patch.</li>
+<li>Tiles for the bounce sprites for the ON/OFF and Note blocks have been moved here.</li>
+<li>A splash frame has been patched to turn it into three 8x8 tiles, the 4th freed up tile is being used by the retry indicator graphic.</li>
 <li>8x8 tiles for lava/podobo splashes, Yoshi's tongue and throat have been moved here.</li>
-<li>a frame for the blue sliding koopa has been moved to GFX01.</li>
-<li>space was reserved for dynamic retry tiles and the Mario 8x8 DMA-er.</li>
+<li>A frame for the blue sliding koopa has been moved to GFX01.</li>
+<li>Space was reserved for dynamic retry tiles and the Mario 8x8 DMA-er.</li>
 </ul>
 <h4 id="edited_GFX01">GFX01 : Global Sprite Graphics (SP2)*</h4>
-<center><img src="img/edited_GFX01.png"></center>
+<center><img alt="Edited version of GFX01.bin" title="Edited version of GFX01.bin" src="img/edited_GFX01.png"></center>
 <ul>
 <li>Graphic for the donut block sprite replaces the Coin Game Cloud coin tile. Coin Game Cloud has been remapped to use the other sprite coin tile.</li>
 <li>Flopping fish tiles were moved to <code>GFX13</code>.</li>
@@ -46,96 +49,117 @@
 <li>Tile for an "ejected" blue koopa has been remapped and Poison Mushroom was added in its place.</li>
 </ul>
 <h4 id="edited_GFX08">GFX08 : Switch Palace (FG3)</h4>
-<center><img src="img/edited_GFX08.png"></center>
+<center><img alt="Edited version of GFX08.bin" title="Edited version of GFX08.bin" src="img/edited_GFX08.png"></center>
 <ul>
 <li>Sunken ship tiles were moved to <code>GFX1E</code>.</li>
 <li>Additional corner tiles for Switch palace foreground were added.</li>
 </ul>
 <h4 id="edited_GFX13">GFX13 : Sprite Tiles (SP3)*</h4>
-<center><img src="img/edited_GFX13.png"></center>
+<center><img alt="Edited version of GFX13.bin" title="Edited version of GFX13.bin" src="img/edited_GFX13.png"></center>
 <ul>
-<li>note block bounce sprite frame moved to <code>GFX00</code>.</li>
-<li>tiles for the flopping fish from <code>GFX01</code> were added here and the fish was rearranged.</li>
-<li>a frame of the hammer has been moved.</li>
+<li>Note block bounce sprite frame moved to <code>GFX00</code>.</li>
+<li>Tiles for the flopping fish from <code>GFX01</code> were added here and the fish was rearranged.</li>
+<li>A frame of the hammer has been moved.</li>
 <li>8x8 tiles for the small note and egg fragment have been moved.</li>
 </ul>
 <h4 id="edited_GFX14">GFX14 : Global Foreground Tiles (FG1)</h4>
-<center><img src="img/edited_GFX14.png"></center>
+<center><img alt="Edited version of GFX14.bin" title="Edited version of GFX14.bin" src="img/edited_GFX14.png"></center>
 <ul>
-<li>Some unused tiles have been replaced with sideways cloud graphics and vertical rope.</li>
+<li>Some unused tiles have been replaced with sideways cloud graphics and vertical rope. The turnblock is now a destination for one-ways ExAnimation .</li>
 </ul>
 <h4 id="edited_GFX16">GFX16 : Rope Foreground (FG3)</h4>
-<center><img src="img/edited_GFX16.png"></center>
+<center><img alt="Edited version of GFX16.bin" title="Edited version of GFX16.bin" src="img/edited_GFX16.png"></center>
 <ul>
 <li>Tiles for the mushroom platform were shifted so a proper rope corner could be added.</li>
 </ul>
 <h4 id="edited_GFX17">GFX17 : Global Foreground Tiles (FG2)</h4>
-<center><img src="img/edited_GFX17.png"></center>
+<center><img alt="Edited version of GFX17.bin" title="Edited version of GFX17.bin" src="img/edited_GFX17.png"></center>
 <ul>
-<li>a duplicate tile in the door and the unused pressed P-switch tile were reserved for some animation.</li>
+<li>A duplicate tile in the door and the unused pressed P-switch tile were replaced with vine ends.</li>
 </ul>
 <h4 id="edited_GFX1E">GFX1E : Overworld (FG4)</h4>
-<center><img src="img/edited_GFX1E.png"></center>
+<center><img alt="Edited version of GFX1E.bin" title="Edited version of GFX1E.bin" src="img/edited_GFX1E.png"></center>
 <ul>
 <li>The half sunken ship was moved into blank tile space from <code>GFX08</code>.</li>
 </ul>
-<h4 id="edited_GFX2A">GFX2A : Layer 3 tiles (LG3)</h4>
-<center><img src="img/edited_GFX2A.png"></center>
+<h4 id="edited_GFX29">GFX29 : Layer 3 tiles (LG2)</h4>
+<center><img alt="Edited version of GFX29.bin" title="Edited version of GFX29.bin" src="img/edited_GFX29.png"></center>
 <ul>
-<li>The unused graphics for "AND" have been removed, and part of "Nintendo" has been moved here from <code>GFX2B</code>.</li>
+<li>The tile for the "&copy;" symbol from the title screen has been moved to <code>GFX2A</code> to make room for the Layer 3 status bar retry indicator.</li>
+</ul>
+<h4 id="edited_GFX2A">GFX2A : Layer 3 tiles (LG3)</h4>
+<center><img alt="Edited version of GFX2A.bin" title="Edited version of GFX2A.bin" src="img/edited_GFX2A.png"></center>
+<ul>
+<li>The unused graphics for "AND" have been removed, and part of "Nintendo" and the "&copy;" symbol from the title screen has been moved here from <code>GFX2B</code>.</li>
 </ul>
 <h4 id="edited_GFX2B">GFX2B : Layer 3 tiles (LG4)</h4>
-<center><img src="img/edited_GFX2B.png"></center>
+<center><img alt="Edited version of GFX2B.bin" title="Edited version of GFX2B.bin" src="img/edited_GFX2B.png"></center>
 <ul>
 <li>The unused graphics for "Super Mario Bros. 4" have been replaced with "Romhack Races Baserom" tiles.</li>
 <li>Part of "Nintendo" has been moved to <code>GFX2A</code>, and an "8" and "9" tile has been added to make it usable when typing those numbers into info messages.</li>
 </ul>
 <h4 id="edited_GFX33">GFX33 : Global Animation Tiles</h4>
 <ul>
-<li>the midway animation frames have been fixed.</li>
-<li>always turning block animation was lightly edited.</li>
-<li>the castle conveyor/stairs have been fixed to use the the castle's brick pattern.</li>
+<li>The midway animation frames have been fixed.</li>
+<li>Always turning block animation was lightly edited.</li>
+<li>The castle conveyor/stairs have been fixed to use the the castle's brick pattern.</li>
 </ul>
-<small>*See the <a href="../../resources/patches/sprite_remaps.asm">resources/patches/sprite_remaps.asm</a> file for detailed remapping information.</small>
+<small>*These resources have changes to accommodate remapped sprites, see <span class="dir">resources/patches/sprite_remaps.asm</span> for details.</small>
 <hr>
-<!-- Section -->
 <h3 id="remapped-graphics">Remapped Graphics</h3>
 <p>In resources that formerly contained tiles for remapped sprites (namely the lava splash tiles, Yoshi tongue tiles, and the ON/OFF bounce sprite tiles) there will be placeholder graphics in the freed-up space.</p>
 <div class="flex">
-    <center><code>GFX03</code><img src="img/edited_GFX03.png"></center>
-    <center><code>GFX04</code><img src="img/edited_GFX04.png"></center>
-    <center><code>GFX05</code><img src="img/edited_GFX05.png"></center>
-    <center><code>GFX06</code><img src="img/edited_GFX06.png"></center>
-    <center><code>GFX0D</code><img src="img/edited_GFX0D.png"></center>
-    <center><code>GFX0E</code><img src="img/edited_GFX0E.png"></center>
+    <center><b>GFX03</b><img alt="Edited version of GFX03.bin showing remapped tiles" title="Edited version of GFX03.bin showing remapped tiles" src="img/edited_GFX03.png"></center>
+    <center><b>GFX04</b><img alt="Edited version of GFX04.bin showing remapped tiles" title="Edited version of GFX04.bin showing remapped tiles" src="img/edited_GFX04.png"></center>
+    <center><b>GFX05</b><img alt="Edited version of GFX05.bin showing remapped tiles" title="Edited version of GFX05.bin showing remapped tiles" src="img/edited_GFX05.png"></center>
+    <center><b>GFX06</b><img alt="Edited version of GFX06.bin showing remapped tiles" title="Edited version of GFX06.bin showing remapped tiles" src="img/edited_GFX06.png"></center>
+    <center><b>GFX0D</b><img alt="Edited version of GFX0D.bin showing remapped tiles" title="Edited version of GFX0D.bin showing remapped tiles" src="img/edited_GFX0D.png"></center>
+    <center><b>GFX0E</b><img alt="Edited version of GFX0E.bin showing remapped tiles" title="Edited version of GFX0E.bin showing remapped tiles" src="img/edited_GFX0E.png"></center>
 </div>
-<p>Unedited versions of these resources can be found in the <code>resources/original_graphics</code> folder.</p>
+<p>Unedited versions of these resources can be found in the <span class="dir">resources/original_graphics</span> folder.</p>
 <hr>
-<!-- Section -->
 <h3 id="exgraphics">ExGraphics</h3>
 <h4 id="edited_ExGFX">ExGFXB54: ExGraphic Version of Big Bush and Pipe (BG2)</h4>
 <ul>
 <li>Contains optional tiles for the big bushes and big pipe that can be used as ExGraphics, as well as some alternative pipe corner tiles.</li>
-<li>Must be loaded into slot BG2, and their Map16 Files are found in <code>resources/map16</code>. See demo level for example.</li>
+<li>Must be loaded into slot BG2, and their Map16 Files are found in <span class="dir">resources/map16</span>. See demo level for example.</li>
 </ul>
 <h4 id="edited_ExGFX">ExGFXE17: Custom Global Block Tiles (FG2)</h4>
-<center><img src="img/ExGFXE17.png"></center>
+<center><img src="img/ExGFXE17.png" alt="Preview of the contents of ExGraphic ExGFXE17.bin" title="Preview of the contents of ExGraphic ExGFXE17.bin"></center>
 <ul>
-<li>contains all tiles for custom global blocks that use ExGraphics and the global line guide and screen scrolling pipe tiles.</li>
-<li>this resource is arranged to be drop in replacement for <code>GFX17 (FG2)</code> as the custom blocks use tiles normally used for the Big Bush and Large Slanted Pipe objects.</li>
+<li>Contains all tiles for custom global blocks that use ExGraphics and the global line guide and screen scrolling pipe tiles.</li>
+<li>This resource is arranged to be drop in replacement for <code>GFX17 (FG2)</code> as the custom blocks use tiles normally used for the Big Bush and Large Slanted Pipe objects.</li>
 </ul>
 <h4 id="edited_ExGFX">ExGFXFF: Font (BG3)</h4>
 <ul>
-<li>a basic 8x8 font and symbol set for in-level text, used in the Demo level.</li>
+<li>A basic 8x8 font and symbol set for in-level text, used in the Demo level.</li>
 </ul>
 <hr>
-<!-- Section -->
 <h3 id="alt-exgfx">Alternate ExGraphics</h3>
 <p>Lunar Magic supports a special sort of ExGraphic called "Alternate ExGFX" which is used for ExAnimation to store frames that are globally available in the ROM (opposed to slot AN2, which is per-level). The baserom stores some frame data to <code>ExGFX61</code>.</p>
 <h4 id="edited_ExGFX">ExGFX61: Global ExAnimation</h4>
 <p>In the baserom the <code>ExGFX61</code> resource contains all global animation frames, for ON/OFF tiles, one-Ways, the sprite note block, etc. See the <a href="ExAnimation.html">Exanimation</a> page for more details on how they're used. However there are some extra frames available for additional use.</p>
-<center><img  width="256" src="img/global_exanimation_frames.png"></center>
-<a href="#" class="go-to-top"></a>
+<center><img  width="256" src="img/global_exanimation_frames.png" alt="Preview of the contents of ExGraphic ExGFX61.bin used for global ExAnimation" title="Preview of the contents of ExGraphic ExGFX61.bin used for global ExAnimation"></center>
+<hr>
+<h3 id="palettes">Palettes</h3>
+<p>For the most part the baserom doesn't touch the palettes of the Vanilla game, however the palette row for the Pink Berry (object 1E) has been changed to row <code>5</code> from row <code>3</code> so it will appear blank in Lunar Magic.</p>
+<center><img src="img/pink-berry-palette.png" alt="Screenshot of the broken Pink Berry palette" title="Screenshot of the broken Pink Berry palette"></center>
+<p>This change was made to make some room for some a global colors in the Shared palette that is used by graphics for some of the custom blocks in the baserom.</p>
+<center><img width="288" alt="Screenshot of the edited Global Palette colors in the Palette Editor Window" title="Screenshot of the edited Global Palette colors in the Palette Editor Window" src="img/edited_shared-palette.png"></center>
+<h4 id="pink-berry">Pink Berry</h4>
+<p>The original Pink Berry's palette can be restored if you import the <span class="dir">resources/palettes/PinkBerry.pal</span> file, should you end up using them in your level(s).</p>
+<center><img width="288" src="img/pink-berry-imported-palette.png" alt="Screenshot of the fixed Pink Berry colors in the Palette Editor Window" title="Screenshot of the fixed Pink Berry colors in the Palette Editor Window"></center>
+<h4 id="poison-mushroom">Poison Mushroom</h4>
+<p>The Poison mushroom is the only sprite in the baserom using a custom palette&ndash;palette row <code>A</code> for the hurt mushroom and row <code>B</code> for the kill variety&ndash;you can import it from <span class="dir">resources/palettes/PoisonMushroom.pal</span> to use in your level(s).</p>
+<center><img width="288" src="img/poison-mushroom-palette.png" alt="Screenshot of the Poison Mushroom colors in the Palette Editor Window" title="Screenshot of the Poison Mushroom colors in the Palette Editor Window"></center>
+<h4 id="custom-blocks">Custom Blocks</h4>
+<p>If you happen to overwrite or lose the palette for the custom blocks mentioned above, you can re-import it from <span class="dir">resources/palettes/CustomBlocks.pal</span class="dir"> to use in your level(s).</p>
+<hr>
+<h3 id="mario-gfxdma">Mario's 8x8 Graphics</h3>
+<p>The baserom uses the <a href="https://smwc.me/s/26002" target="_blank">Mario's 8x8 Tiles DMA-er</a> patch to upload all of <a href="https://media.smwcentral.net/Diagrams/MarioExtendedTiles.png" target="_blank">Mario's 8x8 tiles</a> directly to memory (DMA), freeing up significant space in GFX00, which the baserom uses to have some tiles remapped into the global sprites space (<a href="#edited_GFX00">see above</a>).</p>
+<p>What this means for building a hack is that, if you want to change the player graphics, you will have to update or replace the graphic resource this patch uses to dynamically upload Mario's tiles. You can find them in: <span class="dir">resources/patches/other/ExtendGFX.bin</span>.</p>
+<center><img alt="Mario's 8x8 tiles in ExtendGFX.bin" title="Mario's 8x8 tiles in ExtendGFX.bin" src="img/mario_gfx_dma_graphics.png"></center>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

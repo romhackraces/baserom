@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Retry API</title>
+  <meta name="author" content="KevinM">
+  <style>
+    body {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    p, li, th, td {
+      line-height: 150%;
+    }
+    code {
+      font-size: 16px;
+      padding: 2px 4px;
+      background: rgba(0,0,0,.05);
+      border-radius: 4px;
+    }
+    blockquote {
+      font-style: italic;
+    }
+    table, th, td {
+      border: 1px solid black;
+      text-align: center;
+    }
+    .no-center {
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h2>Retry API</h2>
+  <p>"Retry API" refers to a collection of routines that Retry provides that you can call from your UberASM files if needed.</p>
+  <p><b>NOTE:</b> calling these routines from files in the "library" folder will result in an error, at least when using the standard UberASMTool.</p>
+
+  <h3>Index</h3>
+  <ol>
+    <li><a href="#reset_level_checkpoint">Reset level checkpoint</a></li>
+    <li><a href="#reset_all_checkpoints">Reset all checkpoints</a></li>
+  </ol>
+  <br/>
+
+  <h3 id="reset_level_checkpoint">Reset level checkpoint</h3>
+  <p><code>JSL retry_api_reset_level_checkpoint</code></p>
+  <p>Call this to reset the checkpoint in the current level. Entering the level again or respawning will load the main sublevel's entrance. Note that this won't reflect to SRAM until the game is saved.</p>
+  <ul>
+    <li>Inputs: <code>N/A</code></li>
+    <li>Outputs: <code>N/A</code></li>
+    <li>Preconditions: <code>A/X/Y 8 bits</code></li>
+    <li>Postconditions: <code>A/X/Y 8 bits, DB/X/Y preserved</code></li>
+  </ul>
+  <br/>
+
+  <h3 id="reset_all_checkpoints">Reset all checkpoints</h3>
+  <p><code>JSL retry_api_reset_all_checkpoints</code></p>
+  <p>Call this to reset the checkpoint for every level in the game, effectively making it as if it were a fresh game. Note that this won't reflect to SRAM until the game is saved.</p>
+  <ul>
+    <li>Inputs: <code>N/A</code></li>
+    <li>Outputs: <code>N/A</code></li>
+    <li>Preconditions: <code>N/A</code></li>
+    <li>Postconditions: <code>A/X/Y size preserved, DB/X/Y preserved</code></li>
+  </ul>
+  <br/>
+
+</body>
+</html>

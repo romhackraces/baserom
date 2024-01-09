@@ -86,6 +86,14 @@
 ; 2 = reset Boo Rings positions on death and on level load.
     !reset_boo_rings = 1
 
+; This determines what happens when you die on the title screen.
+; 0 = vanilla (after dying a glitched version of the title screen will load,
+;     causing a softlock. Use this if you either don't care or want to do something
+;     custom with it.)
+; 1 = play vanilla death animation and reload title screen.
+; 2 = instantly reload the title screen.
+    !title_death_behavior = 1
+
 ;======================== SFX ===========================================;
 
 ; SFX to play when dying (!death_sfx = $00 -> no SFX).
@@ -203,7 +211,8 @@
     !exit_button_address = $16
 
 ; X/Y position of the first tile in the prompt (the cursor on the first line).
-; You should only change this if you're removing the black box.
+; Changing this only works if the black box is disabled (if enabled,
+; default values will be used instead).
 ; Note: you can also change these on the fly (see "docs/ram_map.txt").
     !text_x_pos = $58
     !text_y_pos = $6F
@@ -272,13 +281,18 @@
     !timer_y_pos        = $0F
     !coin_counter_x_pos = $D0
     !coin_counter_y_pos = $17
-    !dc_counter_x_pos   = $9A
-    !dc_counter_y_pos   = $0F
+    !dc_counter_x_pos   = $98
+    !dc_counter_y_pos   = $10
 
 ; If 1, the item box will always be drawn (if set to be drawn for the specific level).
 ; Otherwise, it will only be drawn when having an item in reserve.
 ; This is only relevant if !sprite_status_bar = 1.
     !always_draw_box = 0
+
+; If 1, when collecting all DCs in a level they'll be displayed in the status bar.
+; If 0, they won't be displayed (like in vanilla).
+; This is only relevant if !sprite_status_bar = 1.
+    !draw_all_dc_collected = 0
 
 ;======================== Death Counter =================================;
 

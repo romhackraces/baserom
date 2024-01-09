@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tips & Tricks - Romhack Races Baserom</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="./img/flop.gif" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Tips &amp; Tricks</span></header>
+<section>
+<p>Here's a few helpful tips to make your life a little easier as a ROM Hacker.</p>
+<h3 id="#">Contents</h3>
+<ul>
+<li><a href="#show-file-extensions">Show File Extensions</a></li>
+<li><a href="#setup-tile-editor">Set Up a Tile Editor</a></li>
+<li><a href="#lunar-magic-shortcuts">Lunar Magic Shortcuts</a></li>
+</ul>
+<hr>
+<h3 id="show-file-extensions">Show File Extensions</h3>
+<p>For Windows users, File Explorer hides file extensions by default. This will likely be a hassle for you throughout your ROM Hacking journey since you'll be dealing with many files of different types that will likely share the same file name so it is recommended to enable showing them.</p><p>This an option in File Explorer, in the  "View" menu as of Windows 11, but if you are having trouble finding it just search the web for answers.</p>
+<hr>
+<h3 id="setup-tile-editor">Set Up a Tile Editor</h3>
+<p>The baserom doesn't include one but it is incredibly useful to have a CHR editor on hand for editing or viewing graphics resources outside of Lunar Magic. The recommended editor is <a href="https://smwc.me/s/27208">YY-CHR</a>. It is a portable program with broad use, so save it somewhere you will always use it instead of within your hacking project.</p>
+<p>Once you have a tile editor, it is also recommended that you set it up in Lunar Magic as the default Tile Editor. You can do this by opening "File &rarr; Graphics &rarr; Setup Tile Editor..." from the application menu to open the window seen below. Here, provide the full path to the YY-CHR executable and check the "Replace yychr.pal file with current palette" and "Set transparent colors to blue" options.</p>
+<center><img src="img/lm_set-up-tile-editor.png" alt="Screenshot of Lunar Magic's Setup Tile Editor window" title="Screenshot of Lunar Magic's Setup Tile Editor window"></center>
+<p>Once set up you will be able to use the "Edit" button in Lunar Magic's "GFX Bypass" windows, as seen below, to jump right into editing a graphics file.</p>
+<center><img src="img/lm_super_gfx_bypass.png" alt="Screenshot of Lunar Magic's Super GFX Bypass window" title="Screenshot of Lunar Magic's Super GFX Bypass window"></center>
+<hr>
+<h3 id="lunar-magic-shortcuts">Lunar Magic Shortcuts</h3>
+<p>There is an extensive list of keyboard shortcuts and mouse gestures in Lunar Magic, and the SMW Central forums have <a href="https://smwc.me/t/104058" target="_blank">a thread which documents most of them</a>, but here are some particularly useful ones:</p>
+<h4>General</h4>
+<table border="1" class="full">
+<tr><th>Action</th><th>Effect</th></tr>
+<tr><td>Mouse Wheel + Ctrl</td><td>Zoom in and out.</td></tr>
+<tr><td>Mouse Wheel + Space</td><td>Scroll the current view 3 times as fast (Lunar Magic 3.40+)</td></tr>
+</table>
+<h4>Level Editor</h4>
+<table border="1" class="full">
+<tr><th>Action</th><th>Effect</th></tr>
+<tr><td>Double Left Click on a tile or object</td><td>Reveal tile in 16x16 Tile Map Editor.</td></tr>
+<tr><td>Right Click + Flick Mouse left/right anywhere</td><td>Go forward/backward in level history.</td></tr>
+<tr><td>Right Click + Alt + Flick Mouse right on screen</td><td>Jump to the level set in a screen with a screen-exit set.</td></tr>
+<tr><td>Press Ctrl + Delete</td><td>Deletes all objects/sprites/exits/entrances in the level.</td></tr>
+<tr><td>Shift + Arrow Keys, while object is selected</td><td>Resizes the object in the direction of the keys.</td></tr>
+<tr><td>Middle Click or Escape Key</td><td>Toggle between sprite and layer editing.</td></tr>
+<tr><td>Middle Click + Alt</td><td>Open the screen-exit editor for the clicked screen.</td></tr>
+</table>
+<h4>Map 16 Editor</h4>
+<table border="1" class="full">
+    <tr><th>Action</th><th>Effect</th></tr>
+    <tr><td>Press X or Y </td><td>X flip or Y flip a tile. (Also works in Overworld editor.)</td></tr>
+</table>
+<h4>Palette Editor</h4>
+<table border="1" class="full">
+    <tr><th>Action</th><th>Effect</th></tr>
+    <tr><td>Press F3 </td><td>Copies the color of the thing under the mouse cursor to paste into the palette editor.</td></tr>
+</table>
+<hr>
+</section>
+<a href="#" class="go-to-top"></a>
+</body>
+</html>

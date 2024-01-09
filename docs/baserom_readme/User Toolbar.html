@@ -4,51 +4,43 @@
 <title>Custom User Toolbar - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="img/flop.gif" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" href="./img/flop.gif" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
-<style>
-td:first-child {
-    width: 20px;
-}
-td:nth-child(3) {
-    text-align:center;
-}
-span {
-margin: 0 auto;
-display: block;
-width: 16px;
-height: 16px;
-background: url(img/usertoolbar_buttons.png) no-repeat;
-}
-</style>
+<style>td:first-child {width: 20px;}td:nth-child(3) {text-align:center;}</style>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>User Toolbar</span></header>
 <section>
-<a href="../../README.html" class="home">🏠</a>
-<h2>User Toolbar</h2>
 <p>Lunar Magic has a built-in function to allow users to extend its toolbar with additional buttons (see the Lunar Magic help documentation if you need more details) and the baserom makes use of this to add some simple buttons that are some quick shortcuts to things.</p>
 <table border="1" class="full">
 <tr><th></th><th>Name</th><th>Shortcut</th><th>Description</th></tr>
-<tr><td><span style="background-position:calc(-16px * 11);"></span></td><td>Run ROM in Emulator</td><td><code>F4</code></td><td>Opens the current ROM in configured Lunar Magic emulator.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 1);"></span></td><td>Open Current ROM Directory</td><td>--</td><td>Opens the current project directory in File Explorer</td></tr>
-<tr><td><span style="background-position:calc(-16px * 8);"></span></td><td>Open Callisto</td><td><code>Ctrl+B</code></td><td>Opens Callisto in a new command-line window.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 9);"></span></td><td>Run Update in Callisto</td><td><code>Ctrl+U</code></td><td>Updates your ROM by running "Update" in Callisto.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 10);"></span></td><td>Make a BPS patch with Callisto</td><td><code>Ctrl+P</code></td><td>Creates a BPS patch using Callisto's "Package" function.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 4);"></span></td><td>Open PIXI Directory</td><td>--</td><td>Opens PIXI's directory in File Explorer.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 2);"></span></td><td>Edit Sprite List</td><td>--</td><td>Opens PIXI's sprite list in default text editor.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 3);"></span></td><td>Launch CFG Editor</td><td>--</td><td>Launches the sprite config editor tool that comes with PIXI.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 5);"></span></td><td>Open GPS Directory</td><td>--</td><td>Opens GPS's directory in File Explorer.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 2);"></span></td><td>Edit Custom Block List</td><td>--</td><td>Opens GPS's block list in default text editor.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 6);"></span></td><td>Open UberASMTool Directory</td><td>--</td><td>Opens UberASMTool's directory in File Explorer.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 2);"></span></td><td>Edit UberASM list</td><td>--</td><td>Opens the UberASM list in default text edito.r</td></tr>
-<tr><td><span style="background-position:calc(-16px * 7);"></span></td><td>Open AddMusicK Directory</td><td>--</td><td>Opens AddMusicK's directory in File Explorer.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 2);"></span></td><td>Edit Music List</td><td>--</td><td>Opens AddMusicK's custom music list in default text editor.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 12);"></span></td><td>View Tile Outlines</td><td><code>Ctrl+F2</code></td><td>Toggles the viewable tile outlines in Lunar Magic.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 13);"></span></td><td>View Blue P-Switch/POW Effects</td><td><code>F12</code></td><td>Displays the effects of a Blue P-Switch in the level view.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 14);"></span></td><td>View Silver P-Switch/POW Effects</td><td><code>F11</code></td><td>Displays the effects of a Silver P-Switch in the level view.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 15);"></span></td><td>Toggle ON/OFF Switch Animation</td><td><code>0</code></td><td>Toggles any ON/OFF related animation.</td></tr>
-<tr><td><span style="background-position:calc(-16px * 0);"></span></td><td>Open Baserom Readme</td><td><code>Ctrl+H</code></td><td>Opens the baserom's included documentation.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 11);"></span></td><td>Run ROM in Emulator</td><td><code>F4</code></td><td>Opens the current ROM in configured Lunar Magic emulator.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 16);"></span></td><td>Reload Current ROM</td><td><code>Ctrl+R</code></td><td>Reloads the currently open ROM.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 1);"></span></td><td>Open Current ROM Directory</td><td>--</td><td>Opens the current project directory in File Explorer.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 8);"></span></td><td>Open Callisto</td><td><code>Ctrl+B</code></td><td>Opens Callisto in a new command-line window.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 9);"></span></td><td>Run Update in Callisto</td><td><code>Ctrl+U</code></td><td>Updates your ROM by running "Update" in Callisto.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 10);"></span></td><td>Make a BPS patch with Callisto</td><td><code>Ctrl+P</code></td><td>Creates a BPS patch using Callisto's "Package" function.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 19);"></span></td><td>Open Patches Directory</td><td>--</td><td>Opens the patches folder in the baserom's resources.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span></td><td>Edit Patches List</td><td>--</td><td>Open resources.toml so you can edit the list of patches.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 4);"></span></td><td>Open PIXI Directory</td><td>--</td><td>Opens PIXI's directory in File Explorer.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span></td><td>Edit Sprite List</td><td>--</td><td>Opens PIXI's sprite list in default text editor.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 3);"></span></td><td>Launch CFG Editor</td><td>--</td><td>Launches the sprite config editor tool that comes with PIXI.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 5);"></span></td><td>Open GPS Directory</td><td>--</td><td>Opens GPS's directory in File Explorer.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span></td><td>Edit Custom Block List</td><td>--</td><td>Opens GPS's block list in default text editor.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 6);"></span></td><td>Open UberASMTool Directory</td><td>--</td><td>Opens UberASMTool's directory in File Explorer.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span></td><td>Edit UberASM list</td><td>--</td><td>Opens the UberASM list in default text editor.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 7);"></span></td><td>Open AddMusicK Directory</td><td>--</td><td>Opens AddMusicK's directory in File Explorer.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);"></span></td><td>Edit Music List</td><td>--</td><td>Opens AddMusicK's custom music list in default text editor.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 12);"></span></td><td>View Tile Outlines</td><td><code>Ctrl+F2</code></td><td>Toggles the viewable tile outlines in Lunar Magic.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 13);"></span></td><td>View Blue P-Switch/POW Effects</td><td><code>F12</code></td><td>Displays the effects of a Blue P-Switch in the level view.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 14);"></span></td><td>View Silver P-Switch/POW Effects</td><td><code>F11</code></td><td>Displays the effects of a Silver P-Switch in the level view.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 15);"></span></td><td>Toggle ON/OFF Switch Animation</td><td><code>0</code></td><td>Toggles any ON/OFF related animation.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 17);"></span></td><td>Go Back to Previous Level</td><td>--</td><td>Goes back in your history of viewed levels.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 18);"></span></td><td>Go Forward to Next Level</td><td>--</td><td>Goes forward in your history of viewed levels.</td></tr>
+<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 0);"></span></td><td>Open Baserom Readme</td><td><code>Ctrl+H</code></td><td>Opens the baserom's included documentation.</td></tr>
 </table>
+<small>User toolbar may differ between versions of the baserom.</small>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

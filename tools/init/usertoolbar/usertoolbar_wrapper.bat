@@ -14,9 +14,9 @@ set "ROOT_DIR=!WORKING_DIR:\tools\lunar_magic=!"
 set "tools_dir=!ROOT_DIR!tools\"
 
 :: readme
-set "readme=!ROOT_DIR!README.html"
+set "readme=!ROOT_DIR!Readme.html"
 :: callisto
-set "callisto_path=!ROOT_DIR!buildtool"
+set "callisto_path=!ROOT_DIR!buildtool\callisto.exe"
 :: addmusick
 set "amk_path=!tools_dir!addmusick"
 set "amk_list=!amk_path!\Addmusic_list.txt"
@@ -29,6 +29,10 @@ set "gps_list=!gps_path!\list.txt"
 :: uberasm
 set "uber_path=!tools_dir!uberasmtool"
 set "uber_list=!uber_path!\list.txt"
+:: asar patches
+set "patches_path=!ROOT_DIR!resources\patches"
+set "patches_list=!ROOT_DIR!buildtool\resources.toml"
+
 
 :ParseArgs
 if "%~1"=="" goto :EOF
@@ -47,10 +51,25 @@ if /i "%~1"=="--app" (
     set param=%~4
     goto :OpenApp
 )
+if /i "%~1"=="--callisto" (
+    set param=%~2
+    goto :RunCallisto
+)
 goto :ParseArgs
 
 :RunEditor
 start "" /b "%file%"
+goto :Exit
+
+:RunCallisto
+setlocal enabledelayedexpansion
+if "%param%"=="" (
+    start "" /i "%callisto_path%"
+) else (
+    start "" /b /i "%callisto_path%" "%param%"
+    pause
+)
+endlocal
 goto :Exit
 
 :OpenDir

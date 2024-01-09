@@ -4,60 +4,62 @@
 <title>ExAnimation - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="img/flop.gif" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" href="./img/flop.gif" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
-<style>table.full td{font-family: monospace;font-size:larger;}</style>
+<style>
+table.syncing td:nth-child(2),
+table.frames td:nth-child(3),
+table.frames td:nth-child(5),
+td:nth-child(1) {
+    font-family: monospace;
+    font-size:larger;
+}
+table.frames td:nth-child(2) {
+    width: 100px;
+}
+</style>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>ExAnimation</span></header>
 <section>
-<a href="../../README.html" class="home">🏠</a>
-<h2>ExAnimation</h2>
 <p>If you plan on doing a large amount of ExAnimation, see Lunar Magic's help file for more detailed instructions and technical documentation regarding, and read <a href="https://smwc.me/t/77300" target="_blank">a more detailed tutorial</a> on SMW Central.</p>
-<!-- Section -->
 <h3 id="#">Contents</h3>
 <ul>
 <li><a href="#used-exanimation">Used ExAnimation</a></li>
 <li><a href="#syncing">Syncing ExAnimation</a></li>
 </ul>
-<!-- Section -->
+<hr>
 <h3 id="used-exanimation">Used ExAnimation</h3>
 <p>The below is a breakdown of the ExAnimation used by the baserom. Each item is categorized by where they are applied, either Global or Level.</p>
 <h4 id="global">Global ExAnimation</h4>
 <p>These ExAnimation slots are active in every level, most of them with a destination in <code>BG3</code>, and will override any static graphics sharing that destination.</p>
-<table border="1" class="full">
+<table border="1" class="full frames">
 <tr><th>Slot</th><th>Type</th><th>Frames</th><th>Destination</th><th>Uses Alt ExGFX</th><th>Description</th></tr>
-<tr><td>00</td><td>10 8x8s line</td><td>1060,1080</td><td>2F0 (BG3)</td><td>61</td><td>ON/OFF Blocks</td></tr>
-<tr><td>01</td><td>4 8x8s line</td><td>1048,104C</td><td>2E0 (BG3)</td><td>61</td><td>Swooper Block</td></tr>
-<tr><td>02</td><td>2 8x8s</td><td>686,686</td><td>96 (FG2)</td><td>--</td><td>Spiny Blocks & Line Guide Ends</td></tr>
-<tr><td>03</td><td>4 8x8s line</td><td>100C,101C,102C,103C</td><td>2E4 (BG3)</td><td>61</td><td>Sprite Bounce Block</td></tr>
-<tr><td>04</td><td>4 8x8s line</td><td>1058,1058,105C,105C</td><td>2E8 (BG3)</td><td>61</td><td>Spikes Trap</td></tr>
-<tr><td>05</td><td>2 8x8s stacked</td><td>1000,1010,1020,1030,1040</td><td>2EC (BG3)</td><td>61</td><td>One-Ways, horizontal & vertical</td></tr>
+<tr><td>00</td><td>10 8x8s line</td><td>1060 1080</td><td>2F0 (BG3)</td><td>61</td><td>ON/OFF Blocks.</td></tr>
+<tr><td>01</td><td>4 8x8s line</td><td>1048 104C</td><td>2DC (BG3)</td><td>61</td><td>Swooper Block.</td></tr>
+<tr><td>02</td><td>Palette</td><td>1F 1F 17 14 14 17</td><td>3C</td><td>--</td><td>Palette animation for the pass-through death blocks.</td></tr>
+<tr><td>03</td><td>4 8x8s line</td><td>100C 101C 102C 103C</td><td>2E4 (BG3)</td><td>61</td><td>Sprite Bounce Block.</td></tr>
+<tr><td>04</td><td>4 8x8s line</td><td>108C 109C 10AC 10BC</td><td>2E0 (BG3)</td><td>61</td><td>Spike Trap, Spiny Block & Line Guide Ends.</td></tr>
+<tr><td>05</td><td>4 8x8s 16x16</td><td>1000 1010 1020 1030 1040</td><td>6 (FG1)</td><td>61</td><td>One-Ways, horizontal & vertical.</td></tr>
+<tr><td>06</td><td>8 8x8s line</td><td>10C8 10C8 10C8 10C8 10D8 10E8 10F8 10C8</td><td>2E8 (BG3)</td><td>61</td><td>ON/OFF Collectible Coins.</td></tr>
 </table>
 <p>If you need to, you can disable global animations in individual levels from the menu: "Level &rarr; Edit Animation Settings" and uncheck "Enable Lunar Magic's global animations".</p>
-<!-- Section -->
-<h4 id="level">Level ExAnimation</h4>
-<p>These ExAnimation slots are per-level and entirely optional, they are active in the Demo level.</p>
-<table border="1" class="full">
-<tr><th>Slot</th><th>Type</th><th>Frames</th><th>Destination</th><th>Uses Alt ExGFX</th><th>Description</th></tr>
-<tr><td>00</td><td>4 8x8s line</td><td>1008,1018,1028,1038</td><td>6 (FG1)</td><td>61</td><td>Spinning  throwblock </td></tr>
-</table>
 <hr>
-<!-- Section -->
 <h3 id="syncing">Syncing ExAnimation</h3>
 <p>Despite how it may look in Lunar Magic, different sets of animated objects in the vanilla game are on different animation frames, so if you were looking to sync up ExAnimation with those objects (e.g. an ExAnimation sideways muncher with a vanilla muncher) it is worth bearing in mind those different timings.</p>
 <p>Below is a table that shows which Lunar Magic ExAnimation slots sync up with which Vanilla objects, and their tile/location in VRAM (which you can see in the 8x8 selector). Most of these appear in <code>FG1</code> unless otherwise specified.</p>
-<table border="1" class="full">
+<table border="1" class="full syncing">
 <tr><th width="100"><a href="https://media.smwcentral.net/Tutorials/molsnoexgfx/Part%202/Section%204/A/2.png" target="_blank">Slots</a></th><th width="100">Tiles</th><th>Vanilla Object</th></tr>
-<tr><td>0,8,10,18</td><td>60,64,68</td><td>Question block, Note block, Turn block</td></tr>
-<tr><td>1,9,11,19</td><td>74,80*,EA*</td><td>Midway, Berries*, Always turning block*</td></tr>
+<tr><td>0,8,10,18</td><td>60,64,68</td><td>Question block, Note block, Turn block.</td></tr>
+<tr><td>1,9,11,19</td><td>74,80*,EA*</td><td>Midway, Berries*, Always turning block*.</td></tr>
 <tr><td>2,A,12,1A</td><td>50,54,58</td><td>POW door, POW coin, Used brown block.</td></tr>
-<tr><td>3,B,13,1B</td><td>5C,78,7C</td><td>Black piranha plant (Muncher), POW question block, ON/OFF line guide</td></tr>
-<tr><td>4,C,14,1C</td><td>6C,70,DA*</td><td>Coins, Animated water, ON/OFF switch*</td></tr>
-<tr><td>5,D,15,1D</td><td>44,48,4C</td><td>Line guide end/Ghost house lantern/Cave twinkle/stars/Mud/lava, Seaweed/Castle Conveyer, Lava/Down conveyer</td></tr>
+<tr><td>3,B,13,1B</td><td>5C,78,7C</td><td>Black piranha plant (Muncher), POW question block, ON/OFF line guide.</td></tr>
+<tr><td>4,C,14,1C</td><td>6C,70,DA*</td><td>Coins, Animated water, ON/OFF switch*.</td></tr>
+<tr><td>5,D,15,1D</td><td>44,48,4C</td><td>Line guide end/Ghost house lantern/Cave twinkle/stars/Mud/lava, Seaweed/Castle Conveyer, Lava/Down conveyer.</td></tr>
 <tr><td>6,E,16,1E</td><td>40</td><td>Cave lava/Castle candle background.</td></tr>
 </table>
 <small>*These destinations are in FG2</small>
-<a href="#" class="go-to-top"></a>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

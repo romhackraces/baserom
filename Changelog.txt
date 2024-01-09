@@ -1,7 +1,57 @@
+v5.7
+- retry indicator now as a sprite tile component for when the layer 3 HUD is hidden and can be toggled on with an UberASM object
+- some changes to sprite tiles were required for this
+- UberASM objects have been expanded to include initial player state objects
+- retry documentation has been improved, with a new Tips page
+- nitpicky changes were made to retry settings
+
+v5.6
+- new layer 3 status bar indicator for levels that use retry
+- big set of edits to the baserom's documentation to clean it up and improve it
+- clean up of the tweaks.asm code; added tweak for animation resetting
+- tidying up of the UberASM objects code
+- new UberASM object for Disabling cape flight
+- new UberASM object for Disabling screen shake
+- cleared out unneeded, unmodified tools files
+
+v5.5
+- cleaned up the screen-scrolling pipes ASM
+- new visuals for pass-through death block
+- revamped the ExGraphics and ExAnimation
+- added new collectable "coin" on/off blocks
+- updated retry system to 0.5.2
+- updated the clear checkpoints asm to run on OW and use any combo of keys
+- updated tile descriptions for blocks
+- updated usertoolbar script
+- new documentation for the features in the baserom
+
+v5.4
+- added patch related buttons to the toolbar
+- added LM back and forward buttons
+- added throw block bumper block
+- added safety mechanism to the retry system for clearing CP
+- documentation updates
+- fix monty mole display and descriptions
+- revamped the baserom's included levels
+- update Callisto to 0.2.11
+
+v5.3
+- fix FreeRAM conflict between ExNSTL and turnaround patch
+- update FreeRAM documentation
+- make springboard fixes patch ram-toggleable (midairs are back)
+- fix usertoolbar actions hiding Callisto output
+- README updates; new page about initialization
+
 v5.2
 - add new "Baserom Basics" documentation
+- other README edits
+- README now has an online component.
+- added statusbar toggle uberasm to library
+- added RAM-toggled spin jump fireballs patch
 - reconfigure Retry prompt tile address settings
 - drop unneeded "Free Up 69" patch
+- fixed P-Switch spawning from custom question blocks
+- added goal point reward fix patch
 
 v5.1
 - fix small issue in the usertoolbar

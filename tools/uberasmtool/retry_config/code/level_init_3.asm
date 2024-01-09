@@ -1,4 +1,4 @@
-; Gamemode 13
+; Gamemode 6, 13
 
 init:
 if !pipe_entrance_freeze < 2

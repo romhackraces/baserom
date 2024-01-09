@@ -4,29 +4,30 @@
 <title>Getting Started - Romhack Races Baserom</title>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="img/flop.gif" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="icon" href="./img/flop.gif" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Getting Started</span></header>
 <section>
-<a href="../../README.html" class="home">🏠</a>
-<h2 id="getting-started">Getting Started</h2>
 <h3 id="#">Contents</h3>
 <ul>
 <li><a href="#clean-rom">Provide a Clean ROM</a></li>
 <li><a href="#initialize-the-baserom">Initialize the Baserom</a></li>
+<li><a href="#wrapping-up">Wrapping Up</a></li>
 </ul>
 <h3 id="clean-rom">Provide a Clean Super Mario World ROM</h2>
 <p>First things first, you'll need to provide a copy of a clean, headered<sup>1</sup> Super Mario World ROM (USA version) renamed to <code>clean.smc</code> and placed in the "resources" folder so it can be found by the build tool. Take care to ensure the file extension* is <code>.smc</code> and not <code>.sfc</code>.</p>
 <p class="infobox">It is important to do this step otherwise you can't get started.</p>
 <small>*this may require you to turn on extensions in Windows' File Explorer.</small>
 <p><sup>1</sup>If your rom does not have a header&ndash;which you will notice because tools will be unable to work with it&ndash;open it in Lunar Magic and you will be prompted to add a header. Hit "OK" after being prompted but <b>DO NOT SAVE</b> the rom.</p>
+<hr>
 <h3 id="initialize-the-baserom">Initialize the Baserom</h3>
 <p>To start using the baserom you will first have to initialize the project as it comes without any of the tools bundled. You can do this by running the provided script: <code>!initialize_baserom.bat</code>. In Windows, this can be done by double clicking on it in File Explorer, or executing it from a Terminal or the Command Line.</p>
 <p>The script will launch a new command line window where you will see the following menu.</p>
 <pre>
 -----------------------------------
-RHR Baserom (v5.0) - Initialization
+RHR Baserom v5 - Initialization
 -----------------------------------
 
 Welcome! To get started with the baserom, run both of the following steps:
@@ -37,14 +38,20 @@ Welcome! To get started with the baserom, run both of the following steps:
 
 Enter the number of your choice
 </pre>
-<p>Both actions above <b>are required</b> during set up to make sure things are all good to go.</p>
-<h4>Step 1 - Download and Setup all Baserom Tools</h4>
-<p>This action will check for all of the tools required by the baserom, and download them on demand. This is done to keep the baserom pretty lean and avoid distributing a lot of executables and binary files.</p>
-<h4>Step 2 - Run first build of the Baserom</h4>
-<p>This step will build the baserom from scratch using Callisto so you can get right to hacking on your project.</p>
-<p class="infobox">If this fails, run Callisto manually from the "buildtool" folder so you can see what went wrong.</p>
-<p>If everything has been set-up correctly, and the first build was successfull, the baserom is ready for use. If you have further questions you can read the <a href="FAQ.html">FAQ</a> or <a href="Basics.html">Basics</a> pages or visit the <code>#baserom-support</code> in the Romhack Races Discord server.</p>
-<a href="#" class="go-to-top"></a>
+<p><b>Both step 1 and 2 are required</b> to make sure things are all good to go.</p>
+<ul>
+    <li><p>"1. Download and setup all baserom tools"<br>This step will check if the tools required by the baserom are setup, and if not it will download them.</p>.</li>
+    <li><p>"2. Run first build of the Baserom"<br>This step will build the baserom from scratch using Callisto so you can get right to hacking on your project. </p>.</li>
+</ul>
+<p class="infobox">If the first build fails, run Callisto manually from the <span class="dir">buildtool</span> folder so you can see what went wrong.</p>
+<p>To learn the details of the initialization process is you can read the <a href="Initialization.html">Baserom Initialization</a> documentation.</
+<hr>
+<h3 id="wrapping-up">Wrapping Up</h3>
+<p>If everything has been set-up correctly, with all tools set-up and the first build was successfull, the baserom is ready for use!</p>
+<p>You can jump right into working on your project by running "callisto.exe" from the <span class="dir">buildtool</span> folder and select "Edit" to launch Lunar Magic. From Lunar Magic you can access much of your project with the custom <a href="./User Toolbar.html">User Toolbar</a>.</p>
+<p class="infobox"><b>Important:</b> don't run the baserom's tool's individually. Use Callisto to make all changes your project.</p>
+<p> If you have further questions you can read the <a href="./FAQ.html">FAQ</a> or <a href="./Basics.html">Basics</a> pages or visit the <code>#baserom-support</code> in the Romhack Races Discord server.</p>
 </section>
+<a href="#" class="go-to-top"></a>
 </body>
 </html>

@@ -42,10 +42,14 @@ DF 0000 A Green Para-Koopa shell, takes two hits to stop. Appears grey but turns
 4D 0012 0,1,A7 0,1,A8 0,0,10A
 4E 0012 0,1,A7 -4,-4,B1 -4,8,B0 12,-4,B3 12,8,B2 0,0,10A
 
-4D 0000 A ground dwelling monty mole that will have different digging speed depending on its extra bit. It's currently set to dig quickly.
-4D 0010 A ground dwelling monty mole that will have different digging speed depending on its extra bit. It's currently set to dig slowly.
-4E 0000 A ledge dwelling monty mole that will have different digging speed depending on its extra bit. It's currently set to dig quickly.
-4E 0010 A ledge dwelling monty mole that will have different digging speed depending on its extra bit. It's currently set to dig slowly.
+4D 0000 A ground dwelling monty mole that will either follow Mario or walk with a hop based on its x-position, and dig quickly or slowly based on its extra bit setting.\n - It's currently set to dig quickly.\n -
+4D 0100 A ground dwelling monty mole that will either follow Mario or walk with a hop based on its x-position, and dig quickly or slowly based on its extra bit setting.\n - It's currently set to dig quickly.\n -
+4D 0010 A ground dwelling monty mole that will either follow Mario or walk with a hop based on its x-position, and dig quickly or slowly based on its extra bit setting.\n - It's currently set to dig slowly.\n - It's currently set to follow.
+4D 0110 A ground dwelling monty mole that will either follow Mario or walk with a hop based on its x-position, and dig quickly or slowly based on its extra bit setting.\n - It's currently set to dig slowly.\n - It's currently set to walk with a hop.
+4E 0000 A ledge dwelling monty mole that will either follow Mario or walk with a hop based on its x-position, and dig quickly or slowly based on its extra bit setting.\n - It's currently set to dig quickly.\n -
+4E 0100 A ledge dwelling monty mole that will either follow Mario or walk with a hop based on its x-position, and dig quickly or slowly based on its extra bit setting.\n - It's currently set to dig quickly.\n -
+4E 0010 A ledge dwelling monty mole that will either follow Mario or walk with a hop based on its x-position, and dig quickly or slowly based on its extra bit setting.\n - It's currently set to dig slowly.\n - It's currently set to follow.
+4E 0110 A ledge dwelling monty mole that will either follow Mario or walk with a hop based on its x-position, and dig quickly or slowly based on its extra bit setting.\n - It's currently set to dig slowly.\n - It's currently set to walk with a hop.
 
 ; Hammer Brother
 9B 0012 0,-15,1DC 16,-15,1DD 0,-30,1CC 16,-30,1CD -16,-15,1DB 0,-24,10A
