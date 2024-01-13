@@ -1,5 +1,6 @@
 if read1($00FFD5) == $23 && read3($0084C0) == $5A123 && read1($0084C3) >= 140
 
+    sa1rom
     ; Cluster tables defines, replace with yours if you remapped them
     !cluster_num     = $1892|$6000
     !cluster_y_low   = $1E02|$6000
