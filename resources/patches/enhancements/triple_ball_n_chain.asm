@@ -29,9 +29,6 @@ PHA			;save bit info twice for position and sprite number
 AND #$F0		;
 STA $08			;
 PLA			;
-AND #$01		;
-STA $09			;
-PLA			;
 AND #$04		;
 BNE .L1			;load ball 'n chain if bit 0 is set
 
@@ -43,7 +40,9 @@ LDA #$9E		;ball 'n chain
 
 .L2
 STA !Scratch		;store sprite number to scratch ram
-JML $02AF41|!bank		;
+
+PLA			;
+JML $02AF3D|!bank
 
 StoreSprite:
 LDA !Scratch		;
