@@ -10,7 +10,7 @@ $AddMusicK_Docs = @("readme_files", "readme.html")
 
 # Callisto
 $Callisto_Dir = "$WorkingDir\buildtool\"
-$Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.2.11/callisto-v0.2.11.zip"
+$Callisto_Download = "https://github.com/Underrout/callisto/releases/download/v0.2.15/callisto-v0.2.15.zip"
 $Callisto_Junk = @("ASAR_LICENSE", "LICENSE", "config", "asar", "initial_patches")
 $Callisto_Docs = @("documentation")
 
@@ -40,6 +40,6 @@ $PIXI_Docs = @("README.html")
 
 # UberASM Tool
 $UberASMTool_Dir = "$ToolsDir\uberasmtool\"
-$UberASMTool_Download = "https://github.com/Underrout/UberASMTool/releases/download/2.0-beta2/UberASMTool20Beta2Standalone.zip"
-$UberASMTool_Junk = @("readme.txt", "changelog.txt", "incompatibilities.txt")
+$UberASMTool_Download = "https://github.com/Fernap/UberASMTool/releases/download/2.0/UberASMTool20.zip"
+$UberASMTool_Junk = @("readme.txt", "changelog.txt", "incompatibilities.txt", "UberASMTool.dll.config")
 $UberASMTool_Docs = @("readme.html")

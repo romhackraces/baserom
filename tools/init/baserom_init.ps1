@@ -148,10 +148,10 @@ function SetupCallisto($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $Do
             Copy-Item -Path "$Callisto_Dir\initial_patches\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
             Copy-Item -Path "$Callisto_Dir\initial_patches\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
             # Install Callisto's modified asar dll.
-            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $GPS_Dir -Force
-            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
-            Copy-Item -Path "$Callisto_Dir\asar\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
-            Copy-Item -Path "$Callisto_Dir\asar\64-bit\asar.dll" -Destination $PIXI_Dir -Force
+            Copy-Item -Path "$Callisto_Dir\asar\v1.81\32-bit\asar.dll" -Destination $GPS_Dir -Force
+            Copy-Item -Path "$Callisto_Dir\asar\v1.81\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
+            Copy-Item -Path "$Callisto_Dir\asar\v1.81\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
+            Copy-Item -Path "$Callisto_Dir\asar\v1.81\64-bit\asar.dll" -Destination $PIXI_Dir -Force
             # Move Readme files
             Move-Docs $ToolName $DocFiles $DestinationDir
             # Clean up junk files
