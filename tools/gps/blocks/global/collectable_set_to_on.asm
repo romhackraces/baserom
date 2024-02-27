@@ -1,9 +1,10 @@
 ; act as 25
 
-db $42
+db $37
 JMP Collect : JMP Collect : JMP Collect
 JMP Return : JMP Return : JMP Return : JMP Return
 JMP Collect : JMP Collect : JMP Collect
+JMP Collect : JMP Collect
 
 Collect:
     DEC $14AF|!addr                 ;> set switch to on
