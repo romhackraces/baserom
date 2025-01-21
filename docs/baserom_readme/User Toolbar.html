@@ -1,47 +1,216 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Custom User Toolbar - Romhack Races Baserom</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="./img/flop.gif" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Custom User Toolbar - Romhack Races Baserom</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./img/flop.gif" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
-<style>td:first-child {width: 20px;}td:nth-child(3) {text-align:center;width: 72px;}</style>
+<style>
+    td:first-child {
+        width: 20px;
+    }
+
+    td:nth-child(3) {
+        text-align: center;
+        width: 72px;
+    }
+</style>
+
 <body>
-<header><div class="home"><a href="./index.html">🏠</a></div><span>User Toolbar</span></header>
-<section>
-<p>Lunar Magic has a built-in function to allow users to extend its toolbar with additional buttons (see the Lunar Magic help documentation if you need more details) and the baserom makes use of this to add some simple buttons that are some quick shortcuts to things.</p>
-<table border="1" class="full">
-<tr><th></th><th>Name</th><th>Shortcut</th><th>Description</th></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 11);" data-tooltip="Run ROM in Emulator"></span></td><td>Run ROM in Emulator</td><td><code>F4</code></td><td>Opens the current ROM in configured Lunar Magic emulator.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 16);" data-tooltip="Reload Current ROM"></span></td><td>Reload Current ROM</td><td><code>Ctrl+R</code></td><td>Reloads the currently open ROM.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 1);" data-tooltip="Open Current ROM Directory"></span></td><td>Open Current ROM Directory</td><td>--</td><td>Opens the current project directory in File Explorer.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 8);" data-tooltip="Open Callisto"></span></td><td>Open Callisto</td><td><code>Ctrl+B</code></td><td>Opens Callisto in a new command-line window.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 9);" data-tooltip="Run Update in Callisto"></span></td><td>Run Update in Callisto</td><td><code>Ctrl+U</code></td><td>Updates your ROM by running "Update" in Callisto.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 10);" data-tooltip="Make a BPS patch with Callisto"></span></td><td>Make a BPS patch with Callisto</td><td><code>Ctrl+P</code></td><td>Creates a BPS patch using Callisto's "Package" function.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 19);" data-tooltip="Open Patches Directory"></span></td><td>Open Patches Directory</td><td>--</td><td>Opens the patches folder in the baserom's resources.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit Patches List"></span></td><td>Edit Patches List</td><td>--</td><td>Open resources.toml so you can edit the list of patches.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 4);" data-tooltip="Open PIXI Directory"></span></td><td>Open PIXI Directory</td><td>--</td><td>Opens PIXI's directory in File Explorer.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit Sprite List"></span></td><td>Edit Sprite List</td><td>--</td><td>Opens PIXI's sprite list in default text editor.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 3);" data-tooltip="Launch CFG Editor"></span></td><td>Launch CFG Editor</td><td>--</td><td>Launches the sprite config editor tool that comes with PIXI.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 5);" data-tooltip="Open GPS Directory"></span></td><td>Open GPS Directory</td><td>--</td><td>Opens GPS's directory in File Explorer.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit Custom Block List"></span></td><td>Edit Custom Block List</td><td>--</td><td>Opens GPS's block list in default text editor.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 6);" data-tooltip="Open UberASMTool Directory"></span></td><td>Open UberASMTool Directory</td><td>--</td><td>Opens UberASMTool's directory in File Explorer.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit UberASM list"></span></td><td>Edit UberASM list</td><td>--</td><td>Opens the UberASM list in default text editor.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 7);" data-tooltip="Open AddMusicK Directory"></span></td><td>Open AddMusicK Directory</td><td>--</td><td>Opens AddMusicK's directory in File Explorer.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit Music List"></span></td><td>Edit Music List</td><td>--</td><td>Opens AddMusicK's custom music list in default text editor.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 20);" data-tooltip="View Exit-Enabled Tiles"></span></td><td>View Exit-Enabled Tiles</td><td><code>Ctrl+F1</code></td><td>Toggles the outlines on exit-enabled tiles in Lunar Magic.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 12);" data-tooltip="View Tile Outlines"></span></td><td>View Tile Outlines</td><td><code>Ctrl+F2</code></td><td>Toggles the viewable tile outlines in Lunar Magic.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 13);" data-tooltip="View Blue P-Switch/POW Effects"></span></td><td>View Blue P-Switch/POW Effects</td><td><code>F12</code></td><td>Displays the effects of a Blue P-Switch in the level view.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 14);" data-tooltip="View Silver P-Switch/POW Effects"></span></td><td>View Silver P-Switch/POW Effects</td><td><code>F11</code></td><td>Displays the effects of a Silver P-Switch in the level view.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 15);" data-tooltip="Toggle ON/OFF Switch Animation"></span></td><td>Toggle ON/OFF Switch Animation</td><td><code>0</code></td><td>Toggles any ON/OFF related animation.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 17);" data-tooltip="Go Back to Previous Level"></span></td><td>Go Back to Previous Level</td><td>--</td><td>Goes back in your history of viewed levels.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 18);" data-tooltip="Go Forward to Next Level"></span></td><td>Go Forward to Next Level</td><td>--</td><td>Goes forward in your history of viewed levels.</td></tr>
-<tr><td><span class="usertoolbar-button" style="background-position:calc(-16px * 0);" data-tooltip="Open Baserom Readme"></span></td><td>Open Baserom Readme</td><td><code>Ctrl+H</code></td><td>Opens the baserom's included documentation.</td></tr>
-</table>
-<small>User toolbar may differ between versions of the baserom.</small>
-</section>
-<a href="#" class="go-to-top"></a>
+    <header>
+        <div class="home"><a href="./index.html">🏠</a></div><span>User Toolbar</span>
+    </header>
+    <section>
+        <p>Lunar Magic has a built-in function to allow users to extend its toolbar with additional buttons (see the
+            Lunar Magic help documentation if you need more details) and the baserom makes use of this to add some
+            simple buttons that are some quick shortcuts to things.</p>
+        <table border="1" class="full">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Shortcut</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 11);" data-tooltip="Run ROM in Emulator"></span></td>
+                <td>Run ROM in Emulator</td>
+                <td><code>F4</code></td>
+                <td>Opens the current ROM in configured Lunar Magic emulator.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 16);" data-tooltip="Reload Current ROM"></span></td>
+                <td>Reload Current ROM</td>
+                <td><code>Ctrl+R</code></td>
+                <td>Reloads the currently open ROM.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 1);" data-tooltip="Open Current ROM Directory"></span></td>
+                <td>Open Current ROM Directory</td>
+                <td>--</td>
+                <td>Opens the current project directory in File Explorer.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 8);" data-tooltip="Open Callisto"></span></td>
+                <td>Open Callisto</td>
+                <td><code>Ctrl+B</code></td>
+                <td>Opens Callisto in a new command-line window.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 9);" data-tooltip="Run Update in Callisto"></span></td>
+                <td>Run Update in Callisto</td>
+                <td><code>Ctrl+U</code></td>
+                <td>Updates your ROM by running "Update" in Callisto.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 10);" data-tooltip="Make a BPS patch with Callisto"></span></td>
+                <td>Make a BPS patch with Callisto</td>
+                <td><code>Ctrl+P</code></td>
+                <td>Creates a BPS patch using Callisto's "Package" function.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 19);" data-tooltip="Open Patches Directory"></span></td>
+                <td>Open Patches Directory</td>
+                <td>--</td>
+                <td>Opens the patches folder in the baserom's resources.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit Patches List"></span></td>
+                <td>Edit Patches List</td>
+                <td>--</td>
+                <td>Open resources.toml so you can edit the list of patches.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 4);" data-tooltip="Open PIXI Directory"></span></td>
+                <td>Open PIXI Directory</td>
+                <td>--</td>
+                <td>Opens PIXI's directory in File Explorer.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit Sprite List"></span></td>
+                <td>Edit Sprite List</td>
+                <td>--</td>
+                <td>Opens PIXI's sprite list in default text editor.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 3);" data-tooltip="Launch CFG Editor"></span></td>
+                <td>Launch CFG Editor</td>
+                <td>--</td>
+                <td>Launches the sprite config editor tool that comes with PIXI.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 5);" data-tooltip="Open GPS Directory"></span></td>
+                <td>Open GPS Directory</td>
+                <td>--</td>
+                <td>Opens GPS's directory in File Explorer.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit Custom Block List"></span></td>
+                <td>Edit Custom Block List</td>
+                <td>--</td>
+                <td>Opens GPS's block list in default text editor.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 6);" data-tooltip="Open UberASMTool Directory"></span></td>
+                <td>Open UberASMTool Directory</td>
+                <td>--</td>
+                <td>Opens UberASMTool's directory in File Explorer.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit UberASM list"></span></td>
+                <td>Edit UberASM list</td>
+                <td>--</td>
+                <td>Opens the UberASM list in default text editor.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 7);" data-tooltip="Open AddMusicK Directory"></span></td>
+                <td>Open AddMusicK Directory</td>
+                <td>--</td>
+                <td>Opens AddMusicK's directory in File Explorer.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 2);" data-tooltip="Edit Music List"></span></td>
+                <td>Edit Music List</td>
+                <td>--</td>
+                <td>Opens AddMusicK's custom music list in default text editor.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 20);" data-tooltip="View Exit-Enabled Tiles"></span></td>
+                <td>View Exit-Enabled Tiles</td>
+                <td><code>Ctrl+F1</code></td>
+                <td>Toggles the outlines on exit-enabled tiles in Lunar Magic.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 12);" data-tooltip="View Tile Outlines"></span></td>
+                <td>View Tile Outlines</td>
+                <td><code>Ctrl+F2</code></td>
+                <td>Toggles the viewable tile outlines in Lunar Magic.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 21);" data-tooltip="View Block Contents"></span></td>
+                <td>View Block Contents</td>
+                <td><code>F6</code></td>
+                <td>Toggles showing the contents of blocks in Lunar Magic.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 13);" data-tooltip="View Blue P-Switch/POW Effects"></span></td>
+                <td>View Blue P-Switch/POW Effects</td>
+                <td><code>F12</code></td>
+                <td>Displays the effects of a Blue P-Switch in the level view.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 14);" data-tooltip="View Silver P-Switch/POW Effects"></span></td>
+                <td>View Silver P-Switch/POW Effects</td>
+                <td><code>F11</code></td>
+                <td>Displays the effects of a Silver P-Switch in the level view.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 15);" data-tooltip="Toggle ON/OFF Switch Animation"></span></td>
+                <td>Toggle ON/OFF Switch Animation</td>
+                <td><code>0</code></td>
+                <td>Toggles any ON/OFF related animation.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 23);" data-tooltip="View Sub-Screen Boundaries"></span></td>
+                <td>View Sub-Screen Boundaries</td>
+                <td><code>F2</code></td>
+                <td>Toggles the Sub-Screen boundary view in Lunar Magic.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 24);" data-tooltip="Show Game View Screen"></span></td>
+                <td>Show Game View Screen</td>
+                <td><code>F3</code></td>
+                <td>Toggles the Game View in Lunar Magic.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 22);" data-tooltip="View Tile Grid Overlay"></span></td>
+                <td>View Tile Grid Overlay</td>
+                <td><code>F8</code></td>
+                <td>Toggles tile grid view in Lunar Magic.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 17);" data-tooltip="Go Back to Previous Level"></span></td>
+                <td>Go Back to Previous Level</td>
+                <td>--</td>
+                <td>Goes back in your history of viewed levels.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 18);" data-tooltip="Go Forward to Next Level"></span></td>
+                <td>Go Forward to Next Level</td>
+                <td>--</td>
+                <td>Goes forward in your history of viewed levels.</td>
+            </tr>
+            <tr>
+                <td><span class="usertoolbar-button" style="background-position:calc(-16px * 0);" data-tooltip="Open Baserom Readme"></span></td>
+                <td>Open Baserom Readme</td>
+                <td><code>Ctrl+H</code></td>
+                <td>Opens the baserom's included documentation.</td>
+            </tr>
+        </table>
+        <small>User toolbar may differ between versions of the baserom.</small>
+    </section>
+    <a href="#" class="go-to-top"></a>
 </body>
 </html>
