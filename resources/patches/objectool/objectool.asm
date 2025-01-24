@@ -219,6 +219,10 @@ ExtendedObjPtrs:
 ;
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+;;
+;; NOTE: Custom objects 00-41 and 50,15 are used by the retry system for custom midways
+;;
+
 NormalObjPtrs:
 	dw CustObj00
 	dw CustObj01
@@ -286,6 +290,7 @@ NormalObjPtrs:
 	dw CustObj3F
 	dw CustObj40
 	dw CustObj41
+		; all objects above are used by retry system
 	dw CustObj42
 	dw CustObj43
 	dw CustObj44
@@ -301,7 +306,9 @@ NormalObjPtrs:
 	dw CustObj4E
 	dw CustObj4F
 	dw CustObj50
+		; used by retry system
 	dw CustObj51
+		; used by retry system
 	dw CustObj52
 	dw CustObj53
 	dw CustObj54
