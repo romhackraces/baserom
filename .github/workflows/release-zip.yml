@@ -24,19 +24,22 @@ jobs:
           "Readme.md"
         )
 
-        # create args for rsync
+        # Create args for rsync
         EXCLUDE_ARGS=""
         for item in "${EXCLUDES[@]}"; do
           EXCLUDE_ARGS+="--exclude=${item} "
         done
 
-        # create zip with rsync
+        # Create zip with rsync
         mkdir out
-        eval "rsync -av --progress . ./out ${EXCLUDE_ARGS}"
-        cd out
-        zip -r ../rhr-baserom-${{ github.event.release.tag_name }}.zip .
-        cd ..
-        rm -rf ./out/
+        rsync -av --progress ./ ./out/ ${EXCLUDE_ARGS} --exclude=out
+        (
+          cd out || exit 1
+          zip -r ../rhr-baserom-${{ github.event.release.tag_name }}.zip .
+        )
+
+        # Clean up
+        rm -rf ./out
 
     - name: Install GitHub CLI
       run: |
