@@ -17,6 +17,7 @@
     <li><a href="#available-objects">Available Objects</a></li>
     <ul>
         <li><a href="#feature-toggles">Feature Toggles</a></li>
+        <li><a href="#toggles">Toggle Objects</a></li>
         <li><a href="#retry-objects">Retry System Settings</a></li>
         <li><a href="#player-state">Initial Player States</a></li>
     </ul>
@@ -25,29 +26,22 @@
 <hr>
 <h3 id="available-objects">Available Objects</h3>
 <p>The tables below detail the objects available in the baserom and what their purpose is. Each object has a unique ID number that corresponds to its "extended object" value that is to be used when <a href="#inserting-objects">inserting</a> it as a Custom Object in Lunar Magic. Simply make note of the ID(s) of object(s) you would like you use and insert them in your level manually.</p>
+<p class="infobox">Earlier versions of the baserom may have fewer objects or different ID numbers.</p>
 <h4 id="feature-toggles">Feature Toggles</h4>
-<p>The following objects can be used to enable or toggle features or settings in the baserom, or activate a simple UberASM.</p>
+<p>The following objects activate simple UberASM that is included in the baserom.</p>
 <table border="1" class="full">
 <tr><th>ID</th><th>Object</th><th>Description</th></tr>
 <tr><td>98</td><td>Free Vertical Scroll</td><td>Makes the camera follow Mario up and down.</td></tr>
 <tr><td>99</td><td>Lock Horizontal Scroll</td><td>Prevents the camera from scrolling left or right.</td></tr>
-<tr><td>9B</td><td>Enable Block Duplication</td><td>Disable the effects of a patch that prevents block duplication.</td></tr>
-<tr><td>9C</td><td>Hide Statusbar</td><td>Hides the Layer 3 statusbar. This does not disable the score, coin counters, timer or item box.</td></tr>
-<tr><td>9D</td><td>Enable Screen Scroll</td><td>Disable the effects of a patch that prevents scrolling the screen with L or R.</td></tr>
-<tr><td>9E</td><td>Enable SFX Echo</td><td>Enable the echo for sound effects. Requires your level to have custom music with echo enabled.</td></tr>
-<tr><td>A0</td><td>No Power-up Collection</td><td>Prevent Mario from collecting any power-ups including to the item box. Keeps Mario small.</td></tr>
-<tr><td>A2</td><td>Disable Cape Turnaround Consistency</td><td>Disable the effects of the patch that makes turning around with cape consistent on button press.</td></tr>
-<tr><td>A3</td><td>Enable 8-frame Cape Float</td><td>Apply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.</td></tr>
-<tr><td>A4</td><td>Remove Cape Float Delay</td><td>Set the delay before Mario starts floating with cape to zero frames.</td></tr>
-<tr><td>A5</td><td>Death on Power-up Loss</td><td>Losing a power up will kill Mario instantly. Makes all hurt blocks death blocks and all damaging sprites lethal.</td></tr>
-<tr><td>A7</td><td>Press L &amp; R To Die</td><td>Kills the player if L and R are pressed. Useful for a quick reset.</td></tr>
-<tr><td>A9</td><td>Disable Spin Jump Fireballs</td><td>Prevent Mario from shooting fireballs while spin jumping.</td></tr>
-<tr><td>AA</td><td>Restore Vanilla Springboard Quirks</td><td>Disable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).</td></tr>
-<tr><td>AB</td><td>Disable Cape Flight</td><td>Prevents Mario from ever entering flight with cape.</td></tr>
-<tr><td>AC</td><td>Disable Screen Shake</td><td>Stops all Vanilla sources of Layer 1 screen shake.</td></tr>
-<tr><td>AD</td><td>Toggle Rope Glitch</td><td>Toggle off the fixes for the air climb rope glitch.</td></tr>
+<tr><td>9A</td><td>Invisible Mario</td><td>Makes Mario invisible.</td></tr>
+<tr><td>9B</td><td>No Power-up Collection</td><td>Prevent Mario from collecting any power-ups including to the item box. Keeps Mario small.</td></tr>
+<tr><td>9C</td><td>Enable 8-frame Cape Float</td><td>Apply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.</td></tr>
+<tr><td>9D</td><td>Remove Cape Float Delay</td><td>Set the delay before Mario starts floating with cape to zero frames.</td></tr>
+<tr><td>9E</td><td>Disable Cape Flight</td><td>Prevents Mario from ever entering flight with cape.</td></tr>
+<tr><td>9F</td><td>Death on Power-up Loss</td><td>Losing a power up will kill Mario instantly. Makes all hurt blocks death blocks and all damaging sprites lethal.</td></tr>
+<tr><td>A0</td><td>Press L &amp; R To Die</td><td>Kills the player if L and R are pressed. Useful for a quick reset.</td></tr>
+<tr><td>A1</td><td>Disable Screen Shake</td><td>Stops all Vanilla sources of Layer 1 screen shake.</td></tr>
 </table>
-<small>Earlier versions of the baserom may have fewer objects.</small>
 <h4 id="retry-objects">Retry System Settings</h4>
 <p>Inserting these objects into your level to override the default settings of the retry system or even change the retry settings between sublevels.</p>
 <table border="1" class="full">
@@ -78,6 +72,18 @@
 <tr><td>CA</td><td>Start in ON State</td><td>Starts the level with the ON/OFF state in the ON state.</td></tr>
 </table>
 <small>These objects are in version 5.7 or later of the baserom.</small>
+<h4 id="toggle-objects">Toggle Objects</h4>
+<p>These objects control things in the baserom that have FreeRAM flags to toggle their functionality.</p>
+<table border="1" class="full">
+<tr><th>ID</th><th>Object</th><th>Description</th></tr>
+<tr><td>D0</td><td>Toggle Statusbar</td><td>Placing the object hides the Layer 3 statusbar.</td></tr>
+<tr><td>D1</td><td>Toggle Screen Scroll</td><td>Disable the effects of a patch that prevents scrolling the screen with L or R.</td></tr>
+<tr><td>D2</td><td>Toggle Spin Jump Fireballs</td><td>Prevent Mario from shooting fireballs while spin jumping.</td></tr>
+<tr><td>D3</td><td>Toggle Block Duplication</td><td>Disable the effects of a patch that prevents block duplication.</td></tr>
+<tr><td>D4</td><td>Toggle Springboard Fixes</td><td>Disable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).</td></tr>
+<tr><td>D5</td><td>Toggle Cape Turnaround</td><td>Disable the effects of the patch that makes turning around with cape consistent on button press.</td></tr>
+<tr><td>D6</td><td>Toggle Rope Glitch</td><td>Toggle off the fixes for the air climb rope glitch.</td></tr>
+</table>
 <p>Due to how the memory works for the power-up or Yoshi states <i>you can only have one of each of those objects active at a time</i>, you can't have Cape and Flower or two Yoshi objects.</p>
 <hr>
 <h3 id="inserting-objects">Inserting Custom Objects</h3>

@@ -6,6 +6,7 @@ incsrc "callisto.asm"
 ; code for extended objects 98-CF
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+; See tools/uberasmtool/library/uberasm_objects.asm for how these are used
 CustExObj98:
 CustExObj99:
 CustExObj9A:
@@ -62,6 +63,22 @@ CustExObjCC:
 CustExObjCD:
 CustExObjCE:
 CustExObjCF:
+CustExObjD0:
+CustExObjD1:
+CustExObjD2:
+CustExObjD3:
+CustExObjD4:
+CustExObjD5:
+CustExObjD6:
+CustExObjD7:
+CustExObjD8:
+CustExObjD9:
+CustExObjDA:
+CustExObjDB:
+CustExObjDC:
+CustExObjDD:
+CustExObjDE:
+CustExObjDF:
 .set_object_flag
     TXA				; get 2 * object number from X
     LSR  			; divide by 2 since X was a word index

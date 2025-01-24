@@ -1,27 +1,12 @@
 @includefrom objectool.asm
 
-; Extended Objects 98-CF reserved by UberASM Object system in the baserom
-incsrc "baserom_custom_objects.asm"
 
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-; code for extended objects D0-FF
+; code for extended objects
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-CustExObjD0:
-CustExObjD1:
-CustExObjD2:
-CustExObjD3:
-CustExObjD4:
-CustExObjD5:
-CustExObjD6:
-CustExObjD7:
-CustExObjD8:
-CustExObjD9:
-CustExObjDA:
-CustExObjDB:
-CustExObjDC:
-CustExObjDD:
-CustExObjDE:
-CustExObjDF:
+
+; Extended Objects 98-DF reserved by UberASM Object system in the baserom
+incsrc "baserom_custom_objects.asm"
 CustExObjE0:
 CustExObjE1:
 CustExObjE2:

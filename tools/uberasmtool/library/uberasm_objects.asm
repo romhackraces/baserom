@@ -16,15 +16,10 @@ endmacro
 
 routines:
 .init
-    %ObjectRoutine($99, no_horizontal_scroll)
+    ; basic uberasm
+    %ObjectRoutine($99, disable_horizontal_scroll)
     %ObjectRoutine($9A, invisible_mario)
-    %ObjectRoutine($9B, toggle_block_duplication)
-    %ObjectRoutine($9C, toggle_status_bar)
-    %ObjectRoutine($9D, toggle_lr_scroll)
-    %ObjectRoutine($A2, toggle_vanilla_turnaround)
-    %ObjectRoutine($A9, toggle_spinjump_fireballs)
-    %ObjectRoutine($AA, toggle_springboard_fixes)
-    %ObjectRoutine($AD, toggle_rope_glitch)
+    ; retry objects
     %ObjectRoutine($B0, retry_type_instant)
     %ObjectRoutine($B1, retry_type_prompt)
     %ObjectRoutine($B2, retry_type_vanilla)
@@ -33,6 +28,7 @@ routines:
     %ObjectRoutine($BA, retry_display_timer)
     %ObjectRoutine($BB, retry_display_coins)
     %ObjectRoutine($BC, retry_display_item_box)
+    ; initialization objects
     %ObjectRoutine($C0, start_with_mushroom)
     %ObjectRoutine($C1, start_with_cape)
     %ObjectRoutine($C2, start_with_fire_flower)
@@ -44,19 +40,27 @@ routines:
     %ObjectRoutine($C8, start_in_spin_jump)
     %ObjectRoutine($C9, start_with_switch_off)
     %ObjectRoutine($CA, start_with_switch_on)
+    ; toggle objects
+    %ObjectRoutine($D0, toggle_status_bar)
+    %ObjectRoutine($D1, toggle_lr_scroll)
+    %ObjectRoutine($D2, toggle_spinjump_fireballs)
+    %ObjectRoutine($D3, toggle_block_duplication)
+    %ObjectRoutine($D4, toggle_capespin_direction)
+    %ObjectRoutine($D5, toggle_springboard_fixes)
+    %ObjectRoutine($D6, toggle_rope_glitch)
 ..end
 
 .main
-    %ObjectRoutine($98, free_vertical_scroll)
+    ; basic uberasm
+    %ObjectRoutine($98, enable_free_vertical_scroll)
     %ObjectRoutine($9A, invisible_mario)
-    %ObjectRoutine($9E, enable_sfx_echo)
-    %ObjectRoutine($A0, no_powerups)
-    %ObjectRoutine($A3, eight_frame_float)
-    %ObjectRoutine($A4, zero_float_delay)
-    %ObjectRoutine($A5, death_on_power_up_loss)
-    %ObjectRoutine($A7, press_lr_to_die)
-    %ObjectRoutine($AB, disable_cape_flight)
-    %ObjectRoutine($AC, disable_screen_shake)
+    %ObjectRoutine($9B, no_powerup_collection)
+    %ObjectRoutine($9C, cape_eight_frame_float)
+    %ObjectRoutine($9D, cape_zero_float_delay)
+    %ObjectRoutine($9E, disable_cape_flight)
+    %ObjectRoutine($9F, death_on_power_up_loss)
+    %ObjectRoutine($A0, press_lr_to_die)
+    %ObjectRoutine($A1, disable_screen_shake)
 ..end
 
 init:
@@ -155,128 +159,75 @@ run_routines:
 ; IDs correspond to patches/objectool/custom_object_code.asm
 ;---------------------------------------------------------------------
 
-; Extended Object 98 - Free vertical scrolling
-free_vertical_scroll:
+
+;;
+;; Extended Objects 98 - AF
+;;
+
+; Free vertical scrolling
+enable_free_vertical_scroll:
     lda #$01 : sta $1404|!addr
     rts
 
-; Extended Object 99 - Lock horizontal scroll
-no_horizontal_scroll:
+; Lock horizontal scroll
+disable_horizontal_scroll:
     stz $1411|!addr
     rts
 
-; Extended Object 9A
+; Invisible
 invisible_mario:
     lda #$7F : sta $78 ; hide the player graphics
     rts
 
-; Extended Object 9B - Toggle block duplication
-toggle_block_duplication:
-    lda #$01 : sta !toggle_block_duplication_freeram
-    rts
-
-; Extended Object 9C - Toggle status bar
-toggle_status_bar:
-    lda #$01 : sta !toggle_statusbar_freeram
-    rts
-
-; Extended Object 9D - Toggle l/r scroll
-toggle_lr_scroll:
-    lda #$01 : sta !toggle_lr_scroll_freeram
-    rts
-
-; Extended Object 9E - Enable Echo channel in inserted music
-enable_sfx_echo:
-    lda $1DFA|!addr : bne +
-    lda #$06 : sta $1DFA|!addr
-    +
-    rts
-
-; Extended Object 9F (skipped because it uses a door tile)
-
-; Extended Object A0 - Cannot collect power-ups in the level
-no_powerups:
+; Cannot collect power-ups in the level
+no_powerup_collection:
     stz $19             ; Reset powerup.
     stz $0DC2|!addr     ; Reset item box.
     rts
 
-; Extended Object A1 (skipped because it uses a door tile)
-
-; Extended Object A2 - Toggle vanilla cape spin in air
-toggle_vanilla_turnaround:
-    lda #$01 : sta !toggle_capespin_direction_freeram
-    rts
-
-; Extended Object A3 - Enable eight frame float with cape
-eight_frame_float:
+; Enable eight frame float with cape
+cape_eight_frame_float:
     lda $15             ;\ Check if A or B button is being held
     and #$80            ;/
     beq +
     lda #$08            ;\ Store 8 frames to cape float
     sta $14A5|!addr     ;/
-    +
-    rts
++   rts
 
-; Extended Object A4 - Zero float delay with cape
-zero_float_delay:
+; Zero float delay with cape
+cape_zero_float_delay:
     lda $187A|!addr     ;\ Check if Mario is riding Yoshi with wings...
     and $141E|!addr     ;/
     bne +
     stz $14A5|!addr     ; Disable the float timer
-    +
-    rts
++   rts
 
-; Extended Object A5 - Death on power up loss
+; Death on power up loss
 death_on_power_up_loss:
     lda $71             ;\ Check if mario is in hurt state
     cmp #$01            ;/
     bne +
     jsl $00F606|!bank   ; Kill the player
-+
-    rts
++   rts
 
-; Extended Object A6 (skipped because it uses a door tile)
-
-; Extended Object A7 - Press L & R to Die
+; Press L & R to Die
 press_lr_to_die:
     lda $17             ;\ Check if L & R are pressed
     and #%00110000      ;|
     cmp #$30            ;/
     bne +
     jsl $00F606|!bank   ; Kill the player
-+
-    rts
++   rts
 
-; Extended Object A8 (skipped because it uses a door tile)
-
-; Extended Object A9 - Toggle spin jump fireballs
-toggle_spinjump_fireballs:
-    lda #$01 : sta !toggle_spinjump_fireball_freeram
-    rts
-
-; Extended Object AA - Toggle springboard fixes
-toggle_springboard_fixes:
-    lda #$01 : sta !toggle_springboard_fixes_freeram
-    rts
-
-; Extended Object AB - Disable cape flight
+; Disable cape flight
 disable_cape_flight:
     stz $149F|!addr ; store zero to the flight timer to prevent take off
     rts
 
-; Extended Object AC - Disable screen shake
+; Disable screen shake
 disable_screen_shake:
     stz $1887|!addr ; store zero to the layer 1 shake timer
     rts
-
-; Extended Object AD - Toggle rope glitch
-toggle_rope_glitch:
-    lda #$01 : sta !toggle_rope_glitch_freeram
-    rts
-
-; Extended Object AE
-; Extended Object AF
-
 
 
 ;;
@@ -399,4 +350,45 @@ start_with_switch_off:
 ; Start with Switch ON
 start_with_switch_on:
     stz $14AF|!addr ; set switch state to ON
+    rts
+
+
+;;
+;; Extended Objects D0 - DF
+;; Feature toggle Objects
+;;
+
+; Toggle status bar
+toggle_status_bar:
+    lda #$01 : sta !toggle_statusbar_freeram
+    rts
+
+; Toggle l/r scroll
+toggle_lr_scroll:
+    lda #$01 : sta !toggle_lr_scroll_freeram
+    rts
+
+; Toggle vanilla cape spin in air
+toggle_capespin_direction:
+    lda #$01 : sta !toggle_capespin_direction_freeram
+    rts
+
+; Toggle spin jump fireballs
+toggle_spinjump_fireballs:
+    lda #$01 : sta !toggle_spinjump_fireball_freeram
+    rts
+
+; Toggle springboard fixes
+toggle_springboard_fixes:
+    lda #$01 : sta !toggle_springboard_fixes_freeram
+    rts
+
+; Toggle rope glitch
+toggle_rope_glitch:
+    lda #$01 : sta !toggle_rope_glitch_freeram
+    rts
+
+;  Toggle block duplication
+toggle_block_duplication:
+    lda #$01 : sta !toggle_block_duplication_freeram
     rts
