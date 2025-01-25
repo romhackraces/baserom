@@ -12,7 +12,6 @@ Fen, Fernap, Kevin, LouisDoucet, TheJavaBrew, underway - Help & Feedback
 Capespin Direction Consistency - Katun24
 Capespin Hitbox Consistency + Net Punching Hitbox Correction - Katun24, tjb0607
 Item Release Bulk Patch - betalogic - https://smwc.me/s/20836
-Player X Speed Fix 3.1 - HammerBrother, tjb0607 - https://smwc.me/s/33679
 
 -- Enhancement Patches --
 Bullet Bill Sound Effect on Extra Bit - AmperSam - https://smwc.me/s/34948
@@ -64,6 +63,7 @@ Moving Castle Block Offscreen Handling Fix v1.1 - Blind Devil - https://smwc.me/
 No Sprite Interaction Fix - chillyfox - https://smwc.me/s/19222
 P-Balloon and Cloud Clipping Fix - lolcats439 - https://smwc.me/s/8771
 P-Switch Duplication with Yoshi Fix - Kevin - https://smwc.me/s/22611
+Player X Speed Fix* - HammerBrother, tjb0607 - https://smwc.me/s/33679
 Proximity Wraparound fix 2.0 - HammerBrother, JackTheSpades, RussianMan - https://smwc.me/s/26926
 Question Block Item Collision Fix - Kevin - https://smwc.me/s/29094
 Red Stem Piranha Plants on Extra Bit + Stem Fix - Koopster - https://smwc.me/s/32080
