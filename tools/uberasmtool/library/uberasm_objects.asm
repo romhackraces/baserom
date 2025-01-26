@@ -114,14 +114,14 @@ main:
 ; table size - 3 (in bytes) in 16-bit Y (16-bit needed since 3 * 0x68 > 0xFF)
 ; clobbers: $02, $03, $04
 run_routines:
-    lda #$00
-    xba             ; zero out high byte of A so we can transfer to 16-bit X later
 .loop
     lda ($00),y     ; load current custom object number
     sta $02         ; cache in $02
     lsr #3          ; divide custom object number by 8 to get byte index into FreeRAM
     sta $03         ; cache in $03
     stz $04         ; zero out $04 so 16-bit X can load index later
+    lda #$00
+    xba             ; zero out high byte of A so we can transfer to 16-bit X later
     lda $02         ; restore custom object number from $02
     and #$07        ; modulo 8 to get bit index
     tax
