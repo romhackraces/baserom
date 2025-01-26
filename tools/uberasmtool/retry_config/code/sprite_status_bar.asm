@@ -68,7 +68,7 @@ nmi:
     rep #$20
     pla
     jmp .no_timer
-+
++   
     ; Setup the constant DMA parameters.
     rep #$20
     ldy #$80 : sty $2115
@@ -85,7 +85,7 @@ nmi:
 
     ; In this case we need to upload the second digit even if 0.
     lda $0F32|!addr : and #$00FF : bra ++
-+
++   
     ; Upload the second digit, unless it's 0.
     lda $0F32|!addr : and #$00FF : beq +
 ++  %store_digit_addr()
@@ -113,7 +113,7 @@ nmi:
     lda $0DBF|!addr : cmp !ram_coin_backup : bne +
     rep #$20 : pla
     bra .no_coins
-+
++   
     ; Update the coin counter backup.
     sta !ram_coin_backup
 
@@ -134,7 +134,7 @@ nmi:
     lda $01,s : adc #$0100 : sta $2116
     lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
-+
++   
     ; Upload the second digit.
     lda $4216 : %store_digit_addr()
     pla : adc #$0110 : sta $2116
@@ -154,7 +154,7 @@ nmi:
     lda $0DBE|!addr : cmp !ram_lives_backup : bne +
     rep #$20 : pla
     bra .no_lives
-+
++   
     ; Update the lives counter backup.
     sta !ram_lives_backup
 
@@ -175,7 +175,7 @@ nmi:
     lda $01,s : adc #$0100 : sta $2116
     lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
-+
++   
     ; Upload the second digit.
     lda $4216 : %store_digit_addr()
     pla : adc #$0110 : sta $2116
@@ -196,7 +196,7 @@ nmi:
     lda $0F48|!addr,x : cmp !ram_bonus_stars_backup : bne +
     rep #$20 : pla
     bra .no_bonus_stars
-+
++   
     ; Update the bonus stars backup.
     sta !ram_bonus_stars_backup
 
@@ -217,7 +217,7 @@ nmi:
     lda $01,s : adc #$0100 : sta $2116
     lda.w #gfx_size(1) : sta.w prompt_dma($4305)
     sty $420B
-+
++   
     ; Upload the second digit.
     lda $4216 : %store_digit_addr()
     pla : adc #$0110 : sta $2116
@@ -425,7 +425,7 @@ if !draw_retry_indicator
 
 .no_indicator:
 endif
-
+    
     sep #$30
     plb
 
@@ -521,7 +521,7 @@ draw_timer:
     ; Draw the clock tile.
     ldy #$0000
     jsr .draw
-
+    
     ; Draw the first digit, unless it's 0.
     lda $0F31|!addr : bne +
     lda #$80 : ora !ram_timer+0 : sta !ram_timer+0
