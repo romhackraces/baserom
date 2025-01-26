@@ -4,6 +4,7 @@ v5.12
 - new UberASM Objects around the new retry features
 - big reorganization of UberASM objects to sort them more sanely
 - include more informative UberASM Tool list
+- split up the X-Speed Fixes patch into one for speed oscillation and no jump fixes
 
 v5.11
 - updated the tools to their latest versions (not Lunar Magic though)
