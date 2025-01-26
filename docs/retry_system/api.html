@@ -1,146 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Retry API - Retry System UberASM</title>
-  <meta name="author" content="KevinM">
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="./style.css">
+	<title>Retry API - Retry System UberASM</title>
+	<meta name="author" content="KevinM">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<link rel="icon" href="./img/icon.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-  <h1>Retry API</h1>
-  <p>"Retry API" refers to a collection of routines that Retry provides that you can call from your UberASM files if needed.</p>
-  <p><b>NOTE:</b> calling these routines from files in the "library" folder will result in an error, at least when using the standard UberASMTool.</p>
-  
-  <h3>Index</h3>
-  <ul>
-    <li><a href="#respawn_in_level">Respawn in level</a></li>
-    <li><a href="#save_game">Save game</a></li>
-    <li><a href="#reset_level_checkpoint">Reset level checkpoint</a></li>
-    <li><a href="#reset_all_checkpoints">Reset all checkpoints</a></li>
-    <li><a href="#configure_sprite_status_bar">Configure sprite status bar</a></li>
-    <li><a href="#get_retry_type">Get Retry type</a></li>
-    <li><a href="#get_sram_variable_address">Get SRAM variable address</a></li>
-  </ul>
-  <br/>
+	<h1>Retry API</h1>
+	<p>"Retry API" refers to a collection of routines that Retry provides that you can call from your UberASM files if needed.</p>
+	<p><b>NOTE:</b> calling these routines from files in the "library" folder will result in an error, at least when using the standard UberASMTool.</p>
 
-  <h3 id="respawn_in_level">Respawn in level</h3>
-  <p><code>JSL retry_api_respawn_in_level</code></p>
-  <p>Call this to make the player respawn in the current level at the last checkpoint. This has the same effect as dying and hitting Retry, or dying with instant Retry enabled, but skipping everything related to death (animation, music, prompt, etc.).</p>
-  <ul>
-    <li>Inputs: <code>N/A</code></li>
-    <li>Outputs: <code>N/A</code></li>
-    <li>Preconditions: <code>A/X/Y 8 bits</code></li>
-    <li>Postconditions: <code>A/X/Y 8 bits</code></li>
-  </ul>
-  <br/>
+	<h3>Index</h3>
+	<ul>
+		<li><a href="#respawn_in_level">Respawn in level</a></li>
+		<li><a href="#save_game">Save game</a></li>
+		<li><a href="#reset_level_checkpoint">Reset level checkpoint</a></li>
+		<li><a href="#reset_all_checkpoints">Reset all checkpoints</a></li>
+		<li><a href="#configure_sprite_status_bar">Configure sprite status bar</a></li>
+		<li><a href="#get_retry_type">Get Retry type</a></li>
+		<li><a href="#get_sram_variable_address">Get SRAM variable address</a></li>
+	</ul>
+	<br/>
 
-  <h3 id="save_game">Save game</h3>
-  <p><code>JSL retry_api_save_game</code></p>
-  <p>Call this to save the game, which will also save the addresses defined in the <code>sram_tables.asm</code> file.</p>
-  <ul>
-    <li>Inputs: <code>N/A</code></li>
-    <li>Outputs: <code>N/A</code></li>
-    <li>Preconditions: <code>N/A</code></li>
-    <li>Postconditions: <code>A/X/Y 8 bits, DB/X/Y preserved</code></li>
-  </ul>
-  <br/>
+	<h3 id="respawn_in_level">Respawn in level</h3>
+	<p><code>JSL retry_api_respawn_in_level</code></p>
+	<p>Call this to make the player respawn in the current level at the last checkpoint. This has the same effect as dying and hitting Retry, or dying with instant Retry enabled, but skipping everything related to death (animation, music, prompt, etc.).</p>
+	<ul>
+		<li>Inputs: <code>N/A</code></li>
+		<li>Outputs: <code>N/A</code></li>
+		<li>Preconditions: <code>A/X/Y 8 bits</code></li>
+		<li>Postconditions: <code>A/X/Y 8 bits</code></li>
+	</ul>
+	<br/>
 
-  <h3 id="reset_level_checkpoint">Reset level checkpoint</h3>
-  <p><code>JSL retry_api_reset_level_checkpoint</code></p>
-  <p>Call this to reset the checkpoint in the current level. Entering the level again or respawning will load the main sublevel's entrance. Note that this won't reflect to SRAM until the game is saved.</p>
-  <ul>
-    <li>Inputs: <code>N/A</code></li>
-    <li>Outputs: <code>N/A</code></li>
-    <li>Preconditions: <code>A/X/Y 8 bits</code></li>
-    <li>Postconditions: <code>A/X/Y 8 bits, DB/X/Y preserved</code></li>
-  </ul>
-  <br/>
+	<h3 id="save_game">Save game</h3>
+	<p><code>JSL retry_api_save_game</code></p>
+	<p>Call this to save the game, which will also save the addresses defined in the <code>sram_tables.asm</code> file.</p>
+	<ul>
+		<li>Inputs: <code>N/A</code></li>
+		<li>Outputs: <code>N/A</code></li>
+		<li>Preconditions: <code>N/A</code></li>
+		<li>Postconditions: <code>A/X/Y 8 bits, DB/X/Y preserved</code></li>
+	</ul>
+	<br/>
 
-  <h3 id="reset_all_checkpoints">Reset all checkpoints</h3>
-  <p><code>JSL retry_api_reset_all_checkpoints</code></p>
-  <p>Call this to reset the checkpoint for every level in the game, effectively making it as if it were a fresh game. Note that this won't reflect to SRAM until the game is saved.</p>
-  <ul>
-    <li>Inputs: <code>N/A</code></li>
-    <li>Outputs: <code>N/A</code></li>
-    <li>Preconditions: <code>N/A</code></li>
-    <li>Postconditions: <code>A/X/Y size preserved, DB/X/Y preserved</code></li>
-  </ul>
-  <br/>
+	<h3 id="reset_level_checkpoint">Reset level checkpoint</h3>
+	<p><code>JSL retry_api_reset_level_checkpoint</code></p>
+	<p>Call this to reset the checkpoint in the current level. Entering the level again or respawning will load the main sublevel's entrance. Note that this won't reflect to SRAM until the game is saved.</p>
+	<ul>
+		<li>Inputs: <code>N/A</code></li>
+		<li>Outputs: <code>N/A</code></li>
+		<li>Preconditions: <code>A/X/Y 8 bits</code></li>
+		<li>Postconditions: <code>A/X/Y 8 bits, DB/X/Y preserved</code></li>
+	</ul>
+	<br/>
 
-  <h3 id="configure_sprite_status_bar">Configure sprite status bar</h3>
-  <p><b>NOTE</b>: this routine has no effect unless <code>!sprite_status_bar = 1</code> in <code>settings.asm</code>.</p>
-  <p>Call this to configure graphics for the sprite status bar items: item box, timer and coin counter. Each item needs to have a 16x16 sprite tile reserved to it, and a palette to use.</p>
-  <p>Each item's configuration is set with a 16 bit value <code>$PTTT</code>. The first digit <code>P</code> will be the item's palette, starting from palette 8 with <code>P = 0</code> and ending with palette F with <code>P = 7</code>. <code>TTT</code> will determine the tile number: you can see this in Lunar Magic's "8x8 Tile Editor" if you hover over the desired tile (more specifically, the upper left 8x8 tile of the 16x16 tile you want to use). In the bottom bar you'll see "Tile 0xYYY": then, <code>TTT = YYY - $400</code>. For example, the Smiling Coin tile is "Tile 0x4C2", which results in <code>TTT = $4C2 - $400 = $0C2</code>. So, for example, to reserve that tile and use palette F, the full value will be <code>$70C2</code>.</p>
-  <p>If an item's value is <code>$0000</code>, the item will simply not be displayed. Note that the item values are reset to <code>$0000</code> before each sublevel is loaded (in gamemode F, to be precise), so this routine should be called either in gamemodes 10 or 11 or 12, if you want to set a global configuration, or in level init code, if you want to set a level-specific configuration. You can also do both to have a global configuration that can be overridden in some levels.</p>
-  <ul>
-    <li>Inputs: <code>A = item box, X = timer, Y = coin counter</code></li>
-    <li>Outputs: <code>N/A</code></li>
-    <li>Preconditions: <code>A/X/Y 16 bits</code></li>
-    <li>Postconditions: <code>A/X/Y size preserved, DB/X/Y preserved</code></li>
-    <li>Usage (example):
-      <div style="display: block; margin: 0px 0px 0px 50px">
-        <code>REP #$30</code><br/>
-        <code>LDA #$3080 ; Item box: palette B, tile 0x80</code><br/>
-        <code>LDX #$0088 ; Timer: palette 8, tile 0x88</code><br/>
-        <code>LDY #$00C2 ; Coin counter: palette 8, tile 0xC2</code><br/>
-        <code>JSL retry_api_configure_sprite_status_bar</code><br/>
-        <code>SEP #$30</code><br/>
-      </div>
-    </li>
-  </ul>
-  <br/>
+	<h3 id="reset_all_checkpoints">Reset all checkpoints</h3>
+	<p><code>JSL retry_api_reset_all_checkpoints</code></p>
+	<p>Call this to reset the checkpoint for every level in the game, effectively making it as if it were a fresh game. Note that this won't reflect to SRAM until the game is saved.</p>
+	<ul>
+		<li>Inputs: <code>N/A</code></li>
+		<li>Outputs: <code>N/A</code></li>
+		<li>Preconditions: <code>N/A</code></li>
+		<li>Postconditions: <code>A/X/Y size preserved, DB/X/Y preserved</code></li>
+	</ul>
+	<br/>
 
-  <h3 id="get_retry_type">Get Retry type</h3>
-  <p>Routine to get the current Retry type, i.e. if currently the level is set to have Retry prompt, instant Retry or no Retry.</p>
-  <ul>
-    <li>Inputs: <code>N/A</code></li>
-    <li>Outputs: <code>A = Retry type</code><br/>
-      This value can have one of the following values:
-      <ul>
-        <li><code>$01</code>: Retry prompt enabled & play the vanilla death song when the player dies</li>
-        <li><code>$02</code>: Retry prompt enabled & play only the death sfx when the player dies</li>
-        <li><code>$03</code>: instant Retry enabled</li>
-        <li><code>$04</code>: Retry disabled</li>
-      </ul>
-    </li>
-    <li>Preconditions: <code>A 8 bits</code></li>
-    <li>Postconditions: <code>A/X/Y size preserved, DB/X/Y preserved</code></li>
-    <li>Usage: <code>JSL retry_api_get_retry_type</code></li>
-  </ul>
-  <br/>
+	<h3 id="configure_sprite_status_bar">Configure sprite status bar</h3>
+	<p><b>NOTE</b>: this routine has no effect unless <code>!sprite_status_bar = 1</code> in <code>settings_global.asm</code>.</p>
+	<p>Call this in UberASM level init code to configure graphics for the sprite status bar items (item box, timer, coin counter, lives counter, bonus stars counter) for a specific level. Calling this will override the default settings found in <code>settings_global.asm</code>, in case you want to hide some or all of the elements in some level or if you need to change their tile or palette.</p>
+	<p>Each item's configuration is set with a 16 bit value <code>$PTTT</code>. The first digit <code>P</code> will be the item's palette, starting from palette 8 with <code>P = 8</code> and ending with palette F with <code>P = F</code>. <code>TTT</code> will determine the tile number: you can see this in Lunar Magic's "8x8 Tile Editor" if you hover over the desired tile (more specifically, the upper left 8x8 tile of the 16x16 tile you want to use). In the bottom bar you'll see "Tile 0xYYY": then, <code>TTT = YYY - $400</code>. For example, the Smiling Coin tile is "Tile 0x4C2", which results in <code>TTT = $4C2 - $400 = $0C2</code>. So, for example, to reserve that tile and use palette F, the full value will be <code>$F0C2</code>.</p>
+	<p>If an item's value is <code>$0000</code>, the item will simply not be displayed.</p>
+	<p>Note that you can also just write the <code>$PTTT</code> value to the RAM address for a specific item yourself, this routine is just a shorthand so set all values at the same time. To see the RAM addresses names, see <a href="./ram_map.html">RAM Info</a>.</p>
+	<ul>
+		<li>Inputs: each item's <code>$PTTT</code> value is specified, in order, after the JSL (see example)</li>
+		<li>Outputs: <code>N/A</code></li>
+		<li>Preconditions: <code>A/X/Y 16 bits</code></li>
+		<li>Postconditions: <code>A/X/Y size preserved, DB/X/Y preserved</code></li>
+		<li>Usage (example):
+<pre>
+    JSL retry_api_configure_sprite_status_bar
+    dw $B080 ; Item box: palette B, tile 0x80
+    dw $8088 ; Timer: palette 8, tile 0x88
+    dw $80C2 ; Coin counter: palette 8, tile 0xC2
+    dw $904E ; Lives counter: palette 9, tile 0x4E
+    dw $90CE ; Bonus stars counter: palette 9, tile 0xCE
+    ... <- your code will continue here after the JSL
+</pre>
+		</li>
+	</ul>
+	<br/>
 
-  <h3 id="get_sram_variable_address">Get SRAM variable address</h3>
-  <p>Routine to get the address in SRAM for a specific variable. By "variable" it's meant any of the RAM addresses that are saved to SRAM specified in the sram save table. The returned address will be coherent with the current save file loaded when this routine is called (so, make sure to not call it before a save file is loaded!).</p>
-  <p>This could be useful to read/write values in SRAM directly, for example if you need to update some SRAM value without the game being saved.</p>
-  <p><b>NOTE</b>: this will always return "variable not found" if <code>!sram_feature = 0</code>.</p>
-  <ul>
-    <li>Inputs: <code>N/A</code></li>
-    <li>Outputs:
-      <ul>
-        <li><code>Carry set = variable not found</code></li>
-        <li><code>Carry clear = variable found</code> -> SRAM address stored in <code>$00-$02</code>. In this case the value in SRAM can be accessed indirectly with the <code>LDA/STA [$00]</code> and <code>LDA/STA [$00],y</code> instructions.</li>
-      </ul>
-    </li>
-    <li>Preconditions: <code>N/A</code></li>
-    <li>Postconditions: <code>A/X/Y 8 bit and clobbered, DB preserved</code></li>
-    <li>Usage (example):
-      <div style="display: block; margin: 0px 0px 0px 50px">
-        <div style="display: block; margin: 0px 0px 0px 50px">
-          <code>JSL retry_api_get_sram_variable_address</code><br/>
-          <code>dl retry_ram_death_counter ; Variable to search for</code><br/>
-          <code>BCS not_found</code><br/>
-        </div>
-        <code>found:</code><br/>
-        <div style="display: block; margin: 0px 0px 0px 50px">
-          <code>LDY #$01</code><br/>
-          <code>LDA #$09</code><br/>
-          <code>STA [$00],y ; Set second death counter digit in SRAM to 9</code><br/>
-        </div>
-        <code>not_found:</code><br/>
-      </div>
-    </li>
-  </ul>
+	<h3 id="get_retry_type">Get Retry type</h3>
+	<p>Routine to get the current Retry type, i.e. if currently the level is set to have Retry prompt, instant Retry or no Retry.</p>
+	<ul>
+		<li>Inputs: <code>N/A</code></li>
+		<li>Outputs: <code>A = Retry type</code><br/>
+			This value can have one of the following values:
+			<ul>
+				<li><code>$01</code>: Retry prompt enabled & play the vanilla death song when the player dies</li>
+				<li><code>$02</code>: Retry prompt enabled & play only the death sfx when the player dies</li>
+				<li><code>$03</code>: instant Retry enabled</li>
+				<li><code>$04</code>: Retry disabled</li>
+			</ul>
+		</li>
+		<li>Preconditions: <code>A 8 bits</code></li>
+		<li>Postconditions: <code>A/X/Y size preserved, DB/X/Y preserved</code></li>
+		<li>Usage: <code>JSL retry_api_get_retry_type</code></li>
+	</ul>
+	<br/>
 
-  <br/><center><a href="./index.html">Return to main page</a></center>
+	<h3 id="get_sram_variable_address">Get SRAM variable address</h3>
+	<p>Routine to get the address in SRAM for a specific variable. By "variable" it's meant any of the RAM addresses that are saved to SRAM specified in the sram save table. The returned address will be coherent with the current save file loaded when this routine is called (so, make sure to not call it before a save file is loaded!).</p>
+	<p>This could be useful to read/write values in SRAM directly, for example if you need to update some SRAM value without the game being saved.</p>
+	<p>Note that if you call this on the title screen (for example, if you need to display something based on some value saved in the three files), you will need to set <code>$010A</code> to the value of the save file you want to check (<code>0</code> for save file 1, <code>1</code> for save file 2, <code>2</code> for save file 3) before calling this.</p>
+	<p><b>NOTE</b>: this will always return "variable not found" if <code>!sram_feature = 0</code>.</p>
+	<ul>
+		<li>Inputs: <code>N/A</code></li>
+		<li>Outputs:
+			<ul>
+				<li><code>Carry set = variable not found</code></li>
+				<li><code>Carry clear = variable found</code> -> SRAM address stored in <code>$00-$02</code>. In this case the value in SRAM can be accessed indirectly with the <code>LDA/STA [$00]</code> and <code>LDA/STA [$00],y</code> instructions.</li>
+			</ul>
+		</li>
+		<li>Preconditions: <code>N/A</code></li>
+		<li>Postconditions: <code>A/X/Y 8 bit and clobbered, DB preserved</code></li>
+		<li>Usage (example):
+<pre>
+	JSL retry_api_get_sram_variable_address
+	dl retry_ram_death_counter ; Variable to search for
+	BCS not_found
+found:
+	LDY #$01
+	LDA #$09
+	STA [$00],y ; Set second death counter digit in SRAM to 9
+not_found:
+</pre>
+		</li>
+	</ul>
+
+	<br/><center><a href="./index.html">Return to main page</a></center>
 </body>
 </html>

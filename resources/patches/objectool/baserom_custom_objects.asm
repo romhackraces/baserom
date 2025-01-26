@@ -80,18 +80,18 @@ CustExObjDD:
 CustExObjDE:
 CustExObjDF:
 .set_object_flag
-    TXA				; get 2 * object number from X
-    LSR  			; divide by 2 since X was a word index
-	TAY  			; cache in Y
-	LSR #3			; divide by 8 since we have 8 bits/flags per byte
-	TAX				; use as index into the FreeRAM later
-	TYA				; restore object number from Y
-	AND #$07		; modulo 8 since we have 8 bits/flags per byte
-	TAY				; use result as loop variable
-	LDA ..masks,y	; load correct bit mask for corresponding bit
+    TXA             ; get 2 * object number from X
+    LSR             ; divide by 2 since X was a word index
+    TAY             ; cache in Y
+    LSR #3          ; divide by 8 since we have 8 bits/flags per byte
+    TAX             ; use as index into the FreeRAM later
+    TYA             ; restore object number from Y
+    AND #$07        ; modulo 8 since we have 8 bits/flags per byte
+    TAY             ; use result as loop variable
+    LDA ..masks,y   ; load correct bit mask for corresponding bit
     ORA !objectool_level_flags_bank,x   ; account for previously set flags
     STA !objectool_level_flags_bank,x   ; store flag byte
     RTS
 
 ..masks
-	db 1,2,4,8,16,32,64,128
+    db 1,2,4,8,16,32,64,128

@@ -9,7 +9,7 @@
 ; 2 = instant retry (no prompt & play only the sfx: the fastest option; like "yes" is chosen automatically)
 ;     In this option, you can press start then select to exit the level.
 ; 3 = no retry prompt/respawn (vanilla death: as if "no" is chosen automatically, use this if you only want the multi-midway feature).
-; Note: you can override this per sublevel (see "tables.asm") and also at any point by setting a certain RAM address (see "docs/ram_map.txt").
+; Note: you can override this per sublevel (see "settings_local.asm") and also at any point by setting a certain RAM address (see "docs/ram_map.html").
     !default_prompt_type = 3
 
 ;======================== QoL and Anti-Break ============================;
@@ -18,12 +18,12 @@
     !initial_lives = 99
 
 ; If 1, lives won't decrement when dying.
-; Note: if 0, you can choose to have infinite lives in specific sublevels using the "lose_lives" table in "tables.asm".
+; Note: if 0, you can choose to have infinite lives in specific sublevels using the "no_lose_lives" option in "settings_local.asm".
     !infinite_lives = 1
 
 ; 0 = midways won't give Mario a mushroom.
 ; 1 = vanilla midway powerup behavior.
-; Note: you can also change this on the fly (see "docs/ram.html").
+; Note: you can also change this on the fly (see "docs/ram_map.html").
     !midway_powerup = 1
 
 ; Counterbreak options reset the corresponding counters/items when the player dies and/or when going to the Overworld.
@@ -53,10 +53,6 @@
 ; If 1, it fixes the issue where you can drop the reserve item in the item box
 ; by pressing Select while Mario is dying or while the Retry prompt is shown.
     !item_box_fix = 1
-
-; If 1, it fixes the bug where Mario's lives won't cap at 99 when the status bar is nuked
-; (which would show a glitched amount on the OW and Mario will have a halo).
-    !lives_overflow_fix = 1
 
 ; If 1, it fixes the weird behavior where levels 12E-13B always use the "No Yoshi Sign 2" intro
 ; regardless of the tileset / custom "No Yoshi Intro" patches.
@@ -89,9 +85,8 @@
     !reset_boo_rings = 1
 
 ; This determines what happens when you die on the title screen.
-; 0 = vanilla (after dying a glitched version of the title screen will load,
-;     causing a softlock. Use this if you either don't care or want to do something
-;     custom with it.)
+; 0 = vanilla (after dying a glitched version of the title screen will load, causing a softlock.
+;     Use this if you either don't care or want to do something custom with it.)
 ; 1 = play vanilla death animation and reload title screen (note: death music only works with AddmusicK!).
 ; 2 = instantly reload the title screen.
     !title_death_behavior = 1
@@ -99,40 +94,41 @@
 ;======================== SFX ===========================================;
 
 ; SFX to play when dying (!death_sfx = $00 -> no SFX).
-; Only played if not playing the death song (for example, it's not played if the level uses vanilla death).
-; You can change $1DF9 to $1DFB if you want a song to play on death (for example, if you want vanilla death music with instant Retry).
+; Only played if the death song is skipped (for example, it's not played if the level uses vanilla death).
+; You can find a suitable death sfx inside "docs/amk_resources/sfx".
     !death_sfx = $38
-    !death_sfx_addr = $1DFC|!addr
+    !death_sfx_addr = $1DFC
 
-; The alternative death jingle which will be played after the !death_sfx when "no" is chosen in the prompt (only available when you're using AddmusicK).
+; The alternative death jingle which will be played after the !death_sfx when "Exit" is chosen in the prompt.
 ; $01-$FE: custom song number, $FF = do not use this feature.
+; You can find a suitable alt death jingle inside "docs/amk_resources/music" (to be paired with the custom sfx).
     !death_jingle_alt = $FF
 
 ; SFX to play when selecting an option in the prompt (!option_sfx = $00 -> no SFX).
     !option_sfx = $01
-    !option_sfx_addr = $1DFC|!addr
+    !option_sfx_addr = $1DFC
 
 ; SFX to play when the prompt cursor moves (!cursor_sfx = $00 -> no SFX).
     !cursor_sfx = $06
-    !cursor_sfx_addr = $1DFC|!addr
+    !cursor_sfx_addr = $1DFC
 
 ; SFX to play when getting a checkpoint through a room transition (!room_cp_sfx = $00 -> no SFX).
 ; This is meant as a way to inform the player that they just got a room checkpoint.
-; If enabled, you can disable it in specific sublevels using the "disable_room_cp_sfx" table in "tables.asm".
+; If enabled, you can disable it in specific sublevels using the "no_room_cp_sfx" option in "settings_local.asm".
     !room_cp_sfx = $05
-    !room_cp_sfx_addr = $1DF9|!addr
+    !room_cp_sfx_addr = $1DF9
 
 ; SFX to play when entering a level from the Overworld (!enter_level_sfx = $00 -> no SFX)
 ; similarly to what SMB3 does. If the SFX gets cut out, increase !enter_level_delay.
     !enter_level_sfx = $00
-    !enter_level_sfx_addr = $1DFC|!addr
+    !enter_level_sfx_addr = $1DFC
     !enter_level_delay = $02
 
 ;======================== Save and SRAM =================================;
 
 ; If 1, a custom SRAM expansion patch will be inserted as well.
 ; By default, it will save the custom checkpoint status and death counter to SRAM.
-; To make your own stuff saved as well, check out the "save" table in "tables.asm".
+; To make your own stuff saved as well, check out the "save" table in "sram_tables.asm".
     !sram_feature = 1
 
 ; If 1, the game will automatically save everytime a new checkpoint is obtained (when touching a midway or getting a cp on a room transition).
@@ -140,7 +136,7 @@
     !save_on_checkpoint = 1
 
 ; If 1, the game will automatically save after getting a game over.
-; This can be useful when paired with the option of not reloading some data from SRAM after a game over (see "tables.asm"),
+; This can be useful when paired with the option of not reloading some data from SRAM after a game over (see "sram_tables.asm"),
 ; if you want some things to retain even if the player got a game over before saving them (for example, the death counter).
 ; This ensures that they will be saved to SRAM when this happens.
     !save_after_game_over = 1
@@ -149,8 +145,8 @@
 
 ; If 1, Retry will install a custom midway object in the ROM, insertable in levels by using object 2D.
 ; These objects allow you to have multiple midways in the same level, each with a different entrance.
-; For more info on how to use them, check out "docs/midway_instruction/".
-; Note: this can be used alongside ObjecTool, but you'll need to modify that patch a bit (see the "objectool_info.txt" file).
+; For more info on how to use them, check out "docs/midway_instruction.html".
+; Note: this can be used alongside ObjecTool, but you'll need to modify that patch a bit (see the "docs/objectool_info.html" file).
     !use_custom_midway_bar = 1
 
 ; If !use_custom_midway_bar = 1, it determines how many custom midways you can have in the same sublevel.
@@ -193,11 +189,11 @@
 
 ; Set to 1 if you don't want the "Exit" option in the prompt.
 ; This will also allow the player to Start+Select when having the prompt.
-; Note: you can also change this on the fly (see "docs/ram_map.txt").
+; Note: you can also change this on the fly (see "docs/ram_map.html").
     !no_exit_option = 1
 
 ; Set to 1 to remove the black box, but leave the options on screen.
-; Note: you can also change this on the fly (see "docs/ram_map.txt").
+; Note: you can also change this on the fly (see "docs/ram_map.html").
     !no_prompt_box = 1
 
 ; Set to 1 to dim the screen while the prompt is shown.
@@ -222,7 +218,7 @@
 ; X/Y position of the first tile in the prompt (the cursor on the first line).
 ; Changing this only works if the black box is disabled (if enabled,
 ; default values will be used instead).
-; Note: you can also change these on the fly (see "docs/ram_map.txt").
+; Note: you can also change these on the fly (see "docs/ram_map.html").
     !text_x_pos = $58
     !text_y_pos = $6F
 
@@ -257,7 +253,8 @@
 ; The default values should be fine in most cases, unless you're using some other patch that reserves tiles in SP1,
 ; for example: Sprite Status Bar, 32x32 Player Tilemap, lx5's Custom Powerups, lx5's Dynamic Spriteset System.
 ; In this case you may need to change some of them to avoid other tiles being overwritten.
-; You can see the tile number in LM's 8x8 Tile Editor, by taking the value you see in the bottom left - $400 (e.g., "Tile 0x442" -> $42, "Tile 0x542" -> $142).
+; You can see the tile number in LM's 8x8 Tile Editor, by taking the value you see in the bottom left - $400
+; (e.g., "Tile 0x442" -> $42, "Tile 0x542" -> $142).
 ; Note: when the prompt box is enabled, !tile_curs and !tile_blk actually use 2 adjacent 8x8 tiles.
 ; For example, !tile_curs = $24 means both $24 and $25 will be overwritten.
 ; Also, obviously these aren't used if you don't use the Retry prompt or !no_prompt_draw = 1.
@@ -272,12 +269,8 @@
 
 ;======================== Sprite Status Bar =============================;
 
-; If 1, a sprite status bar will be installed allowing you to display the item box, coin/Yoshi coin counter
-; and timer in levels with sprites, which keeps layer 3 working properly.
-; The sprites use dynamic tiles, meaning you'll need to reserve some GFX space in your SP slots for them.
-; Item box, coins and timer use 1 16x16 tile each, but they only need to be reserved when actually using them,
-; and you can choose which tiles to use for each level (or to just disable any or all of them in specific levels)
-; calling the API routine "configure_sprite_status_bar" in your level/gamemode UberASM (see "api.html").
+; If 1, a sprite status bar will be installed allowing you to display the item box, coins, Yoshi coins,
+; timer, lives and bonus stars using sprite tiles, which keeps layer 3 working properly.
     !sprite_status_bar = 1
 
 ; If 1, it disables the original game's status bar (including the IRQ) which prevents layer 3 from messing up.
@@ -286,6 +279,21 @@
 ; Suggested to use if you're using !sprite_status_bar = 1.
 ; Don't use this if you're using similar patches such as "RAM Toggled Status Bar".
     !remove_vanilla_status_bar = 0
+
+; Default sprite tile and palette to use for each element in the status bar.
+; These settings can be overridden per-level by using the "configure_sprite_status_bar" API routine (see "docs/api.html").
+; If !default_xxx_tile or !default_xxx_palette is $00, the item will be hidden by default.
+; These are only relevant if !sprite_status_bar = 1.
+    !default_item_box_tile         = $00
+    !default_item_box_palette      = $0B
+    !default_timer_tile            = $00
+    !default_timer_palette         = $08
+    !default_coin_counter_tile     = $00
+    !default_coin_counter_palette  = $08
+    !default_lives_counter_tile    = $00
+    !default_lives_counter_palette = $09
+    !default_bonus_stars_tile      = $00
+    !default_bonus_stars_palette   = $09
 
 ; General properties for sprite status bar elements.
 ; These are only relevant if !sprite_status_bar = 1.
@@ -297,6 +305,10 @@
     !coin_counter_y_pos = $17
     !dc_counter_x_pos   = $98
     !dc_counter_y_pos   = $10
+    !lives_counter_x_pos = $10
+    !lives_counter_y_pos = $0F
+    !bonus_stars_x_pos   = $10
+    !bonus_stars_y_pos   = $17
 
 ; If 1, the item box will always be drawn (if set to be drawn for the specific level).
 ; Otherwise, it will only be drawn when having an item in reserve.
@@ -316,6 +328,7 @@
 ; in levels where Retry prompt or instant Retry is enabled. This could be useful for collabs.
 ; The other settings control how and where it is drawn. The tile you choose will be
 ; overwritten at runtime by the indicator tile when needed.
+; This is only relevant if !sprite_status_bar = 1.
     !draw_retry_indicator    = 0
     !retry_indicator_tile    = $69
     !retry_indicator_palette = $09
@@ -352,4 +365,4 @@
 ; If 1, the level-specific Retry settings will be loaded from the "legacy/tables.asm"
 ; file instead of the "settings_local.asm" file. Use this if you prefer the old table-based
 ; approach rather than the new macro-based approach.
-!use_legacy_tables = 0
+    !use_legacy_tables = 0

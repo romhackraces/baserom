@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<title>Frequently Asked Questions - Retry System UberASM</title>
+<meta name="author" content="KevinM, AmperSam">
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<link rel="icon" href="./img/icon.png" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+
+<body>
+<h1>Frequently Asked Questions</h1>
+<br />
+
+<h4>Q: Can I insert this in a ROM where I've already inserted worldpeace's Retry patch?</h4>
+<p>A: No, doing so will result in an error when running UberASM Tool. First, you need to remove the original patch: either try to use the Unpatcher tool (at your own risk) or port your hack over to a new ROM.</p>
+<hr>
+
+<h4>Q: I noticed that you don't lose lives when dying/retrying a level. Is it possible to change that?</h4>
+<p>A: Yes. If you want to disable infinite lives, you can use the <code>!infinite_lives</code> global setting (see <a href="./settings_global.html#qol">Global Settings - Quality of Life Settings</a>). If you want to keep infinite lives just for specific levels, you can do so using the <code>%no_lose_lives</code> local setting (see <a href="./settings_local.html#no_lose_lives">Local Settings - %no_lose_lives</a>).</p>
+<hr>
+
+<h4>Q: Can I give the player a checkpoint automatically when entering a level?</h4>
+<p>A: Yes. Look at the <a href="./settings_local.html#checkpoint">Local Settings - %checkpoint</a> page.</p>
+<hr>
+
+<h4>Q: Can I change the prompt type in specific sublevels?</h4>
+<p>A: Yes. Look at the <a href="./settings_local.html#retry">Local Settings - %retry</a> page.</p>
+<hr>
+
+<h4>Q: I saw some hacks use a different sound effect when dying. How do I change that?</h4>
+<p>A: You can do so with the <code>!death_sfx</code> option in <u class="dir">settings_global.asm</u> (see <a href="./settings_global.html#sfx">Global Settings - SFX</a> for details). You can also find a custom death sfx file that replicates the vanilla death music intro under <u class="dir">docs/amk_resources/sfx</u> (see <a href="./files.html#amk_resources">AddmusicK Resources</a> for details).</p>
+<hr>
+
+<h4>Q: Can I change the prompt type in specific situations (not necessarily on a sublevel basis)?</h4>
+<p>A: Yes. Additionally to the <code>effect</code> table, there's the <code>!ram_prompt_override</code> address that, when set, will replace both the table and the default option (see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>).</p>
+<p>For example, you could use it to let the player choose the prompt type as they want (you still have to implement that, though, as this only handles setting the prompt type).
+<p>Note that this address by default is never reset outside of title screen load.</p>
+<hr>
+
+<h4>Q: Can I keep the Retry prompt but remove the black box?</h4>
+<p>A: Yes. Look at <code>!no_prompt_box</code> in <u class="dir">retry_config/settings_global.asm</u>. You can also remove it only under certain circumstances by setting <code>!ram_disable_box</code> to 1 (for more info, see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>). For example, you can do it in a Level ASM init to make a level not have the option.</p>
+<p>Note that this address by default is never reset outside of title screen load.</p>
+<hr>
+
+<h4>Q: Can I keep the Retry prompt but remove the "exit" option?</h4>
+<p>A: Yes. Look at <code>!no_exit_option</code> in <u class="dir">retry_config/settings_global.asm</u>. You can also remove it only under certain circumstances by setting <code>!ram_disable_exit</code> to 1 (for more info, see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>). For example, you can do it in a Level ASM init to make a level not have the option.</p>
+<p>Note that this address by default is never reset outside of title screen load.</p>
+<hr>
+
+<h4>Q: Can I change where the prompt is shown on the screen?</h4>
+<p>A: Yes. Look at <code>!text_x_pos</code> and <code>!text_y_pos</code> in <u class="dir">retry_config/settings_global.asm</u>. For example, using <code>!text_x_pos = $08</code> and <code>!text_y_pos = $D0</code> will place it on the lower left corner of the screen.</p>
+<p>Additionally, you can also change it at runtime by writing to the <code>!ram_prompt_x_pos</code> and <code>!ram_prompt_y_pos</code> addresses (see <a href="./ram_map.html">RAM Map</a> for more info).
+<p>Either way, if you want to change it you should disable the Retry box (either by setting <code>!no_prompt_box = 1</code> or by writing to <code>!ram_disable_box</code> at runtime) as its position can't be changed easily.
+</p>
+<hr>
+
+<br/><center><a href="./index.html">Return to main page</a></center>
+</body>
+
+</html>

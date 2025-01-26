@@ -87,39 +87,53 @@ reset_all_checkpoints:
 
 ;================================================
 ; Routine to configure which tiles will be used by the sprite status
-; bar. You can configure three elements: item box, timer and coin
-; counter. Each element needs a 16x16 sprite tile to be reserved.
-; This routine can be called in each level that needs the sprite
-; status bar (with UberASM level init code), or in gamemode 10 init code
-; to have the same configuration in every level. You can also use both
-; together: setup a default global configuration with gamemode 10 code,
-; and override it with level init code for levels that need special
-; configurations. Additionally, the three elements don't need to all
-; be used: you can enable just 1 or 2 of them.
+; bar. You can configure these elements: item box, timer, coin
+; counter, lives counter and bonus stars counter. Each element needs a
+; 16x16 sprite tile to be reserved.
+; This routine should be called in UberASM level init code, to overwrite
+; the default settings from "settings_global.asm", in case you want
+; to hide some or all of the elements in some level or if you need to
+; change their tile or palette.
 ; Each element needs a 16 bit value that determines which 16x16 tile
-; it will use and what palette to use. The lower 9 bits are the tile
-; number, while the higher 3 bits are the palette (000 = palette 8,
-; 001 = palette 9, ..., 111 = palette F). If an element is set to
-; $0000, it won't be displayed.
+; it will use and what palette to use. The first digit is the palette
+; row to use (8-F), while the other 3 digits are the tile number
+; (000-1FF). If an element is set to $0000, it won't be displayed.
 ;
-; Inputs: A = item box, X = timer, Y = coin counter
+; Inputs: for each item, in order, you write the value after the JSL
+;         in the format described above (see example)
 ; Outputs: N/A
-; Pre: A/X/Y 16 bits
-; Post: A/X/Y size preserved, DB/X/Y preserved
+; Pre: N/A
+; Post: A/X/Y 8 bit and clobbered, DB preserved
 ; Example:
-;     REP #$30
-;     LDA #$3080 ; Item box: palette B, tile 0x80
-;     LDX #$0088 ; Timer: palette 8, tile 0x88
-;     LDY #$00C2 ; Coin counter: palette 8, tile 0xC2
 ;     JSL retry_api_configure_sprite_status_bar
-;     SEP #$30
+;     dw $B080 ; Item box: palette B, tile 0x80
+;     dw $8088 ; Timer: palette 8, tile 0x88
+;     dw $80C2 ; Coin counter: palette 8, tile 0xC2
+;     dw $0000 ; Lives counter: hidden
+;     dw $0000 ; Bonus stars counter: hidden
+;     ... <- your code will continue here after the JSL
 ;================================================
 configure_sprite_status_bar:
 if !sprite_status_bar
-    sta !ram_status_bar_item_box_tile
-    txa : sta !ram_status_bar_timer_tile
-    tya : sta !ram_status_bar_coins_tile
+    phb
+    ; Set DBR equal to caller routine bank
+    sep #$30
+    lda $04,s : pha : plb
+    ; Use Y to read address after the routine call
+    rep #$30
+    lda $02,s : tay
+    ; Copy the values from after the JSL to sprite status bar ram
+    lda $0001,y : and #$7FFF : sta !ram_status_bar_item_box_tile
+    lda $0003,y : and #$7FFF : sta !ram_status_bar_timer_tile
+    lda $0005,y : and #$7FFF : sta !ram_status_bar_coins_tile
+    lda $0007,y : and #$7FFF : sta !ram_status_bar_lives_tile
+    lda $0009,y : and #$7FFF : sta !ram_status_bar_bonus_stars_tile
+    plb
 endif
+    ; Make sure the code returns at the right place
+    rep #$20
+    lda $01,s : clc : adc.w #2*5 : sta $01,s
+    sep #$30
     rtl
 
 ;================================================

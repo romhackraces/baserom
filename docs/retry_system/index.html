@@ -1,54 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Readme - Retry System UberASM</title>
-  <meta name="author" content="KevinM">
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="./style.css">
+	<title>Readme - Retry System UberASM</title>
+	<meta name="author" content="KevinM, AmperSam">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<link rel="icon" href="./img/icon.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-  <h1>Retry System UberASM</h1>
-  <p>The Retry System is a useful patch for both Kaizo hacks and generally hard hacks, as its primary function is to enable fast level reloading to skip going to the Overworld everytime the player dies (similarly to games like Super Meat Boy). Additionally it provides for multiple level midways, both as midway objects and automatic midways on level entrance, and many more features.</p>
-  <p>This package is a spiritual successor of the <a href="https://smwc.me/s/26078">original Retry patch</a> made by <a href="https://www.smwcentral.net/?p=profile&id=1250">worldpeace</a>, to expand its capabilities and to make it compatible with more resources as a consequence of it being primarily a UberASM resource.</p>
-  <br/>
-  
-  <h3 id="help">Help & Getting Started</h3>
-  <p>To get started using this on your project, check out the "Getting Started" page.</p>
-  <ul>
-    <li><a href="./getting_started.html">Getting Started</a></li>
-  </ul>
-  <p>For some helpful general information, check out the following pages.</p>
-  <ul>
-    <li><a href="./faq.html">Frequently Asked Questions</a></li>
-    <li><a href="./troubleshooting.html">Troubleshooting</a></li>
-    <li><a href="./compatibility.html">Resource Compatiblity</a></li>
-  </ul>
-  <p>If you have additional questions or problems, you can DM me on SMWCentral (<code><a href="https://www.smwcentral.net/?p=profile&id=36308">Kevin</a></code>) or on Discord (<code>kkevinm</code>). Please make sure you have tried to solve the problem on your own first and read this documentation carefully before contacting me.</p>
-  <br/>
-  
-  <h3 id="uninstall">Uninstalling</h3>
-  <p>If you want to uninstall this from your project, check out the "Uninstall" page.</p>
-  <ul>
-    <li><a href="./uninstall.html">Uninstall</a></li>
-  </ul>
-  <br/>
-  
-  <h3 id="config">Configuration</h3>
-  <p>The Retry System can be configured in a lot of ways, from basic general settings, to level specific settings, to more nuanced options for advanced users. All the files you can edit can be found in the <code>retry_config</code> folder: it is unrecommended to edit anything in the <code>retry_config/code</code> folder (which contains all the source code) unless you know exactly what you're doing.</p>
-  <p>All the configuration files include some comments on how to use them and what they can do, but you can get a more in depth (and readable) explanation for each file with the pages below.</p>
-  <ul>
-    <li><a href="./settings_global.html">settings_global.asm</a></li>
-    <li><a href="./settings_local.html">settings_local.asm</a></li>
-    <li><a href="./sram_tables.html">sram_tables.asm</a></li>
-    <li><a href="./extra.html">extra.asm</a></li>
-    <li><a href="./ram.html">ram.asm</a></li>
-  </ul>
-  <br/>
-  
-  <h3 id="gfx">Graphics</h3>
-  <p>The graphic files used by Retry can be found in the <code>retry_config/gfx</code> folder.</p>
-  <p>TODO</p>
-  <br/>
-  
+	<h1>Retry System UberASM</h1>
+	<p>The Retry System is a useful patch for both Kaizo hacks and generally hard hacks, as its primary function is to enable fast level reloading to skip going to the Overworld everytime the player dies (similarly to games like Super Meat Boy).</p>
+	<p>This package is a spiritual successor of the <a href="https://smwc.me/s/26078">original Retry patch</a> made by <a href="https://www.smwcentral.net/?p=profile&id=1250">worldpeace</a>, to expand its capabilities and to make it compatible with more resources as a consequence of it being primarily a UberASM resource.</p>
+	<br/>
+	<!-- Help -->
+	<h3 id="help">Help & Getting Started</h3>
+	<p>To get started using this on your project, check out the "Getting Started" page.</p>
+	<ul>
+		<li><a href="./getting_started.html">Getting Started</a></li>
+	</ul>
+	<p>For some helpful general information, check out the following pages.</p>
+	<ul>
+		<li><a href="./faq.html">Frequently Asked Questions</a></li>
+		<li><a href="./troubleshooting.html">Troubleshooting</a></li>
+	</ul>
+	<p>If you have additional questions or problems, you can PM me on SMW Central (<a href="https://www.smwcentral.net/?p=profile&id=36308">Kevin</a>) or DM me on Discord (<code>kkevinm</code>). Please make sure you have read this documentation carefully, and tried to solve the problem on your own first, before contacting me.</p>
+	<br/>
+	<!-- Configuration -->
+	<h3 id="config">Configuration</h3>
+	<p>The Retry System can be configured in a lot of ways, from basic general settings, to level specific settings, to more nuanced options for advanced users.</p>
+	<p>All the configuration files you can edit can be found in the <u class="dir">retry_config</u> folder and include some comments on how to use them and what they can do, but you can read more in depth explanation for each file below.</p>
+	<ul>
+		<li><a href="./settings_global.html">settings_global.asm</a></li>
+		<li><a href="./settings_local.html">settings_local.asm</a></li>
+		<li><a href="./sram_tables.html">sram_tables.asm</a></li>
+		<li><a href="./extra.html">extra.asm</a></li>
+		<li><a href="./ram_map.html">ram.asm</a></li>
+	</ul>
+	<p>You can edit the files in the <u class="dir">retry_config/code</u> folder (which contains all the source code) to change the retry but this is <b>not recommended</b> unless you know exactly what you're doing.</p>
+	<br/>
+	<!-- Midways -->
+	<h3 id="multiple_midway">Multiple Midways</h3>
+	<p>The Retry system also provides for multiple level midways, both as midway objects and automatic midways on level entrance, and many more features. Read how to configure this feature at the following link.</p>
+	<ul>
+		<li><a href="./midway_instruction.html">Setting up Multiple Midways</a></li>
+	</ul>
+	<br/>
+	<!-- Other Info -->
+	<h3 id="other-info">Other Information</h3>
+	<p>For other information, check out the following pages.</p>
+	<ul>
+		<li><a href="./files.html">Retry System Resources</a></li>
+		<li><a href="./objectool_info.html">ObjecTool Info</a></li>
+		<li><a href="./sram_bwram_info.html">SRAM & BWRAM Info</a></li>
+		<li><a href="./hijack_map.html">Hijack Map</a></li>
+		<li><a href="./uninstall.html">Uninstalling Retry</a></li>
+	</ul>
+	<br/>
 </body>
 </html>

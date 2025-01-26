@@ -95,6 +95,9 @@ if !custom_powerups == 1
 endif
 
 if not(!infinite_lives)
+    ; Don't decrement lives on the title screen.
+    lda $0100|!addr : cmp #$0B : bcc .no_lose_lives
+
     ; Check if we need to decrement lives.
     jsr shared_get_bitwise_mask
     and.l tables_lose_lives,x : beq .no_lose_lives
@@ -131,7 +134,7 @@ endif
 
     ; Play the death SFX.
 if !death_sfx != $00
-    lda.b #!death_sfx : sta !death_sfx_addr
+    lda.b #!death_sfx : sta !death_sfx_addr|!addr
 endif
 
 .return:

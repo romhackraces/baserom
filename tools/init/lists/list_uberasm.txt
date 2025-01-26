@@ -31,21 +31,22 @@ level:
 ; - https://www.smwcentral.net/?p=memorymap&a=detail&game=smw&region=ram&detail=29b0e3d11c61
 
 gamemode:
-    03 GM03.asm
-    06 GM06.asm
-    07 GM07.asm
-    0C GM0C.asm
-    0D GM0D.asm
-    0E GM0E.asm
-    0F GM0F.asm
-    10 GM10.asm
-    11 GM11.asm
-    12 GM12.asm
-    13 GM13.asm
-    14 GM14.asm
-    15 GM15.asm
-    16 GM16.asm
-    19 GM19.asm
+    00 retry_gm00.asm
+    03 baserom_gm03.asm
+    06 retry_gm06.asm
+    07 retry_gm07.asm
+    0C retry_gm0C.asm
+    0D retry_gm0D.asm
+    0E baserom_gm0E.asm
+    0F retry_gm0F.asm
+    10 baserom_gm10.asm,retry_gm10.asm
+    11 retry_gm11.asm
+    12 baserom_gm12.asm,retry_gm12.asm
+    13 retry_gm13.asm
+    14 baserom_gm14.asm,retry_gm14.asm
+    15 retry_gm15.asm
+    16 retry_gm16.asm
+    19 retry_gm19.asm
 
 
 ; OVERWORLD CODE

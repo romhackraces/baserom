@@ -28,6 +28,8 @@ routines:
     %ObjectRoutine($BA, retry_display_timer)
     %ObjectRoutine($BB, retry_display_coins)
     %ObjectRoutine($BC, retry_display_item_box)
+    %ObjectRoutine($BD, retry_display_lives)
+    %ObjectRoutine($BE, retry_display_bonus_stars)
     ; initialization objects
     %ObjectRoutine($C0, start_with_mushroom)
     %ObjectRoutine($C1, start_with_cape)
@@ -261,26 +263,44 @@ retry_config_no_powerup_from_midway:
     lda #$00 : sta !retry_ram_midway_powerup
     rts
 
-; Draw sprite item box
+; Display sprite item box
 retry_display_item_box:
-    rep #$30
-    lda #$301D  ; Item box: palette B, tile 0x80
+    rep #$20
+    lda #$301D  ; palette B, tile 0x1D
     sta !retry_ram_status_bar_item_box_tile
-    sep #$30
+    sep #$20
     rts
 
+; Display sprite timer
 retry_display_timer:
-    rep #$30
-    lda #$0020 ; Timer: palette 8, tile 0x20
+    rep #$20
+    lda #$0020 ; palette 8, tile 0x20
     sta !retry_ram_status_bar_timer_tile
-    sep #$30
+    sep #$20
     rts
 
+; Display sprite coin counters
 retry_display_coins:
-    rep #$30
-    lda #$0022 ; Coin counter: palette 8, tile 0x22
+    rep #$20
+    lda #$0022 ; palette 8, tile 0x22
     sta !retry_ram_status_bar_coins_tile
-    sep #$30
+    sep #$20
+    rts
+
+; Display sprite life counter
+retry_display_lives:
+    rep #$20
+    lda #$10CE ; palette 9, tile 0xCE
+    sta !retry_ram_status_bar_lives_tile
+    sep #$20
+    rts
+
+; Display sprite bonus stars counter
+retry_display_bonus_stars:
+    rep #$20
+    lda #$104E ; palette 9, tile 0x4E
+    sta !retry_ram_status_bar_bonus_stars_tile
+    sep #$20
     rts
 
 

@@ -5,18 +5,6 @@
 ;=====================================
 
 ;=====================================
-; This routine will be called when loading the title screen.
-; It can be used to reset particular RAM addresses for a new save file (see "docs/sram_info.txt").
-; NOTE: on SA-1 roms, this runs on the SNES cpu.
-;=====================================
-load_title:
-    ; Feel free to put your code here.
-
-
-
-    rts
-
-;=====================================
 ; This routine will be called when the level is reset by the retry system or when entering from the overworld.
 ; Unlike UberASM level init routine, this won't be executed during regular level transitions.
 ; NOTE: on SA-1 roms, this runs on the SNES cpu.

@@ -2,13 +2,7 @@
 
 init:
 if !sprite_status_bar
-    ; Reset sprite status bar configuration.
-    rep #$20
-    lda #$0000
-    sta !ram_status_bar_item_box_tile
-    sta !ram_status_bar_timer_tile
-    sta !ram_status_bar_coins_tile
-    sep #$20
+    jsr sprite_status_bar_init_ram
 endif
 
     ; If respawning or doing a level transition, skip.
@@ -17,7 +11,7 @@ endif
 if !enter_level_sfx != $00
     ; If not loading the level from a No Yoshi intro, play the SFX.
     lda $71 : cmp #$0A : beq +
-    lda.b #!enter_level_sfx : sta !enter_level_sfx_addr
+    lda.b #!enter_level_sfx : sta !enter_level_sfx_addr|!addr
     lda.b #!enter_level_delay : sta $0DB1|!addr
 +
 endif

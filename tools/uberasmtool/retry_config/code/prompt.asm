@@ -102,7 +102,7 @@ endif
 .selected:
     ; Otherwise, play the SFX and return the result.
 if !option_sfx != $00
-    lda.b #!option_sfx : sta !option_sfx_addr
+    lda.b #!option_sfx : sta !option_sfx_addr|!addr
 endif
     ldy $1B92|!addr
     stz $1B92|!addr
@@ -134,7 +134,7 @@ endif
 
     ; Otherwise, play the cursor SFX.
 if !cursor_sfx != $00
-    lda.b #!cursor_sfx : sta !cursor_sfx_addr
+    lda.b #!cursor_sfx : sta !cursor_sfx_addr|!addr
 endif
 
     ; Reset the cursor frame counter.

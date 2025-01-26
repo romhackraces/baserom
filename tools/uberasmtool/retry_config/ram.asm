@@ -40,32 +40,36 @@ namespace off
 ; To use these in UberASM code, just use "retry_ram_is_respawning" (or whatever address you want), without the "!".
 ; To use these in other codes (patch, sprites, etc.), copy paste this file's contents at the start of the patch/sprite/etc., then use "!retry_ram_is_respawning" (with "!") or "retry_ram_is_respawning" (without "!").
 
-%retry_ram(timer,$00)                    ; 3
-%retry_ram(respawn,$03)                  ; 2
-%retry_ram(is_respawning,$05)            ; 1
-%retry_ram(music_to_play,$06)            ; 1
-%retry_ram(hurry_up,$07)                 ; 1
-%retry_ram(door_dest,$08)                ; 2
-%retry_ram(music_backup,$0A)             ; 1
-%retry_ram(update_request,$0B)           ; 1
-%retry_ram(prompt_phase,$0C)             ; 1
-%retry_ram(update_window,$0D)            ; 1
-%retry_ram(is_dying,$0E)                 ; 1
-%retry_ram(9D_backup,$0F)                ; 1
-%retry_ram(midway_powerup,$10)           ; 1
-%retry_ram(prompt_override,$11)          ; 1
-%retry_ram(disable_exit,$12)             ; 1
-%retry_ram(set_checkpoint,$13)           ; 2
-%retry_ram(prompt_x_pos,$15)             ; 1
-%retry_ram(prompt_y_pos,$16)             ; 1
-%retry_ram(disable_box,$17)              ; 1
-%retry_ram(play_sfx,$18)                 ; 1
-%retry_ram(midways_override,$19)         ; 1
-%retry_ram(coin_backup,$1A)              ; 1
-%retry_ram(status_bar_item_box_tile,$1B) ; 2
-%retry_ram(status_bar_timer_tile,$1D)    ; 2
-%retry_ram(status_bar_coins_tile,$1F)    ; 2
-%retry_ram(reserved,$21)                 ; 10 (reserved for future expansion)
-%retry_ram(death_counter,$2B)            ; 5
-%retry_ram(checkpoint,$30)               ; 192
-%retry_ram(cust_obj_data,$F0)            ; 1+(!max_custom_midway_num*4)
+%retry_ram(timer,$00)                       ; 3
+%retry_ram(respawn,$03)                     ; 2
+%retry_ram(is_respawning,$05)               ; 1
+%retry_ram(music_to_play,$06)               ; 1
+%retry_ram(hurry_up,$07)                    ; 1
+%retry_ram(door_dest,$08)                   ; 2
+%retry_ram(music_backup,$0A)                ; 1
+%retry_ram(update_request,$0B)              ; 1
+%retry_ram(prompt_phase,$0C)                ; 1
+%retry_ram(update_window,$0D)               ; 1
+%retry_ram(is_dying,$0E)                    ; 1
+%retry_ram(9D_backup,$0F)                   ; 1
+%retry_ram(midway_powerup,$10)              ; 1
+%retry_ram(prompt_override,$11)             ; 1
+%retry_ram(disable_exit,$12)                ; 1
+%retry_ram(set_checkpoint,$13)              ; 2
+%retry_ram(prompt_x_pos,$15)                ; 1
+%retry_ram(prompt_y_pos,$16)                ; 1
+%retry_ram(disable_box,$17)                 ; 1
+%retry_ram(play_sfx,$18)                    ; 1
+%retry_ram(midways_override,$19)            ; 1
+%retry_ram(coin_backup,$1A)                 ; 1
+%retry_ram(lives_backup,$1B)                ; 1
+%retry_ram(bonus_stars_backup,$1C)          ; 1
+%retry_ram(status_bar_item_box_tile,$1D)    ; 2
+%retry_ram(status_bar_timer_tile,$1F)       ; 2
+%retry_ram(status_bar_coins_tile,$21)       ; 2
+%retry_ram(status_bar_lives_tile,$23)       ; 2
+%retry_ram(status_bar_bonus_stars_tile,$25) ; 2
+%retry_ram(reserved,$27)                    ; 4 (reserved for future expansion)
+%retry_ram(death_counter,$2B)               ; 5
+%retry_ram(checkpoint,$30)                  ; 192
+%retry_ram(cust_obj_data,$F0)               ; 1+(!max_custom_midway_num*4)

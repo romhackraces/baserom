@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Multiple Midways Instructions - Retry System UberASM</title>
-  <meta name="author" content="AmperSam">
-  <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-  <link rel="stylesheet" type="text/css" href="./style.css">
+	<title>Setting up Multiple Midways - Retry System UberASM</title>
+	<meta name="author" content="AmperSam">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<link rel="icon" href="./img/icon.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-  <h1>Setting up Multiple Midways</h1>
-  
-  <h3>Inserting the Midway Bar Object in Lunar Magic</h3>
-  <p>While in Layer 1 or Layer 2 editing mode, open the manual object insertion window either by <b>pressing Insert</b>, or via the menu: <b>Edit > Insert manual...</b>.</p>
-  <img src="midway_instruction/insert_object.png">
-  <p>The custom midway object is inserted into your ROM as <b>2D</b> and this value goes in the <b>Command</b> field of this dialog.</p>
-  
-  <h3>Respawn Location</h3>
-  <p>To change where Mario will respawn after collecting this midway, you will set a 4-digit value in the <b>Extension Field</b>. The value put here will dictate the <b>entrance type</b> as well as either the <b>level number</b> or a <b>secondary entrance number</b> where Mario will respawn.</p>
-  <ul>
-    <li><code>0000-1FFF</code> respawn at <b>secondary entrance</b>, this is just a valid 4-digit secondary entrance number (ranges 0000-1FFF)</li>
-    <li><code>2000-3FFF</code> respawn at <b>secondary entrance with water</b>, the value is 2000 + secondary entrance number.*</li>
-    <li><code>4000-41FF</code> respawn at <b>main</b> entrance, 4000 + 3-digit level number (ranges 000-1FF).</li>
-    <li><code>5000-51FF</code> respawn at <b>midway</b> entrance, 5000 + level number.</li>
-  </ul>
-  <small>*This is obsolete in Lunar Magic 3.00+</small>
-  <p>Keep in mind some values will need leading zeroes to work correctly, e.g. respawning at secondary entrance 12C would be <code>012C</code> and not <code>12C</code>.</p>
-  <blockquote>Note: some of these settings can be used to make a midway respawn a player in <b>any place</b> in the game not just within the same level or connected sublevels.</blockquote>
-  <p>Once inserted, it will appear in Lunar Magic as a green square, but will appear as the normal Midway Tape object in-game.</p>
-  <img src="midway_instruction/midway_object.png">
-  <br>
-  
-  <h2>Multiple Midway Options in Retry System</h2>
-  <p>The retry system has a per-level configuration setting for midways (see <a href="./settings_local.html#checkpoint">Local settings - %checkpoint</a> for details), which sets the behavior of midways bars and level entrances in the specified sublevel.<p>
+<h1>Setting up Multiple Midways</h1>
 
-  <p>Using the <code>%checkpoint</code> instruction in <i>settings_local.asm</i> you can set the midway behaviour, for each and every sublevel, with the one of following values:</p>
-  <ul>
-    <li><code>0</code>: Vanilla behaviour. The midway bar in the corresponding sublevel will lead to the midway entrance of the main level.</li>
-    <li><code>1</code>: The midway bar in a given sublevel will lead to the midway entrance of this same sublevel (instead of the to main level).</li>
-    <li><code>2</code>: Any entrance into a sublevel, from an exit-enabled object in another level, will save as a checkpoint and respawning will lead to the corresponding entrance where the checkpoint was gathered. <b>This does not change midway bar behaviour.</b></li>
-    <li><code>3</code>: This option enables both the effects of <code>1</code> (midway bar) and <code>2</code> (level entrances).</li>
-  </ul>
-  <p>Note: this setting can be used in conjunction with the midway objects detailed above.</p>
-  
-  <h3>Examples</h3>
-  <p></p>
-  <img src="midway_instruction/multiple_midway_$00.png">
-  <img src="midway_instruction/multiple_midway_$01.png">
-  <img src="midway_instruction/multiple_midway_$02.png">
-  <img src="midway_instruction/multiple_midway_$03.png">
-  
-  <br/><center><a href="./index.html">Return to main page</a></center>
+<h3>Inserting the Midway Bar Object in Lunar Magic</h3>
+<p>While in Layer 1 or Layer 2 editing mode, open the manual object insertion window either by <b>pressing Insert</b>, or via the menu: <b>Edit > Insert manual...</b>.</p>
+<img src="./img/insert_object.png">
+<p>The custom midway object is inserted into your ROM as <b>2D</b> and this value goes in the <b>Command</b> field of this dialog.</p>
+
+<h3>Respawn Location</h3>
+<p>To change where Mario will respawn after collecting this midway, you will set a 4-digit value in the <b>Extension Field</b>. The value put here will dictate the <b>entrance type</b> as well as either the <b>level number</b> or a <b>secondary entrance number</b> where Mario will respawn.</p>
+<ul>
+	<li><code>0000-1FFF</code> respawn at <b>secondary entrance</b>, this is just a valid 4-digit secondary entrance number (ranges 0000-1FFF)</li>
+	<li><code>2000-3FFF</code> respawn at <b>secondary entrance with water</b>, the value is 2000 + secondary entrance number.*</li>
+	<li><code>4000-41FF</code> respawn at <b>main</b> entrance, 4000 + 3-digit level number (ranges 000-1FF).</li>
+	<li><code>5000-51FF</code> respawn at <b>midway</b> entrance, 5000 + level number.</li>
+</ul>
+<small>*This is obsolete in Lunar Magic 3.00+</small>
+<p>Keep in mind some values will need leading zeroes to work correctly, e.g. respawning at secondary entrance 12C would be <code>012C</code> and not <code>12C</code>.</p>
+<blockquote>Note: some of these settings can be used to make a midway respawn a player in <b>any place</b> in the game not just within the same level or connected sublevels.</blockquote>
+<p>Once inserted, it will appear in Lunar Magic as a green square, but will appear as the normal Midway Tape object in-game.</p>
+<img src="./img/midway_object.png">
+<br>
+
+<h2>Multiple Midway Options in Retry System</h2>
+<p>The retry system has a per-level configuration setting for midways (see <a href="./settings_local.html#checkpoint">Local settings - %checkpoint</a> for details), which sets the behavior of midways bars and level entrances in the specified sublevel.<p>
+
+<p>Using the <code>%checkpoint</code> instruction in <i>settings_local.asm</i> you can set the midway behaviour, for each and every sublevel, with the one of following values:</p>
+<ul>
+	<li><code>0</code>: Vanilla behaviour. The midway bar in the corresponding sublevel will lead to the midway entrance of the main level.</li>
+	<li><code>1</code>: The midway bar in a given sublevel will lead to the midway entrance of this same sublevel (instead of the to main level).</li>
+	<li><code>2</code>: Any entrance into a sublevel, from an exit-enabled object in another level, will save as a checkpoint and respawning will lead to the corresponding entrance where the checkpoint was gathered. <b>This does not change midway bar behaviour.</b></li>
+	<li><code>3</code>: This option enables both the effects of <code>1</code> (midway bar) and <code>2</code> (level entrances).</li>
+</ul>
+<p>Note: this setting can be used in conjunction with the midway objects detailed above.</p>
+
+<h3>Examples</h3>
+<p></p>
+<img src="./img/multiple_midway_$00.png">
+<img src="./img/multiple_midway_$01.png">
+<img src="./img/multiple_midway_$02.png">
+<img src="./img/multiple_midway_$03.png">
+<br/><center><a href="./index.html">Return to main page</a></center>
 </body>
 </html>

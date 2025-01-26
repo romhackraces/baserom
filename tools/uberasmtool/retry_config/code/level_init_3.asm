@@ -17,7 +17,7 @@ endif
     ; Play the silent checkpoint SFX if applicable.
 if !room_cp_sfx != $00
     lda !ram_play_sfx : beq +
-    lda.b #!room_cp_sfx : sta !room_cp_sfx_addr
+    lda.b #!room_cp_sfx : sta !room_cp_sfx_addr|!addr
 +
 endif
 

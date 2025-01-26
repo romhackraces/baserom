@@ -12,14 +12,6 @@ if !retry_death_animation&2
 endif
 
 main:
-if !lives_overflow_fix
-    ; Cap lives at 99, unless they're negative (about to game over).
-    lda $0DBE|!addr : bmi +
-    cmp #$62 : bcc +
-    lda #$62 : sta $0DBE|!addr
-+
-endif
-
     ; Enable SFX echo if applicable.
     lda !ram_play_sfx : bpl +
     lda $1DFA|!addr : bne +
@@ -600,6 +592,12 @@ reset_music:
 end:
     ; Set DBR.
     phb : phk : plb
+
+    ; Cap lives at 99, unless they're negative (about to game over).
+    lda $0DBE|!addr : bmi +
+    cmp #$62 : bcc +
+    lda #$62 : sta $0DBE|!addr
++
 
 if !sprite_status_bar
     ; Draw the sprite status bar.

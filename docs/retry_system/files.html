@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Files - Retry System UberASM</title>
+	<meta name="author" content="KevinM, AmperSam">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<link rel="icon" href="./img/icon.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+    <h1>Files</h1>
+
+    <!-- Menu -->
+    <h3>Contents</h3>
+    <ul>
+        <li><a href="#amk_resources">AddmusicK Resources</a></li>
+        <!--<li><a href="#code">Code</a></li>-->
+        <li><a href="#gfx">Graphics</a></li>
+    </ul>
+    <br/>
+
+    <h3 id="amk_resources">AddmusicK Resources</h3>
+    <p>Inside <u class="dir">docs/amk_resources</u> you can find a custom a custom SFX file (<u class="dir">sfx/Death Prelude.txt</u>) and a custom death music file (<u class="dir">music/01 Miss (no intro).txt</u>). These can be used to keep a vanilla-feeling sound on death with Retry enabled.</p>
+    <p>The SFX is the intro to the vanilla death music, and it is recommended to use as the Retry death SFX. To do so, insert it as any other SFX in AddmusicK: move the txt file inside AMK's <u class="dir">1DFC</u> folder, then add it as a new entry in the <u class="dir">Addmusic_sound effects.txt</u> file under <code>SFX1DFC</code>. To configure Retry to play this SFX on death, in <u class="dir">settings_global.asm</u> change <code>!death_sfx</code> to the value you used in <u class="dir">Addmusic_sound effects.txt</u>, and set <code>!death_sfx_addr = $1DFC</code>.</p>
+    <p>The music file is the vanilla death jingle but with the initial part removed (the part that is played in the custom SFX provided here). This can be used as an alternative death jingle for when choosing "Exit" in the Retry prompt: normally this plays the vanilla death jingle, but it might be weird to replay the death SFX part of it, so you can insert this alternative variant in your <u class="dir">Addmusic_list.txt</u> and configure Retry to play that only when using "Exit". To do so, change <code>!death_jingle_alt</code> in <u class="dir">settings_global.asm</u> to the number you inserted it as in AMK's list. Note that you shouldn't insert this as a global song.</p>
+    <br/>
+
+    <!-- TODO
+    <h3 id="code">Code</h3>
+    <br/> -->
+    
+    <h3 id="gfx">Graphics</h3>
+    <p>The graphic files used by Retry can be found in the <u class="dir">retry_config/gfx</u> folder. Note that these are uploaded dynamically to the sprite GFX pages when needed, so you don't need to insert them yourself in your GFX files, but you're free to edit them with tools like <a href="https://www.smwcentral.net/?p=section&a=details&id=27208">YY-CHR</a> if you so wish (they're all 4bpp files).</p>
+    <table class="left-align">
+        <tr>
+            <th width="150">File</th>
+            <th>Purpose</th>
+            <th class="center-align">Default Palette</th>
+        </tr>
+        <tr>
+            <td><u class="dir">letters1.bin</u></td>
+            <td>Retry prompt letters used in the prompt when <code>!no_prompt_box = 0</code></td>
+            <td class="center-align">8</td>
+        </tr>
+        <tr>
+            <td><u class="dir">letters2.bin</u></td>
+            <td>Retry prompt letters used in the prompt when <code>!no_prompt_box = 1</code></td>
+            <td class="center-align">8</td>
+        </tr>
+        <tr>
+            <td><u class="dir">coins.bin</u></td>
+            <td>Two 8x8 tiles used by the sprite status bar coin counters (the first is used by the coin counter, the second by the Dragon Coin counter).</td>
+            <td class="center-align">8</td>
+        </tr>
+        <tr>
+            <td><u class="dir">digits.bin</u></td>
+            <td>Numbers used by the sprite status bar timer and coin counter</td>
+            <td class="center-align">Any</td>
+        </tr>
+        <tr>
+            <td><u class="dir">indicator.bin</u></td>
+            <td>Single 8x8 tile used by the retry indicator</td>
+            <td class="center-align">9</td>
+        </tr>
+        <tr>
+            <td><u class="dir">item_box_8x8.bin</u></td>
+            <td>Single 8x8 tile used to draw the smaller Item Box</td>
+            <td class="center-align">B</td>
+        </tr>
+        <tr>
+            <td><u class="dir">item_box_16x16.bin</u></td>
+            <td>Four 8x8 tiles used to draw the full Item Box</td>
+            <td class="center-align">B</td>
+        </tr>
+        <tr>
+            <td><u class="dir">timer.bin</u></td>
+            <td>Single 8x8 tile used for the sprite status bar timer icon</td>
+            <td class="center-align">8</td>
+        </tr>
+        <tr>
+            <td><u class="dir">lives.bin</u></td>
+            <td>Two 8x8 tile used for the sprite status bar lives counter icon (the first is used for Mario, the second for Luigi)</td>
+            <td class="center-align">9</td>
+        </tr>
+        <tr>
+            <td><u class="dir">bonus_stars.bin</u></td>
+            <td>Single 8x8 tile used for the sprite status bar bonus stars counter icon</td>
+            <td class="center-align">9</td>
+        </tr>
+    </table>
+    <br/>
+
+    <center><a href="./index.html">Return to main page</a></center>
+</body>
+</html>

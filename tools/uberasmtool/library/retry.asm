@@ -48,10 +48,14 @@ retry_gfx:
 if !sprite_status_bar
 .digits:
     %incbin(gfx,digits)
-.coin:
-    %incbin(gfx,coin)
+.coins:
+    %incbin(gfx,coins)
 .timer:
     %incbin(gfx,timer)
+.lives:
+    %incbin(gfx,lives)
+.bonus_stars:
+    %incbin(gfx,bonus_stars)
 .item_box:
 if !8x8_item_box_tile
     %incbin(gfx,item_box_8x8)
@@ -69,7 +73,7 @@ endif
 ;=====================================
     %incsrc(code,shared)
     %incsrc("",extra)
-    %incsrc(code,load_title)
+    %incsrc(code,startup)
     %incsrc(code,fade_to_level)
     %incsrc(code,level_init_1)
     %incsrc(code,level_init_2)
@@ -99,3 +103,4 @@ endif
     %incsrc(code/hijacks,item_box_fix)
     %incsrc(code/hijacks,remove_status_bar)
     %incsrc(code/hijacks,vanilla_boss_gm13)
+    %incsrc(code/hijacks,switch_palace_message_fix)

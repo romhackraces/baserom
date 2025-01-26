@@ -50,12 +50,11 @@
 <p>If you just want to disable it in a single level, this baserom comes with several insertable custom objects to toggle features per-level. including one to hide the status bar. Check out the <a href="UberASM Objects.html">UberASM Objects</a> documentation for details.</p>
 <p>If you would like to disable it hack-wide, there is a method for that as well:</p>
 <ul>
-    <li>Open "GM12.asm" from the <span class="dir">tools/uberasmtool/gamemode</span> folder and you'll see the following.
+    <li>Open "baserom_gm12.asm" from the <span class="dir">tools/uberasmtool/gamemode</span> folder and you'll see the following.
 <pre>
 init:
-    jsl retry_level_init_2_init
-    jsl uberasm_objects_init
     ;jsl toggle_statusbar_init
+    jsl uberasm_objects_init
     rtl
 </pre></li>
     <li>Remove the semi-colon in front of <code>jsl toggle_statusbar_init</code> and save the file.</li>

@@ -91,17 +91,17 @@ macro no_reset_rng(level)
     pullpc
 endmacro
 
-macro disable_room_cp_sfx(level)
-    %_check_level(<level>, "disable_room_cp_sfx")
+macro no_room_cp_sfx(level)
+    %_check_level(<level>, "no_room_cp_sfx")
 
     %_define_bitwise_index(<level>)
-    !{disable_room_cp_sfx_!{__idx}} ?= 0
-    !{disable_room_cp_sfx_!{__idx}} #= !{disable_room_cp_sfx_!{__idx}}|_bitwise_table_value(<level>)
+    !{no_room_cp_sfx_!{__idx}} ?= 0
+    !{no_room_cp_sfx_!{__idx}} #= !{no_room_cp_sfx_!{__idx}}|_bitwise_table_value(<level>)
 
     pushpc
     
     org tables_disable_room_cp_sfx+!__idx
-        db !{disable_room_cp_sfx_!{__idx}}
+        db !{no_room_cp_sfx_!{__idx}}
     
     pullpc
 endmacro
@@ -126,7 +126,7 @@ macro checkpoint_retry(level, checkpoint, retry)
     %retry(<level>, <retry>)
 endmacro
 
-macro settings(level, checkpoint, retry, sfx_echo, no_reset_rng, disable_room_cp_sfx, no_lose_lives)
+macro settings(level, checkpoint, retry, sfx_echo, no_reset_rng, no_room_cp_sfx, no_lose_lives)
     %checkpoint_retry(<level>, <checkpoint>, <retry>)
     if <sfx_echo> != 0
         %sfx_echo(<level>)
@@ -134,8 +134,8 @@ macro settings(level, checkpoint, retry, sfx_echo, no_reset_rng, disable_room_cp
     if <no_reset_rng> != 0
         %no_reset_rng(<level>)
     endif
-    if <disable_room_cp_sfx> != 0
-        %disable_room_cp_sfx(<level>)
+    if <no_room_cp_sfx> != 0
+        %no_room_cp_sfx(<level>)
     endif
     if <no_lose_lives> != 0
         %no_lose_lives(<level>)
