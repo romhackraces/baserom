@@ -7,7 +7,7 @@ incsrc "../retry_config/ram.asm"
 ;
 ; run the init in gamemode 12 (level load) and the main in gamemode 14 (in level)
 ;
-; This system requires ObjecTool and reserves Extended objects 98-CF
+; This system requires ObjecTool and reserves Extended objects 98-DF
 ; see patches/objectool/custom_object_code.asm for details
 
 macro ObjectRoutine(object_number, routine)
@@ -63,6 +63,7 @@ routines:
     %ObjectRoutine($9F, death_on_power_up_loss)
     %ObjectRoutine($A0, press_lr_to_die)
     %ObjectRoutine($A1, disable_screen_shake)
+    %ObjectRoutine($A2, disable_spin_jump)
 ..end
 
 init:
@@ -231,6 +232,11 @@ disable_screen_shake:
     stz $1887|!addr ; store zero to the layer 1 shake timer
     rts
 
+; Disable spin jump
+disable_spin_jump:
+    lda #%10000000
+    trb $18
+    rts
 
 ;;
 ;; Extended Objects B0 - BF
