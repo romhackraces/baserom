@@ -81,7 +81,7 @@ init:
 <hr>
 <h3 id="block-graphics">Why are my block graphics not looking right?</h3>
 <center><img src="img/garbled_map16.png" title="Custom block tiles missing ExGraphics"></center>
-<p>Many of the custom global block in the baserom use ExGraphics, loading <code>E17</code> into the <b>FG2</b> slot in the Super GFX Bypass dialog will make the blocks appear as they are intended to.</p>
+<p>Many of the custom global block in the baserom use ExGraphics and a custom palette. Loading <code>E17</code> into the <b>FG2</b> slot in the Super GFX Bypass dialog and importing the "CustomBlocks.pal" from <span class="dir">resources/palette</span> will make the tiles appear as they are intended to.</p>
 <hr>
 <h3 id="turn-off-animation">Why are there weird tiles in the background?</h3>
 <p>If you're using a background resource that uses slot <b>BG3</b> you may notice some of the tiles from the <a href="./ExAnimation.html">baserom's ExAnimations</a> in its tilemap, this is because the addresses at the end of that slot are being used as the destinations for those animations. To stop this from happening you can disable global animations in that level from the menu: "Level &rarr; Edit Animation Settings" and uncheck "Enable Lunar Magic's global animations".</p>
