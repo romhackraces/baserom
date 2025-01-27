@@ -8,3 +8,8 @@ main:
     jsl ScreenScrollingPipes_main
     jsl uberasm_objects_main
     rtl
+
+end:
+    jsl uberasm_objects_end
+    rtl
+
