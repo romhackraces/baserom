@@ -2,6 +2,7 @@ v5.12
 - major upgrades to the retry system
 - fix issue with Mario dying in the screen scrolling pipes sometimes
 - new UberASM Objects around the new retry features
+- new UberASM Objects for no spin jump
 - big reorganization of UberASM objects to sort them more sanely
 - include more informative UberASM Tool list
 - split up the X-Speed Fixes patch into one for speed oscillation and no jump fixes
