@@ -21,7 +21,7 @@ incsrc question_block_base.asm
 !IsCustom = 0               ; 0 for normal, 1 for custom sprite
 !ExtraBit = 0               ; Set extra bit of sprite
 !State = $08                ; $08 for normal, $09 for carryable sprites
-!1540_val = $3E             ; If you use powerups, this should be $3E
+!1540_val = $00             ; If you use powerups, this should be $3E
                             ; Carryable sprites use it as the stun timer
 
 !ExtraByte1 = $00           ; First extra byte
@@ -30,7 +30,7 @@ incsrc question_block_base.asm
 !ExtraByte4 = $00           ; Fourth extra byte
 
 !XPlacement = $00           ; Remember: $01-$7F moves the enemy to the right and $80-$FF to the left.
-!YPlacement = $00           ; Remember: $01-$7F moves the enemy to the bottom and $80-$FF to the top.
+!YPlacement = $FE           ; Remember: $01-$7F moves the enemy to the bottom and $80-$FF to the top.
 
 
 ; Code stuff
@@ -74,7 +74,7 @@ endif
     STA !14C8,x
     LDA #!1540_val
     STA !1540,x
-    LDA #$D0
+    LDA #$00                ; No Y-speed for Balloon
     STA !AA,x
     LDA #$2C
     STA !154C,x
