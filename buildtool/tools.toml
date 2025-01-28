@@ -40,7 +40,7 @@ executable = "pixi.exe"
 
 # Options to pass to the tool, by default, the path to the temporary
 # ROM is passed to the tool right after these
-options = '-l "../../tools/pixi/list.txt" -ssc "../../tools/pixi/append.ssc" -mwt "../../tools/pixi/append.mwt" -mw2 "../../tools/pixi/append.mw2"'
+options = '--exerel -l "list.txt" -ssc "append.ssc" -mwt "append.mwt" -mw2 "append.mw2"'
 
 # Uncomment to not pass path to temporary ROM to the tool
 # pass_rom = false
