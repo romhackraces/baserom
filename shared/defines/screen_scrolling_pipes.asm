@@ -3,7 +3,7 @@ incsrc "callisto.asm"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Simplified defines for GHB's screen scrolling pipes.
-; see library/ScreenScrollingPipes.asm in UberASMTool's folder
+; see library/screen_scrolling_pipes.asm in UberASMTool's folder
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 !Freeram_SSP_PipeDir      = !scroll_pipes_freeram_bank

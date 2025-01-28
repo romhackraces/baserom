@@ -1,7 +1,7 @@
 ;Put this in uberasm tool's library file.
 
 incsrc "callisto.asm"
-%import_library("defines/ScreenScrollingPipes.asm")
+%import_library("defines/screen_scrolling_pipes.asm")
 
 main:
     PHB                                     ;\Setup banks

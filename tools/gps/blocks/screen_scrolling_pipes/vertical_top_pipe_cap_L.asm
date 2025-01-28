@@ -3,7 +3,7 @@
 ;behaves $130
 
 incsrc "callisto.asm"
-%import_library("defines/ScreenScrollingPipes.asm")
+%import_library("defines/screen_scrolling_pipes.asm")
 
 db $42
 JMP MarioBelow : JMP MarioAbove : JMP MarioSide : JMP return : JMP return : JMP return
