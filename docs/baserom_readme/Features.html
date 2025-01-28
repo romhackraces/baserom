@@ -54,26 +54,24 @@
 <p>Included in the baserom is an UberASM "safety mechanism" that clears all collected checkpoints (both midways and those given by the Retry System) and saves the game when the player presses a key combo. This is to fix any save files and release the player from any potential checkpoint-related softlocks.</p>
 <p>This UberASM runs on the overworld and can be invoked with the following key combo: <span class="key">L</span> + <span class="key">R</span> + <span class="key">Select</span>. Pressing this will play a sound to indicate checkpoints have been cleared and the game has been saved.</p>
 <h4>Configuring</h4>
-<p>If you would like to change the key combination you can do so by editing the "retry_clear_saved_cp.asm" in the <span class="dir">tools/uberasmtool/library</span> folder, keep in mind using either any of the face buttons (ABXY) in this combo while on the Overworld will enter a level.</p>
+<p>If you would like to change the key combination you can do so by editing the "clear_saved_checkpoints.asm" in the <span class="dir">tools/uberasmtool/gamemode</span> folder. Keep in mind, using either any of the face buttons (ABXY) in this combo while on the Overworld will enter a level.</p>
 <h4>Disabling</h4>
-<p>If you would like to disable this feature, you can open "baserom_baserom_gm0E.asm" in the <span class="dir">tools/uberasmtool/gamemode</span> folder and add a semi-colon as done to the line you see below.</p>
+<p>If you would like to disable this feature, you can remove it from the <code>gamemode:</code> section of UberASM Tool's list file in the <span class="dir">tools/uberasmtool</span> folder, look for the line you see below.</p>
 <pre>
-; Gamemode 0E - Overworld
-main:
-    jsl ow_auto_save_main
-    ;jsl retry_clear_saved_cp_main
-    rtl
+gamemode:
+    ...
+    0E <i>clear_saved_checkpoints.asm</i>, ow_auto_save.asm
+    ...
 </pre>
 <small>Found in version 5.4 of baserom or later. (Runs in gamemode 14 in version 5.4).</small>
 <hr>
 <h3 id="ow-autosave">Autosave on Overworld</h3>
-<p>The baserom has a basic UberASM feature to autosave the game when you return to or move Mario on the overworld. If you would like to disable this feature, you can open "baserom_gm0E.asm" in the <span class="dir">tools/uberasmtool/gamemode</span> folder and add a semi-colon to the line you see below.</p>
+<p>The baserom has a basic UberASM feature to autosave the game when you return to or move Mario on the overworld. If you would like to disable this feature, you can remove it from the <code>gamemode:</code> section of UberASM Tool's list file in the <span class="dir">tools/uberasmtool</span> folder, look for the line you see below.</p>
 <pre>
-; Gamemode 0E - Overworld
-main:
-    ;jsl ow_auto_save_main
-    jsl retry_clear_saved_cp_main
-    rtl
+gamemode:
+    ...
+    0E clear_saved_checkpoints.asm, <i>ow_auto_save.asm</i>
+    ...
 </pre>
 <small>Found in version 5.8 of baserom or later.</small>
 </section>

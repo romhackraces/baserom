@@ -28,19 +28,11 @@ main:
     stz !TileCheck
     rtl
 
+; save game routine
 save_game:
-    ; Set up vanilla SRAM buffer.
-    phb
-    rep #$30
-    ldx.w #$1EA2|!addr
-    ldy.w #$1F49|!addr
-    lda.w #$008C
-    mvn $00,$00
-    sep #$30
-    plb
 
-    ; Save to SRAM/BW-RAM.
-    jsl $009BC9|!bank
+    ; use retry api to save game
+    JSL retry_api_save_game
 
 if !PlaySFX
     ; play save sound effect

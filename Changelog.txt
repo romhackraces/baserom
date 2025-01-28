@@ -6,6 +6,7 @@ v5.12
 - big reorganization of UberASM objects to sort them more sanely
 - include more informative UberASM Tool list
 - split up the X-Speed Fixes patch into one for speed oscillation and no jump fixes
+- reconfigure the autosave and clear checkpoints ASM to use the retry API
 
 v5.11
 - updated the tools to their latest versions (not Lunar Magic though)
