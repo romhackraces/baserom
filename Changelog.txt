@@ -7,6 +7,9 @@ v5.12
 - include more informative UberASM Tool list
 - split up the X-Speed Fixes patch into one for speed oscillation and no jump fixes
 - reconfigure the autosave and clear checkpoints ASM to use the retry API
+- new graphic for the any-sprite ON-OFF to disambiguate it from the coins
+- removed the vine sac ExGraphics, improved the graphic for the single-use bounce block
+- adjusted the global exanimation and shuffled around ExGraphics tile locations
 
 v5.11
 - updated the tools to their latest versions (not Lunar Magic though)
