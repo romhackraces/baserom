@@ -48,6 +48,6 @@
         "Levels",                   # Insert all levels
 
         "GPS",                      # Insert custom blocks
-        "AddMusicK",                # Insert custom music
         "UberASM",                  # Insert UberASM code
+        "AddMusicK",                # Insert custom music
     ]
