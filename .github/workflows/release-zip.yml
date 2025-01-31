@@ -21,6 +21,10 @@ jobs:
           ".gitkeep"
           ".gitignore"
           ".github"
+          "build"
+          "config"
+          "modules"
+          "!build_baserom.ps1"
           "Readme.md"
         )
 
