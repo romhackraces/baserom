@@ -1,0 +1,8 @@
+;org $05D8B9|!BankB
+;    JSR Levelnum
+;org $05DC46|!BankB
+;    Levelnum:
+;    LDA $0E
+;    STA $010B|!Base2
+;    ASL A
+;    RTS
