@@ -1,0 +1,21 @@
+*.pl
+1DF9/*
+1DFC/*
+Addmusic_*.txt
+asm/*
+asm/SNES/bin/*.bin
+asm/SNES/SongSampleList.asm
+music/originals/*
+readme_files/
+readme.html
+samples*
+SPCs/*.spc
+SPCs/1DF9
+stats/*.txt
+temp.*
+temp*
+Visualizations/*
+
+# keep added files
+asm/!UserDefines.asm
+1DFC/!Death Prelude.txt

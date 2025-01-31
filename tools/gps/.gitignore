@@ -1,0 +1,16 @@
+template.asm
+block_boilerplate.asm
+rom.txt
+list.txt
+main.asm
+defines.asm
+shared.asm
+routines/
+# keep non-default routines
+!check_sprite_kicked_horiz_alt.asm
+!face_yoshi.asm
+!hundred_points.asm
+!row_points.asm
+!star_points.asm
+!stomped_points.asm
+!teleport_direct.asm

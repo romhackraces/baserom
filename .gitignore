@@ -1,57 +1,14 @@
-# This gitignore is for managing the baserom project, if you are tracking your hack project with git, delete this ignore file.
-
-# Things to ignore on an initialized baserom
-# ignore readme files
+# Ignore tool readmes
 docs/tools/*
-# ignore AddMusicK files
-tools/addmusick/*.pl
-tools/addmusick/1DF9/*
-tools/addmusick/1DFC/*
-tools/addmusick/Addmusic_*.txt
-tools/addmusick/asm/*
-tools/addmusick/asm/SNES/bin/*.bin
-tools/addmusick/asm/SNES/SongSampleList.asm
-tools/addmusick/music/originals/*
-tools/addmusick/readme_files/
-tools/addmusick/readme.html
-tools/addmusick/samples*
-tools/addmusick/SPCs/*.spc
-tools/addmusick/SPCs/1DF9
-tools/addmusick/stats/*.txt
-tools/addmusick/temp.*
-tools/addmusick/temp*
-tools/addmusick/Visualizations/*
-# ignore GPS files
-tools/gps/blocks/template.asm
-tools/gps/block_boilerplate.asm
-tools/gps/rom.txt
-tools/gps/main.asm
-tools/gps/defines.asm
-tools/gps/shared.asm
-tools/gps/routines
-# ignore Flips Files
-tools/flips/flipscfg.bin
-# ignore Lunar Magic Files
-tools/lunar_magic/usertoolbar*
-tools/lunar_magic/*.chm
-tools/lunar_magic/*.chw
-# ignore PIXI files
-tools/pixi/asm
-tools/pixi/routines
-tools/pixi/*/_header.asm
-tools/pixi/*/*/_header.asm
-# ignore UberASMTool Files
-tools/uberasmtool/*.pdb
-tools/uberasmtool/asm
-tools/uberasmtool/routines
-# ignore list files
-tools/*/list.txt
+# Ignore workspace temp files
 workspace/temp/*
 workspace/sysLMRestore
+# Ignore callisto files
 conflicts.txt
 failed_save.txt
 .dependencies
 .callisto
+# Ignore init files
 .is_setup
 .first_build_done
 # Ignore particular file types
@@ -65,20 +22,8 @@ failed_save.txt
 *.lrp
 *.sfc
 *.smc
-*.smc~
 *.spc
 *.zip
 # Keep particular files
 !.gitkeep
 export/global/!*.bps
-# keep GPS files
-tools/gps/routines/!check_sprite_kicked_horiz_alt.asm
-tools/gps/routines/!face_yoshi.asm
-tools/gps/routines/!hundred_points.asm
-tools/gps/routines/!row_points.asm
-tools/gps/routines/!star_points.asm
-tools/gps/routines/!stomped_points.asm
-tools/gps/routines/!teleport_direct.asm
-# keep AMK files
-tools/addmusick/asm/!UserDefines.asm
-tools/addmusick/1DFC/!Death Prelude.txt

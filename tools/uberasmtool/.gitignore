@@ -1,0 +1,4 @@
+*.pdb
+asm/
+routines/
+list.txt
