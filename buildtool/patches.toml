@@ -8,7 +8,7 @@
 [resources]
 
 patches = [
-	"resources/patches/consistency/capespin_direction.asm",
+	"resources/patches/consistency/capespin_direction_toggleable.asm",
 	"resources/patches/consistency/capespin_net_hitbox.asm",
 	"resources/patches/consistency/item_release_bulk.asm",
 	"resources/patches/enhancements/bullet_bill_sfx_extra_bit.asm",
@@ -30,7 +30,7 @@ patches = [
 	"resources/patches/features/ram_toggled_statusbar.asm",
 	"resources/patches/fixes/autoscroll_lr_fix.asm",
 	"resources/patches/fixes/ball_chain_yoshi_fix.asm",
-	"resources/patches/fixes/block_duplication_fix.asm",
+	"resources/patches/fixes/block_duplication_fix_toggleable.asm",
 	"resources/patches/fixes/block_snake_fix.asm",
 	"resources/patches/fixes/bomb_palette_fix.asm",
 	"resources/patches/fixes/bounce_block_death_fix.asm",
@@ -61,12 +61,12 @@ patches = [
 	"resources/patches/fixes/proximity_wrap_fix.asm",
 	"resources/patches/fixes/question_block_collision_fix.asm",
 	"resources/patches/fixes/rollover_fix.asm",
-	"resources/patches/fixes/rope_fixes.asm",
+	"resources/patches/fixes/rope_fixes_toggleable.asm",
 	"resources/patches/fixes/skull_raft_fix.asm",
 	"resources/patches/fixes/slide_kill_gfx_fix.asm",
 	"resources/patches/fixes/speed_oscillation_fix.asm",
 	"resources/patches/fixes/spike_swim_fix.asm",
-	"resources/patches/fixes/springboard_fixes.asm",
+	"resources/patches/fixes/springboard_fixes_toggleable.asm",
 	"resources/patches/fixes/sprite_ceiling_fix.asm",
 	"resources/patches/fixes/sprite_scroll_fix.asm",
 	"resources/patches/fixes/tide_current_fix.asm",
