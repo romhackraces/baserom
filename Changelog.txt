@@ -1,3 +1,7 @@
+v5.13
+- introduced a build system for the baserom's source
+- reworked the initialization scripts
+
 v5.12
 - major upgrades to the retry system
 - fix issue with Mario dying in the screen scrolling pipes sometimes
