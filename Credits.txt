@@ -1,136 +1,455 @@
     ____  __  ______     ____
-   / __ \/ / / / __ \   / __ )____ _________  _________  ____ ___
-  / /_/ / /_/ / /_/ /  / __  / __ `/ ___/ _ \/ ___/ __ \/ __ `__ \
- / _, _/ __  / _, _/  / /_/ / /_/ (__  )  __/ /  / /_/ / / / / / /
-/_/ |_/_/ /_/_/ |_|  /_____/\__,_/____/\___/_/   \____/_/ /_/ /_/
+   / __ \/ / / / __ \   / __ \____  ________  _________  ____ ___
+  / /_/ / /_/ / /_/ /  / /_/ / __ \/ ___/ _ \/ ___/ __ \/ __ \__ \
+ / _  _/ __  / _  _/  / /_/ / /_/ (__  )  __/ /  / /_/ / / / / / /
+/_/ |_|_/ /_/_/ |_|  /_____/\__\_/____/\___/_/   \____/_/ /_/ /_/
 
--- Baserom --
-AmperSam - Compilation and documentation
-Fen, Fernap, Kevin, LouisDoucet, TheJavaBrew, underway - Help & Feedback
+==== BASEROM ====
 
--- Consistency Patches --
-Capespin Direction Consistency - Katun24
-Capespin Hitbox Consistency + Net Punching Hitbox Correction - Katun24, tjb0607
-Item Release Bulk Patch - betalogic - https://smwc.me/s/20836
+Compilation & Documentation
+ - AmperSam
 
--- Enhancement Patches --
-Bullet Bill Sound Effect on Extra Bit - AmperSam - https://smwc.me/s/34948
-Chucks With Extra Bit Retain Type When Hurt - JamesD28 - https://smwc.me/s/28594
-Double Bounce Shell Palette - Fernap
-Growing/Shrinking Pipe Exit on Extra Bit - JamesD28 - https://smwc.me/s/24160
-Monty Mole, Hammer Bro and Dry Bone Behavior on Extra Bit - Kevin - https://smwc.me/s/30450
-Pitchin' Chuck Won't Turn On Extra Bit - JamesD28 - https://smwc.me/s/28579
-Placeable (Kicked) Throw Block - Kevin - https://smwc.me/s/22809
-Placeable Disco Shell - Alcaro - https://smwc.me/s/21597
-Placeable Kicked Shell v1.1 - Kevin - https://smwc.me/s/28994
-Poison Mushroom v1.0 - JackTheSpades, mikeyk - https://smwc.me/s/20440
-Rexes With Extra Bit Set Are Squished - Supermario1313 - https://smwc.me/s/27788
-Spike Top Ceiling Cling - imamelia - https://smwc.me/s/18949
-Triple Ball 'n' Chain - imamelia - https://smwc.me/s/36603
+Help & Feedback:
+ - binavik, Fen, Fernap, Kevin, LouisDoucet, TheJavaBrew, underway
 
--- Feature Patches --
-Individual Dragon Coin Save - JackTheSpades, lx5, worldpeace - https://smwc.me/s/22888
-ObjecTool 0.5* - 0x400, imamelia - https://smwc.me/s/24217
-RAM Specific L/R Scroll Disable - Chdata - https://smwc.me/s/20355
-RAM Toggled Status Bar (& IRQ) - Kevin - https://smwc.me/s/28449
-RAM-Toggled Spin Jump Fireballs - AmperSam - https://smwc.me/s/35220
 
--- Bug Fix Patches --
-$13FB Game Crash Fix (Fireberry) - p4plus2 - https://smwc.me/s/18319
-Autoscroll ($1411) + L/R Softlock Fix - Telinc1 - https://smwc.me/s/15711
-Ball n' Chain and Yoshi Interaction Fix - Kevin - https://smwc.me/s/22761
-BG Candle Flames Priority Fix (for SA-1 MaxTile) - Kevin - https://smwc.me/s/32380
-Block Duplication Fix v1.6* - Tattletale, lolcats439, spooonsss - https://smwc.me/s/37662
-Bob-omb Kicked Palette Fix - Koopster - https://smwc.me/s/24684
-Bounce Blocks Death Fix - Kevin - https://smwc.me/s/25647
-Cape Layer 2 Position Fix - HammerBrother - https://smwc.me/s/12328
-Castle Intro Ledge Fix - Kevin - https://smwc.me/s/34038
-Climbing Net Door on Subscreen Boundary Fix v1.1 - Kevin - https://smwc.me/s/32586
-Cluster Boo Ducking Fix - Alcaro - https://smwc.me/s/11618
-Dark Room Background Fix - Roy - https://smwc.me/s/19456
-Dead Spring Fix - Kevin - https://smwc.me/s/29595
-Double Spinjump Antifail - Alcaro - https://smwc.me/s/13400
-Eating Blocks Freeze Fix - Kevin - https://smwc.me/s/26543
-Feather Autoscroll Freeze Fix - Romi - https://smwc.me/s/19333
-Goal Point Sprite Reward Fix - Major Flare, Ragey - https://smwc.me/s/22588
-Hammer Bro Fix v1.1 - Tattletale, yoshifanatic - https://smwc.me/s/18722
-Horizontal Scroll Snap Fix - Kevin - https://smwc.me/s/29085
-Item Box Mushroom Priority Fix - Alcaro - https://smwc.me/s/18320
-Layer 2+3 Wallrun Triangle Fix - dtothefourth - https://smwc.me/s/21413
-Line Guide Acts-Like Fix - imamelia, worldpeace - https://smwc.me/s/23847
-Line-Guided Rope Length Fix - imamelia - https://smwc.me/s/18948
-Moving Castle Block Offscreen Handling Fix v1.1 - Blind Devil - https://smwc.me/s/18721
-No Sprite Interaction Fix - chillyfox - https://smwc.me/s/19222
-P-Balloon and Cloud Clipping Fix - lolcats439 - https://smwc.me/s/8771
-P-Switch Duplication with Yoshi Fix - Kevin - https://smwc.me/s/22611
-Player X Speed Fix* - HammerBrother, tjb0607 - https://smwc.me/s/33679
-Proximity Wraparound fix 2.0 - HammerBrother, JackTheSpades, RussianMan - https://smwc.me/s/26926
-Question Block Item Collision Fix - Kevin - https://smwc.me/s/29094
-Red Stem Piranha Plants on Extra Bit + Stem Fix - Koopster - https://smwc.me/s/32080
-Rollover Fix - Noobish Noobsicle - https://smwc.me/s/14053
-Rope Fix - Alcaro - https://smwc.me/s/8784
-Skull Raft Fix - Alcaro - https://smwc.me/s/20145
-Spike Swim Fix v1.1 - Alcaro, yoshifanatic - https://smwc.me/s/17740
-Springboard Fixes - MiracleWater - https://smwc.me/s/22084
-Sprite Ceiling Fix - Davros - https://smwc.me/s/14697
-Sprite Scroll Fix - HammerBrother - https://smwc.me/s/13675
-Star/Slide Kill GFX Fix - Kevin - https://smwc.me/s/30709
-Tide Current Fix - Koopster - https://smwc.me/s/26825
-Time Up Fix - Alcaro - https://smwc.me/s/15110
-Title Window Cleaner - Alcaro - https://smwc.me/s/8975
-Torpedo Ted Offscreen Smoke Fix - Kevin - https://smwc.me/s/26503
-Triple Rotating Platform Vertical Level Fix - Karisa - https://smwc.me/s/21707
-Vertical Level Bowser Statue Fireball Fix - Medic, Telinc1 - https://smwc.me/s/16781
-Vertical Spawn/Despawn Fix - HammerBrother - https://smwc.me/s/22833
-Victory Pose Fix v1.1 - TheBiob - https://smwc.me/s/22372
-Walljump/Note Block Glitch Fix v1.6 - lolcats439 - https://smwc.me/s/19932
-Yoshi Pipe Animation Fix - Kevin - https://smwc.me/s/30127
+==== CONSISTENCY PATCHES ====
 
--- Optimization Patches
-Fixed Color Data NMI Optimizer - Ladida - https://smwc.me/s/18596
-Layer 2 Buoyancy Optimization - worldpeace - https://smwc.me/s/16366
-Lunar Magic's "VRAM Patch" Optimization - Kevin - https://smwc.me/s/28028
-Optimize 1F0 - Fernap - https://smwc.me/s/31950
-Status Bar NMI Optimizer v1.1 - Kevin - https://smwc.me/s/33996
+Capespin Direction Consistency*
+ - author(s): Katun24
 
--- Misc. Patches --
-Extended No Sprite Tile Limits v4.0 - DiscoTheBat, Kevin, Roy, imamelia, worldpeace - https://smwc.me/s/32381
-Free Up RAM - dtothefourth, RPG Hacker, Erik/Kaijyuu
-Free Up Tile 69 - Kevin
-Mario's 8x8 Tiles DMA-er - Ladida, lx5 - https://smwc.me/s/26002
-No More Sprite Tile Limits v1.2.1 - Arujus, MathOnNapkins, Tattletale, NoelYoshi, Vitor Vilela, edit1754 - https://smwc.me/s/24816
-SA-1 Pack v1.40** - Arujus, Vitor Vilela - https://smwc.me/s/25938
+Capespin Hitbox Consistency + Net Punching Hitbox Correction*
+ - author(s): Katun24, tjb0607
 
--- UberASM --
-Consistent 8 Frame Cape Float Delay* - DJLocks, xHF01x - https://smwc.me/s/28534
-ON/OFF Double Hit fix - Kevin - https://smwc.me/s/30011
-UberASM Retry System - Kevin - https://github.com/kkevinm/retry-system/
-UberASM Objects System - AmperSam, underway, MarioFanGamer
+Item Release Bulk Patch
+ - author(s): betalogic
+ - source: https://smwc.me/s/20836
 
--- Blocks --
-Basic Baserom Blocks - AmperSam
-Block Breakable by Item - JUMP Baserom
-Donut Lift Block v1.1* - by Davros, mikeyk - https://smwc.me/s/20418
-Hurt / Death Block for Kaizo / Pit Hacks - dacin - https://smwc.me/s/27268
-Ledge Vine - ASM - https://smwc.me/s/3944
-One-way blocks 1.2 - HammerBrother - https://smwc.me/s/18158
-Question Mark Blocks v2.0.0* - MarioFanGamer, lx5 - https://smwc.me/s/30840
-Screen Scrolling Pipes 4.0.2* - HammerBrother - https://smwc.me/s/27019
-Spiny and Swooper Blocks - TheBourgyman - https://smwc.me/s/30296
-Super Bounce Blocks* - dogemaster - https://smwc.me/s/22934
 
--- Used Tools --
-AddmusicK 1.0.11 - Kipernal,KungFuFurby - https://smwc.me/s/35333
-Asar v1.81 - Alcaro et al. - https://smwc.me/s/25953
-Callisto v0.4.1 - underway - https://github.com/Underrout/callisto/
-Flips v1.31 - Alcaro - https://smwc.me/s/11474
-GPS V1.4.4 - TheBiob, p4plus2 - https://smwc.me/s/29130
-Lunar Magic 3.40 - FuSoYa - https://smwc.me/s/35121
-PIXI v1.42 - Atari2.0, JackTheSpades, Tattletale - https://smwc.me/s/32277
-UberASMTool 2.0 - Vitor Vilela, Fernap - https://smwc.me/s/36986
+==== ENHANCEMENT PATCHES ====
 
--- Other --
-Custom User Toolbar - AmperSam
+Bullet Bill Sound Effect on Extra Bit
+ - author(s): AmperSam
+ - source: https://smwc.me/s/34948
+
+Chucks With Extra Bit Retain Type When Hurt
+ - author(s): JamesD28
+ - source: https://smwc.me/s/28594
+
+Double Bounce Shell Palette
+ - author(s): Fernap
+
+Growing/Shrinking Pipe Exit on Extra Bit
+ - author(s): JamesD28
+ - source: https://smwc.me/s/24160
+
+Monty Mole, Hammer Bro and Dry Bone Behavior on Extra Bit
+ - author(s): Kevin
+ - source: https://smwc.me/s/30450
+
+Pitchin' Chuck Won't Turn On Extra Bit
+ - author(s): JamesD28
+ - source: https://smwc.me/s/28579
+
+Placeable (Kicked) Throw Block
+ - author(s): Kevin
+ - source: https://smwc.me/s/22809
+
+Placeable Disco Shell
+ - author(s): Alcaro
+ - source: https://smwc.me/s/21597
+
+Placeable Kicked Shell v1.1
+ - author(s): Kevin
+ - source: https://smwc.me/s/28994
+
+Poison Mushroom v1.0
+ - author(s): JackTheSpades, mikeyk
+ - source: https://smwc.me/s/20440
+
+Rexes With Extra Bit Set Are Squished
+ - author(s): Supermario1313
+ - source: https://smwc.me/s/27788
+
+Spike Top Ceiling Cling
+ - author(s): imamelia
+ - source: https://smwc.me/s/18949
+
+Triple Ball 'n' Chain
+ - author(s): imamelia
+ - source: https://smwc.me/s/36603
+
+
+==== FEATURE PATCHES ====
+
+Individual Dragon Coin Save
+ - author(s): JackTheSpades, lx5, worldpeace
+ - source: https://smwc.me/s/22888
+
+ObjecTool 0.5*
+ - author(s): 0x400, imamelia
+ - source: https://smwc.me/s/24217
+
+RAM Specific L/R Scroll Disable
+ - author(s): Chdata
+ - source: https://smwc.me/s/20355
+
+RAM Toggled Status Bar (& IRQ)
+ - author(s): Kevin
+ - source: https://smwc.me/s/28449
+
+RAM-Toggled Spin Jump Fireballs
+ - author(s): AmperSam
+ - source: https://smwc.me/s/35220
+
+
+==== BUG FIX PATCHES ====
+
+$13FB Game Crash Fix (Fireberry)
+ - author(s): p4plus2
+ - source: https://smwc.me/s/18319
+
+Autoscroll ($1411) + L/R Softlock Fix
+ - author(s): Telinc1
+ - source: https://smwc.me/s/15711
+
+Ball n' Chain and Yoshi Interaction Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/22761
+
+BG Candle Flames Priority Fix (for SA-1 MaxTile)
+ - author(s): Kevin
+ - source: https://smwc.me/s/32380
+
+Block Duplication Fix v1.6*
+ - author(s): Tattletale, lolcats439, spooonsss
+ - source: https://smwc.me/s/37662
+
+Bob-omb Kicked Palette Fix
+ - author(s): Koopster
+ - source: https://smwc.me/s/24684
+
+Bounce Blocks Death Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/25647
+
+Cape Layer 2 Position Fix
+ - author(s): HammerBrother
+ - source: https://smwc.me/s/12328
+
+Castle Intro Ledge Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/34038
+
+Climbing Net Door on Subscreen Boundary Fix v1.1
+ - author(s): Kevin
+ - source: https://smwc.me/s/32586
+
+Cluster Boo Ducking Fix
+ - author(s): Alcaro
+ - source: https://smwc.me/s/11618
+
+Dark Room Background Fix
+ - author(s): Roy
+ - source: https://smwc.me/s/19456
+
+Dead Spring Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/29595
+
+Double Spinjump Antifail
+ - author(s): Alcaro
+ - source: https://smwc.me/s/13400
+
+Eating Blocks Freeze Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/26543
+
+Feather Autoscroll Freeze Fix
+ - author(s): Romi
+ - source: https://smwc.me/s/19333
+
+Goal Point Sprite Reward Fix
+ - author(s): Major Flare, Ragey
+ - source: https://smwc.me/s/22588
+
+Hammer Bro Fix v1.1
+ - author(s): Tattletale, yoshifanatic
+ - source: https://smwc.me/s/18722
+
+Horizontal Scroll Snap Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/29085
+
+Item Box Mushroom Priority Fix
+ - author(s): Alcaro
+ - source: https://smwc.me/s/18320
+
+Layer 2+3 Wallrun Triangle Fix
+ - author(s): dtothefourth
+ - source: https://smwc.me/s/21413
+
+Line Guide Acts-Like Fix
+ - author(s): imamelia, worldpeace
+ - source: https://smwc.me/s/23847
+
+Line-Guided Rope Length Fix
+ - author(s): imamelia
+ - source: https://smwc.me/s/18948
+
+Moving Castle Block Offscreen Handling Fix v1.1
+ - author(s): Blind Devil
+ - source: https://smwc.me/s/18721
+
+No Sprite Interaction Fix
+ - author(s): chillyfox
+ - source: https://smwc.me/s/19222
+
+P-Balloon and Cloud Clipping Fix
+ - author(s): lolcats439
+ - source: https://smwc.me/s/8771
+
+P-Switch Duplication with Yoshi Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/22611
+
+Player X Speed Fix*
+ - author(s): HammerBrother, tjb0607
+ - source: https://smwc.me/s/33679
+
+Proximity Wraparound fix 2.0
+ - author(s): HammerBrother, JackTheSpades, RussianMan
+ - source: https://smwc.me/s/26926
+
+Question Block Item Collision Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/29094
+
+Red Stem Piranha Plants on Extra Bit + Stem Fix
+ - author(s): Koopster
+ - source: https://smwc.me/s/32080
+
+Rollover Fix
+ - author(s): Noobish Noobsicle
+ - source: https://smwc.me/s/14053
+
+Rope Fix
+ - author(s): Alcaro
+ - source: https://smwc.me/s/8784
+
+Skull Raft Fix
+ - author(s): Alcaro
+ - source: https://smwc.me/s/20145
+
+Spike Swim Fix v1.1
+ - author(s): Alcaro, yoshifanatic
+ - source: https://smwc.me/s/17740
+
+Springboard Fixes
+ - author(s): MiracleWater
+ - source: https://smwc.me/s/22084
+
+Sprite Ceiling Fix
+ - author(s): Davros
+ - source: https://smwc.me/s/14697
+
+Sprite Scroll Fix
+ - author(s): HammerBrother
+ - source: https://smwc.me/s/13675
+
+Star/Slide Kill GFX Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/30709
+
+Tide Current Fix
+ - author(s): Koopster
+ - source: https://smwc.me/s/26825
+
+Time Up Fix
+ - author(s): Alcaro
+ - source: https://smwc.me/s/15110
+
+Title Window Cleaner
+ - author(s): Alcaro
+ - source: https://smwc.me/s/8975
+
+Torpedo Ted Offscreen Smoke Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/26503
+
+Triple Rotating Platform Vertical Level Fix
+ - author(s): Karisa
+ - source: https://smwc.me/s/21707
+
+Vertical Level Bowser Statue Fireball Fix
+ - author(s): Medic, Telinc1
+ - source: https://smwc.me/s/16781
+
+Vertical Spawn/Despawn Fix
+ - author(s): HammerBrother
+ - source: https://smwc.me/s/22833
+
+Victory Pose Fix v1.1
+ - author(s): TheBiob
+ - source: https://smwc.me/s/22372
+
+Walljump/Note Block Glitch Fix v1.6
+ - author(s): lolcats439
+ - source: https://smwc.me/s/19932
+
+Yoshi Pipe Animation Fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/30127
+
+
+==== OPTIMIZATION PATCHES ====
+
+Fixed Color Data NMI Optimizer
+ - author(s): Ladida
+ - source: https://smwc.me/s/18596
+
+Layer 2 Buoyancy Optimization
+ - author(s): worldpeace
+ - source: https://smwc.me/s/16366
+
+Lunar Magic's "VRAM Patch" Optimization
+ - author(s): Kevin
+ - source: https://smwc.me/s/28028
+
+Optimize 1F0
+ - author(s): Fernap
+ - source: https://smwc.me/s/31950
+
+Status Bar NMI Optimizer v1.1
+ - author(s): Kevin
+ - source: https://smwc.me/s/33996
+
+
+==== MISC. PATCHES ====
+
+Extended No Sprite Tile Limits v4.0
+ - author(s): DiscoTheBat, Kevin, Roy, imamelia, worldpeace
+ - source: https://smwc.me/s/32381
+
+Free Up RAM
+ - author(s) dtothefourth, RPG Hacker, Erik/Kaijyuu
+
+Free Up Tile 69
+ - author(s): Kevin
+
+Mario's 8x8 Tiles DMA-er
+ - author(s): Ladida, lx5
+ - source: https://smwc.me/s/26002
+
+No More Sprite Tile Limits v1.2.1
+ - author(s): Arujus, MathOnNapkins, Tattletale, NoelYoshi, Vitor Vilela, edit1754
+ - source: https://smwc.me/s/24816
+
+SA-1 Pack v1.40**
+ - author(s): Arujus, Vitor Vilela
+ - source: https://smwc.me/s/25938
+
+
+==== UBERASM ====
+
+Consistent 8 Frame Cape Float Delay*
+ - author(s): DJLocks, xHF01x
+ - source: https://smwc.me/s/28534
+
+ON/OFF Double Hit fix
+ - author(s): Kevin
+ - source: https://smwc.me/s/30011
+
+UberASM Retry System
+ - author(s): Kevin
+ - source: https://github.com/kkevinm/retry-system/
+
+UberASM Objects System
+ - author(s): AmperSam, underway, MarioFanGamer
+
+==== BLOCKS ====
+
+Basic Baserom Blocks
+ - author(s): AmperSam
+
+Block Breakable by Item
+ - source: JUMP Baserom
+
+Donut Lift Block v1.1*
+ - author(s): by Davros, mikeyk
+ - source: https://smwc.me/s/20418
+
+Hurt / Death Block for Kaizo / Pit Hacks
+ - author(s): dacin
+ - source: https://smwc.me/s/27268
+
+Ledge Vine
+ - author(s): ASM
+ - source: https://smwc.me/s/3944
+
+One-way blocks 1.2
+ - author(s): HammerBrother
+ - source: https://smwc.me/s/18158
+
+Question Mark Blocks v2.0.0*
+ - author(s): MarioFanGamer, lx5
+ - source: https://smwc.me/s/30840
+
+Screen Scrolling Pipes 4.0.2*
+ - author(s): HammerBrother
+ - source: https://smwc.me/s/27019
+
+Spiny and Swooper Blocks
+ - author(s): TheBourgyman
+ - source: https://smwc.me/s/30296
+
+Super Bounce Blocks*
+ - author(s): dogemaster
+ - source: https://smwc.me/s/22934
+
+
+==== USED TOOLS ====
+
+AddmusicK 1.0.11
+ - author(s): Kipernal, KungFuFurby
+ - source: https://smwc.me/s/35333
+
+Asar v1.81
+ - author(s): Alcaro et al.
+ - source: https://smwc.me/s/25953
+
+Callisto v0.4.1
+ - author(s): underway
+ - source: https://github.com/Underrout/callisto/
+
+Flips v1.31
+ - author(s): Alcaro
+ - source: https://smwc.me/s/11474
+
+GPS v1.4.4
+ - author(s): TheBiob, p4plus2
+ - source: https://smwc.me/s/29130
+
+Lunar Magic 3.40
+ - author(s): FuSoYa
+ - source: https://smwc.me/s/35121
+
+PIXI v1.42
+ - author(s): Atari2.0, JackTheSpades, Tattletale
+ - source: https://smwc.me/s/32277
+
+UberASMTool 2.0
+ - author(s): Vitor Vilela, Fernap
+ - source: https://smwc.me/s/36986
+
+
+==== OTHER ====
+
+Custom User Toolbar
+ - AmperSam
+
+
+==== NOTES ====
 
 * modified for use in the baserom
 ** if using SA-1 initial build patch
