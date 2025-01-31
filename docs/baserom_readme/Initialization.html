@@ -11,7 +11,7 @@
 <header><div class="home"><a href="./index.html">🏠</a></div><span>Baserom Initialization</span></header>
 <section>
 <h3>Initialization</h3>
-<p>As part of the <a href="Getting Started.html">Getting Started</a> process, this baserom uses a set-up script to initialize your baserom project. The main purpose of the script is to keep the GitHub project free from the binary files and executables that come with tools to avoid being in the sticky situation of re-distributing them with the baserom.</p>
+<p>As part of the <a href="./Getting Started.html">Getting Started</a> process, this baserom uses a set-up script to initialize your baserom project. The main purpose of the script is to keep the GitHub project free from the binary files and executables that come with tools to avoid being in the sticky situation of re-distributing them with the baserom.</p>
 <p>The batch script "!initialize_baserom.bat" in the main folder is actually just calling a Powershell file: "baserom_init.ps1" (that you can find in the <span class="dir">tools/init</span> folder). This Powershell script is the majority of the initialization process and has few main functions:</p>
 <ol>
     <li><a href="#download-tools">Download and set-up the necessary tools</a></li>
@@ -32,7 +32,7 @@
 </ol>
 <h4 id="set-up-tools">Pre-load Configuration Files</h4>
 <p>Most tools files are copied as-is into their respective directories but during tool set-up the script copies a few files into the appropriate tool folders to either "fill" empty list files, or install additional functionality.</p>
-<p>These files are mainly pre-filled "list.txt" files that are used for AddMusicK, GPS, PIXI and UberASM Tool, as well as things for the custom <a href="User Toolbar.html">User Toolbar</a>. You can find them in <span class="dir">tools/init/lists</span> and <span class="dir">tools/init/usertoolbar</span> folders.</p>
+<p>These files are mainly pre-filled "list.txt" files that are used for AddMusicK, GPS, PIXI and UberASM Tool, as well as things for the custom <a href="./User Toolbar.html">User Toolbar</a>. You can find them in <span class="dir">tools/init/lists</span> and <span class="dir">tools/init/usertoolbar</span> folders.</p>
 <h4 id="run-first-build">Callisto First Build</h4>
 <p>Technically this step isn't strictly necessary but it is included to ensure that your project can build successfully after initialization and to catch any problems. If it runs successfully you can move on to working on the project.</p>
 <hr>

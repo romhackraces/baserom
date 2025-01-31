@@ -65,19 +65,12 @@ init:
 <p>The baserom aims to stay close to the vanilla experience so midways keep their default behaviour of making Mario big when they are collected, but this can be overridden in the baserom in a couple ways:</p>
 <ul>
     <li>In individual levels, you can insert the <b>B3</b> <a href="UberASM Objects.html">UberASM Object</a> to disable this behaviour.</li>
-    <li>For a hack-wide change, you can reconfigure the Retry System by changing the <code>!midway_powerup</code> option in the <span class="dir">tools/uberasmtool/retry_config/settings.asm</span> file.</li>
+    <li>For a hack-wide change, you can reconfigure the Retry System by changing the <code>!midway_powerup</code> option in the <span class="dir">tools/uberasmtool/retry_config/settings_global.asm</span> file.</li>
 </ul>
 <p>After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
 <hr>
 <h3 id="fast-retry">Does this have Fast Retry?</h3>
-<p>By default the baserom is configured to use the vanilla death routine but you can enable retry in a level using a custom object. The <a href="UberASM Objects.html#retry-objects">UberASM Objects</a> page has a section for the retry system with details.</p>
-<p>For hack-wide changes to the Retry System you can edit its global configuration files in <span class="dir">tools/uberasmtool/retry_config</span>.</p>
-<ul>
-    <li><b>settings.asm</b> &ndash; Change the global settings for the retry system.</li>
-    <li><b>sprite_status_bar_tables.asm</b> &ndash; More configuration tables for displaying the sprite status bar items.</li>
-    <li><b>tables.asm</b> &ndash; Several options tables for changing per-level settings.</li>
-</ul>
-<p>After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
+<p>By default the baserom is configured to use the vanilla death routine but you can enable retry in a level using a custom object or by editing its global configuration files in the <span class="dir">tools/uberasmtool/retry_config</span> folder. After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
 <hr>
 <h3 id="block-graphics">Why are my block graphics not looking right?</h3>
 <center><img src="img/garbled_map16.png" title="Custom block tiles missing ExGraphics"></center>
