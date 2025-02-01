@@ -16,19 +16,22 @@ margin: 6px 0;
 <header><div class="home"><a href="./index.html">🏠</a></div><span>Baserom Basics</span></header>
 <section>
 <p>This article will go into some basic tasks when it comes to using the tools included in the baserom since it is a little different from a typical setup.</p>
-<h3 id="#">Contents</h3>
+<h4 id="#">Contents</h4>
 <ul>
-<li><a href="#callisto">Using Callisto to manage your Project</a></li>
-<li><a href="#patches">Adding or Removing Asar Patches</a></li>
-<li><a href="#sprites">Adding Sprites with PIXI</a></li>
-<li><a href="#blocks">Adding Blocks with GPS</a></li>
-<li><a href="#uberasm">Adding UberASM with UberASMTool</a></li>
-<li><a href="#music">Adding Music with AddMusicK</a></li>
+<li><a href="#manage">Manage your Project with Callisto</a></li>
+<ul>
+    <li><a href="#patches">Adding or Removing Asar Patches</a></li>
+    <li><a href="#sprites">Adding Sprites with PIXI</a></li>
+    <li><a href="#blocks">Adding Blocks with GPS</a></li>
+    <li><a href="#uberasm">Adding UberASM with UberASMTool</a></li>
+    <li><a href="#music">Adding Music with AddMusicK</a></li>
+</ul>
+<li><a href="#renaming">Rename your Project</a></li>
 </ul>
 <hr>
-<h3 id="editing">Using Callisto to manage your Project</h3>
+<h3 id="manage">Manage your Project with Callisto</h3>
 <p>Callisto is the window into your project, it keeps track of the changes you make and is also the means by which you jump into editing your project and making updates.</p>
-<pre style="line-height: 1.16;overflow: scroll;"">
+<pre style="line-height: 1.16;overflow: scroll;">
 <span style="display:block;width:360px;">╭callisto v*.*.*────────────────────────╮
 │ your-project (C:\User\your-project)   │
 ├───────────────────────────────────────┤
@@ -54,10 +57,11 @@ margin: 6px 0;
     <li><b>Rebuild</b> &ndash; this action will entirely rebuild your project from scratch, it should be used sparingly. Callisto is also smart about when a Rebuild is required when you use the Update action and will do that automatically.</li>
     <li><b>Package</b> &ndash; when you need to create a BPS patch of your project this action will do it for you.</li>
 </ul>
-<p>You can read up on more of these actions in detail in the Callisto documentation in the <span class="dir">docs/tools/Callisto</span> folder.</p>
+<p>You can read up on more of these actions in detail in the <a href="../../docs/tools/Callisto/documentation/Using-Callisto.html">Callisto documentation</a> in the <span class="dir">docs/tools</span> folder.</p>
 <p class="infobox"><b>tl;dr</b> Use "Edit" to launch Lunar Magic, use "Update" when you make any changes.</p>
-<hr>
-<h3 id="patches">Adding or Removing Asar Patches</h3>
+
+<br>
+<h4 id="patches">Adding or Removing Asar Patches</h4>
 <p>In the baserom, Asar <a href="Patches.html">patches</a> are managed by the Callisto build tool and are all applied at build time. The files for all included patches are kept in subfolders the <b>resources/patches</b> folder.</p>
 <p>To <u>add</u> a new patch:</p>
 <ol>
@@ -71,8 +75,8 @@ margin: 6px 0;
 </ol>
 <p>Any changes made to the patches list will be applied the next time you run the "Rebuild" or "Update" action.</p>
 <small>In versions 5.9 and earlier patches were in the "resources.toml" file.</small>
-<hr>
-<h3 id="sprites">Adding Sprites with PIXI</h3>
+<br>
+<h4 id="sprites">Adding Sprites with PIXI</h4>
 <p>To add sprite resources to your project:</p>
 <ol>
 <li>Open the <span class="dir">tools/pixi</span> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 4);" data-tooltip="Open PIXI Directory"></span> button) and add your sprite files to the relevant folders in this directory.</li>
@@ -80,8 +84,8 @@ margin: 6px 0;
 <li><b>Do not run pixi.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);" data-tooltip="Run Update in Callisto"></span> toolbar button to insert the new sprites.</li>
 </ol>
 <p>For more information about use PIXI, check out <a href="../../docs/tools/PIXI/README.html">PIXI's included README</a> in the <span class="dir">docs/tools</span> folder. Or, for a more in-depth explanation of how to use PIXI, check out <a href="https://smwc.me/t/91190" target="_blank">this tutorial on SMW Central</a>.</p>
-<hr>
-<h3 id="blocks">Adding Blocks with GPS</h3>
+<br>
+<h4 id="blocks">Adding Blocks with GPS</h4>
 <p>To add block resources to your project:</p>
 <ol>
 <li>Open the <span class="dir">tools/gps</span> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 5);" data-tooltip="Open GPS Directory"></span> button) and add your block files to the relevant folders in this directory.</li>
@@ -90,8 +94,8 @@ margin: 6px 0;
 </ol>
 <p class="infobox">Start with Page 4 addresses in the block list (400 and up) to avoid conflicts with the <a href="./Blocks.html">baserom's blocks</a>.</p>
 <p>For more information about use GPS, check out <a href="../../docs/tools/GPS/README.txt">GPS's included README</a> in the <span class="dir">docs/tools</span> folder. Or, for a more in-depth explanation of how to use GPS, check out <a href="https://smwc.me/t/88423" target="_blank">this tutorial on SMW Central</a>.</p>
-<hr>
-<h3 id="uberasm">Adding UberASM with UberASMTool</h3>
+<br>
+<h4 id="uberasm">Adding UberASM with UberASMTool</h4>
 <p>To add new UberASM to your project:</p>
 <ol>
 <li>Open the <span class="dir">tools/uberasmtool</span> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 6);" data-tooltip="Open UberASMTool Directory"></span> button) and add your UberASM files to the relevant folders in this directory.</li>
@@ -99,8 +103,8 @@ margin: 6px 0;
 <li><b>Do not run UberASMTool.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);" data-tooltip="Run Update in Callisto"></span> toolbar button to insert the new UberASM.</li>
 </ol>
 <p>For a more in-depth explanation of how to use UberASMTool, check out <a href="../../docs/tools/UberASMTool/readme.html">UberASMTool's included README</a> in the <span class="dir">docs/tools</span> folder.</p>
-<hr>
-<h3 id="music">Adding Music with AddMusicK</h3>
+<br>
+<h4 id="music">Adding Music with AddMusicK</h4>
 <p>To add new music to your project:</p>
 <ol>
 <li>Open the <span class="dir">tools/addmusick</span> folder (you can do this right from Lunar Magic with the <span class="usertoolbar-button" style="background-position:calc(-16px * 7);" data-tooltip="Open AddMusicK Directory"></span> button) and add your music files to the relevant folders in this directory.</li>
@@ -108,6 +112,16 @@ margin: 6px 0;
 <li><b>Do not run any AddMusicK.exe manually</b>. Instead run the "Update" action in an open Callisto window or press the <span class="usertoolbar-button" style="background-position:calc(-16px * 9);" data-tooltip="Run Update in Callisto"></span> toolbar button to insert the new music or sound effects.</li>
 </ol>
 <p>For a more in-depth explanation of how to use AddMusicK, check out <a href="../../docs/tools/AddMusicK/readme.html">AddMusicK's included README</a> in the <span class="dir">docs/tools</span> folder.</p>
+<hr>
+<h3 id="renaming">Rename Your Project</h3>
+<p>By default, the project is named "RHRv5" and this is set in the <span class="dir">buildtool/variables.toml</span> configuration file. If you would like your project to be called something else open that file and change the <code>project_name</code> definition.</p>
+<pre>
+[variables]
+
+    # Feel free to change this!
+    project_name = "RHRv5"
+</pre>
+<p>After updating this configuration (and saving the file), run a <b>Rebuild</b> action to make the change.</p>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>

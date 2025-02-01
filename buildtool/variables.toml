@@ -2,4 +2,8 @@
 # Project variables
 [variables]
 
-    project_name = "RHRv5"  # Feel free to change this!
+     # Feel free to change this!
+    project_name = "RHRv5"
+
+    # Don't change this (unless you move all the patches)
+    patches_directory = "resources/patches"
