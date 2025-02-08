@@ -105,7 +105,7 @@ endif
     BEQ ..NoHide                            ;|
     LDA !Freeram_SSP_PipeTmr                ;|
     BNE ..NoHide                            ;/
-if !Setting_SSP_PipeDebug == 0
+if !Setting_SSP_ShowMario == 0
 ..DontHideYoshi
     LDA #$EF
     LDY $187A|!addr
@@ -149,7 +149,7 @@ endif
 ;-----------------------------------------
 .InPipeMode
 
-if !Setting_SSP_PipeDebug == 0
+if !Setting_SSP_ShowMario == 0
 ..DisablePlayerInteraction
 	LDA #$02                                ;\go behind layers
 	STA $13F9|!addr                         ;/
@@ -335,33 +335,34 @@ endif										;|
 ; Tables
 ;-------------------------------------------------------
 
+; X speed table
 SSP_PipeXSpeed:
-    ;X speed table
-    db $00          ;>#$01 Stem upwards
-    db $40          ;>#$02 Stem rightwards
-    db $00          ;>#$03 Stem downwards
-    db $C0          ;>#$04 Stem leftwards
-    db $00          ;>#$05 Pipe cap upwards
-    db $40          ;>#$06 Pipe cap rightwards
-    db $00          ;>#$07 Pipe cap downwards
-    db $C0          ;>#$08 Pipe cap leftwards
+    db $00                                  ;>#$01 Stem upwards
+    db !SSP_PipeSpeed_X                     ;>#$02 Stem rightwards
+    db $00                                  ;>#$03 Stem downwards
+    db -!SSP_PipeSpeed_X                    ;>#$04 Stem leftwards
+    db $00                                  ;>#$05 Pipe cap upwards
+    db !SSP_PipeSpeed_X                     ;>#$06 Pipe cap rightwards
+    db $00                                  ;>#$07 Pipe cap downwards
+    db -!SSP_PipeSpeed_X                    ;>#$08 Pipe cap leftwards
 
+; Y speed table
 SSP_PipeYSpeed:
-    ;Y speed table
-    db $C0          ;>#$01 Stem upwards
-    db $00          ;>#$02 Stem rightwards
-    db $40          ;>#$03 Stem downwards
-    db $00          ;>#$04 Stem leftwards
-    db $C0          ;>#$05 Pipe cap upwards
-    db $00          ;>#$06 Pipe cap rightwards
-    db $40          ;>#$07 Pipe cap downwards
-    db $00          ;>#$08 Pipe cap leftwards
+    db -!SSP_PipeSpeed_Y                    ;>#$01 Stem upwards
+    db $00                                  ;>#$02 Stem rightwards
+    db !SSP_PipeSpeed_Y                     ;>#$03 Stem downwards
+    db $00                                  ;>#$04 Stem leftwards
+    db -!SSP_PipeSpeed_Y                    ;>#$05 Pipe cap upwards
+    db $00                                  ;>#$06 Pipe cap rightwards
+    db !SSP_PipeSpeed_Y                     ;>#$07 Pipe cap downwards
+    db $00                                  ;>#$08 Pipe cap leftwards
 
+; first number = force button held when not carrying sprites, second is when carrying.
+; a set bit here means a bit is forced to be enabled (button will be held down)
 SSP_CarryControlsForceSet:
-    ; first number = force button held when not carrying sprites, second is when carrying.
-    ; a set bit here means a bit is forced to be enabled (button will be held down)
     db %00000000, %01000000
+
+; Same format as above, but fores a button to not be pressed.
+; a bit clear here means the button will be forced to be cleared.
 SSP_CarryControlsForceClear:
-    ; Same format as above, but fores a button to not be pressed.
-    ; a bit clear here means the button will be forced to be cleared.
     db %00010000, %01010000
