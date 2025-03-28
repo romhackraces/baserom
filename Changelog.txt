@@ -1,6 +1,7 @@
 v5.13
 - introduced a build system for the baserom's source
 - reworked the initialization scripts
+- update Callisto to version 0.4.2
 
 v5.12
 - major upgrades to the retry system
