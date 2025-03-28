@@ -27,6 +27,9 @@ main:
     ; If the game is paused, skip.
     lda $13D4|!addr : bne .paused
 
+    ; If a message is running, skip.
+    lda $1426|!addr : bne .return
+
     ; If Mario is dying, handle it.
     lda $71 : cmp #$09 : beq .dying
 
@@ -39,13 +42,13 @@ main:
 
     ; If Mario is not dead but the prompt is displayed for some reason
     ; (for example, revive glitch with Yoshi)...
-    lda !ram_prompt_phase : beq ..return
+    lda !ram_prompt_phase : beq .return
 
     ; ...reset the prompt box and prevent drawing tiles
     lda #$00 : sta !ram_prompt_phase
     jsr prompt_handle_box_finished_shrinking
 
-..return:
+.return:
     rtl
 
 .paused:

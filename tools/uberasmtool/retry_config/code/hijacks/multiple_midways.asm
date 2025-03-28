@@ -110,6 +110,7 @@ endif
     beq .normal
 
 .checkpoint:
+    ; Check if the checkpoint destination is a midway entrance.
     phx
     txa : asl : tax
     lda.l !ram_checkpoint+1,x
@@ -125,25 +126,45 @@ endif
     jml $05D9DE|!bank
 
 vanilla_midway_destination_fix:
+    ; Skip if entering from the Overworld.
     lda $141A|!addr : beq .orig2
-    lda.l !rom_lm_midway_entrance_hack_byte : cmp #$22 : bne .orig2
+
+    ; Skip if not respawning in the level from Retry.
     lda !ram_is_respawning : beq .orig2
+
+    ; Skip if the respawn entrance is not a midway entrance.
     lda !ram_respawn+1 : and #$0A : cmp #$08 : beq .midway
 
 .orig2:
     jmp .orig
 
 .midway:
+    ; Get the destination level number in Y.
+    rep #$30
+    lda !ram_respawn : and #$01FF : tay
+    sep #$20
+
+    ; Check if the LM midway entrance patch is enabled.
+    lda.l !rom_lm_midway_entrance_hack_byte : cmp #$22 : beq ..lm_midway_hack
+
+..vanilla:
+    ; If no separate entrances used, we just need to store the correct screen number.
+    lda $F400,y : lsr #4 : sta $01
+    jmp .orig
+
+..lm_midway_hack:
+    ; Backup $03 and $05
     pei ($03)
     pei ($05)
+
+    ; Get the midway data pointer in $03
     lda.l $05D9E6|!bank : sta $05
-    rep #$30
+    rep #$20
     lda.l $05D9E4|!bank : clc : adc #$000A : sta $03
     lda [$03] : pha
     inc $03
     lda [$03] : sta $04
     pla : sta $03
-    lda !ram_respawn : and #$01FF : tay
     sep #$20
 
     ; Set the screen number of midway entrance
@@ -151,7 +172,7 @@ vanilla_midway_destination_fix:
     lda $F400,y : lsr #4 : ora $01 : sta $01
 
     ; Separate midway -> already set correctly
-    lda [$03],y : bit #$20 : bne .return
+    lda [$03],y : bit #$20 : bne ..return
 
     ; Correct slippery/water flag for vanilla midway
     lda #$C0 : trb $192A|!addr
@@ -166,7 +187,7 @@ vanilla_midway_destination_fix:
     lda $D708,x : sta $1C
 
     ; Correct the position if X/Y pos method 2 is used
-    lda $D97D : cmp #$22 : bne .return
+    lda $D97D : cmp #$22 : bne ..return
 
     ; (now compatible with LM 3.00's routine at $05DD30)
     lda $D980 : sta $05
@@ -175,7 +196,8 @@ vanilla_midway_destination_fix:
     sep #$20
     jsl .jml
 
-.return:
+..return:
+    ; Restore $03 and $05
     rep #$20
     pla : sta $05
     pla : sta $03

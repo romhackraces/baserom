@@ -13,71 +13,74 @@
 
 <p>On SA-1 ROMs, most of these routines still run on the SNES CPU.</p>
 <table>
-	<tr><th width="150">Routine</th><th>Purpose</th></tr>
 	<tr>
-		<td><code>reset:</code></td>
-		<td>
+		<th width="150">Routine</th>
+		<th>Purpose</th>
+	</tr>
+	<tr>
+		<td><code>reset</code></td>
+		<td class="left-align">
 			Called when the level is reset by the retry system or when entering from the overworld. Unlike UberASM level init routine, this won't be executed during regular level transitions.
 		</td>
 	</tr>
 	<tr>
-		<td><code>death:</code></td>
-		<td>
+		<td><code>death</code></td>
+		<td class="left-align">
 			This routine will be executed everytime the player dies.
 		</td>
 	</tr>
 	<tr>
-		<td><code>midway:</code></td>
-		<td>
+		<td><code>midway</code></td>
+		<td class="left-align">
 			This routine will be called every time the player touches a midway (vanilla or custom midway object).
 		</td>
 	</tr>
 	<tr>
-		<td><code>room_checkpoint:</code></td>
-		<td>
+		<td><code>room_checkpoint</code></td>
+		<td class="left-align">
 			This routine will be called every time the player gets a checkpoint through a room transition.
 			Remember you can check for <code>$13BF</code> and <code>$010B</code> to know in which trans/sub-level you are.
 		</td>
 	</tr>
 	<tr>
-		<td><code>prompt_exit:</code></td>
-		<td>
+		<td><code>prompt_exit</code></td>
+		<td class="left-align">
 			This routine will be called every time the player selects "exit" on the retry prompt.
 		</td>
 	</tr>
 	<tr>
-		<td><code>save_file:</code></td>
-		<td>
+		<td><code>save_file</code></td>
+		<td class="left-align">
 			This routine will be called every time the game is saved (before anything gets saved).
 			Remember that you can check for the current save file in <code>$010A</code>.
 			<b>On SA-1 ROMs, this may run on either CPU, depending on what's calling the save routine.</b>
 		</td>
 	</tr>
 	<tr>
-		<td><code>load_file:</code></td>
-		<td>
+		<td><code>load_file</code></td>
+		<td class="left-align">
 			This routine will be called every time an existing save file is loaded (before anything gets loaded).
 			Remember that you can check for the current save file in <code>$010A</code>.
 		</td>
 	</tr>
 	<tr>
-		<td><code>load_new_file:</code></td>
-		<td>
+		<td><code>load_new_file</code></td>
+		<td class="left-align">
 			This routine will be called every time a new save file is loaded (before anything gets reset).
 			Remember that you can check for the current save file in <code>$010A</code>.
 		</td>
 	</tr>
 	<tr>
-		<td><code>game_over:</code></td>
-		<td>
+		<td><code>game_over</code></td>
+		<td class="left-align">
 			This routine will be called during the game over screen.
 			This is called after the save file data is loaded from SRAM (only the data put before <code>.not_game_over</code> in <u class="dir">retry_config/sram_tables.asm</u>) but before all the data is saved again to SRAM.
 			This can be useful if you want to initialize some addresses for the game over and/or have them saved to SRAM.
 		</td>
 	</tr>
 	<tr>
-		<td><code>door_animation:</code></td>
-		<td>
+		<td><code>door_animation</code></td>
+		<td class="left-align">
 			Called when Mario enters a door, every frame during the fade out. This could be useful since the door animation is the only one that can't be intercepted
 			with level ASM or sprite ASM (since it immediately goes to the fading gamemode).
 			If you need some level-specific action here, you can check the sublevel number in <code>$010B</code> (16 bit).

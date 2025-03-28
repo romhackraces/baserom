@@ -6,9 +6,9 @@ body {
   font-family: Arial, sans-serif;
   font-size: 1em;
 }
-  body.wide {
-    max-width: 1024px;
-  }
+body.wide {
+  max-width: 1024px;
+}
 
 p, li, th, td {
   line-height: 140%;
