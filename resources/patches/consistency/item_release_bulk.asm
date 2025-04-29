@@ -54,7 +54,7 @@ endif
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Release-into-Solid Fix:
-!releaseFix = 1
+!releaseFix = 0
 !popFix     = 0
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
