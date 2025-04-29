@@ -79,7 +79,7 @@ if !egg_sprite == $2D || !egg_sprite == $35
     LDA !14C8,y
     CMP #$08
     BCC .next_slot
-    LDA !9E,y
+    LDA.w !9E,y
     CMP #$2D
     BNE .next_slot
     LDA #!egg_1up
