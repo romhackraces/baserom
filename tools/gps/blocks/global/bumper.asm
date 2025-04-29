@@ -5,8 +5,12 @@ db $42
 JMP Return : JMP Return : JMP MarioSide : JMP Return : JMP SpriteH : JMP Return
 JMP Return : JMP Return : JMP Return : JMP Return
 
-!PlaySFX = 1        ; set to 1 to play a sound
-!NudgeMario = 0     ; set to 1 to nudge Mario slightly
+!NudgeMario = 0                 ; set to 1 to nudge Mario slightly
+
+!PlaySoundEffect = 1            ; set to 1 to play a sound effect on bounce
+!SFXNum  = $13                  ; sound effect number
+!SFXBank = $1DF9|!addr          ; sound effect bank ($1DF9, $1DFC)
+
 
 Speed:
     db $E0,$20
@@ -56,10 +60,9 @@ SpriteBump:
 	LDA #$25
 	STA $1693|!addr
 
-if !PlaySFX
-    ; Play sound effect
-    LDA #$23
-    STA $1DFC|!addr
+	; Play sound effect
+if !PlaySoundEffect
+    LDA #!SFXNum : STA !SFXBank
 endif
 
 Return:

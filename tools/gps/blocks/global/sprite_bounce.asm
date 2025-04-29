@@ -4,13 +4,25 @@
 
 db $42
 
-!BounceSpeed = #$A8
 
 JMP Return : JMP Return : JMP Return
 JMP Sprite : JMP Sprite : JMP Return : JMP Return
 JMP Return : JMP Return : JMP Return
 
+!BounceSpeed = $A8
+
+; Sound effect options
+!PlaySoundEffect = 1            ; set to 1 to play a sound effect on bounce
+!SFXNum  = $13                  ; sound effect number
+!SFXBank = $1DF9|!addr          ; sound effect bank ($1DF9, $1DFC)
+
 Sprite:
+
+	; Play sound effect
+if !PlaySoundEffect
+    LDA #!SFXNum : STA !SFXBank
+endif
+
 	LDA !D8,x			; sprites reset their y speed when on ground so this snippet make the sprite rise by 2 pixels so y speed is changeable
 	SEC
 	SBC #$02
@@ -23,7 +35,7 @@ Sprite:
 	LDA !14C8,x			; \ The address thingy that has the value if something is alive and other shit
 	CMP #$08			; | comparing to see if alive
 	BCC Return			; /
-	LDA !BounceSpeed
+	LDA #!BounceSpeed
 	STA !AA,x
 Return:
 	RTL
