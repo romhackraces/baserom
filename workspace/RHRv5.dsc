@@ -10,7 +10,7 @@
 299	0	Kills sprites. Does not work for sprites that do not have object interaction.
 29a	0	Block that kills the player (even on yoshi), is solid for sprites and kills on wall running.
 29b	0	Block that kills the player (even on yoshi), is passable for sprites and kills on wall running.
-29c	0	Makes Mario small, clears item box and removes balloon, flight, and slide states.
+29c	0	Makes Mario small and optionally clears Item Box, removes P-balloon, and flight states.
 29d	0	A Donut Lift, which will fall shortly after being stepped on.
 29e	0	A throw block with an endless supply.
 29f	0	A ledge vine that the player automatically hops above.
