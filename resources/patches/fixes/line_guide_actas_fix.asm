@@ -22,7 +22,7 @@
 
 
 
-!glitch_level = $03	; modify this as you want ($00-$03)
+!glitch_level = $00	; modify this as you want ($00-$03)
 
 
 ; Explanation: you can choose the frequency of odd behaviors, which are the following:
