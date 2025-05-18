@@ -62,7 +62,6 @@ routines:
 ; Game Mode 14 main
 .main
     ; basic uberasm
-    %ObjectRoutine($98, enable_free_vertical_scroll)
     %ObjectRoutine($9A, invisible_mario)
     %ObjectRoutine($9B, no_powerups)
     %ObjectRoutine($9C, cape_eight_frame_float)
@@ -76,6 +75,7 @@ routines:
 
 ; Game Mode 14 end
 .end
+    %ObjectRoutine($98, enable_free_vertical_scroll)
     ; end code here
 ..done
 
