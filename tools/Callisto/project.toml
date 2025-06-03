@@ -10,7 +10,7 @@
     conflict_log_file = "conflicts.txt"
 
     # path to the clean SMW rom file
-    clean_rom = "resources/clean.smc"
+    clean_rom = "{resources_folder}/clean.smc"
 
     # Any symbols from the build order (see build.toml)
     # listed here will not be considered when
@@ -33,9 +33,3 @@
 
         "Map16"
     ]
-
-[resources]
-
-    # The file to be automatically included whenever
-    # you use 'incsrc "callisto.asm"' in any resource
-    callisto_header = "shared/callisto/header.asm"

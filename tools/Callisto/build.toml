@@ -5,21 +5,21 @@
 # is FastROM vs SA-1 based.
 [resources]
 
-    initial_patch = "resources/initial_patches/fastrom.bps" # FastROM
-    #initial_patch = "resources/initial_patches/sa1.bps"    # SA-1
+    initial_patch = "{resources_folder}/initial_patches/fastrom.bps" # FastROM
+    #initial_patch = "{resources_folder}/initial_patches/sa1.bps"    # SA-1
 
 
 # Build output configuration
 [output]
 
     # Path for the output ROM
-    output_rom = "workspace/{project_name}.smc"
+    output_rom = "{output_folder}/{project_name}.smc"
 
     # Path for BPS package output by the Package function
-    bps_package = "workspace/{project_name}.bps"
+    bps_package = "{output_folder}/{project_name}.bps"
 
     # Path to temporary folder used during builds
-    temporary_folder = "workspace/temp"
+    temporary_folder = "{output_folder}/temp"
 
 # Build order configuration
 [orders]

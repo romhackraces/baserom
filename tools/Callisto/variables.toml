@@ -5,6 +5,10 @@
      # Feel free to change this!
     project_name = "RHRv5"
 
-    # Don't change this (unless you move all the patches)
-    patches_folder = "resources/patches"
-    tools_folder = "tools"
+    # Don't change these folder definitions unless you know what you are doing
+    export_folder        = "export"
+    resources_folder     = "resources"
+    patches_folder       = "{resources_folder}/patches"
+    tools_folder         = "tools"
+    shared_folder        = "shared"
+    output_folder        = "workspace"

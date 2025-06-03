@@ -10,20 +10,21 @@
     # instead of Lunar Magic's binary .map16 format
     use_text_map16_format = false
 
+
 # Things that Callisto will automatically export as you make changes
 # to your project will be in the following locations
 [resources]
 
     # Directory for exported level (.mwl) files
-    levels              = "export/levels"
+    levels              = "{export_folder}/levels"
 
     # Location for exported global palette and Map16
-    shared_palettes     = "export/shared_palettes.pal"
-    map16               = "export/all_map16.map16"
+    shared_palettes     = "{export_folder}/shared_palettes.pal"
+    map16               = "{export_folder}/all_map16.map16"
 
     # Global resources are exported as BPS patch files because of how
     # deeply tied to your project
-    credits             = "export/global/credits.bps"
-    global_exanimation  = "export/global/exanimation.bps"
-    overworld           = "export/global/overworld.bps"
-    titlescreen         = "export/global/titlescreen.bps"
+    credits             = "{export_folder}/global/credits.bps"
+    global_exanimation  = "{export_folder}/global/exanimation.bps"
+    overworld           = "{export_folder}/global/overworld.bps"
+    titlescreen         = "{export_folder}/global/titlescreen.bps"
