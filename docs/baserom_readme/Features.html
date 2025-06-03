@@ -25,7 +25,7 @@
 <p>There is framework of custom objects (built on ObjecTool) in the baserom to allow you to toggle or activate some simple utility features, but the <a href="./UberASM Objects.html">UberASM Objects</a> page goes into greater detail on this feature.</p>
 <hr>
 <h3 id="retry-system">Retry System + Multiple Checkpoints</h3>
-<p>The baserom comes with an <a href="https://github.com/kkevinm/retry-system/" target="_blank">UberASM version of the Retry System</a> that performs better and has more features than the Asar patch version you can get from SMW Central. You can read more about the Retry System in its <a href="../retry_system/index.html">included documentation</a>.</p>
+<p>The baserom comes with an <a href="https://github.com/kkevinm/retry-system/" target="_blank">UberASM version of the Retry System</a> that performs better and has more features than the Asar patch version you can get from SMW Central. You can read more about the Retry System in its <a href="../retry-system/index.html">included documentation</a>.</p>
 
 <h4>Configuring</h4>
 <p>The Retry System is configured to use vanilla death routine globally but different retry types can be set per-level with <a href="./UberASM Objects.html#retry-objects">UberASM Objects</a>.</p>
@@ -37,7 +37,7 @@
 </ul>
 <p>After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
 <h4>Multiple Checkpoints</h4>
-<p>A feature of the Retry System a custom checkpoint that you can insert into levels to allow for more than just the single vanilla midpoint. You can read more about it in the <a href="../retry_system/midway_instruction.html">included documentation</a>.</p>
+<p>A feature of the Retry System a custom checkpoint that you can insert into levels to allow for more than just the single vanilla midpoint. You can read more about it in the <a href="../retry-system/midway_instruction.html">included documentation</a>.</p>
 <hr>
 <h3 id="dragon-coin-saving">Dragon Coin Saving</h3>
 <p>This is pretty self-explanatory: the baserom has been patched to save dragon (Yoshi) coins as they are collected, but only if a player reached a checkpoint or goal point. If you would like to reconfigure how dragon coins save, open "sram_tables.asm" found in the <span class="dir">tools/uberasmtool/retry_config"</span> and change <code>!DragonCoinSaving = 1</code> to equal zero (0).</p>
@@ -47,7 +47,7 @@
 <p>As part of the Retry System, there is a per-level sprite-tile-based status bar which allows you to display parts of the HUD while the vanilla layer 3 status bar is hidden and with layer 3 backgrounds, you can see it active in the <a href="./Levels.html#demo-level">Demo Level</a>: </p>
 <center><img src="./img/sprite_status_bar.png" alt="Screenshot of the sprite status bar in action in-game" title="Screenshot of the sprite status bar in action in-game"></center>
 <h4>Configuring</h4>
-<p>This feature is part of the Retry System, in this baserom you can set a level to use these status items individually with <a href="./UberASM Objects.html#retry-objects">UberASM Objects</a>. Alternatively, there is a more advanced setup available for use with UberASM. You can read about that in the <a href="../retry_system/api.html#configure_sprite_status_bar">retry API documentation</a>.</p>
+<p>This feature is part of the Retry System, in this baserom you can set a level to use these status items individually with <a href="./UberASM Objects.html#retry-objects">UberASM Objects</a>. Alternatively, there is a more advanced setup available for use with UberASM. You can read about that in the <a href="../retry-system/api.html#configure_sprite_status_bar">retry API documentation</a>.</p>
 <small>Version 5.11 and earlier of baserom had a more complicated setup.</small>
 <hr>
 <h3 id="clear-checkpoints">Clear Saved Checkpoints</h3>

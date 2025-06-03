@@ -4,7 +4,6 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 
 # Directory Definitions
 $WorkingDir     = Get-Location
-$ModulesDir     = "$WorkingDir\modules"
 $ResourcesDir   = "$WorkingDir\resources"
 $InitDir        = "$WorkingDir\init"
 $ToolsDir       = "$WorkingDir\tools"

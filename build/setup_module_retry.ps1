@@ -6,7 +6,7 @@ function Setup-Module-Retry($Name) {
     $has_errors = $false
 
     # source files for module
-    $RetryDir = "$ModulesDir\retry_system"
+    $RetryDir = "$IncludesDir\retry-system"
 
     # baserom config files for module
     $RetryConfDir = "$ConfigDir\retry_config"
@@ -33,7 +33,7 @@ function Setup-Module-Retry($Name) {
         # Copy Baserom Config Files
         Copy-Item -Path $RetryConfDir -Destination $UberASMTool_Dir -Force -Recurse
         # Move Readme files
-        Copy-Item -Path "$RetryDir\docs\*" -Destination "$DocsDir\retry_system" -Force -Recurse
+        Copy-Item -Path "$RetryDir\docs\*" -Destination "$DocsDir\retry-system" -Force -Recurse
         # Set done
         $is_done = $true
     } catch {
