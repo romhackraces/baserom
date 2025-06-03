@@ -40,6 +40,6 @@ $PIXI_Docs = @("README.html")
 
 # UberASM Tool
 $UberASMTool_Dir = "$ToolsDir\uberasmtool\"
-$UberASMTool_Download = "https://dl.smwcentral.net/36986/"
+$UberASMTool_Download = "https://dl.smwcentral.net/39036/"
 $UberASMTool_Junk = @("readme.txt", "changelog.txt", "incompatibilities.txt", "UberASMTool.dll.config")
 $UberASMTool_Docs = @("readme.html")

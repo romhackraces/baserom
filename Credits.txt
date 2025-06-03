@@ -418,7 +418,7 @@ Asar v1.81
  - author(s): Alcaro et al.
  - source: https://smwc.me/s/25953
 
-Callisto v0.4.1
+Callisto v0.4.2
  - author(s): underway
  - source: https://github.com/Underrout/callisto/
 
@@ -438,9 +438,9 @@ PIXI v1.42
  - author(s): Atari2.0, JackTheSpades, Tattletale
  - source: https://smwc.me/s/32277
 
-UberASMTool 2.0
+UberASMTool 2.1
  - author(s): Vitor Vilela, Fernap
- - source: https://smwc.me/s/36986
+ - source: https://smwc.me/s/39036
 
 
 ==== OTHER ====

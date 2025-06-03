@@ -47,7 +47,7 @@ function ExtraCallisto {
     # Install Callisto's modified asar dll.
     Write-Host "Replacing tools' Asar DLLs with Callisto-specific versions..." -ForegroundColor DarkGray
     Copy-Item -Path "$Callisto_Dir\asar\v1.81\32-bit\asar.dll" -Destination $GPS_Dir -Force
-    Copy-Item -Path "$Callisto_Dir\asar\v1.81\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
+    Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
     Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
     Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination $PIXI_Dir -Force
 }
