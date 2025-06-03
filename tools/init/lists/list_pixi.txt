@@ -1,12 +1,63 @@
-; List your custom sprites in this file to be inserted by PIXI.
-; - sprites get listed by their ID number and the config file name (either .cfg or .json).
-; - custom normal sprites can start at ID 00 and go up to BF.
-; - other sprite types have special considerations, see PIXI's readme for more details.
-; Lines with a ; at the start are comments that are ignored by PIXI
+;===================================================
+; PIXI SPRITES LIST
+;===================================================
+; This list file specifies sprites to be inserted by
+; PIXI, broken down below by type of sprite.
+;===================================================
 
-; Add your sprites here
-; 00 example.cfg
 
-; For use with the Donut block. If you remove or change this be sure to update the donut_lift.asm block
+;===================================================
+; CUSTOM SPRITES (.cfg or .json)
+;---------------------------------------------------
+; Each sprite can be inserted into the list by their
+; sprite number and the name of the CFG/JSON file,
+; for example: "00 sprite_name.cfg".
+;===================================================
+SPRITE:
+
+; Normal Sprites (00-BF)
+
+
+; For use with the Donut block
 A0 donut_sprite.cfg
-; Start listing your custom sprites at 00
+
+; Shooter Sprites (C0-CF)
+
+
+; Generator Sprites (D0-DF)
+
+
+;===================================================
+; OTHER SPRITES (.asm)
+;---------------------------------------------------
+; Other types of sprite supported by PIXI are shown
+; below. They can be listed by sprite number and the
+; name of the asm file, e.g. "00 sprite_name.asm".
+;===================================================
+
+; Extended Sprites (00-FF)
+EXTENDED:
+
+
+; Cluster Sprites (00-FF)
+CLUSTER:
+
+
+; Minor Extended Sprites (00-FF)
+MINOREXTENDED:
+
+
+; Bounce Sprites (00-FF)
+BOUNCE:
+
+
+; Smoke Sprites (00-FF)
+SMOKE:
+
+
+; Spinning Coin Sprites (00-FF)
+SPINNINGCOIN:
+
+
+; Score Sprites (00-FF)
+SCORE:
