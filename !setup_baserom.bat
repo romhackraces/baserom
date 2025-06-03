@@ -6,7 +6,7 @@ set "cleanRom=%CD%\resources\clean.smc"
 :: Check if clean rom exists as it is required by Callisto
 if exist "%cleanRom%" (
     :: run the main PowerShell script with an Execution Policy bypass
-    powershell.exe -ExecutionPolicy Bypass .\tools\init\baserom_init.ps1
+    powershell.exe -ExecutionPolicy Bypass .\setup\baserom_setup.ps1
 ) else (
     :: Give warning message about missing clean rom
     echo -- Cannot Proceed --

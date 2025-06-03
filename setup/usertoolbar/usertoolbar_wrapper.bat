@@ -8,7 +8,7 @@ set WORKING_DIR=%WORKING_DIR:!=^^!%
 setlocal EnableDelayedExpansion
 
 :: get root directory since this script runs from the LM folder
-set "ROOT_DIR=!WORKING_DIR:\tools\lunar_magic=!"
+set "ROOT_DIR=!WORKING_DIR:\tools\LunarMagic=!"
 
 :: Other Defines
 set "tools_dir=!ROOT_DIR!tools\"
@@ -16,22 +16,23 @@ set "tools_dir=!ROOT_DIR!tools\"
 :: readme
 set "readme=!ROOT_DIR!Readme.html"
 :: callisto
-set "callisto_path=!ROOT_DIR!buildtool\callisto.exe"
+set "callisto_path=!tools_dir!Callisto"
+set "callisto_exe=!callisto_path!\callisto.exe"
 :: addmusick
-set "amk_path=!tools_dir!addmusick"
+set "amk_path=!tools_dir!AddMusicK"
 set "amk_list=!amk_path!\Addmusic_list.txt"
 :: pixi
-set "pixi_path=!tools_dir!pixi"
+set "pixi_path=!tools_dir!PIXI"
 set "pixi_list=!pixi_path!\list.txt"
 :: gps
-set "gps_path=!tools_dir!gps"
+set "gps_path=!tools_dir!GPS"
 set "gps_list=!gps_path!\list.txt"
 :: uberasm
-set "uber_path=!tools_dir!uberasmtool"
+set "uber_path=!tools_dir!UberASMTool"
 set "uber_list=!uber_path!\list.txt"
 :: asar patches
 set "patches_path=!ROOT_DIR!resources\patches"
-set "patches_list=!ROOT_DIR!buildtool\patches.toml"
+set "patches_list=!callisto_path!\patches.toml"
 
 
 :ParseArgs
@@ -64,9 +65,9 @@ goto :Exit
 :RunCallisto
 setlocal enabledelayedexpansion
 if "%param%"=="" (
-    start "" /i "%callisto_path%"
+    start "" /i "%callisto_exe%"
 ) else (
-    start "" /b /i "%callisto_path%" "%param%"
+    start "" /b /i "%callisto_exe%" "%param%"
     pause
 )
 endlocal

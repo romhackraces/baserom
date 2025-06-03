@@ -30,7 +30,7 @@
 <h4>Configuring</h4>
 <p>The Retry System is configured to use vanilla death routine globally but different retry types can be set per-level with <a href="./UberASM Objects.html#retry-objects">UberASM Objects</a>.</p>
 
-<p>To change the Retry System's settings you can edit its configuration files in <span class="dir">tools/uberasmtool/retry_config</span>.</p>
+<p>To change the Retry System's settings you can edit its configuration files in <span class="dir">tools/UberASMTool/retry_config</span>.</p>
 <ul>
     <li><code>settings_global.asm</code> &ndash; Change the global settings for the Retry System.</li>
     <li><code>settings_local.asm</code> &ndash; Change the per-level settings for the Retry System.</li>
@@ -40,7 +40,7 @@
 <p>A feature of the Retry System a custom checkpoint that you can insert into levels to allow for more than just the single vanilla midpoint. You can read more about it in the <a href="../retry-system/midway_instruction.html">included documentation</a>.</p>
 <hr>
 <h3 id="dragon-coin-saving">Dragon Coin Saving</h3>
-<p>This is pretty self-explanatory: the baserom has been patched to save dragon (Yoshi) coins as they are collected, but only if a player reached a checkpoint or goal point. If you would like to reconfigure how dragon coins save, open "sram_tables.asm" found in the <span class="dir">tools/uberasmtool/retry_config"</span> and change <code>!DragonCoinSaving = 1</code> to equal zero (0).</p>
+<p>This is pretty self-explanatory: the baserom has been patched to save dragon (Yoshi) coins as they are collected, but only if a player reached a checkpoint or goal point. If you would like to reconfigure how dragon coins save, open "sram_tables.asm" found in the <span class="dir">tools/UberASMTool/retry_config"</span> and change <code>!DragonCoinSaving = 1</code> to equal zero (0).</p>
 <p>This patch has some other features that are not on by default, like changing the collected dragon coin into something else (you may have seen outline coins in other hacks) and those can be configured in the "dragon_coin_save.asm" file found in <span class="dir">resources/patches/features</span>.</p>
 <hr>
 <h3 id="sprite-status-bar">Sprite Status Bar</h3>
@@ -54,9 +54,9 @@
 <p>Included in the baserom is an UberASM "safety mechanism" that clears all collected checkpoints (both midways and those given by the Retry System) and saves the game when the player presses a key combo. This is to fix any save files and release the player from any potential checkpoint-related softlocks.</p>
 <p>This UberASM runs on the overworld and can be invoked with the following key combo: <span class="key">L</span> + <span class="key">R</span> + <span class="key">Select</span>. Pressing this will play a sound to indicate checkpoints have been cleared and the game has been saved.</p>
 <h4>Configuring</h4>
-<p>If you would like to change the key combination you can do so by editing the "clear_saved_checkpoints.asm" in the <span class="dir">tools/uberasmtool/gamemode</span> folder. Keep in mind, using either any of the face buttons (ABXY) in this combo while on the Overworld will enter a level.</p>
+<p>If you would like to change the key combination you can do so by editing the "clear_saved_checkpoints.asm" in the <span class="dir">tools/UberASMTool/gamemode</span> folder. Keep in mind, using either any of the face buttons (ABXY) in this combo while on the Overworld will enter a level.</p>
 <h4>Disabling</h4>
-<p>If you would like to disable this feature, you can remove it from the <code>gamemode:</code> section of UberASM Tool's list file in the <span class="dir">tools/uberasmtool</span> folder, look for the line you see below.</p>
+<p>If you would like to disable this feature, you can remove it from the <code>gamemode:</code> section of UberASM Tool's list file in the <span class="dir">tools/UberASMTool</span> folder, look for the line you see below.</p>
 <pre>
 gamemode:
     ...
@@ -66,7 +66,7 @@ gamemode:
 <small>Found in version 5.4 of baserom or later. (Runs in gamemode 14 in version 5.4).</small>
 <hr>
 <h3 id="ow-autosave">Autosave on Overworld</h3>
-<p>The baserom has a basic UberASM feature to autosave the game when you return to or move Mario on the overworld. If you would like to disable this feature, you can remove it from the <code>gamemode:</code> section of UberASM Tool's list file in the <span class="dir">tools/uberasmtool</span> folder, look for the line you see below.</p>
+<p>The baserom has a basic UberASM feature to autosave the game when you return to or move Mario on the overworld. If you would like to disable this feature, you can remove it from the <code>gamemode:</code> section of UberASM Tool's list file in the <span class="dir">tools/UberASMTool</span> folder, look for the line you see below.</p>
 <pre>
 gamemode:
     ...

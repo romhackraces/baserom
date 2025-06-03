@@ -13,33 +13,14 @@
 <p>The Romhack Races baserom is a <a href="https://github.com/Underrout/callisto/" target="_blank">Callisto-based</a> project so the directory structure is best set-up for using that tool.</p>
 <h3 id="#">Directories</h3>
 <ul>
-<li><a href="#buildtool">buildtool</a></li>
 <li><a href="#docs">docs</a></li>
 <li><a href="#export">export</a></li>
 <li><a href="#resources">resources</a></li>
+<li><a href="#setup">setup</a></li>
 <li><a href="#shared">shared</a></li>
 <li><a href="#tools">tools</a></li>
 <li><a href="#workspace">workspace</a></li>
 </ul>
-<hr>
-<h3 id="buildtool">buildtool Directory</h3>
-<p>This folder contains <a href="FAQ.html#callisto">Callisto</a>, which is the build tool used by the baserom to assemble your project. Here you can find the configuration files for Callisto, in .toml format, as well as any other build tool related files for the baserom.</p>
-<p>Baserom resource configuration files:</p>
-<table border="1" class="full">
-    <tr><th width="130">Item</th><th>Description</th></tr>
-    <tr><td>exports.toml</td><td>A baserom configuration file to tell it what to export and where.</td></tr>
-    <tr><td>modules.toml</td><td>Definitions for the Callisto modules used by the baserom.</td></tr>
-    <tr><td>patches.toml</td><td>The full list of Asar patches used during build time. Edit this list to <a href="Basics.html#patches">add or remove patches</a> from your project.</td></tr>
-    <tr><td>variables.toml</td><td>Contains defined variables for your project. Here you can rename your project.</td></tr>
-</table>
-<p>Callisto-specific configuration files:</p>
-<table border="1" class="full">
-    <tr><th width="130">Item</th><th>Description</th></tr>
-    <tr><td>build.toml</td><td>The overall build settings for the whole project. Contains the options for the initial clean patch, build order and output directories & format.</td></tr>
-    <tr><td>colors.toml</td><td>A default configuration file for Callisto to configure the colors of it's command-line user-interface.</td></tr>
-    <tr><td>tools.toml</td><td>A configuration file that has all the options for the tools that Callisto will run during build order.</td></tr>
-    <tr><td>user.toml</td><td>Can have any other preferred user settings, like emulator setup.</td></tr>
-</table>
 <hr>
 <h3 id="docs">docs Directory</h3>
 <p>All the readme files for the baserom (like the one you're currently reading) and those for other included resources and tools are stored here for your convenience.</p>
@@ -47,7 +28,6 @@
 <tr><th>Item</th><th>Description</th></tr>
 <tr><td>baserom_readme</td><td>The folder containing all the baserom's readme files.</td></tr>
 <tr><td>retry-system</td><td>The readme files for the retry system.</td></tr>
-<tr><td>tools</td><td>All the documentation for each tool will have been moved here after <a href="Initialization.html">initialization</a>.</td></tr>
 </table>
 <hr>
 <h3 id="export">export Directory</h3>
@@ -72,10 +52,24 @@
 <tr><td>patches</td><td>All of the Asar patches that Callisto applies at build time.</td></tr>
 </table>
 <hr>
+<h3 id="setup">setup Directory</h3>
+<p>A folder with files used by the scripts used to <a href="./Setup.html">setup</a> the baserom.</p>
+<table border="1" class="full">
+<tr><th>Item</th><th>Description</th></tr>
+<tr><td>functions</td><td>Contains some Powershell files that are functions used by the main script.</td></tr>
+<tr><td>lists</td><td>The baserom's list files that are copied into each tool directory during set-up.</td></tr>
+<tr><td>pixi</td><td>Contains a file to fix PIXI ASM during setup to resolve a conflict with UberASM Tool.</td></tr>
+<tr><td>usertoolbar</td><td>The files for the baserom's custom user toolbar that is used with Lunar Magic.</td></tr>
+<tr><td>baserom_setup.ps1</td><td>The main setup Powershell script.</td></tr>
+<tr><td>tool_defines.ps1</td><td>A Powershell file that defines tool versions, download links and files.</td></tr>
+</table>
+<hr>
+<hr>
 <h3 id="shared">shared Directory</h3>
 <p>This folder contains files that are shared between tools and resources, typically variable definitions and configuration files.</p>
 <table border="1" class="full">
 <tr><th>Item</th><th>Description</th></tr>
+<tr><td>callisto</td><td>Files used by Callisto across all resources.</td></tr>
 <tr><td>defines</td><td>A folder of common definitions for resources.</td></tr>
 <tr><td>freeram.asm</td><td>A file containing all used <a href="FreeRAM.html">FreeRAM</a> as shared defines.</td></tr>
 </table>
@@ -85,13 +79,13 @@
 <p class="infobox">Do not run the tools from these folder directly. Callisto takes care of running all tools when using it.</p>
 <table border="1" class="full">
 <tr><th>Item</th><th>Description</th></tr>
-<tr><td>addmusick</td><td>The folder for AddMusicK and related files.   .</td></tr>
-<tr><td>flips</td><td>Contains Floating IPS tool for creating BPS patches.</td></tr>
-<tr><td>gps</td><td>Contains the GPS block insertion tool and related files.</td></tr>
-<tr><td>init</td><td>A folder with files used by the <a href="./Initialization.html">initialization</a> script.</td></tr>
-<tr><td>lunar_magic</td><td>Folder for Lunar Magic.</td></tr>
-<tr><td>pixi</td><td>Contains the PIXI sprite insertion tool and related files.</td></tr>
-<tr><td>uberasmtool</td><td>Contains UberASMTool and all related files.</td></tr>
+<tr><td>AddMusicK</td><td>The folder for AddMusicK and related files.   .</td></tr>
+<tr><td>Callisto</td><td>Contains the <a href="./Callisto.html">Callisto</a> build tool.</td></tr>
+<tr><td>Flips</td><td>Contains Floating IPS tool for creating BPS patches.</td></tr>
+<tr><td>GPS</td><td>Contains the GPS block insertion tool and related files.</td></tr>
+<tr><td>LunarMagic</td><td>Folder for Lunar Magic.</td></tr>
+<tr><td>PIXI</td><td>Contains the PIXI sprite insertion tool and related files.</td></tr>
+<tr><td>UberASMTool</td><td>Contains UberASMTool and all related files.</td></tr>
 </table>
 <hr>
 <h3 id="workspace">workspace Directory</h3>

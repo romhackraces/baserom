@@ -31,7 +31,7 @@
 <h3 id="callisto">What is Callisto?</h3>
 <p>It's a build tool that manages your project and does all the usual romhacking things through a simple user interface with a few actions.</p>
 <p>Callisto designed to run tools only when needed and avoid potential conflicts between resources, this way it insures your hack is cleanly constructed whenever you make changes. The big upside of using this is if something goes wrong then you can easily pinpoint what that was and remove or fix it so the next time you build it is not included in your project.</p>
-<p>Read the Callisto documentation in the <span class="dir">docs/tools/Callisto</span> folder for more detailed information about how to use this tool.</p>
+<p>Read the Callisto documentation in the <span class="dir">tools/Docs/Callisto</span> folder for more detailed information about how to use this tool.</p>
 <hr>
 <h3 id="lunar-helper">What happened to Lunar Helper?</h3>
 <p>Lunar Helper from the 4.x version of the baserom has been succeeded by Callisto, which is detailed above. Callisto functions in much the same way as Lunar Helper&ndash;as a tool that handles all other tools, and builds and updates your project with simple commands&ndash;but it was rebuilt to have better cross-platform support and improved performance.</p>
@@ -40,7 +40,7 @@
 <p>In an effort to keep the baserom lean, we're going all-in on the Callisto build tool. The build batch files, while useful, were also a bit of maintainance burden and didn't work for some people.</p>
 <hr>
 <h3 id="no-bps">Where is the BPS patch to use the baserom?</h3>
-<p>To get people familiar with the build process of the baserom we've opted to not include the BPS patch to create a ready-to-use baserom. The very simple initialization steps will create a clean slate to get started on a project.</p>
+<p>To get people familiar with the build process of the baserom we've opted to not include the BPS patch to create a ready-to-use baserom. The very simple setup process will create a clean slate to get started on a project.</p>
 <p> If you are in need of a BPS file, Callisto can create one with the "Package" action, or from the <span class="usertoolbar-button" style="background-position:calc(-16px * 10);" data-tooltip="Make a BPS patch with Callisto"></span> button on the included <a href="./User Toolbar.html">User Toolbar</a>.</p>
 <hr>
 <h3 id="removing-things">How do I remove things from the baserom?</h3>
@@ -50,7 +50,7 @@
 <p>If you just want to disable it in a single level, this baserom comes with several insertable custom objects to toggle features per-level. including one to hide the status bar. Check out the <a href="UberASM Objects.html">UberASM Objects</a> documentation for details.</p>
 <p>If you would like to disable it hack-wide, there is a method for that as well:</p>
 <ul>
-    <li>Open "baserom_gm12.asm" from the <span class="dir">tools/uberasmtool/gamemode</span> folder and you'll see the following.
+    <li>Open "baserom_gm12.asm" from the <span class="dir">tools/UberASMTool/gamemode</span> folder and you'll see the following.
 <pre>
 init:
     ;jsl toggle_statusbar_init
@@ -65,12 +65,12 @@ init:
 <p>The baserom aims to stay close to the vanilla experience so midways keep their default behaviour of making Mario big when they are collected, but this can be overridden in the baserom in a couple ways:</p>
 <ul>
     <li>In individual levels, you can insert the <b>B3</b> <a href="UberASM Objects.html">UberASM Object</a> to disable this behaviour.</li>
-    <li>For a hack-wide change, you can reconfigure the Retry System by changing the <code>!midway_powerup</code> option in the <span class="dir">tools/uberasmtool/retry_config/settings_global.asm</span> file.</li>
+    <li>For a hack-wide change, you can reconfigure the Retry System by changing the <code>!midway_powerup</code> option in the <span class="dir">tools/UberASMTool/retry_config/settings_global.asm</span> file.</li>
 </ul>
 <p>After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
 <hr>
 <h3 id="fast-retry">Does this have Fast Retry?</h3>
-<p>By default the baserom is configured to use the vanilla death routine but you can enable retry in a level using a custom object or by editing its global configuration files in the <span class="dir">tools/uberasmtool/retry_config</span> folder. After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
+<p>By default the baserom is configured to use the vanilla death routine but you can enable retry in a level using a custom object or by editing its global configuration files in the <span class="dir">tools/UberASMTool/retry_config</span> folder. After making changes to any of the above, run "Update" in Callisto to insert the UberASM changes in your project.</p>
 <hr>
 <h3 id="block-graphics">Why are my block graphics not looking right?</h3>
 <center><img src="img/garbled_map16.png" title="Custom block tiles missing ExGraphics"></center>
@@ -81,7 +81,7 @@ init:
 <hr>
 <h3 id="sa1">Is the baserom SA-1 compatible?</h3>
 <p>The baserom's resources are all compatible with SA-1, but the baserom itself is configured to be FastROM by default. However to use SA-1 it only takes a couple steps to switch over to it:</p>
-<p>In the <span class="dir">buildtool</span> folder, open the "build.toml" file and look for the <code>initial_patch</code> lines, something like the following.</p>
+<p>In the <span class="dir">tools/Callisto</span> folder, open the "build.toml" file and look for the <code>initial_patch</code> lines, something like the following.</p>
 <pre>
 # The initial patch setting for the project
 [resources]
@@ -95,7 +95,7 @@ init:
 <p>If you're worrying about this, it's likely because you've ran a Callisto action and are seeing something scary like the following:</p>
 <pre>
 Caching modules
-<span style="color: orange;">2 conflict(s) logged to C:\path\project\buildtool\conflicts.txt</span>
+<span style="color: orange;">2 conflict(s) logged to C:\path\project\tools\Callisto\conflicts.txt</span>
 Moving temporary files to final output
 </pre>
 <p>One of the features of the Callisto tool is to detect when two or more resources are modifying the same parts of the ROM. This is to help you address resource conflicts by showing you which bytes are in conflict and compare them to the original ROM bytes.</p>
@@ -109,7 +109,7 @@ Moving temporary files to final output
 <p>You can confirm it's set up by opening Windows' Registry Editor, browsing to <code>HKEY_CURRENT_USER\Software\LunarianConcepts\LunarMagic\Settings</code> you can find Lunar Magic's stored settings, and checking for the "OrigROM0" key.</p>
 <hr>
 <h3 id="execution-policy-issues">Why can't I run the baserom's scripts?</h3>
-<p>The baserom's <a href="./Initialization.html">initialization</a> scripts use PowerShell to do a lot of the actions for setting up the baserom. Depending on how your Windows system is configured you may be unable to run scripts by default and will see an error something like the following:</p>
+<p>The baserom's <a href="./Setup.html">setup</a> scripts use PowerShell to do a lot of the actions for setting up the baserom. Depending on how your Windows system is configured you may be unable to run scripts by default and will see an error something like the following:</p>
 <pre style="color:rgb(194, 52, 52);">C:\User\Project\Path\baserom_init.ps1 cannot be loaded because running scripts is disabled on this system.</pre>
 <p>This has to do with Windows' "Execution Policies", and if your computer has a "Restricted" policy you may have trouble running the scripts. This <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies">help article</a> from Microsoft goes into detail about Execution Policy and gives instructions about how you might go about changing it to be a bit more permissive (and let you run scripts).</p>
 <p>That said, there are some cases where you will be unable to change it because of how pre-installed Windows may have been configured, which will unfortunately make setting up the baserom quickly a challenge.</p>

@@ -5,9 +5,9 @@
 function ExtraLunarMagic {
     Write-Host "Installing baserom User Toolbar alongside Lunar Magic..." -ForegroundColor DarkGray
     # copy usertoolbar files to Lunar Magic directory
-    Copy-Item -Path "$InitDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir -Force
-    Copy-Item -Path "$InitDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir -Force
-    Copy-Item -Path "$InitDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir -Force
+    Copy-Item -Path "$SetupDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir -Force
+    Copy-Item -Path "$SetupDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir -Force
+    Copy-Item -Path "$SetupDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir -Force
 }
 
 # Extra steps for PIXI
@@ -15,8 +15,8 @@ function ExtraPIXI {
     Write-Host "Resolving ASM conflict in PIXI and UberASM Tool..." -ForegroundColor DarkGray
 
     # Replace part of main.asm to fix conflict with uberasm tool
-    $findText = Get-Content "$InitDir\pixi\main.asm.find" -Raw
-    $replaceText = Get-Content "$InitDir\pixi\main.asm.replace" -Raw
+    $findText = Get-Content "$SetupDir\pixi\main.asm.find" -Raw
+    $replaceText = Get-Content "$SetupDir\pixi\main.asm.replace" -Raw
 
     # Get PIXI file
     $origFile = "$ToolsDir\pixi\asm\main.asm"

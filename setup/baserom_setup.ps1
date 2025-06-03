@@ -5,27 +5,27 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 # Directory Definitions
 $WorkingDir     = Get-Location
 $ResourcesDir   = "$WorkingDir\resources"
-$InitDir        = "$WorkingDir\init"
+$SetupDir       = "$WorkingDir\setup"
 $ToolsDir       = "$WorkingDir\tools"
 $ToolsDocsDir   = "$WorkingDir\tools\Docs"
 
-$ListsDir       = "$InitDir\lists"
-$ConfigDir      = "$InitDir\config"
-$FunctionsDir   = "$InitDir\functions"
+$ListsDir       = "$SetupDir\lists"
+$ConfigDir      = "$SetupDir\config"
+$FunctionsDir   = "$SetupDir\functions"
 
 # Include defines
-. $InitDir\tool_defines.ps1
+. $SetupDir\tool_defines.ps1
 # Include functions
-. $InitDir\functions\common.ps1
-. $InitDir\functions\tool_specific.ps1
-. $InitDir\functions\extra_steps.ps1
+. $SetupDir\functions\common.ps1
+. $SetupDir\functions\tool_specific.ps1
+. $SetupDir\functions\extra_steps.ps1
 
 # Start the main menu loop
 $UserChoice = $null
 while ($UserChoice -ne "3") {
-    Write-Host "-------------------------------"
-    Write-Host "RHR Baserom v5 - Initialization"
-    Write-Host "-------------------------------`n"
+    Write-Host "----------------------"
+    Write-Host "RHR Baserom v5 - Setup"
+    Write-Host "----------------------`n"
     Write-Host "Welcome! To get started with the baserom, run both of the following steps:`n"
     Write-Host "1) Download and set up all baserom tools"
     Write-Host "2) Run a first build of the baserom in Callisto"
@@ -67,7 +67,7 @@ while ($UserChoice -ne "3") {
             if (Test-Path "$Callisto_Dir.is_setup" -PathType Leaf) {
                 # Check if first-build was already done
                 if (Test-Path "$Callisto_Dir.first_build_done" -PathType Leaf) {
-                    Write-Host "Callisto first build already performed.`nYou can work on your project by running Callisto from the 'buildtool' folder.`n"
+                    Write-Host "Callisto first build already performed.`nYou can work on your project by running Callisto from the 'tools/Callisto' folder.`n"
                 } else {
                     # Try performing a first-build
                     try {
@@ -81,10 +81,10 @@ while ($UserChoice -ne "3") {
                             # Create checkfile if all goes well
                             New-Item -Path "$Callisto_Dir.first_build_done" -ItemType File -Force | Out-Null
                             Set-ItemProperty -Path "$Callisto_Dir.first_build_done" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
-                            Write-Host "First build completed successfully.`nYou can get started on your project by running Callisto from the 'buildtool' folder."
+                            Write-Host "First build completed successfully.`nYou can get started on your project by running Callisto from the 'tools/Callisto' folder."
                         } else {
                             # Prompt users to run Callisto manually if there was an error
-                            Write-Host "Baserom failed to build. Please run Callisto manually from the 'buildtool' folder, and perform a 'Rebuild' to see any errors."
+                            Write-Host "Baserom failed to build. Please run Callisto manually from the 'tools/Callisto' folder, and perform a 'Rebuild' to see any errors."
                         }
                     } catch {
                         Write-Host "First build did not complete successfully. Please try again."

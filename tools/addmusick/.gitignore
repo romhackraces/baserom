@@ -1,4 +1,5 @@
 *.pl
+*.spc
 1DF9/*
 1DFC/*
 Addmusic_*.txt
@@ -15,7 +16,6 @@ stats/*.txt
 temp.*
 temp*
 Visualizations/*
-
 # keep added files
 asm/!UserDefines.asm
 1DFC/!Death Prelude.txt

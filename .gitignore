@@ -1,8 +1,3 @@
-# Ignore tool readmes
-docs/tools/*
-# Ignore workspace temp files
-workspace/temp/*
-workspace/sysLMRestore
 # Ignore callisto files
 conflicts.txt
 failed_save.txt
@@ -17,13 +12,9 @@ failed_save.txt
 *.bps
 *.dll
 *.exe
-*.extmod
 *.lnk
-*.lrp
 *.sfc
 *.smc
-*.spc
 *.zip
 # Keep particular files
 !.gitkeep
-export/global/!*.bps

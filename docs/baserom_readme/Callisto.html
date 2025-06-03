@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Callisto - Romhack Races Baserom</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="./img/flop.gif" type="image/x-icon">
+<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+<header><div class="home"><a href="./index.html">🏠</a></div><span>Callisto</span></header>
+<section>
+
+<p>Callisto is the window into your project, it keeps track of the changes you make and is also the means by which you jump into editing your project and making updates.</p>
+<pre style="line-height: 1.16;overflow: scroll;">
+<span style="display:block;width:360px;">╭callisto v*.*.*────────────────────────╮
+│ your-project (C:\User\your-project)   │
+├───────────────────────────────────────┤
+│ Rebuild (B)                           │
+│ Update (U)                            │
+│ Package (P)                           │
+├───────────────────────────────────────┤
+│ Save (S)                              │
+│ Edit (E)                              │
+├───────────────────────────────────────┤
+│ Reload configuration (C)              │
+│ Reload profiles                       │
+├───────────────────────────────────────┤
+│ View console output (V)               │
+├───────────────────────────────────────┤
+│ Exit (ESC)                            │
+╰───────────────────────────────────────╯
+</span></pre>
+
+<h3 id="configure">Using Callisto</h3>
+<p>The primary actions that you need to worry about are, and the ones you'll use most often are:</p>
+<ul>
+    <li><b>Edit</b> &ndash; this will launch Lunar Magic that is included in the project. It is important that you always use this Lunar Magic as it is monitored by Callisto to track changes you make when you edit levels, the overworld, map16, etc. which it exports for safe keeping.</li>
+    <li><b>Update</b> &ndash; the action you will use the most. Everytime you add new resoures, like new sprites or blocks, you must Update your project for those changes to be applied.</li>
+    <li><b>Rebuild</b> &ndash; this action will entirely rebuild your project from scratch, it should be used sparingly. Callisto is also smart about when a Rebuild is required when you use the Update action and will do that automatically.</li>
+    <li><b>Package</b> &ndash; when you need to create a BPS patch of your project this action will do it for you.</li>
+</ul>
+<p>You can read up on more of these actions in detail in the <a href="../../tools/Docs/Callisto/documentation/Using-Callisto.html">Callisto documentation</a> in the <span class="dir">tools/Docs</span> folder.</p>
+<p class="infobox"><b>tl;dr</b> Use "Edit" to launch Lunar Magic, use "Update" when you make any changes.</p>
+<hr>
+<h3 id="configure">Configuring Callisto</h3>
+<p>In Callisto's folder you can find have several configuration files (in .toml format) and a bunch of other build tool related files for the baserom. The following are ones that you can readily edit to re-configure your project.</p>
+<table border="1" class="full">
+    <tr><th width="130">Item</th><th>Description</th></tr>
+    <tr><td>build.toml</td><td>The overall build settings for the whole project. Contains the options for the initial clean patch, build order and output directories & format.</td></tr>
+    <tr><td>exports.toml</td><td>A baserom configuration file to tell it what to export and where.</td></tr>
+    <tr><td>modules.toml</td><td>Definitions for the Callisto modules used by the baserom.</td></tr>
+    <tr><td>patches.toml</td><td>The full list of Asar patches used during build time. Edit this list to <a href="Basics.html#patches">add or remove patches</a> from your project.</td></tr>
+    <tr><td>variables.toml</td><td>Contains defined variables for your project. Here you can rename your project.</td></tr>
+</table>
+<p>Other configuration files you likely don't need to edit in your usage of the baserom will be:</p>
+<table border="1" class="full">
+    <tr><th width="130">Item</th><th>Description</th></tr>
+    <tr><td>colors.toml</td><td>A default configuration file for Callisto to configure the colors of it's command-line user-interface.</td></tr>
+    <tr><td>tools.toml</td><td>A configuration file that has all the options for the tools that Callisto will run during build order.</td></tr>
+    <tr><td>user.toml</td><td>Can have any other preferred user settings, like emulator setup.</td></tr>
+</table>
+</section>
+</body>
+</html>

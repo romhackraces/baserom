@@ -21,19 +21,19 @@
 
 # Flips Config
 [tools.FLIPS]
-executable = "tools/flips/flips.exe"
+executable = "{tools_folder}/Flips/flips.exe"
 
 # Lunar Magic Config
 [tools.LunarMagic]
 # Path to Lunar Magic executable
-executable = "tools/lunar_magic/Lunar Magic.exe"
+executable = "{tools_folder}/LunarMagic/Lunar Magic.exe"
 
 # PIXI Config
 [tools.generic.PIXI]
 
 # Working directory of the tool, all other paths in this tool's section
 # are relative to this path
-directory = "tools/pixi"
+directory = "{tools_folder}/PIXI"
 
 # Executable file of the tool
 executable = "pixi.exe"
@@ -90,7 +90,7 @@ dependency_report_file = ".dependencies"
 
 # GPS Config
 [tools.generic.GPS]
-directory = "tools/gps"
+directory = "{tools_folder}/GPS"
 executable = "gps.exe"
 
 static_dependencies = [
@@ -103,7 +103,7 @@ dependency_report_file = ".dependencies"
 
 # UberASMTool Config
 [tools.generic.UberASM]
-directory = "tools/uberasmtool"
+directory = "{tools_folder}/UberASMTool"
 executable = "UberASMTool.exe"
 options = "list.txt"
 
@@ -118,7 +118,7 @@ dependency_report_file = ".dependencies"
 
 # AddMusicK Config
 [tools.generic.AddMusicK]
-directory = "tools/addmusick"
+directory = "{tools_folder}/AddMusicK"
 executable = "AddmusicK.exe"
 
 # AMK doesn't use asar for much, so we need a

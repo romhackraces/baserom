@@ -23,14 +23,14 @@ function Move-Docs($ToolName, $DocFiles, $Directory) {
 
     Write-Host "Moving $ToolName documentation..." -ForegroundColor DarkGray
 
-    if (-not (Test-Path -Path "$DocsDir\$ToolName" -PathType Container)) {
-        New-Item -Path "$DocsDir\$ToolName" -ItemType Directory -Force | Out-Null
+    if (-not (Test-Path -Path "$ToolsDocsDir\$ToolName" -PathType Container)) {
+        New-Item -Path "$ToolsDocsDir\$ToolName" -ItemType Directory -Force | Out-Null
     }
 
     if ($DocFiles -ne $null -and $DocFiles.Count -gt 0) {
         foreach ($file in $DocFiles) {
             $sourcePath = Join-Path -Path $Directory -ChildPath $file
-            $destinationPath = Join-Path -Path $DocsDir -ChildPath $ToolName
+            $destinationPath = Join-Path -Path $ToolsDocsDir -ChildPath $ToolName
             if (Test-Path -Path $sourcePath) {
                 if (Test-Path -Path $sourcePath -PathType Container) {
                     # Move directories recursively

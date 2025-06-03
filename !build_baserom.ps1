@@ -5,21 +5,20 @@ $ErrorActionPreference = "Stop"
 
 # Directory Definitions
 $WorkingDir     = Get-Location
-$BuildDir       = "$WorkingDir\build"
-$IncludesDir    = "$WorkingDir\include"
-$ToolsDir       = "$WorkingDir\tools"
 $DocsDir        = "$WorkingDir\docs"
-$ConfigDir      = "$WorkingDir\config"
+$IncludesDir    = "$WorkingDir\include"
+$SetupDir       = "$WorkingDir\setup"
+$ToolsDir       = "$WorkingDir\tools"
 
-$InitDir        = "$ToolsDir\init"
-$ListsDir       = "$InitDir\lists"
-$FunctionsDir   = "$InitDir\functions"
+$ListsDir       = "$SetupDir\lists"
+$ConfigDir      = "$SetupDir\config"
+$FunctionsDir   = "$SetupDir\functions"
 
 
 # Include defines
-. $InitDir\tool_defines.ps1
+. $SetupDir\tool_defines.ps1
 # Include module build scripts
-. $BuildDir\setup_module_retry.ps1
+. $SetupDir\build\setup_module_retry.ps1
 
 # Start the main menu loop
 $UserChoice = $null
