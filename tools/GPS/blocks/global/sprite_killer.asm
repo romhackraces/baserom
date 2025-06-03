@@ -5,8 +5,9 @@ JMP Return : JMP Return : JMP Return
 JMP Sprite : JMP Sprite : JMP Return : JMP Return
 JMP Return : JMP Return : JMP Return
 
-; Smoke sprite number from other/puff_of_smoke.asm patch
-!smoke_num = $12
+; Smoke settings
+!DrawSmoke = 1                 ; set to 1 to draw a puff of smoke
+!SmokeNum = $12                ; Smoke sprite number from other/puff_of_smoke.asm patch
 
 ; Sound effect options
 !PlaySoundEffect = 1            ; set to 1 to play a sound effect on sprite kill
@@ -15,21 +16,24 @@ JMP Return : JMP Return : JMP Return
 
 Sprite:
 
-    ; Play sound effect
 if !PlaySoundEffect
+    ; Play sound effect
     LDA #!SFXNum : STA !SFXBank
 endif
 
+if !DrawSmoke
     ; Spawn the smoke sprite
-    lda.b #!smoke_num
+    lda.b #!SmokeNum
     clc
     phx
     %spawn_sprite()
     plx
+endif
 
     ; Kill the original sprite
     stz !14C8,x
 
+if !DrawSmoke
     ; Move the smoke sprite where the old one was
     bcs Return
     sta $04
@@ -44,6 +48,7 @@ endif
     lda !sprite_y_low,x : sec : sbc $28 : sta !sprite_y_low,x
     lda !sprite_y_high,x : sbc $29 : sta !sprite_y_high,x
     plx
+endif
 
 Return:
     rtl
