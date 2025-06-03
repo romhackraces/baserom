@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 # Directory Definitions
 $WorkingDir     = Get-Location
 $DocsDir        = "$WorkingDir\docs"
-$IncludesDir    = "$WorkingDir\include"
+$IncludesDir    = "$WorkingDir\includes"
 $SetupDir       = "$WorkingDir\setup"
 $ToolsDir       = "$WorkingDir\tools"
 

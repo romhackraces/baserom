@@ -23,7 +23,7 @@ jobs:
           ".github"
           "build"
           "config"
-          "include"
+          "includes"
           "!build_baserom.ps1"
           "Readme.md"
         )
