@@ -1,0 +1,35 @@
+These are the short instructions for how to use this baserom:
+
+    1. Put a copy of your clean, headered Super Mario World ROM in the
+       resources folder, renamed "clean.smc"
+
+    2. Run both actions of the !setup_baserom.bat script–to download
+       all the tools and do a first build of your project.
+
+    3. After that, use Callisto (found in tools/Callisto) to manage
+       your project. Run "Edit" to launch Lunar Magic, using the "Update"
+       action to apply changes.
+
+Good luck, happy ROM hacking!
+
+Some things to remember:
+
+    * Don't run the provided tools separately from Callisto as it will
+      overwrite their changes or cause other problems like data loss if
+      or when it performs a Rebuild.
+
+    * Editing your project with an external copy of Lunar Magic may result
+      in data loss if Callisto re-inserts different levels.
+
+    * You can easily "remove" Asar patches from your project, if they're
+      omitted from Callisto's patch list (found in tools/Callisto).
+
+    * The "Rebuild" action in Callisto should be used sparingly as it takes
+      more time; if the "Update" action is insufficient Callisto will run
+      a Rebuild automatically
+
+    * There's no special extra process for adding resources to your project,
+      just don't insert them directly with the tools.
+
+If you need help don't hesistate asking questions in the Romhack Races
+Discord server, or consult the detailed Readme for more information.
