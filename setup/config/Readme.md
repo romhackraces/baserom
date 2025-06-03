@@ -1,1 +1,0 @@
-Configuration files for modules of the baserom.
