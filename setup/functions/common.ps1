@@ -89,7 +89,7 @@ function Setup-Tool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $DocFi
             Expand-Archive -Path "$env:temp\$ToolName.zip" -DestinationPath $DestinationDir -Force -ErrorAction Stop
             # Run Extra Step if set
             if ($ExtraFunction -ne $null -and $ExtraFunction -ne "") {
-                Write-Host "Running additional steps for $ToolName..."
+                Write-Host "Running additional steps for $ToolName..." -ForegroundColor DarkGray
                 & $ExtraFunction
             }
             # Move Readme files
