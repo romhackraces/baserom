@@ -3,18 +3,23 @@ Clear-Host
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
 # Directory Definitions
-$WorkingDir = Get-Location
-$ToolsDir = "$WorkingDir\tools"
-$DocsDir = "$WorkingDir\docs\tools"
-$ResourcesDir = "$WorkingDir\resources"
-$ListsDir = "$ToolsDir\init\lists"
+$WorkingDir     = Get-Location
+$ModulesDir     = "$WorkingDir\modules"
+$ResourcesDir   = "$WorkingDir\resources"
+$InitDir        = "$WorkingDir\init"
+$ToolsDir       = "$WorkingDir\tools"
+$ToolsDocsDir   = "$WorkingDir\tools\Docs"
+
+$ListsDir       = "$InitDir\lists"
+$ConfigDir      = "$InitDir\config"
+$FunctionsDir   = "$InitDir\functions"
 
 # Include defines
-. $ToolsDir\init\tool_defines.ps1
+. $InitDir\tool_defines.ps1
 # Include functions
-. $ToolsDir\init\functions\common.ps1
-. $ToolsDir\init\functions\tool_specific.ps1
-. $ToolsDir\init\functions\extra_steps.ps1
+. $InitDir\functions\common.ps1
+. $InitDir\functions\tool_specific.ps1
+. $InitDir\functions\extra_steps.ps1
 
 # Start the main menu loop
 $UserChoice = $null

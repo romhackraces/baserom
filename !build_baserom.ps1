@@ -4,15 +4,20 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 $ErrorActionPreference = "Stop"
 
 # Directory Definitions
-$WorkingDir = Get-Location
-$BuildDir = "$WorkingDir\build"
-$ConfigDir = "$WorkingDir\config"
-$DocsDir = "$WorkingDir\docs"
-$ModulesDir = "$WorkingDir\modules"
-$ToolsDir = "$WorkingDir\tools"
+$WorkingDir     = Get-Location
+$BuildDir       = "$WorkingDir\build"
+$ModulesDir     = "$WorkingDir\modules"
+$ToolsDir       = "$WorkingDir\tools"
+$DocsDir        = "$WorkingDir\docs"
+$ConfigDir      = "$WorkingDir\config"
+
+$InitDir        = "$ToolsDir\init"
+$ListsDir       = "$InitDir\lists"
+$FunctionsDir   = "$InitDir\functions"
+
 
 # Include defines
-. $ToolsDir\init\tool_defines.ps1
+. $InitDir\tool_defines.ps1
 # Include module build scripts
 . $BuildDir\setup_module_retry.ps1
 

@@ -21,7 +21,7 @@ function Remove-Junk($Directory, $JunkFiles) {
 # Function to move documentation files
 function Move-Docs($ToolName, $DocFiles, $Directory) {
 
-    Write-Host "Copying $ToolName documentation to 'docs' folder..." -ForegroundColor DarkGray
+    Write-Host "Moving $ToolName documentation..." -ForegroundColor DarkGray
 
     if (-not (Test-Path -Path "$DocsDir\$ToolName" -PathType Container)) {
         New-Item -Path "$DocsDir\$ToolName" -ItemType Directory -Force | Out-Null

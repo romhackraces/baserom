@@ -5,18 +5,18 @@
 function ExtraLunarMagic {
     Write-Host "Installing baserom User Toolbar alongside Lunar Magic..." -ForegroundColor DarkGray
     # copy usertoolbar files to Lunar Magic directory
-    Copy-Item -Path "$ToolsDir\init\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir -Force
-    Copy-Item -Path "$ToolsDir\init\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir -Force
-    Copy-Item -Path "$ToolsDir\init\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir -Force
+    Copy-Item -Path "$InitDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir -Force
+    Copy-Item -Path "$InitDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir -Force
+    Copy-Item -Path "$InitDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir -Force
 }
 
 # Extra steps for PIXI
 function ExtraPIXI {
-    Write-Host "Resolving conflict in PIXI and UberASM Tool ASM..." -ForegroundColor DarkGray
+    Write-Host "Resolving ASM conflict in PIXI and UberASM Tool..." -ForegroundColor DarkGray
 
     # Replace part of main.asm to fix conflict with uberasm tool
-    $findText = Get-Content "$ToolsDir\init\pixi\main.asm.find" -Raw
-    $replaceText = Get-Content "$ToolsDir\init\pixi\main.asm.replace" -Raw
+    $findText = Get-Content "$InitDir\pixi\main.asm.find" -Raw
+    $replaceText = Get-Content "$InitDir\pixi\main.asm.replace" -Raw
 
     # Get PIXI file
     $origFile = "$ToolsDir\pixi\asm\main.asm"
@@ -45,7 +45,7 @@ function ExtraCallisto {
     Copy-Item -Path "$Callisto_Dir\initial_patches\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
 
     # Install Callisto's modified asar dll.
-    Write-Host "Replacing tools' Asar DLLs with Callisto-specific versions..." -ForegroundColor DarkGray
+    Write-Host "Replacing tool-specific Asar DLLs with Callisto versions..." -ForegroundColor DarkGray
     Copy-Item -Path "$Callisto_Dir\asar\v1.81\32-bit\asar.dll" -Destination $GPS_Dir -Force
     Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
     Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
