@@ -13,7 +13,7 @@ JMP Return : JMP Return : JMP Return
 
 ; Sound effect options
 !PlaySoundEffect = 1            ; set to 1 to play a sound effect on bounce
-!SFXNum  = $13                  ; sound effect number
+!SFXNum  = $03                  ; sound effect number
 !SFXBank = $1DF9|!addr          ; sound effect bank ($1DF9, $1DFC)
 
 Sprite:

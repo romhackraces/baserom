@@ -5,6 +5,7 @@ v5.13
 - updated retry system to version 0.8.1
 - reorganized the project structure for cleaner set-up procedure
 - updated the included documentation
+- added optional sound effects to the utility blocks
 
 v5.12
 - major upgrades to the retry system
