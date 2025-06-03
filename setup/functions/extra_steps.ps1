@@ -19,8 +19,8 @@ function ExtraPIXI {
     $replaceText = Get-Content "$SetupDir\pixi\main.asm.replace" -Raw
 
     # Get PIXI file
-    $origFile = "$ToolsDir\pixi\asm\main.asm"
-    $tempFile = "$ToolsDir\pixi\asm\main.asm~"
+    $origFile = "$PIXI_Dir\asm\main.asm"
+    $tempFile = "$PIXI_Dir\asm\main.asm~"
 
     # Escape "$0" because powershell is unhappy with it
     $replaceText = $replaceText -replace '\$0', '$0'
