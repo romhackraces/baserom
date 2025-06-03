@@ -75,8 +75,8 @@ routines:
 
 ; Game Mode 14 end
 .end
-    %ObjectRoutine($98, enable_free_vertical_scroll)
     ; end code here
+    %ObjectRoutine($98, enable_free_vertical_scroll)
 ..done
 
 ;=================================================================
@@ -138,6 +138,9 @@ death_on_power_up_loss:
 
 ; Press L & R to Die
 press_lr_to_die:
+    lda $13D4|!addr     ; Check if game is paused
+    ora $9D             ; or frozen
+    bne +
     lda $17             ;\ Check if L & R are pressed
     and #%00110000      ;|
     cmp #$30            ;/
