@@ -54,8 +54,8 @@ routines:
     %ObjectRoutine($D1, toggle_lr_scroll)
     %ObjectRoutine($D2, toggle_spinjump_fireballs)
     %ObjectRoutine($D3, toggle_block_duplication)
-    %ObjectRoutine($D4, toggle_capespin_direction)
-    %ObjectRoutine($D5, toggle_springboard_fixes)
+    %ObjectRoutine($D4, toggle_springboard_fixes)
+    %ObjectRoutine($D5, toggle_capespin_direction)
     %ObjectRoutine($D6, toggle_rope_glitch)
 ..done
 
