@@ -41,12 +41,12 @@ function ExtraPIXI {
 function ExtraCallisto {
     # Copy over Callisto's initial BPS patches
     Write-Host "Copying over Callisto's initial BPS patches..." -ForegroundColor DarkGray
-    Copy-Item -Path "$Callisto_Dir\initial_patches\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
-    Copy-Item -Path "$Callisto_Dir\initial_patches\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
+    Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.51\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
+    Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.51\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
 
     # Install Callisto's modified asar dll.
     Write-Host "Replacing tool-specific Asar DLLs with Callisto versions..." -ForegroundColor DarkGray
-    Copy-Item -Path "$Callisto_Dir\asar\v1.81\32-bit\asar.dll" -Destination $GPS_Dir -Force
+    Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination $GPS_Dir -Force
     Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
     Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
     Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination $PIXI_Dir -Force

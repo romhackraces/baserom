@@ -418,7 +418,7 @@ Asar v1.81
  - author(s): Alcaro et al.
  - source: https://smwc.me/s/25953
 
-Callisto v0.4.2
+Callisto v0.5.0
  - author(s): underway
  - source: https://github.com/Underrout/callisto/
 
@@ -426,13 +426,13 @@ Flips v1.31
  - author(s): Alcaro
  - source: https://smwc.me/s/11474
 
-GPS v1.4.4
+GPS v1.4.5
  - author(s): TheBiob, p4plus2
- - source: https://smwc.me/s/29130
+ - source: https://smwc.me/s/40056
 
-Lunar Magic 3.40
+Lunar Magic 3.51
  - author(s): FuSoYa
- - source: https://smwc.me/s/35121
+ - source: https://smwc.me/s/38972
 
 PIXI v1.42
  - author(s): Atari2.0, JackTheSpades, Tattletale
