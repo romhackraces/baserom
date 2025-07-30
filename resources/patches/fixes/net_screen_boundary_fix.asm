@@ -48,7 +48,7 @@ net_door_stripe_upload:
     db $03,$07
     db $01,$09
 
-warnpc $00C3D1
+assert pc() <= $00C3D1
 
 freecode
 

@@ -13,11 +13,13 @@ incsrc "callisto.asm"
 ; the value of  !FIRST_SPRITE_WORTH  to increase the amount of sprites required.
 ;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-lorom
-!addr = $0000
+
 if read1($00FFD5) == $23
 	sa1rom
 	!addr = $6000
+else
+	lorom
+	!addr = $0000
 endif
 
 !FREE_RAM = !goal_point_reward_fix_freeram      ; must be cleared on overworld or level load

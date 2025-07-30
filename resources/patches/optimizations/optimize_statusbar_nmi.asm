@@ -27,4 +27,4 @@ org $008DB1
     sep #$10
     rts
 
-warnpc $008DF5
+assert pc() <= $008DF5

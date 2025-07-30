@@ -29,7 +29,7 @@ if read1($00FFD5) == $23 && read3($0084C0) == $5A123 && read1($0084C3) >= 140
         ; Restore original code
         jml $05BC00
 
-    warnpc $02FA84
+    assert pc() <= $02FA84
 
     freedata
 

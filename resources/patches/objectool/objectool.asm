@@ -18,6 +18,7 @@ if read1($00FFD5) == $23
 	!bank = $000000
 	!map16 = $40
 	!sa1 = 1
+	!ObjScratchRAM = $6910
 else
 	lorom
 	!dp = $0000
@@ -25,12 +26,13 @@ else
 	!bank = $800000
 	!map16 = $7E
 	!sa1 = 0
+	!ObjScratchRAM = $0910
 endif
 
 ; 80+ bytes used for scratch RAM in some routines to build tables
 ; the address doesn't particularly matter as long as anything else that would need it
 ; reloads it before using it but after object code runs
-!ObjScratch = $0910|!addr
+!ObjScratch = !ObjScratchRAM
 
 org $0DA106|!bank				; x6A306 (hijack extended object loading routine)
 	autoclean JML NewExObjects		; E2 30 A5 59

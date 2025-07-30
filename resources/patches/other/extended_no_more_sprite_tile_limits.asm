@@ -156,7 +156,7 @@ ScoreSpriteMain:					;
 	jsl GetExtOAMIndex				;
 	pla								;
 	bra +							; (continue with the normal code)
-warnpc $02ADBA						;
+assert pc() <= $02ADBA						;
 org $02ADBA							;
 	+								;
 org $02ADC5							;
@@ -264,7 +264,7 @@ SpinningCoinOAM2:
 	jml SpinningCoinOAMFreespace_next
 SmokeImageOAM:
 	jml SmokeImageOAMFreespace
-warnpc $02B630
+assert pc() <= $02B630
 
 freecode
 

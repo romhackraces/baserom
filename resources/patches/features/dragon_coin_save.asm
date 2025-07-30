@@ -41,7 +41,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;despite what I said above, these are still used when collecting the dragon coin.
-if !Replace = 0
+if !Replace == 0
 	!uppertile = #$0025
 	!lowertile = #$0025
 endif
@@ -86,7 +86,7 @@ autoclean JML DCget
 
 
 org $00CA2B
-	if !Midpoint = 1
+	if !Midpoint == 1
 		autoclean JSL SaveBuffer
 		NOP
 	else
@@ -108,7 +108,7 @@ InitDCRAM:
 	CPX #$FE
 	BNE -
 
-if !Midpoint = 1
+if !Midpoint == 1
 	LDX #$06
 -
 	STA !buffer,x
@@ -208,7 +208,7 @@ CalcDCNum:	; the retry patch may also call this routine
 	JSR Calc13BF	; I know $13BF can be computed twice when you enter the level from the map, but it's not a big deal
 ++
 
-	if !Midpoint = 1
+	if !Midpoint == 1
 		SEP #$10
 		LDA $13BF|!base2
 		ASL
@@ -245,7 +245,7 @@ CalcDCNum:	; the retry patch may also call this routine
 	BNE ++
 
 
-if !Midpoint = 1
+if !Midpoint == 1
 	LDX #$06
 -
 	LDA !buffer,x
@@ -464,7 +464,7 @@ endif
 
 ; $08~$09 = iissssss yyyyxxxx
 
-if !Midpoint = 1
+if !Midpoint == 1
 	REP #$20
 	LDA $08
 
@@ -502,7 +502,7 @@ endif
 	SEP #$20
 .dot_gen
 	LDY $57
-if !Replace = 1
+if !Replace == 1
 	LDA.b !uppertile>>8
 	STA [$6E],y
 	LDA.b !uppertile
@@ -520,7 +520,7 @@ endif
 	db $20,$20,$1E,$1C,$1A,$18,$17,$16,$15,$14,$13,$12,$11,$10,$0F,$0E
 	db $0D,$0C,$0B,$0A,$09,$08,$07,$06,$05,$04,$03,$02,$01
 
-if !Replace = 1	;routine is not needed if no replace occures.
+if !Replace == 1	;routine is not needed if no replace occures.
 CODE_0DA97D:
 	LDA $57
 	CLC
@@ -647,7 +647,7 @@ endif
 	ASL
 	TAX
 
-if !Midpoint = 1
+if !Midpoint == 1
 	LDX #$06
 -
 	LDA !buffer,x
@@ -732,7 +732,7 @@ endif
 
 
 
-if !Midpoint = 1
+if !Midpoint == 1
 SaveBuffer:
 	PHX
 

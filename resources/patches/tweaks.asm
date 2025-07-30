@@ -1,19 +1,9 @@
-@asar 1.70
-
-math pri on
-math round off
-
-!sa1 = 0                ; SA-1 flag
-!dp = $0000             ; Direct Page remap ($0000 - LoROM/FastROM, $3000 - SA-1 ROM)
-!addr = $0000           ; Address remap ($0000 - LoROM/FastROM, $6000 - SA-1 ROM)
-!ram = $7E0000          ; WRAM/BW-RAM remap ($7E0000 - LoROM/FastROM, $400000 - SA-1 ROM)
-!bank = $800000         ; Long address remap ($800000 - FastROM, $000000 - SA-1 ROM)
-!bank8 = $80            ; Bank byte remap ($80 - FastROM, $00 - SA-1 ROM)
-!SprSize = $0C          ; Number of sprite slots (12 - FastROM, 22 - SA-1 ROM)
+asar 1.90
 
 ; SA-1 detection code
 if read1($00FFD5) == $23
     sa1rom
+
     !sa1 = 1
     !dp = $3000
     !addr = $6000
@@ -21,10 +11,20 @@ if read1($00FFD5) == $23
     !bank = $000000
     !bank8 = $00
     !SprSize = $16
+else
+    lorom
+
+    !sa1 = 0                ; SA-1 flag
+    !dp = $0000             ; Direct Page remap ($0000 - LoROM/FastROM, $3000 - SA-1 ROM)
+    !addr = $0000           ; Address remap ($0000 - LoROM/FastROM, $6000 - SA-1 ROM)
+    !ram = $7E0000          ; WRAM/BW-RAM remap ($7E0000 - LoROM/FastROM, $400000 - SA-1 ROM)
+    !bank = $800000         ; Long address remap ($800000 - FastROM, $000000 - SA-1 ROM)
+    !bank8 = $80            ; Bank byte remap ($80 - FastROM, $00 - SA-1 ROM)
+    !SprSize = $0C          ; Number of sprite slots (12 - FastROM, 22 - SA-1 ROM)
 endif
 
-; EXLEVEL Check
 !EXLEVEL = 0
+
 if (((read1($0FF0B4)-'0')*100)+((read1($0FF0B4+2)-'0')*10)+(read1($0FF0B4+3)-'0')) > 253
     !EXLEVEL = 1
 endif

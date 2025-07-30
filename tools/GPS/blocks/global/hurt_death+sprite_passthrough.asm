@@ -29,7 +29,7 @@ JMP WallRun : JMP WallRun
 
 MarioAbove:
 MarioCorner:
-    if !yoshi_can_walk_on_top = 1
+    if !yoshi_can_walk_on_top == 1
         LDA $187A|!addr		    ; \ if the player is riding Yoshi
         BNE MarioAboveReturn    ; / let him live
     endif
@@ -56,7 +56,7 @@ MarioSide:
 
 
 WallRun:
-    if !allow_wall_run = 1
+    if !allow_wall_run == 1
         RTL
     else
         JMP HurtOrKill
@@ -64,11 +64,11 @@ WallRun:
 
 
 SpriteStuff:
-    if !solid_for_sprites = 1
+    if !solid_for_sprites == 1
         LDA #$30				; \
         STA $1693|!addr		    ; | act as tile 130 (cement block)
         LDY #$01				; /
-    elseif  !solid_for_sprites = 0
+    elseif  !solid_for_sprites == 0
         LDA #$48				; \
         STA $1693|!addr			; | act as tile 48 (always turning block)
         LDY #$00				; /
@@ -80,7 +80,7 @@ SpriteStuff:
     RTL
 
 
-    if !instant_death = 0
+    if !instant_death == 0
 HurtOrKill:
         PHY
 HurtOrKillPopY:
