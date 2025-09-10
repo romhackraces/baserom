@@ -1,19 +1,11 @@
 incsrc "callisto.asm"
 %import_library("freeram.asm")
 
-!Freeram_PrevPos = !scroll_fix_freeram_bank
-;^[4 bytes], determines direction from its previous position. The first
-;two bytes are for X position, and the last two are for the Y. When working
-;with ASM to control the screen (by changing $7E1462 and $7E1464), DO NOT
-;modify this value, you'll end up with sprites not spawning during the
-;frame its modified. Note that this freeram is NOT auto-converted to SA-1
-;(in case you wanted to use freeram addresses created by SA-1).
-
 !Displacement = 0
 ;^Set this  to 1 if you wanted to use a number that is the amount of pixels
 ;the screen has been moved.
 
-!Freeram_ScrnDisplace = !scroll_fix_freeram_bank+4
+!Freeram_ScrnDisplace = !scroll_fix_freeram_bank
 ;[4 bytes], this ram is used if !Displacement is set to 1. This ram address
 ;holds the amount of pixels the screen has moved. Format:
 ;-First 2 bytes = moved horizontally
@@ -23,80 +15,67 @@ incsrc "callisto.asm"
 ;SA1 detector:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 if read1($00FFD5) == $23
-	!SA1 = 1
-	sa1rom
+    !SA1 = 1
+    sa1rom
 else
-	!SA1 = 0
+    !SA1 = 0
 endif
 
 ; Example usage
 if !SA1
-	; SA-1 base addresses	;Give thanks to absentCrowned for this:
-				;http://www.smwcentral.net/?p=viewthread&t=71953
-	!Base1 = $3000		;>$0000-$00FF -> $3000-$30FF
-	!addr = $6000		;>$0100-$0FFF -> $6100-$6FFF and $1000-$1FFF -> $7000-$7FFF
-	!bank = $000000
+    ; SA-1 base addresses
+    !Base1 = $3000      ;>$0000-$00FF -> $3000-$30FF
+    !Base2 = $6000      ;>$0100-$0FFF -> $6100-$6FFF and $1000-$1FFF -> $7000-$7FFF
+    !FastROM = $000000
 else
-	; Non SA-1 base addresses
-	!Base1 = $0000
-	!addr = $0000
-	!bank = $800000
+    ; Non SA-1 base addresses
+    !Base1 = $0000
+    !Base2 = $0000
+    !FastROM = $800000
 endif
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;Hijack
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-org $00F728				;>Routine that depends on mario's x pos on-screen that sets $55/$56.
-	nop #4
+org $00F728             ;>Routine that depends on mario's x pos on-screen that sets $55/$56.
+    bra +
+    nop #2
++
 
-org $00F80C
-	nop #4				;>Routine that depends on mario's y pos on-screen that sets $55/$56.
+org $00F80C             ;>Routine that depends on mario's y pos on-screen that sets $55/$56.
+    bra +
+    nop #2
++
 
-org $00F713				;>Where mario scrolls the screen horizontally
-	autoclean JML BetterScrollX
-	nop #1
+org $00F713             ;>Where mario scrolls the screen horizontally
+    autoclean JML BetterScrollX
+    nop #1
 
-org $00F7F4				;>Where mario scrolls the screen vertically.
-	autoclean JML BetterScrollY	;>(they left out $13F1, I think...)
-	nop #1
+org $00F7F4             ;>Where mario scrolls the screen vertically.
+    autoclean JML BetterScrollY ;>(they left out $13F1, I think...)
+    nop #1
 
-freecode
+freedata
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;code to be inserted to freespace
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 BetterScrollX:
-	PHA             ;>Save A
-	PHX             ;>Save X
-	PHP             ;>Save processor flags.
+    LDX #$00
+    JSR ScrollSub
 
-	LDX #$00
-	JSR ScrollSub
-
-	PLP             ;>Restore processor flags.
-	PLX             ;>Restore X
-	PLA             ;>Restore A
-
-	LDY $1411|!addr    ;\Restore code.
-	BEQ +               ;|
-	JML $00F718|!bank   ;|
-+	JML $00F75A|!bank   ;/
+    LDY $1411+!Base2     ;\Restore code.
+    BEQ +                ;|
+    JML $00F718|!FastROM ;|
++   JML $00F79D|!FastROM ;/
 
 BetterScrollY:
-	PHA             ;>Save A
-	PHX             ;>Save X
-	PHP             ;>Save processor flags.
+    LDX #$02             ;\Use routine
+    JSR ScrollSub        ;/
 
-	LDX #$02             ;\Use routine
-	JSR ScrollSub        ;/
-
-	PLP             ;>Restore processor flags.
-	PLX             ;>Restore X
-	PLA             ;>Restore A
-
-	LDX $1412|!addr        ;\restore code
-	BNE +                   ;|
-	JML $00F7F9|!bank       ;>You cannot RTS on freespace if JML (must end on correct bank).
-+	JML $00F7FA|!bank       ;/
+    LDX $1412+!Base2        ;\restore code
+    BNE +                   ;|
+    JML $00F7F9|!FastROM    ;>You cannot RTS on freespace if JML (must end on correct bank).
++   JML $00F7FA|!FastROM    ;/
 
 ScrollSub:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -104,13 +83,13 @@ ScrollSub:
 ;X=#$00 for x position
 ;X=#$02 for y position
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    REP #$20                        ;>16-bit A
-    LDA $1462+!addr,x              ;>Load final position
+    PHA                             ;>Save A
+    LDA $1462+!Base2,x              ;>Load final position
     if !Displacement == 0
-        CMP !Freeram_PrevPos,x      ;>Compare (CMP actually subtracts without effecting A) with inital pos.
+        CMP $7F831F,x               ;>Compare (CMP actually subtracts without effecting A) with inital pos.
     else
         SEC                         ;\Subtract by previous to find the amount of change in position
-        SBC !Freeram_PrevPos,x      ;/(the delta symbol in math)
+        SBC $7F831F,x               ;/(the delta symbol in math)
         STA !Freeram_ScrnDisplace,x ;>Store displacement into RAM
     endif
     BEQ .DidntScroll                ;>If result is zero, the screen didn't scroll and leave $55/$56 as is.
@@ -123,8 +102,10 @@ ScrollSub:
     LDA #$0202                      ;>Load #$02 (right/down value)
 +
     STA $55                         ;>Store on $55 and $56
-    LDA $1462+!addr,x              ;\Update so that in case if the
-    STA !Freeram_PrevPos,x          ;/screen scroll again on the 3rd frame.
 .DidntScroll
-    SEP #$20                        ;>8-bit A
+    PLA                             ;>Restore A
     RTS
+
+if read1($0FFFE6) == $FF || read1($0FFFE6) == $00
+    error "You need to insert Lunar Magic's VRAM patch before inserting this patch!"
+endif

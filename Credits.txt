@@ -255,7 +255,7 @@ Sprite Ceiling Fix
 
 Sprite Scroll Fix
  - author(s): HammerBrother
- - source: https://smwc.me/s/13675
+ - source: https://smwc.me/s/40600
 
 Star/Slide Kill GFX Fix
  - author(s): Kevin
