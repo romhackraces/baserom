@@ -4,12 +4,14 @@ includeonce
 
 ; Large blocks of ram
 if read1($00FFD5) == $23
+    ;; SA-1 Addresses
     !objectool_level_flags_bank             = $409400 ; 13 bytes used
     !toggles_freeram_bank                   = $409410 ; 8 bytes used
     !scroll_pipes_freeram_bank              = $409420 ; 5 bytes used
     !scroll_fix_freeram_bank                = $409430 ; 4 bytes used
     ;!retry_freeram                          = $40A400 ; 241 (+ 4 * # of midways) bytes used
 else
+    ;; lorom addresses
     !objectool_level_flags_bank             = $7FA400 ; 13 bytes used
     !toggles_freeram_bank                   = $7FA410 ; 8 bytes used
     !scroll_pipes_freeram_bank              = $7FA420 ; 5 bytes used
