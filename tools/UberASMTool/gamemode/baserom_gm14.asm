@@ -5,7 +5,6 @@ init:
 
 main:
     jsl double_hit_fix_main
-    jsl screen_scrolling_pipes_main
     jsl uberasm_objects_main
     rtl
 

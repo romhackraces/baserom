@@ -1,4 +1,4 @@
-;Put this in uberasm tool's library file.
+; Put this in uberasm tool's library folder and call as game mode 14
 
 incsrc "callisto.asm"
 %import_library("defines/screen_scrolling_pipes.asm")
@@ -10,7 +10,7 @@ main:
 
 
 ;-----------------------------------------
-;check if mario has died in the pipe
+; check if mario has died in the pipe
 ;-----------------------------------------
 .DeathAnimationCheck
     LDA !Freeram_SSP_PipeDir                ;If Mario is inside a pipe AND dying, reset all his status for 1 frame.
@@ -100,11 +100,16 @@ endif
 ; hide the player if in the pipe
 ;-----------------------------------------
 .HidePlayer
+    LDA !Freeram_SSP_PipeDir	            ;\If mario isn't one of the 8 main states, make him invisible.
+    AND.b #%00001111		                ;|
+    CMP #$09			                    ;|
+    BCS ..Hide			                    ;/
     LDA !Freeram_SSP_EntrExtFlg             ;\hide player if timer hits zero when entering.
     CMP #$02                                ;|
     BEQ ..NoHide                            ;|
     LDA !Freeram_SSP_PipeTmr                ;|
     BNE ..NoHide                            ;/
+..Hide
 if !Setting_SSP_ShowMario == 0
 ..DontHideYoshi
     LDA #$EF
@@ -269,7 +274,11 @@ if !Setting_SSP_FreezeTime != 0
 endif
 	STZ $13F9|!addr                         ;>go in front of layers
 	STZ $1497|!addr                         ;>make vulnerable
-	STZ $71                                 ;>mario can move
+    LDX $71				                    ;\If player dying, don't restore his state
+    CPX #$09			                    ;|of not in his dying phase.
+    BEQ +		                            ;/
+    STZ $71				                    ;>mario can move
+    +
 	STZ $73                                 ;>stop crouching (when going exiting down on yoshi)
 	STZ $140D|!addr                         ;>no spinjump out the pipe (possable if both enter and exit caps are bottoms)
 	STZ $7B                                 ;\cancel speed
