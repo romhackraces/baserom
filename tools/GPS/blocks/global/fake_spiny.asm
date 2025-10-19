@@ -1,4 +1,5 @@
-; Spiny block by TheBourgyman. Don't forget to make it act as 25 in Lunar Magic's 16x16 Tile Map Editor.
+; Spiny block by TheBourgyman
+; Don't forget to make it act as 25 in Lunar Magic's 16x16 Tile Map Editor.
 
 print "A block that acts like a mid-air suspended Spiny."
 
@@ -10,7 +11,12 @@ JMP TopCorner : JMP BodyInside : JMP HeadInside
 
 !fireballcoin = 0		; Set to 1 to have the block spawn a coin when killed by a fireball.
 
+End:
+	RTL
+
 Bounce:
+	LDA $7D				; Check if Mario is moving upwards
+	BMI End				; If he does, end interaction entirely.
 	LDA $14A8|!addr		; Check unused timer to see if Mario should bounce off the block.
 	BEQ +				; If it's still going, skip interaction entirely.
 	RTL
@@ -29,7 +35,11 @@ Bounce:
 	STA $14A8|!addr
 	JML $01AB99|!bank	; Write the contact graphics for the spin jump.
 
-MarioSide:				; Make the block's hitbox one pixel narrower (like Munchers).
+MarioSide:
+	LDA $7D				; Check if Mario is moving upwards
+	BMI End				; If he does, end interaction entirely.
+
+						; Make the block's hitbox one pixel narrower (like Munchers).
 	REP #$20			; Make A 16 bit.
 	LDA $9A				; Check the collision X position currently being processed.
 	AND #$FFF0			; Remove the four lowest bits (00-0F).
