@@ -10,7 +10,7 @@ Compilation & Documentation
  - AmperSam
 
 Help & Feedback:
- - binavik, Fen, Fernap, Kevin, LouisDoucet, TheJavaBrew, underway
+ - binavik, Fernap, Kevin, LouisDoucet, Spirits, TheJavaBrew, underway
 
 
 ==== CONSISTENCY PATCHES ====
