@@ -9,6 +9,7 @@ v5.13
 - updated the included documentation
 - added optional sound effects to the utility blocks
 - fixed bug in spiny/swooper blocks if d-boosting upward through them
+- fix vertical level bug in shatter block
 
 v5.12
 - major upgrades to the retry system
