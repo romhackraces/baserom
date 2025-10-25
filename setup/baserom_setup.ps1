@@ -42,6 +42,7 @@ while ($UserChoice -ne "3") {
 
         # Download and Setup all Baserom Tools
         "1" {
+            $global:has_errors = "no"
             Clear-Host
             # Specialized tool initialization processes
             SetupAMK "AddMusicK" $AddMusicK_Download $AddMusicK_Dir $AddMusicK_Junk $AddMusicK_Docs "" ""

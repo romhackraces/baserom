@@ -1,4 +1,4 @@
-LM_ADDIMAGE "usertoolbar_icons.bmp"
+LM_ADDIMAGE "%4usertoolbar_icons.bmp"
 
 ***START***
 LM_SPACER
