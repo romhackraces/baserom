@@ -1,11 +1,14 @@
 v5.13
 - introduced a build system for the baserom's source
 - reworked the initialization scripts into setup scripts
-- updated Callisto to version 0.4.2
+- updated Callisto to version 0.6.0
 - updated retry system to version 0.8.1
+- updated Lunar Magic to 3.61
+- added support for extended objects descriptions added in LM 3.61
 - reorganized the project structure for cleaner set-up procedure
 - updated the included documentation
 - added optional sound effects to the utility blocks
+- fixed bug in spiny/swooper blocks if d-boosting upward through them
 
 v5.12
 - major upgrades to the retry system
