@@ -1,37 +1,37 @@
-0 98 0 UberASM Object 98\nFree Vertical Scroll\nMakes the camera follow Mario up and down.
-0 99 0 UberASM Object 99\nLock Horizontal Scroll\nPrevents the camera from scrolling left or right.
-0 9A 0 UberASM Object 9A\nInvisible Mario\nMakes Mario invisible.
-0 9B 0 UberASM Object 9B\nNo Power-ups\nPrevent Mario from collecting any power-ups, including to the item box. Can be used to reset power-up state.
-0 9C 0 UberASM Object 9C\nEnable 8-frame Cape Float\nApply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.
-0 9D 0 UberASM Object 9D\nRemove Cape Float Delay\nSet the delay before Mario starts floating with cape to zero frames.
-0 9E 0 UberASM Object 9E\nDisable Cape Flight\nPrevents Mario from ever entering flight with cape.
-0 9F 0 UberASM Object 9F\nDeath on Power-up Loss\nLosing a power up will kill Mario instantly. Makes all hurt blocks death blocks and all damaging sprites lethal.
-0 A0 0 UberASM Object A0\nPress L & R To Die\nKills the player if L and R are pressed. Useful for a quick reset.
-0 A1 0 UberASM Object A1\nDisable Screen Shake\nStops all Vanilla sources of Layer 1 screen shake.
-0 A2 0 UberASM Object A2\nDisable Spin Jump\nDisables the A Button, therefore no spin jumping.
-0 B0 0 UberASM Object B0\nSet Retry Type to Instant\nMake the retry skip using prompt and restart instantly after dying.
-0 B1 0 UberASM Object B1\nSet Retry Type to Prompt\nSet the retry system to use a prompt that says "Retry" in the middle of the screen.
-0 B2 0 UberASM Object B2\nSet Retry Type to Vanilla\nSet the retry system back to using Vanilla death routine.
-0 B3 0 UberASM Object B3\nBottom Left Retry Prompt\nMove the "Retry" prompt to the bottom left if Prompt Retry is active (by default it's in the middle).
-0 B4 0 UberASM Object B4\nNo Power Ups from Midways\nDisable gaining a power-up (mushroom) from a midway point.
-0 BA 0 UberASM Object BA\nDisplay Sprite Timer\nShow the level timer from the Retry System's sprite status bar.
-0 BB 0 UberASM Object BB\nDisplay Coins Counters\nShow the coin counters from the Retry System's sprite status bar.
-0 BC 0 UberASM Object BC\nDisplay Item Box\nShow the item box from the Retry System's sprite status bar
-0 C0 0 UberASM Object C0\nStart with a Mushroom\nHave the player start the level with a Mushroom.
-0 C1 0 UberASM Object C1\nStart with Cape\nHave the player start the level with a Cape.
-0 C2 0 UberASM Object C2\nStart with Fire Flower\nHave the player start the level with a Fire Flower.
-0 C3 0 UberASM Object C3\nStart with Star Power\nHave the player start the level with Star Power. Not infinite, lasts as long as a normal Star.
-0 C4 0 UberASM Object C4\nStart on Green Yoshi\nHave the player start the level on a Green Yoshi.
-0 C5 0 UberASM Object C5\nStart on Yellow Yoshi\nHave the player start the level on a Yellow Yoshi.
-0 C6 0 UberASM Object C6\nStart on Blue Yoshi\nHave the player start the level on a Blue Yoshi.
-0 C7 0 UberASM Object C7\nStart on Red Yoshi\nHave the player start the level on a Red Yoshi.
-0 C8 0 UberASM Object C8\nStart in Spin Jump State\nHave the player start the level spinning (most useful when Mario is in the air).
-0 C9 0 UberASM Object C9\nStart in OFF State\nStarts the level with the ON/OFF state in the OFF state.
-0 CA 0 UberASM Object CA\nStart in ON State\nStarts the level with the ON/OFF state in the ON state.
-0 D0 0 UberASM Object D0\nToggle Statusbar\nPlacing the object hides the Layer 3 statusbar.
-0 D1 0 UberASM Object D1\nToggle Screen Scroll\nDisable the effects of a patch that prevents scrolling the screen with L or R.
-0 D2 0 UberASM Object D2\nToggle Spin Jump Fireballs\nPrevent Mario from shooting fireballs while spin jumping.
-0 D3 0 UberASM Object D3\nToggle Block Duplication\nDisable the effects of a patch that prevents block duplication.
-0 D4 0 UberASM Object D4\nToggle Springboard Fixes\nDisable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).
-0 D5 0 UberASM Object D5\nToggle Cape Turnaround\nDisable the effects of the patch that makes turning around with cape consistent on button press.
-0 D6 0 UberASM Object D6\nToggle Rope Glitch\nToggle off the fixes for the air climb rope glitch.
+0 98 0 UberASM Object 98: Free Vertical Scroll\n-----\nMakes the camera follow Mario up and down.
+0 99 0 UberASM Object 99: Lock Horizontal Scroll\n-----\nPrevents the camera from scrolling left or right.
+0 9A 0 UberASM Object 9A: Invisible Mario\n-----\nMakes Mario invisible.
+0 9B 0 UberASM Object 9B: No Power-ups\n-----\nPrevent Mario from collecting any power-ups, including to the item box. Can be used to reset power-up state.
+0 9C 0 UberASM Object 9C: Enable 8-frame Cape Float\n-----\nApply a consistent 8 frame counter after the input is registered to adjust Mario's falling speed with cape.
+0 9D 0 UberASM Object 9D: Remove Cape Float Delay\n-----\nSets the delay before Mario starts floating with cape to zero frames.
+0 9E 0 UberASM Object 9E: Disable Cape Flight\n-----\nPrevents Mario from ever entering flight with cape.
+0 9F 0 UberASM Object 9F: Death on Power-up Loss\n-----\nLosing a power up will kill Mario instantly. Makes all hurt blocks death blocks and all damaging sprites lethal.
+0 A0 0 UberASM Object A0: Press L & R To Die\n-----\nEnabled killing the player if L and R are pressed. Useful for a quick reset.
+0 A1 0 UberASM Object A1: Disable Screen Shake\n-----\nStops all Vanilla sources of Layer 1 screen shake.
+0 A2 0 UberASM Object A2: Disable Spin Jump\n-----\nDisables the A Button, therefore no spin jumping.
+0 B0 0 UberASM Object B0: Set Retry Type to Instant\n-----\nMake the retry skip using prompt and restart instantly after dying.
+0 B1 0 UberASM Object B1: Set Retry Type to Prompt\n-----\nSets the retry system to use a prompt that says "Retry" in the middle of the screen.
+0 B2 0 UberASM Object B2: Set Retry Type to Vanilla\n-----\nSets the retry system back to using Vanilla death routine.
+0 B3 0 UberASM Object B3: Bottom Left Retry Prompt\n-----\nMove the "Retry" prompt to the bottom left if Prompt Retry is active (by default it's in the middle).
+0 B4 0 UberASM Object B4: No Power Ups from Midways\n-----\nDisable gaining a power-up (mushroom) from a midway point.
+0 BA 0 UberASM Object BA: Display Sprite Timer\n-----\nShows the level timer from the Retry System's sprite status bar.
+0 BB 0 UberASM Object BB: Display Coins Counters\n-----\nShows the coin counters from the Retry System's sprite status bar.
+0 BC 0 UberASM Object BC: Display Item Box\n-----\nShows the item box from the Retry System's sprite status bar
+0 C0 0 UberASM Object C0: Start with a Mushroom\n-----\nHave the player start the level with a Mushroom.
+0 C1 0 UberASM Object C1: Start with Cape\n-----\nHave the player start the level with a Cape.
+0 C2 0 UberASM Object C2: Start with Fire Flower\n-----\nHave the player start the level with a Fire Flower.
+0 C3 0 UberASM Object C3: Start with Star Power\n-----\nHave the player start the level with Star Power. Not infinite, lasts as long as a normal Star.
+0 C4 0 UberASM Object C4: Start on Green Yoshi\n-----\nHave the player start the level on a Green Yoshi.
+0 C5 0 UberASM Object C5: Start on Yellow Yoshi\n-----\nHave the player start the level on a Yellow Yoshi.
+0 C6 0 UberASM Object C6: Start on Blue Yoshi\n-----\nHave the player start the level on a Blue Yoshi.
+0 C7 0 UberASM Object C7: Start on Red Yoshi\n-----\nHave the player start the level on a Red Yoshi.
+0 C8 0 UberASM Object C8: Start in Spin Jump State\n-----\nHave the player start the level spinning (most useful when Mario is in the air).
+0 C9 0 UberASM Object C9: Start in OFF State\n-----\nStarts the level with the ON/OFF state in the OFF state.
+0 CA 0 UberASM Object CA: Start in ON State\n-----\nStarts the level with the ON/OFF state in the ON state.
+0 D0 0 UberASM Object D0: Toggle Statusbar\n-----\nPlacing the object hides the Layer 3 statusbar.
+0 D1 0 UberASM Object D1: Toggle Screen Scroll\n-----\nDisable the effects of a patch that prevents scrolling the screen with L or R.
+0 D2 0 UberASM Object D2: Toggle Spin Jump Fireballs\n-----\nPrevent Mario from shooting fireballs while spin jumping.
+0 D3 0 UberASM Object D3: Toggle Block Duplication\n-----\nDisable the effects of a patch that prevents block duplication.
+0 D4 0 UberASM Object D4: Toggle Springboard Fixes\n-----\nDisable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).
+0 D5 0 UberASM Object D5: Toggle Cape Turnaround\n-----\nDisable the effects of the patch that makes turning around with cape consistent on button press.
+0 D6 0 UberASM Object D6: Toggle Rope Glitch\n-----\nToggle off the fixes for the air climb rope glitch.
