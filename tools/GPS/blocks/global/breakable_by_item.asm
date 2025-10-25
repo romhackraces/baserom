@@ -15,7 +15,9 @@ SpriteH:
 	rtl
 Shatter:
 	%sprite_block_position()
-	%shatter_block()
+	lda $0F : pha
+    %shatter_block()
+    pla : sta $0F
 Return:
 	rtl
 
