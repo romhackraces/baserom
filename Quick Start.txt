@@ -3,7 +3,7 @@ These are the short instructions for how to use this baserom:
     1. Put a copy of your clean, headered Super Mario World ROM in the
        resources folder, renamed "clean.smc"
 
-    2. Run both actions of the !setup_baserom.bat script–to download
+    2. Run both actions of the !setup_baserom.ps1 script–to download
        all the tools and do a first build of your project.
 
     3. After that, use Callisto (found in tools/Callisto) to manage

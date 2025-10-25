@@ -85,7 +85,8 @@ while ($UserChoice -ne "3") {
                             Write-Host "First build completed successfully.`nYou can get started on your project by running Callisto from the 'tools/Callisto' folder."
                         } else {
                             # Prompt users to run Callisto manually if there was an error
-                            Write-Host "Baserom failed to build. Please run Callisto manually from the 'tools/Callisto' folder, and perform a 'Rebuild' to see any errors."
+                            Write-Host "Baserom failed to build." -ForegroundColor Red
+                            Write-Host "If you do not see any error messages above, run Callisto manually from the 'tools/Callisto' folder, and perform a 'Rebuild' to get them to appear."
                         }
                     } catch {
                         Write-Host "First build did not complete successfully. Please try again."
