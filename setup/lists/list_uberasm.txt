@@ -43,7 +43,7 @@ gamemode:
     11 retry_gm11.asm
     12 baserom_gm12.asm, retry_gm12.asm
     13 retry_gm13.asm
-    14 baserom_gm14.asm, retry_gm14.asm
+    14 baserom_gm14.asm, retry_gm14.asm, screens_scrolling_pipes.asm
     15 retry_gm15.asm
     16 retry_gm16.asm
     19 retry_gm19.asm
