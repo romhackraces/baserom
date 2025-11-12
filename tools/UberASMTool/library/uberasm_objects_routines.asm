@@ -160,7 +160,30 @@ disable_screen_shake:
 
 ; Disable spin jump
 disable_spin_jump:
-    lda #$80 : trb $18  ; Disable pressing A
+    ; skip if game is paused, message box is open, or frozen
+    lda $13D4|!addr
+    ora $1426|!addr
+    ora $9D
+    bne .return
+    ; skip if climbing, water or cape
+    lda $74
+    ora $75
+    ora $1407|!addr
+    bne .return
+    ; skip if airborne
+    lda $72 : beq .return
+    lda $77 : and.b #%00000100  : beq .return
+    ; zero spin jump flag
+    stz $140D|!addr
+    ; check if A is pressed
+    lda $18 : bpl .pressed
+.return
+    rts
+.pressed
+    ; mute spin jump sound
+    stz $1DFC|!addr
+    ; play normal jump sound
+    lda #$01 : sta $1DFA|!addr
     rts
 
 ;;
