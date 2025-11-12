@@ -44,4 +44,4 @@ MarioBelow:
 Return:
 	RTL
 
-print "Part of pipe that Mario moves through but it but clears held item."
+print "Part of pipe that Mario moves through and it clears held item."

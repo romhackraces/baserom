@@ -93,10 +93,10 @@
 32d	0	Part of pipe that Mario moves through.
 32e	0	Part of pipe that Mario moves through.
 32f	0	Part of pipe that Mario moves through.
-332	0	Part of pipe that Mario moves through but it but clears held item.
-333	0	Part of pipe that Mario moves through but it but clears held item.
-334	0	Part of pipe that Mario moves through but it but clears held item.
-335	0	Part of pipe that Mario moves through but it but clears held item.
+332	0	Part of pipe that Mario moves through and it clears held item.
+333	0	Part of pipe that Mario moves through and it clears held item.
+334	0	Part of pipe that Mario moves through and it clears held item.
+335	0	Part of pipe that Mario moves through and it clears held item.
 336	0	Top cap of a vertical exit-only pipe, left side.
 337	0	Top cap of a vertical exit-only pipe, right side.
 338	0	Part of pipe that Mario moves through.
@@ -107,10 +107,10 @@
 33d	0	Part of pipe that Mario moves through.
 33e	0	Part of pipe that Mario moves through.
 33f	0	Changes the pipe direction from down to left or right to up.
-342	0	Part of pipe that Mario moves through but it but clears held item.
-343	0	Part of pipe that Mario moves through but it but clears held item.
-344	0	Part of pipe that Mario moves through but it but clears held item.
-345	0	Part of pipe that Mario moves through but it but clears held item.
+342	0	Part of pipe that Mario moves through and it clears held item.
+343	0	Part of pipe that Mario moves through and it clears held item.
+344	0	Part of pipe that Mario moves through and it clears held item.
+345	0	Part of pipe that Mario moves through and it clears held item.
 346	0	Bottom cap of vertical 2-way pipe, left side.
 347	0	Bottom cap of vertical 2-way pipe, right side.
 348	0	Left-facing cap of a horizontal two-way pipe, bottom tile.
@@ -119,8 +119,24 @@
 34b	0	Bottom cap of a small vertical 2-way pipe.
 34c	0	Changes the pipe direction from up to right or left to down.
 34d	0	Changes the pipe direction from right to down or up to left.
+350	0	Part of pipe that Mario moves through and it sets the switch state to ON.
+351	0	Part of pipe that Mario moves through and it sets the switch state to OFF.
+352	0	Part of pipe that Mario moves through and it sets the switch state to ON.
+353	0	Part of pipe that Mario moves through and it sets the switch state to ON.
+354	0	Part of pipe that Mario moves through and it sets the switch state to ON.
+355	0	Part of pipe that Mario moves through and it sets the switch state to OFF.
+356	0	Part of pipe that Mario moves through and it sets the switch state to ON.
+357	0	Part of pipe that Mario moves through and it sets the switch state to ON.
 35c	0	Changes the pipe direction from left to up or down to right.
 35d	0	Changes the pipe direction from down to left or right to up.
+360	0	Part of pipe that Mario moves through and it sets the switch state to ON.
+361	0	Part of pipe that Mario moves through and it sets the switch state to OFF.
+362	0	Part of pipe that Mario moves through and it sets the switch state to OFF.
+363	0	Part of pipe that Mario moves through and it sets the switch state to OFF.
+364	0	Part of pipe that Mario moves through and it sets the switch state to ON.
+365	0	Part of pipe that Mario moves through and it sets the switch state to OFF.
+366	0	Part of pipe that Mario moves through and it sets the switch state to OFF.
+367	0	Part of pipe that Mario moves through and it sets the switch state to OFF.
 36f	0	Part of pipe that Mario moves through.
 200 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
 201 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
