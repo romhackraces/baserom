@@ -14,6 +14,7 @@ endmacro
 ;=====================================
 ; Load shared settings and defines.
 ;=====================================
+    %incsrc(code/include,defines)
     %incsrc(code/include,misc)
     %incsrc(code/include,rom)
     %incsrc("",ram)

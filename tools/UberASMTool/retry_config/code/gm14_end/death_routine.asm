@@ -73,7 +73,9 @@ endif
 
     ; Kill score sprites if the option is enabled and Retry prompt is enabled.
 if !no_score_sprites_on_death
-    jsr shared_get_prompt_type : cmp #$03 : bcs +
+    jsr shared_get_prompt_type
+    cmp.b #!retry_type_enabled_max : bcs +
+
     ldx.b #$06-1
 -   stz $16E1|!addr,x
     dex : bpl -
@@ -117,8 +119,8 @@ endif
 
     ; Check if we have to disable the death music.
     jsr shared_get_prompt_type
-    cmp #$02 : bcc .return
-    cmp #$04 : bcs .return
+    cmp.b #!retry_type_prompt_death_sfx : beq .no_death_song
+    cmp.b #!retry_type_instant_death_sfx : bne .return
 
 .no_death_song:
     ; Don't play the death song.

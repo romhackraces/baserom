@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Files - Retry System UberASM</title>
+	<title>Resources - Retry System UberASM</title>
 	<meta name="author" content="KevinM, AmperSam">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-    <h1>Files</h1>
+    <h1>Resources</h1>
 
     <!-- Menu -->
     <h3>Contents</h3>
     <ul>
         <li><a href="#amk_resources">AddmusicK Resources</a></li>
-        <!--<li><a href="#code">Code</a></li>-->
+        <li><a href="#lm_resources">Lunar Magic Resources</a></li>
         <li><a href="#gfx">Graphics</a></li>
     </ul>
     <br/>
 
     <h3 id="amk_resources">AddmusicK Resources</h3>
-    <p>Inside the <u class="dir">amk_resources</u> folder you can find a custom a custom SFX file (<u class="dir">amk_resources/sfx/Death Prelude.txt</u>) and a custom death music file (<u class="dir">amk_resources/music/01 Miss (no intro).txt</u>). These can be used to keep a vanilla-feeling sound on death with Retry enabled.</p>
+    <p>Inside the <u class="dir">resources/amk</u> folder you can find a custom a custom SFX file (<u class="dir">resources/amk/sfx/Death Prelude.txt</u>) and a custom death music file (<u class="dir">resources/amk/music/01 Miss (no intro).txt</u>). These can be used to keep a vanilla-feeling sound on death with Retry enabled.</p>
     <p>The SFX is the intro to the vanilla death music, and it is recommended to use as the Retry death SFX. To do so, insert it as any other SFX in AddmusicK: move the txt file inside AMK's <u class="dir">1DFC</u> folder, then add it as a new entry in the <u class="dir">Addmusic_sound effects.txt</u> file under <code>SFX1DFC</code>. To configure Retry to play this SFX on death, in <u class="dir">settings_global.asm</u> change <code>!death_sfx</code> to the value you used in <u class="dir">Addmusic_sound effects.txt</u>, and set <code>!death_sfx_addr = $1DFC</code>.</p>
     <p>The music file is the vanilla death jingle but with the initial part removed (the part that is played in the custom SFX provided here). This can be used as an alternative death jingle for when choosing "Exit" in the Retry prompt: normally this plays the vanilla death jingle, but it might be weird to replay the death SFX part of it, so you can insert this alternative variant in your <u class="dir">Addmusic_list.txt</u> and configure Retry to play that only when using "Exit". To do so, change <code>!death_jingle_alt</code> in <u class="dir">settings_global.asm</u> to the number you inserted it as in AMK's list. Note that you shouldn't insert this as a global song.</p>
     <br/>
 
-    <!-- TODO
-    <h3 id="code">Code</h3>
-    <br/> -->
+    <h3 id="lm_resources">Lunar Magic Resources</h3>
+    <p>Since version 3.60, Lunar Magic has support for custom tooltip files for custom objects, to allow users to display custom tooltips when hovering over a custom object. To have this apply to the custom midways inserted by Retry, follow these steps:</p>
+    <ul>
+        <li>Go into the <u class="dir">resources/lm</u> folder.</li>
+        <li>Copy the <u class="dir">retry_midways.osc</u> file into your project folder, where your ROM is located.</li>
+        <li>Rename the file to <u class="dir"><ROM NAME>.osc</u> (it should have the same name as your ROM but with the .osc extension).</li>
+    </ul>
+    <p><b>NOTE</b>: if you already have a .osc file for your ROM, just copy the entire contents of <u class="dir">retry_midways.osc</u> into it.</p>
+    <p>Now hovering over the custom Retry midways will show somewhat useful information regarding the object, depending on the type of midway inserted.</p>
+    <img src="./img/midway_object_tooltip.png">
+    <br/>
     
     <h3 id="gfx">Graphics</h3>
     <p>The graphic files used by Retry can be found in the <u class="dir">retry_config/gfx</u> folder. Note that these are uploaded dynamically to the sprite GFX pages when needed, so you don't need to insert them yourself in your GFX files, but you're free to edit them with tools like <a href="https://www.smwcentral.net/?p=section&a=details&id=27208">YY-CHR</a> if you so wish (they're all 4bpp files).</p>

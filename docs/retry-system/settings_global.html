@@ -38,82 +38,82 @@ table tr td:nth-child(1) code {
 
 <!-- Defaults -->
 <h3 id="retry-defaults">Default Retry behavior Settings</h3>
-
-	<code>!default_prompt_type</code>
-	<ul>
-		<li>The default behaviour for the retry system</li>
-	</ul>
-
 	<table>
-		<tr>
-			<th width="20">Value</th>
-			<th>Details</th>
-		</tr>
-		<tr>
-			<td><code>0</code></td>
-			<td>Retry prompt & play the vanilla death song when players die.</td>
-		</tr>
-		<tr>
-			<td><code>1</code></td>
-			<td>Retry prompt & play only the death sfx when players die (music won't be interrupted).</td>
-		</tr>
-		<tr>
-			<td><code>2</code></td>
-			<td>
-				Instant retry (no prompt & play only the sfx: the fastest option; like "yes" is chosen automatically). In this option, you can press start then select to exit the level.
-			</td>
-		</tr>
-		<tr>
-			<td><code>3</code></td>
-			<td>
-				No retry prompt/respawn (vanilla death: as if "no" is chosen automatically, use this if you only want the multi-midway feature). Note: you can override this per sublevel (see <a href="./settings_local.html#checkpoint">Local Settings - %checkpoint</a>) and also at any point by setting a certain RAM address (see <a href="./ram_map.html">RAM Info</a> page for details).
-			</td>
-		</tr>
-	</table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!default_prompt_type</code></td>
+            <td>
+            	The default behaviour for the retry system.
+            	<ul>
+            		<li>0 = Retry prompt & play the death song when players die (music restarts on every death).</li>
+            		<li>1 = Retry prompt & play only the death sfx when players die (music won't be interrupted).</li>
+            		<li>2 = Instant retry & play only the death sfx when players die (no prompt & music won't be interrupted)</li>
+            		<li>3 = Instant retry & play the death song when players die (no prompt & music restarts on every death).</li>
+            		<li>4 = No retry prompt/respawn (vanilla death).</li>
+            	</ul>
+            	Note: you can override this per sublevel (see <a href="./settings_local.html#checkpoint">Local Settings - %checkpoint</a>) and also at any point by setting a certain RAM address (see <a href="./ram_map.html">RAM Info</a> page for details).
+            </td>
+        </tr>
+    </table>
 	<br/>
 
 <!-- QoL -->
 <h3 id="qol">Quality of Life Settings</h3>
-
-	<code>!initial_lives</code>
-	<ul>
-		<li>How many lives to start a new save file with.</li>
-	</ul>
-
-	<code>!infinite_lives</code>
-	<ul>
-		<li>If 1, lives won't decrement when dying. Note: if 0, you can choose to have infinite lives in specific sublevels: see <a href="./settings_local.html#no_lose_lives">Local Settings - %no_lose_lives</a>.</li>
-	</ul>
-
-	<code>!midway_powerup</code>
-	<ul>
-		<li>If 0 = midways won't give Mario a mushroom, if 1 = vanilla midway powerup behavior. Note: you can also change this on the fly (see <a href="./ram_map.html">RAM Info</a>).</li>
-	</ul>
+	<table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!initial_lives</code></td>
+            <td>How many lives to start a new save file with.</td>
+        </tr>
+        <tr>
+            <td><code>!infinite_lives</code></td>
+            <td>
+            	<ul>
+            		<li>0 = Lives will decrement when dying.</li>
+            		<li>1 = Lives won't decrement when dying.</li>
+            	</ul>
+            	Note: if 0, you can choose to have infinite lives in specific sublevels (see <a href="./settings_local.html#no_lose_lives">Local Settings - %no_lose_lives</a>).
+            </td>
+        </tr>
+        <tr>
+            <td><code>!midway_powerup</code></td>
+            <td>
+            	<ul>
+            		<li>0 = Midways won't give Mario a mushroom.</li>
+            		<li>1 = Vanilla midway powerup behavior.</li>
+            	</ul>
+            	Note: you can also change this on the fly (see <a href="./ram_map.html">RAM Info</a>).
+            </td>
+        </tr>
+    </table>
 	<br/>
 
 <!-- Counterbreak -->
 <h3 id="counterbreak">Counterbreak Settings</h3>
-
-	<p>
-		Options reset the corresponding counters/items when the player dies and/or when going to the Overworld. Useful for
-		Kaizo and collab hacks.
-	</p>
+	<p>Options reset the corresponding counters/items when the player dies and/or when going to the Overworld. Useful for
+		Kaizo and collab hacks.</p>
 	<table>
 		<tr>
-			<th width="240">Setting</th>
-			<th>Details</th>
+			<th>Name</th>
+			<th>Description</th>
 		</tr>
 		<tr>
 			<td><code>!counterbreak_yoshi</code></td>
-			<td>Removes Yoshi</td>
+			<td>Removes Yoshi.</td>
 		</tr>
 		<tr>
 			<td><code>!counterbreak_powerup</code></td>
-			<td>Removes power up state from Mario </td>
+			<td>Removes power up state from Mario.</td>
 		</tr>
 		<tr>
 			<td><code>!counterbreak_item_box</code></td>
-			<td>Clears any power-up in the player's Item Box</td>
+			<td>Clears any power-up in the player's Item Box.</td>
 		</tr>
 		<tr>
 			<td><code>!counterbreak_coins</code></td>
@@ -127,23 +127,26 @@ table tr td:nth-child(1) code {
 			<td><code>!counterbreak_score</code></td>
 			<td>Resets the player's score to zero.</td>
 		</tr>
+		<tr>
+			<td><code>!counterbreak_lives</code></td>
+			<td>Resets the player's lives to <code>!initial_lives</code>.</td>
+		</tr>
 	</table>
 	<p>Each counterbreak option can have one of these values:</p>
 	<ul>
-		<li><code>0</code>: disabled</li>
-		<li><code>1</code>: enabled for both respawning and going to the Overworld</li>
-		<li><code>2</code>: enabled just for respawning</li>
-		<li><code>3</code>: enabled just for going to the Overworld</li>
+		<li>0 = disabled.</li>
+		<li>1 = enabled for both respawning and going to the Overworld.</li>
+		<li>2 = enabled just for respawning.</li>
+		<li>3 = enabled just for going to the Overworld.</li>
 	</ul>
 	</br>
 
 <!-- Fixes -->
 <h3 id="fixes">Quality of Life Fixes Settings</h3>
-
 	<table>
 		<tr>
-			<th width="200">Setting</th>
-			<th>Details</th>
+			<th>Name</th>
+			<th>Description</th>
 		</tr>
 		<tr>
 			<td><code>!fast_transitions</code></td>
@@ -151,48 +154,39 @@ table tr td:nth-child(1) code {
 		</tr>
 		<tr>
 			<td><code>!initial_facing_fix</code></td>
-			<td>If 1, it fixes the issue where some sprites don't face Mario when entering a level for the first time. It's
-				suggested to enable the fix to make sprite behavior consistent between the first and all the next level reloads.
+			<td>If 1, it fixes the issue where some sprites don't face Mario when entering a level for the first time. It's suggested to enable the fix to make sprite behavior consistent between the first and all the next level reloads.
 			</td>
 		</tr>
 		<tr>
 			<td><code>!time_up_fix</code></td>
-			<td>If 1, it fixes the issue where dying in a level with the timer set to 0 shows the "TIME UP!" message when
-				exiting the level.</td>
+			<td>If 1, it fixes the issue where dying in a level with the timer set to 0 shows the "TIME UP!" message when exiting the level.</td>
 		</tr>
 		<tr>
 			<td><code>!item_box_fix</code></td>
-			<td>If 1, it fixes the issue where you can drop the reserve item in the item box by pressing Select while Mario is
-				dying or while the Retry prompt is shown.</td>
+			<td>If 1, it fixes the issue where you can drop the reserve item in the item box by pressing Select while Mario is dying or while the Retry prompt is shown.</td>
 		</tr>
 		<tr>
 			<td><code>!no_yoshi_intro_fix</code></td>
-			<td>If 1, it fixes the weird behavior where levels 12E-13B always use the "No Yoshi Sign 2" intro regardless of the
-				tileset / custom "No Yoshi Intro" patches.</td>
+			<td>If 1, it fixes the weird behavior where levels 12E-13B always use the "No Yoshi Sign 2" intro regardless of the tileset / custom "No Yoshi Intro" patches.</td>
 		</tr>
 		<tr>
 			<td><code>!disable_hurry_up</code></td>
-			<td>If 1, it removes the "Hurry up!" SFX and tempo hike effect that happens when reaching 100 seconds on the timer.
-				If not disabled, the death song will be played when dying during the tempo hike effect (regardless of the
-				settings), to reset the tempo of the song after respawning.</td>
+			<td>If 1, it removes the "Hurry up!" SFX and tempo hike effect that happens when reaching 100 seconds on the timer. If not disabled, the death song will be played when dying during the tempo hike effect (regardless of the settings), to reset the tempo of the song after respawning.</td>
 		</tr>
 		<tr>
 			<td><code>!pipe_entrance_freeze</code></td>
 			<td>
-				This controls whether to freeze sprites during a level's pipe entrance (it doesn't affect other entrance
-				types).
-				0 = don't freeze
-				1 = freeze (recommended)
-				2 = vanilla: freeze only if sprites were frozen when exiting the previous room (e.g. if you entered a pipe,
-				but not if you entered a door).
-				This can be inconsistent if exiting and re-entering the level.
+				This controls whether to freeze sprites during a level's pipe entrance (it doesn't affect other entrance types).
+				<ul>
+					<li>0 = don't freeze</li>
+					<li>1 = freeze (recommended)</li>
+					<li>2 = vanilla: freeze only if sprites were frozen when exiting the previous room (e.g. if you entered a pipe,	but not if you entered a door). This can be inconsistent if exiting and re-entering the level.</li>
+				</ul>
 			</td>
 		</tr>
 		<tr>
 			<td><code>!always_start_select</code></td>
-			<td>If 1, Start+Select out of a level is always possible. Otherwise, it's only possible with the instant Retry
-				option, or with the Retry prompt with the "Exit" option disabled, or if the level is already beaten like
-				vanilla.</td>
+			<td>If 1, Start+Select out of a level is always possible. Otherwise, it's only possible with the instant Retry option, or with the Retry prompt with the "Exit" option disabled, or if the level is already beaten like vanilla.</td>
 		</tr>
 		<tr>
 			<td><code>!death_camera_lock</code></td>
@@ -221,6 +215,7 @@ table tr td:nth-child(1) code {
 					<li>0 = vanilla (after dying a glitched version of the title screen will load, causing a softlock. Use this if you either don't care or want to do something custom with it.)</li>
 					<li>1 = play vanilla death animation and reload title screen (note: death music only works with AddmusicK!).</li>
 					<li>2 = instantly reload the title screen.</li>
+					<li>3 = instantly reload the title screen and play the death music (title screen music will restart).</li>
 				</ul>
 			</td>
 		</tr>
@@ -229,521 +224,540 @@ table tr td:nth-child(1) code {
 
 <!-- SFX -->
 <h3 id="sfx">Sound Effects Settings</h3>
-
-	<p>
-		<code>!death_sfx = $20</code><br>
-		<code>!death_sfx_addr = $1DF9</code>
-	</p>
-	<ul>
-		<li>SFX to play when dying (<code>!death_sfx = $00</code> -> no SFX). Only played if the death song is skipped (for example, it's not played if the level uses vanilla death, but it is played when Retry is enabled).</li>
-		<li>You can find a suitable death sfx inside <u class="dir">amk_resources/sfx</u> (see <a href="./files.html#amk_resources">AddmusicK Resources</a> for details).</li>
-	</ul>
-
-	<code>!death_jingle_alt = $FF</code>
-	<ul>
-		<li>The alternative death jingle which will be played after the <code>!death_sfx</code> when "Exit" is chosen in the prompt (only available when you're using AddmusicK). <code>$01-$FE</code>: custom song number, <code>$FF</code> = do not use this feature.</li>
-		<li>You can find a suitable alt death jingle inside <u class="dir">amk_resources/music</u> (to be paired with the custom sfx: see <a href="./files.html#amk_resources">AddmusicK Resources</a> for details).</li>
-	</ul>
-
-	<p>
-		<code>!option_sfx = $01</code><br>
-		<code>!option_sfx_addr = $1DFC</code>
-	</p>
-	<ul>
-		<li>SFX to play when selecting an option in the prompt (<code>!option_sfx = $00</code> -> no SFX).</li>
-	</ul>
-
-	<p>
-		<code>!cursor_sfx = $06</code><br>
-		<code>!cursor_sfx_addr = $1DFC</code>
-	</p>
-	<ul>
-		<li>SFX to play when the prompt cursor moves (<code>!cursor_sfx = $00</code> -> no SFX).</li>
-	</ul>
-
-	<p>
-		<code>!room_cp_sfx = $05</code><br>
-		<code>!room_cp_sfx_addr = $1DF9</code>
-	</p>
-	<ul>
-		<li>SFX to play when getting a checkpoint through a room transition (<code>!room_cp_sfx = $00</code> -> no SFX). This is meant as a way to inform the player that they just got a room checkpoint. If enabled, you can disable it in specific sublevels: see <a href="./settings_local.html#no_room_cp_sfx">Local Settings - %no_room_cp_sfx</a>.</li>
-	</ul>
-
-	<p>
-		<code>!enter_level_sfx = $00</code><br>
-		<code>!enter_level_sfx_addr = $1DFC</code><br>
-		<code>!enter_level_delay = $02</code>
-	</p>
-	<ul>
-		<li>SFX to play when entering a level from the Overworld (<code>!enter_level_sfx = $00</code> -> no SFX) similarly to what SMB3 does. If the SFX gets cut out, increase <code>!enter_level_delay</code>.</li>
-	</ul>
+	<table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>
+            	<code>!death_sfx</code></br>
+            	<code>!death_sfx_addr</code>
+            </td>
+            <td>
+            	SFX to play when dying (<code>!death_sfx = $00</code> &rarr; no SFX). Only played if the death song is skipped (for example, it's not played if the level uses vanilla death, but it is played when Retry is enabled).</br>
+				You can find a suitable death sfx inside <u class="dir">resources/amk/sfx</u> (see <a href="./files.html#amk_resources">AddmusicK Resources</a> for details).
+			</td>
+        </tr>
+        <tr>
+            <td><code>!death_jingle_alt</code></td>
+            <td>
+            	The alternative death jingle which will be played after the <code>!death_sfx</code> when "Exit" is chosen in the prompt (only available when you're using AddmusicK). <code>$01-$FE</code>: custom song number, <code>$FF</code> = do not use this feature.</br>
+				You can find a suitable alt death jingle inside <u class="dir">resources/amk/music</u> (to be paired with the custom sfx: see <a href="./files.html#amk_resources">AddmusicK Resources</a> for details).
+			</td>
+        </tr>
+        <tr>
+            <td>
+            	<code>!option_sfx</code></br>
+				<code>!option_sfx_addr</code>
+			</td>
+            <td>SFX to play when selecting an option in the prompt (<code>!option_sfx = $00</code> &rarr; no SFX).</td>
+        </tr>
+        <tr>
+            <td>
+            	<code>!cursor_sfx</code></br>
+				<code>!cursor_sfx_addr</code>
+			</td>
+            <td>SFX to play when the prompt cursor moves (<code>!cursor_sfx = $00</code> &rarr; no SFX).</td>
+        </tr>
+        <tr>
+            <td>
+            	<code>!room_cp_sfx</code></br>
+				<code>!room_cp_sfx_addr</code>
+			</td>
+            <td>
+            	SFX to play when getting a checkpoint through a room transition (<code>!room_cp_sfx = $00</code> &rarr; no SFX). This is meant as a way to inform the player that they just got a room checkpoint.</br>
+            	If enabled, you can disable it in specific sublevels: see <a href="./settings_local.html#no_room_cp_sfx">Local Settings - %no_room_cp_sfx</a>.
+            </td>
+        </tr>
+        <tr>
+            <td>
+            	<code>!enter_level_sfx</code></br>
+				<code>!enter_level_sfx_addr</code></br>
+				<code>!enter_level_delay</code>
+            </td>
+            <td>SFX to play when entering a level from the Overworld (<code>!enter_level_sfx = $00</code> &rarr; no SFX) similarly to what SMB3 does. If the SFX gets cut out, increase <code>!enter_level_delay</code>.</td>
+        </tr>
+        <tr>
+            <td><code>!default_sfx_echo</code></td>
+            <td>
+            	This controls the default SFX echo option for all levels and what the <a href="./settings_local.html#sfx_echo">Local Settings - %sfx_echo</a> option does.
+				<ul>
+					<li>0 = sfx echo is disabled in every sublevel by default, and using %sfx_echo will enable the sfx echo for the specific sublevel.</li>
+					<li>1 = sfx echo is enabled in every sublevel by default, and using %sfx_echo will disable the sfx echo for the specific sublevel.</li>
+				</ul>
+				Note: this is irrelevant if not using AddmusicK.</br>
+				Note: <code>!default_sfx_echo = 1</code> has no effect if <code>!use_legacy_tables = 1</code> (see <a href="#misc">Misc settings</a>).
+            </td>
+        </tr>
+    </table>
 	</br>
 
 <!-- Saving -->
 <h3 id="saving">Save and SRAM Settings</h3>
-
-	<code>!sram_feature = 1</code>
-	<ul>
-		<li>If 1, a custom SRAM expansion patch will be inserted as well. By default, it will save the custom checkpoint status and death counter to SRAM. To make your own stuff saved as well, check out the <a href="./sram_tables.html">SRAM Tables</a>.</li>
-		<li>Note that this is incompatible with the SRAM+ or BW-RAM+ patches: if they are detected, it will be disabled automatically. Check out <a href="./sram_bwram_info.html">SRAM & BW-RAM Info</a> for details.</li>
-	</ul>
-
-	<code>!save_on_checkpoint = 0</code>
-	<ul>
-		<li>If 1, the game will automatically save everytime a new checkpoint is obtained (when touching a midway or getting a cp on a room transition). If using this, make sure there's no softlocks (for example, a level is unbeatable from one of the checkpoints).</li>
-	</ul>
-
-	<code>!save_after_game_over = 1</code>
-	<ul>
-		<li>If 1, the game will automatically save after getting a game over. This can be useful when paired with the option of not reloading some data from SRAM after a game over (see <a href="./sram_tables.html">SRAM Tables</a> for info), if you want some things to retain even if the player got a game over before saving them (for example, the death counter). This ensures that they will be saved to SRAM when this happens.</li>
-	</ul>
+	<table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!sram_feature</code></td>
+            <td>
+            	If 1, a custom SRAM expansion patch will be inserted as well. By default, it will save the custom checkpoint status and death counter to SRAM. To make your own stuff saved as well, check out the <a href="./sram_tables.html">SRAM Tables</a>.</br>
+				Note that this is incompatible with the SRAM+ or BW-RAM+ patches: if they are detected, it will be disabled automatically. Check out <a href="./sram_bwram_info.html">SRAM & BW-RAM Info</a> for details.
+            </td>
+        </tr>
+        <tr>
+            <td><code>!save_on_checkpoint</code></td>
+            <td>If 1, the game will automatically save everytime a new checkpoint is obtained (when touching a midway or getting a cp on a room transition). If using this, make sure there's no softlocks (for example, a level is unbeatable from one of the checkpoints).</td>
+        </tr>
+        <tr>
+            <td><code>!save_after_game_over</code></td>
+            <td>If 1, the game will automatically save after getting a game over. This can be useful when paired with the option of not reloading some data from SRAM after a game over (see <a href="./sram_tables.html">SRAM Tables</a> for info), if you want some things to retain even if the player got a game over before saving them (for example, the death counter). This ensures that they will be saved to SRAM when this happens.</td>
+        </tr>
+    </table>
 	</br>
 
 <!-- Custom Midways -->
 <h3 id="custom-midways">Custom Midways Settings</h3>
-
-	<code>!use_custom_midway_bar = 1</code>
-	<ul>
-		<li>If 1, Retry will install a custom midway object in the ROM, insertable in levels by using object 2D. These objects allow you to have multiple midways in the same level, each with a different entrance.</li>
-		<li>For more info on how to use them, check out <a href="./midway_instruction.html">Midway Instructions</a> page.</li>
-		<li>This can be used alongside ObjecTool, but you'll need to modify that patch a bit (see the <a href="./objectool_info.html">ObjecTool Info</a> page for details).</li>
-	</ul>
-
-	<code>!max_custom_midway_num = 8</code>
-	<ul>
-		<li>If <code>!use_custom_midway_bar = 1</code>, this setting determines how many custom midways you can have in the same sublevel. The more you set, the more free ram is needed (4 bytes for each).</li>
-	</ul>
+	<table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!use_custom_midway_bar</code></td>
+            <td>
+            	If 1, Retry will install a custom midway object in the ROM, insertable in levels by using object 2D. These objects allow you to have multiple midways in the same level, each with a different entrance.</br>
+				For more info on how to use them, check out <a href="./midway_instruction.html">Midway Instructions</a> page.</br>
+				This can be used alongside ObjecTool, but you'll need to modify that patch a bit (see the <a href="./objectool_info.html">ObjecTool Info</a> page for details).
+            </td>
+        </tr>
+        <tr>
+            <td><code>!max_custom_midway_num</code></td>
+            <td>If <code>!use_custom_midway_bar = 1</code>, this setting determines how many custom midways you can have in the same sublevel. The more you set, the more free ram is needed (4 bytes for each).</td>
+        </tr>
+    </table>
 	</br>
 
 <!-- Retry Prompt -->
 <h3 id="prompt-settings">Retry Prompt Settings</h3>
+	<h4>General Settings</h4>
+	<table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!fast_prompt</code></td>
+            <td>If 1, the prompt will show up immediately after dying. Otherwise, it will show up halfway through (or right after, depending on !retry_death_animation) the death animation, but pressing A/B during it will skip the animation.</td>
+        </tr>
+        <tr>
+            <td><code>!retry_death_animation</code></td>
+            <td>
+            	<ul>
+            		<li>0 = don't play the death animation when using instant Retry or prompt Note: for Retry prompt, part of the death animation still plays if not using !fast_prompt</li>
+					<li>1 = play the full death animation before showing the Retry prompt (note: make sure <code>!fast_prompt = 0</code>)</li>
+					<li>2 = play the full death animation before reloading the level with instant Retry</li>
+					<li>3 = play the full death animation in both cases (effects 1 and 2)</li>
+				</ul>
+            </td>
+        </tr>
+        <tr>
+            <td><code>!prompt_show_delay</code></td>
+            <td>How many frames after dying the prompt shows up when using <code>!fast_prompt = 0</code> and <code>!retry_death_animation = 0</code>.</td>
+        </tr>
+        <tr>
+            <td><code>!prompt_speed</code></td>
+            <td>How fast the prompt expands/shrinks. It must be a factor of 72.</td>
+        </tr>
+        <tr>
+            <td><code>!prompt_freeze</code></td>
+            <td>
+            	<ul>
+					<li>0 = sprites and animations won't freeze when the prompt is shown.</li>
+					<li>1 = sprites and most animations will freeze, but some animations will still play (for example, Magikoopa Magic's flashing).</li>
+					<li>2 = sprites and all animations will freeze.</li>
+				</ul>
+            </td>
+        </tr>
+        <tr>
+            <td><code>!prompt_cooldown</code></td>
+            <td>
+            	Cooldown (max $7F) for disabling up/down when the prompt shows up, which prevents selecting the "Exit" option for a few frames. Can be useful to prevent accidentally pressing "Exit" when dying while pressing up/down.</br>
+				Set to <code>$00</code> to disable this.
+            </td>
+        </tr>
+        <tr>
+            <td><code>!exit_animation</code></td>
+            <td>
+            	This controls what happens when hitting "Exit" on the Retry prompt. Note: when dying before going to Game Over, the vanilla animation will be always played regardless.
+				<ul>
+					<li>0 = exit the level immediately and don't play the death music (except when the level music is sped up).</li>
+					<li>1 = exit the level immediately and play the death music (note that the vanilla song will be cut short).</li>
+					<li>2 = play the death animation and music, then exit the level.</li>
+				</ul>
+            </td>
+        </tr>
+        <tr>
+            <td><code>!no_exit_option</code></td>
+            <td>
+            	Set to 1 if you don't want the "Exit" option in the prompt. This will also allow the player to Start+Select when having the prompt.</br>
+            	Note: you can also change this on the fly (see <a href="./ram_map.html">RAM Info</a> page for details).
+            </td>
+        </tr>
+        <tr>
+            <td><code>!no_prompt_box</code></td>
+            <td>
+            	Set to 1 to remove the black box, but leave the options on screen.</br>
+            	Note: you can also change this on the fly (see <a href="./ram_map.html">RAM Info</a> page for details).
+            </td>
+        </tr>
+        <tr>
+            <td><code>!dim_screen</code></td>
+            <td>Set to 1 to dim the screen while the prompt is shown.</td>
+        </tr>
+        <tr>
+            <td><code>!brightness</code></td>
+            <td>Only used if <code>!dim_screen = 1</code>. Can go from 0 to 15: 15 = max brightness, 0 = black.</td>
+        </tr>
+        <tr>
+            <td>
+            	<code>!exit_button</code></br>
+				<code>!exit_button_address</code>
+            </td>
+            <td>
+           		This defines a button that will count as hitting "Exit" on the menu while the prompt is shown. It could be handy if you disabled the exit option, but still want a quick way of exiting the level. By default it's "Select".</br>
+				Set <code>!exit_button = $00</code> to disable this.</br>
+				For more information on these values, see <a href="https://smwc.me/m/smw/ram/7E0016">$7E0016</a> on the SMWCentral RAM Map.
+            </td>
+        </tr>
+        <tr>
+            <td><code>!no_prompt_draw</code></td>
+            <td>If 1, the Retry prompt won't be drawn to the screen (but still function normally). Use this for a minimalistic Retry, without having to use the instant option. You should also use <code>!no_prompt_box = 1</code> or the black box will still appear (also you probably want <code>!no_exit_option = 1</code>). Note that this renders all the prompt options below useless (and no sprite GFX space needs to be reserved).</td>
+        </tr>
+        <tr>
+            <td>
+            	<code>!text_x_pos</code></br>
+				<code>!text_y_pos</code>
+            </td>
+            <td>
+            	X/Y position of the first tile in the prompt (the cursor on the first line). Changing this only works if the black box is disabled (if enabled, default values will be used instead).</br>
+				Note: you can also change these on the fly (see <a href="./ram_map.html">RAM Info</a> page for details).
+            </td>
+        </tr>
+        <tr>
+            <td><code>!cursor_setting</code></td>
+            <td>
+            	<ul>
+					<li>0 = the cursor is static</li>
+					<li>1 = the cursor blinks like in vanilla menus</li>
+					<li>2 = the cursor oscillates slowly right and left</li>
+				</ul>
+			</td>
+        </tr>
+        <tr>
+            <td><code>!cursor_oscillate_speed</code></td>
+            <td>How fast the cursor oscillates (only used when <code>!cursor_setting = 2</code>) Higher = slower. Possible values: 0 to 5.</td>
+        </tr>
+        <tr>
+            <td>
+            	<code>!prompt_wave</code></br>
+            	<code>!prompt_wave_speed</code>
+            </td>
+            <td>
+            	If <code>!prompt_wave = 1</code>, the letters in the option selected on the Retry prompt will wave up and down. The speed is determined by <code>!prompt_wave_speed</code>. Possible values: 0 to 5 (0 = fastest, 5 = slowest).</br>
+            	Note: this is incompatible with the black box (use <code>!no_prompt_box = 1</code>).
+            </td>
+        </tr>
+        <tr>
+            <td>
+            	<code>!letter_palette</code></br>
+				<code>!cursor_palette</code>
+            </td>
+            <td>Palette row used by the letters and cursor (note: they use sprite palettes).</td>
+        </tr>
+        <tr>
+            <td><code>!no_score_sprites_on_death</code></td>
+            <td>If 1, score sprites (points, 1-Up) will be removed when dying, if Retry prompt is enabled in the level. This can be used to replace their graphics ($29, $38-$39, $44-$47, $54-$57) with the Retry prompt tiles instead of having to reserve sprite tiles for the prompt.</td>
+        </tr>
+    </table>
 
-	<code>!fast_prompt</code>
-	<ul>
-		<li>
-			If 1, the prompt will show up immediately after dying. Otherwise, it will show up halfway through (or right after, depending on !retry_death_animation) the death animation, but pressing A/B during it will skip the animation.
-		</li>
-	</ul>
-
-	<code>!retry_death_animation</code>
-	<ul>
-		<li>0 = don't play the death animation when using instant Retry or prompt Note: for Retry prompt, part of the death animation still plays if not using !fast_prompt</li>
-		<li>1 = play the full death animation before showing the Retry prompt (note: make sure <code>!fast_prompt = 0</code>)</li>
-		<li>2 = play the full death animation before reloading the level with instant Retry</li>
-		<li>3 = play the full death animation in both cases (effects 1 and 2)</li>
-	</ul>
-
-	<code>!prompt_speed</code>
-	<ul>
-		<li>How fast the prompt expands/shrinks. It must be a factor of 72.</li>
-	</ul>
-
-	<code>!prompt_freeze</code>
-	<ul>
-		<li>0 = sprites and animations won't freeze when the prompt is shown.</li>
-		<li>1 = sprites and most animations will freeze, but some animations will still play (for example, Magikoopa Magic's flashing).</li>
-		<li>2 = sprites and all animations will freeze.</li>
-	</ul>
-
-	<code>!prompt_cooldown</code>
-	<ul>
-		<li>
-			Cooldown (max $7F) for disabling up/down when the prompt shows up, which prevents selecting the "Exit" option for a few frames. Can be useful to prevent accidentally pressing "Exit" when dying while pressing up/down.
-		</li>
-		<li>Set to <code>$00</code> to disable this.</li>
-	</ul>
-
-
-	<code>!exit_animation</code>
-	<p>This controls what happens when hitting "Exit" on the Retry prompt. Note: when dying before going to Game Over, the vanilla animation will be always played regardless.</p>
-	<ul>
-
-		<li>0 = exit the level immediately and don't play the death music (except when the level music is sped up).</li>
-		<li>1 = exit the level immediately and play the death music (note that the vanilla song will be cut short).</li>
-		<li>2 = play the death animation and music, then exit the level.</li>
-	</ul>
-
-	<code>!no_exit_option</code>
-	<ul>
-		<li>Set to 1 if you don't want the "Exit" option in the prompt. This will also allow the player to Start+Select when having the prompt. Note: you can also change this on the fly (see <a href="./ram_map.html">RAM Info</a> page for details).</li>
-	</ul>
-
-	<code>!no_prompt_box</code>
-	<ul>
-		<li>Set to 1 to remove the black box, but leave the options on screen. Note: you can also change this on the fly (see <a href="./ram_map.html">RAM Info</a> page for details).</li>
-	</ul>
-
-	<code>!dim_screen</code>
-	<ul>
-		<li>Set to 1 to dim the screen while the prompt is shown.</li>
-	</ul>
-
-	<code>!brightness</code>
-	<ul>
-		<li>Only used if !dim_screen = 1. Can go from 0 to 15: 15 = max brightness, 0 = black.</li>
-	</ul>
-
-	<p>
-		<code>!exit_button = %00100000</code><br>
-		<code>!exit_button_address = $16</code>
-	</p>
-	<ul>
-		<li>This defines a button that will count as hitting "Exit" on the menu while the prompt is shown. It could be handy if you disabled the exit option, but still want a quick way of exiting the level. By default it's "Select".</li>
-		<li>Set <code>!exit_button = $00</code> to disable this.</li>
-		<li>
-			For more information on these values, see <a href="https://smwc.me/m/smw/ram/7E0016">$7E0016</a> on the SMWCentral RAM Map.
-		</li>
-	</ul>
-
-	<code>!no_prompt_draw</code>
-	<ul>
-		<li>If 1, the Retry prompt won't be drawn to the screen (but still function normally). Use this for a minimalistic Retry, without having to use the instant option. You should also use <code>!no_prompt_box = 1</code> or the black box will still appear (also you probably want <code>!no_exit_option = 1</code>). Note that this renders all the prompt options below useless (and no sprite GFX space needs to be reserved).</li>
-	</ul>
-
-	<p>
-		<code>!text_x_pos = $58</code><br>
-		<code>!text_y_pos = $6F</code>
-	</p>
-	<ul>
-		<li>X/Y position of the first tile in the prompt (the cursor on the first line). Changing this only works if the black box is disabled (if enabled, default values will be used instead).</li>
-		<li>Note: you can also change these on the fly (see <a href="./ram_map.html">RAM Info</a> page for details).</li>
-	</ul>
-
-	<code>!cursor_setting = 1</code>
-	<ul>
-		<li>0 = the cursor is static</li>
-		<li>1 = the cursor blinks like in vanilla menus</li>
-		<li>2 = the cursor oscillates slowly right and left</li>
-	</ul>
-
-	<code>!cursor_oscillate_speed = 2</code>
-	<ul>
-		<li>How fast the cursor oscillates (only used when <code>!cursor_setting = 2</code>) Higher = slower. Possible values: 0 to 5.</li>
-	</ul>
-
-	<code>!prompt_wave = 0</code>
-	<ul>
-		<li>1 = the letters in the option selected on the Retry prompt will wave up and down. Note: this is incompatible with the black box (use <code>!no_prompt_box = 1</code>)</li>
-	</ul>
-
-	<code>!prompt_wave_speed = 2</code>
-	<ul>
-		<li>How fast the letters wave (only used when <code>!prompt_wave = 1</code>) Higher = slower. Possible values: 0 to 5.</li>
-	</ul>
-
-	<p>
-		<code>!letter_palette = $08</code><br>
-		<code>!cursor_palette = $08</code>
-	</p>
-	<ul>
-		<li>Palette row used by the letters and cursor (note: they use sprite palettes).</li>
-	</ul>
-
-	<code>!no_score_sprites_on_death = 0</code>
-	<ul>
-		<li>If 1, score sprites (points, 1-Up) will be removed when dying, if Retry prompt is enabled in the level. This can be used to replace their graphics ($29, $38-$39, $44-$47, $54-$57) with the Retry prompt tiles instead of having to reserve sprite tiles for the prompt.</li>
-	</ul>
-
-	<p>Sprite tile number for the tiles used by the prompt ($00-$FF = SP1/SP2, $100-$1FF = SP3/SP4). These will be overwritten dynamically when the prompt needs to show up. The default values should be fine in most cases, unless you're using some other patch that reserves tiles in SP1, for example: Sprite Status Bar, 32x32 Player Tilemap, lx5's Custom Powerups, lx5's Dynamic Spriteset System. In this case you may need to change some of them to avoid other tiles being overwritten. You can see the tile number in LM's 8x8 Tile Editor, by taking the value you see in the bottom left - $400 (e.g., "Tile 0x442" -> $42, "Tile 0x542" -> $142). These aren't used if you don't use the Retry prompt or if <code>!no_prompt_draw = 1</code>.</p>
+    <h4>Sprite Tile Settings</h4>
+	<p>Sprite tile number for the tiles used by the prompt ($00-$FF = SP1/SP2, $100-$1FF = SP3/SP4). These will be overwritten dynamically when the prompt needs to show up. The default values should be fine in most cases, unless you're using some other patch that reserves tiles in SP1, for example: Sprite Status Bar, 32x32 Player Tilemap, lx5's Custom Powerups, lx5's Dynamic Spriteset System. In this case you may need to change some of them to avoid other tiles being overwritten. You can see the tile number in LM's 8x8 Tile Editor, by taking the value you see in the bottom left - $400 (e.g., "Tile 0x442" &rarr; $42, "Tile 0x542" &rarr; $142). These aren't used if you don't use the Retry prompt or if <code>!no_prompt_draw = 1</code>.</p>
 	<table>
 		<tr>
 			<th>Name</th>
-			<th>Value</th>
 			<th>Description</th>
 		</tr>
 		<tr>
 			<td><code>!tile_curs</code></td>
-			<td><code>$20</code></td>
 			<td>Sprite tile used for the cursor (note: if the prompt box is enabled, this uses two adjacent 8x8 tiles)</td>
 		</tr>
 		<tr>
 			<td><code>!tile_blk</code></td>
-			<td><code>$22</code></td>
 			<td>Sprite tile used for the black background (note: if the prompt box is enabled, this uses two adjacent 8x8 tiles)</td>
 		</tr>
 		<tr>
 			<td><code>!tile_r</code></td>
-			<td><code>$30</code></td>
 			<td>Sprite tile used for the "R" letter</td>
 		</tr>
 		<tr>
 			<td><code>!tile_e</code></td>
-			<td><code>$31</code></td>
 			<td>Sprite tile used for the "E" letter</td>
 		</tr>
 		<tr>
 			<td><code>!tile_t</code></td>
-			<td><code>$32</code></td>
 			<td>Sprite tile used for the "T" letter</td>
 		</tr>
 		<tr>
 			<td><code>!tile_y</code></td>
-			<td><code>$33</code></td>
 			<td>Sprite tile used for the "Y" letter</td>
 		</tr>
 		<tr>
 			<td><code>!tile_x</code></td>
-			<td><code>$4A</code></td>
 			<td>Sprite tile used for the "X" letter (note: if the "Exit" option is disabled, this won't be used)</td>
 		</tr>
 		<tr>
 			<td><code>!tile_i</code></td>
-			<td><code>$5A</code></td>
 			<td>Sprite tile used for the "Y" letter (note: if the "Exit" option is disabled, this won't be used)</td>
 		</tr>
 	</table>
-
 	</br>
 
 <!-- Sprite Status Bar -->
 <h3 id="sprite-status-bar">Sprite Status Bar Settings</h3>
-
 	<p>Settings for the sprite status bar that comes with the Retry system.</p>
-	<code>!sprite_status_bar</code>
-	<ul>
-		<li>If 1, a sprite status bar will be installed allowing you to display the item box, coin/Yoshi coin counter and timer in levels with sprites, which keeps layer 3 working properly. The sprites use dynamic tiles, meaning you'll need to reserve some GFX space in your SP slots for them. Item box, coins and timer use one 16x16 tile each, but they only need to be reserved when actually using them, and you can choose which tiles to use for each level (or to just disable any or all of them in specific levels) calling the API routine "configure_sprite_status_bar" in your level/gamemode UberASM (see <a href="api.html">API documentation</a>).</li>
-	</ul>
 
-	<code>!remove_vanilla_status_bar</code>
-	<ul>
-		<li>If 1, it disables the original game's status bar (including the IRQ) which prevents layer 3 from messing up. Differently than the normal remove status bar patch, this keeps the status bar functions (lives, coins, bonus stars, score, timer, reserve item) running in the background. Suggested to use if you're using <code>!sprite_status_bar = 1</code>. Don't use this if you're using similar patches such as "RAM Toggled Status Bar".</li>
-	</ul>
+	<h4>General Settings</h4>
+	<table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!sprite_status_bar</code></td>
+            <td>If 1, a sprite status bar will be installed allowing you to display the item box, coin/Yoshi coin counter and timer in levels with sprites, which keeps layer 3 working properly. The sprites use dynamic tiles, meaning you'll need to reserve some GFX space in your SP slots for them. Item box, coins and timer use one 16x16 tile each, but they only need to be reserved when actually using them, and you can choose which tiles to use for each level (or to just disable any or all of them in specific levels) calling the API routine "configure_sprite_status_bar" in your level/gamemode UberASM (see <a href="api.html">API documentation</a>).</td>
+        </tr>
+        <tr>
+            <td><code>!remove_vanilla_status_bar</code></td>
+            <td>If 1, it disables the original game's status bar (including the IRQ) which prevents layer 3 from messing up. Differently than the normal remove status bar patch, this keeps the status bar functions (lives, coins, bonus stars, score, timer, reserve item) running in the background. Suggested to use if you're using <code>!sprite_status_bar = 1</code>. Don't use this if you're using similar patches such as "RAM Toggled Status Bar".</td>
+        </tr>
+    </table>
 
+	<h4>Tile and Palette Settings</h4>
 	<p>The following settings are only relevant if <code>!sprite_status_bar = 1</code>.</p>
-
 	<p>Default sprite tile and palette to use for each element in the status bar. These settings can be overridden per-level by using the <code>configure_sprite_status_bar</code> API routine (see <a href="./api.html">API Information</a>). If both <code>!default_xxx_tile</code> and <code>!default_xxx_palette</code> are $00, the item will be hidden by default.</p>
 	<table>
 		<tr>
 			<th>Name</th>
-			<th>Value</th>
 			<th>Description</th>
 		</tr>
 		<tr>
 			<td><code>!default_item_box_tile</code></td>
-			<td><code>$80</code></td>
 			<td>Sprite tile number used by the item box by default</td>
 		</tr>
 		<tr>
 			<td><code>!default_item_box_palette</code></td>
-			<td><code>$0B</code></td>
 			<td>Palette used by the item box by default</td>
 		</tr>
 		<tr>
 			<td><code>!default_timer_tile</code></td>
-			<td><code>$88</code></td>
 			<td>Sprite tile number used by the timer by default</td>
 		</tr>
 		<tr>
 			<td><code>!default_timer_palette</code></td>
-			<td><code>$08</code></td>
 			<td>Palette used by the timer by default</td>
 		</tr>
 		<tr>
 			<td><code>!default_coin_counter_tile</code></td>
-			<td><code>$C2</code></td>
 			<td>Sprite tile number used by the coin counter by default</td>
 		</tr>
 		<tr>
 			<td><code>!default_coin_counter_palette</code></td>
-			<td><code>$08</code></td>
 			<td>Palette used by the coin counter by default</td>
 		</tr>
 		<tr>
 			<td><code>!default_lives_counter_tile</code></td>
-			<td><code>$00</code></td>
 			<td>Sprite tile number used by the lives counter by default (disabled by default).</td>
 		</tr>
 		<tr>
 			<td><code>!default_lives_counter_palette</code></td>
-			<td><code>$09</code></td>
 			<td>Palette used by the lives counter by default (the included GFX is tailored for vanilla palette 9, using the berry colors)</td>
 		</tr>
 		<tr>
 			<td><code>!default_bonus_stars_tile</code></td>
-			<td><code>$00</code></td>
 			<td>Sprite tile number used by the bonus stars counter by default (disabled by default)</td>
 		</tr>
 		<tr>
 			<td><code>!default_bonus_stars_palette</code></td>
-			<td><code>$00</code></td>
 			<td>Palette used by the bonus stars counter by default (the included GFX is tailored for vanilla palette 9, using the berry colors)</td>
 		</tr>
 	</table>
 
-	<p>General properties for sprite status bar elements.</p>
+	<h4>Elements Position Settings</h4>
+	<p>Settings to change the position of all the sprite status bar elements on the screen.</p>
 	<table>
 		<tr>
-			<th width="170">Name</th>
-			<th>Location</th>
+			<th>Name</th>
 			<th>Description</th>
 		</tr>
 		<tr>
 			<td><code>!item_box_x_pos</code></td>
-			<td><code>$70</code></td>
 			<td>X position on the screen to draw the Item Box</td>
 		</tr>
 		<tr>
 			<td><code>!item_box_y_pos</code></td>
-			<td><code>$07</code></td>
 			<td>Y position on the screen to draw the Item Box</td>
 		</tr>
 		<tr>
 			<td><code>!timer_x_pos</code></td>
-			<td><code>$D0</code></td>
 			<td>X position on the screen to draw the timer</td>
 		</tr>
 		<tr>
 			<td><code>!timer_y_pos</code></td>
-			<td><code>$0F</code></td>
 			<td>Y position on the screen to draw the timer</td>
 		</tr>
 		<tr>
 			<td><code>!coin_counter_x_pos</code></td>
-			<td><code>$D0</code></td>
 			<td>X position on the screen to draw the normal coin counter</td>
 		</tr>
 		<tr>
 			<td><code>!coin_counter_y_pos</code></td>
-			<td><code>$17</code></td>
 			<td>Y position on the screen to draw the normal coin counter</td>
 		</tr>
 		<tr>
 			<td><code>!dc_counter_x_pos</code></td>
-			<td><code>$9A</code></td>
 			<td>X position on the screen to draw the Dragon/Yoshi coin counter</td>
 		</tr>
 		<tr>
 			<td><code>!dc_counter_y_pos</code></td>
-			<td><code>$0F</code></td>
 			<td>Y position on the screen to draw the Dragon/Yoshi coin counter</td>
 		</tr>
 		<tr>
 			<td><code>!lives_counter_x_pos</code></td>
-			<td><code>$10</code></td>
 			<td>X position on the screen to draw the lives counter</td>
 		</tr>
 		<tr>
 			<td><code>!lives_counter_y_pos</code></td>
-			<td><code>$0F</code></td>
 			<td>Y position on the screen to draw the lives counter</td>
 		</tr>
 		<tr>
 			<td><code>!bonus_stars_x_pos</code></td>
-			<td><code>$10</code></td>
 			<td>X position on the screen to draw the bonus stars counter</td>
 		</tr>
 		<tr>
 			<td><code>!bonus_stars_y_pos</code></td>
-			<td><code>$17</code></td>
 			<td>Y position on the screen to draw the bonus stars counter</td>
 		</tr>
 	</table>
 
-	<code>!always_draw_box</code>
-	<ul>
-		<li>If 1, the item box will always be drawn (if set to be drawn for the specific level). Otherwise, it will only be drawn when having an item in reserve.</li>
-	</ul>
+	<h4>Other Settings</h4>
+	<table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!always_draw_box</code></td>
+            <td>If 1, the item box will always be drawn (if set to be drawn for the specific level). Otherwise, it will only be drawn when having an item in reserve.</td>
+        </tr>
+        <tr>
+            <td><code>!8x8_item_box_tile</code></td>
+            <td>If 1, the item box will use an 8x8 tile instead of a 16x16 tile.</td>
+        </tr>
+        <tr>
+            <td><code>!draw_all_dc_collected</code></td>
+            <td>If 1, when collecting all DCs in a level they'll be displayed in the status bar. If 0, they won't be displayed (like in vanilla).</td>
+        </tr>
+        <tr>
+			<td><code>!default_coin_counter_behavior</code></td>
+			<td>
+				Changes which of the coin counter elements are drawn by default (assuming <code>!default_coin_counter_tile</code> and <code>!default_coin_counter_palette</code> enable these counters to be drawn):
+				<ul>
+					<li>0 = draw both coins and dragon coins by default</li>
+					<li>1 = don't draw coins by default (only dragon coins)</li>
+					<li>2 = don't draw dragon coins by default (only coins)</li>
+				</ul>
+			</td>
+		</tr>
+    </table>
 
-	<code>!8x8_item_box_tile</code>
-	<ul>
-		<li>If 1, the item box will use an 8x8 tile instead of a 16x16 tile.</li>
-	</ul>
-
-	<code>!draw_all_dc_collected</code>
-	<ul>
-		<li>If 1, when collecting all DCs in a level they'll be displayed in the status bar. If 0, they won't be displayed (like in vanilla).</li>
-	</ul>
-
-	<code>!draw_retry_indicator</code>
-	<ul>
-		<li>If 1, an 8x8 indicator will be drawn on the sprite status bar in levels where Retry prompt or instant Retry is enabled. This could be useful for collabs. The other settings control how and where it is drawn. The tile you choose will be overwritten at runtime by the indicator tile when needed.
-			<table>
-				<tr>
-					<th width="220">Name</th>
-					<th width="20">Tile </th>
-					<th>Description</th>
-				</tr>
-				<tr>
-					<td><code>!retry_indicator_tile</code></td><td><code>$1D</code></td><td>Location to uploade the tile in VRAM. (Default SP1)</td>
-				</tr>
-				<tr>
-					<td><code>!retry_indicator_palette</code></td><td><code>$09</code></td><td>Sprite palette number used by the retry indicator tile.</td>
-				</tr>
-				<tr>
-					<td><code>!retry_indicator_x_pos</code></td><td><code>$10</code></td><td>X-position on the screen to draw the indicator.</td>
-				</tr>
-				<tr>
-					<td><code>!retry_indicator_y_pos</code></td><td><code>$0F</code></td><td>Y-position on the screen to draw the indicator.</td>
-				</tr>
-			</table>
-		</li>
-	</ul>
+    <h4>Retry Indicator Settings</h4>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td><code>!draw_retry_indicator</code></td>
+			<td>If 1, an 8x8 indicator will be drawn on the sprite status bar in levels where Retry prompt or instant Retry is enabled. This could be useful for collabs. The other settings control how and where it is drawn. The tile you choose will be overwritten at runtime by the indicator tile when needed.</td>
+		</tr>
+		<tr>
+			<td><code>!retry_indicator_tile</code></td>
+			<td>Location to uploade the tile in VRAM. (Default SP1)</td>
+		</tr>
+		<tr>
+			<td><code>!retry_indicator_palette</code></td>
+			<td>Sprite palette number used by the retry indicator tile.</td>
+		</tr>
+		<tr>
+			<td><code>!retry_indicator_x_pos</code></td>
+			<td>X position on the screen to draw the indicator.</td>
+		</tr>
+		<tr>
+			<td><code>!retry_indicator_y_pos</code></td>
+			<td>Y position on the screen to draw the indicator.</td>
+		</tr>
+	</table>
 	</br>
 
 <!-- Death Counters -->
 <h3 id="death-counters">Death Counters Settings</h3>
-	<code>!status_death_counter</code>
-	<ul>
-		<li>
-			If 1, a death counter will replace the lives on the (vanilla) status bar.
-		</li>
-	</ul>
-
-	<code>!status_death_word</code>
-	<ul>
-		<li>
-			If 1, the "DEATHS" word will replace Mario's name on the status bar. If you want to customize the text or its
-			palette, look in <u class="dir">retry_config/code/hijacks/death_counter.asm</u>.
-		</li>
-	</ul>
-
-	<code>!ow_death_counter</code>
-	<ul>
-		<li>
-			If 1, a death counter will be written to the Overworld border. Note: this only handles the counter, if you want
-			other stuff like "DEATHS" appear, use LM's layer 3 editor.
-		</li>
-	</ul>
-
-	<code>!ow_death_counter_x_pos</code>
-	<ul>
-		<li>
-			Tile X-position of the death counter on the Overworld. (Default <code>$19</code>)
-		</li>
-	</ul>
-
-	<code>!ow_death_counter_y_pos</code>
-	<ul>
-		<li>
-			Tile Y-position of the death counter on the Overworld. (Default <code>$02</code>)
-		</li>
-	</ul>
-
-	<code>!ow_death_counter_props</code>
-	<ul>
-		<li>
-			<a href="https://sneslab.net/wiki/YXPPCCCT" target="_blank">YXPCCCTT</a> properties of the death counter on the
-			Overworld, configured as <code>l3_prop(6,1)</code>. The first digit is the palette number, the second is the GFX
-			page number (0 or 1).
-		</li>
-	</ul>
-
-	<code>!ow_digit_0</code>
-	<ul>
-		<li>
-			Tile number of the digit "0" on the Overworld. It's assumed that the digits are stored in order from 0 to 9 in
-			the
-			GFX file. (Default <code>$22</code>)
-		</li>
-	</ul>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!status_death_counter</code></td>
+            <td>If 1, a death counter will replace the lives on the (vanilla) status bar.</td>
+        </tr>
+        <tr>
+            <td><code>!status_death_word</code></td>
+            <td>If 1, the "DEATHS" word will replace Mario's name on the status bar. If you want to customize the text or its palette, look in <u class="dir">retry_config/code/hijacks/death_counter.asm</u>.</td>
+        </tr>
+        <tr>
+            <td><code>!ow_death_counter</code></td>
+            <td>If 1, a death counter will be written to the Overworld border. Note: this only handles the counter, if you want other stuff like "DEATHS" appear, use LM's layer 3 editor.</td>
+        </tr>
+        <tr>
+            <td><code>!ow_death_counter_x_pos</code></td>
+            <td>Tile X position of the death counter on the Overworld.</td>
+        </tr>
+        <tr>
+            <td><code>!ow_death_counter_y_pos</code></td>
+            <td>Tile Y position of the death counter on the Overworld.</td>
+        </tr>
+        <tr>
+            <td><code>!ow_death_counter_props</code></td>
+            <td><a href="https://sneslab.net/wiki/YXPPCCCT" target="_blank">YXPCCCTT</a> properties of the death counter on the Overworld, configured as <code>l3_prop(6,1)</code>. The first digit is the palette number, the second is the GFX page number (0 or 1).</td>
+        </tr>
+    </table>
 	</br>
 
 <!-- Misc -->
 <h3 id="misc">Misc Settings</h3>
-	<code>!use_legacy_tables</code>
-	<ul>
-		<li>If 1, the level-specific Retry settings will be loaded from the <u class="dir">legacy/tables.asm</u> file instead of the <u class="dir">settings_local.asm</u> file. Use this if you prefer the old table-based approach rather than the new macro-based approach.</li>
-	</ul>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td><code>!use_legacy_tables</code></td>
+            <td>If 1, the level-specific Retry settings will be loaded from the <u class="dir">legacy/tables.asm</u> file instead of the <u class="dir">settings_local.asm</u> file. Use this if you prefer the old table-based approach rather than the new macro-based approach.</td>
+        </tr>
+    </table>
 	<br/>
 
 <center><a href="./index.html">Return to main page</a></center>

@@ -258,7 +258,7 @@
 			<td><code>$21</code></td>
 			<td><code>$02</code></td>
 			<td>User</td>
-			<td class="left-align">Current sprite status bar coin counter tile number and palette. Format: <code>$PTTT</code> (<code>P</code> = palette, <code>TTT</code> = tile number). See <a href="./api.html#configure_sprite_status_bar">API - Configure sprite status bar</a> for details.</td>
+			<td class="left-align">Current sprite status bar coin counter tile number and palette. Format: <code>$PTTT</code> (<code>P</code> = palette, <code>TTT</code> = tile number). Additionally bits 1 and 2 of $PT are used to prevent coins and dragon coins respectively from being drawn (if you just want either of those but not both). See <a href="./api.html#configure_sprite_status_bar">API - Configure sprite status bar</a> for details.</td>
 		</tr>
 		<tr>
 			<td><code>status_bar_lives_tile</code></td>

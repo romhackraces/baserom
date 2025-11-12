@@ -14,8 +14,8 @@
 ;  1 = prompt + play the death jingle when players die. Recommended if you want the music to restart on each death.
 ;  2 = prompt + play only the sfx when players die (music won't be interrupted).
 ;  3 = no prompt + play only the sfx (the fastest option; "yes" is chosen automatically).
-;        In this option, you can press start then select to exit the level.
-;  4 = no retry (as if "no" is chosen automatically). Use this to have a vanilla death sequence.
+;  4 = no prompt + play the death jingle. Recommended if you want the music to restart on each death.
+;  5 = no retry (as if "no" is chosen automatically). Use this to have a vanilla death sequence.
 ;
 ; The second digit sets the behavior of midways bars and level entrances in the sublevel (see the figures in the "midway instruction" folder):
 ;  0 = Vanilla. The midway bar in the corresponding sublevel will lead to the midway entrance of the main level.

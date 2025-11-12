@@ -38,6 +38,11 @@ endmacro
 %_build_status_bar_value(lives_counter)
 %_build_status_bar_value(bonus_stars)
 
+if !default_coin_counter_behavior > 2
+    error "Error: \!default_coin_counter_behavior is not valid!"
+endif
+!default_coin_counter_value #= !default_coin_counter_value|(!default_coin_counter_behavior<<9)
+
 init_ram:
     ; Reset sprite status bar configuration.
     rep #$20
@@ -332,7 +337,7 @@ if !draw_retry_indicator
     ; Check if we need to upload the indicator tile.
     lda $0100|!addr : cmp #$0B : bcc ..no_indicator
     jsr shared_get_prompt_type
-    cmp #$04 : bcs ..no_indicator
+    cmp.b #!retry_type_vanilla : bcs ..no_indicator
 
     ; Upload the indicator tile.
     rep #$20
@@ -386,9 +391,11 @@ main:
 .coins:
     php
     jsr convert_tile_props
+    lda !ram_status_bar_coins_tile+1 : and #$02 : bne +
     jsr draw_coins
++   lda !ram_status_bar_coins_tile+1 : and #$04 : bne +
     jsr draw_yoshi_coins
-    plp
++   plp
     inc $02
 
 .no_coins:
@@ -418,7 +425,7 @@ if !draw_retry_indicator
     sep #$20
     lda $0100|!addr : cmp #$0B : bcc .no_indicator
     jsr shared_get_prompt_type
-    cmp #$04 : bcs .no_indicator
+    cmp.b #!retry_type_vanilla : bcs .no_indicator
 .indicator:
     jsr draw_indicator
     inc $02

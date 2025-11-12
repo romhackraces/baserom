@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Changelog - Retry System UberASM</title>
+	<meta name="author" content="KevinM">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<link rel="icon" href="./img/icon.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+</head>
+<body>
+	<h1>Changelog</h1>
+	<h2 id="v1.0.0">v1.0.0</h2>
+	<ul>
+		<li>Documentation updated.</li>
+		<li>"credits.txt" and "changelog.txt" converted to html docs.</li>
+		<li>Moved "amk_resources" under "resources/amk" and added "resources/lm/retry_midways.osc" file with Lunar Magic tooltip display information for the custom Retry midway objects.</li>
+		<li>Added !default_sfx_echo option in "settings_global.asm" to allow to enable sfx echo globally easily.</li>
+		<li>Added new option for the Retry prompt type: instant Retry & death music is played (level music will restart). This can be used in the !default_prompt_type global setting or in the %retry local setting or in the prompt_override RAM setting.</li>
+		<li>Added new option for the !title_death_behavior global settings: instant Retry and play the death music (title screen music will restart).</li>
+		<li>Added !counterbreak_lives option to reset the lives to the initial value when respawning and/or going to the Overworld.</li>
+		<li>Added !prompt_show_delay option in "settings_global.asm" to adjust how fast the Retry prompt shows up. Also the default value is more similar to the original Retry patch compared to previous versions.</li>
+		<li>Added !default_coin_counter_behavior to only display either coins or dragon coins in the sprite status bar. Adjusted configure_sprite_status_bar api routine to do the same.</li>
+	</ul>
+	<p><b>NOTE</b>: if upgrading from v0.8.1 or older to v1.0.0 or newer, pay attention if you have used the "vanilla death" prompt option, as it its value changed to account for the new "instant Retry & play death music" option. In details:
+		<ul>
+			<li>In "settings_global.asm": <code>!default_prompt_type = 3</code> &rarr; <code>!default_prompt_type = 4</code></li>
+			<li>In "settings_local.asm": <code>%retry(xxx,4)</code> &rarr; <code>%retry(xxx,5)</code></li>
+			<li>Setting it in your own code: <code>LDA #$04 : STA retry_ram_prompt_override</code> &rarr; <code>LDA #$05 : STA retry_ram_prompt_override</code></li>
+			<li>Getting it in your own code: <code>JSL retry_api_get_retry_type : CMP #$04</code> &rarr; <code>JSL retry_api_get_retry_type : CMP #$05</code></li>
+		</ul>
+	</p>
+
+	<h2 id="v0.8.1">v0.8.1</h2>
+	<ul>
+		<li>Fixed vanilla midway entrances not working with Retry when the Lunar Magic alternate entrance method patch isn't applied (thanks to LouisDoucet for reporting this).</li>
+		<li>Fixed hardlock when dying on the same frame that a message box has finished opening, when using the Retry prompt (thanks to AmperSam for reporting this).</li>
+	</ul>
+
+	<h2 id="v0.8.0">v0.8.0</h2>
+	<ul>
+		<li>Fixed !title_death_behavior setting not working anymore (issue introduced in v0.7.1).</li>
+		<li>Changed gamemode 3 file to gamemode 0 so that Retry still works even if the title screen is skipped with a patch.</li>
+		<li>Removed "load_title" extra routine which was basically useless and not consistent anymore after the gamemode 03->00 change.</li>
+		<li>Added defines to configure the sprite status bar elements globally. Now the api routine only needs to be called to overwrite the default settings.</li>
+		<li>Changed configure_sprite_status_bar api routine palette format so it's easier to use (palette value to pass is [8-F] instead of [0-7]).</li>
+		<li>Fixed Retry indicator being drawn on the title screen.</li>
+		<li>Added "retry_install.bat" script to automate copying the Retry files in the UberASM Tool folders.</li>
+		<li>Fixed switch palace message sprites getting glitched or disappearing if the sprite status bar is enabled (issue introduced in v0.7.1).</li>
+		<li>Fixed sprite status bar not being drawn in the intro level by default.</li>
+		<li>Added lives and bonus stars counters to the sprite status bar, which are disabled by default, but you can enable them in settings_global.asm or with the configure_sprite_status_bar API routine (thanks to AmperSam for the lives counter gfx).</li>
+		<li>Changed configure_sprite_status_bar API routine format to account for the new sprite status bar items.</li>
+		<li>Removed !lives_overflow_fix settings: it is now always enabled.</li>
+		<li>Changed %disable_room_cp_sfx to %no_room_cp_sfx in settings_local.asm to keep the name consistent with other options.</li>
+		<li>Finalized documentation (thanks to AmperSam for the huge help).</li>
+	</ul>
+
+	<h2 id="v0.7.4">v0.7.4</h2>
+	<ul>
+		<li>Fixed get_sram_variable_address api routine wrong result if it was called from a different bank.</li>
+		<li>Fixed Mario's walking pose being glitched sometimes after a level reload, which was introduced in v0.6.2 (thanks to mmBeefStew for reporting this).</li>
+	</ul>
+
+	<h2 id="v0.7.3">v0.7.3</h2>
+	<ul>
+		<li>Added !8x8_item_box_tile option to have an 8x8 tile instead of a 16x16 tile for the sprite status bar item box (thanks to AmperSam for the gfx).</li>
+		<li>Fixed game crash if patching the infinite lives hex edit after inserting Retry.</li>
+	</ul>
+
+	<h2 id="v0.7.2">v0.7.2</h2>
+	<ul>
+		<li>Updated "library/retry.asm" and "gamemode/retry_gm14.asm" files, which I forgot to update in 0.7.1 so that version gave compilation errors.</li>
+	</ul>
+	<p><b>NOTE</b>: if upgrading from 0.7.0 or older to 0.7.1 or newer, you need to patch the included "retry_unpatch.asm" file with Asar BEFORE running UberASM Tool with the new Retry version, or the game will crash.</p>
+
+	<h2 id="v0.7.1">v0.7.1</h2>
+	<ul>
+		<li>Removed "level_end_frame.asm" and the "gm14_end" routine in "extra.asm", as they're now obsoleted by the UberASM Tool 2.0 "end" label (2.0 is required to insert Retry from this version onwards).</li>
+		<li>Fixed issue from the previous version where the sprite status bar coin tile could be glitched.</li>
+	</ul>
+	<p><b>NOTE</b>: if upgrading from 0.7.0 or older to 0.7.1 or newer, you need to patch the included "retry_unpatch.asm" file with Asar BEFORE running UberASM Tool with the new Retry version, or the game will crash.</p>
+
+	<h2 id="v0.7.0">v0.7.0</h2>
+	<ul>
+		<li>Fixed the !no_score_sprites_on_death option so it doesn't erase score sprites if the prompt is not enabled in the level.</li>
+		<li>Changed sprite status bar configuration to use ram addresses instead of tables, and removed the "sprite_status_bar_tables.asm" file. You can now enable and configure the status bar items using the "retry_api_configure_sprite_status_bar" API function. See "docs/api.html" for more information.</li>
+		<li>Expanded the ram size by 11 bytes to account for the new sprite status bar variables and possible future features. As a result of this, the ram variables !retry_ram_death_counter, !retry_ram_checkpoint and !retry_ram_cust_obj_data have been shifted compared to previous versions. See "docs/ram.html" for more information.</li>
+		<li>Added api routine to get the current Retry type.</li>
+		<li>Added api routine to get SRAM address of any variable saved by Retry.</li>
+		<li>Added !draw_retry_indicator setting to draw an indicator in the sprite status bar when the level has Retry enabled (thanks to MiracleWater for the indicator gfx).</li>
+		<li>Fixed potential issue when drawing Dragon Coins in the sprite status bar.</li>
+		<li>Fixed lives decrementing twice when infinite lives is disabled and Retry is enabled in a level (issue introduced in v0.6.2).</li>
+		<li>Renamed "settings.asm" to "settings_global.asm".</li>
+		<li>Removed "tables.asm" and replaced it with the new "settings_local.asm". This now uses a macro-based approach to enable level-specific options, while the old table-based file can still be found under "legacy/tables.asm" for those that prefer it. Check out "docs/settings_local.html" for details.</li>
+	</ul>
+
+	<h2 id="v0.6.2">v0.6.2</h2>
+	<ul>
+		<li>Avoid using Mario's pipe entrance state to reload a level. This can fix potential issues with custom code that checks for Mario's animation state (thanks to LouisDoucet for reporting this).</li>
+		<li>Moved "misc.asm" and "rom.asm" out of the "retry_config" folder, since these are not supposed to be edited by the user in 99.9% of cases.</li>
+		<li>Added !no_prompt_draw option to not have the prompt drawn on screen for a minimalistic result. This achieves the same effect as making the included GFX files blank, but saves ROM space and avoids having to reserve sprite GFX tiles for it.</li>
+		<li>Removed "math pri", "math round" and "rep X" commands, since they're deprecated since Asar 1.90 and they weren't needed anyway.</li>
+	</ul>
+
+	<h2 id="v0.6.1">v0.6.1</h2>
+	<ul>
+		<li>Added an option for the counterbreak settings to only apply on level reload or on Overworld loading, instead of being forced for both (use values 2 and 3 for the !counterbreak_xxx settings).</li>
+		<li>Fixed the !title_death_behavior setting not working when using UberASMTool 2.0 (thanks to MiracleWater for reporting this).</li>
+		<li>Fixed the sprite status bar being glitched (and possibly other undiscovered issues...) in vanilla mode 7 boss rooms (thanks to Alex for reporting this).</li>
+	</ul>
+
+	<h2 id="v0.6.0">v0.6.0</h2>
+	<ul>
+		<li>Fixed compilation errors when using !fast_prompt = 0 (thanks to Koopster for reporting this).</li>
+		<li>Changed default values for !fast_transitions, !fast_prompt and !death_camera_lock in "settings.asm" to 0.</li>
+		<li>Fixed sfx echo not working sometimes when changing music in the middle of a level (for example with P-Switch or Starman).</li>
+		<li>Don't immediately respawn if falling in a pit with instant Retry if !retry_death_animation is 2 or 3.</li>
+		<li>Don't show prompt immediately if falling in a pit with Retry prompt if !retry_death_animation is 1 or 3.</li>
+		<li>Added !no_score_sprites_on_death option (disabled by default) to removed score sprites on death, to allow to use their graphic slots in SP1 for the Retry prompt tiles.</li>
+		<li>Fixed Yoshi swallow timer decrementing while the Retry prompt is displayed when the frame counter has specific values (only when !prompt_freeze is not 0).</li>
+		<li>Added api routine to save the game.</li>
+		<li>Added api routine to respawn in the level.</li>
+		<li>Now the Retry checkpoints also work for midway and secondary entrances that use the vanilla method of setting the player's position (instead of just "Method 2"), as it was in the original Retry patch.</li>
+	</ul>
+
+	<h2 id="v0.5.2">v0.5.2</h2>
+	<ul>
+		<li>Now changing the X/Y position for the prompt text (from the settings or by writing to the respective RAM addresses) only works if the black box is disabled, since otherwise it looks broken (thanks to AmperSam for the suggestion).</li>
+		<li>Added an "api" file containing useful routines that can be called by external UberASM files (sadly not from other library files if using standard UberASMTool). For now it only has two, one to reset the current level's checkpoint, and one to reset all checkpoints, but more can be added in the future. For information on how to use them see "docs/api.html".</li>
+		<li>Fixed Retry prompt remaining glitched on screen in case Mario revives after death, for example with the Yoshi revive glitch (thanks to YouFailMe and Mega for reporting this).</li>
+		<li>Added !draw_all_dc_collected option to make all DCs collected be drawn or not to Retry's sprite status bar (thanks to Anas for reporting this).</li>
+		<li>Now enabling the sprite status bar on the title screen will work properly instead of showing glitched tiles. Note that it is still disabled by default in "sprite_status_bar_tables.asm": values are $0000 for level C7, changing those according to the guide in the file will enable it.</li>
+      NOTE: this requires inserting the new "retry_gm06.asm" gamemode file in GM 06 (see updated "how_to_insert.txt" guide).
+		<li>Added fix for dying on the title screen with the !title_death_behavior option, with which you can choose if to reload the title screen immediately or only after the death animation has played out. You can also keep the original game's glitched behavior if you need to.</li>
+      NOTE: this requires inserting the new "retry_gm07.asm" gamemode file in GM 07 (see updated "how_to_insert.txt" guide).
+     </ul>
+
+	<h2 id="v0.5.1">v0.5.1</h2>
+	<ul>
+		<li>Improved speed of Retry prompt drawing.</li>
+		<li>Now the sprite status bar's coin counter and Yoshi Coins display use different tiles (they both look like the standard coin tile by default).</li>
+		<li>Now the sprite status bar's Yoshi Coins counter auto detects how many coins need to be displayed in levels when having collected all of them, even if the amount is hex edited in the ROM or the "Per Level Yoshi Coins Amount" patch is used. Additionally, the counter will work properly if the amount is more than 5.</li>
+		<li>Updated the "ram_map.txt" doc to a better readable HTML document.</li>
+	</ul>
+
+	<h2 id="v0.5.0">v0.5.0</h2>
+	<ul>
+		<li>Small documentation updates.</li>
+		<li>Fixed bonus game 1UPs still moving while the Retry prompt is active (only when !prompt_freeze = 2).</li>
+		<li>Implemented sprite status bar that can be enabled with the !sprite_status_bar setting and configured from the settings and the tables in "sprite_status_bar_tables.asm".</li>
+	</ul>
+
+	<h2 id="v0.4.6">v0.4.6</h2>
+	<ul>
+		<li>Updated custom midway instructions with more clear guide (thanks to AmperSam for providing them).</li>
+		<li>Fixed occasional respawn issues when using UberASMTool 2.0 Beta.</li>
+	</ul>
+
+	<h2 id="v0.4.5">v0.4.5</h2>
+	<ul>
+		<li>Fixed integration with lx5's Custom Powerups (thanks to NixKillsMyths for reporting this):</li>
+  		<li>Fixed compilation error when using both Retry and the Custom Powerups.</li>
+  		<li>Removed redundant code in "level_init_3.asm" that is already run in the Custom Powerups UberASM.</li>
+		<li>Fixed Sumo Bro's Lightning falling while the Retry prompt is active (only when !prompt_freeze = 2).</li>
+		<li>Added an optional !prompt_cooldown option (set to $10 frames by default) to disable pressing up/down to move the cursor for a given amount of frames after the Retry prompt has opened, to avoid accidental level exits (thanks to AmperSam for the suggestion).</li>
+		<li>Fixed some mode 7 values not being reset by Retry, and added some small optimizations on level load.</li>
+	</ul>
+
+	<h2 id="v0.4.4">v0.4.4</h2>
+	<ul>
+		<li>Fixed bug where dying on the same frame as getting a midway would make the music reset (thanks to LouisDoucet for reporting this).</li>
+		<li>Fixed Reappearing Boos fading in and out while the Retry prompt is active (only when !prompt_freeze = 2).</li>
+		<li>Fixed game crash that happened when using !prompt_freeze = 0 and dying shortly after hitting a message box.</li>
+		<li>Fixed vanilla autoscrollers still running when dying with !prompt_freeze = 0 (thanks to Mega for reporting this).</li>
+		<li>Fixed compilation error when setting !use_custom_midway_bar = 0 (thanks to MarioFanGamer for reporting this).</li>
+		<li>Fixed a theoretically possible but very unlikely bug that could cause unintended issues or game crashes if the Retry prompt tiles were to get uploaded on a frame where a lot of other processing was happening.</li>
+	</ul>
+
+	<h2 id="v0.4.3">v0.4.3</h2>
+	<ul>
+		<li>Fixed Yoshi's tongue being able to extend/retract while the Retry prompt is active, which could also cause unintended side effects, for example revive Mario but keep the prompt active if Yoshi eats a powerup (thanks to gui for reporting this).</li>
+		<li>Now Retry can work properly in Yoshi Wings levels! If setting a Yoshi Wings sublevel to give a checkpoint upon entrance (or if using a custom midway set to the Yoshi Wings level's main entrance), Mario will respawn doing the "shoot up" animation with Blue Yoshi as if he just got the Yoshi Wings (also if saving the game and reloading in the level after a reset). Any other type of checkpoint gotten in the level (vanilla midway, secondary exit checkpoint, etc.) will turn the level back to normal (no Yoshi, no wings animation, pits are deadly again).</li>
+		<li>Fixed some of Bowser's addresses not resetting upon Retry which could cause unintended effects, like him throwing Magikoopas immediately when re-entering the boss fight (thanks to gui for reporting this).</li>
+		<li>Fixed lightning effect still happening while the Retry prompt is active (only when using !prompt_freeze = 2).</li>
+		<li>Moved lx5's Custom Powerups reset code out of "extra.asm".</li>
+	</ul>
+
+	<h2 id="v0.4.2">v0.4.2</h2>
+	<ul>
+		<li>Fixed pipe entrance timer being inconsistent when respawning if dying while riding Yoshi (thanks to gui for reporting this).</li>
+	</ul>
+
+	<h2 id="v0.4.1">v0.4.1</h2>
+	<ul>
+		<li>Moved the "lose_lives" table in "tables.asm" after other tables, since it's the least important one.</li>
+		<li>Added "disable_room_cp_sfx" table in "tables.asm" to avoid playing the room entrance checkpoint SFX in certain sublevels.</li>
+		<li>Improved SFX echo handling:</li>
+  		<li>Now the SFX echo will always work the first time entering a room, even if the echo delay is very high.</li>
+  		<li>Now the SFX echo will stay enabled even when changing music in the middle of the level (assuming the new music doesn't disable echo altogether). This is most notable for P-Switch and Starman songs, which will keep the level's echo, and thus also the SFX echo, while (and after) they play.</li>
+		<li>Added the !infinite_lives setting back, to more easily toggle between infinite and finite lives. The lose_lives table can still be used to prevent life loss in some levels when using !infinite_lives = 0.</li>
+		<li>Fixed compilation error introduced in v0.3.3, when using !sram_feature = 1 and the SRAM+/BW-RAM+ patch is installed in the ROM.</li>
+		<li>Moved Retry's SRAM tables to a separate "sram_tables.asm" file for more simplicity of use and consistency, and made it insert only when using !sram_feature = 1 to save some ROM space.</li>
+		<li>Changed checks for ObjecTool, Lunar Magic v3.0+, Lunar Magic Sprite 19 Fix, AddmusicK, PIXI and Individual Dragon Coin Save from compile time to run time, so Retry should work fine if those are inserted after it.</li>
+		<li>Changed most values read from ROM from compile time to runtime reads, so Retry will work fine if those are hex edited afterwards.</li>
+		<li>Added "rom.asm" for label definitions of ROM addresses used by Retry and refactored "misc.asm".</li>
+	</ul>
+
+	<h2 id="v0.4.0">v0.4.0</h2>
+	<ul>
+		<li>Changed default !pipe_entrance_freeze setting to 1 to avoid inconsistencies.</li>
+		<li>Fixed earthquake effect (e.g. Thwomps) still going while the Retry prompt is shown (only when using !prompt_freeze = 2).</li>
+		<li>Fixed bug where if using the "Time Up Fix" patch together with a patch that skips status bar initialization code (e.g. "RAM Toggled Status Bar"), the timer wouldn't tick down after dying due to a timeout in a level without Retry (similar fix as v0.3.3 but for a much more specific case).</li>
+		<li>Added define for green star block coin counter in "misc.asm" for consistency.</li>
+		<li>Fixed issue where the "Enable SFX echo" feature wouldn't work during a level transition that changes song, if the song had a high echo buffer (note: it can still happen if using !fast_transitions = 1 with songs with echo delay $0C or higher - in this case the SFX echo will be enabled after a room transition/respawn).</li>
+		<li>Added !enter_level_sfx setting (disabled by default) to play a SFX when entering a level from the Overworld, similarly to SMB3.</li>
+		<li>Added !retry_death_animation setting (disabled by default) to allow to play the full death animation before showing the Retry prompt and/or before instantly respawning (thanks to KaizoFish for the suggestion).</li>
+		<li>Added !death_camera_lock setting (enabled by default) to stop the camera from scrolling while dying (including the "Exit" animation or the death animation enabled by !retry_death_animation).</li>
+		<li>Added !time_up_fix setting (enabled by default) to prevent the "TIME UP!" message from appearing after dying in a level with timer set to 0 (similar fix as Alcaro's, but handled with UberASM). Note that a new gamemode file was added ("retry_gm15.asm") to make it work.</li>
+		<li>Rewritten fix for glitched layer 2 interaction on level load:</li>
+  		<li>Now Mario won't appear in his "falling" pose for 1 frame if respawning on layer 2 ground.</li>
+  		<li>Now sprites won't act as being in the air for 1 frame if placed on layer 2 ground while respawning (this fixes, for example, Mushrooms starting moving after a level reload when they're not supposed to).</li>
+  		<li>Now !retry_ram_l2_backup is unused (might be repurposed for something else in future versions).</li>
+  	</ul>
+
+	<h2 id="v0.3.10">v0.3.10</h2>
+	<ul>
+		<li>Fixed issue where dying in a level with a "No Yoshi" entrance would respawn you in the bonus game.</li>
+	</ul>
+
+	<h2 id="v0.3.9">v0.3.9</h2>
+	<ul>
+		<li>Added fix (optional, enabled by default) for the weird vanilla behavior where levels 12E-13B are always forced to use the "No Yoshi Sign 2" intro regardless of their tileset (which can also mess up custom "No Yoshi Intro" patches).</li>
+		<li>Fixed !exit_animation = 0 or 1 behaving seemingly randomly, sometimes exiting immediately, sometimes after the prompt closed - now it will always exit after the prompt is closed (thanks to SJandCharlieTheCat for reporting this).</li>
+		<li>Fixed death animation with !exit_animation = 2 having incosistent timing when using different !prompt_freeze settings.</li>
+		<li>Fixed vanilla "high and low" tides timer not resetting when respawning, which would cause inconsistent tide behavior between retries.</li>
+		<li>Fixed vanilla layer 3 tides not stopping scrolling left when the Retry prompt is shown (only when using !prompt_freeze = 2).</li>
+		<li>Fixed Shell-less Koopas being able to move (fall) while the Retry prompt is shown (only when using !prompt_freeze = 2).</li>
+	</ul>
+
+	<h2 id="v0.3.8">v0.3.8</h2>
+	<ul>
+		<li>Made possible to use tiles in SP3/SP4 for the Retry prompt (just add $100 to the tile numbers in the settings).</li>
+		<li>Fixed camera position sometimes being inconsistent between loading a level normally and reloading it with Retry (thanks to schema_tuna for reporting and fixing this).</li>
+		<li>Optimized ram.asm (cleaner, faster compilation time).</li>
+	</ul>
+
+	<h2 id="v0.3.7">v0.3.7</h2>
+	<ul>
+		<li>Fixed collected invisible 1-UPs not resetting on death, which would allow to skip some of them after respawning (when not collecting them all).</li>
+		<li>Fixed scroll sprites speeds not resetting on death (thanks to LouisDoucet for reporting this).</li>
+		<li>Small refactor of addresses reset code on death.</li>
+		<li>Added fix (optional, enabled by default) for the bug where Mario's lives don't cap at 99 when the status bar is nuked (this usually causes the Overworld to display a glitched amount and makes Mario have a halo).</li>
+		<li>Fixed issue where if a level is placed on the very left edge of the Overworld (beneath where the vanilla border is), then Retry would respawn you in level 0 when dying in that level (thanks to LouisDoucet for reporting this).</li>
+		<li>Added compatibility with the "Level Depending on Event" and "Level Depending on Ram Address" patches: now Retry respawning and checkpoints will work correctly when in the new levels! (as an added bonus, it adds midway support to those patches, since they don't quite work originally).</li>
+		<li>Actually fixed the intro level bug from v0.3.4, which also fixes the mosaic effect not appearing when respawning in it.</li>
+	</ul>
+
+	<h2 id="v0.3.6">v0.3.6</h2>
+	<ul>
+		<li>Made so the Retry prompt shows up immediately when falling in a pit and not using !fast_prompt = 1.</li>
+		<li>Fixed cursor and letters outlines when not using the prompt box (now they're the same as in GFX28).</li>
+		<li>Added !disable_hurry_up option to disable the tempo hike effect when reaching 100 seconds in a level.</li>
+		<li>Added !pipe_entrance_freeze option to force lock/unlock sprites during pipe entrances and avoid possible inconsistencies of the vanilla method (default is vanilla for consistency with previous versions).</li>
+		<li>Added !ram_midways_override address that can be used to override midways (prevent midways from spawning and/or prevent room checkpoints to work). Inspired by the "No midways" mode in the hack "Sure Shot".</li>
+		<li>Added "door_animation" extra routine that will be called every frame during the fadeout when entering a door.</li>
+		<li>Fixed being able to use Start+Select in the intro level due to Retry's custom Start+Select behavior.</li>
+	</ul>
+
+	<h2 id="v0.3.5">v0.3.5</h2>
+	<ul>
+		<li>Fixed insertion issue in case another UberASM code uses nested namespaces, for example Dynamic Z (thanks to Alex for reporting this).</li>
+		<li>Added label definition for each Retry freeram define so that they can be referenced by other UberASM codes without having to copy-paste the defines in the other files.</li>
+		<li>Added setting (turned on by default) for Boo Ring's position reset on death and/or on level load, useful for consistency in Kaizo levels.</li>
+		<li>Added optional fix for some animations still running when the Retry prompt is shown (like Magikoopa's Magic flashing), with the !prompt_freeze = 2 setting.</li>
+		<li>Fixed timer still ticking down while the Retry prompt is shown when using !prompt_freeze = 0.</li>
+		<li>Added optional fix for being able to drop the reserve item while Mario is dying or the Retry prompt is shown.</li>
+		<li>Added compatibility with MarioFanGamer's "Inline Layer 3 Messages" patch (no need to use !retry = 1 in the patch).</li>
+		<li>Added !prompt_wave and !prompt_wave_speed options to make the letters in the currently selected prompt option wave up and down.</li>
+	</ul>
+
+	<h2 id="v0.3.4">v0.3.4</h2>
+	<ul>
+		<li>Fixed issue where using $0DAA-$0DAD to disable pressing select wouldn't stop Retry from exiting the level when holding the select button.</li>
+		<li>Better handling of the !fast_prompt option in the code.</li>
+		<li>Restored Retry patch feature where pressing A/B during the death animation makes the prompt show immediately (when not using !fast_prompt == 1).</li>
+		<li>Fixed issue where dying in the intro level and retrying would send you to level 0 (thanks to Selicre for reporting this).</li>
+		<li>Added !prompt_freeze setting to allow to keep sprites and animations running while the Retry prompt is shown.</li>
+		<li>Added !exit_animation setting to allow to skip the death animation when using the "Exit" prompt option.</li>
+	</ul>
+
+	<h2 id="v0.3.3">v0.3.3</h2>
+	<ul>
+		<li>Fixed issue where the saved data wouldn't get reloaded after going to the game over screen, which could cause, for example, unsaved checkpoints to be retained after getting a game over (thanks to simon.caio for reporting this).</li>
+		<li>Added new section to the "save" and "sram_defaults" table to put addresses that won't be reloaded from SRAM when getting a game over, and added a "!save_after_game_over" setting to save the game after a game over. Both of these options together can help having some addresses that don't get reloaded from SRAM when getting a game over (if you want the player to retain them even if they didn't get the chance to save the game, for example individual Dragon Coins or the death counter), and ensuring that they actually get saved to SRAM right after (thanks to simon.caio for the idea).</li>
+		<li>Added a "game_over" routine in "extra.asm" that is called during the game over screen, which could be useful to initialize/save some addresses when getting a game over.</li>
+		<li>Fixed issue with the "Time Up Fix" patch where dying due to a timeout would prevent the timer from working after respawning (thanks to worldpeace for reporting this).</li>
+		<li>Small optimization in Death Prelude SFX.</li>
+		<li>Fixed inconsistent sprite freezing at level start when using a pipe entrance in a level's main sublevel (thanks to BabaYegha for reporting this).</li>
+		<li>Fixed issue where, if going through a pipe during the goal walk, getting a midway and dying afterwards, the music wouldn't restart playing when respawning (thanks to LouisDoucet for reporting this).</li>
+		<li>Fixed issue where using resources that reset $71 after Mario dies (e.g. revive blocks) would cause Mario to be stuck in his death pose and animations to stay frozen (thanks to SJandCharlieTheCat for reporting this).</li>
+	</ul>
+
+	<h2 id="v0.3.2">v0.3.2</h2>
+	<ul>
+		<li>Made the death counter cap at 99999 deaths, instead of overflowing back to 0.</li>
+		<li>Fixed silent room checkpoint SFX sometimes not playing.</li>
+		<li>Moved "retry.asm" in a "library" folder for consistency.</li>
+		<li>Added "level_end_frame.asm" to run level-specific routines at the end of each GM14 frame.</li>
+	</ul>
+
+	<h2 id="v0.3.1">v0.3.1</h2>
+	<ul>
+		<li>Made the oscillating cursor option work with the black box enabled.</li>
+		<li>Added an optional button that can trigger the "Exit" prompt function even if the exit option is disabled (thanks to Mega for the suggestion).</li>
+		<li>Fixed the green star block coin counter not resetting when dying (thanks to Koopster for reporting this).</li>
+	</ul>
+
+	<h2 id="v0.3.0">v0.3.0</h2>
+	<ul>
+		<li>Optimized the drawing routine to use as few OAM slots as possible (min 6, max 15) depending on the current box and exit disable settings. Before, it was always either 11 or 15.</li>
+		<li>Now the cursor actually uses the !cursor_palette (before it used !letter_palette).</li>
+		<li>Allow for ObjecTool custom normal objects $42-$4F along with $52-$FF, since they're never used for the custom midways (thanks to MarioFanGamer for suggesting this).</li>
+		<li>Added new cursor options (static, blinking, oscillating).</li>
+		<li>Fixed an issue with the sprite initial facing fix that sometimes caused Yoshi to run away in the wrong direction when hit by a sprite while riding him (thanks to Abdu for reporting this).</li>
+		<li>Fixed an issue where dying on the same frame Baby Yoshi started the growing animation would cause sprites and animation to not be frozen while the prompt is shown (thanks to LouisDoucet for reporting this).</li>
+		<li>Fixed an issue where dying on the same frame Yoshi started eating a berry (and maybe a normal sprite too) it would cause the game to hardlock.</li>
+	</ul>
+
+	<h2 id="v0.2.7">v0.2.7</h2>
+	<ul>
+		<li>Fixed an issue where sprites would disappear when the Retry prompt was active, in case the end of the OAM table was filled (thanks to LouisDoucet for reporting this).</li>
+		<li>Changed ordering on this document to list more recent versions before older ones.</li>
+	</ul>
+
+	<h2 id="v0.2.6">v0.2.6</h2>
+	<ul>
+		<li>Changed !lose_lives define to a table to enable/disable infinite lives on a sublevel basis.</li>
+		<li>Fixed issue where sometimes Mario would die or have weird interactions on the first frame after respawning in a layer 2 level (thanks to FYRE150 for reporting this).</li>
+		<li>Finished "extra.asm" routines documentation.</li>
+	</ul>
+
+	<h2 id="v0.2.5">v0.2.5</h2>
+	<ul>
+		<li>Added more support for ObjecTool, by only reserving Custom Normal Objects 00-51 for the custom midway bar, allowing to use Custom Normal Objects 52-FF in ObjecTool normally.</li>
+		<li>Added ObjecTool readme.</li>
+	</ul>
+
+	<h2 id="v0.2.4">v0.2.4</h2>
+	<ul>
+		<li>Fixed issue that would prevent the Game Over music from playing when running out of lives (with !lose_lives = 1) and play the death SFX during the Game Over screen (thanks to simon.caio for reporting this).</li>
+		<li>Fixed game crash when using the VWF Dialogues patch, due to Retry overwriting the SRAM size even when it was set to a larger size by an external resource (thanks to simon.caio for reporting this).</li>
+		<li>Made some space and cycle optimizations to the NMI routine.</li>
+	</ul>
+
+	<h2 id="v0.2.3">v0.2.3</h2>
+	<ul>
+		<li>Fixed issue with ROMs where Lunar Magic v3.0+ was used but the routine at $03BCDC wasn't installed (thanks to SJandCharlieTheCat for reporting this).</li>
+		<li>Change get_screen_number macro to a subroutine and made it check for LM3's $03BCDC routine installation at runtime, for more robustness.</li>
+		<li>Changed settings.asm formatting to be a bit easier to use.</li>
+		<li>Small speed improvement for SRAM saving/loading on FastROM.</li>
+	</ul>
+
+	<h2 id="v0.2.2">v0.2.2</h2>
+	<ul>
+		<li>Added an option to replace "Mario" with "DEATHS" in the status bar, like the standalone Death Counter patch.</li>
+		<li>Optimized sprite load index table reset loop.</li>
+		<li>Fixed issue where calling $00F606 in consecutive frames could make the level's music restart even if it didn't change (similar fix to v0.1.9).</li>
+	</ul>
+
+	<h2 id="v0.2.1">v0.2.1</h2>
+	<ul>
+		<li>Fixed issue where choosing an option in the Retry prompt wouldn't play the sound effect.</li>
+	</ul>
+
+	<h2 id="v0.2.0">v0.2.0</h2>
+	<ul>
+		<li>Fixed issue with the Retry prompt not appearing when !no_prompt_box = 1 and setting !ram_disable_box to #$00.</li>
+		<li>Added SRAM initialization code for new save files and added "load_new_file" extra routine.</li>
+	</ul>
+
+	<h2 id="v0.1.9">v0.1.9</h2>
+	<ul>
+		<li>Fixed issue where calling $00F606 in consecutive frames would trigger the death song even if disabled (thanks SuperMargot for reporting this).</li>
+		<li>Fixed issue where dying in a level with a "No Yoshi" entrance would respawn you in the wrong sublevel (thanks Abdu for reporting this).</li>
+		<li>Implemented death counter display.</li>
+		<li>Fixed Retry RAM reset loop only resetting the first byte (thanks BabaYegha and FYRE150 for reporting an odd issue caused by this).</li>
+		<li>Optimized the Retry RAM reset code even more.</li>
+		<li>Put Retry RAM reset code in gamemode 8 too. This fixes an issue where if people prevent the erase file menu to reload the title screen after erasing a file, the new save file would use the addresses saved to SRAM before the file was erased.</li>
+		<li>Removed code to reset the !ram_prompt_override and !ram_disable_exit addresses on overworld load.</li>
+		<li>Added !ram_prompt_x_pos and !ram_prompt_y_pos to change the prompt position at runtime.</li>
+		<li>Added !ram_disable_box to be able to enable/disable the Retry prompt box at runtime. A bunch of code in nmi.asm, prompt_oam.asm and prompt.asm was rewritten to account for this.</li>
+	</ul>
+
+	<h2 id="v0.1.8">v0.1.8</h2>
+	<ul>
+		<li>Added identifier string in ROM with version number.</li>
+		<li>Renamed !freeram to !retry_freeram to avoid naming conflicts.</li>
+		<li>Split "gm14_end.asm" routines into multiple files inside the "code/hijacks/gm14_end" folder for more modularity.</li>
+		<li>Changed !reset_rng define to a per-sublevel table to be able to have a different setting in each level (thanks Abdu for the suggestion).</li>
+		<li>Fixed softlock when getting a checkpoint in the bonus game.</li>
+		<li>Optimized Retry RAM reset in "load_title.asm".</li>
+		<li>Fixed inconsistency with sprites movement with pipe entrances when respawning in a level (thanks LouisDoucet for reporting this).</li>
+		<li>Merged checkpoint and effect tables into a single checkpoint_effect table, where each digit corresponds to a value in the original tables. Besides keeping the most important sublevel options in a single place, it also saves 512 bytes of space.</li>
+	</ul>
+
+	<h2 id="v0.1.7">v0.1.7</h2>
+	<ul>
+		<li>Changed the default SA-1 freeram address to avoid conflicts with lx5's DSS.</li>
+		<li>Fixed room checkpoints not working anymore.</li>
+		<li>Fixed rare start+select conflict with other patches.</li>
+	</ul>
+
+	<h2 id="v0.1.6">v0.1.6</h2>
+	<ul>
+		<li>Fixed room checkpoints respawning the player in the wrong sublevel sometimes (thanks FYRE150 for reporting this).</li>
+		<li>Fixed graphical glitches in some of the mode 7 vanilla bosses when the prompt was active.</li>
+		<li>Fixed error on SA-1 that made respawning in midway entrances not work correctly.</li>
+		<li>Fixed error where the midway bar for the current sublevel would respawn when leaving the current level, entering another one then going back to that sublevel (thanks FYRE150 for reporting this).</li>
+		<li>Added fix from original Retry involving secondary exits and "No Yoshi" intros.</li>
+		<li>Added way to reset the current level's checkpoint by setting a RAM address.</li>
+	</ul>
+
+	<h2 id="v0.1.5">v0.1.5</h2>
+	<ul>
+		<li>Added !ram_set_checkpoint to make Retry easily compatible with custom midway blocks/sprites.</li>
+		<li>Updated documentation.</li>
+	</ul>
+
+	<h2 id="v0.1.4">v0.1.4</h2>
+	<ul>
+		<li>Added !ram_disable_exit to remove the exit option on the fly (thanks Sweetdude and Abdu for the suggestion).</li>
+	</ul>
+
+	<h2 id="v0.1.3">v0.1.3</h2>
+	<ul>
+		<li>Fixed bug where the prompt options wouldn't appear when dying while the level end circle was active (thanks Sweetdude for finding this in the old retry patch).</li>
+		<li>Added !ram_prompt_override, that can be used to override the current level's prompt settings on the fly.</li>
+		<li>Added "docs/ram_map.txt".</li>
+	</ul>
+
+	<h2 id="v0.1.2">v0.1.2</h2>
+	<ul>
+		<li>Added compatibility with "Individual Dragon Coins Save" patch.</li>
+		<li>Added "load_title" routine in "retry_config/extra.asm".</li>
+		<li>Added "docs/sram_info.txt".</li>
+	</ul>
+
+	<h2 id="v0.1.1">v0.1.1</h2>
+	<ul>
+		<li>Added sprite initial facing fix.</li>
+	</ul>
+
+	<h2 id="v0.1.0">v0.1.0</h2>
+	<ul>
+		<li>Initial version.</li>
+	</ul>
+
+	<br/><center><a href="./index.html">Return to main page</a></center>
+</body>
+</html>

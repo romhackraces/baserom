@@ -4,11 +4,11 @@
 
 ;======================== Default Retry behavior ========================;
 
-; 0 = retry prompt & play the vanilla death song when players die.
+; 0 = retry prompt & play the death song when players die (music restarts on every death).
 ; 1 = retry prompt & play only the death sfx when players die (music won't be interrupted).
-; 2 = instant retry (no prompt & play only the sfx: the fastest option; like "yes" is chosen automatically)
-;     In this option, you can press start then select to exit the level.
-; 3 = no retry prompt/respawn (vanilla death: as if "no" is chosen automatically, use this if you only want the multi-midway feature).
+; 2 = instant retry & play only the death sfx when players die (no prompt & music won't be interrupted)
+; 3 = instant retry & play the death song when players die (no prompt & music restarts on every death)
+; 4 = no retry prompt/respawn (vanilla death).
 ; Note: you can override this per sublevel (see "settings_local.asm") and also at any point by setting a certain RAM address (see "docs/ram_map.html").
     !default_prompt_type = 3
 
@@ -27,7 +27,7 @@
     !midway_powerup = 1
 
 ; Counterbreak options reset the corresponding counters/items when the player dies and/or when going to the Overworld.
-; Useful for Kaizo and collab hacks.
+; Useful for Kaizo and collab hacks. For lives, they will be reset to !initial_lives
 ; 0 = disabled, 1 = enabled for both respawning and going to the Overworld
 ; 2 = enabled just for respawning, 3 = enabled just for going to the Overworld
     !counterbreak_yoshi = 1
@@ -36,6 +36,7 @@
     !counterbreak_coins = 0
     !counterbreak_bonus_stars = 0
     !counterbreak_score = 0
+    !counterbreak_lives = 0
 
 ;======================== QoL fixes =====================================;
 
@@ -85,23 +86,24 @@
     !reset_boo_rings = 1
 
 ; This determines what happens when you die on the title screen.
-; 0 = vanilla (after dying a glitched version of the title screen will load, causing a softlock.
+; 0 = vanilla (after dying a glitched version of the title screen will load, causing a softlock).
 ;     Use this if you either don't care or want to do something custom with it.)
 ; 1 = play vanilla death animation and reload title screen (note: death music only works with AddmusicK!).
 ; 2 = instantly reload the title screen.
+; 3 = instantly reload the title screen and play the death music (title screen music will restart)
     !title_death_behavior = 1
 
 ;======================== SFX ===========================================;
 
 ; SFX to play when dying (!death_sfx = $00 -> no SFX).
 ; Only played if the death song is skipped (for example, it's not played if the level uses vanilla death).
-; You can find a suitable death sfx inside "docs/amk_resources/sfx".
+; You can find a suitable death sfx inside "resources/amk/sfx".
     !death_sfx = $38
     !death_sfx_addr = $1DFC
 
 ; The alternative death jingle which will be played after the !death_sfx when "Exit" is chosen in the prompt.
 ; $01-$FE: custom song number, $FF = do not use this feature.
-; You can find a suitable alt death jingle inside "docs/amk_resources/music" (to be paired with the custom sfx).
+; You can find a suitable alt death jingle inside "resources/amk/music" (to be paired with the custom sfx).
     !death_jingle_alt = $FF
 
 ; SFX to play when selecting an option in the prompt (!option_sfx = $00 -> no SFX).
@@ -123,6 +125,12 @@
     !enter_level_sfx = $00
     !enter_level_sfx_addr = $1DFC
     !enter_level_delay = $02
+
+; Default option for SFX echo. This is irrelevant if AddmusicK is not used.
+; This controls the default SFX echo option for all levels and what the %sfx_echo(<level>) does in "settings_local.asm":
+; 0 = disabled in all levels except those toggled by %sfx_echo
+; 1 = enabled in all levels except those toggled by %sfx_echo (note: this only works if !use_legacy_tables = 0)
+    !default_sfx_echo = 0
 
 ;======================== Save and SRAM =================================;
 
@@ -166,6 +174,9 @@
 ; 2 = play the full death animation before reloading the level with instant Retry
 ; 3 = play the full death animation in both cases (effects 1 and 2)
     !retry_death_animation = 0
+
+; How many frames after dying the prompt shows up when using !fast_prompt = 0 and !retry_death_animation = 0
+    !prompt_show_delay = $30
 
 ; How fast the prompt expands/shrinks. It must evenly divide 72.
     !prompt_speed = 6
@@ -323,6 +334,11 @@
 ; If 0, they won't be displayed (like in vanilla).
 ; This is only relevant if !sprite_status_bar = 1.
     !draw_all_dc_collected = 0
+
+; 0 = draw both coins and dragon coins by default (if _tile and _palette are valid)
+; 1 = don't draw coins by default (only dragon coins)
+; 2 = don't draw dragon coins by default (only coins)
+    !default_coin_counter_behavior = 0
 
 ; If !draw_retry_indicator = 1, an 8x8 indicator will be drawn on the sprite status bar
 ; in levels where Retry prompt or instant Retry is enabled. This could be useful for collabs.

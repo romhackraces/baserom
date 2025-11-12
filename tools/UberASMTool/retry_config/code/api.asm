@@ -33,7 +33,9 @@ save_game:
 ;================================================
 ; Routine to remove the current level's checkpoint, meaning
 ; entering it again will load the main sublevel's entrance.
-; Only makes sense to be called during a level gamemode.
+; Note: this can be also called outside of a level if you want to
+; reset a specific level's checkpoint. Just make sure that $13BF
+; has the level number you want before calling this.
 ;
 ; Inputs: N/A
 ; Outputs: N/A
@@ -98,6 +100,8 @@ reset_all_checkpoints:
 ; it will use and what palette to use. The first digit is the palette
 ; row to use (8-F), while the other 3 digits are the tile number
 ; (000-1FF). If an element is set to $0000, it won't be displayed.
+; For the coin counter, you can add $0200 to the value to only display
+; dragon coins, or add $0400 to only display coins.
 ;
 ; Inputs: for each item, in order, you write the value after the JSL
 ;         in the format described above (see example)
@@ -140,10 +144,11 @@ endif
 ; Routine to get the current Retry type, i.e. if currently the level is
 ; set to have Retry prompt, instant Retry or no Retry.
 ; The returned value has this format:
-; - $01 = Retry prompt enabled & play the vanilla death song when the player dies
+; - $01 = Retry prompt enabled & play the death song when the player dies
 ; - $02 = Retry prompt enabled & play only the death sfx when the player dies
-; - $03 = instant Retry enabled
-; - $04 = Retry disabled
+; - $03 = instant Retry enabled & play only the death sfx when the player dies
+; - $04 = instant Retry enabled & play the death song when the player dies
+; - $05 = Retry disabled (vanilla death)
 ;
 ; Inputs: N/A
 ; Outputs: A = Retry type

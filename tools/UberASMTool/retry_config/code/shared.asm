@@ -75,9 +75,11 @@ get_prompt_type:
 
 .title:
 if !title_death_behavior < 2
-    lda #$04
+    lda.b #!retry_type_vanilla
+elseif !title_death_behavior == 2
+    lda.b #!retry_type_instant_death_sfx
 else
-    lda #$03
+    lda.b #!retry_type_instant_death_song
 endif
     rts
 

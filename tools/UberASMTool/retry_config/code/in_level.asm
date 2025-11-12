@@ -1,7 +1,8 @@
 ; Gamemode 7, 14
 
-; Normally the prompt comes up $40 frames after dying
-!show_prompt_time #= !death_time-$10
+; Calculate the time to check for prompt starting
+; !prompt_show_delay/4 is done because $1496 decrements every 4th frame
+!show_prompt_time #= !death_time-(!prompt_show_delay/4)
 
 ; If the death animation should show, set the times to the minimum possible
 if !retry_death_animation&1
@@ -55,10 +56,10 @@ main:
 if not(!always_start_select)
     ; Check if the prompt type requires Start+Select always active.
     jsr shared_get_prompt_type
-    cmp #$04 : bcs .not_dying
+    cmp.b #!retry_type_vanilla : bcs .not_dying
     tay
     lda !ram_disable_exit : bne +
-    cpy #$03 : bcc .not_dying
+    cpy.b #!retry_type_prompt_max+1 : bcc .not_dying
 +
 endif
     
@@ -100,9 +101,9 @@ endif
 
     ; See what retry we have to use.
     jsr shared_get_prompt_type
-    cmp #$03 : bcc ..prompt
-               bne ..vanilla
-               jmp ..instant
+    cmp.b #!retry_type_prompt_max+1 : bcc ..prompt
+    cmp.b #!retry_type_vanilla : beq ..vanilla
+    jmp ..instant
 
 ..vanilla:
 if !title_death_behavior != 0
@@ -116,7 +117,6 @@ if !title_death_behavior != 0
     lda $1496|!addr : cmp #$01 : bne ...return
 
     ; ... reset stuff for reloading...
-    stz $0109|!addr
     jsr reset_addresses
     jsr reset_music
 
@@ -280,6 +280,9 @@ if !title_death_behavior != 0
     lda $0100|!addr : cmp #$0F : bcs ..reload_level
 
 ..reload_title_screen:
+    ; Make sure everything is reloaded
+    stz $0109|!addr
+
     ; Set the flag to reload the title screen.
     lda #$60 : sta !ram_is_dying
     rtl
@@ -450,19 +453,19 @@ reset_addresses:
 -   stz $14B0|!addr,x
     dex #2 : bpl -
 
-    ; Reset vanilla Boo rings.
 if !reset_boo_rings
+    ; Reset vanilla Boo rings.
     stz $0FAE|!addr
     stz $0FB0|!addr
 endif
 
-    ; Reset bonus stars counter.
 if !counterbreak_bonus_stars == 1 || !counterbreak_bonus_stars == 2
+    ; Reset bonus stars counter.
     stz $0F48|!addr
 endif
 
-    ; Reset score counter.
 if !counterbreak_score == 1 || !counterbreak_score == 2
+    ; Reset score counter.
     stz $0F34|!addr
     stz $0F36|!addr
     stz $0F38|!addr
@@ -473,19 +476,24 @@ endif
     sep #$20
     lda !ram_timer+2 : and #$0F : sta $0F33|!addr
 
-    ; Reset powerup.
 if !counterbreak_powerup == 1 || !counterbreak_powerup == 2
+    ; Reset powerup.
     stz $19
 endif
 
-    ; Reset item box.
 if !counterbreak_item_box == 1 || !counterbreak_item_box == 2
+    ; Reset item box.
     stz $0DC2|!addr
 endif
 
-    ; Reset coin counter.
 if !counterbreak_coins == 1 || !counterbreak_coins == 2
+    ; Reset coin counter.
     stz $0DBF|!addr
+endif
+
+if !counterbreak_lives == 1 || !counterbreak_lives == 2
+    ; Reset lives.
+    lda.b #!initial_lives-1 : sta $0DBE|!addr
 endif
 
     ; Reset green star block counter.
@@ -569,9 +577,11 @@ reset_music:
 .bypass:
     lda !ram_music_to_play : cmp #$FF : beq .return
     jsr shared_get_prompt_type
-    cmp #$02 : bcs .return
+    cmp.b #!retry_type_prompt_death_song : beq ..reload_samples
+    cmp.b #!retry_type_instant_death_song : bne .return
 
-    ; Don't make AMK reload the samples.
+..reload_samples:
+    ; Make AMK reload the samples.
     lda #$01 : sta !amk_freeram+1
 
 .return:

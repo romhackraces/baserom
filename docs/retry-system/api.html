@@ -49,6 +49,7 @@
 	<h3 id="reset_level_checkpoint">Reset level checkpoint</h3>
 	<p><code>JSL retry_api_reset_level_checkpoint</code></p>
 	<p>Call this to reset the checkpoint in the current level. Entering the level again or respawning will load the main sublevel's entrance. Note that this won't reflect to SRAM until the game is saved.</p>
+	<p><b>NOTE</b>: this can be also called outside of a level if you want to reset a specific level's checkpoint. Just make sure that <code>$13BF</code> has the level number you want before calling this.</p>
 	<ul>
 		<li>Inputs: <code>N/A</code></li>
 		<li>Outputs: <code>N/A</code></li>
@@ -73,6 +74,12 @@
 	<p>Call this in UberASM level init code to configure graphics for the sprite status bar items (item box, timer, coin counter, lives counter, bonus stars counter) for a specific level. Calling this will override the default settings found in <code>settings_global.asm</code>, in case you want to hide some or all of the elements in some level or if you need to change their tile or palette.</p>
 	<p>Each item's configuration is set with a 16 bit value <code>$PTTT</code>. The first digit <code>P</code> will be the item's palette, starting from palette 8 with <code>P = 8</code> and ending with palette F with <code>P = F</code>. <code>TTT</code> will determine the tile number: you can see this in Lunar Magic's "8x8 Tile Editor" if you hover over the desired tile (more specifically, the upper left 8x8 tile of the 16x16 tile you want to use). In the bottom bar you'll see "Tile 0xYYY": then, <code>TTT = YYY - $400</code>. For example, the Smiling Coin tile is "Tile 0x4C2", which results in <code>TTT = $4C2 - $400 = $0C2</code>. So, for example, to reserve that tile and use palette F, the full value will be <code>$F0C2</code>.</p>
 	<p>If an item's value is <code>$0000</code>, the item will simply not be displayed.</p>
+	<p>For the coin counter specifically, you can choose to only display coins or dragon coins. By default both will be displayed, but if you add <code>$0200</code> to the value only dragon coins will be displayed, instead if you add <code>$0400</code> only coins will be displayed. For example:</p>
+	<ul>
+		<li><code>$81C2</code>: palette 8, tile 0x1C2, both coins and dragon coins displayed.</li>
+		<li><code>$83C2</code>: palette 8, tile 0x1C2, only dragon coins displayed.</li>
+		<li><code>$85C2</code>: palette 8, tile 0x1C2, only coins displayed.</li>
+	</ul>
 	<p>Note that you can also just write the <code>$PTTT</code> value to the RAM address for a specific item yourself, this routine is just a shorthand so set all values at the same time. To see the RAM addresses names, see <a href="./ram_map.html">RAM Info</a>.</p>
 	<ul>
 		<li>Inputs: each item's <code>$PTTT</code> value is specified, in order, after the JSL (see example)</li>
@@ -100,10 +107,11 @@
 		<li>Outputs: <code>A = Retry type</code><br/>
 			This value can have one of the following values:
 			<ul>
-				<li><code>$01</code>: Retry prompt enabled & play the vanilla death song when the player dies</li>
+				<li><code>$01</code>: Retry prompt enabled & play the death song when the player dies</li>
 				<li><code>$02</code>: Retry prompt enabled & play only the death sfx when the player dies</li>
-				<li><code>$03</code>: instant Retry enabled</li>
-				<li><code>$04</code>: Retry disabled</li>
+				<li><code>$03</code>: instant Retry enabled & play only the death sfx when the player dies</li>
+				<li><code>$04</code>: instant Retry enabled & play the death song when the player dies</li>
+				<li><code>$05</code>: Retry disabled (vanilla death)</li>
 			</ul>
 		</li>
 		<li>Preconditions: <code>A 8 bits</code></li>
@@ -122,7 +130,7 @@
 		<li>Outputs:
 			<ul>
 				<li><code>Carry set = variable not found</code></li>
-				<li><code>Carry clear = variable found</code> -> SRAM address stored in <code>$00-$02</code>. In this case the value in SRAM can be accessed indirectly with the <code>LDA/STA [$00]</code> and <code>LDA/STA [$00],y</code> instructions.</li>
+				<li><code>Carry clear = variable found</code> &rarr; SRAM address stored in <code>$00-$02</code>. In this case the value in SRAM can be accessed indirectly with the <code>LDA/STA [$00]</code> and <code>LDA/STA [$00],y</code> instructions.</li>
 			</ul>
 		</li>
 		<li>Preconditions: <code>N/A</code></li>

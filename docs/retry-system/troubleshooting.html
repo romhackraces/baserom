@@ -72,7 +72,36 @@ CMP !IrisOut
 BEQ Okay
 </pre>
 
-<p>Run AddmusicK after applying the changes and the issue should be fixed. If it still happens but you didn't change the tweaks/UserDefines file, then DM me the issue.</p>
+<p>Run AddmusicK after applying the changes and the issue should be fixed.</p>
+<p>Another cause for the music not resetting can be using a "local" song as the goal music (i.e. a song that causes a freeze when loaded mid level). This can be fixed by making a slight edit in AMK's <u class="dir">asm/SNES/patch.asm</u>. Find the part that looks like this:</p>
+<pre>
+    LDA !MusicMir           ; |
+    CMP !MusicBackup        ; |
+    BNE ++              ; |
+    STA !CurrentSong        ; |
+    STA !MusicBackup        ; |
+    JMP SPCNormal           ; |
+++                  ; /
+    LDA !MusicMir
+    STA !CurrentSong
+    STA !MusicBackup
+</pre>
+<p>and change it to this:</p>
+<pre>
+    LDA !MusicMir           ; |
+    CMP !MusicBackup        ; |
+    BNE ++              ; |
+    STA !CurrentSong        ; |
+    STA !MusicBackup        ; |
+    JMP SPCNormal           ; |
+++                  ; /
+    LDA !MusicMir
+    STA !CurrentSong
+    LDY $1493|!SA1Addr2 ;<- add this
+    BNE +               ;<- add this
+    STA !MusicBackup
++                       ;<- add this
+</pre>
 <hr>
 
 <h4>Q: I'm using the "Single Screen" UberASM code, and sprites keep moving while Mario is dead!</h4>

@@ -5,6 +5,7 @@ init:
 ; Reset various counters.
 .counterbreak:
 if !counterbreak_yoshi == 1 || !counterbreak_yoshi == 3
+    ; Reset Yoshi
     stz $13C7|!addr
     stz $187A|!addr
 endif
@@ -37,6 +38,11 @@ if !counterbreak_score == 1 || !counterbreak_score == 3
     stz $0F36|!addr
     stz $0F38|!addr
     sep #$20
+endif
+
+if !counterbreak_lives == 1 || !counterbreak_lives == 3
+    ; Reset lives.
+    lda.b #!initial_lives-1 : sta $0DBE|!addr
 endif
 
 ; Reset the current level's checkpoint if the level was beaten.

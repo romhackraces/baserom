@@ -11,6 +11,14 @@
 	<h1>Retry System UberASM</h1>
 	<p>The Retry System is a useful patch for both Kaizo hacks and generally hard hacks, as its primary function is to enable fast level reloading to skip going to the Overworld everytime the player dies (similarly to games like Super Meat Boy).</p>
 	<p>This package is a spiritual successor of the <a href="https://smwc.me/s/26078">original Retry patch</a> made by <a href="https://www.smwcentral.net/?p=profile&id=1250">worldpeace</a>, to expand its capabilities and to make it compatible with more resources as a consequence of it being primarily a UberASM resource.</p>
+	<p>To see the changelog check out the "Changelog" page.</p>
+	<ul>
+		<li><a href="./changelog.html">Changelog</a></li>
+	</ul>
+	<p>To see the credits check out the "Credits" page.</p>
+	<ul>
+		<li><a href="./credits.html">Credits</a></li>
+	</ul>
 	<br/>
 	<!-- Help -->
 	<h3 id="help">Help & Getting Started</h3>
@@ -23,7 +31,7 @@
 		<li><a href="./faq.html">Frequently Asked Questions</a></li>
 		<li><a href="./troubleshooting.html">Troubleshooting</a></li>
 	</ul>
-	<p>If you have additional questions or problems, you can PM me on SMW Central (<a href="https://www.smwcentral.net/?p=profile&id=36308">Kevin</a>) or DM me on Discord (<code>kkevinm</code>). Please make sure you have read this documentation carefully, and tried to solve the problem on your own first, before contacting me.</p>
+	<p>If you have additional questions or problems, you can PM me on SMW Central (<a href="https://www.smwcentral.net/?p=profile&id=36308">Kevin</a>), DM me on Discord (<code>kkevinm</code>) or open an issue on GitHub (<a href="https://github.com/kkevinm/retry-system/issues/new">Create New Issue</a>). Please make sure you have read this documentation carefully, and tried to solve the problem on your own first, before contacting me.</p>
 	<br/>
 	<!-- Configuration -->
 	<h3 id="config">Configuration</h3>
@@ -45,15 +53,32 @@
 		<li><a href="./midway_instruction.html">Setting up Multiple Midways</a></li>
 	</ul>
 	<br/>
+	<!-- API -->
+	<h3 id="api">API</h3>
+	<p>The Retry System provides public routines that provide useful functionalities and can be directly called from your own UberASM code.</p>
+	<p>For more information check out the "Retry API" page.</p>
+	<ul>
+		<li><a href="./api.html">Retry API</a></li>
+	</ul>
+	<br/>
+	<!-- Sprite Status Bar -->
+	<h3 id="sprite-status-bar">Sprite Status Bar</h3>
+	<p>The Retry System comes with a built-in sprite status bar system that can replace the vanilla layer 3 status bar, and includes a minimalistic status bar with display for lives, item box, coins, dragon coins and timer. Each of these items can be enabled or disabled at any time, so you can just display what is needed for a particular level. This can be useful if you want to use fullscreen layer 3 backgrounds or just want a less dense status bar.</p>
+	<p>For more information check out the following pages.</p>
+	<ul>
+		<li><a href="./settings_global.html#sprite-status-bar">Global sprite status bar settings</a></li>
+		<li><a href="./api.html#configure_sprite_status_bar">Local sprite status bar settings</a></p></li>
+	</ul>
+	<br/>
 	<!-- Other Info -->
 	<h3 id="other-info">Other Information</h3>
 	<p>For other information, check out the following pages.</p>
 	<ul>
-		<li><a href="./files.html">Retry System Resources</a></li>
-		<li><a href="./objectool_info.html">ObjecTool Info</a></li>
-		<li><a href="./sram_bwram_info.html">SRAM & BWRAM Info</a></li>
-		<li><a href="./hijack_map.html">Hijack Map</a></li>
-		<li><a href="./uninstall.html">Uninstalling Retry</a></li>
+		<li><a href="./files.html">Retry System Resources</a>: useful resources included in Retry.</li>
+		<li><a href="./objectool_info.html">ObjecTool Info</a>: guide on how to use ObjecTool together with Retry's custom midways.</li>
+		<li><a href="./sram_bwram_info.html">SRAM & BW-RAM Info</a>: guide on how to use the SRAM+ or BW-RAM+ patches with Retry instead of its own save system.</li>
+		<li><a href="./hijack_map.html">Hijack Map</a>: table of all the areas of the original code that Retry patches.</li>
+		<li><a href="./uninstall.html">Uninstalling Retry</a>: guide on how to completely remove Retry from your ROM.</li>
 	</ul>
 	<br/>
 </body>

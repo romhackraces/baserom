@@ -51,16 +51,17 @@
 	<p>This allows to override the Retry type for the specified level. <code>value</code> can have one of the following values:</p>
 	<ul>
 		<li><code>0</code>: follow the global setting (<code>!default_prompt_type</code> in <code>settings_global.asm</code>).</li>
-		<li><code>1</code>: enable Retry prompt and play the death jingle when the player dies. Recommended if you want the music to restart on each death.</li>
+		<li><code>1</code>: enable Retry prompt and play the death jingle when the player dies (recommended if you want the music to restart on each death).</li>
 		<li><code>2</code>: enable Retry prompt and only play the death sfx when the player dies (music won't be interrupted).</li>
-		<li><code>3</code>: enable instant Retry and only play only the deaht sfx (the fastest option, as if "Retry" is chosen automatically in the Retry prompt).</li>
-		<li><code>4</code>: Retry disabled (as if "Exit" is chosen automatically in the Retry prompt). Use this to have the vanilla death sequence.</li>
+		<li><code>3</code>: enable instant Retry and only play only the death sfx when the player dies (no prompt and the music won't be interrupted).</li>
+		<li><code>4</code>: enable instant Retry and only play the death jingle when the player dies (no prompt and the music will restart on each death).</li>
+		<li><code>5</code>: Retry disabled (as if "Exit" is chosen automatically in the Retry prompt). Use this to have the vanilla death sequence.</li>
 	</ul>
 	<p>If this option isn't specified for a level, then it will default to <code>0</code> (follow the global setting).</p>
 	<p>Examples:</p>
 	<ul>
 		<li><code>%retry($001,2)</code>: sublevel $001 will have Retry prompt with death sfx.</li>
-		<li><code>%retry($069,3)</code>: sublevel $069 will have instant Retry.</li>
+		<li><code>%retry($069,3)</code>: sublevel $069 will have instant Retry with death sfx.</li>
 		<li><code>%retry($1FF,4)</code>: sublevel $1FF will have no Retry.</li>
 	</ul>
 	<br/>
@@ -75,10 +76,11 @@
 	<br/>
 
 <h3 id="sfx_echo">%sfx_echo(level)</h3>
-	<p>This will enable SFX echo in the specified sublevel. Note that this option only works if AddmusicK is used in the ROM, and the SFX uses the same echo as the music (if the music has no echo, then the SFX also won't have echo).</p>
+	<p>This will toggle SFX echo in the specified sublevel. The effect depends on the <code>!default_sfx_echo</code> option in <a href="./settings_global.html#sfx">Global Settings - SFX</a>.</p>
+	<p>Note that this option only works if AddmusicK is used in the ROM, and the SFX uses the same echo as the music (if the music has no echo, then the SFX also won't have echo).</p>
 	<p>Examples:</p>
 	<ul>
-		<li><code>%sfx_echo($105)</code>: sublevel $105 will have SFX echo enabled.</li>
+		<li><code>%sfx_echo($105)</code>: sublevel $105 will have SFX echo toggled.</li>
 	</ul>
 	<br/>
 
@@ -115,7 +117,7 @@
 		<li><code>level</code>: the sublevel number.</li>
 		<li><code>checkpoint</code>: same as <code>value</code> in <code>%checkpoint</code>.</li>
 		<li><code>retry</code>: same as <code>value</code> in <code>%retry</code>.</li>
-		<li><code>sfx_echo</code>: if <code>0</code>, SFX echo is disabled in the sublevel. Otherwise, it is enabled.</li>
+		<li><code>sfx_echo</code>: if <code>1</code>, SFX echo is toggled in the sublevel.</li>
 		<li><code>no_reset_rng</code>: if <code>0</code>, RNG is reset when retrying in the sublevel. Otherwise, it is not reset.</li>
 		<li><code>no_room_cp_sfx</code>: if <code>0</code>, automatic checkpoints in the sublevel will play the SFX. Otherwise, they won't play the SFX.</li>
 		<li><code>no_lose_lives</code>: if <code>0</code>, life loss is enabled in the sublevel (if infinite lives is disabled globally). Otherwise, it is disabled.</li>
