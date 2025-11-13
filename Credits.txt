@@ -98,6 +98,10 @@ RAM Toggled Status Bar (& IRQ)
  - author(s): Kevin
  - source: https://smwc.me/s/28449
 
+RAM-Toggled Spin Jump
+ - author(s): AmperSam
+ - source: https://smwc.me/s/41028
+
 RAM-Toggled Spin Jump Fireballs
  - author(s): AmperSam
  - source: https://smwc.me/s/35220

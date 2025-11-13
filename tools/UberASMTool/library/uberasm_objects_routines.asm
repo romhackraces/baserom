@@ -57,6 +57,7 @@ routines:
     %ObjectRoutine($D4, toggle_springboard_fixes)
     %ObjectRoutine($D5, toggle_capespin_direction)
     %ObjectRoutine($D6, toggle_rope_glitch)
+    %ObjectRoutine($D7, toggle_spin_jump)
 ..done
 
 ; Game Mode 14 main
@@ -70,7 +71,6 @@ routines:
     %ObjectRoutine($9F, death_on_power_up_loss)
     %ObjectRoutine($A0, press_lr_to_die)
     %ObjectRoutine($A1, disable_screen_shake)
-    %ObjectRoutine($A2, disable_spin_jump)
 ..done
 
 ; Game Mode 14 end
@@ -158,33 +158,6 @@ disable_screen_shake:
     stz $1887|!addr     ; store zero to the layer 1 shake timer
     rts
 
-; Disable spin jump
-disable_spin_jump:
-    ; skip if game is paused, message box is open, or frozen
-    lda $13D4|!addr
-    ora $1426|!addr
-    ora $9D
-    bne .return
-    ; skip if climbing, water or cape
-    lda $74
-    ora $75
-    ora $1407|!addr
-    bne .return
-    ; skip if airborne
-    lda $72 : beq .return
-    lda $77 : and.b #%00000100  : beq .return
-    ; zero spin jump flag
-    stz $140D|!addr
-    ; check if A is pressed
-    lda $18 : bpl .pressed
-.return
-    rts
-.pressed
-    ; mute spin jump sound
-    stz $1DFC|!addr
-    ; play normal jump sound
-    lda #$01 : sta $1DFA|!addr
-    rts
 
 ;;
 ;; Extended Objects B0 - BF
@@ -362,7 +335,12 @@ toggle_rope_glitch:
     lda #$01 : sta !toggle_rope_glitch_freeram
     rts
 
-;  Toggle block duplication
+; Toggle block duplication
 toggle_block_duplication:
     lda #$01 : sta !toggle_block_duplication_freeram
+    rts
+
+; Toggle enforced normal jump
+toggle_spin_jump:
+    lda #$01 : sta !toggle_spin_jump_freeram
     rts

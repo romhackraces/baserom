@@ -35,6 +35,7 @@
  0  D4  0   UberASM Object D4: Toggle Springboard Fixes\n-----\nDisable the effects of a patch that prevents re-grabbing kicked springboards and them zeroing your speed when grabbed. (Enabling spring midairs).
  0  D5  0   UberASM Object D5: Toggle Cape Turnaround\n-----\nDisable the effects of the patch that makes turning around with cape consistent on button press.
  0  D6  0   UberASM Object D6: Toggle Rope Glitch\n-----\nToggle off the fixes for the air climb rope glitch.
+ 0  D7  0   UberASM Object D7: Toggle Spin Jump\n-----\nToggle spin jump OFF, i.e. no Spin Jump.
 2D	00	0	A custom Retry midway point tape. It will make the player respawn at the secondary entrance corresponding to the Extension field.
 2D	01	0	A custom Retry midway point tape. It will make the player respawn at the secondary entrance corresponding to the Extension field.
 2D	02	0	A custom Retry midway point tape. It will make the player respawn at the secondary entrance corresponding to the Extension field.

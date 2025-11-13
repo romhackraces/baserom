@@ -26,6 +26,7 @@ patches = [
     "{patches_folder}/enhancements/triple_ball_n_chain.asm",
     "{patches_folder}/features/dragon_coin_save.asm",
     "{patches_folder}/features/ram_toggled_screen_scroll.asm",
+    "{patches_folder}/features/ram_toggled_spin_jump.asm",
     "{patches_folder}/features/ram_toggled_spin_jump_fireballs.asm",
     "{patches_folder}/features/ram_toggled_statusbar.asm",
     "{patches_folder}/fixes/autoscroll_lr_fix.asm",
