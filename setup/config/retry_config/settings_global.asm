@@ -10,7 +10,7 @@
 ; 3 = instant retry & play the death song when players die (no prompt & music restarts on every death)
 ; 4 = no retry prompt/respawn (vanilla death).
 ; Note: you can override this per sublevel (see "settings_local.asm") and also at any point by setting a certain RAM address (see "docs/ram_map.html").
-    !default_prompt_type = 1
+    !default_prompt_type = 4
 
 ;======================== QoL and Anti-Break ============================;
 

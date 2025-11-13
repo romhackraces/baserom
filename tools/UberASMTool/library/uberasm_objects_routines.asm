@@ -176,7 +176,7 @@ retry_type_prompt:
 
 ; Use Vanilla death sequence (useful to override a global setting)
 retry_type_vanilla:
-    lda #$04 : sta !retry_ram_prompt_override
+    lda #$05 : sta !retry_ram_prompt_override
     rts
 
 ; Display retry prompt in bottom left

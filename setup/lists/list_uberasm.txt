@@ -37,7 +37,7 @@ gamemode:
     07 retry_gm07.asm
     0C retry_gm0C.asm
     0D retry_gm0D.asm
-    0E clear_saved_checkpoints.asm, ow_auto_save.asm
+    0E baserom_gm0E.asm, clear_saved_checkpoints.asm, ow_auto_save.asm
     0F retry_gm0F.asm
     10 baserom_gm10.asm, retry_gm10.asm
     11 retry_gm11.asm
