@@ -175,7 +175,19 @@
 0332-0335:0130 screen_scrolling_pipes/pass_if_in_pipe+item_filter.asm
 0342-0345:0130 screen_scrolling_pipes/pass_if_in_pipe+item_filter.asm
 
-; Addtional Tile Descriptions
+; ON/OFF Pipe
+0350:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_on.asm
+0351:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_off.asm
+0352-0354:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_on.asm
+0355:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_off.asm
+0356-0357:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_on.asm
+0360:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_on.asm
+0361:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_off.asm
+0362-0363:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_off.asm
+0364:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_on.asm
+0365-0367:0130 screen_scrolling_pipes/pass_if_in_pipe+set_to_off.asm
+
+; Additional Tile Descriptions
 @dsc
 
 200 0 Tile that can be used with Lunar Magic's Layer 3 tide Act As feature.
