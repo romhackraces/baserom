@@ -5,7 +5,15 @@ incsrc "callisto.asm"
 ;^Set this  to 1 if you wanted to use a number that is the amount of pixels
 ;the screen has been moved.
 
-!Freeram_ScrnDisplace = !scroll_fix_freeram_bank
+!Freeram_PrevPos = !scroll_fix_freeram_bank
+;^[4 bytes], determines direction from its previous position. The first
+;two bytes are for X position, and the last two are for the Y. When working
+;with ASM to control the screen (by changing $7E1462 and $7E1464), DO NOT
+;modify this value, you'll end up with sprites not spawning during the
+;frame its modified. Note that this freeram is NOT auto-converted to SA-1
+;(in case you wanted to use freeram addresses created by SA-1).
+
+!Freeram_ScrnDisplace = !scroll_fix_freeram_bank+4
 ;[4 bytes], this ram is used if !Displacement is set to 1. This ram address
 ;holds the amount of pixels the screen has moved. Format:
 ;-First 2 bytes = moved horizontally
@@ -86,10 +94,10 @@ ScrollSub:
     PHA                             ;>Save A
     LDA $1462+!Base2,x              ;>Load final position
     if !Displacement == 0
-        CMP $7F831F,x               ;>Compare (CMP actually subtracts without effecting A) with inital pos.
+        CMP !Freeram_PrevPos,x               ;>Compare (CMP actually subtracts without effecting A) with inital pos.
     else
         SEC                         ;\Subtract by previous to find the amount of change in position
-        SBC $7F831F,x               ;/(the delta symbol in math)
+        SBC !Freeram_PrevPos,x               ;/(the delta symbol in math)
         STA !Freeram_ScrnDisplace,x ;>Store displacement into RAM
     endif
     BEQ .DidntScroll                ;>If result is zero, the screen didn't scroll and leave $55/$56 as is.
@@ -102,6 +110,8 @@ ScrollSub:
     LDA #$0202                      ;>Load #$02 (right/down value)
 +
     STA $55                         ;>Store on $55 and $56
+    LDA $1462+!Base2,x              ;\Update so that in case if the
+    STA !Freeram_PrevPos,x          ;/screen scroll again on the 3rd frame.
 .DidntScroll
     PLA                             ;>Restore A
     RTS
