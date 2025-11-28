@@ -8,7 +8,7 @@
 9F Death on Power-up Loss
 A0 Press L & R To Die
 A1 Disable Screen Shake
-A2 Disable Spin Jump
+A2 Prevent Item Box Storage
 B0 Set Retry Type to Instant
 B1 Set Retry Type to Prompt
 B2 Set Retry Type to Vanilla

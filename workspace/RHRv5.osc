@@ -8,7 +8,7 @@
  0  9F  0   UberASM Object 9F: Death on Power-up Loss\n-----\nLosing a power up will kill Mario instantly. Makes all hurt blocks death blocks and all damaging sprites lethal.
  0  A0  0   UberASM Object A0: Press L & R To Die\n-----\nEnabled killing the player if L and R are pressed. Useful for a quick reset.
  0  A1  0   UberASM Object A1: Disable Screen Shake\n-----\nStops all Vanilla sources of Layer 1 screen shake.
- 0  A2  0   UberASM Object A2: Disable Spin Jump\n-----\nDisables the A Button, therefore no spin jumping.
+ 0  A2  0   UberASM Object A2: Prevent Item Box Storage\n-----\No power-ups can be stored to the Item box.
  0  B0  0   UberASM Object B0: Set Retry Type to Instant\n-----\nMake the retry skip using prompt and restart instantly after dying.
  0  B1  0   UberASM Object B1: Set Retry Type to Prompt\n-----\nSets the retry system to use a prompt that says "Retry" in the middle of the screen.
  0  B2  0   UberASM Object B2: Set Retry Type to Vanilla\n-----\nSets the retry system back to using Vanilla death routine.

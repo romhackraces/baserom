@@ -71,6 +71,7 @@ routines:
     %ObjectRoutine($9F, death_on_power_up_loss)
     %ObjectRoutine($A0, press_lr_to_die)
     %ObjectRoutine($A1, disable_screen_shake)
+    %ObjectRoutine($A2, no_item_box)
 ..done
 
 ; Game Mode 14 end
@@ -102,7 +103,7 @@ disable_horizontal_scroll:
 
 ; Invisible Mario (hides the player graphics)
 invisible_mario:
-    lda #$7F : sta $78 ;
+    lda #$7F : sta $78
     rts
 
 ; Resets power-up state and cannot collect power-ups
@@ -138,8 +139,8 @@ death_on_power_up_loss:
 
 ; Press L & R to Die
 press_lr_to_die:
-    lda $13D4|!addr     ; Check if game is paused
-    ora $9D             ; or frozen
+    lda $13D4|!addr     ;\ Check if game is paused
+    ora $9D             ;/ or frozen
     bne +
     lda $17             ;\ Check if L & R are pressed
     and #%00110000      ;|
@@ -156,6 +157,12 @@ disable_cape_flight:
 ; Disable screen shake
 disable_screen_shake:
     stz $1887|!addr     ; store zero to the layer 1 shake timer
+    rts
+
+
+; Clears item box to prevent items
+no_item_box:
+    stz $0DC2|!addr     ; Reset item box.
     rts
 
 
