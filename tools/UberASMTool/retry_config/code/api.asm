@@ -18,7 +18,7 @@ respawn_in_level:
 
 ;================================================
 ; Routine to save the game, which will also save the addresses
-; defined in the sram_tables.asm file.
+; defined in the "sram_tables.asm" file (including those under ".global").
 ;
 ; Inputs: N/A
 ; Outputs: N/A
@@ -28,6 +28,34 @@ respawn_in_level:
 ;================================================
 save_game:
     jsr shared_save_game
+    rtl
+
+;================================================
+; Routine to save the global variables to SRAM, meaning just
+; the addresses found under ".global" in the "sram_tables.asm" file.
+; This can be useful if you need to update the global variables outside
+; of a save file (e.g. on the title screen) or if you want to save them
+; without saving the file specific addresses.
+;
+; Inputs: N/A
+; Outputs: N/A
+; Pre: N/A
+; Post: A clobbered, DB/X/Y/P preserved, $02-$0B clobbered
+; Example: JSL retry_api_save_global_variables
+;================================================
+save_global_variables:
+if !sram_feature
+    ; Preserve DB, X, Y, P.
+    phb : phk : plb
+    phx : phy : php
+    
+    ; Call the actual routine
+    jsr sram_save_global
+    
+    ; Restore DBR, P, X and Y.
+    plp : ply : plx
+    plb
+endif
     rtl
 
 ;================================================
@@ -163,9 +191,11 @@ get_retry_type:
 ;================================================
 ; Routine to get the address in SRAM for a specific variable.
 ; By "variable" it's meant any of the RAM addresses that are saved to SRAM
-; specified in the sram save table. The returned address will be coherent
-; with the current save file loaded when this routine is called (so, make
-; sure to not call it before a save file is loaded!).
+; specified in the sram save table.
+; If not searching for a variable under ".global", the returned address will
+; be coherent with the current save file loaded when this routine is called
+; (so, make sure to not call it before a save file is loaded if not looking
+; for a global variable).
 ; This could be useful to read/write values in SRAM directly, for example
 ; if you need to update some SRAM value without the game being saved.
 ; Note: this will always return "variable not found" if !sram_feature = 0.
@@ -174,6 +204,7 @@ get_retry_type:
 ;         This means the call should look like this:
 ;             JSL retry_api_get_sram_variable_address
 ;             dl <variable address>
+;             ... <- your code will continue here after the JSL
 ; Outputs: Carry set = variable not found
 ;          Carry clear = variable found -> SRAM address stored in $00-$02
 ;            In this case the value in SRAM can be accessed indirectly with the
@@ -207,8 +238,17 @@ if !sram_feature
     lda.l sram_tables_save+0,x : cmp $0001,y : bne .next
     lda.l sram_tables_save+1,x : cmp $0002,y : bne .next
 .found:
-    ; If so, add the calculated offset to the save file SRAM address
-    jsr sram_get_sram_addr
+    ; Check if it's a local or global variable
+    cpx.w #sram_tables_save_global-sram_tables_save : bcc ..local
+..global:
+    ; If global, get the global SRAM address
+    jsr sram_get_global_sram_addr
+    bra ..shared
+..local:
+    ; If local, get the save file SRAM address
+    jsr sram_get_file_sram_addr
+..shared:
+    ; Add the calculated offset to the SRAM address
     clc : adc $00 : sta $00
     sep #$20
     lda.b #!sram_addr>>16 : sta $02
@@ -222,7 +262,11 @@ if !sram_feature
     txa : clc : adc #$0005
     ; If at the end of the SRAM table, end
     cmp.w #sram_tables_sram_defaults-sram_tables_save : bcs .not_found
+    ; Check if we reached the global variables part
     tax
+    cpx.w #sram_tables_save_global-sram_tables_save : bne .loop
+    ; If so, reset the offset
+    stz $00
     bra .loop
 .not_found:
     ; Set carry (address not found)

@@ -392,6 +392,10 @@ endif
     cmp #$02 : bne +
     sta !1558-1,x
 +   
+    ; Prevent lives incrementer
+    lda $18E5|!addr : beq +
+    inc $18E5|!addr
++
     rts
 
 ;=====================================

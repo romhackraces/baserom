@@ -15,14 +15,24 @@ init:
     lda !ram_is_respawning : bne .return
 
 .room_transition:
-    ; Otherwise, check if we should count this entrance as a checkpoint.
-    jsr shared_get_checkpoint_value
-    cmp #$02 : bcc .return
+    ; If the destination should trigger a checkpoint, do it.
+    lda !ram_door_dest+1
+    jsr shared_is_destination_a_checkpoint : bcc .return
 
-    ; If entrance checkpoints are overridden, skip it.
-    lda !ram_midways_override : bmi .return
+if !room_cp_sfx != $00
+    ; If this is the same checkpoint we already have, don't play the sfx.
+    rep #$20
+    lda !ram_door_dest : cmp !ram_respawn
+    sep #$20
+    beq ..no_sfx
 
-..set_checkpoint:
+    ; If the SFX should play in this sublevel, set the play sfx flag.
+    jsr shared_get_bitwise_mask
+    and.l tables_disable_room_cp_sfx,x : bne ..no_sfx
+    lda #$01 : sta !ram_play_sfx
+..no_sfx:
+endif
+
     ; Set the checkpoint to the current entrance.
     rep #$20
     lda !ram_door_dest : sta !ram_respawn
@@ -35,14 +45,6 @@ init:
     php : phb : phk : plb
     jsr extra_room_checkpoint
     plb : plp
-
-    ; Set the "play CP sfx" flag if applicable.
-if !room_cp_sfx != $00
-    jsr shared_get_bitwise_mask
-    and.l tables_disable_room_cp_sfx,x : bne +
-    lda #$01 : sta !ram_play_sfx
-+
-endif
 
     ; Save individual dcsave buffers.
     jsr shared_dcsave_midpoint

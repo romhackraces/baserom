@@ -183,7 +183,7 @@ midway_spawn:
 .checkpoint:
     ; Check if the checkpoint is for the main or sublevel.
     jsr shared_get_checkpoint_value
-    cmp #$01 : bcs ..sublevel
+    and.b #!checkpoint_type_midway_bar : bne ..sublevel
 
 ..main:
     %lda_13BF() : bne ...no_intro

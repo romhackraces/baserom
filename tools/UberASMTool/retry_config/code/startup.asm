@@ -46,5 +46,10 @@ if !sprite_status_bar
     jsr sprite_status_bar_init_ram
 endif
 
+if !sram_feature
+    ; Initialize the SRAM global variables
+    jsr sram_load_global
+endif
+
     plb
     rtl

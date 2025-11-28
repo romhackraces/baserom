@@ -17,15 +17,15 @@
 ;  4 = no prompt + play the death jingle. Recommended if you want the music to restart on each death.
 ;  5 = no retry (as if "no" is chosen automatically). Use this to have a vanilla death sequence.
 ;
-; The second digit sets the behavior of midways bars and level entrances in the sublevel (see the figures in the "midway instruction" folder):
+; The second digit sets the behavior of midways bars and level entrances in the sublevel:
 ;  0 = Vanilla. The midway bar in the corresponding sublevel will lead to the midway entrance of the main level.
 ;  1 = The Midway bar in the corresponding sublevel will lead to the midway entrance of this sublevel as a checkpoint.
-;  2 = Any main/secondary/midway entrance through door/pipe/etc. whose destination is the corresponding sublevel will
-;        trigger a checkpoint like midway bars, and the checkpoint will lead to this entrance.
+;  2 = Any main/secondary/midway entrance into the corresponding sublevel will trigger a checkpoint like midway bars, and the checkpoint will lead to this entrance.
 ;  3 = This option enables both the effects of 1 (midway bar) and 2 (level entrances).
-;
-; NOTE: The custom midway objects could do almost everything that you may want without using this.
-;       However this may be easier to use for some people, and it's what original retry also uses.
+;  4 = Any main/midway entrance into the corresponding sublevel will trigger a checkpoint like midway bars, and the checkpoint will lead to this entrance.
+;  5 = This option enables both the effects of 1 (midway bar) and 4 (main/midway entrances).
+;  6 = Any secondary entrance into the corresponding sublevel will trigger a checkpoint like midway bars, and the checkpoint will lead to this entrance.
+;  7 = This option enables both the effects of 1 (midway bar) and 6 (secondary entrances).
 ;
 ; For example, having $32 as the value for level 105 will set the value 3 for the Retry prompt
 ; (no prompt + play only the sfx) and 2 for the checkpoint (any entrance to the level will set a checkpoint).

@@ -58,10 +58,12 @@ endif
     lda $0F33|!addr : sta !ram_timer+2
 
 .room_transition:
-    ; Check if we're respawning or in a transition checkpoint.
+    ; If we're respawning, reset some stuff.
     lda !ram_is_respawning : bne ..respawning
-    jsr shared_get_checkpoint_value
-    cmp #$02 : bcc .normal
+
+    ; If this just transition just triggered a room checkpoint, reset some stuff.
+    lda !ram_respawn+1
+    jsr shared_is_destination_a_checkpoint : bcc .normal
 
 ..respawning:
     ; Fix issues with the "level ender" sprite.

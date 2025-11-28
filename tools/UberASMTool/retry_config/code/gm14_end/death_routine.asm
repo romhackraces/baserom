@@ -47,7 +47,7 @@ endif
 .no_reload:
     ; Only update death counter and call the death routine once
     ; but handle the death song every frame to avoid issues with custom codes that call $00F606 every frame.
-    cmp #$00 : bne .handle_song
+    cmp #$00 : bne .every_frame
 
 .first_frame:
     ; Set the dying flag.
@@ -70,17 +70,6 @@ endif
     php : phb
     jsr extra_death
     plb : plp
-
-    ; Kill score sprites if the option is enabled and Retry prompt is enabled.
-if !no_score_sprites_on_death
-    jsr shared_get_prompt_type
-    cmp.b #!retry_type_enabled_max : bcs +
-
-    ldx.b #$06-1
--   stz $16E1|!addr,x
-    dex : bpl -
-+
-endif
 
     ; Reset some stuff related to lx5's Custom Powerups.
 if !custom_powerups == 1
@@ -110,7 +99,18 @@ if not(!infinite_lives)
 .no_lose_lives:
 endif
 
-.handle_song:
+.every_frame:
+    ; Kill score sprites if the option is enabled and Retry prompt is enabled.
+if !no_score_sprites_on_death
+    jsr shared_get_prompt_type
+    cmp.b #!retry_type_enabled_max : bcs +
+
+    ldx.b #$06-1
+-   stz $16E1|!addr,x
+    dex : bpl -
++
+endif
+
     ; If the music is sped up, play the death song to make it normal again.
     lda !ram_hurry_up : bne .return
 

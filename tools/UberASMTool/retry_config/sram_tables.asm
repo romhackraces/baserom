@@ -22,12 +22,14 @@
 ; Make sure to always put a colon between the two elements!
 ; The addresses you put under ".not_game_over" will be saved like usual, but they won't be reloaded from SRAM when getting a game over.
 ; This can be useful if you want some things to retain even if the player got a game over before being able to save them.
+; The addresses you put under ".global" behave differently than the others: they will be saved independently from the save slots,
+; and are only loaded when booting the game. This can be used to save stuff that's global and not related to a specific save slot
+; (for example like Jump 1/2's costumes, which when you unlock are then available in all save files and all successive playthroughs).
 ;
 ; Note: for each address you add here, you need to add the default values in the sram_defaults table below.
-; Note: if using SA-1, for addresses in $7E0000-$7E1FFF you must change the bank to $40 ($400000-$401FFF).
+; Note: if using SA-1, for addresses in $7E0100-$7E1FFF you must change them to $400100-$401FFF and for addresses $7E0000-$7E00FF you must change them to $003000-$0030FF.
 ;       Additionally, a lot of other addresses might be remapped to different locations (see SA-1 docs for more info).
-; Note: if using FastROM, using $000000-$001FFF instead of $7E0000-$7E1FFF will make the save/load process a bit faster.
-
+; Note: you can put up to 2389 bytes in the "save" and ".not_game_over" tables combined, and up to 162 bytes on lorom and 1021 bytes on SA-1 in the ".global" table.
 
 save:
     dl !ram_checkpoint : dw 192
@@ -47,13 +49,16 @@ endif
     dl !ram_death_counter : dw 5
     ; Feel free to add your own stuff here.
 
+.global:
+    ; Feel free to add your own stuff here.
 
 ; Here you specify the default values of the addresses you want to save, for when a new save file is started.
 ; You can do "db $XX,$XX,..." for 1 byte values, "dw $XXXX,$XXXX,..." for 2 bytes values and "dl $XXXXXX,$XXXXXX,..." for 3 bytes values.
 ; The amount of values of each entry should correspond to the dw $YYYY value in the save table
 ; (for example, the checkpoint values are 192, and the death counter values are 5).
-; If you have some addresses after ".not_game_over" in the save table, put their default values after ".not_game_over" here too
-; (in the same order as the other table, of course).
+; If you have some addresses after ".not_game_over" and ".global" in the save table, put their default values after
+; ".not_game_over" and ".global" here too (in the same order as the other table, of course).
+; Regarding the ".global" values, they will be initialized on game startup rather than on a new save file.
 
 sram_defaults:
     ; Default checkpoint values (don't edit this!).
@@ -129,4 +134,5 @@ endif
     db $00,$00,$00,$00,$00
     ; Feel free to add your own stuff here.
 
-
+.global:
+    ; Feel free to add your own stuff here.

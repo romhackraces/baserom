@@ -9,6 +9,17 @@
 </head>
 <body>
 	<h1>Changelog</h1>
+	<h2 id="v1.1.0">v1.1.0</h2>
+	<ul>
+		<li>Optimized the save and load routines.</li>
+		<li>Fixed lives from moons etc. incrementing even when the Retry prompt is active.</li>
+		<li>Added a new ".global" section in "sram_tables.asm", to be able to save addresses globally (independently from the save slots). This could be useful to track information that needs to be global and persistent (for example Jump&#xbd;'s costumes being available forever when you unlock them once).</li>
+		<li>Added explanation of local settings inside the asm file to not have to reference the docs every time.</li>
+		<li>Fixed room entrance automatic checkpoint sfx being played if getting the same checkpoint again (for example, a reset door in a level with automatic checkpoints).</li>
+		<li>Fixed score sprites showing up while the Retry prompt is active when using !no_score_sprites_on_death = 1 and !prompt_freeze = 0 (thanks to JordanNelson for reporting this).</li>
+		<li>Added more options for the %checkpoint setting in "settings_local.asm" (and "legacy/tables.asm"), to allow to trigger an automatic checkpoint only on main/midway entrances or only on secondary entrances (thanks to Heraga for the suggestion). This could be useful, for example, for sublevels with reset doors or that have different sections connected by doors/pipes that should only trigger an automatic checkpoint when entering at the start of the sublevel.</li>
+	</ul>
+
 	<h2 id="v1.0.0">v1.0.0</h2>
 	<ul>
 		<li>Documentation updated.</li>

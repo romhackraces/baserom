@@ -19,80 +19,6 @@
 			<th>Description</th>
 		</tr>
 		<tr>
-			<td><code>$009E25</code></td>
-			<td><code>1</td>
-			<td class="left-align">Changes how many lives the save file starts with.</td>
-		</tr>
-		<tr>
-			<td><code>$05B31B</code></td>
-			<td><code>2</code></td>
-			<td class="left-align">Fixes a bug where some sprite tiles disappear when closing a message box.</td>
-		</tr>
-		<tr>
-			<td><code>$00D0D8</code></td>
-			<td><code>5</code></td>
-			<td class="left-align">Disables the vanilla life loss code. It is equivalent to the infinite lives patch found on SMWCentral.</td>
-		</tr>
-		<tr>
-			<td><code>$008E5B</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">Sets a flag used by Retry when the "hurry up" effect happens. This hijack is also used by the "Individual Dragon Coins Save" patch to check for the presence of Retry in the rom.</td>
-		</tr>
-		<tr>
-			<td><code>$05DA1C</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">Fixes the initial sprite facing position and the "No Yoshi Sign 2" castle intro being forced for some levels. Depending on the values of <code>!initial_facing_fix</code> and <code>!no_yoshi_intro_fix</code>, this may be a JML or just a hex edit.</td>
-		</tr>
-		<tr>
-			<td><code>$00C572</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">Fixes being able to drop the item in reserve while Mario is dead. Depending on the value of <code>!item_box_fix</code>, this may be a JML or just a hex edit to restore the original code.</td>
-		</tr>
-		<tr>
-			<td><code>$0DA415</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">
-				If <code>!use_custom_midway_bar = 1</code>, this inserts code to handle Retry's custom midway objects.<br/>
-				If <code>!use_custom_midway_bar = 0</code>, this restores the original code (only the first time the setting is changed, and only if Objectool is present in the rom).
-			</td>
-		</tr>
-		<tr>
-			<td><code>$05D842</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">Makes sure to load in the correct entrance when entering a level from the Overworld, depending on the level's last reached checkpoint.</td>
-		</tr>
-		<tr>
-			<td><code>$05D9DA</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">Makes sure to load in the correct entrance when loading the midway entrance of a level, depending on the sublevel's checkpoint setting.</td>
-		</tr>
-		<tr>
-			<td><code>$05D9EC</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">Makes sure to load Mario at the correct position when a checkpoint is a vanilla midway entrance.</td>
-		</tr>
-		<tr>
-			<td><code>$05DAA3</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">Fixes a bug when loading a secondary entrance in a level with a "No Yoshi Intro" from the Overworld.</td>
-		</tr>
-		<tr>
-			<td><code>$008F49</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">
-				If <code>!status_death_counter = 1</code>, this writes the death counter in the status bar.<br/>
-				If <code>!status_death_counter = 0</code>, it restores the original code (only the first time the setting is changed to 0).
-			</td>
-		</tr>
-		<tr>
-			<td><code>$008C89</code></td>
-			<td><code>12</code></td>
-			<td class="left-align">
-				If <code>!status_death_word = 1</code>, it changes the status bar tilemap to show "DEATHS" instead of "MARIO".<br/>
-				If <code>!status_death_word = 0</code>, it restores the original tilemap but only the first time that <code>!status_death_counter</code> is changed to 0.
-			</td>
-		</tr>
-		<tr>
 			<td><code>$0081F4</code></td>
 			<td><code>3</code></td>
 			<td class="left-align">
@@ -117,27 +43,37 @@
 			</td>
 		</tr>
 		<tr>
+			<td><code>$008C89</code></td>
+			<td><code>12</code></td>
+			<td class="left-align">
+				If <code>!status_death_word = 1</code>, it changes the status bar tilemap to show "DEATHS" instead of "MARIO".<br/>
+				If <code>!status_death_word = 0</code>, it restores the original tilemap but only the first time that <code>!status_death_counter</code> is changed to 0.
+			</td>
+		</tr>
+		<tr>
+			<td><code>$008E5B</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Sets a flag used by Retry when the "hurry up" effect happens. This hijack is also used by the "Individual Dragon Coins Save" patch to check for the presence of Retry in the rom.</td>
+		</tr>
+		<tr>
+			<td><code>$008F49</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">
+				If <code>!status_death_counter = 1</code>, this writes the death counter in the status bar.<br/>
+				If <code>!status_death_counter = 0</code>, it restores the original code (only the first time the setting is changed to 0).
+			</td>
+		</tr>
+		<tr>
+			<td><code>$009856</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Makes sure some of Retry's code is run during level load for vanilla mode 7 bosses.</td>
+		</tr>
+		<tr>
 			<td><code>$00985A</code></td>
 			<td><code>3</code></td>
 			<td class="left-align">
 				If <code>!remove_vanilla_status_bar = 1</code>, disables code to setup the initial vanilla status bar tilemap in mode 7 levels.<br/>
 				If <code>!remove_vanilla_status_bar = 0</code>, it restores the original code (only the first time the setting is changed to 0).
-			</td>
-		</tr>
-		<tr>
-			<td><code>$00A5A8</code></td>
-			<td><code>3</code></td>
-			<td class="left-align">
-				If <code>!remove_vanilla_status_bar = 1</code>, disables code to setup the initial vanilla status bar tilemap in normal levels.<br/>
-				If <code>!remove_vanilla_status_bar = 0</code>, it restores the original code (only the first time the setting is changed to 0).
-			</td>
-		</tr>
-		<tr>
-			<td><code>$00FFD8</code></td>
-			<td><code>1</code></td>
-			<td class="left-align">
-				If <code>!sram_feature = 1</code> and SA-1 is not patched, it sets the SRAM size to 8KB (unless the SRAM size was already set to a bigger size by some other patch).<br/>
-				If <code>!sram_feature = 0</code> and SA-1 is not patched, is sets the SRAM size back to 2KB (unless the SRAM size was already set to a bigger size by some other patch).
 			</td>
 		</tr>
 		<tr>
@@ -157,9 +93,27 @@
 			</td>
 		</tr>
 		<tr>
-			<td><code>$009856</code></td>
+			<td><code>$009E25</code></td>
+			<td><code>1</td>
+			<td class="left-align">Changes how many lives the save file starts with.</td>
+		</tr>
+		<tr>
+			<td><code>$00A5A8</code></td>
+			<td><code>3</code></td>
+			<td class="left-align">
+				If <code>!remove_vanilla_status_bar = 1</code>, disables code to setup the initial vanilla status bar tilemap in normal levels.<br/>
+				If <code>!remove_vanilla_status_bar = 0</code>, it restores the original code (only the first time the setting is changed to 0).
+			</td>
+		</tr>
+		<tr>
+			<td><code>$00C572</code></td>
 			<td><code>4</code></td>
-			<td class="left-align">Makes sure some of Retry's code is run during level load for vanilla mode 7 bosses.</td>
+			<td class="left-align">Fixes being able to drop the item in reserve while Mario is dead. Depending on the value of <code>!item_box_fix</code>, this may be a JML or just a hex edit to restore the original code.</td>
+		</tr>
+		<tr>
+			<td><code>$00D0D8</code></td>
+			<td><code>5</code></td>
+			<td class="left-align">Disables the vanilla life loss code. It is equivalent to the infinite lives patch found on SMWCentral.</td>
 		</tr>
 		<tr>
 			<td><code>$00F2D8</code></td>
@@ -167,14 +121,60 @@
 			<td class="left-align">Makes sure vanilla midways set the proper checkpoint depending on the current sublevel's settings, and prevents getting a mushroom at the midway if <code>!midway_powerup = 0</code>.</td>
 		</tr>
 		<tr>
-			<td><code>$0DA691</code></td>
-			<td><code>4</code></td>
-			<td class="left-align">Makes sure to spawn or not spawn the midway bar object at level load depending on the current checkpoint.</td>
+			<td><code>$00FFD8</code></td>
+			<td><code>1</code></td>
+			<td class="left-align">
+				If <code>!sram_feature = 1</code> and SA-1 is not patched, it sets the SRAM size to 8KB (unless the SRAM size was already set to a bigger size by some other patch).<br/>
+				If <code>!sram_feature = 0</code> and SA-1 is not patched, is sets the SRAM size back to 2KB (unless the SRAM size was already set to a bigger size by some other patch).
+			</td>
 		</tr>
 		<tr>
 			<td><code>$05B30E</code></td>
 			<td><code>4</code></td>
 			<td class="left-align">Fixes a bug where the switch palace message boxes sprites become glitched if drawing sprites in UberASM Tool's 2.0 "end" label.</td>
+		</tr>
+		<tr>
+			<td><code>$05B31B</code></td>
+			<td><code>2</code></td>
+			<td class="left-align">Fixes a bug where some sprite tiles disappear when closing a message box.</td>
+		</tr>
+		<tr>
+			<td><code>$05D842</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Makes sure to load in the correct entrance when entering a level from the Overworld, depending on the level's last reached checkpoint.</td>
+		</tr>
+		<tr>
+			<td><code>$05D9DA</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Makes sure to load in the correct entrance when loading the midway entrance of a level, depending on the sublevel's checkpoint setting.</td>
+		</tr>
+		<tr>
+			<td><code>$05D9EC</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Makes sure to load Mario at the correct position when a checkpoint is a vanilla midway entrance.</td>
+		</tr>
+		<tr>
+			<td><code>$05DA1C</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Fixes the initial sprite facing position and the "No Yoshi Sign 2" castle intro being forced for some levels. Depending on the values of <code>!initial_facing_fix</code> and <code>!no_yoshi_intro_fix</code>, this may be a JML or just a hex edit.</td>
+		</tr>
+		<tr>
+			<td><code>$05DAA3</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Fixes a bug when loading a secondary entrance in a level with a "No Yoshi Intro" from the Overworld.</td>
+		</tr>
+		<tr>
+			<td><code>$0DA415</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">
+				If <code>!use_custom_midway_bar = 1</code>, this inserts code to handle Retry's custom midway objects.<br/>
+				If <code>!use_custom_midway_bar = 0</code>, this restores the original code (only the first time the setting is changed, and only if Objectool is present in the rom).
+			</td>
+		</tr>
+		<tr>
+			<td><code>$0DA691</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Makes sure to spawn or not spawn the midway bar object at level load depending on the current checkpoint.</td>
 		</tr>
 	</table>
 

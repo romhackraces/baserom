@@ -24,7 +24,7 @@
 ; 0 = midways won't give Mario a mushroom.
 ; 1 = vanilla midway powerup behavior.
 ; Note: you can also change this on the fly (see "docs/ram_map.html").
-    !midway_powerup = 0
+    !midway_powerup = 1
 
 ; Counterbreak options reset the corresponding counters/items when the player dies and/or when going to the Overworld.
 ; Useful for Kaizo and collab hacks. For lives, they will be reset to !initial_lives
@@ -72,7 +72,7 @@
 
 ; If 1, Start+Select out of a level is always possible.
 ; Otherwise, it's only possible with the instant Retry option, or with the Retry prompt with the "Exit" option disabled, or if the level is already beaten like vanilla.
-    !always_start_select = 0
+    !always_start_select = 1
 
 ; If 1, the camera won't scroll vertically during Mario's death animation.
     !death_camera_lock = 0
@@ -98,8 +98,8 @@
 ; SFX to play when dying (!death_sfx = $00 -> no SFX).
 ; Only played if the death song is skipped (for example, it's not played if the level uses vanilla death).
 ; You can find a suitable death sfx inside "resources/amk/sfx".
-    !death_sfx = $20
-    !death_sfx_addr = $1DF9
+    !death_sfx = $38
+    !death_sfx_addr = $1DFC
 
 ; The alternative death jingle which will be played after the !death_sfx when "Exit" is chosen in the prompt.
 ; $01-$FE: custom song number, $FF = do not use this feature.
@@ -141,7 +141,7 @@
 
 ; If 1, the game will automatically save everytime a new checkpoint is obtained (when touching a midway or getting a cp on a room transition).
 ; If using this, make sure there's no softlocks (for example, a level is unbeatable from one of the checkpoints).
-    !save_on_checkpoint = 0
+    !save_on_checkpoint = 1
 
 ; If 1, the game will automatically save after getting a game over.
 ; This can be useful when paired with the option of not reloading some data from SRAM after a game over (see "sram_tables.asm"),
@@ -166,7 +166,7 @@
 ; If 1, the prompt will show up immediately after dying.
 ; Otherwise, it will show up halfway through (or right after, depending on !retry_death_animation)
 ; the death animation, but pressing A/B during it will skip the animation.
-    !fast_prompt = 0
+    !fast_prompt = 1
 
 ; 0 = don't play the death animation when using instant Retry or prompt
 ;     Note: for Retry prompt, part of the death animation still plays if not using !fast_prompt
@@ -201,11 +201,11 @@
 ; Set to 1 if you don't want the "Exit" option in the prompt.
 ; This will also allow the player to Start+Select when having the prompt.
 ; Note: you can also change this on the fly (see "docs/ram_map.html").
-    !no_exit_option = 0
+    !no_exit_option = 1
 
 ; Set to 1 to remove the black box, but leave the options on screen.
 ; Note: you can also change this on the fly (see "docs/ram_map.html").
-    !no_prompt_box = 0
+    !no_prompt_box = 1
 
 ; Set to 1 to dim the screen while the prompt is shown.
     !dim_screen = 0
@@ -257,7 +257,7 @@
 ; If 1, score sprites (points, 1-Up) will be removed when dying, if Retry prompt is enabled in the level.
 ; This can be used to replace their graphics ($29, $38-$39, $44-$47, $54-$57)
 ; with the Retry prompt tiles instead of having to reserve sprite tiles for the prompt.
-    !no_score_sprites_on_death = 0
+    !no_score_sprites_on_death = 1
 
 ; Sprite tile number for the tiles used by the prompt ($00-$FF = SP1/SP2, $100-$1FF = SP3/SP4).
 ; These will be overwritten dynamically when the prompt needs to show up.
@@ -269,20 +269,20 @@
 ; Note: when the prompt box is enabled, !tile_curs and !tile_blk actually use 2 adjacent 8x8 tiles.
 ; For example, !tile_curs = $24 means both $24 and $25 will be overwritten.
 ; Also, obviously these aren't used if you don't use the Retry prompt or !no_prompt_draw = 1.
-    !tile_curs = $20
-    !tile_blk  = $22
-    !tile_r    = $30
-    !tile_e    = $31
-    !tile_t    = $32
-    !tile_y    = $33
-    !tile_x    = $4A
-    !tile_i    = $5A
+    !tile_curs = $46
+    !tile_blk  = $56
+    !tile_r    = $44
+    !tile_e    = $45
+    !tile_t    = $54
+    !tile_y    = $55
+    !tile_x    = $29
+    !tile_i    = $39
 
 ;======================== Sprite Status Bar =============================;
 
 ; If 1, a sprite status bar will be installed allowing you to display the item box, coins, Yoshi coins,
 ; timer, lives and bonus stars using sprite tiles, which keeps layer 3 working properly.
-    !sprite_status_bar = 0
+    !sprite_status_bar = 1
 
 ; If 1, it disables the original game's status bar (including the IRQ) which prevents layer 3 from messing up.
 ; Differently than the normal remove status bar patch, this keeps the status bar functions (lives, coins,
@@ -295,11 +295,11 @@
 ; These settings can be overridden per-level by using the "configure_sprite_status_bar" API routine (see "docs/api.html").
 ; If !default_xxx_tile or !default_xxx_palette is $00, the item will be hidden by default.
 ; These are only relevant if !sprite_status_bar = 1.
-    !default_item_box_tile         = $80
+    !default_item_box_tile         = $00
     !default_item_box_palette      = $0B
-    !default_timer_tile            = $88
+    !default_timer_tile            = $00
     !default_timer_palette         = $08
-    !default_coin_counter_tile     = $C2
+    !default_coin_counter_tile     = $00
     !default_coin_counter_palette  = $08
     !default_lives_counter_tile    = $00
     !default_lives_counter_palette = $09
@@ -308,14 +308,14 @@
 
 ; General properties for sprite status bar elements.
 ; These are only relevant if !sprite_status_bar = 1.
-    !item_box_x_pos      = $70
-    !item_box_y_pos      = $07
-    !timer_x_pos         = $D0
-    !timer_y_pos         = $0F
-    !coin_counter_x_pos  = $D0
-    !coin_counter_y_pos  = $17
-    !dc_counter_x_pos    = $9A
-    !dc_counter_y_pos    = $0F
+    !item_box_x_pos     = $70
+    !item_box_y_pos     = $07
+    !timer_x_pos        = $D0
+    !timer_y_pos        = $0F
+    !coin_counter_x_pos = $D0
+    !coin_counter_y_pos = $17
+    !dc_counter_x_pos   = $98
+    !dc_counter_y_pos   = $10
     !lives_counter_x_pos = $10
     !lives_counter_y_pos = $0F
     !bonus_stars_x_pos   = $10
@@ -324,11 +324,11 @@
 ; If 1, the item box will always be drawn (if set to be drawn for the specific level).
 ; Otherwise, it will only be drawn when having an item in reserve.
 ; This is only relevant if !sprite_status_bar = 1.
-    !always_draw_box = 1
+    !always_draw_box = 0
 
 ; If 1, the item box will use an 8x8 tile instead of a 16x16 tile.
 ; This is only relevant if !sprite_status_bar = 1.
-    !8x8_item_box_tile = 0
+    !8x8_item_box_tile = 1
 
 ; If 1, when collecting all DCs in a level they'll be displayed in the status bar.
 ; If 0, they won't be displayed (like in vanilla).
@@ -346,9 +346,9 @@
 ; overwritten at runtime by the indicator tile when needed.
 ; This is only relevant if !sprite_status_bar = 1.
     !draw_retry_indicator    = 0
-    !retry_indicator_tile    = $1D
+    !retry_indicator_tile    = $69
     !retry_indicator_palette = $09
-    !retry_indicator_x_pos   = $50
+    !retry_indicator_x_pos   = $10
     !retry_indicator_y_pos   = $0F
 
 ;======================== Death Counter =================================;

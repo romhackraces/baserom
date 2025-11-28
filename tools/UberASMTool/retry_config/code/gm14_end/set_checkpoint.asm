@@ -37,8 +37,7 @@ endif
 ...no_intro:
     ; Check if this midway sets the midway entrance for the sublevel or the main level.
     jsr shared_get_checkpoint_value
-    cmp #$01 : beq ...sub_midway
-    cmp #$03 : bcs ...sub_midway
+    and.b #!checkpoint_type_midway_bar : bne ...sub_midway
 
 ...main_midway:
     jsr calc_entrance

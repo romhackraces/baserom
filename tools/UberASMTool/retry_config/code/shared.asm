@@ -354,3 +354,46 @@ get_intro_sublevel:
 update_0400:
     %jsl_to_rts_db($008494,$0084CF)
     rts
+
+;================================================
+; Routine to check if a level entrance destination would
+; trigger a room checkpoint in the current sublevel.
+; Input: A = entrance destination value high byte
+; Output: Carry = Set (Yes) / Reset (No)
+;================================================
+is_destination_a_checkpoint:
+    ; Save A for later
+    xba
+
+    ; If room checkpoints are disabled, return no
+    lda !ram_midways_override : bmi .no
+
+    ; Get the current sublevel checkpoint setting.
+    jsr shared_get_checkpoint_value
+    and.b #~!checkpoint_type_midway_bar
+
+    ; If room checkpoint is disabled, return no.
+    beq .no
+
+    ; If all entrances should count, return yes.
+    cmp.b #!checkpoint_type_all_entrance : beq .yes
+
+    ; Check which type of entrance should count.
+    cmp.b #!checkpoint_type_main_midway_entrance : bne .check_secondary
+
+.check_main_midway:
+    ; Return yes if it's not a secondary entrance.
+    xba : and #$02 : beq .yes
+    bra .no
+
+.check_secondary:
+    ; Return yes if it's a secondary entrance.
+    xba : and #$02 : beq .no
+
+.yes:
+    sec
+    rts
+
+.no:
+    clc
+    rts

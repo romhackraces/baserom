@@ -2,7 +2,7 @@
 ; You usually shouldn't edit this file.
 
 ; Retry version number to write in ROM.
-!version = "1.0.0"
+!version = "1.1.0"
 
 ; What button exits the level while the game is paused (by default, select).
 !exit_level_buttons_addr = $16
@@ -59,13 +59,15 @@
 !sram_size = $03
 
 ; How big (in bytes) each save file is in SRAM/BW-RAM.
-!file_size = $0955
+!file_size #= floor((((2**!sram_size)*1024)-$400)/3)
 
 ; SRAM/BW-RAM address to save to.
 if !sa1
     !sram_addr = $41A000
+    !sram_addr_global #= $41A000+(!file_size*3)
 else
     !sram_addr = $700400
+    !sram_addr_global #= $7002CB+143
 endif
 
 ; OW translevel number table.

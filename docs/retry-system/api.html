@@ -16,6 +16,7 @@
 	<ul>
 		<li><a href="#respawn_in_level">Respawn in level</a></li>
 		<li><a href="#save_game">Save game</a></li>
+		<li><a href="#save_global_variables">Save global variables</a></li>
 		<li><a href="#reset_level_checkpoint">Reset level checkpoint</a></li>
 		<li><a href="#reset_all_checkpoints">Reset all checkpoints</a></li>
 		<li><a href="#configure_sprite_status_bar">Configure sprite status bar</a></li>
@@ -37,12 +38,24 @@
 
 	<h3 id="save_game">Save game</h3>
 	<p><code>JSL retry_api_save_game</code></p>
-	<p>Call this to save the game, which will also save the addresses defined in the <code>sram_tables.asm</code> file.</p>
+	<p>Call this to save the game, which will also save the addresses defined in the <code>sram_tables.asm</code> file (including those under <code>.global</code>).</p>
 	<ul>
 		<li>Inputs: <code>N/A</code></li>
 		<li>Outputs: <code>N/A</code></li>
 		<li>Preconditions: <code>N/A</code></li>
 		<li>Postconditions: <code>A/X/Y 8 bits, DB/X/Y preserved</code></li>
+	</ul>
+	<br/>
+
+	<h3 id="save_global_variables">Save global variables</h3>
+	<p><code>JSL retry_api_save_global_variables</code></p>
+	<p>Routine to save the global variables to SRAM, meaning just the addresses found under <code>.global</code> in the <code>sram_tables.asm</code> file.</p>
+	<p>This can be useful if you need to update the global variables outside of a save file (e.g. on the title screen) or if you want to save them without saving the file specific addresses.</p>
+	<ul>
+		<li>Inputs: <code>N/A</code></li>
+		<li>Outputs: <code>N/A</code></li>
+		<li>Preconditions: <code>N/A</code></li>
+		<li>Postconditions: <code>A clobbered, DB/X/Y/P preserved, $02-$0B clobbered</code></li>
 	</ul>
 	<br/>
 
@@ -121,12 +134,18 @@
 	<br/>
 
 	<h3 id="get_sram_variable_address">Get SRAM variable address</h3>
-	<p>Routine to get the address in SRAM for a specific variable. By "variable" it's meant any of the RAM addresses that are saved to SRAM specified in the sram save table. The returned address will be coherent with the current save file loaded when this routine is called (so, make sure to not call it before a save file is loaded!).</p>
+	<p>Routine to get the address in SRAM for a specific variable. By "variable" it's meant any of the RAM addresses that are saved to SRAM specified in the sram save table. If not searching for a variable under <code>.global</code>, the returned address will be coherent with the current save file loaded when this routine is called (so, make sure to not call it before a save file is loaded if not looking for a global variable).</p>
 	<p>This could be useful to read/write values in SRAM directly, for example if you need to update some SRAM value without the game being saved.</p>
-	<p>Note that if you call this on the title screen (for example, if you need to display something based on some value saved in the three files), you will need to set <code>$010A</code> to the value of the save file you want to check (<code>0</code> for save file 1, <code>1</code> for save file 2, <code>2</code> for save file 3) before calling this.</p>
+	<p>Note that if you call this on the title screen looking for a save file specific variable (for example, if you need to display something based on some value saved in the three files), you will need to set <code>$010A</code> to the value of the save file you want to check (<code>0</code> for save file 1, <code>1</code> for save file 2, <code>2</code> for save file 3) before calling this.</p>
 	<p><b>NOTE</b>: this will always return "variable not found" if <code>!sram_feature = 0</code>.</p>
 	<ul>
-		<li>Inputs: <code>N/A</code></li>
+		<li>Inputs: variable address to search for in ROM right after the JSL. This means the call should look like this:
+<pre>
+JSL retry_api_get_sram_variable_address
+dl &lt;variable address&gt;
+... <- your code will continue here after the JSL
+</pre>
+    	</li>
 		<li>Outputs:
 			<ul>
 				<li><code>Carry set = variable not found</code></li>

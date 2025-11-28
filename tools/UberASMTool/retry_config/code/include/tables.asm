@@ -31,8 +31,8 @@ function _bitwise_table_value(level) = (1<<(7-((level)&7)))
 
 macro checkpoint(level, val)
     %_check_level(<level>, "checkpoint")
-    if <val> < 0 || <val> > 3
-        error "Error: %checkpoint value needs to be between 0 and 3!"
+    if <val> < !checkpoint_type_min || <val> > !checkpoint_type_max
+        error "Error: %checkpoint value needs to be between !checkpoint_type_min and !checkpoint_type_max!"
     endif
 
     !__idx #= <level>
@@ -49,8 +49,8 @@ endmacro
 
 macro retry(level, val)
     %_check_level(<level>, "retry")
-    if <val> < 0 || <val> > 5
-        error "Error: %retry value needs to be between 0 and 5!"
+    if <val> < !retry_type_min || <val> > !retry_type_max
+        error "Error: %retry value needs to be between !retry_type_min and !retry_type_max!"
     endif
     
     !__idx #= <level>
