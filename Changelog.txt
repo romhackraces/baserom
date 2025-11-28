@@ -1,6 +1,7 @@
 v5.14
 - updated retry system to v1.1.0
 - updated no spin jump uberasm object
+- updated NMSTL patch to 1.2.4
 - added no item box uberasm object
 - added pipe tiles that change on/off switch
 - fixed baserom list file for uberasm tool
