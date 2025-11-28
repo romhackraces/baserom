@@ -345,9 +345,9 @@ Mario's 8x8 Tiles DMA-er
  - author(s): Ladida, lx5
  - source: https://smwc.me/s/26002
 
-No More Sprite Tile Limits v1.2.1
- - author(s): Arujus, MathOnNapkins, Tattletale, NoelYoshi, Vitor Vilela, edit1754
- - source: https://smwc.me/s/24816
+No More Sprite Tile Limits v1.2.4
+ - author(s): Arinsu, Arujus, MathOnNapkins, NoelYoshi, Tattletale, Vitor Vilela, edit1754, yoshifanatic
+ - source: https://smwc.me/s/40702
 
 SA-1 Pack v1.40**
  - author(s): Arujus, Vitor Vilela
