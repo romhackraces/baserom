@@ -37,9 +37,6 @@ endif
 ; skip the door proximity check (makes neighboring doors easier to enter)
 org $00EC01 : NOP #5
 
-; play SFX when exiting horizontal pipes
-org $00D24E : LDA $7D : NOP : NOP
-
 ; remove Yoshi's rescue message
 org $01EC36 : db $80
 
@@ -83,6 +80,10 @@ org $02A7FF : db $00
 ;;;;;;;;;;;;;;;;;
 ;; Minor Fixes ;;
 ;;;;;;;;;;;;;;;;;
+
+; fix horizontal pipe exit sound
+org $00986A : NOP #2
+org $00A76A : NOP #2
 
 ; fix glitch with blocks not activating when hit with thrown sprites
 org $0195A5 : db $00
