@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "$0")" || exit 1
+. "$(dirname "$0")"/setup/common.sh
+
+check-dependencies wine || exit $?
+
+case $(wine --version) in
+  wine-9.*|wine-10.*)
+    msg-fail "WARNING: Lunar Magic reloading will not work in wine <= 10. Please upgrade to wine 11."
+esac
 
 export WINEDEBUG=-all
 
