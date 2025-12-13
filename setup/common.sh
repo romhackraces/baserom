@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+case "$BASH_VERSION" in
+  0.*|1.*|2.*)
+    echo "Bash version is too old. Please upgrade to at least bash 3.0." >&2
+    exit 1
+  ;;
+esac
+
 # as a sanity check, cd into the root of the project
 cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1
 
