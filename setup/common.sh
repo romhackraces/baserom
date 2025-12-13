@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")/.."
+# as a sanity check, cd into the root of the project
+cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1
+
+# further sanity check, make sure we are *really* in the project root
+[[ -f run-callisto.sh ]] || exit 1
 
 [[ -z "$TMP" ]] && TMP=/tmp/baserom-setup
 
@@ -312,3 +316,5 @@ setup-retry() {
 
   mark-done "$checkfile"
 }
+
+true

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-. "$(dirname "$0")"/setup/common.sh
+. "$(dirname "$0")"/setup/common.sh || exit 1
 
 check-dependencies wine || exit $?
 
