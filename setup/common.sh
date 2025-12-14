@@ -8,10 +8,18 @@ case "$BASH_VERSION" in
 esac
 
 # as a sanity check, cd into the root of the project
-cd "$(dirname "${BASH_SOURCE[0]}")/.." || exit 1
+cd "$(dirname "${BASH_SOURCE[0]}")/.." || {
+  echo "Couldn't cd into the project root. Did you move the script?" >&2
+  exit 1
+}
 
-# further sanity check, make sure we are *really* in the project root
-[[ -f run-callisto.sh ]] || exit 1
+# further sanity check, make sure we are *really* in the project root,
+# and that this file is the same as setup/common.sh from the PWD.
+[[ "${BASH_SOURCE[0]}" -ef setup/common.sh ]] || {
+  echo "Couldn't verify the project root. Did you move the script?" >&2
+  exit 1
+}
+
 
 [[ -z "$TMP" ]] && TMP=/tmp/baserom-setup
 
