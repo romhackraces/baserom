@@ -217,6 +217,7 @@ setup-pixi() {
   install-tool 'https://dl.smwcentral.net/37432/' || return 1
   copy-list list_pixi.txt
   msg-info "Resolving ASM conflict in PIXI and UberASM Tool..."
+  sed -i.bak 's/\r$//' "tools/$TOOLNAME/asm/main.asm"
   patch -bl "tools/$TOOLNAME/asm/main.asm" setup/pixi/main.asm.patch || return 1
   install-docs README.html
   remove-junk removedResources.txt changelog.txt README.html CONTRIBUTING.html CHANGELOG.html LICENSE
