@@ -10,6 +10,7 @@ case $(wine --version) in
 esac
 
 export WINEDEBUG=-all
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
 callisto() {
   exec wine tools/Callisto/callisto.exe "$@"
