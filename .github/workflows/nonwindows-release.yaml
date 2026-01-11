@@ -24,9 +24,8 @@ jobs:
           "*.ps1"
           "*.bat"
           "build"
-          "functions"
           "config"
-          "includes"
+          "functions"
           "Readme.md"
         )
 
