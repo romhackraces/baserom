@@ -1,0 +1,25 @@
+--- tools/PIXI/asm/main.asm	2025-12-08 10:37:57
++++ tools/PIXI/asm/main.asm	2025-12-08 10:38:02
+@@ -53,14 +53,14 @@
+ ; make it so the full level number can be read from $010B
+ ; this part will not be removed on cleanup since other
+ ; level based tools may also use this hijack
+-org $05D8B9|!BankB
+-    JSR Levelnum
+-org $05DC46|!BankB
+-    Levelnum:
+-    LDA $0E
+-    STA $010B|!Base2
+-    ASL A
+-    RTS
++;org $05D8B9|!BankB
++;    JSR Levelnum
++;org $05DC46|!BankB
++;    Levelnum:
++;    LDA $0E
++;    STA $010B|!Base2
++;    ASL A
++;    RTS
+ 
+ ; ---------------------------------------------------
+ ; original sprite_tool hijacks, credit to roy.
