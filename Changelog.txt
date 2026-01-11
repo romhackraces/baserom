@@ -5,6 +5,7 @@ v5.14
 - added no item box uberasm object
 - added pipe tiles that change on/off switch
 - fixed baserom list file for uberasm tool
+- included non-windows workflow contributed by jneen
 
 v5.13.1
 - restore the wrapper script for the baserom setup
