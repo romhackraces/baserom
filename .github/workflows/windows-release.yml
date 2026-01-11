@@ -1,0 +1,58 @@
+name: Create Zip on Release (Windows)
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build-zip:
+    name: Build Release Zip
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Define Exclusions and Create Zip
+      run: |
+        # rsync exclusions
+        EXCLUDES=(
+          ".git*"
+          ".gitkeep"
+          ".gitignore"
+          ".github"
+          "*.sh"
+          "build"
+          "config"
+          "includes"
+          "!build_baserom.ps1"
+          "Readme.md"
+          "Readme-nonwindows.md"
+        )
+
+        # Create args for rsync
+        EXCLUDE_ARGS=""
+        for item in "${EXCLUDES[@]}"; do
+          EXCLUDE_ARGS+="--exclude=${item} "
+        done
+
+        # Create zip with rsync
+        mkdir out
+        rsync -av --progress ./ ./out/ ${EXCLUDE_ARGS} --exclude=out
+        (
+          cd out || exit 1
+          zip -r ../rhr-baserom-${{ github.event.release.tag_name }}.zip .
+        )
+
+        # Clean up
+        rm -rf ./out
+
+    - name: Install GitHub CLI
+      run: |
+        sudo apt-get install -y gh
+
+    - name: Upload Release Asset
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release upload ${{ github.event.release.tag_name }} rhr-baserom-${{ github.event.release.tag_name }}.zip

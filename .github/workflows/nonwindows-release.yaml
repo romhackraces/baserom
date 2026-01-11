@@ -1,4 +1,4 @@
-name: Create Zip on Release
+name: Create Zip on Release (Non-Windows)
 
 on:
   release:
@@ -21,10 +21,12 @@ jobs:
           ".gitkeep"
           ".gitignore"
           ".github"
+          "*.ps1"
+          "*.bat"
           "build"
+          "functions"
           "config"
           "includes"
-          "!build_baserom.ps1"
           "Readme.md"
         )
 
@@ -39,7 +41,7 @@ jobs:
         rsync -av --progress ./ ./out/ ${EXCLUDE_ARGS} --exclude=out
         (
           cd out || exit 1
-          zip -r ../rhr-baserom-${{ github.event.release.tag_name }}.zip .
+          zip -r ../rhr-baserom-${{ github.event.release.tag_name }}-nonwindows.zip .
         )
 
         # Clean up
@@ -53,4 +55,4 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        gh release upload ${{ github.event.release.tag_name }} rhr-baserom-${{ github.event.release.tag_name }}.zip
+        gh release upload ${{ github.event.release.tag_name }} rhr-baserom-${{ github.event.release.tag_name }}-nonwindows.zip
