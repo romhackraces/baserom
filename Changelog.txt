@@ -6,6 +6,7 @@ v5.14
 - added pipe tiles that change on/off switch
 - fixed baserom list file for uberasm tool
 - included non-windows workflow contributed by jneen
+- reworked the setup and build processes for cross-platform support
 
 v5.13.1
 - restore the wrapper script for the baserom setup

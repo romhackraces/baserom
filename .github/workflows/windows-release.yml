@@ -25,9 +25,8 @@ jobs:
           "build"
           "config"
           "includes"
-          "!build_baserom.ps1"
+          "build.ps1"
           "Readme.md"
-          "Readme-nonwindows.md"
         )
 
         # Create args for rsync
