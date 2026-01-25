@@ -27,6 +27,7 @@ jobs:
           "includes"
           "build.ps1"
           "Readme.md"
+          "Building.md"
         )
 
         # Create args for rsync

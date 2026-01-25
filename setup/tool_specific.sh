@@ -65,7 +65,6 @@ setup-callisto() {
   already-setup && return 0
   install-tool $Callisto_Download || return 1
   install-docs $Callisto_Docs
-  remove-junk $Callisto_Junk
 
   # Replace initial patches
   msg-info "Copying over Callisto's initial BPS patches..."
@@ -88,6 +87,7 @@ setup-callisto() {
   rm -f tools/AddMusicK/asar.exe
   cp "$asar64" tools/PIXI/
 
+  remove-junk $Callisto_Junk
   mark-done
 }
 
