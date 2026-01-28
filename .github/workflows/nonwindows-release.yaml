@@ -28,6 +28,7 @@ jobs:
           "functions"
           "Readme.md"
           "Building.md"
+          "Setup.md"
         )
 
         # Create args for rsync
