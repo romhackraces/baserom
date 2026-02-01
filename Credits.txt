@@ -316,6 +316,14 @@ Layer 2 Buoyancy Optimization
  - author(s): worldpeace
  - source: https://smwc.me/s/16366
 
+Level GFX Load Optimization
+ - author(s): freeplay
+ - source: https://smwc.me/t/131640
+
+Level Data Clearing Optimization
+ - author(s): freeplay
+ - source: https://smwc.me/t/131640
+
 Lunar Magic's "VRAM Patch" Optimization
  - author(s): Kevin
  - source: https://smwc.me/s/28028

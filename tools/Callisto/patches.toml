@@ -85,6 +85,8 @@ patches = [
     "{patches_folder}/optimizations/optimize_1f0.asm",
     "{patches_folder}/optimizations/optimize_statusbar_nmi.asm",
     "{patches_folder}/optimizations/vram_optimize.asm",
+    "{patches_folder}/optimizations/level_data_clear_optimization.asm",
+    "{patches_folder}/optimizations/level_gfxload_optimization.asm",
     "{patches_folder}/other/extended_no_more_sprite_tile_limits.asm",
     "{patches_folder}/other/free_tile_69.asm",
     "{patches_folder}/other/free_up_ram.asm",
