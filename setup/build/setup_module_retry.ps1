@@ -7,6 +7,7 @@ function Setup-Module-Retry($Name) {
 
     # source files for module
     $RetryDir = "$IncludesDir\retry-system"
+    $UberASMTool_Dir = "$ToolsDir\UberASMTool"
 
     # baserom config files for module
     $RetryConfDir = "$ConfigDir\retry_config"

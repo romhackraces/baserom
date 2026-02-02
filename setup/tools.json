@@ -2,6 +2,7 @@
   "tools": [
     {
       "name": "AddmusicK",
+      "dir": "AddmusicK",
       "url": "https://dl.smwcentral.net/37906/",
       "junk": ["src.zip", "addmusicMRemover.pl", "Makefile", "asar.exe" ],
       "docs": ["readme_files", "readme.html"],
@@ -9,6 +10,7 @@
     },
     {
       "name": "Flips",
+      "dir": "Flips",
       "url": "https://dl.smwcentral.net/11474/",
       "junk": ["license.txt", "flips-linux", "boring.zip", "src.zip"],
       "docs": [""],
@@ -16,13 +18,15 @@
     },
     {
       "name": "GPS",
-      "url": "https://dl.smwcentral.net/11474/",
+      "dir": "GPS",
+      "url": "https://dl.smwcentral.net/40056/",
       "junk": ["Changes.txt", "src.zip"],
       "docs": ["README.txt"],
       "list": "list_gps.txt"
     },
     {
       "name": "Lunar Magic",
+      "dir": "LunarMagic",
       "url": "https://dl.smwcentral.net/41329/",
       "junk": ["x64", "readme.txt"],
       "docs": [""],
@@ -30,6 +34,7 @@
     },
     {
       "name": "PIXI",
+      "dir": "PIXI",
       "url": "https://dl.smwcentral.net/37432/",
       "junk": ["removedResources.txt", "changelog.txt", "README.html", "CONTRIBUTING.html", "CHANGELOG.html", "LICENSE"],
       "docs": ["README.html"],
@@ -37,6 +42,7 @@
     },
     {
       "name": "UberASM Tool",
+      "dir": "UberASMTool",
       "url": "https://dl.smwcentral.net/39036/",
       "junk": ["readme.txt", "changelog.txt", "incompatibilities.txt", "UberASMTool.dll.config"],
       "docs": ["readme.html"],
@@ -44,11 +50,12 @@
     },
     {
       "name": "Callisto",
-      "url": "https://github.com/Underrout/callisto/releases/download/v0.6.0/callisto-v0.6.0.zip",
+      "dir": "Callisto",
+      "url": "https://github.com/Underrout/callisto/releases/download/v0.6.1/callisto-v0.6.1.zip",
       "junk": ["ASAR_LICENSE", "LICENSE", "config", "asar", "initial_patches"],
       "docs": ["documentation"],
       "list": ""
-    },
+    }
   ]
 }
 

@@ -3,12 +3,14 @@
 # --------------------------------------------------
 
 # Function to remove junk files
-function Remove-Junk($Directory, $JunkFiles) {
-    Write-Host "Removing junk files..." -ForegroundColor DarkGray
+function Remove-Junk($Name, $Dir, $Junk) {
+    $toolPath = "$ToolsDir\$Dir"
+
+    Write-Host "Removing junk files for $Name..." -ForegroundColor DarkGray
     # Iterate through list of "junk"
-    foreach ($item in $JunkFiles) {
+    foreach ($item in $Junk) {
         # Get path of item
-        $itemPath = Join-Path -Path $Directory -ChildPath $item
+        $itemPath = Join-Path -Path $toolPath -ChildPath $item
         if (Test-Path -Path $itemPath) {
             # Check if file or directory and delete accordingly
             if (Test-Path -Path $itemPath -PathType Leaf) {
@@ -21,139 +23,82 @@ function Remove-Junk($Directory, $JunkFiles) {
 }
 
 # Function to move documentation files
-function Move-Docs($ToolName, $DocFiles, $Directory) {
+function Move-Docs($Name, $Docs, $Dir) {
 
-    Write-Host "Moving $ToolName documentation..." -ForegroundColor DarkGray
+    Write-Host "Moving documentation for $Name..." -ForegroundColor DarkGray
 
-    if (-not (Test-Path -Path "$ToolsDocsDir\$ToolName" -PathType Container)) {
-        New-Item -Path "$ToolsDocsDir\$ToolName" -ItemType Directory -Force | Out-Null
+    if (-not (Test-Path -Path "$ToolsDocsDir\$Dir" -PathType Container)) {
+        New-Item -Path "$ToolsDocsDir\$Dir" -ItemType Directory -Force | Out-Null
     }
 
-    if ($DocFiles -ne $null -and $DocFiles.Count -gt 0) {
-        foreach ($file in $DocFiles) {
-            $sourcePath = Join-Path -Path $Directory -ChildPath $file
-            $destinationPath = Join-Path -Path $ToolsDocsDir -ChildPath $ToolName
+    if ($Docs -ne $null -and $Docs.Count -gt 0) {
+        foreach ($file in $Docs) {
+            $sourcePath = Join-Path -Path "$ToolsDir\$Dir" -ChildPath $file
+            $destPath = Join-Path -Path $ToolsDocsDir -ChildPath $Name
             if (Test-Path -Path $sourcePath) {
                 if (Test-Path -Path $sourcePath -PathType Container) {
                     # Move directories recursively
-                    Copy-Item -Path $sourcePath -Destination $destinationPath -Force -Recurse
+                    Copy-Item -Path $sourcePath -Destination $destPath -Force -Recurse
                     Remove-Item -Path $sourcePath -Recurse -Force
                 } else {
                     # Move files
-                    Move-Item -Path $sourcePath -Destination $destinationPath -Force
+                    Move-Item -Path $sourcePath -Destination $destPath -Force
                 }
             }
         }
     }
 }
 
-# Function to create .is_setup check file
-function CheckFile-Create($Directory) {
-    # Create is_setup checkfile
-    New-Item -Path "$Directory.is_setup" -ItemType File | Out-Null
-    # Make it a hidden file
-    Set-ItemProperty -Path "$Directory.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
-}
-
-# Function to Download tool
-function Download-Tool($Name, $Url) {
-    Write-Host "Downloading $Name..." -ForegroundColor DarkGray
-    Invoke-WebRequest -Uri $Url -OutFile "$env:temp\$Name.zip"
-}
-
-# Function to copy pre-filled list file
-function Copy-List($Name, $Directory, $List) {
-    Write-Host "Copying baserom list file(s) for $Name..." -ForegroundColor DarkGray
-    if ($List -ne $null -and $List -ne "") {
-        Copy-Item -Path "$ListsDir\$List" -Destination "$Directory\list.txt" -Force -ErrorAction Stop
-    }
-}
-
-#
+# --------------------------------------------------
 # Generic Tool Set Up Function
-#
+# --------------------------------------------------
 # Takes the download URL, output directory, junk files list, documentation list,
 # list file name and extra function name as parameters.
-#
-function Setup-Tool($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $DocFiles, $ListFile, $ExtraFunction) {
-    if (Test-Path "$DestinationDir.is_setup" -PathType Leaf) {
+# --------------------------------------------------
+function Setup-Tool($Name, $URL, $Dir, $List, $Extra) {
+
+    # Set destination based
+    $dest = "$ToolsDir\$Dir"
+
+    # Check if already set up
+    if (Test-Path "$dest\.is_setup" -PathType Leaf) {
         Write-Host ([char]0x2713) -NoNewline -ForegroundColor Green
-        Write-Host " $ToolName already is set up in: " -NoNewline
-        Write-Host "$DestinationDir"
+        Write-Host " $Name already is set up in: " -NoNewline
+        Write-Host "$dest"
     } else {
         $done = $false
         try {
-            Write-Host "`n$ToolName is not set up."
+            Write-Host "`n$Name is not set up."
             # Download Tool
-            Download-Tool $ToolName $DownloadUrl -ErrorAction Stop
+            Write-Host "Downloading $Name..." -ForegroundColor DarkGray
+            Invoke-WebRequest -Uri $URL -OutFile "$env:temp\$Name.zip"
             # Expand Archive
-            Write-Host "Installing $ToolName..." -ForegroundColor DarkGray
-            Expand-Archive -Path "$env:temp\$ToolName.zip" -DestinationPath $DestinationDir -Force -ErrorAction Stop
-            # Move Readme files
-            Move-Docs $ToolName $DocFiles $DestinationDir -ErrorAction Stop
-            # Clean up junk files
-            Remove-Junk $DestinationDir $JunkFiles -ErrorAction Stop
+            Write-Host "Extracting $Name..." -ForegroundColor DarkGray
+            Expand-Archive -Path "$env:temp\$Name.zip" -DestinationPath $dest -Force -ErrorAction Stop
             # Copy pre-existing list file (if it exists)
-            Copy-List $ToolName $DestinationDir $ListFile -ErrorAction Stop
+            if ($List) {
+                Write-Host "Copying baserom list file(s) for $Name..." -ForegroundColor DarkGray
+                if ($List -ne $null -and $List -ne "") {
+                    Copy-Item -Path "$ListsDir\$List" -Destination "$dest\list.txt" -Force -ErrorAction Stop
+                }
+            }
             # Set done
             $done = $true
         } catch {
             $global:has_errors = "yes"
-            Write-Host "An error occurred setting up $ToolName.`n" -ForegroundColor Red
+            Write-Host "An error occurred setting up $Name.`n" -ForegroundColor Red
         }
         # Check if successful
         if ($done) {
             # Create is_setup checkfile
-            CheckFile-Create $DestinationDir
+            New-Item -Path "$dest\.is_setup" -ItemType File | Out-Null
+            # Make it a hidden file
+            Set-ItemProperty -Path "$dest\.is_setup" -Name Attributes -Value ([System.IO.FileAttributes]::Hidden) | Out-Null
             # Done
             Write-Host "Done. `n"
         }
     }
 }
-
-# --------------------------------------------------
-# These are initialization functions that are specialized for specific tools.
-# --------------------------------------------------
-
-# Specific function to set up AddMusicK
-function SetupAMK($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $DocFiles) {
-    if (Test-Path "$DestinationDir.is_setup" -PathType Leaf) {
-        Write-Host ([char]0x2713) -NoNewline -ForegroundColor Green
-        Write-Host " $ToolName already is set up in: " -NoNewline
-        Write-Host "$DestinationDir"
-    } else {
-        $done = $false
-        try {
-            Write-Host "`n$ToolName is not set up."
-            # Download Tool
-            Download-Tool $ToolName $DownloadUrl -ErrorAction Stop
-            # AddMusicK specific actions because zip is subfolder >:(
-            Write-Host "Installing $ToolName..." -ForegroundColor DarkGray
-            Expand-Archive -Path $env:temp\$ToolName.zip -DestinationPath $env:temp\ -Force -ErrorAction Stop
-            Copy-Item "$env:temp\AddmusicK_*\*" -Destination $DestinationDir -Recurse -Force -ErrorAction Stop
-            # Move Readme files
-            Write-Host "Copying documentation..." -ForegroundColor DarkGray
-            Move-Docs $ToolName $DocFiles $DestinationDir -ErrorAction Stop
-            # Clean up junk files
-            Remove-Junk $DestinationDir $JunkFiles -ErrorAction Stop
-            # Copy AddMusicK list files to tool directory
-            Copy-Item -Path "$ListsDir\Addmusic*" -Destination $DestinationDir -ErrorAction Stop
-            # Set done
-            $done = $true
-        } catch {
-            $global:has_errors = "yes"
-            Write-Host "An error occurred setting up $ToolName.`n" -ForegroundColor Red
-        }
-        # Check if successful
-        if ($done) {
-            # Create is_setup checkfile
-            CheckFile-Create $DestinationDir
-            # Done
-            Write-Host "Done. `n"
-        }
-    }
-}
-
 
 
 # --------------------------------------------------
@@ -161,61 +106,87 @@ function SetupAMK($ToolName, $DownloadUrl, $DestinationDir, $JunkFiles, $DocFile
 # perform those steps as part of their initialization process.
 # --------------------------------------------------
 
-
 # Extra steps for AddMusicK
-function PostSetup-AddMusicK {
+function ExtraSteps-AddMusicK {
+    $AddMusicK_Dir = "$ToolsDir\AddMusicK"
+
     Write-Host "Restructuring AddMusicK folder..." -ForegroundColor DarkGray
+    # Get all items in the AMK zip subfolder and move them
+    Get-ChildItem "$AddMusicK_Dir\AddmusicK_*" -Recurse -File |
+    ForEach-Object {
+        Move-Item -LiteralPath $_.FullName -Destination "$AddMusicK_Dir" -Force -Confirm:$false
+    }
+    # Delete the AMK subfolder
+    Remove-Item "$AddMusicK_Dir\AddmusicK_*" -Recurse -Confirm:$false
     # Copy AddMusicK list files to tool directory
-    Copy-Item -Path "$ListsDir\Addmusic*" -Destination $DestinationDir -ErrorAction Stop
+    Copy-Item -Path "$ListsDir\Addmusic*" -Destination $AddMusicK_Dir -ErrorAction Stop
 }
 
 # Extra steps for Lunar Magic
-function PostSetup-LunarMagic {
+function ExtraSteps-LunarMagic {
+    $LunarMagic_Dir = "$ToolsDir\LunarMagic\"
+
+    # Copy usertoolbar files to Lunar Magic directory
     Write-Host "Installing baserom User Toolbar alongside Lunar Magic..." -ForegroundColor DarkGray
-    # copy usertoolbar files to Lunar Magic directory
     Copy-Item -Path "$SetupDir\usertoolbar\usertoolbar.txt" -Destination $LunarMagic_Dir -Force
     Copy-Item -Path "$SetupDir\usertoolbar\usertoolbar_icons.bmp" -Destination $LunarMagic_Dir -Force
     Copy-Item -Path "$SetupDir\usertoolbar\usertoolbar_wrapper.bat" -Destination $LunarMagic_Dir -Force
 }
 
 # Extra steps for PIXI
-function PostSetup-PIXI {
+function ExtraSteps-PIXI {
     Write-Host "Resolving ASM conflict in PIXI and UberASM Tool..." -ForegroundColor DarkGray
 
-    # Replace part of main.asm to fix conflict with uberasm tool
-    $findText = Get-Content "$SetupDir\pixi\main.asm.find" -Raw
-    $replaceText = Get-Content "$SetupDir\pixi\main.asm.replace" -Raw
+    # Get files
+    $origFile = "$ToolsDir\PIXI\asm\main.asm"
+    $findFile = "$SetupDir\pixi\main.asm.find"
+    $replaceFile = "$SetupDir\pixi\main.asm.replace"
 
-    # Get PIXI file
-    $origFile = "$PIXI_Dir\asm\main.asm"
-    $tempFile = "$PIXI_Dir\asm\main.asm~"
+    # Read files
+    $origText    = Get-Content $origFile    -Raw
+    $findText    = Get-Content $findFile    -Raw
+    $replaceText = Get-Content $replaceFile -Raw
 
-    # Escape "$0" because powershell is unhappy with it
-    $replaceText = $replaceText -replace '\$0', '$0'
+    # Normalize text
+    $normalize = {
+        param($text)
+        $text = $text -replace "`r`n", "`n"
+        $text = $text -replace '\$0', '$0'
+        return $text
+    }
 
-    # Read file as a string to process
-    $content = Get-Content $origFile -Raw
-    $replacedContent = $content.Replace($findText, $replaceText)
+    $origNormalized    = & $normalize $origText
+    $findNormalized    = & $normalize $findText
+    $replaceNormalized = & $normalize $replaceText
 
-    # Write the modified content to a new file
-    Set-Content -Path $tempFile -Value $replacedContent
+    # Ensure the block exists
+    if (-not $origNormalized.Contains($findNormalized)) {
+        throw "ERROR: Find block not found in original file."
+    }
 
-    # Replace the file with the modified version
-    Copy-Item $tempFile $origFile -Force
+    # Replace block
+    $replacedContent = $origNormalized.Replace(
+        $findNormalized,
+        $replaceNormalized
+    )
+
+    # Write back
+    Set-Content -Path $origFile -Value $replacedContent -NoNewline
 }
 
 
 # Extra steps for Callisto
-function PostSetup-Callisto {
+function ExtraSteps-Callisto {
+    $Callisto_Dir = "$ToolsDir\Callisto"
     # Copy over Callisto's initial BPS patches
     Write-Host "Copying over Callisto's initial BPS patches..." -ForegroundColor DarkGray
-    Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.51\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
-    Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.51\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
+    Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.63\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
+    Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.63\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
 
     # Install Callisto's modified asar dll.
     Write-Host "Replacing tool-specific Asar DLLs with Callisto versions..." -ForegroundColor DarkGray
-    Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination $GPS_Dir -Force
-    Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination $UberASMTool_Dir -Force
-    Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination $AddMusicK_Dir -Force | Remove-Item $AddMusicK_Dir\asar.exe
-    Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination $PIXI_Dir -Force
+    Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\GPS\" -Force
+    Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\UberASMTool\" -Force
+    Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\AddMusicK\" -Force | Remove-Item "$ToolsDir\AddMusicK\asar.exe"
+    Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\PIXI\" -Force
 }

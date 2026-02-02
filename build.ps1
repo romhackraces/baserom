@@ -14,9 +14,6 @@ $ListsDir       = "$SetupDir\lists"
 $ConfigDir      = "$SetupDir\config"
 $FunctionsDir   = "$SetupDir\functions"
 
-
-# Include defines
-. $SetupDir\tool_defines.ps1
 # Include module build scripts
 . $SetupDir\build\setup_module_retry.ps1
 

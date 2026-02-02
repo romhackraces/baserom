@@ -16,6 +16,8 @@ stats/*.txt
 temp.*
 temp*
 Visualizations/*
+AddmusicK_1.*
+Makefile
 # keep added files
 asm/!UserDefines.asm
 1DFC/!Death Prelude.txt

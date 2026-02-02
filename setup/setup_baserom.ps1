@@ -12,6 +12,7 @@ $ToolsDocsDir   = "$WorkingDir\tools\Docs"
 $ListsDir       = "$SetupDir\lists"
 $ConfigDir      = "$SetupDir\config"
 $FunctionsDir   = "$SetupDir\functions"
+$ToolData       = "$SetupDir\tools.json"
 
 # Include external functions
 . $SetupDir\functions\common.ps1
@@ -42,30 +43,40 @@ while ($UserChoice -ne "3") {
             Clear-Host
 
             # Process Tools
-            $Tools = Get-Content tools.json | ConvertFrom-Json
+            $Tools = Get-Content $ToolData | ConvertFrom-Json
 
             foreach ($Tool in $Tools.tools) {
-                $Tool_Name = $Tool.name
-                $Tool_URL = $Tools.url
-                $Tool_Dir = "$ToolsDir/$Tool_Name"
-                $Tool_Junk = $Tools.junk
-                $Tool_Docs = $Tools.docs
-                $Tool_List = $Tools.list
-
-                Write-Host "`nProcessing $Tool_Name"
-                Write-Host "URL: $Tool_URL"
-                Write-Host "Junk Files: $($Tool_Junk -join ', ')"
-                Write-Host "Documentation Files: $($Tool_Docs -join ', ')"
-                Setup-Tool $Tool_Name $Tool_URL $Tool_Dir $Tool_Junk $Tool_Docs $Tool_List ""
+                # Parse JSON of tool data
+                $Name   = $Tool.name
+                $URL    = $Tool.url
+                $Dir    = $Tool.dir
+                $List   = $Tool.list
+                # Run Setup function for each tool
+                Setup-Tool $Name $URL $Dir $List
             }
 
-            # Specialized tool initialization processes
-            SetupAMK "AddMusicK" $AddMusicK_URL $AddMusicK_Dir $AddMusicK_Junk $AddMusicK_Docs ""
-            
-            # Run Post-Setups
-            PostSetup-PIXI
-            PostSetup-LunarMagic
-            PostSetup-Callisto
+            # Run tool-specific extra step functions
+            Write-Host "`nRunning extra functions for specific tools..."
+            ExtraSteps-AddMusicK
+            ExtraSteps-PIXI
+            ExtraSteps-LunarMagic
+            ExtraSteps-Callisto
+            Write-Host "Done. `n"
+
+            # Run Clean-up Functions
+            Write-Host "`nRunning functions to move documentation and clean up junk files..."
+            foreach ($Tool in $Tools.tools) {
+                # Parse JSON of tool data
+                $Name   = $Tool.name
+                $Dir    = $Tool.dir
+                $Junk   = @($Tool.junk)
+                $Docs   = @($Tool.docs)
+                # Move documentation files
+                Move-Docs $Name $Docs $Dir -ErrorAction Stop
+                # Clean up junk files
+                Remove-Junk $Name $Dir $Junk -ErrorAction Stop
+            }
+            Write-Host "Done. `n"
 
             if ($has_errors -eq "yes") {
                 Write-Host "One or more set ups ended with an error. If you don't know what went wrong please seek assistance.`n" -ForegroundColor DarkYellow
@@ -77,6 +88,7 @@ while ($UserChoice -ne "3") {
         # Ensure user has run first build of Callisto so the baserom exists
         "2" {
             Clear-Host
+            $Callisto_Dir = "$ToolsDir\Callisto\"
             # Check if Callisto is setup
             if (Test-Path "$Callisto_Dir.is_setup" -PathType Leaf) {
                 # Check if first-build was already done
