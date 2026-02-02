@@ -161,7 +161,7 @@ function ExtraSteps-PIXI {
 
     # Ensure the block exists
     if (-not $origNormalized.Contains($findNormalized)) {
-        throw "ERROR: Find block not found in original file."
+        Write-Host "Find block not found in original file." -ForegroundColor Red
     }
 
     # Replace block
