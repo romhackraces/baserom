@@ -20,7 +20,7 @@ extra-amk() {
 extra-callisto() {
   # Replace initial patches
   if compgen -G "tools/Callisto/initial_patches" > /dev/null; then
-    msg-info "Copying over Callisto's initial BPS patches..."
+    echo "Copying over Callisto's initial BPS patches..."
 
     local patches=tools/Callisto/initial_patches/LunarMagic3.63
 
@@ -30,7 +30,7 @@ extra-callisto() {
 
   # Replace asar dlls
   if compgen -G "tools/Callisto/asar" > /dev/null; then
-    msg-info "Replacing tool-specific Asar DLLs with Callisto versions..."
+    echo "Replacing tool-specific Asar DLLs with Callisto versions..."
 
     # [jneen] TODO: proper 64-bit versions of these tools exist, let's try and use them
     local asar64=tools/Callisto/asar/v1.91/64-bit/asar.dll
@@ -45,12 +45,12 @@ extra-callisto() {
 
 extra-pixi() {
   # patch an asm conflict in PIXI
-  msg-info "Resolving ASM conflict in PIXI and UberASM Tool..."
+  echo "Resolving ASM conflict in PIXI and UberASM Tool..."
   sed -i.bak 's/\r$//' "tools/PIXI/asm/main.asm"
   patch -bl "tools/PIXI/asm/main.asm" setup/pixi/main.asm.patch || return 1
 }
 
 extra-lunarmagic() {
-  msg-info "Installing baserom User Toolbar alongside Lunar Magic..."
+  echo "Installing baserom User Toolbar alongside Lunar Magic..."
   cp setup/usertoolbar/* tools/LunarMagic/
 }

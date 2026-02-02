@@ -19,12 +19,15 @@ jq -c '.tools[]' $TOOLDATA | while read -r tool; do
 done
 
 # Extra
+msg-info -n "Running additional setup functions for specific tools..."
 extra-amk
 extra-pixi
 extra-lunarmagic
 extra-callisto
+msg-success -n "> Successfully completed additional setup."
 
 # Cleanup
+msg-info -n "Running clean up functions for tools..."
 jq -c '.tools[]' $TOOLDATA | while read -r tool; do
   name=$(jq -r '.name' <<< "$tool")
   dir=$(jq -r '.dir' <<< "$tool")
@@ -35,4 +38,5 @@ jq -c '.tools[]' $TOOLDATA | while read -r tool; do
 
 done
 
+msg-success -n "> Successfully cleaned up tool installations."
 
