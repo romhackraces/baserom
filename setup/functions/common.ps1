@@ -143,8 +143,8 @@ function ExtraSteps-PIXI {
     $replaceFile = "$SetupDir\pixi\main.asm.replace"
 
     # Read files
-    $origText    = Get-Content $origFile    -Raw
-    $findText    = Get-Content $findFile    -Raw
+    $origText = Get-Content $origFile -Raw
+    $findText = Get-Content $findFile -Raw
     $replaceText = Get-Content $replaceFile -Raw
 
     # Normalize text
@@ -161,17 +161,17 @@ function ExtraSteps-PIXI {
 
     # Ensure the block exists
     if (-not $origNormalized.Contains($findNormalized)) {
-        Write-Host "Find block not found in original file." -ForegroundColor Red
+        Write-Host "WARNING: Find block not found in original file." -ForegroundColor DarkYellow
+    } else {
+        # Replace block
+        $replacedContent = $origNormalized.Replace(
+            $findNormalized,
+            $replaceNormalized
+        )
+
+        # Write block
+        Set-Content -Path $origFile -Value $replacedContent -NoNewline
     }
-
-    # Replace block
-    $replacedContent = $origNormalized.Replace(
-        $findNormalized,
-        $replaceNormalized
-    )
-
-    # Write back
-    Set-Content -Path $origFile -Value $replacedContent -NoNewline
 }
 
 
@@ -180,13 +180,21 @@ function ExtraSteps-Callisto {
     $Callisto_Dir = "$ToolsDir\Callisto"
     # Copy over Callisto's initial BPS patches
     Write-Host "Copying over Callisto's initial BPS patches..." -ForegroundColor DarkGray
-    Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.63\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
-    Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.63\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
+    if (Test-Path "$Callisto_Dir\initial_patches\" -PathType Leaf) {
+        Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.63\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
+        Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.63\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
+    } else {
+        Write-Host "WARNING: Unable to copy initial patches." -ForegroundColor DarkYellow
+    }
 
     # Install Callisto's modified asar dll.
     Write-Host "Replacing tool-specific Asar DLLs with Callisto versions..." -ForegroundColor DarkGray
-    Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\GPS\" -Force
-    Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\UberASMTool\" -Force
-    Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\AddMusicK\" -Force | Remove-Item "$ToolsDir\AddMusicK\asar.exe"
-    Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\PIXI\" -Force
+    if (Test-Path "$Callisto_Dir\asar\" -PathType Leaf) {
+        Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\GPS\" -Force
+        Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\UberASMTool\" -Force
+        Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\AddMusicK\" -Force | Remove-Item "$ToolsDir\AddMusicK\asar.exe"
+        Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\PIXI\" -Force
+    } else {
+        Write-Host "WARNING: Unable to copy asar DLLs." -ForegroundColor DarkYellow
+    }
 }
