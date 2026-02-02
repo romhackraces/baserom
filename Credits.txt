@@ -430,7 +430,7 @@ Asar v1.81
  - author(s): Alcaro et al.
  - source: https://smwc.me/s/25953
 
-Callisto v0.6.0
+Callisto v0.6.1
  - author(s): underway
  - source: https://github.com/Underrout/callisto/
 
