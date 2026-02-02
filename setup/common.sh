@@ -263,6 +263,6 @@ cleanup-tool() {
 
   local TOOLNAME=$name
   local TOOLDIR=$dir
-  install-docs ${docs[@]}
-  remove-junk ${junk[@]}
+  install-docs "${docs[@]}"
+  remove-junk "${junk[@]}"
 }
