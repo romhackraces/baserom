@@ -12,6 +12,9 @@ Compilation & Documentation
 Help & Feedback:
  - binavik, Fernap, Kevin, LouisDoucet, Spirits, TheJavaBrew, underway
 
+Cross-platform contributions
+ - jneen
+
 
 ==== CONSISTENCY PATCHES ====
 
