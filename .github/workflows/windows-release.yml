@@ -12,7 +12,6 @@ jobs:
   build-zip:
     name: Build Release Zip
     runs-on: ubuntu-latest
-    retention-days: 14
 
     steps:
     - name: Checkout Code
