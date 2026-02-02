@@ -121,26 +121,37 @@ msg-fail() {
   ansi reset
 }
 
-
 remove-junk() {
-  msg-info "Removing junk files..."
+  if (($#)); then
+    msg-info "Removing junk files for $TOOLNAME..."
 
-  for junk in "$@"; do
-    rm -rf "tools/$TOOLNAME/$junk"
-  done
+    for junk in "$@"; do
+      if [[ -e "$junk" ]]; then
+      rm -rf "tools/"$TOOLDIR"/$junk"
+      fi
+    done
+  else
+    echo "$TOOLNAME has no junk."
+  fi
 }
 
 install-docs() {
-  local dest=tools/Docs/"$TOOLNAME"
-  msg-info "Moving $TOOLNAME documentation..."
+  if (($#)); then
+    local dest=tools/Docs/"$TOOLDIR"
+    msg-info "Moving documentation for $TOOLNAME..."
 
-  rm -rf tools/Docs/"$TOOLNAME"
+    rm -rf tools/Docs/"$TOOLDIR"
 
-  mkdir -p "$dest"
+    mkdir -p "$dest"
 
-  for f in "$@"; do
-    mv tools/"$TOOLNAME"/"$f" "$dest/$f"
-  done
+    for f in "$@"; do
+      if [[ -e "$f" ]]; then
+        mv tools/"$TOOLDIR"/"$f" "$dest/$f" || true
+      fi
+    done
+  else
+    echo "$TOOLNAME has no documentation."
+  fi
 }
 
 download-tool() {
@@ -155,8 +166,8 @@ install-tool() {
 }
 
 extract-tool() {
-  mkdir -p tools/"$TOOLNAME"
-  extract-archive "$TMP/$TOOLNAME.zip" tools/"$TOOLNAME"
+  mkdir -p tools/"$TOOLDIR"
+  extract-archive "$TMP/$TOOLNAME.zip" tools/"$TOOLDIR"
 }
 
 copy-list() {
@@ -165,13 +176,13 @@ copy-list() {
   msg-info "Copying baserom list file(s) for $TOOLNAME..."
 
   if [[ -n "$list" ]]; then
-    cp "setup/lists/$list" "tools/$TOOLNAME/list.txt" || exit 1
+    cp "setup/lists/$list" "tools/$TOOLDIR/list.txt" || exit 1
   fi
 }
 
 already-setup() {
   local checkfile="$1"; shift
-  [[ -z "$checkfile" ]] && checkfile=tools/"$TOOLNAME"/.is_setup
+  [[ -z "$checkfile" ]] && checkfile=tools/"$TOOLDIR"/.is_setup
 
   if [[ -f "$checkfile" ]]; then
     msg-success -n "> $TOOLNAME is already set up in:"
@@ -185,7 +196,7 @@ already-setup() {
 
 mark-done() {
   local checkfile="$1"; shift
-  [[ -z "$checkfile" ]] && checkfile=tools/"$TOOLNAME"/.is_setup
+  [[ -z "$checkfile" ]] && checkfile=tools/"$TOOLDIR"/.is_setup
 
   touch "$checkfile"
   msg-success -n "> Successfully set up $TOOLNAME in: "
@@ -204,3 +215,54 @@ extract-archive() {
 }
 
 true
+
+setup-tool() {
+  local name="$1"
+  local dir="$2"
+  local url="$3"
+  local list="$4"
+
+  local TOOLNAME=$name
+  local TOOLDIR=$dir
+  already-setup && return 0
+  install-tool $url || return 1
+  copy-list $list
+  mark-done
+}
+
+
+cleanup-tool() {
+  local name="$1"
+  local dir="$2"
+  shift 2
+  local junk=()
+  local docs=()
+
+  while (($#)); do
+    case "$1" in
+      --junk)
+        shift
+        while (($#)) && [[ "$1" != --docs ]]; do
+          junk+=("$1")
+          shift
+        done
+        ;;
+      --docs)
+        shift
+        while (($#)); do
+          docs+=("$1")
+          shift
+        done
+        ;;
+      *)
+        echo "cleanup-tool: unknown argument: $1" >&2
+        return 1
+        ;;
+    esac
+  done
+
+  local TOOLNAME=$name
+  local TOOLDIR=$dir
+  install-docs ${docs[@]}
+  remove-junk ${junk[@]}
+}

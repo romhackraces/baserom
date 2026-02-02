@@ -19,7 +19,7 @@ set "readme=!ROOT_DIR!Readme.html"
 set "callisto_path=!tools_dir!Callisto"
 set "callisto_exe=!callisto_path!\callisto.exe"
 :: addmusick
-set "amk_path=!tools_dir!AddMusicK"
+set "amk_path=!tools_dir!AddmusicK"
 set "amk_list=!amk_path!\Addmusic_list.txt"
 :: pixi
 set "pixi_path=!tools_dir!PIXI"

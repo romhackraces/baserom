@@ -106,20 +106,20 @@ function Setup-Tool($Name, $URL, $Dir, $List, $Extra) {
 # perform those steps as part of their initialization process.
 # --------------------------------------------------
 
-# Extra steps for AddMusicK
-function ExtraSteps-AddMusicK {
-    $AddMusicK_Dir = "$ToolsDir\AddMusicK"
+# Extra steps for AddmusicK
+function ExtraSteps-AddmusicK {
+    $AddmusicK_Dir = "$ToolsDir\AddmusicK"
 
-    Write-Host "Restructuring AddMusicK folder..." -ForegroundColor DarkGray
+    Write-Host "Restructuring AddmusicK folder..." -ForegroundColor DarkGray
     # Get all items in the AMK zip subfolder and move them
-    Get-ChildItem "$AddMusicK_Dir\AddmusicK_*" -Recurse -File |
+    Get-ChildItem "$AddmusicK_Dir\AddmusicK_*" -Recurse -File |
     ForEach-Object {
-        Move-Item -LiteralPath $_.FullName -Destination "$AddMusicK_Dir" -Force -Confirm:$false
+        Move-Item -LiteralPath $_.FullName -Destination "$AddmusicK_Dir" -Force -Confirm:$false
     }
     # Delete the AMK subfolder
-    Remove-Item "$AddMusicK_Dir\AddmusicK_*" -Recurse -Confirm:$false
-    # Copy AddMusicK list files to tool directory
-    Copy-Item -Path "$ListsDir\Addmusic*" -Destination $AddMusicK_Dir -ErrorAction Stop
+    Remove-Item "$AddmusicK_Dir\AddmusicK_*" -Recurse -Confirm:$false
+    # Copy AddmusicK list files to tool directory
+    Copy-Item -Path "$ListsDir\Addmusic*" -Destination $AddmusicK_Dir -ErrorAction Stop
 }
 
 # Extra steps for Lunar Magic
@@ -192,7 +192,7 @@ function ExtraSteps-Callisto {
     if (Test-Path "$Callisto_Dir\asar\" -PathType Leaf) {
         Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\GPS\" -Force
         Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\UberASMTool\" -Force
-        Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\AddMusicK\" -Force | Remove-Item "$ToolsDir\AddMusicK\asar.exe"
+        Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\AddmusicK\" -Force | Remove-Item "$ToolsDir\AddmusicK\asar.exe"
         Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\PIXI\" -Force
     } else {
         Write-Host "WARNING: Unable to copy asar DLLs." -ForegroundColor DarkYellow

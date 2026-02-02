@@ -57,7 +57,7 @@ while ($UserChoice -ne "3") {
 
             # Run tool-specific extra step functions
             Write-Host "`nRunning extra functions for specific tools..."
-            ExtraSteps-AddMusicK
+            ExtraSteps-AddmusicK
             ExtraSteps-PIXI
             ExtraSteps-LunarMagic
             ExtraSteps-Callisto

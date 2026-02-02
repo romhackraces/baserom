@@ -49,5 +49,5 @@
 
         "GPS",                      # Insert custom blocks
         "UberASM",                  # Insert UberASM code
-        "AddMusicK",                # Insert custom music
+        "AddmusicK",                # Insert custom music
     ]

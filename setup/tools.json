@@ -4,7 +4,7 @@
       "name": "AddmusicK",
       "dir": "AddmusicK",
       "url": "https://dl.smwcentral.net/37906/",
-      "junk": ["src.zip", "addmusicMRemover.pl", "Makefile", "asar.exe" ],
+      "junk": ["src.zip", "addmusicMRemover.pl", "Makefile", "asar.exe"],
       "docs": ["readme_files", "readme.html"],
       "list": ""
     },

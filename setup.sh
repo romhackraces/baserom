@@ -1,18 +1,38 @@
 #!/usr/bin/env bash
 
 . "$(dirname "$0")"/setup/common.sh || exit 1
-. "$(dirname "$0")"/setup/tool_specific.sh || exit 1
+. "$(dirname "$0")"/setup/extra.sh || exit 1
 
-setup-tools() {
-  setup-amk || fail "Could not set up AddmusicK"
-  setup-flips || fail "Could not set up Flips"
-  setup-gps || fail "Could not set up GPS"
-  setup-pixi || fail "Could not set up PIXI"
-  setup-lunarmagic || fail "Could not set up Lunar Magic"
-  setup-uberasm || fail "Could not set up UberASMTool"
-  setup-callisto || fail "Could not set up Callisto"
-}
+check-dependencies curl 7z patch jq || exit $?
 
-check-dependencies curl 7z patch || exit $?
+TOOLDATA=$(dirname "$0")/setup/tools.json
 
-setup-tools
+# Setup
+jq -c '.tools[]' $TOOLDATA | while read -r tool; do
+  name=$(jq -r '.name' <<< "$tool")
+  dir=$(jq -r '.dir' <<< "$tool")
+  url=$(jq -r '.url' <<< "$tool")
+  list=$(jq -r '.list' <<< "$tool")
+
+  setup-tool "$name" "$dir" "$url" "$list" || fail "Could not set up $name"
+
+done
+
+# Extra
+extra-amk
+extra-pixi
+extra-lunarmagic
+extra-callisto
+
+# Cleanup
+jq -c '.tools[]' $TOOLDATA | while read -r tool; do
+  name=$(jq -r '.name' <<< "$tool")
+  dir=$(jq -r '.dir' <<< "$tool")
+  mapfile -t junk < <(jq -r '.junk[]?' <<< "$tool")
+  mapfile -t docs < <(jq -r '.docs[]?' <<< "$tool")
+
+  cleanup-tool "$name" "$dir" --junk "${junk[@]}" --docs "${docs[@]}" || fail "Could not clean up $name"
+
+done
+
+

@@ -111,11 +111,11 @@ LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 LM_SPACER
 
 
-; AddMusicK
+; AddmusicK
 
 ***START***
 usertoolbar_wrapper.bat "--path" "!amk_path!"
-7,Open AddMusicK Directory
+7,Open AddmusicK Directory
 LM_USEIMAGE_LIST,LM_CLOSE_ON_CLOSE,LM_DIR_LM,LM_NO_CONSOLE_WINDOW
 
 ***START***

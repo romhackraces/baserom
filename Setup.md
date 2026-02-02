@@ -37,7 +37,7 @@ $ winetricks dotnetdesktop8
 This will differ between operating systems, but you should use your OS's package manager to make sure the following executables available on your system (these may be available by default):
 
 ```
-7z patch curl sed
+7z patch curl sed jq
 ```
 
 **4. Run The Setup Script**

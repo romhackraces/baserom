@@ -116,9 +116,9 @@ static_dependencies = [
 ]
 dependency_report_file = ".dependencies"
 
-# AddMusicK Config
-[tools.generic.AddMusicK]
-directory = "{tools_folder}/AddMusicK"
+# AddmusicK Config
+[tools.generic.AddmusicK]
+directory = "{tools_folder}/AddmusicK"
 executable = "AddmusicK.exe"
 
 # AMK doesn't use asar for much, so we need a
