@@ -1,0 +1,55 @@
+{
+  "tools": [
+    {
+      "name": "AddmusicK",
+      "url": "https://dl.smwcentral.net/37906/",
+      "junk": ["src.zip", "addmusicMRemover.pl", "Makefile", "asar.exe" ],
+      "docs": ["readme_files", "readme.html"],
+      "list": ""
+    },
+    {
+      "name": "Flips",
+      "url": "https://dl.smwcentral.net/11474/",
+      "junk": ["license.txt", "flips-linux", "boring.zip", "src.zip"],
+      "docs": [""],
+      "list": ""
+    },
+    {
+      "name": "GPS",
+      "url": "https://dl.smwcentral.net/11474/",
+      "junk": ["Changes.txt", "src.zip"],
+      "docs": ["README.txt"],
+      "list": "list_gps.txt"
+    },
+    {
+      "name": "Lunar Magic",
+      "url": "https://dl.smwcentral.net/41329/",
+      "junk": ["x64", "readme.txt"],
+      "docs": [""],
+      "list": ""
+    },
+    {
+      "name": "PIXI",
+      "url": "https://dl.smwcentral.net/37432/",
+      "junk": ["removedResources.txt", "changelog.txt", "README.html", "CONTRIBUTING.html", "CHANGELOG.html", "LICENSE"],
+      "docs": ["README.html"],
+      "list": "list_pixi.txt"
+    },
+    {
+      "name": "UberASM Tool",
+      "url": "https://dl.smwcentral.net/39036/",
+      "junk": ["readme.txt", "changelog.txt", "incompatibilities.txt", "UberASMTool.dll.config"],
+      "docs": ["readme.html"],
+      "list": "list_uberasm.txt"
+    },
+    {
+      "name": "Callisto",
+      "url": "https://github.com/Underrout/callisto/releases/download/v0.6.0/callisto-v0.6.0.zip",
+      "junk": ["ASAR_LICENSE", "LICENSE", "config", "asar", "initial_patches"],
+      "docs": ["documentation"],
+      "list": ""
+    },
+  ]
+}
+
+

@@ -13,12 +13,8 @@ $ListsDir       = "$SetupDir\lists"
 $ConfigDir      = "$SetupDir\config"
 $FunctionsDir   = "$SetupDir\functions"
 
-# Include defines
-. $SetupDir\tool_defines.ps1
-# Include functions
+# Include external functions
 . $SetupDir\functions\common.ps1
-. $SetupDir\functions\tool_specific.ps1
-. $SetupDir\functions\extra_steps.ps1
 
 # Start the main menu loop
 $UserChoice = $null
@@ -44,16 +40,33 @@ while ($UserChoice -ne "3") {
         "1" {
             $global:has_errors = "no"
             Clear-Host
+
+            # Process Tools
+            $Tools = Get-Content tools.json | ConvertFrom-Json
+
+            foreach ($Tool in $Tools.tools) {
+                $Tool_Name = $Tool.name
+                $Tool_URL = $Tools.url
+                $Tool_Dir = "$ToolsDir/$Tool_Name"
+                $Tool_Junk = $Tools.junk
+                $Tool_Docs = $Tools.docs
+                $Tool_List = $Tools.list
+
+                Write-Host "`nProcessing $Tool_Name"
+                Write-Host "URL: $Tool_URL"
+                Write-Host "Junk Files: $($Tool_Junk -join ', ')"
+                Write-Host "Documentation Files: $($Tool_Docs -join ', ')"
+                Setup-Tool $Tool_Name $Tool_URL $Tool_Dir $Tool_Junk $Tool_Docs $Tool_List ""
+            }
+
             # Specialized tool initialization processes
-            SetupAMK "AddMusicK" $AddMusicK_Download $AddMusicK_Dir $AddMusicK_Junk $AddMusicK_Docs "" ""
-            # Generic tool initialization
-            Setup-Tool "Flips" $Flips_Download $Flips_Dir $Flips_Junk $Flips_Docs "" ""
-            Setup-Tool "GPS" $GPS_Download $GPS_Dir $GPS_Junk $GPS_Docs "list_gps.txt" ""
-            Setup-Tool "PIXI" $PIXI_Download $PIXI_Dir $PIXI_Junk $PIXI_Docs "list_pixi.txt" "ExtraPIXI"
-            Setup-Tool "Lunar Magic" $LunarMagic_Download $LunarMagic_Dir $LunarMagic_Junk $LunarMagic_Docs "" "ExtraLunarMagic"
-            Setup-Tool "UberASMTool" $UberASMTool_Download $UberASMTool_Dir $UberASMTool_Junk $UberASMTool_Docs "list_uberasm.txt" ""
-            # Callisto must be initialized last
-            Setup-Tool "Callisto" $Callisto_Download $Callisto_Dir $Callisto_Junk $Callisto_Docs "" "ExtraCallisto"
+            SetupAMK "AddMusicK" $AddMusicK_URL $AddMusicK_Dir $AddMusicK_Junk $AddMusicK_Docs ""
+            
+            # Run Post-Setups
+            PostSetup-PIXI
+            PostSetup-LunarMagic
+            PostSetup-Callisto
+
             if ($has_errors -eq "yes") {
                 Write-Host "One or more set ups ended with an error. If you don't know what went wrong please seek assistance.`n" -ForegroundColor DarkYellow
             } else {
