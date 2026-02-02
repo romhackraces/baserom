@@ -22,7 +22,7 @@ The non-windows version of the baserom has several extra steps and dependencies 
 
 **1. Install WINE**
 
-Version 11 is required for the ideal experience, but a least 10 is ideal. You can check the version by running `wine --version` in a terminal.
+Version 11 is recommended for the ideal experience, but at least 10 would work. You can check the version by running `wine --version` in a terminal.
 
 **2. Install Program Dependencies**
 
