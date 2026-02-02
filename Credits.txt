@@ -442,9 +442,9 @@ GPS v1.4.5
  - author(s): TheBiob, p4plus2
  - source: https://smwc.me/s/40056
 
-Lunar Magic 3.61
+Lunar Magic 3.63
  - author(s): FuSoYa
- - source: https://smwc.me/s/40737
+ - source: https://smwc.me/s/41329
 
 PIXI v1.42
  - author(s): Atari2.0, JackTheSpades, Tattletale
