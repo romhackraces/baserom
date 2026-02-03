@@ -178,8 +178,7 @@ table {
   margin: 1em 0;
   border-collapse: collapse;
   border-color: var(--fg_color_a40);
-}
-table.full {
+  font-size: 0.93em;
   width: 100%
 }
 th {
@@ -189,6 +188,12 @@ th {
 td,th {
   border-color: var(--fg_color_a40);
   padding: 4px 8px;
+}
+table.directories td:first-child {
+  width: 200px;
+}
+table.patchlist td:first-child {
+  width: 240px;
 }
 a {
   color: var(--link_color);
