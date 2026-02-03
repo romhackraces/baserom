@@ -10,35 +10,72 @@
 <body>
 <header><div class="home"><a href="./index.html">🏠</a></div><span>Baserom Setup</span></header>
 <section>
-<h3>Setup</h3>
-<p>As part of the <a href="./Getting Started.html">Getting Started</a> process, this baserom uses a set-up script to initialize your baserom project. The main purpose of the script is to keep the GitHub project free from the binary files and executables that come with tools to avoid being in the sticky situation of re-distributing them with the baserom.</p>
-<p>The PowerShell script "setup.bat" in the main folder sets up the baserom for use&ndash;it does call some other scripts that you can find in the <span class="dir">setup</span> folder&ndash;and has few main functions:</p>
-<ol>
-    <li><a href="#download-tools">Download and set-up the necessary tools</a></li>
-    <li><a href="#set-up-tools">Pre-load baserom configuration files</a></li>
-    <li><a href="#run-first-build">Run a first build of Callisto</a></li>
-</ol>
-<p class="infobox">If you are using Windows with a restrictive <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">Execution Policy</a>, you may have trouble running the setup script. See that link for details.</p>
-<h4 id="download-tools">Download Tools</h4>
-<p>A supplementary script (<code>tool_defines.ps1</code>) comes with the setup script that contains all the information about the tools used. Definitions for each tool's download location, what directory in the baserom it gets installed into, what "junk" files come in its zip, and what documentation files come with it are in this file.</p>
-<p>These definitions are used in a number of functions in the main script to: download a tool to a temporary directory, extract its files into the <span class="dir">tools</span> folder, clean up any junk files, as well as copy any of its documentation into the <span class="dir">docs</span> folder. What the script does in steps is:</p>
-<ol>
-    <li>Download a tool using a custom function using Powershell's <code>Invoke-WebRequest</code>.</li>
-    <li>Use the <code>Expand-Archive</code> function of Powershell to extract the the tool to its folder in "tools".</li>
-    <li>Move relevant tool documentation to the "docs" folder.</li>
-    <li>Use a custom function to clean up any junk files.</li>
-    <li>Copy the pre-existing configuration files into the appropriate place in the tool's folder.</li>
-    <li>Create a small, hidden checkfile ".is_setup" to say the setup completed successfully. (This prevents the script from setting up the same tool twice.).</li>
-</ol>
-<h4 id="set-up-tools">Pre-load Configuration Files</h4>
-<p>Most tools files are copied as-is into their respective directories but during tool set-up the script copies a few files into the appropriate tool folders to either "fill" empty list files, or install additional functionality.</p>
-<p>These files are mainly pre-filled "list.txt" files that are used for AddMusicK, GPS, PIXI and UberASM Tool, as well as things for the custom <a href="./User Toolbar.html">User Toolbar</a>. You can find them in <span class="dir">setup/lists</span> and <span class="dir">setup/usertoolbar</span> folders.</p>
-<h4 id="run-first-build">Callisto First Build</h4>
-<p>Technically this step isn't strictly necessary but it is included to ensure that your project can build successfully after Setup and to catch any problems. If it runs successfully you can move on to working on the project.</p>
+<p>To <a href="./Getting Started.html">get started</a> with the baserom you will need to run a set-up script to initialize your project by downloading all the tools and loading pre-configured files for use in the baserom.</p>
+<p>The baserom is also cross-platform and depending on which version you downloaded there will be different scripts provided.</p>
+<ul>
+    <li><a href="#setup-windows">Windows Setup</a></li>
+    <li><a href="#setup-non-windows">Linux/Mac Setup</a></li>
+    <li><a href="#re-run-setup">Re-run Setup</a></li>
+</ul>
+
+<p>The main purpose of these scripts is to keep the git repository for the baserom free from the binary files and executables that come with tools to avoid being in the sticky situation of re-distributing them with the baserom.</p>
 <hr>
-<h3>Re-Setup</h3>
-<p>At some point you may want to re-setup the baserom, or update a tool. You can do this in the baserom by deleting the hidden ".is_setup" file in a given tool's folder and running the "Download Tools" step of the Setup script again.</p>
-<p><b>Important: </b>Callisto uses a modified Asar DLL to track dependencies in a project and the Setup process replaces instances of Asar in each tool with Callisto's. So, if you are updating a tool you will need a copy of the modded DLL to make use of dependencies tracking.</p>
+<h3 id="setup-windows">Windows</h3>
+<p>The batch script "setup.bat" in the main folder sets up the baserom for use&ndash;it does call some other PowerShell scripts that you can find in the <span class="dir">setup</span> folder&ndash;and has few main functions:</p>
+<h4>1. Run The Setup Script</h4>
+<p>Running <code>setup.bat</code> script will launch a new command line window where you will see the following menu.</p>
+<pre>
+----------------------
+RHR Baserom v5 - Setup
+----------------------
+
+Welcome! To get started with the baserom, run both of the following steps:
+
+1) Download and set up all baserom tools
+2) Run a first build of the baserom in Callisto
+0) Exit
+
+Enter the number of your choice
+</pre>
+<ul>
+    <li><b>Step 1</b> will check if the tools required by the baserom are setup, and if not it will download them.</li>
+    <li><b>Step 2</b> will build the baserom from scratch using <a href="./Callisto.html">Callisto</a> so you can get right to hacking on your project.</li>
+</ul>
+<p class="infobox">If you are using Windows with a restrictive <a href="https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">Execution Policy</a>, you may have trouble running the setup script.</p>
+<h4>2. Use Callisto</h4>
+<p>After setup, launch the Callisto executable (found in tools/Callisto) to manage your project. Run "Edit" to launch Lunar Magic, using the "Update" action to apply changes.</p>
+<hr>
+<h3 id="setup-non-windows">Linux/Mac</h3>
+<p>The non-windows version of the baserom has several extra steps and dependencies required for you to be able to get going.</p>
+<h4>1. Install WINE</h4>
+<p>Version 11 is recommended for the ideal experience, but at least 10 would work. You can check the version by running <code>wine --version</code> in a terminal.</p>
+<h4>2. Install Program Dependencies</h4>
+<p>Set up .NET 8 (or higher) in your WINE prefix. This can be done manually or with <code>winetricks</code>:</p>
+<pre>
+$ winetricks dotnetdesktop8
+</pre>
+<h4>3. Install Setup Dependencies</h4>
+<p>This will differ between operating systems, but you should use your OS's package manager to make sure the following executables available on your system (these may be available by default):</p>
+<pre>7z patch curl sed jq</pre>
+<h4>4. Run The Setup Script</h4>
+<p>Run the setup shell script which will download all the tools required for the baserom.</p>
+<pre>
+$ chmod +x setup.sh
+$ ./setup.sh
+</pre>
+<p>It is recommended after setup to run a <b>Build</b> action in Callisto to get a clean first build.</p>
+<h4>5. Use Callisto from the Terminal</h4>
+<p>Instead of running the Callisto executeable through WINE, it needs a workaround. You can use the provided `run-callisto.sh` shell script in a terminal to perform Callisto actions.</p>
+<pre>
+$ chmod +x run-callisto.sh
+$ ./run-callisto.sh ACTION
+</pre>
+<p>Where <code>ACTION</code> is one of <code>rebuild</code>, <code>update</code>, <code>save</code>, <code>edit</code>, <code>package</code>, or <code>profiles</code>. See <code>./run-callisto.sh --help</code>b for more info. </p>
+<p class="infobox"><b>Note:</b> Running Callisto normally is not possible because it's text-based UI does not work within WINE.</p>
+<hr>
+<h3 id="re-run-setup">Re-running Setup Scripts</h3>
+<p>At some point you may want to re-setup the baserom, or update a tool. You can do this in the baserom by deleting the hidden ".is_setup" file in a given tool's folder and running the of the setup script again which should ignore all other tools and already complete processes.</p>
+<p><b>Important:</b> Callisto uses a modified Asar DLL to track dependencies in a project and the Setup process replaces instances of Asar in each tool with Callisto's. So, if you are updating a tool you will need a copy of the modded DLL to make use of dependencies tracking.</p>
 </section>
 <a href="#" class="go-to-top"></a>
 </body>
