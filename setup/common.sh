@@ -126,8 +126,8 @@ remove-junk() {
     msg-info "Removing junk files for $TOOLNAME..."
 
     for junk in "$@"; do
-      if [[ -e "$junk" ]]; then
-      rm -rf "tools/"$TOOLDIR"/$junk"
+      if [[ -e "tools/"$TOOLDIR"/$junk" ]]; then
+        rm -rf "tools/"$TOOLDIR"/$junk"
       fi
     done
   else
@@ -145,7 +145,7 @@ install-docs() {
     mkdir -p "$dest"
 
     for f in "$@"; do
-      if [[ -e "$f" ]]; then
+      if [[ -e tools/"$TOOLDIR"/"$f" ]]; then
         mv tools/"$TOOLDIR"/"$f" "$dest/$f" || true
       fi
     done
@@ -263,6 +263,6 @@ cleanup-tool() {
 
   local TOOLNAME=$name
   local TOOLDIR=$dir
-  install-docs "${docs[@]}"
-  remove-junk "${junk[@]}"
+  install-docs ${docs[@]}
+  remove-junk ${junk[@]}
 }
