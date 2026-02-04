@@ -26,13 +26,11 @@ jobs:
           ".gitignore"
           ".github"
           "*.sh"
+          "*.md"
           "build"
+          "build.ps1"
           "config"
           "includes"
-          "build.ps1"
-          "Readme.md"
-          "Building.md"
-          "Setup.md"
         )
 
         # Create args for rsync

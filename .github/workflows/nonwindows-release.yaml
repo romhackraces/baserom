@@ -27,12 +27,12 @@ jobs:
           ".github"
           "*.ps1"
           "*.bat"
+          "*.md"
           "build"
+          "build.sh"
           "config"
           "functions"
-          "Readme.md"
-          "Building.md"
-          "Setup.md"
+          "includes"
         )
 
         # Create args for rsync
