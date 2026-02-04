@@ -2,11 +2,15 @@ v5.14
 - updated retry system to v1.1.0
 - updated no spin jump uberasm object
 - updated NMSTL patch to 1.2.4
+- updated Lunar Magic to 3.63
+- updated Callisto to 0.6.1
 - added no item box uberasm object
 - added pipe tiles that change on/off switch
+- added new gfx optimization patches to improve level load
 - fixed baserom list file for uberasm tool
 - included non-windows workflow contributed by jneen
 - reworked the setup and build processes for cross-platform support
+- updated documentation
 
 v5.13.1
 - restore the wrapper script for the baserom setup
