@@ -119,7 +119,6 @@ function ExtraSteps-AddmusicK {
     Copy-Item -Path "$ListsDir\Addmusic*" -Destination $AddmusicK_Dir -ErrorAction Stop
 }
 
-
 # Extra steps for Lunar Magic
 function ExtraSteps-LunarMagic {
     $LunarMagic_Dir = "$ToolsDir\LunarMagic\"
@@ -133,42 +132,49 @@ function ExtraSteps-LunarMagic {
 
 # Extra steps for PIXI
 function ExtraSteps-PIXI {
-    Write-Host "Resolving ASM conflict in PIXI and UberASM Tool..." -ForegroundColor DarkGray
-
-    # Get files
     $origFile = "$ToolsDir\PIXI\asm\main.asm"
     $findFile = "$SetupDir\pixi\main.asm.find"
     $replaceFile = "$SetupDir\pixi\main.asm.replace"
+    $backupFile = "$ToolsDir\PIXI\asm\main.asm.bak"
 
-    # Read files
-    $origText = Get-Content $origFile -Raw
-    $findText = Get-Content $findFile -Raw
-    $replaceText = Get-Content $replaceFile -Raw
-
-    # Normalize text
-    $normalize = {
-        param($text)
-        $text = $text -replace "`r`n", "`n"
-        $text = $text -replace '\$0', '$0'
-        return $text
-    }
-
-    $origNormalized    = & $normalize $origText
-    $findNormalized    = & $normalize $findText
-    $replaceNormalized = & $normalize $replaceText
-
-    # Ensure the block exists
-    if (-not $origNormalized.Contains($findNormalized)) {
-        Write-Host "WARNING: Find block not found in original file." -ForegroundColor DarkYellow
+    if (Test-Path "$backupFile") {
+        Write-Host "ASM conflict in PIXI and UberASM Tool already patched" -ForegroundColor DarkGray
     } else {
-        # Replace block
-        $replacedContent = $origNormalized.Replace(
-            $findNormalized,
-            $replaceNormalized
-        )
+        Write-Host "Resolving ASM conflict in PIXI and UberASM Tool..." -ForegroundColor DarkGray
 
-        # Write block
-        Set-Content -Path $origFile -Value $replacedContent -NoNewline
+        # Create backup
+        Copy-Item $origFile "$origFile.bak"
+
+        # Read files
+        $origText = Get-Content $origFile -Raw
+        $findText = Get-Content $findFile -Raw
+        $replaceText = Get-Content $replaceFile -Raw
+
+        # Normalize text
+        $normalize = {
+            param($text)
+            $text = $text -replace "`r`n", "`n"
+            $text = $text -replace '\$0', '$0'
+            return $text
+        }
+
+        $origNormalized    = & $normalize $origText
+        $findNormalized    = & $normalize $findText
+        $replaceNormalized = & $normalize $replaceText
+
+        # Ensure the block exists
+        if (-not $origNormalized.Contains($findNormalized)) {
+            Write-Host "WARNING: Find block not found in original file." -ForegroundColor DarkYellow
+        } else {
+            # Replace block
+            $replacedContent = $origNormalized.Replace(
+                $findNormalized,
+                $replaceNormalized
+            )
+
+            # Write block
+            Set-Content -Path $origFile -Value $replacedContent -NoNewline
+        }
     }
 }
 
@@ -178,7 +184,7 @@ function ExtraSteps-Callisto {
     $Callisto_Dir = "$ToolsDir\Callisto"
     # Copy over Callisto's initial BPS patches
     Write-Host "Copying over Callisto's initial BPS patches..." -ForegroundColor DarkGray
-    if (Test-Path "$Callisto_Dir\initial_patches\" -PathType Leaf) {
+    if (Test-Path "$Callisto_Dir\initial_patches" -PathType Container) {
         Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.63\initial_patch_fastrom.bps" -Destination "$ResourcesDir\initial_patches\fastrom.bps" -Force
         Copy-Item -Path "$Callisto_Dir\initial_patches\LunarMagic3.63\initial_patch_sa1.bps" -Destination "$ResourcesDir\initial_patches\sa1.bps" -Force
     } else {
@@ -187,7 +193,7 @@ function ExtraSteps-Callisto {
 
     # Install Callisto's modified asar dll.
     Write-Host "Replacing tool-specific Asar DLLs with Callisto versions..." -ForegroundColor DarkGray
-    if (Test-Path "$Callisto_Dir\asar\" -PathType Leaf) {
+    if (Test-Path "$Callisto_Dir\asar" -PathType Container) {
         Copy-Item -Path "$Callisto_Dir\asar\v1.91\64-bit\asar.dll" -Destination "$ToolsDir\GPS\" -Force
         Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\UberASMTool\" -Force
         Copy-Item -Path "$Callisto_Dir\asar\v1.91\32-bit\asar.dll" -Destination "$ToolsDir\AddmusicK\" -Force | Remove-Item "$ToolsDir\AddmusicK\asar.exe"
