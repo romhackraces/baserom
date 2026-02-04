@@ -112,15 +112,13 @@ function ExtraSteps-AddmusicK {
 
     Write-Host "Restructuring AddmusicK folder..." -ForegroundColor DarkGray
     # Get all items in the AMK zip subfolder and move them
-    Get-ChildItem "$AddmusicK_Dir\AddmusicK_*" -Recurse -File |
-    ForEach-Object {
-        Move-Item -LiteralPath $_.FullName -Destination "$AddmusicK_Dir" -Force -Confirm:$false
-    }
+    Copy-Item -Path "$AddmusicK_Dir\AddmusicK_*\*" -Destination "$AddmusicK_Dir\" -Recurse -Force
     # Delete the AMK subfolder
     Remove-Item "$AddmusicK_Dir\AddmusicK_*" -Recurse -Confirm:$false
     # Copy AddmusicK list files to tool directory
     Copy-Item -Path "$ListsDir\Addmusic*" -Destination $AddmusicK_Dir -ErrorAction Stop
 }
+
 
 # Extra steps for Lunar Magic
 function ExtraSteps-LunarMagic {
