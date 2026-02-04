@@ -6,7 +6,7 @@ check-dependencies wine || exit $?
 
 case $(wine --version) in
   wine-9.*|wine-10.*)
-    msg-fail "WARNING: Lunar Magic reloading will not work in wine <= 10. Please upgrade to wine 11."
+    msg fail "WARNING: Lunar Magic reloading will not work in wine <= 10. Please upgrade to wine 11."
 esac
 
 export WINEDEBUG=-all

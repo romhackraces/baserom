@@ -12,12 +12,12 @@ setup-retry() {
   [[ -f .gitmodules ]] && git submodule update --init -v
 
   # remove older installation of retry
-  msg-info "Removing older version of $TOOLNAME"
+  msg info "Removing older version of $TOOLNAME"
   local destdir=tools/UberASMTool/retry_config
   [[ -d "$destdir" ]] && rm -rf "$destdir"
 
   # copy over latest version of retry
-  msg-info "Upgrading $TOOLNAME files"
+  msg info "Upgrading $TOOLNAME files"
   local f
   for f in "$UBERASM_TOOL_DIR"/gamemode/retry_gm*; do
   rm -f "$f"
@@ -27,10 +27,10 @@ setup-retry() {
   cp -r "$RETRY_DIR/src/library" "$UBERASM_TOOL_DIR"/
 
   # copy over baserom's retry config
-  msg-info "Copying Baserom configuration for $TOOLNAME"
+  msg info "Copying Baserom configuration for $TOOLNAME"
   cp -r "$RETRY_CONFIG_DIR" "$UBERASM_TOOL_DIR"/
 
   # copy over retry documentation
-  msg-info "Copying $TOOLNAME to documentation"
+  msg info "Copying $TOOLNAME to documentation"
   cp -r "$RETRY_DIR/docs/"* docs/retry-system/
 }

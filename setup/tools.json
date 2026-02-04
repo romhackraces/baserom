@@ -28,8 +28,8 @@
       "name": "Lunar Magic",
       "dir": "LunarMagic",
       "url": "https://dl.smwcentral.net/41329/",
-      "junk": ["x64", "readme.txt"],
-      "docs": [""],
+      "junk": ["x64"],
+      "docs": ["readme.txt"],
       "list": ""
     },
     {

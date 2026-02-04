@@ -20,41 +20,39 @@ cd "$(dirname "${BASH_SOURCE[0]}")/.." || {
   exit 1
 }
 
-
+# create temp folder for setup
 [[ -z "$TMP" ]] && TMP=/tmp/baserom-setup
-
 mkdir -p "$TMP" || exit 1
 
+# suppress output helper
 silent() {
   "$@" &>/dev/null
 }
 
-exists() {
-  silent type "$@"
+# helper to check if directory has files
+directory-exists() {
+  # [AmperSam] using compgen because it pattern matches * nice and cleanly
+  # also using this function for simple directory checking because why not
+  silent compgen -G "$@"
 }
 
+# fail message
 fail() {
   ansi fg red bold intense >&2
   echo "$@" >&2
   exit 1
 }
 
-execd() {
-  printf "> "
-  echo "$@"
-  "$@"
-}
-
+# check for the script dependencies
 check-dependencies() {
   local missing
 
   for bin in "$@"; do
-    exists "$bin" || missing="$missing
-$bin"
+    silent type "$bin" || missing="$missing $bin"
   done
 
   if [[ -n "$missing" ]]; then
-    msg-fail "Cannot set up the baserom - please install the following to your system:"
+    msg fail "Cannot set up the baserom - please install the following to your system:"
     echo "$missing"
     return 1
   fi
@@ -103,31 +101,38 @@ ansi() {
   printf "\e[${selector}${tens}${color}m"
 }
 
-msg-info() {
-  ansi fg black intense bold
+# message helper
+msg() {
+  type="$1"
+  shift
+
+  case "$type" in
+    info)
+      ansi fg black intense bold
+      ;;
+    success)
+      ansi fg green intense bold
+      ;;
+    fail)
+      ansi fg red bold
+      ;;
+    *)
+      ansi reset
+      ;;
+  esac
+
   echo "$@"
   ansi reset
 }
 
-msg-success() {
-  ansi fg green intense bold
-  echo "$@"
-  ansi reset
-}
-
-msg-fail() {
-  ansi fg red bold
-  echo "$@"
-  ansi reset
-}
-
+# remove "junk" files from tool folders
 remove-junk() {
   if (($#)); then
-    msg-info "Removing junk files for $TOOLNAME..."
+    msg info "Removing junk files for $TOOLNAME..."
 
     for junk in "$@"; do
-      if [[ -e "tools/"$TOOLDIR"/$junk" ]]; then
-        rm -rf "tools/"$TOOLDIR"/$junk"
+      if [[ -e "$TOOLSDIR/$TOOLDIR/$junk" ]]; then
+        rm -rf "$TOOLSDIR/$TOOLDIR/$junk"
       fi
     done
   else
@@ -135,18 +140,21 @@ remove-junk() {
   fi
 }
 
-install-docs() {
-  if (($#)); then
-    local dest=tools/Docs/"$TOOLDIR"
-    msg-info "Moving documentation for $TOOLNAME..."
+# move documentation files from tool folders to a common docs folder
+move-docs() {
+  local TOOLSDOCDIR="tools/Docs"
 
-    rm -rf tools/Docs/"$TOOLDIR"
+  if (($#)); then
+    local dest="$TOOLSDOCDIR/$TOOLDIR"
+    msg info "Moving documentation for $TOOLNAME..."
+
+    rm -rf "$TOOLSDOCDIR/$TOOLDIR"
 
     mkdir -p "$dest"
 
     for f in "$@"; do
-      if [[ -e tools/"$TOOLDIR"/"$f" ]]; then
-        mv tools/"$TOOLDIR"/"$f" "$dest/$f" || true
+      if [[ -e "$TOOLSDIR/$TOOLDIR/$f" ]]; then
+        mv "$TOOLSDIR/$TOOLDIR/$f" "$dest/$f" || true
       fi
     done
   else
@@ -154,59 +162,18 @@ install-docs() {
   fi
 }
 
-download-tool() {
-  local url="$1"; shift
-  msg-info "Downloading $TOOLNAME..."
-  curl --silent --location --clobber --output "$TMP/$TOOLNAME.zip" "$url"
-}
-
+# download and extract tool archives
 install-tool() {
-  local url="$1"; shift
-  download-tool "$url" && extract-tool "$@"
-}
+  local url="$1";
 
-extract-tool() {
-  mkdir -p tools/"$TOOLDIR"
-  extract-archive "$TMP/$TOOLNAME.zip" tools/"$TOOLDIR"
-}
+  msg info "Downloading $TOOLNAME..."
+  curl --silent --location --clobber --output "$TMP/$TOOLNAME.zip" "$url"
 
-copy-list() {
-  local list="$1"; shift
+  msg info "Extracting $TOOLNAME..."
+  mkdir -p "$TOOLSDIR/$TOOLDIR"
 
-  msg-info "Copying baserom list file(s) for $TOOLNAME..."
-
-  if [[ -n "$list" ]]; then
-    cp "setup/lists/$list" "tools/$TOOLDIR/list.txt" || exit 1
-  fi
-}
-
-already-setup() {
-  local checkfile="$1"; shift
-  [[ -z "$checkfile" ]] && checkfile=tools/"$TOOLDIR"/.is_setup
-
-  if [[ -f "$checkfile" ]]; then
-    msg-success -n "> $TOOLNAME is already set up in:"
-    echo " $(dirname "$checkfile")"
-    return 0
-  else
-    msg-fail "> $TOOLNAME is not set up."
-    return 1
-  fi
-}
-
-mark-done() {
-  local checkfile="$1"; shift
-  [[ -z "$checkfile" ]] && checkfile=tools/"$TOOLDIR"/.is_setup
-
-  touch "$checkfile"
-  msg-success -n "> Successfully set up $TOOLNAME in: "
-  dirname "$checkfile"
-}
-
-
-extract-archive() {
-  local src="$1"; shift
-  local dest="$1"; shift
+  local src="$TMP/$TOOLNAME.zip";
+  local dest="$TOOLSDIR/$TOOLDIR";
 
   # [jneen] Yes i know this adds a dependency on 7z which does not
   # ship by default on most systems. However, the `unzip` utility completely
@@ -214,8 +181,44 @@ extract-archive() {
   silent 7z x -y -o"$dest" "$src"
 }
 
-true
+# copy the pre-configured list file
+copy-list() {
+  local list="$1"; shift
 
+  msg info "Copying baserom list file(s) for $TOOLNAME..."
+
+  if [[ -n "$list" ]]; then
+    cp "setup/lists/$list" "$TOOLSDIR/$TOOLDIR/list.txt" || exit 1
+  fi
+}
+
+# check if the tool is already set up
+already-setup() {
+  local checkfile="$1"; shift
+  [[ -z "$checkfile" ]] && checkfile="$TOOLSDIR/$TOOLDIR/.is_setup"
+
+  if [[ -f "$checkfile" ]]; then
+    msg success -n "> $TOOLNAME is already set up in:"
+    echo " $(dirname "$checkfile")"
+    return 0
+  else
+    msg fail "> $TOOLNAME is not set up."
+    return 1
+  fi
+}
+
+# mark tools as done with hidden file
+mark-done() {
+  local checkfile="$1"; shift
+  [[ -z "$checkfile" ]] && checkfile="$TOOLSDIR/$TOOLDIR/.is_setup"
+
+  touch "$checkfile"
+  msg success -n "> Successfully set up $TOOLNAME in: "
+  dirname "$checkfile"
+}
+
+
+# function to download and install tools
 setup-tool() {
   local name="$1"
   local dir="$2"
@@ -230,7 +233,7 @@ setup-tool() {
   mark-done
 }
 
-
+# function ran after setup to clean up tool installs
 cleanup-tool() {
   local name="$1"
   local dir="$2"
@@ -263,6 +266,6 @@ cleanup-tool() {
 
   local TOOLNAME=$name
   local TOOLDIR=$dir
-  install-docs ${docs[@]}
+  move-docs ${docs[@]}
   remove-junk ${junk[@]}
 }

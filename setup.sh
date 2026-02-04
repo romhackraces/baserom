@@ -5,10 +5,12 @@
 
 check-dependencies curl 7z patch jq || exit $?
 
-TOOLDATA=$(dirname "$0")/setup/tools.json
+# GLOBAL DEFINES
+TOOLSDATA=$(dirname "$0")/setup/tools.json
+TOOLSDIR=$(dirname "$0")/tools
 
-# Setup
-jq -c '.tools[]' $TOOLDATA | while read -r tool; do
+# Run setup for each tool
+jq -c '.tools[]' $TOOLSDATA | while read -r tool; do
   name=$(jq -r '.name' <<< "$tool")
   dir=$(jq -r '.dir' <<< "$tool")
   url=$(jq -r '.url' <<< "$tool")
@@ -18,17 +20,17 @@ jq -c '.tools[]' $TOOLDATA | while read -r tool; do
 
 done
 
-# Extra
-msg-info "Running additional setup functions for specific tools..."
-extra-amk
-extra-pixi
-extra-lunarmagic
-extra-callisto
-msg-success "> Successfully completed additional setup."
+# Run extra setup steps
+msg info "Running additional setup functions for specific tools..."
+tools=("AddmusicK" "PIXI" "LunarMagic" "Callisto")
+for tool in "${tools[@]}"; do
+    extra-steps "$tool"
+done
+msg success "> Successfully completed additional setup."
 
 # Cleanup
-msg-info "Running clean up functions for tools..."
-jq -c '.tools[]' $TOOLDATA | while read -r tool; do
+msg info "Running clean up functions for tools..."
+jq -c '.tools[]' $TOOLSDATA | while read -r tool; do
   name=$(jq -r '.name' <<< "$tool")
   dir=$(jq -r '.dir' <<< "$tool")
   mapfile -t junk < <(jq -r '.junk[]?' <<< "$tool")
@@ -38,5 +40,5 @@ jq -c '.tools[]' $TOOLDATA | while read -r tool; do
 
 done
 
-msg-success "> Successfully cleaned up tool installations."
+msg success "> Successfully cleaned up tool installations."
 
