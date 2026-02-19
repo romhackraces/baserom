@@ -51,7 +51,7 @@
     {
       "name": "Callisto",
       "dir": "Callisto",
-      "url": "https://github.com/Underrout/callisto/releases/download/v0.6.1/callisto-v0.6.1.zip",
+      "url": "https://github.com/Underrout/callisto/releases/download/v0.6.2/callisto-v0.6.2.zip",
       "junk": ["ASAR_LICENSE", "LICENSE", "config", "asar", "initial_patches"],
       "docs": ["documentation"],
       "list": ""
