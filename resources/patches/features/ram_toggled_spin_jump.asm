@@ -48,6 +48,8 @@ EnforcedNormalJump:
     ; check our FreeRAM flag
     LDA !FreeRAM : BNE .normal_jump
 
+    ; check if holding item
+    LDA $148F|!addr : BNE .normal_jump
 .spin_jump
     ; set spin jump flag
     LDA #$01 : STA $140D|!addr
@@ -71,10 +73,9 @@ SpinOffSprings:
 ; Handle spin jumping out of water
 SpinOutOfWater:
     LDA !FreeRAM : BNE .normal_jump
-
-.spin_jump
     ; check if holding item
     LDA $148F|!addr : BNE .normal_jump
+.spin_jump
     ; set spin jump flag
     LDA #$01 : STA $140D|!addr
     ; continue
