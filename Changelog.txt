@@ -1,3 +1,7 @@
+v5.14.1
+- update Callisto to 6.2.1
+- fix oversight in spin jump patch
+
 v5.14
 - updated retry system to v1.1.0
 - updated no spin jump uberasm object
