@@ -84,7 +84,7 @@ PoisonMushroom:
     LDA !9E,x				;\
     CMP #$21                ;| check if moving coin
     BNE .not_coin           ;/
-
+    STZ !14C8,x
     JML $01C4CF|!bank       ; jump to give coin routine
 
 .not_coin
