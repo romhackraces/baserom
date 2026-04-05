@@ -14,14 +14,13 @@ if not(!infinite_lives)
 
 .game_over:
     ; If yes, go to game over
-    %jsl_to_rts_db($00D0DD,$0084CF)
+    %jsl_to_rts_db($00D0DD)
 
 ..return:
     rts
+endif ; not(!infinite_lives)
 
 .no_game_over:
-endif
-
     ; If the reload level flag is set...
     lda !ram_is_dying : bit #$40 : beq .no_reload
 
@@ -39,7 +38,7 @@ if !title_death_behavior != 0
     rts
 
 ..level:
-endif
+endif ; !title_death_behavior != 0
     ; ...reload the level!
     lda #$0F : sta $0100|!addr
     rts
@@ -68,7 +67,7 @@ endif
 +   
     ; Call the custom death routine.
     php : phb
-    jsr extra_death
+    jsl extra_death
     plb : plp
 
     ; Reset some stuff related to lx5's Custom Powerups.
@@ -83,7 +82,7 @@ if !custom_powerups == 1
 +   dex : bpl -
     
     lda !item_box_disable : ora #$02 : sta !item_box_disable
-endif
+endif ; !custom_powerups == 1
 
 if not(!infinite_lives)
     ; Don't decrement lives on the title screen.
@@ -97,7 +96,7 @@ if not(!infinite_lives)
     dec $0DBE|!addr : bmi .return
 
 .no_lose_lives:
-endif
+endif ; not(!infinite_lives)
 
 .every_frame:
     ; Kill score sprites if the option is enabled and Retry prompt is enabled.
@@ -109,7 +108,7 @@ if !no_score_sprites_on_death
 -   stz $16E1|!addr,x
     dex : bpl -
 +
-endif
+endif ; !no_score_sprites_on_death
 
     ; If the music is sped up, play the death song to make it normal again.
     lda !ram_hurry_up : bne .return
@@ -137,7 +136,7 @@ endif
     ; Play the death SFX.
 if !death_sfx != $00
     lda.b #!death_sfx : sta !death_sfx_addr|!addr
-endif
+endif ; !death_sfx != $00
 
 .return:
     rts

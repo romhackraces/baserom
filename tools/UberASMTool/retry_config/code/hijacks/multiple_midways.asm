@@ -101,7 +101,7 @@ midway_entrance:
 if !dynamic_ow_levels
     %lda_13BF() : tax
     lda $1EA2|!addr,x
-endif
+endif ; !dynamic_ow_levels
 
     ; Restore original code.
     and #$40 : sta $13CF|!addr

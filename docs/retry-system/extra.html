@@ -4,14 +4,19 @@
 	<title>Retry Extra Settings - Retry System UberASM</title>
 	<meta name="author" content="KevinM, AmperSam">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
 <body>
+<div class="box">
 <h1>Retry Extra Settings</h1>
-<p>The Retry system can be configured to run additional code at specific times when inserted into the routines available in the <u class="dir">retry_config/extra.asm</u> file.</p>
-
-<p>On SA-1 ROMs, most of these routines still run on the SNES CPU.</p>
+<p>The Retry system can be configured to run additional code at specific times when inserted into the routines available in the <u class="dir">retry_config/extra.asm</u> file. Each routine is called at a particular time described in the table below.</p>
+<p>All these routines are called in <b>8-bit A/X/Y mode</b>. Don't worry about overwriting registers, they'll be restored afterwards (except for direct page). On SA-1 ROMs, most of these routines still run on the SNES CPU (if not, it's mentioned in the table).</p>
+<p><u class="warn">NOTE:</u> the DBR is <b>NOT</b> set automatically. If you need it set, just add <code>PHK : PLB</code> at the beginning of the routine.</p>
+<p><u class="warn">NOTE:</u> all the routines must end with <code>RTL</code>.</p>
+<br/>
 <table>
 	<tr>
 		<th width="150">Routine</th>
@@ -88,10 +93,6 @@
 		</td>
 	</tr>
 </table>
-<p>
-	All these routines are called in 8-bit A/X/Y mode and DBR is already set. Don't worry about overwriting registers, they'll be restored afterwards (except for direct page). <b>All the routines must end with <code>RTS</code></b>.
-</p>
-<br/>
-<center><a href="./index.html">Return to main page</a></center>
+</div>
 </body>
 </html>

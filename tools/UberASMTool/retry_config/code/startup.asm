@@ -10,6 +10,9 @@ init:
 -   stz.w !retry_freeram,x
     dex #2 : bpl -
 
+    ; Initialize the canary
+    lda.w #!canary_value : sta.w !ram_canary
+
     ; Initialize "set checkpoint" handle to $FFFF.
     lda #$FFFF : sta.w !ram_set_checkpoint
 
@@ -28,28 +31,37 @@ init:
     
     sep #$30
 
+    ; If the SRAM feature is not installed, align checkpoints here
+    ; (no save file init hijack).
+if not(!sram_feature)
+    ; Load the initial OW flags from ROM into $1F49
+    %jsl_to_rts_db($009F06)
+    ; Align checkpoint table with the initial OW flags
+    jsr shared_set_checkpoints_from_initial_ow_flags
+endif ; not(!sram_feature)
+
     ; Initialize "No exit" flag.
-    lda.b #!no_exit_option : sta.w !ram_disable_exit
+    lda.b #!no_exit_option : sta.w !ram_disable_prompt_exit
 
     ; Initialize "No prompt box" flag.
-    lda.b #!no_prompt_box : sta.w !ram_disable_box
+    lda.b #!no_prompt_bg : sta.w !ram_disable_prompt_bg
 
     ; Initialize prompt position.
-    lda.b #!text_x_pos : sta.w !ram_prompt_x_pos
-    lda.b #!text_y_pos : sta.w !ram_prompt_y_pos
+if !prompt_type == 0
+    lda.b #!prompt_box_text_x_pos : sta.w !ram_prompt_x_pos
+    lda.b #!prompt_box_text_y_pos : sta.w !ram_prompt_y_pos
+else ; if not(!prompt_type == 0)
+    lda.b #!prompt_bar_text_x_pos : sta.w !ram_prompt_x_pos
+    lda.b #!prompt_bar_text_y_pos : sta.w !ram_prompt_y_pos
+endif ; !prompt_type == 0
 
     ; Initialize "midway powerup" flag.
     lda.b #!midway_powerup : sta.w !ram_midway_powerup
 
-if !sprite_status_bar
-    ; Initialize sprite status bar ram for intro level.
-    jsr sprite_status_bar_init_ram
-endif
-
 if !sram_feature
     ; Initialize the SRAM global variables
     jsr sram_load_global
-endif
+endif ; !sram_feature
 
     plb
     rtl

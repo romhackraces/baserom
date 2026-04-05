@@ -1,62 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<title>Frequently Asked Questions - Retry System UberASM</title>
-<meta name="author" content="KevinM, AmperSam">
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>Frequently Asked Questions - Retry System UberASM</title>
+	<meta name="author" content="KevinM, AmperSam">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
-
 <body>
-<h1>Frequently Asked Questions</h1>
-<br />
+<div class="box">
+	<h1>Frequently Asked Questions</h1>
+	<br/>
 
-<h4>Q: Can I insert this in a ROM where I've already inserted worldpeace's Retry patch?</h4>
-<p>A: No, doing so will result in an error when running UberASM Tool. First, you need to remove the original patch: either try to use the Unpatcher tool (at your own risk) or port your hack over to a new ROM.</p>
-<hr>
+	<h4 id="q1">Q: Can I use this to add fast Retry to a hack I'm playing that does not have it?</h4>
+	<p>A: In theory yes, but it has a high chance of failure. If the hack uses UberASM code of its own, patching this will remove it and break things. You can get a higher chance of success patching the original Retry patch, but it has been proven to break certain stuff (like changing how sprites spawn on level reload, since the hack wasn't designed with Retry). In general I wouldn't recommend editing someone else's hack: if you really want to save some time, just use save states.</p>
+	
+	<hr>
 
-<h4>Q: I noticed that you don't lose lives when dying/retrying a level. Is it possible to change that?</h4>
-<p>A: Yes. If you want to disable infinite lives, you can use the <code>!infinite_lives</code> global setting (see <a href="./settings_global.html#qol">Global Settings - Quality of Life Settings</a>). If you want to keep infinite lives just for specific levels, you can do so using the <code>%no_lose_lives</code> local setting (see <a href="./settings_local.html#no_lose_lives">Local Settings - %no_lose_lives</a>).</p>
-<hr>
+	<h4 id="q2">Q: Can I insert this in a ROM where I've already inserted worldpeace's Retry patch?</h4>
+	<p>A: No, doing so will result in an error when running UberASM Tool. First, you need to remove the original patch: either try to use the <a href="https://www.smwcentral.net/?p=section&a=details&id=17169">Unpatcher tool</a> (at your own risk) or port your hack over to a new ROM.</p>
+	
+	<hr>
+	
+	<h4 id="q3">Q: I noticed that you don't lose lives when dying/retrying a level. Is it possible to change that?</h4>
+	<p>A: Yes. If you want to disable infinite lives, you can use the <code>!infinite_lives</code> global setting (see <a href="./settings_global.html#qol">Global Settings - Quality of Life Settings</a>). If you want to keep infinite lives just for specific levels, you can do so using the <code>%no_lose_lives</code> local setting (see <a href="./settings_local.html#no_lose_lives">Local Settings - %no_lose_lives</a>).</p>
+	
+	<hr>
+	
+	<h4 id="q4">Q: Can I give the player a checkpoint automatically when entering a level?</h4>
+	<p>A: Yes. Look at the <a href="./settings_local.html#checkpoint">Local Settings - %checkpoint</a> page.</p>
+	<hr>
+	
+	<h4 id="q5">Q: Can I change the prompt type in specific sublevels?</h4>
+	<p>A: Yes. Look at the <a href="./settings_local.html#retry">Local Settings - %retry</a> page.</p>
+	
+	<hr>
+	
+	<h4 id="q6">Q: I saw some hacks use a different sound effect when dying. How do I change that?</h4>
+	<p>A: You can do so with the <code>!death_sfx</code> option in <u class="dir">settings_global.asm</u> (see <a href="./settings_global.html#sfx">Global Settings - SFX</a> for details). You can also find a custom death sfx file that replicates the vanilla death music intro under <u class="dir">resources/amk/sfx</u> (see <a href="./files.html#amk_resources">AddmusicK Resources</a> for details).</p>
+	
+	<hr>
+	
+	<h4 id="q7">Q: Can I change the prompt type in specific situations (not necessarily on a sublevel basis)?</h4>
+	<p>A: Yes. Additionally to the <code>effect</code> table, there's the <code>!retry_ram_prompt_override</code> address that, when set, will replace both the table and the default option (see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>).</p>
+	<p>For example, you could use it to let the player choose the prompt type as they want (you still have to implement that, though, as this only handles setting the prompt type).
+	
+	<hr>
+	
+	<h4 id="q8">Q: Can I keep the Retry prompt but remove the black box?</h4>
+	<p>A: Yes. Look at <code>!no_prompt_bg</code> in <u class="dir">retry_config/settings_global.asm</u>. You can also remove it only under certain circumstances by setting <code>!retry_ram_disable_prompt_bg</code> to <code>1</code> (for more info, see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>). For example, you can do it in a Level ASM init to make a level not have the option.</p>
+	
+	<hr>
+	
+	<h4 id="q9">Q: Can I keep the Retry prompt but remove the "exit" option?</h4>
+	<p>A: Yes. Look at <code>!no_exit_option</code> in <u class="dir">retry_config/settings_global.asm</u>. You can also remove it only under certain circumstances by setting <code>!retry_ram_disable_prompt_exit</code> to <code>1</code> (for more info, see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>). For example, you can do it in a Level ASM init to make a level not have the option.</p>
+	
+	<hr>
+	
+	<h4 id="q10">Q: Can I change where the prompt is shown on the screen?</h4>
+	<p>A: Yes. Depending on what type of Retry prompt you're using, you can use the <code>!prompt_box_text_x_pos</code> and <code>!prompt_box_text_y_pos</code> options or the <code>!prompt_bar_text_x_pos</code> and <code>!prompt_bar_text_y_pos</code> options in <u class="dir">retry_config/settings_global.asm</u>. For example, using X pos <code>$08</code> and Y pos <code>$CF</code> will place it on the lower left corner of the screen.</p>
+	<p>Additionally, you can also change it at runtime by writing to the <code>!retry_ram_prompt_x_pos</code> and <code>!retry_ram_prompt_y_pos</code> addresses (see <a href="./ram_map.html">RAM Map</a> for more info).</p>
+	<p>If you're using the prompt box and the black bg is enabled (<code>!no_prompt_bg = 0</code>), you're a bit more restricted in how much you can change the position. For once, the Y position shouldn't be changed, while the X should be kept in the confines of the black box (also accounting for how long the prompt text is).</p>
+	<p>If you're using the prompt bar and the black bg is enabled (<code>!no_prompt_bg = 0</code>), you can more freely change the position, but also make sure that you set <code>!prompt_bar_position</code> and <code>!prompt_bar_size</code> so that the text will be inside the bar (basically, <code>!prompt_bar_text_y_pos</code> should be <code>>= !prompt_bar_position</code> and <code>< !prompt_bar_position + !prompt_bar_size - 8</code>).</p>
+	
+	<hr>
 
-<h4>Q: Can I give the player a checkpoint automatically when entering a level?</h4>
-<p>A: Yes. Look at the <a href="./settings_local.html#checkpoint">Local Settings - %checkpoint</a> page.</p>
-<hr>
+	<h4 id="q11">Q: How do the position values work (for text position, sprite status bar, etc.)?</h4>
+	<p>A: Usually you can just try messing around with the values until they look right, but here's a short explanation.</p>
+	<p>All the position values refer to the position in pixels on the screen, where the up left corner is position X=0 Y=0. Higher values of X mean going more to the right, and higher values of Y means going downwards. This means that with the standard NTSC SMW, the max position is X=255 Y=239 (for the thing at that position to be still visible, although just for 1 pixel in the bottom right corner).</p>
+	<p>Note that the positions always refer to the first tile of a particular element (like in the text position, it refers to the cursor) and it will place the top left corner of that tile at the position specified.</p>
+	
+	<hr>
 
-<h4>Q: Can I change the prompt type in specific sublevels?</h4>
-<p>A: Yes. Look at the <a href="./settings_local.html#retry">Local Settings - %retry</a> page.</p>
-<hr>
-
-<h4>Q: I saw some hacks use a different sound effect when dying. How do I change that?</h4>
-<p>A: You can do so with the <code>!death_sfx</code> option in <u class="dir">settings_global.asm</u> (see <a href="./settings_global.html#sfx">Global Settings - SFX</a> for details). You can also find a custom death sfx file that replicates the vanilla death music intro under <u class="dir">resources/amk/sfx</u> (see <a href="./files.html#amk_resources">AddmusicK Resources</a> for details).</p>
-<hr>
-
-<h4>Q: Can I change the prompt type in specific situations (not necessarily on a sublevel basis)?</h4>
-<p>A: Yes. Additionally to the <code>effect</code> table, there's the <code>!ram_prompt_override</code> address that, when set, will replace both the table and the default option (see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>).</p>
-<p>For example, you could use it to let the player choose the prompt type as they want (you still have to implement that, though, as this only handles setting the prompt type).
-<p>Note that this address by default is never reset outside of title screen load.</p>
-<hr>
-
-<h4>Q: Can I keep the Retry prompt but remove the black box?</h4>
-<p>A: Yes. Look at <code>!no_prompt_box</code> in <u class="dir">retry_config/settings_global.asm</u>. You can also remove it only under certain circumstances by setting <code>!ram_disable_box</code> to 1 (for more info, see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>). For example, you can do it in a Level ASM init to make a level not have the option.</p>
-<p>Note that this address by default is never reset outside of title screen load.</p>
-<hr>
-
-<h4>Q: Can I keep the Retry prompt but remove the "exit" option?</h4>
-<p>A: Yes. Look at <code>!no_exit_option</code> in <u class="dir">retry_config/settings_global.asm</u>. You can also remove it only under certain circumstances by setting <code>!ram_disable_exit</code> to 1 (for more info, see <u class="dir">retry_config/ram.asm</u> and <a href="./ram_map.html">RAM Map</a>). For example, you can do it in a Level ASM init to make a level not have the option.</p>
-<p>Note that this address by default is never reset outside of title screen load.</p>
-<hr>
-
-<h4>Q: Can I change where the prompt is shown on the screen?</h4>
-<p>A: Yes. Look at <code>!text_x_pos</code> and <code>!text_y_pos</code> in <u class="dir">retry_config/settings_global.asm</u>. For example, using <code>!text_x_pos = $08</code> and <code>!text_y_pos = $D0</code> will place it on the lower left corner of the screen.</p>
-<p>Additionally, you can also change it at runtime by writing to the <code>!ram_prompt_x_pos</code> and <code>!ram_prompt_y_pos</code> addresses (see <a href="./ram_map.html">RAM Map</a> for more info).
-<p>Either way, if you want to change it you should disable the Retry box (either by setting <code>!no_prompt_box = 1</code> or by writing to <code>!ram_disable_box</code> at runtime) as its position can't be changed easily.
-</p>
-<hr>
-
-<br/><center><a href="./index.html">Return to main page</a></center>
+	<h4 id="q12">Q: Can I change the look of the prompt or sprite status bar tiles?</h4>
+	<p>A: Sure, you can freely edit all of the graphics used by Retry, which can be found under <u class="dir">retry_config/gfx</u>. For more details on the files found there, check out <a href="./files.html#gfx">Retry Resources - Graphics</a>.</p>
+</div>
 </body>
-
 </html>

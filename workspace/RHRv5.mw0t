@@ -1,38 +1,42 @@
-98 Enable Free Vertical Scroll
-99 Lock Horizontal Scroll
-9A Make Mario Invisible
-9B No Power-ups
-9C Enable 8-frame Cape Float
-9D Remove Cape Float Delay
-9E Disable Cape Flight
-9F Death on Power-up Loss
-A0 Press L & R To Die
-A1 Disable Screen Shake
-A2 Prevent Item Box Storage
-B0 Set Retry Type to Instant
-B1 Set Retry Type to Prompt
-B2 Set Retry Type to Vanilla
-B3 Bottom Left Retry Prompt
-B4 No Power Ups from Midways
-BA Display Sprite Timer
-BB Display Coins Counters
-BC Display Item Box
-C0 Start with a Mushroom
-C1 Start with Cape
-C2 Start with Fire Flower
-C3 Start with Star Power
-C4 Start on Green Yoshi
-C5 Start on Yellow Yoshi
-C6 Start on Blue Yoshi
-C7 Start on Red Yoshi
-C8 Start in Spin Jump State
-C9 Start in OFF State
-CA Start in ON State
-D0 Toggle Status Bar/HUD Display
-D1 Toggle Screen Scroll
-D2 Toggle Spin Jump Fireballs
-D3 Toggle Block Duplication
-D4 Toggle Springboard Fixes
-D5 Toggle Cape Turnaround
-D6 Toggle Rope Glitch
-D7 Toggle Spin Jump
+98	Enable Free Vertical Scroll
+99	Lock Horizontal Scroll
+9A	Make Mario Invisible
+9B	No Power-ups
+9C	Enable 8-frame Cape Float
+9D	Remove Cape Float Delay
+9E	Disable Cape Flight
+9F	Death on Power-up Loss
+A0	Press L & R To Die
+A1	Disable Screen Shake
+A2	Prevent Item Box Storage
+A3	Disable Score
+B0	Retry: Set Type to Instant
+B1	Retry: Set Type to Prompt
+B2	Retry: Set Type to Vanilla
+B3	Retry: Bottom Left Prompt Position
+B4	Retry: No Power Ups from Midways
+BA	Retry: Display Sprite Timer
+BB	Retry: Display Coins Counters
+BC	Retry: Display Item Box
+BD	Retry: Display Lives Counter
+BE	Retry: Display Bonus Stars Counter
+BF	Retry: Display Death Counter
+C0	Start with a Mushroom
+C1	Start with Cape
+C2	Start with Fire Flower
+C3	Start with Star Power
+C4	Start on Green Yoshi
+C5	Start on Yellow Yoshi
+C6	Start on Blue Yoshi
+C7	Start on Red Yoshi
+C8	Start in Spin Jump State
+C9	Start in OFF State
+CA	Start in ON State
+D0	Toggle Status Bar/HUD Display
+D1	Toggle Screen Scroll
+D2	Toggle Spin Jump Fireballs
+D3	Toggle Block Duplication
+D4	Toggle Springboard Fixes
+D5	Toggle Cape Turnaround
+D6	Toggle Rope Glitch
+D7	Toggle Spin Jump

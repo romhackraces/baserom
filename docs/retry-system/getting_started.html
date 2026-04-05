@@ -4,24 +4,14 @@
 	<title>Getting Started - Retry System UberASM</title>
 	<meta name="author" content="KevinM, AmperSam">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<link rel="stylesheet" type="text/css" href="./styles/getting_started.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
-<style>
-	#hierarchy {
-		margin: 1em 0;
-		font-family: monospace;
-		font-size: 1.09em;
-	}
-	.folder, .file {
-		display: block;
-		padding: 0 0 0 2em;
-	}
-	.file {
-		display: inline;
-	}
-</style>
 <body>
+<div class="box">
 	<h1>Getting Started</h1>
 	<p>This section will help install the Retry System for your project.</p>
 
@@ -35,7 +25,7 @@
 	<br/>
 
 	<h3 id="uberasm_tool">Download UberASM Tool</h3>
-	<p>The first step is to download <a href="https://smwc.me/s/36986">UberASM Tool</a>, which is the tool used to insert Retry and many other resources. Note that you need to use UberASM Tool version 2.0 or higher to insert Retry.</p>
+	<p>The first step is to download <a href="https://smwc.me/s/39036">UberASM Tool</a>, which is the tool used to insert Retry and many other resources. Note that you need to use UberASM Tool version 2.1 or higher to insert Retry (and the <u class="dir">asar.dll</u> in it must be 1.90 or higher, which is what is included in the tool by default).</p>
 	<br/>
 
 	<h3 id="copy_files">Copy Retry Files into Project</h3>
@@ -44,7 +34,7 @@
 	<p>If you instead want to do it manually, follow these steps:</p>
 	<ul>
 		<li>Copy the <u class="dir">retry.asm</u> file from the <u class="dir">src/library</u> folder into UberASM Tool's <u class="dir">library</u> folder.</li>
-		<li>Copy all the files from the <u class="dir">src/gamemode</u> folder into UberASM Tool's <u class="dir">gamemode</u> folder.</li>
+		<li>Copy the <u class="dir">retry_gm.asm</u> file from the <u class="dir">src/gamemode</u> folder into UberASM Tool's <u class="dir">gamemode</u> folder.</li>
 		<li>Copy the <u class="dir">src/retry_config</u> into UberASM Tool's top folder.</li>
 	</ul>
 	<p>After running the script or copying the files manually, your UberASM Tool folder structure should look like this:
@@ -52,7 +42,7 @@
 			<div class="folder">UberASM Tool Folder
 			<span class="folder">├─&nbsp;asm</span>
 			<span class="folder">├─&nbsp;gamemode</span>
-			<span class="folder">│<span class="file">└─&nbsp;<b>retry_gm*.asm</b></span></span>
+			<span class="folder">│<span class="file">└─&nbsp;<b>retry_gm.asm</b></span></span>
 			<span class="folder">├─&nbsp;level</span>
 			<span class="folder">├─&nbsp;library</span>
 			<span class="folder">│<span class="file">└─&nbsp;<b>retry.asm</b></span></span>
@@ -60,7 +50,7 @@
 			<span class="folder">├─&nbsp;overworld</span>
 			<span class="folder">├─&nbsp;<b>retry_config</b></span>
 			<span class="folder">├─&nbsp;retry_old_backup <i>(only present if old Retry backed up by install script)</i></span>
-			<span class="folder">├─&nbsp;routines <i>(only present in UberASM Tool 2.0+)</i></span>
+			<span class="folder">├─&nbsp;routines</span>
 			<span class="folder">├─&nbsp;...</span>
 			</div>
 		</div>
@@ -70,23 +60,13 @@
 	<h3 id="insert_files">Insert Files with UberASM Tool</h3>
 	<p>Now that the Retry files are in place, you need to tell UberASM Tool to insert them in your rom.</p>
 	<ul>
-		<li>Copy these lines into UberASM Tool's <u class="dir">list.txt</u> file:
+		<li>Copy this line into UberASM Tool's <u class="dir">list.txt</u> file, under <code>gamemode:</code>:
 <pre>
-gamemode:
-	00 retry_gm00.asm
-	06 retry_gm06.asm
-	07 retry_gm07.asm
-	0C retry_gm0C.asm
-	0D retry_gm0D.asm
-	0F retry_gm0F.asm
-	10 retry_gm10.asm
-	11 retry_gm11.asm
-	12 retry_gm12.asm
-	13 retry_gm13.asm
-	14 retry_gm14.asm
-	15 retry_gm15.asm
-	16 retry_gm16.asm
-	19 retry_gm19.asm
+	* retry_gm.asm
+</pre>
+		<b>Note</b>: if you already have something for <code>*</code> under <code>gamemode:</code>, just add it with a comma like this:
+<pre>
+	* your_stuff.asm,retry_gm.asm
 </pre>
 		</li>
 		<li>Make sure you have edited at least one level in Lunar Magic.</li>
@@ -97,7 +77,7 @@ gamemode:
 	<h3 id="further_steps">Further Steps</h3>
 	<p>Now Retry is inserted in your rom, so if you start a new game and die in a level, you should see the Retry prompt pop up (since it is the default configuration). To customize it, you need to edit the configuration files in the <u class="dir">retry_config</u> folder. When you make changes, you can just run UberASM Tool again to see them applied in the game.</p>
 	<p>For more information about the customization options, check out the <a href="./index.html#config">Configuration</a> section.</p>
-
-	<br/><center><a href="./index.html">Return to main page</a></center>
+    <p>Note that the first time you apply Retry to your hack, you need to start from a fresh save file (don't load a save file or save state that you created before inserting Retry), otherwise the save won't work and it will show an error message in the game.</p>
+</div>
 </body>
 </html>

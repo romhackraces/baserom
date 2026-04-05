@@ -4,7 +4,12 @@
 
 pushpc
 
+; This is the vanilla routine
 org $05B30E
+    jsl switch_palace_message_fix
+
+; This is the Lunar Magic routine that's mostly a copy of the vanilla routine
+org $03BC72
     jsl switch_palace_message_fix
 
 pullpc

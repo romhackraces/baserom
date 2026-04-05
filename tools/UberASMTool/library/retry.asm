@@ -1,33 +1,47 @@
-namespace nested off
+; Define used for some conditional compilation for exportable code
+!retry_source = 1
 
-; Macros to load files easily.
+; Macro to load files and namespace them easily.
+; This one inserts the file in the same bank.
 macro incsrc(folder,file)
     namespace <file>
         incsrc "../retry_config/<folder>/<file>.asm"
     namespace off
 endmacro
 
-macro incbin(folder,file)
-    incbin "../retry_config/<folder>/<file>.bin"
+; Macro to load files and namespace them easily.
+; This one inserts the file in a separate bank.
+macro incsrc_ex(folder,file)
+    namespace <file>
+        %prot_source("./retry_config/<folder>/<file>.asm", <file>)
+    namespace off
 endmacro
 
-;=====================================
-; Load shared settings and defines.
-;=====================================
-    %incsrc(code/include,defines)
+; Label used in retry_gm.asm
+empty:
+    rtl
+
+;===============================================================================
+; Load shared settings, defines and resources.
+;===============================================================================
+    %incsrc(code/include,defines_static)
     %incsrc(code/include,misc)
     %incsrc(code/include,rom)
     %incsrc("",ram)
     %incsrc("",settings_global)
+    %incsrc("",prompt_tilemap)
+    %incsrc(code/include,defines_dynamic)
+    %incsrc(code/include,gfx)
     
-;=====================================
+;===============================================================================
 ; Check incompatibilities.
-;=====================================
+;===============================================================================
     %incsrc(code,check_incompatibilities)
 
-;=====================================
-; Load the Retry tables.
-;=====================================
+;===============================================================================
+; Load the user tables.
+;===============================================================================
+    %incsrc(code/include,ssb_tables)
 if !use_legacy_tables
     %incsrc(legacy,tables)
 else
@@ -35,46 +49,16 @@ else
     %incsrc("",settings_local)
 endif
 if !sram_feature
-    %incsrc("",sram_tables)
+    %incsrc_ex("",sram_tables)
 endif
 
-;=====================================
-; Load the letters gfx.
-;=====================================
-retry_gfx:
-.box:
-    %incbin(gfx,letters1)
-.no_box:
-    %incbin(gfx,letters2)
-if !sprite_status_bar
-.digits:
-    %incbin(gfx,digits)
-.coins:
-    %incbin(gfx,coins)
-.timer:
-    %incbin(gfx,timer)
-.lives:
-    %incbin(gfx,lives)
-.bonus_stars:
-    %incbin(gfx,bonus_stars)
-.item_box:
-if !8x8_item_box_tile
-    %incbin(gfx,item_box_8x8)
-else
-    %incbin(gfx,item_box_16x16)
-endif
-if !draw_retry_indicator
-.indicator:
-    %incbin(gfx,indicator)
-endif
-endif
-
-;=====================================
-; Load the ASM files.
-;=====================================
+;===============================================================================
+; Load the code.
+;===============================================================================
     %incsrc(code,shared)
-    %incsrc("",extra)
+    %incsrc_ex("",extra)
     %incsrc(code,startup)
+    %incsrc(code,counterbreak)
     %incsrc(code,fade_to_level)
     %incsrc(code,level_init_1)
     %incsrc(code,level_init_2)
@@ -89,19 +73,21 @@ endif
     %incsrc(code,time_up)
     %incsrc(code,sprite_status_bar)
     %incsrc(code,api)
+    %incsrc(code/fail,fail)
 
-;=====================================
+;===============================================================================
 ; Load the hijacks.
-;=====================================
+;===============================================================================
     %incsrc(code/hijacks,hex_edits)
     %incsrc(code/hijacks,multiple_midways)
     %incsrc(code/hijacks,vanilla_midway)
     %incsrc(code/hijacks,custom_midway)
     %incsrc(code/hijacks,sram)
     %incsrc(code/hijacks,hurry_up)
-    %incsrc(code/hijacks,death_counter)
+    %incsrc(code/hijacks,death_counter_vanilla)
     %incsrc(code/hijacks,initial_facing_fix)
     %incsrc(code/hijacks,item_box_fix)
     %incsrc(code/hijacks,remove_status_bar)
-    %incsrc(code/hijacks,vanilla_boss_gm13)
+    %incsrc(code/hijacks,mode7_bosses_fixes)
     %incsrc(code/hijacks,switch_palace_message_fix)
+    %incsrc(code/hijacks,ow_no_reset_rng)

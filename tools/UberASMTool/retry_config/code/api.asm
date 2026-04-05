@@ -1,49 +1,54 @@
-;================================================
+;===============================================================================
 ; Routines that can be called by external UberASM files
-;================================================
+;===============================================================================
 
-;================================================
-; Routine to respawn in the level (at the current checkpoint),
-; effectively the same as dying and hitting Retry, or dying with
-; instant Retry enabled.
+;===============================================================================
+; Routine to make the player respawn in the current level at the last
+; checkpoint. This has the same effect as dying and hitting Retry, or dying with
+; instant Retry enabled, but skipping everything related to death (animation,
+; music, prompt, life loss, etc.).
 ;
 ; Inputs: N/A
 ; Outputs: N/A
 ; Pre: A/X/Y 8 bits
 ; Post: A/X/Y 8 bits
-; Example: JSL retry_api_respawn_in_level
-;================================================
-respawn_in_level:
-    jml in_level_main_dying_respawn
+; Example: JSL retry_api_respawn
+;===============================================================================
+respawn:
+%deprecated(respawn_in_level)
+    jsl in_level_main_dying_respawn
+    jsr in_level_death_routine_no_game_over
+    rtl
 
-;================================================
-; Routine to save the game, which will also save the addresses
-; defined in the "sram_tables.asm" file (including those under ".global").
+;===============================================================================
+; Routine to save the game, which will also save the addresses defined in the
+; "sram_tables.asm" file (including those under ".global").
 ;
 ; Inputs: N/A
 ; Outputs: N/A
 ; Pre: N/A
 ; Post: A/X/Y 8 bits, DB/X/Y preserved
 ; Example: JSL retry_api_save_game
-;================================================
+;===============================================================================
 save_game:
     jsr shared_save_game
     rtl
 
-;================================================
-; Routine to save the global variables to SRAM, meaning just
-; the addresses found under ".global" in the "sram_tables.asm" file.
-; This can be useful if you need to update the global variables outside
-; of a save file (e.g. on the title screen) or if you want to save them
-; without saving the file specific addresses.
+;===============================================================================
+; Routine to save the global variables to SRAM, meaning just the addresses found
+; under ".global" in the "sram_tables.asm" file.
+; This can be useful if you need to update the global variables outside of a
+; save file (e.g. on the title screen) or if you want to save them without
+; saving the file specific addresses.
 ;
 ; Inputs: N/A
 ; Outputs: N/A
 ; Pre: N/A
 ; Post: A clobbered, DB/X/Y/P preserved, $02-$0B clobbered
-; Example: JSL retry_api_save_global_variables
-;================================================
-save_global_variables:
+; Example: JSL retry_api_save_global_vars
+;===============================================================================
+save_global_vars:
+%deprecated(save_global_variables)
 if !sram_feature
     ; Preserve DB, X, Y, P.
     phb : phk : plb
@@ -55,39 +60,40 @@ if !sram_feature
     ; Restore DBR, P, X and Y.
     plp : ply : plx
     plb
-endif
+endif ; !sram_feature
     rtl
 
-;================================================
-; Routine to remove the current level's checkpoint, meaning
-; entering it again will load the main sublevel's entrance.
-; Note: this can be also called outside of a level if you want to
-; reset a specific level's checkpoint. Just make sure that $13BF
-; has the level number you want before calling this.
+;===============================================================================
+; Routine to remove the current level's checkpoint, meaning entering it again
+; will load the main sublevel's entrance.
+; Note: this can be also called outside of a level if you want to reset a
+; specific level's checkpoint. Just make sure that $13BF has the level number
+; you want before calling this.
 ;
 ; Inputs: N/A
 ; Outputs: N/A
 ; Pre: A/X/Y 8 bits
 ; Post: A/X/Y 8 bits, DB/X/Y preserved
-; Example: JSL retry_api_reset_level_checkpoint
-;================================================
-reset_level_checkpoint:
+; Example: JSL retry_api_reset_cp
+;===============================================================================
+reset_cp:
+%deprecated(reset_level_checkpoint)
     jsr shared_reset_checkpoint
     rtl
 
-;================================================
-; Routine to remove all levels checkpoints, effectively resetting
-; their state as if it were a new game. If you're saving the CPs
-; to SRAM, you'll need to call the save game routine afterwards to
-; also reset the CPs state in SRAM.
+;===============================================================================
+; Routine to remove all levels checkpoints, effectively resetting their state
+; as if it were a new game. If you're saving the CPs to SRAM, you'll need to
+; call the save game routine afterwards to also reset the CPs state in SRAM.
 ;
 ; Inputs: N/A
 ; Outputs: N/A
 ; Pre: N/A
 ; Post: A/X/Y size preserved, DB/X/Y preserved
-; Example: JSL retry_api_reset_all_checkpoints
-;================================================
-reset_all_checkpoints:
+; Example: JSL retry_api_reset_all_cps
+;===============================================================================
+reset_all_cps:
+%deprecated(reset_all_checkpoints)
     ; A/X/Y 8 bits
     phx : phy : php
     sep #$30
@@ -115,62 +121,108 @@ reset_all_checkpoints:
     plp : ply : plx
     rtl
 
-;================================================
-; Routine to configure which tiles will be used by the sprite status
-; bar. You can configure these elements: item box, timer, coin
-; counter, lives counter and bonus stars counter. Each element needs a
-; 16x16 sprite tile to be reserved.
-; This routine should be called in UberASM level init code, to overwrite
-; the default settings from "settings_global.asm", in case you want
-; to hide some or all of the elements in some level or if you need to
-; change their tile or palette.
-; Each element needs a 16 bit value that determines which 16x16 tile
-; it will use and what palette to use. The first digit is the palette
-; row to use (8-F), while the other 3 digits are the tile number
-; (000-1FF). If an element is set to $0000, it won't be displayed.
-; For the coin counter, you can add $0200 to the value to only display
-; dragon coins, or add $0400 to only display coins.
+;===============================================================================
+; Routine to configure which tiles will be used by the sprite status bar.
+; You can configure these elements: item box, timer, coin counter, lives
+; counter, bonus stars counter and death counter. Each element needs a 16x16
+; sprite tile to be reserved.
+; This routine should be called in UberASM level init code (or in main if you
+; need to unhide elements during the level), to overwrite the default settings
+; from "settings_global.asm" and the level settings from "settings_local.asm",
+; in case you want to hide some or all of the elements in some level or if you
+; need to change their tile or palette.
+; Each element needs a 16 bit value that determines which 16x16 tile it will use
+; and what palette to use. The first digit is the palette row to use (8-F),
+; while the other 3 digits are the tile number (000-1FF). If an element is set
+; to $0000, it won't be displayed.
+; For the coin counter, you can add $0200 to the value to only display dragon
+; coins, or add $0400 to only display coins.
+; Note: for a more convenient way to configure the sprite status bar, you can
+;       use the %ssb_config commands in "settings_local.asm". This routine is
+;       still useful to unhide elements during a level.
 ;
-; Inputs: for each item, in order, you write the value after the JSL
-;         in the format described above (see example)
+; Inputs: for each item, in order, you write the value after the JSL in the
+;         format described above (see example).
 ; Outputs: N/A
 ; Pre: N/A
 ; Post: A/X/Y 8 bit and clobbered, DB preserved
 ; Example:
-;     JSL retry_api_configure_sprite_status_bar
+;     JSL retry_api_cfg_ssb
 ;     dw $B080 ; Item box: palette B, tile 0x80
 ;     dw $8088 ; Timer: palette 8, tile 0x88
 ;     dw $80C2 ; Coin counter: palette 8, tile 0xC2
 ;     dw $0000 ; Lives counter: hidden
 ;     dw $0000 ; Bonus stars counter: hidden
+;     dw $0000 ; Death counter: hidden
 ;     ... <- your code will continue here after the JSL
-;================================================
-configure_sprite_status_bar:
+;===============================================================================
+cfg_ssb:
+%deprecated(configure_sprite_status_bar)
 if !sprite_status_bar
     phb
     ; Set DBR equal to caller routine bank
     sep #$30
     lda $04,s : pha : plb
-    ; Use Y to read address after the routine call
+    ; Use Y to read addresses after the routine call
     rep #$30
     lda $02,s : tay
     ; Copy the values from after the JSL to sprite status bar ram
-    lda $0001,y : and #$7FFF : sta !ram_status_bar_item_box_tile
-    lda $0003,y : and #$7FFF : sta !ram_status_bar_timer_tile
-    lda $0005,y : and #$7FFF : sta !ram_status_bar_coins_tile
-    lda $0007,y : and #$7FFF : sta !ram_status_bar_lives_tile
-    lda $0009,y : and #$7FFF : sta !ram_status_bar_bonus_stars_tile
+    ; Also set the force upload flag if some element got unhidden
+    !_stack #= $0001
+    macro _store(name)
+        lda !ram_status_bar_<name>_tile : bne ?+
+        lda.w !_stack,y : and #$7FFF : beq ?+
+        sep #$20
+        lda #$01 : sta !ram_status_bar_force_upload
+        rep #$20
+    ?+  lda.w !_stack,y : and #$7FFF : sta !ram_status_bar_<name>_tile
+        !_stack #= !_stack+2
+    endmacro
+    %_store(item_box)
+    %_store(timer)
+    %_store(coins)
+    %_store(lives)
+    %_store(bonus_stars)
+    %_store(death)
+    ; Compile time check to make sure we're managing all of the parameters and
+    ; that the !ssb_elements_number define is correct
+    assert (!_stack-1)/2 == !ssb_elements_number, "Align configure_sprite_status_bar and \!ssb_elements_number!"
+    undef "_stack"
     plb
-endif
+endif ; endif !sprite_status_bar
     ; Make sure the code returns at the right place
     rep #$20
-    lda $01,s : clc : adc.w #2*5 : sta $01,s
+    lda $01,s : clc : adc.w #2*!ssb_elements_number : sta $01,s
     sep #$30
     rtl
 
-;================================================
-; Routine to get the current Retry type, i.e. if currently the level is
-; set to have Retry prompt, instant Retry or no Retry.
+;===============================================================================
+; Routine to hide the status bar for the current level. This routine should be
+; called in UberASM level init code, or in main if you need to hide elements
+; during a level.
+; Note: for a more convenient way to hide the sprite status bar, you can use the
+;       %ssb_hide commands in "settings_local.asm". This routine is still useful
+;       to hide elements during a level.
+;
+; Inputs: N/A
+; Outputs: N/A
+; Pre: N/A
+; Post: A/X/Y 8 bit and clobbered, DB preserved
+; Example:
+;     JSL retry_api_hide_ssb
+;===============================================================================
+hide_ssb:
+%deprecated(hide_sprite_status_bar)
+if !sprite_status_bar
+    jsl cfg_ssb : %dwn(0,!ssb_elements_number)
+    ; Make sure we don't upload anything
+    lda #$00 : sta !ram_status_bar_force_upload
+endif ; !sprite_status_bar
+    rtl
+
+;===============================================================================
+; Routine to get the current Retry type, i.e. if currently the level is set to
+; have Retry prompt, instant Retry or no Retry.
 ; The returned value has this format:
 ; - $01 = Retry prompt enabled & play the death song when the player dies
 ; - $02 = Retry prompt enabled & play only the death sfx when the player dies
@@ -183,22 +235,48 @@ endif
 ; Pre: A 8 bits
 ; Post: A/X/Y size preserved, DB/X/Y preserved
 ; Example: JSL retry_api_get_retry_type
-;================================================
+;===============================================================================
 get_retry_type:
     jsr shared_get_prompt_type
     rtl
 
-;================================================
+;===============================================================================
+; Routine to get check if a save file is empty.
+;
+; Inputs: save file to check in $010A|!addr (0 = save file 1, 1 = save file
+;         2, 2 = save file 3, behavior undefined for other values)
+; Outputs: Carry set = save file empty
+;          Carry clear = save file not empty
+; Pre: A 8 bits
+; Post: A/X/Y 8 bit and clobbered, DB preserved
+; Example:
+;         LDA #$02 ; Check save file 3
+;         STA $010A|!addr
+;         JSL retry_api_is_save_file_empty
+;         BCS empty
+;     not_empty:
+;         ...
+;     empty:
+;         ...
+;===============================================================================
+is_save_file_empty:
+    jsr shared_is_save_file_empty
+    rtl
+
+;===============================================================================
 ; Routine to get the address in SRAM for a specific variable.
 ; By "variable" it's meant any of the RAM addresses that are saved to SRAM
 ; specified in the sram save table.
-; If not searching for a variable under ".global", the returned address will
-; be coherent with the current save file loaded when this routine is called
-; (so, make sure to not call it before a save file is loaded if not looking
-; for a global variable).
-; This could be useful to read/write values in SRAM directly, for example
-; if you need to update some SRAM value without the game being saved.
-; Note: this will always return "variable not found" if !sram_feature = 0.
+; If not searching for a variable under ".global", the variable will be searched
+; in the currently loaded save file. If calling this before a save file is
+; loaded (e.g. the title screen), you need to specify the save file to look into
+; by setting the $010A|!addr address (0 = save file 1, 1 = save file 2, 2 = save
+; file 3, behavior undefined for other values).
+; This could be useful to read/write values in SRAM directly, for example if you
+; need to update some SRAM value without the game being saved, or if you need to
+; display something on the title screen depending on the save file data.
+; Note: this will always return "variable not found" if !sram_feature = 0 or if
+; the chosen save file is empty (for local variables).
 ;
 ; Inputs: variable address to search for in ROM right after the JSL
 ;         This means the call should look like this:
@@ -211,18 +289,30 @@ get_retry_type:
 ;            LDA/STA [$00] and LDA/STA [$00],y instructions.
 ; Pre: N/A
 ; Post: A/X/Y 8 bit and clobbered, DB preserved
-; Example:
-;         JSL retry_api_get_sram_variable_address
+; Example 1 (file already loaded):
+;         JSL retry_api_get_sram_var
 ;         dl retry_ram_death_counter ; Variable to search for
-;         BCS not_found
+;         BCS error
 ;     found:
 ;         LDY #$01
 ;         LDA #$09
 ;         STA [$00],y ; Set second death counter digit in SRAM to 9
-;     not_found:
+;     error:
 ;         ...
-;================================================
-get_sram_variable_address:
+;
+; Example 2 (on title screen):
+;         LDA #$01 ; $01 = search in save file 2
+;         STA $010A|!addr
+;         JSL retry_api_get_sram_var
+;         dl retry_ram_death_counter ; Variable to search for
+;         BCS empty_file
+;         LDA [$00] ; Get first death counter digit of save file 2
+;         ...
+;     empty_file:
+;         ...
+;===============================================================================
+get_sram_var:
+%deprecated(get_sram_variable_address)
 if !sram_feature
     phb
     ; Set DBR equal to caller routine bank
@@ -245,13 +335,15 @@ if !sram_feature
     jsr sram_get_global_sram_addr
     bra ..shared
 ..local:
-    ; If local, get the save file SRAM address
+    ; If local and the save file is empty, return not found
+    jsl is_save_file_empty : bcs .not_found
+    ; Otherwise, get the save file SRAM address
     jsr sram_get_file_sram_addr
 ..shared:
     ; Add the calculated offset to the SRAM address
     clc : adc $00 : sta $00
     sep #$20
-    lda.b #!sram_addr>>16 : sta $02
+    lda.b #!sram_bank : sta $02
     ; Clear carry (address found)
     clc
     bra .return
@@ -278,11 +370,11 @@ if !sram_feature
     lda $01,s : inc #3 : sta $01,s
     sep #$30
     rtl
-else
+else ; if not(!sram_feature)
     ; Make sure the code returns at the right place
     rep #$20
     lda $01,s : clc : adc #$0003 : sta $01,s
     ; Set carry (address not found)
     sep #$31
-endif
+endif ; !sram_feature
     rtl

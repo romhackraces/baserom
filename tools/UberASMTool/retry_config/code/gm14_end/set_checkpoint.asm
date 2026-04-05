@@ -12,7 +12,7 @@ set_checkpoint:
 
 if !save_on_checkpoint
     jsr shared_save_game
-endif
+endif ; !save_on_checkpoint
 
     ; Always reload the samples, just to be safe.
     lda #$FF : sta !ram_music_backup

@@ -25,6 +25,7 @@ patches = [
     "{patches_folder}/enhancements/squished_rex_extra_bit.asm",
     "{patches_folder}/enhancements/triple_ball_n_chain.asm",
     "{patches_folder}/features/dragon_coin_save.asm",
+    "{patches_folder}/features/ram_toggled_score_sprites.asm",
     "{patches_folder}/features/ram_toggled_screen_scroll.asm",
     "{patches_folder}/features/ram_toggled_spin_jump.asm",
     "{patches_folder}/features/ram_toggled_spin_jump_fireballs.asm",

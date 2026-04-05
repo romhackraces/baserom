@@ -7,7 +7,7 @@ if !pipe_entrance_freeze < 2
     cmp #$07 : bcs +
     lda.b #!pipe_entrance_freeze : sta $9D
 +
-endif
+endif ; !pipe_entrance_freeze < 2
 
     ; If goal walk is in progress, reset the music to play.
     ; This ensures the song will be reloaded if dying and respawning in the same sublevel.
@@ -19,7 +19,7 @@ if !room_cp_sfx != $00
     lda !ram_play_sfx : beq +
     lda.b #!room_cp_sfx : sta !room_cp_sfx_addr|!addr
 +
-endif
+endif ; !room_cp_sfx != $00
 
     ; If AMK is inserted, send the disable/enable SFX echo command
     ; depending on the current sublevel's sfx_echo setting.
@@ -35,7 +35,7 @@ endif
     ; Reset DSX sprites.
 if !reset_dsx
     stz $06FE|!addr
-endif
+endif ; !reset_dsx
 
     ; Reset vanilla Boo rings.
 if !reset_boo_rings == 2
@@ -43,7 +43,7 @@ if !reset_boo_rings == 2
     stz $0FAE|!addr
     stz $0FB0|!addr
     sep #$20
-endif
+endif ; !reset_boo_rings == 2
 
     ; Reset timer frame counter
     lda.l !rom_timer_ticks : sta $0F30|!addr
@@ -89,12 +89,12 @@ if !sprite_status_bar
     ; Initialize and draw the status bar during the fadein
     jsr sprite_status_bar_init
     jsr sprite_status_bar_main
-endif
+endif ; !sprite_status_bar
 
 main:
 if !fast_transitions
     ; Reset the mosaic timer.
     stz $0DB1|!addr
-endif
+endif ; !fast_transitions
 
     rtl

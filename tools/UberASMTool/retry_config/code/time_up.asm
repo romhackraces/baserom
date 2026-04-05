@@ -11,7 +11,7 @@ if !time_up_fix
 
     ; If so, go to the Overworld directly.
     lda #$0B : sta $0100|!addr
-endif
+endif ; !time_up_fix
 
 .return:
     rtl

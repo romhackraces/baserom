@@ -4,13 +4,16 @@
 	<title>Retry API - Retry System UberASM</title>
 	<meta name="author" content="KevinM">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
 <body>
+<div class="box">
 	<h1>Retry API</h1>
 	<p>"Retry API" refers to a collection of routines that Retry provides that you can call from your UberASM files if needed.</p>
-	<p><b>NOTE:</b> calling these routines from files in the "library" folder will result in an error, at least when using the standard UberASMTool.</p>
+	<p><u class="warn">NOTE:</u> calling these routines from files in the <u class="dir">library</u> folder will result in an error, at least when using the standard UberASMTool.</p>
 
 	<h3>Index</h3>
 	<ul>
@@ -20,14 +23,16 @@
 		<li><a href="#reset_level_checkpoint">Reset level checkpoint</a></li>
 		<li><a href="#reset_all_checkpoints">Reset all checkpoints</a></li>
 		<li><a href="#configure_sprite_status_bar">Configure sprite status bar</a></li>
+		<li><a href="#hide_sprite_status_bar">Hide sprite status bar</a></li>
 		<li><a href="#get_retry_type">Get Retry type</a></li>
+		<li><a href="#is_save_file_empty">Is save file empty</a></li>
 		<li><a href="#get_sram_variable_address">Get SRAM variable address</a></li>
 	</ul>
 	<br/>
 
 	<h3 id="respawn_in_level">Respawn in level</h3>
-	<p><code>JSL retry_api_respawn_in_level</code></p>
-	<p>Call this to make the player respawn in the current level at the last checkpoint. This has the same effect as dying and hitting Retry, or dying with instant Retry enabled, but skipping everything related to death (animation, music, prompt, etc.).</p>
+	<p><code>JSL retry_api_respawn</code></p>
+	<p>Call this to make the player respawn in the current level at the last checkpoint. This has the same effect as dying and hitting Retry, or dying with instant Retry enabled, but skipping everything related to death (animation, music, prompt, life loss, etc.).</p>
 	<ul>
 		<li>Inputs: <code>N/A</code></li>
 		<li>Outputs: <code>N/A</code></li>
@@ -48,7 +53,7 @@
 	<br/>
 
 	<h3 id="save_global_variables">Save global variables</h3>
-	<p><code>JSL retry_api_save_global_variables</code></p>
+	<p><code>JSL retry_api_save_global_vars</code></p>
 	<p>Routine to save the global variables to SRAM, meaning just the addresses found under <code>.global</code> in the <code>sram_tables.asm</code> file.</p>
 	<p>This can be useful if you need to update the global variables outside of a save file (e.g. on the title screen) or if you want to save them without saving the file specific addresses.</p>
 	<ul>
@@ -60,9 +65,9 @@
 	<br/>
 
 	<h3 id="reset_level_checkpoint">Reset level checkpoint</h3>
-	<p><code>JSL retry_api_reset_level_checkpoint</code></p>
+	<p><code>JSL retry_api_reset_cp</code></p>
 	<p>Call this to reset the checkpoint in the current level. Entering the level again or respawning will load the main sublevel's entrance. Note that this won't reflect to SRAM until the game is saved.</p>
-	<p><b>NOTE</b>: this can be also called outside of a level if you want to reset a specific level's checkpoint. Just make sure that <code>$13BF</code> has the level number you want before calling this.</p>
+	<p><u class="warn">NOTE:</u> this can be also called outside of a level if you want to reset a specific level's checkpoint. Just make sure that <code>$13BF</code> has the level number you want before calling this.</p>
 	<ul>
 		<li>Inputs: <code>N/A</code></li>
 		<li>Outputs: <code>N/A</code></li>
@@ -72,7 +77,7 @@
 	<br/>
 
 	<h3 id="reset_all_checkpoints">Reset all checkpoints</h3>
-	<p><code>JSL retry_api_reset_all_checkpoints</code></p>
+	<p><code>JSL retry_api_reset_all_cps</code></p>
 	<p>Call this to reset the checkpoint for every level in the game, effectively making it as if it were a fresh game. Note that this won't reflect to SRAM until the game is saved.</p>
 	<ul>
 		<li>Inputs: <code>N/A</code></li>
@@ -83,8 +88,10 @@
 	<br/>
 
 	<h3 id="configure_sprite_status_bar">Configure sprite status bar</h3>
-	<p><b>NOTE</b>: this routine has no effect unless <code>!sprite_status_bar = 1</code> in <code>settings_global.asm</code>.</p>
-	<p>Call this in UberASM level init code to configure graphics for the sprite status bar items (item box, timer, coin counter, lives counter, bonus stars counter) for a specific level. Calling this will override the default settings found in <code>settings_global.asm</code>, in case you want to hide some or all of the elements in some level or if you need to change their tile or palette.</p>
+	<p><code>JSL retry_api_cfg_ssb</code></p>
+	<p><u class="warn">NOTE:</u> for a more convenient way to configure the sprite status bar, check out <a href="./settings_local.html#ssb">Local Settings - Configure Sprite Status Bar</a>. This routine is still useful if you need to unhide elements of the status bar during the level.</p>
+	<p><u class="warn">NOTE:</u> this routine has no effect unless <code>!sprite_status_bar = 1</code> in <code>settings_global.asm</code>.</p>
+	<p>Call this in UberASM level init code to configure graphics for the sprite status bar items (item box, timer, coin counter, lives counter, bonus stars counter, death counter) for a specific level. Calling this will override the default settings found in <code>settings_global.asm</code> and the level settings found in <code>settings_local.asm</code>, in case you want to hide some or all of the elements in some level or if you need to change their tile or palette. You can also call it in main if you need to unhide elements during a level.</p>
 	<p>Each item's configuration is set with a 16 bit value <code>$PTTT</code>. The first digit <code>P</code> will be the item's palette, starting from palette 8 with <code>P = 8</code> and ending with palette F with <code>P = F</code>. <code>TTT</code> will determine the tile number: you can see this in Lunar Magic's "8x8 Tile Editor" if you hover over the desired tile (more specifically, the upper left 8x8 tile of the 16x16 tile you want to use). In the bottom bar you'll see "Tile 0xYYY": then, <code>TTT = YYY - $400</code>. For example, the Smiling Coin tile is "Tile 0x4C2", which results in <code>TTT = $4C2 - $400 = $0C2</code>. So, for example, to reserve that tile and use palette F, the full value will be <code>$F0C2</code>.</p>
 	<p>If an item's value is <code>$0000</code>, the item will simply not be displayed.</p>
 	<p>For the coin counter specifically, you can choose to only display coins or dragon coins. By default both will be displayed, but if you add <code>$0200</code> to the value only dragon coins will be displayed, instead if you add <code>$0400</code> only coins will be displayed. For example:</p>
@@ -97,19 +104,34 @@
 	<ul>
 		<li>Inputs: each item's <code>$PTTT</code> value is specified, in order, after the JSL (see example)</li>
 		<li>Outputs: <code>N/A</code></li>
-		<li>Preconditions: <code>A/X/Y 16 bits</code></li>
+		<li>Preconditions: <code>N/A</code></li>
 		<li>Postconditions: <code>A/X/Y size preserved, DB/X/Y preserved</code></li>
 		<li>Usage (example):
 <pre>
-    JSL retry_api_configure_sprite_status_bar
+    JSL retry_api_cfg_ssb
     dw $B080 ; Item box: palette B, tile 0x80
     dw $8088 ; Timer: palette 8, tile 0x88
     dw $80C2 ; Coin counter: palette 8, tile 0xC2
     dw $904E ; Lives counter: palette 9, tile 0x4E
     dw $90CE ; Bonus stars counter: palette 9, tile 0xCE
+    dw $0000 ; Death counter: hidden
     ... <- your code will continue here after the JSL
 </pre>
 		</li>
+	</ul>
+	<br/>
+
+	<h3 id="hide_sprite_status_bar">Hide sprite status bar</h3>
+	<p><code>JSL retry_api_hide_ssb</code></p>
+	<p><u class="warn">NOTE:</u> for a more convenient way to hide the sprite status bar, check out <a href="./settings_local.html#ssb2">Local Settings - Hide Sprite Status Bar</a>. This routine is still useful if you need to hide elements of the status bar during the level.</p>
+	<p><u class="warn">NOTE:</u> this routine has no effect unless <code>!sprite_status_bar = 1</code> in <code>settings_global.asm</code>.</p>
+	<p>Routine to hide the sprite status bar for the current level. This routine should be called in UberASM level init code, or in main if you need to hide the status bar during a level.</p>
+	<ul>
+		<li>Inputs: <code>N/A</code></li>
+		<li>Outputs: <code>N/A</code></li>
+		<li>Preconditions: <code>N/A</code></li>
+		<li>Postconditions: <code>A/X/Y 8 bit and clobbered, DB preserved</code></li>
+		<li>Usage: <code>JSL retry_api_hide_ssb</code></li>
 	</ul>
 	<br/>
 
@@ -133,15 +155,44 @@
 	</ul>
 	<br/>
 
+	<h3 id="is_save_file_empty">Is save file empty</h3>
+	<p><code>JSL retry_api_is_save_file_empty</code></p>
+	<p>Routine to get check if a save file is empty.</p>
+	<ul>
+		<li>Inputs: save file to check in <code>$010A|!addr</code> (<code>0</code> = save file 1, <code>1</code> = save file 2, <code>2</code> = save file 3, behavior undefined for other values)</li>
+		<li>Outputs:
+			<ul>
+				<li><code>Carry set = save file empty</code></li>
+				<li><code>Carry clear = save file not empty</code></li>
+			</ul>
+		</li>
+		<li>Preconditions: <code>A 8 bits</code></li>
+		<li>Postconditions: <code>A/X/Y 8 bit and clobbered, DB preserved</code></li>
+		<li>Usage (example):
+<pre>
+    LDA #$02 ; Check save file 3
+    STA $010A|!addr
+    JSL retry_api_is_save_file_empty
+    BCS empty
+not_empty:
+    ...
+empty:
+    ...
+</pre>
+		</li>
+	</ul>
+	<br/>
+
 	<h3 id="get_sram_variable_address">Get SRAM variable address</h3>
-	<p>Routine to get the address in SRAM for a specific variable. By "variable" it's meant any of the RAM addresses that are saved to SRAM specified in the sram save table. If not searching for a variable under <code>.global</code>, the returned address will be coherent with the current save file loaded when this routine is called (so, make sure to not call it before a save file is loaded if not looking for a global variable).</p>
-	<p>This could be useful to read/write values in SRAM directly, for example if you need to update some SRAM value without the game being saved.</p>
-	<p>Note that if you call this on the title screen looking for a save file specific variable (for example, if you need to display something based on some value saved in the three files), you will need to set <code>$010A</code> to the value of the save file you want to check (<code>0</code> for save file 1, <code>1</code> for save file 2, <code>2</code> for save file 3) before calling this.</p>
-	<p><b>NOTE</b>: this will always return "variable not found" if <code>!sram_feature = 0</code>.</p>
+	<p><code>JSL retry_api_get_sram_var</code></p>
+	<p>Routine to get the address in SRAM for a specific variable. By "variable" it's meant any of the RAM addresses that are saved to SRAM specified in the sram save table.</p>
+	<p>If not searching for a variable under <code>.global</code>, the variable will be searched in the currently loaded save file. If calling this before a save file is loaded (e.g. the title screen), you need to specify the save file to look into by setting the <code>$010A|!addr</code> address (<code>0</code> = save file 1, <code>1</code> = save file 2, <code>2</code> = save file 3, behavior undefined for other values).</p>
+	<p>This could be useful to read/write values in SRAM directly, for example if you need to update some SRAM value without the game being saved, or if you need to display something on the title screen depending on the save file data.</p>
+	<p><u class="warn">NOTE:</u> this will always return "variable not found" if <code>!sram_feature = 0</code> or if the chosen save file is empty (for local variables).</p>
 	<ul>
 		<li>Inputs: variable address to search for in ROM right after the JSL. This means the call should look like this:
 <pre>
-JSL retry_api_get_sram_variable_address
+JSL retry_api_get_sram_var
 dl &lt;variable address&gt;
 ... <- your code will continue here after the JSL
 </pre>
@@ -154,20 +205,33 @@ dl &lt;variable address&gt;
 		</li>
 		<li>Preconditions: <code>N/A</code></li>
 		<li>Postconditions: <code>A/X/Y 8 bit and clobbered, DB preserved</code></li>
-		<li>Usage (example):
+		<li>Usage (example 1, with file already loaded):
 <pre>
-	JSL retry_api_get_sram_variable_address
-	dl retry_ram_death_counter ; Variable to search for
-	BCS not_found
+    JSL retry_api_get_sram_var
+    dl retry_ram_death_counter ; Variable to search for
+    BCS error
 found:
-	LDY #$01
-	LDA #$09
-	STA [$00],y ; Set second death counter digit in SRAM to 9
-not_found:
+    LDY #$01
+    LDA #$09
+    STA [$00],y ; Set second death counter digit in SRAM to 9
+error:
+    ...
+</pre>
+		</li>
+		<li>Usage (example 2, on the title screen):
+<pre>
+    LDA #$01 ; $01 = search in save file 2
+    STA $010A|!addr
+    JSL retry_api_get_sram_var
+    dl retry_ram_death_counter ; Variable to search for
+    BCS empty_file
+    LDA [$00] ; Get first death counter digit of save file 2
+    ...
+empty_file:
+    ...
 </pre>
 		</li>
 	</ul>
-
-	<br/><center><a href="./index.html">Return to main page</a></center>
+</div>
 </body>
 </html>

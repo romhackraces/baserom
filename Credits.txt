@@ -97,6 +97,9 @@ RAM Specific L/R Scroll Disable
  - author(s): Chdata
  - source: https://smwc.me/s/20355
 
+RAM-Toggled Score Disable
+ - author(s): AmperSam
+
 RAM Toggled Status Bar (& IRQ)
  - author(s): Kevin
  - source: https://smwc.me/s/28449

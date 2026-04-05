@@ -8,12 +8,12 @@ org $009E25
 if read1($01AD33) == $94
 org $01AD33
     db $D1
-endif
+endif ; if read1($01AD33) == $94
 
 if read1($01AD3A) == $95
 org $01AD3A
     db $D2
-endif
+endif ; if read1($01AD3A) == $95
 
 ; Fix Message Box erasing some sprite tiles when closing.
 org $05B31B

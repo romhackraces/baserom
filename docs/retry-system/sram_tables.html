@@ -1,50 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Save &amp; SRAM Tables - Retry System UberASM</title>
+	<title>SRAM Tables - Retry System UberASM</title>
 	<meta name="author" content="KevinM, AmperSam">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+    <script defer src="./scripts/shared.js"></script>
 </head>
 <body>
-<h1>Save &amp; SRAM Tables</h1>
-<p>The Retry System has a built-in saving system. You can configure what addresses it saves by editing two tables in <u class="dir">retry_config/sram_tables.asm</u>. To be able to be used, you need to enable <code>!sram_feature</code> in <a href="./settings_global.html#saving">Global Settings - Save and SRAM Settings</a>.</p>
-<h3>Save (SRAM) Table</h3>
-<p>This table can be used to save custom values to SRAM, so they can persist when the console is turned off. By default it saves the custom checkpoint ram (so multiple midways will save properly) and the death counter.</p>
+<div class="box">
+    <h1>SRAM Tables</h1>
+    <p>The Retry System has a built-in saving system. You can configure what addresses it saves by editing two tables in <u class="dir">retry_config/sram_tables.asm</u>. To be able to be used, you need to enable <code>!sram_feature</code> in <a href="./settings_global.html#saving">Global Settings - Save and SRAM Settings</a>.</p>
+
+    <h3>Contents</h3>
+	<ul>
+		<li><a href="#save_table">Save (SRAM) Table</a></li>
+		<li><a href="#sram_defaults">SRAM Defaults Table</a></li>
+		<li><a href="#sram_expansion">SRAM Area Expansion</a></li>
+	</ul>
+	<br/>
+    
+    <h3 id="save_table">Save (SRAM) Table</h3>
+    <p>This table can be used to save custom values to SRAM, so they can persist when the console is turned off. By default it saves the custom checkpoint ram (so multiple midways will save properly) and the death counter.</p>
 <pre>
 save:
-    dl !ram_checkpoint    : dw 192
+    dl !retry_ram_checkpoint    : dw 192
     ; Feel free to add your own stuff here.
 
 .not_game_over:
-    dl !ram_death_counter : dw 5
+    dl !retry_ram_death_counter : dw 5
     ; Feel free to add your own stuff here.
 
 .global:
     ; Feel free to add your own stuff here.
 
 </pre>
-<p>Each line is formatted as follows:</p>
+    <p>Each line is formatted as follows:</p>
 <pre>
 	dl $XXXXXX : dw $YYYY
 </pre>
-<p>Where <code>$XXXXXX</code> is what RAM address to save. Make sure it's always 3 bytes long (i.e. use $7E0019 instead of $19 or $0019) and <code>$YYYY</code> is how many bytes to save at that address (remove the $ to use a decimal value).</p>
-<p>For example, adding <code>dl $7E1F3C : dw 12</code> will make the 1-Up checkpoints for all levels save. Make sure to always put a colon between the two elements!</p>
-<p>The addresses you put under <code>.not_game_over</code> will be saved like usual, but they won't be reloaded from SRAM when getting a game over. This can be useful if you want some things to retain even if the player got a game over before being able to save them.</p>
-<p>The addresses you put under <code>.global</code> behave differently than the others: they will be saved independently from the save slots, and are only loaded when booting the game. This can be used to save stuff that's global and not related to a specific save slot (for example like Jump 1/2's costumes, which when you unlock are then available in all save files and all successive playthroughs).</p>
-<p>The global addresses are saved when you save the game normally, and they persist even when erasing save files (the only way to reset them would be to delete the <code>.srm</code> file from the computer). Since the normal save routine (and the <a href="./api.html#save_game">Retry API - Save game</a> routine) are tied to the current save slot, if you need to save them outside of a save file (for example on the title screen), you can use the <a href="./api.html#save_global_variables">Retry API - Save global variables</a> routine.</p>
+    <p>Where <code>$XXXXXX</code> is what RAM address to save. Make sure it's always 3 bytes long (i.e. use $7E0019 instead of $19 or $0019) and <code>$YYYY</code> is how many bytes to save at that address (remove the $ to use a decimal value).</p>
+    <p>For example, adding <code>dl $7E1F3C : dw 12</code> will make the 1-Up checkpoints for all levels save. Make sure to always put a colon between the two elements!</p>
+    <p>The addresses you put under <code>.not_game_over</code> will be saved like usual, but they won't be reloaded from SRAM when getting a game over. This can be useful if you want some things to retain even if the player got a game over before being able to save them.</p>
+    <p>The addresses you put under <code>.global</code> behave differently than the others: they will be saved independently from the save slots, and are only loaded when booting the game. This can be used to save stuff that's global and not related to a specific save slot (for example like Jump 1/2's costumes, which when you unlock are then available in all save files and all successive playthroughs).</p>
+    <p>The global addresses are saved when you save the game normally, and they persist even when erasing save files (the only way to reset them would be to delete the <code>.srm</code> file from the computer). Since the normal save routine (and the <a href="./api.html#save_game">Retry API - Save game</a> routine) are tied to the current save slot, if you need to save them outside of a save file (for example on the title screen), you can use the <a href="./api.html#save_global_variables">Retry API - Save global variables</a> routine.</p>
 
-<h4>Notes</h4>
-<ul>
-	<li>For each address you add to <code>save:</code> table, you need to add the default values in the <code>sram_defaults:</code> table below.</li>
-	<li>If using SA-1, for addresses in <code>$7E0100-$7E1FFF</code> you must change them to <code>$400100-$401FFF</code> and for addresses <code>$7E0000-$7E00FF</code> you must change them to <code>$003000-$0030FF</code>. Additionally, a lot of other addresses might be remapped to different locations (for more information see <a href="https://github.com/VitorVilela7/SMW-SA1-Pack/tree/master/docs">SMW SA-1 Pack docs</a>).</li>
-	<li>You can put up to 2389 bytes in the <code>save</code> and <code>.not_game_over</code> tables combined, and up to 162 bytes on lorom or 1021 bytes on SA-1 in the <code>.global</code> table.</li>
-</ul>
-<br/>
+    <h4>Notes</h4>
+    <ul>
+	   <li>For each address you add to <code>save:</code> table, you need to add the default values in the <code>sram_defaults:</code> table below.</li>
+	   <li>If using SA-1, for addresses in <code>$7E0100-$7E1FFF</code> you must change them to <code>$400100-$401FFF</code> and for addresses <code>$7E0000-$7E00FF</code> you must change them to <code>$003000-$0030FF</code>. Additionally, a lot of other addresses might be remapped to different locations (for more information see <a href="https://github.com/VitorVilela7/SMW-SA1-Pack/tree/master/docs">SMW SA-1 Pack docs</a>).</li>
+	   <li>You can put up to 2385 bytes in the <code>save</code> and <code>.not_game_over</code> tables combined, and up to 162 bytes on lorom or 1021 bytes on SA-1 in the <code>.global</code> table.</li>
+    </ul>
+    <br/>
 
-<h3>New Save Table</h3>
-<p>Here you specify the "default" values of the addresses you want to save, for when a new save file is started.</p>
+    <h3 id="sram_defaults">SRAM Defaults Table</h3>
+    <p>Here you specify the "default" values of the addresses you want to save, for when a new save file is started.</p>
 <pre>
 sram_defaults:
     ; Default checkpoint values (don't edit this!).
@@ -64,7 +76,7 @@ sram_defaults:
 
 .not_game_over:
     ; Initial death counter value (don't edit this!).
-    db $00,$00,$00,$00,$00
+    %dbn($00,5)
 
     ; Feel free to add your own stuff here.
 
@@ -72,14 +84,51 @@ sram_defaults:
     ; Feel free to add your own stuff here.
 
 </pre>
+    <p>You can do <code>db $XX,$XX,...</code> for 1 byte values, <code>dw $XXXX,$XXXX,...</code> for 2 bytes values and <code>dl $XXXXXX,$XXXXXX,...</code> for 3 bytes values.</p>
+    <p>If you need to insert a lot of repeating values in a row, you can use <code>%dbn($XX,n)</code> for 1 byte values, <code>%dwn($XXXX,n)</code> for 2 byte values or <code>%dln($XXXXXX,n)</code> for 3 byte values, where <code>n</code> is the amount of times the value is repeated (max 242).</p>
+    <p>The amount of values of each entry should correspond to the <code>dw $YYYY</code> value in the save table (for example, the checkpoint values are 192, and the death counter values are 5).</p>
+    <p>Remember, if you have some addresses after <code>.not_game_over</code> and <code>.global</code> in the <code>save:</code> table, put their default values after <code>.not_game_over</code> and <code>.global</code> here also, in the same order.</p>
+    <p>Regarding the <code>.global</code> values, they will be initialized on game startup rather than on a new save file.</p>
+    <br/>
 
-<p>You can do <code>db $XX,$XX,...</code> for 1 byte values, <code>dw $XXXX,$XXXX,...</code> for 2 bytes values and <code>dl $XXXXXX,$XXXXXX,...</code> for 3 bytes values.</p>
-<p>The amount of values of each entry should correspond to the <code>dw $YYYY</code> value in the save table (for example, the checkpoint values are 192, and the death counter values are 5).</p>
-<p>Remember, if you have some addresses after <code>.not_game_over</code> and <code>.global</code> in the <code>save:</code> table, put their default values after <code>.not_game_over</code> and <code>.global</code> here also, in the same order.</p>
-<p>Regarding the <code>.global</code> values, they will be initialized on game startup rather than on a new save file.</p>
-
-<br/>
-
-<center><a href="./index.html">Return to main page</a></center>
+    <h3 id="sram_expansion">SRAM Area Expansion</h3>
+    <p>If you're in dire need of more SRAM, you can expand it and allow for more space for your variables (at your own risk: these methods should work fine but are not officially supported).</p>
+    <p>There are two ways to do it, which both involve editing the <u class="dir">retry_config/code/include/misc.asm</u> file:</p>
+    <ul>
+    	<li><b>Single save file method</b>: this method works if you just have a single save file in your ROM (for example, if you're using the <a href="https://smwc.me/s/40641">One File, One Player</a> patch). You basically just force Retry to only reserve space for that file instead of 3, meaning you'll be able to have 7164 bytes! To do so, open the <u class="dir">misc.asm</u> file and look for this line:
+<pre>
+!file_number = 3
+</pre>
+		and edit it like this:
+<pre>
+!file_number = 1
+</pre>
+    	</li>
+    	<li><b>Expanded SRAM method</b>: this method actually expands the SRAM size of the "cartridge" (in practice, the size of the <code>.srm</code> files your emulator produces). This will work differently depending if you're using the SA-1 patch or not:
+    		<ul>
+    			<li><b>Not SA-1</b>: open the <u class="dir">misc.asm</u> file and look for this line:
+<pre>
+!sram_size = $03
+</pre>
+				and increase it (up to <code>$07</code>). The actual SRAM size will be <code>2^!sram_size KB</code>.
+    			</li>
+    			<li><b>SA-1</b>: with SA-1 the SRAM (actually called BW-RAM) size is already expanded to the maximum of 128KB, but a lot of it is used as normal RAM for other things, and the SA-1 pack only reserves 8KB for "SRAM". There are still a lot of unused areas though, in which you can put the SRAM variables, but there might be a chance of them being used by other resources if you're not careful. To change where the SRAM area is, open the <u class="dir">misc.asm</u> file and look for this line:
+<pre>
+    !sram_addr        #= $41A000
+</pre>
+				and change it to a different BW-RAM address. For info on what you could use, check out the <a href="https://github.com/VitorVilela7/SMW-SA1-Pack/blob/master/docs/BW-RAM.md">SA-1 Pack BW-RAM Reference</a>.
+				Then, when you located a valid BW-RAM area and noted how much it can hold, also change the size by editing this line:
+<pre>
+!file_size #= floor((((2**!sram_size)*1024)-$400)/!file_number)
+</pre>
+				to
+<pre>
+!file_size #= floor((&lt;new size&gt;-$400)/!file_number)
+</pre>
+    			</li>
+    		</ul>
+    	</li>
+    </ul>
+    Note that you can use both methods together if you only have one save file.
 </body>
 </html>

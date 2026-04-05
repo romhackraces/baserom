@@ -1,22 +1,27 @@
 ; Gamemode 14
 
-;=====================================
+;===============================================================================
 ; nmi routine
 ;
 ; I know that uploading each tile individually is slow, but it makes it easy
 ; to change where the tiles are uploaded to for the user, and easier to manage
 ; the case where the "exit" option is left out.
-;=====================================
+;===============================================================================
 
 level:
+    ; Don't run on lag frames.
+    lda $10 : beq .run
+    rtl
+.run:
+
 if !sprite_status_bar
     ; Update the sprite status bar graphics.
     jsr sprite_status_bar_nmi
-endif
+endif ; !sprite_status_bar
 
 if !no_prompt_draw
     rtl
-else
+else ; if not(!no_prompt_draw)
     ; Skip if it's not time to upload the tiles.
     lda !ram_update_request : bne .upload
     rtl
@@ -29,62 +34,60 @@ else
     phb : phk : plb
 
     ; Loop to upload all the tiles.
-    ; If the exit option is disabled, we skip the XI tiles.
-    lda !ram_disable_exit : beq +
+    ; If the exit option is disabled, we skip the second line tiles.
+    lda !ram_disable_prompt_exit : beq +
     lda #$01
 +   tay
     ldx.w .index,y
 
-    ; Push GFX address depending on the box being enabled or not.
-    ; Additionally the size to upload for the cursor is pushed as well.
-    lda !ram_disable_box : beq +
+    ; Save GFX address depending on the box being enabled or not.
+    ; Additionally the size to upload for the cursor is saved as well.
+    lda !ram_disable_prompt_bg : beq +
     lda #$02
 +   tay
     rep #$20
-    lda.w .cursor_size,y : pha
-    lda.w .gfx_addr,y : pha
+    lda.w .cursor_size,y : sta $00
+    lda.w .gfx_addr,y : sta $02
 
     ; These values are the same for all uploads, so put them out of the loop.
     ldy.b #$80 : sty $2115
-    lda.w #$1801 : sta.w prompt_dma($4300)
-    ldy.b #retry_gfx>>16 : sty.w prompt_dma($4304)
-    ldy.b #1<<!prompt_channel
-.loop:
-    lda.w .dest,x : sta $2116
-    lda.w .src,x : clc : adc $01,s : sta.w prompt_dma($4302)
-    ; All uploads are 8x8 except the cursor,
-    ; which is 16x8 only when the prompt box is enabled.
-    lda.w #gfx_size(1)
-    cpx #$00 : bne +
-    lda $03,s
-+   sta.w prompt_dma($4305)
-    sty $420B
-    dex #2 : bpl .loop
-..end:
+    lda.w #$1801 : sta.w upload_dma($4300)
+    ldy.b #!gfx_bank : sty.w upload_dma($4304)
+    ldy.b #1<<!upload_channel
+    clc
 
-    ; If the box is enabled, transfer the black tiles too.
-    cmp.w #gfx_size(1) : beq +
-    sta.w prompt_dma($4305)
-    lda.w #vram_addr(!tile_blk) : sta $2116
-    lda.w #retry_gfx_box+gfx_size(7) : sta.w prompt_dma($4302)
+    ; Upload the cursor separately since it has a different size
+.cursor:
+    lda.w #vram_addr(!prompt_tile_cursor) : sta $2116
+    lda.w #gfx_size(!prompt_gfx_index_cursor) : adc $02 : sta.w upload_dma($4302)
+    lda $00 : sta.w upload_dma($4305)
     sty $420B
-+
-    ; Realign the stack.
-    pla : pla
-    plb
+
+    ; Upload all remaining 8x8 tiles
+.tile_loop:
+    lda.w .dest,x : sta $2116
+    lda.w .src,x : adc $02 : sta.w upload_dma($4302)
+    lda.w #gfx_size(1) : sta.w upload_dma($4305)
+    sty $420B
+    dex #2 : bpl .tile_loop
 
 .return:
     sep #$20
+    plb
     rtl
 
 ; Base address of the letters GFX when the prompt box is enabled/disabled.
 .gfx_addr:
-    dw retry_gfx_box
-    dw retry_gfx_no_box
+    dw gfx_prompt_box
+    dw gfx_prompt_no_box
 
 ; Size to upload for the cursor when the prompt box is enabled/disabled
 .cursor_size:
+if !prompt_type == 0
+    dw gfx_size(3)
+else ; if not(!prompt_type == 0)
     dw gfx_size(2)
+endif ; !prompt_type == 0
     dw gfx_size(1)
 
 ; Index in the below tables to start from when the exit option is enabled/disabled.
@@ -92,27 +95,32 @@ else
     db .src_end-.src-2
     db .src_exit-.src-2
 
-; Tables for cursor and "RETRY" tiles.
+macro _vram_addrs(...)
+    for i = 0..sizeof(...)
+        dw vram_addr(<...[!i]>)
+    endfor
+endmacro
+
+macro _gfx_sizes(...)
+    for i = 0..sizeof(...)
+        dw gfx_size(<...[!i]>)
+    endfor
+endmacro
+
 .src:
-    dw gfx_size(6) ; Cursor
-    dw gfx_size(2) ; R
-    dw gfx_size(3) ; E
-    dw gfx_size(1) ; T
-    dw gfx_size(5) ; Y
+    %_gfx_sizes(!prompt_gfx_index_line1)
 ..exit:
-    dw gfx_size(4) ; X
-    dw gfx_size(0) ; I
+if defined("prompt_gfx_index_line2")
+    %_gfx_sizes(!prompt_gfx_index_line2)
+endif ; defined("prompt_gfx_index_line2")
 ..end:
 
 .dest:
-    dw vram_addr(!tile_curs)
-    dw vram_addr(!tile_r)
-    dw vram_addr(!tile_e)
-    dw vram_addr(!tile_t)
-    dw vram_addr(!tile_y)
+    %_vram_addrs(!prompt_tiles_line1)
 ..exit:
-    dw vram_addr(!tile_x)
-    dw vram_addr(!tile_i)
+if defined("prompt_tiles_line2")
+    %_vram_addrs(!prompt_tiles_line2)
+endif ; defined("prompt_tiles_line2")
 ..end:
 
-endif
+endif ; !no_prompt_draw

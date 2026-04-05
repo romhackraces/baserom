@@ -9,6 +9,7 @@
  0  A0  0   UberASM Object A0: Press L & R To Die\n-----\nEnabled killing the player if L and R are pressed. Useful for a quick reset.
  0  A1  0   UberASM Object A1: Disable Screen Shake\n-----\nStops all Vanilla sources of Layer 1 screen shake.
  0  A2  0   UberASM Object A2: Prevent Item Box Storage\n-----\No power-ups can be stored to the Item box.
+ 0  A3  0   UberASM Object A3: Disable Score\n-----\Will disable score and 1up sprites from spawning.
  0  B0  0   UberASM Object B0: Set Retry Type to Instant\n-----\nMake the retry skip using prompt and restart instantly after dying.
  0  B1  0   UberASM Object B1: Set Retry Type to Prompt\n-----\nSets the retry system to use a prompt that says "Retry" in the middle of the screen.
  0  B2  0   UberASM Object B2: Set Retry Type to Vanilla\n-----\nSets the retry system back to using Vanilla death routine.
@@ -17,6 +18,9 @@
  0  BA  0   UberASM Object BA: Display Sprite Timer\n-----\nShows the level timer from the Retry System's sprite status bar.
  0  BB  0   UberASM Object BB: Display Coins Counters\n-----\nShows the coin counters from the Retry System's sprite status bar.
  0  BC  0   UberASM Object BC: Display Item Box\n-----\nShows the item box from the Retry System's sprite status bar
+ 0  BD  0   UberASM Object BD: Display Lives Counter\n-----\nShows the lives counter from the Retry System's sprite status bar
+ 0  BE  0   UberASM Object BE: Display Bonus Stars Count\n-----\nShows the Bonus Stars counter from the Retry System's sprite status bar
+ 0  BF  0   UberASM Object BF: Display Death Count\n-----\nShows the Death counter from the Retry System's sprite status bar
  0  C0  0   UberASM Object C0: Start with a Mushroom\n-----\nHave the player start the level with a Mushroom.
  0  C1  0   UberASM Object C1: Start with Cape\n-----\nHave the player start the level with a Cape.
  0  C2  0   UberASM Object C2: Start with Fire Flower\n-----\nHave the player start the level with a Fire Flower.

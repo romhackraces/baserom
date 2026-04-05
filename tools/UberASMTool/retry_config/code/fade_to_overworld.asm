@@ -56,6 +56,6 @@ if !ow_death_counter
     sep #$10
     
     plb
-endif
+endif ; !ow_death_counter
 
     rtl

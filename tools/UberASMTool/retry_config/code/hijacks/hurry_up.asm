@@ -14,7 +14,7 @@ if not(!disable_hurry_up)
 
     ; Set the hurry up flag.
     lda #$01 : sta !ram_hurry_up
-endif
+endif ; not(!disable_hurry_up)
 
     ; Return to the original code.
     jml $008E60|!bank
@@ -24,4 +24,4 @@ if !disable_hurry_up
     ; so we need to preserve that. 4 bytes already used for the JML.
     dd $69696969
     dl !ram_hurry_up
-endif
+endif ; !disable_hurry_up

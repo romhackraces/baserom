@@ -25,9 +25,9 @@ nmi_hijack:
     lda $0D9B|!addr : bne .special
 if !sa1
     ldx #$81
-else
+else ; if not(!sa1)
     lda #$81 : sta $4200
-endif
+endif ; !sa1
     lda $22 : sta $2111
     lda $23 : sta $2111
     lda $24 : sta $2112
@@ -38,36 +38,36 @@ endif
 .special:
     jml $00827A|!bank
 
-else
+else ; if not(!remove_vanilla_status_bar)
 
 pushpc
 
 if read1($0081F4+2) == $69
 org $0081F4
     jsr $8DAC
-endif
+endif ; read1($0081F4+2) == $69
 
 if read1($008275+4) == $69
 org $008275
     lda $0D9B|!addr
     beq $18
-endif
+endif ; read1($008275+4) == $69
 
 if read1($0082E8+2) == $69
 org $0082E8
     jsr $8DAC
-endif
+endif ; read1($0082E8+2) == $69
 
 if read1($00985A+2) == $69
 org $00985A
     jsr $8CFF
-endif
+endif ; read1($00985A+2) == $69
 
 if read1($00A5A8+2) == $69
 org $00A5A8
     jsr $8CFF
-endif
+endif ; read1($00A5A8+2) == $69
 
 pullpc
 
-endif
+endif ; !remove_vanilla_status_bar

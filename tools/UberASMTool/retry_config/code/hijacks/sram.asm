@@ -1,19 +1,18 @@
 ; This file handles expanding the normal SRAM and saving custom addresses to it.
 ; It works on both lorom (SRAM) and SA-1 (BW-RAM).
 
-; Bank byte of the SRAM/BW-RAM address.
-!sram_bank          = (!sram_addr>>16)
-!sram_defaults_bank = (tables_sram_defaults>>16)
+; Bank byte of the SRAM default table.
+!sram_defaults_bank = bank(tables_sram_defaults)
 
 ; Helper defines for size and index in the save table
-!save_table_size_local            = (tables_save_global-tables_save)
-!save_table_size_local_game_over  = (tables_save_not_game_over-tables_save)
-!save_table_size_global           = (tables_sram_defaults-tables_save_global)
-!save_table_size                  = !save_table_size_local+!save_table_size_global
-!save_table_index_global          = !save_table_size_local
+!save_table_size_local           = (tables_save_global-tables_save)
+!save_table_size_local_game_over = (tables_save_not_game_over-tables_save)
+!save_table_size_global          = (tables_sram_defaults-tables_save_global)
+!save_table_size                 = !save_table_size_local+!save_table_size_global
+!save_table_index_global         = !save_table_size_local
 
-; Magic number to mark the global save area in SRAM
-!save_global_magic_number = $DEADBEEF
+; Magic number to mark save areas in SRAM
+!sram_magic_number = $52544552 ; RETR
 
 if !sram_feature
 
@@ -23,7 +22,7 @@ pushpc
 if read1($00FFD8) < !sram_size
 org $00FFD8
     db !sram_size
-endif
+endif ; if read1($00FFD8) < !sram_size
 
 ; Hijack save game routine.
 org $009BCB
@@ -59,11 +58,10 @@ macro next_iteration()
     ; Progress to the sram address to save to
     lda $02 : clc : adc $04 : sta $02
     
-    ; Restore registers
-    plb : plx
-    
     ; Increase save table index
-    txa : clc : adc #$0005 : tax
+    ; PLA === PLX : TXA
+    ; Carry cannot be set unless the save table is too large (invalid anyway)
+    pla : adc #$0005 : tax
 
     ; If not at the end of the save table, loop
     cpx $06 : bcc .loop
@@ -94,9 +92,9 @@ save_global:
     ldx.w #!save_table_index_global
     jsr save_data
 
-    ; Save the magic number to SRAM
-    lda.w #!save_global_magic_number : sta !sram_addr_global
-    lda.w #!save_global_magic_number>>16 : sta !sram_addr_global+2
+    ; Save the magic number to global SRAM
+    lda.w #!sram_magic_number : sta !sram_addr_global
+    lda.w #!sram_magic_number>>16 : sta !sram_addr_global+2
 
 .return:
     rts
@@ -105,7 +103,6 @@ save_global:
 ; load_global routine
 ;=====================================
 load_global:
-    ; Set DBR.
     phb : phk : plb
 
     ; Setup data transfer routine
@@ -119,8 +116,8 @@ load_global:
     lda.w #!save_table_size : sta $06
 
     ; If magic number is in SRAM, load the global data
-    lda !sram_addr_global : cmp.w #!save_global_magic_number : bne .init
-    lda !sram_addr_global+2 : cmp.w #!save_global_magic_number>>16 : bne .init
+    lda !sram_addr_global : cmp.w #!sram_magic_number : bne .init
+    lda !sram_addr_global+2 : cmp.w #!sram_magic_number>>16 : bne .init
 
 .load:
     ; Write source bank parameter in data transfer routine
@@ -154,7 +151,6 @@ load_global:
     jsr save_global
 
 .return:
-    ; Restore DBR and P.
     sep #$30
     plb
     rts
@@ -163,12 +159,9 @@ load_global:
 ; save_game routine
 ;=====================================
 save_game:
-    ; Set the DBR.
-    phk : plb
-
     ; Call the custom save routine.
     php : phb
-    jsr extra_save_file
+    jsl extra_save_file
     plb : plp
 
     ; Setup data transfer routine
@@ -177,8 +170,19 @@ save_game:
     ; Write destination bank parameter in data transfer routine
     lda.b #!sram_bank : sta.b data_transfer_dst_bank
 
-    ; $02 = starting sram address
-    jsr get_file_sram_addr : sta $02
+    ; Get starting sram address
+    jsr get_file_sram_addr
+
+    ; Save the magic number to the save file (-4 from the sram addr returned)
+    ; Also set the code bank on the stack
+-   %set_dbr(!sram_addr)
+    sec : sbc #$0004 : sta $02
+    lda.w #!sram_magic_number : sta ($02)
+    ldy #$0002
+    lda.w #!sram_magic_number>>16 : sta ($02),y
+    lda $02 : clc : adc #$0004 : sta $02
+    ; Now $02 and the DBR is set up correctly
+    plb
 
     ; $06 = save table ending index to save
     lda.w #!save_table_size_local : sta $06
@@ -203,29 +207,24 @@ save_game:
 ;=====================================
 load_game:
     ; Load or init the file
-    beq +
+    beq .load
     jmp init_file
-+   
-    ; Preserve DB, X, Y, P.
-    phb : phk : plb
-    phx : phy : php
+
+.load:
+    phb : phx : phy : php
 
     ; Call the custom load routine.
     sep #$30
     php : phb
-    jsr extra_load_file
+    jsl extra_load_file
     plb : plp
 
     ; $06 = save table ending index to load (entire local table)
     rep #$30
     lda.w #!save_table_size_local : sta $06
-
-    ; Load the save file.
     jsr load_file
 
-    ; Restore DBR, P, X and Y.
-    plp : ply : plx
-    plb
+    plp : ply : plx : plb
     
     ; Restore original code and jump back.
     phx
@@ -236,61 +235,87 @@ load_game:
 ; load_game_over routine
 ;=====================================
 load_game_over:
-    ; Preserve DB, X, Y, P.
-    phb : phk : plb
-    phx : phy : php
+    phb : phx : phy : php
 
-    ; $06 = save table ending index to load (not the game_over part)
+    ; Load carry with save file empty check result
+    jsr shared_is_save_file_empty
+    
+    ; $06 = save table ending index to init/load (not the game_over part)
     rep #$30
     lda.w #!save_table_size_local_game_over : sta $06
-
-    ; Load the save file.
+    
+    ; Init or load the save based on carry status
+    bcs .empty
+.not_empty:
     jsr load_file
+    bra .return
+.empty:
+    jsr init_data
 
-    ; Restore DBR, P, X and Y.
-    plp : ply : plx
-    plb
+.return:
+    plp : ply : plx : plb
     rtl
 
 ;=====================================
 ; load_file routine
 ;=====================================
 load_file:
-    sep #$20
-
     ; Setup data transfer routine
+    sep #$20
     %setup_data_transfer()
 
     ; Write source bank parameter in data transfer routine
     lda.b #!sram_bank : sta.b data_transfer_src_bank
 
-    ; $02 = starting sram address
-    jsr get_file_sram_addr : sta $02
+    ; Get starting sram address
+    jsr get_file_sram_addr
+
+    ; Check the magic number in the save file (-4 from the sram addr returned)
+    ; Also set the code bank on the stack
+-   %set_dbr(!sram_addr)
+    sec : sbc #$0004 : sta $02
+    lda ($02) : cmp.w #!sram_magic_number : bne .fail
+    ldy #$0002
+    lda ($02),y : cmp.w #!sram_magic_number>>16 : bne .fail
+    lda $02 : clc : adc #$0004 : sta $02
+    ; Now $02 and the DBR is set up correctly
+    plb
 
     ; Load the data from sram
     ldx #$0000
     jsr load_data
     rts
 
+.fail:
+    ; Go to the fail handler
+    plb
+    jmp fail_sram
+
 ;=====================================
 ; init_file routine
 ;=====================================
 init_file:
-    ; Preserve X and Y.
-    phx : phy
-
-    ; Set 8 bit X/Y for the custom routine.
-    sep #$10
-
-    ; Set DBR.
-    phb : phk : plb
+    phb : phx : phy : php
 
     ; Call the custom load routine.
-    php : phb
-    jsr extra_load_new_file
-    plb : plp
+    phb
+    sep #$30
+    jsl extra_load_new_file
+    plb
 
+    ; $06 = save table ending index
+    rep #$30
+    lda.w #!save_table_size_local : sta $06
+    jsr init_data
+
+    plp : ply : plx : plb
+    jml $009D22|!bank
+
+; Helper routine for init_file operations
+; - $06 = ending index in the table_save
+init_data:
     ; Setup data transfer routine
+    sep #$20
     %setup_data_transfer()
 
     ; Write source bank parameter in data transfer routine
@@ -300,9 +325,6 @@ init_file:
     rep #$30
     lda.w #tables_sram_defaults : sta $02
 
-    ; $06 = save table ending index
-    lda.w #!save_table_size_local : sta $06
-
     ; Load the data from rom (sram defaults table)
     ldx #$0000
     jsr load_data
@@ -311,14 +333,9 @@ init_file:
     jsr shared_get_intro_sublevel
     sta !ram_checkpoint
 
-    ; Keep 16 bit X/Y for the original code.
-    sep #$20
-
-    ; Restore DBR, Y and X.
-    plb : ply : plx
-
-    ; Jump back.
-    jml $009D22|!bank
+    ; Align checkpoint table with the initial OW flags
+    jsr shared_set_checkpoints_from_initial_ow_flags
+    rts
 
 ; Helper routine for save_game operations
 ; Inputs:
@@ -328,20 +345,22 @@ init_file:
 ; - $06 = ending index in the table_save
 ; - data_transfer mvn, rts and dst_bank set up
 save_data:
+    phb
 .loop:
+    phx
+
     ; $00 = source address
-    lda.w tables_save,x : sta $00
-    phx : phb
+    lda.l tables_save,x : sta $00
     
     ; $04 = transfer size
-    lda.w tables_save+3,x : sta $04
+    lda.l tables_save+3,x : sta $04
 
     ; Push MVN accumulator parameter on the stack (size - 1)
     dec : pha
 
     ; Write source bank parameter in data transfer routine
     sep #$20
-    lda.w tables_save+2,x : sta.b data_transfer_src_bank
+    lda.l tables_save+2,x : sta.b data_transfer_src_bank
     rep #$20
 
     ; Call the data transfer routine with parameters:
@@ -357,6 +376,7 @@ save_data:
     %next_iteration()
 
 .end:
+    plb
     rts
 
 ; Helper routine for load_file and init_file operations
@@ -367,21 +387,22 @@ save_data:
 ; - $06 = ending index in the table_save
 ; - data_transfer mvn, rts and src_bank set up
 load_data:
+    phb
 .loop:
-    ; Y = destination address
-    lda.w tables_save,x : tay
+    phx
 
-    phx : phb
+    ; Y = destination address
+    lda.l tables_save,x : tay
     
     ; $04 = transfer size
-    lda.w tables_save+3,x : sta $04
+    lda.l tables_save+3,x : sta $04
 
     ; Push MVN accumulator parameter on the stack (size - 1)
     dec : pha
     
     ; Write destination bank parameter in data transfer routine
     sep #$20
-    lda.w tables_save+2,x : sta.b data_transfer_dst_bank
+    lda.l tables_save+2,x : sta.b data_transfer_dst_bank
     rep #$20
 
     ; Call the data transfer routine with parameters:
@@ -396,6 +417,7 @@ load_data:
     %next_iteration()
 
 .end:
+    plb
     rts
 
 ;=====================================
@@ -408,7 +430,9 @@ get_file_sram_addr:
     rts    
 
 .sram_addr:
-    dw !sram_addr,!sram_addr+!file_size,!sram_addr+(2*!file_size)
+    dw !sram_addr+4
+    dw !sram_addr+4+!file_size
+    dw !sram_addr+4+(2*!file_size)
 
 ;=====================================
 ; get_global_sram_addr routine
@@ -417,33 +441,29 @@ get_global_sram_addr:
     lda.w #!sram_addr_global+4
     rts
 
-else
+elseif not(!sram_plus) && not(!bwram_plus) ; && not(!sram_feature)
 
 ; Restore code, in case settings are changed.
-if not(!sram_plus) && not(!bwram_plus)
-
 pushpc
 
 if read1($00FFD8) == !sram_size
 org $00FFD8
     db $01
-endif
+endif ; read1($00FFD8) == !sram_size
 
 if read1($009BCB) == $5C
 org $009BCB
     plb
     ldx $010A|!addr
-endif
+endif ; read1($009BCB) == $5C
 
 if read1($009CF5) == $5C
 org $009CF5
     bne $2B
     phx
     stz $0109|!addr
-endif
+endif ; read1($009CF5) == $5C
 
 pullpc
 
-endif
-
-endif
+endif ; !sram_feature

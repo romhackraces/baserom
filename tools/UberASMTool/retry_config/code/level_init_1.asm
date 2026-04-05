@@ -1,9 +1,16 @@
 ; Gamemode 11
 
 init:
-    ; Reset frame counters and layer 1 and 2 X positions.
+    ; Check if the ram canary is still valid
     rep #$20
+    lda !ram_canary : cmp.w #!canary_value : beq .ok
+    jmp fail_wram
+
+.ok:
+    ; Reset frame counters and layer 1 and 2 X positions.
+if !reset_frame_counters
     stz $13
+endif ; !reset_frame_counters
     stz $1A
     stz $1E
     sep #$20
@@ -17,6 +24,10 @@ init:
 
     ; Check if we entered from the overworld.
     lda $141A|!addr : bne .skip
+
+.from_ow:
+    ; Apply counterbreak
+    jsr counterbreak_from_ow
 
     ; The game sets $13BF a bit later so we need to do it ourselves
     ; (unless it's right after a "No Yoshi" cutscene).
@@ -33,11 +44,9 @@ init:
     sta !ram_hurry_up
 
     ; Call the custom reset routine.
-    phx : php
-    phb : phk : plb
-    jsr extra_reset
-    plb
-    plp : plx
+    phx : php : phb
+    jsl extra_reset
+    plb : plp : plx
 
     ; Set the destination from the level's checkpoint value.
     rep #$20
@@ -51,7 +60,8 @@ init:
     lda $1B95|!addr : bne +
 if !counterbreak_yoshi != 1 && !counterbreak_yoshi != 2
     lda $1B9B|!addr : bne +
-endif
+endif ; !counterbreak_yoshi != 1 && !counterbreak_yoshi != 2
     stz $0DC1|!addr
 +
+    jsl level_transition_init
     rtl

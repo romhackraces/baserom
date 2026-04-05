@@ -4,10 +4,13 @@
 	<title>Setting up Multiple Midways - Retry System UberASM</title>
 	<meta name="author" content="AmperSam">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
 <body>
+<div class="box">
 <h1>Setting up Multiple Midways</h1>
 
 <h3>Inserting the Midway Bar Object in Lunar Magic</h3>
@@ -18,14 +21,12 @@
 <h3>Respawn Location</h3>
 <p>To change where Mario will respawn after collecting this midway, you will set a 4-digit value in the <b>Extension Field</b>. The value put here will dictate the <b>entrance type</b> as well as either the <b>level number</b> or a <b>secondary entrance number</b> where Mario will respawn.</p>
 <ul>
-	<li><code>0000-1FFF</code> respawn at <b>secondary entrance</b>, this is just a valid 4-digit secondary entrance number (ranges 0000-1FFF)</li>
-	<li><code>2000-3FFF</code> respawn at <b>secondary entrance with water</b>, the value is 2000 + secondary entrance number.*</li>
-	<li><code>4000-41FF</code> respawn at <b>main</b> entrance, 4000 + 3-digit level number (ranges 000-1FF).</li>
-	<li><code>5000-51FF</code> respawn at <b>midway</b> entrance, 5000 + level number.</li>
+	<li><code>0000-1FFF</code>: respawn at a <b>secondary entrance</b> (you just put the 4-digit secondary entrance number).</li>
+	<li><code>4000-41FF</code>: respawn at a <b>main</b> entrance (you put <code>4000</code> + 3-digit sublevel number).</li>
+	<li><code>5000-51FF</code>: respawn at a <b>midway</b> entrance (you put <code>5000</code> + 3-digit sublevel number).</li>
 </ul>
-<small>*This is obsolete in Lunar Magic 3.00+</small>
 <p>Keep in mind some values will need leading zeroes to work correctly, e.g. respawning at secondary entrance 12C would be <code>012C</code> and not <code>12C</code>.</p>
-<blockquote>Note: some of these settings can be used to make a midway respawn a player in <b>any place</b> in the game not just within the same level or connected sublevels.</blockquote>
+<blockquote>Note: these settings can be used to make a midway respawn a player in <b>any place</b> in the game not just within the same level or connected sublevels.</blockquote>
 <p>Once inserted, it will appear in Lunar Magic as a green square, but will appear as the normal Midway Tape object in-game.</p>
 <img src="./img/midway_object.png">
 <p>Since Lunar Magic 3.60, you can also add useful tooltip information that will be displayed when hovering over the custom midway object. For more information, check out <a href="./files.html#lm_resources">Lunar Magic Resources</a>.
@@ -44,16 +45,19 @@
 	<li><code>4</code>: Any main/midway entrance into a sublevel, from an exit-enabled object in another level, will save as a checkpoint and respawning will lead to the corresponding entrance where the checkpoint was gathered. Secondary entrances into the sublevel won't save as a checkpoint. <b>This does not change midway bar behaviour.</b></li>
 	<li><code>5</code>: this enables both the effects of <code>1</code> (midway bar) and <code>4</code> (main/midway entrances).</li>
 	<li><code>6</code>: Any secondary entrance into a sublevel, from an exit-enabled object in another level, will save as a checkpoint and respawning will lead to the corresponding entrance where the checkpoint was gathered. Main/midway entrances into the sublevel won't save as a checkpoint. <b>This does not change midway bar behaviour.</b></li>
-	<li><code>7</code>: this enables both the effects of <code>1</code> (midway bar) and <code>6</code> (secondary entrances).
+	<li><code>7</code>: this enables both the effects of <code>1</code> (midway bar) and <code>6</code> (secondary entrances).</li>
 </ul>
 <p>Note: this setting can be used in conjunction with the midway objects detailed above.</p>
 
 <h3>Examples</h3>
 <p></p>
 <img src="./img/multiple_midway_$00.png">
+<hr>
 <img src="./img/multiple_midway_$01.png">
+<hr>
 <img src="./img/multiple_midway_$02.png">
+<hr>
 <img src="./img/multiple_midway_$03.png">
-<br/><center><a href="./index.html">Return to main page</a></center>
+</div>
 </body>
 </html>

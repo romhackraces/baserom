@@ -22,7 +22,7 @@ org $008C89
 
 pullpc
 
-elseif read1($008F49) == $5C
+elseif read1($008F49) == $5C ; && not(!status_death_word)
 
 pushpc
 
@@ -33,7 +33,7 @@ org $008C89
 
 pullpc
 
-endif
+endif ; !status_death_word
 
 if !status_death_counter
 
@@ -58,17 +58,15 @@ status_death_counter:
 .return:
     jml $008F5B|!bank
 
-else
+elseif read1($008F49) == $5C ; && not(!status_death_counter)
 
 pushpc
 
 ; Restore the hijack if settings are changed.
-if read1($008F49) == $5C
 org $008F49
     lda $0DBE|!addr
     inc
-endif
 
 pullpc
 
-endif
+endif ; !status_death_counter

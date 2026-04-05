@@ -5,7 +5,7 @@ if !initial_facing_fix
 org $05DA1C
     jml initial_facing_fix
 
-else
+else ; if not(!initial_facing_fix)
 
 ; Restore the original code.
 ; Don't force "No Yoshi Sign 2" intro if the fix is enabled.
@@ -13,12 +13,12 @@ org $05DA1C
 if not(!no_yoshi_intro_fix)
     cmp #$52
     bcc $04
-else
+else ; if !no_yoshi_intro_fix
     bra $06
     nop #2
-endif
+endif ; not(!no_yoshi_intro_fix)
 
-endif
+endif ; !initial_facing_fix
 
 pullpc
 
@@ -38,7 +38,7 @@ if not(!no_yoshi_intro_fix)
     cmp #$52 : bcc +
     jml $05DA20|!bank
 +   
-endif
+endif ; not(!no_yoshi_intro_fix)
     jml $05DA24|!bank
 
-endif
+endif ; !initial_facing_fix

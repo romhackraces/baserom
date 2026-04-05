@@ -42,3 +42,4 @@ endif
 !toggle_springboard_fixes_freeram           = !toggles_freeram_bank+5 ; 1 byte
 !toggle_rope_glitch_freeram                 = !toggles_freeram_bank+6 ; 1 byte
 !toggle_spin_jump_freeram                   = !toggles_freeram_bank+7 ; 1 byte
+!toggle_score_sprites_freeram               = !toggles_freeram_bank+8 ; 1 byte

@@ -4,25 +4,28 @@
 	<title>Resources - Retry System UberASM</title>
 	<meta name="author" content="KevinM, AmperSam">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+    <script defer src="./scripts/shared.js"></script>
 </head>
 <body>
+<div class="box-wide">
     <h1>Resources</h1>
 
-    <!-- Menu -->
     <h3>Contents</h3>
     <ul>
         <li><a href="#amk_resources">AddmusicK Resources</a></li>
         <li><a href="#lm_resources">Lunar Magic Resources</a></li>
         <li><a href="#gfx">Graphics</a></li>
+        <li><a href="#examples">Examples</a></li>
     </ul>
     <br/>
 
     <h3 id="amk_resources">AddmusicK Resources</h3>
     <p>Inside the <u class="dir">resources/amk</u> folder you can find a custom a custom SFX file (<u class="dir">resources/amk/sfx/Death Prelude.txt</u>) and a custom death music file (<u class="dir">resources/amk/music/01 Miss (no intro).txt</u>). These can be used to keep a vanilla-feeling sound on death with Retry enabled.</p>
-    <p>The SFX is the intro to the vanilla death music, and it is recommended to use as the Retry death SFX. To do so, insert it as any other SFX in AddmusicK: move the txt file inside AMK's <u class="dir">1DFC</u> folder, then add it as a new entry in the <u class="dir">Addmusic_sound effects.txt</u> file under <code>SFX1DFC</code>. To configure Retry to play this SFX on death, in <u class="dir">settings_global.asm</u> change <code>!death_sfx</code> to the value you used in <u class="dir">Addmusic_sound effects.txt</u>, and set <code>!death_sfx_addr = $1DFC</code>.</p>
-    <p>The music file is the vanilla death jingle but with the initial part removed (the part that is played in the custom SFX provided here). This can be used as an alternative death jingle for when choosing "Exit" in the Retry prompt: normally this plays the vanilla death jingle, but it might be weird to replay the death SFX part of it, so you can insert this alternative variant in your <u class="dir">Addmusic_list.txt</u> and configure Retry to play that only when using "Exit". To do so, change <code>!death_jingle_alt</code> in <u class="dir">settings_global.asm</u> to the number you inserted it as in AMK's list. Note that you shouldn't insert this as a global song.</p>
+    <p>The SFX is the intro to the vanilla death music, and it is recommended to use as the Retry death SFX. To do so, insert it as any other SFX in AddmusicK: move the txt file inside AddmusicK's <u class="dir">1DFC</u> folder, then add it as a new entry in the <u class="dir">Addmusic_sound effects.txt</u> file under <code>SFX1DFC</code>. To configure Retry to play this SFX on death, in <u class="dir">settings_global.asm</u> change <code>!death_sfx</code> to the value you used in <u class="dir">Addmusic_sound effects.txt</u>, and set <code>!death_sfx_addr = $1DFC</code>.</p>
+    <p>The music file is the vanilla death jingle but with the initial part removed (the part that is played in the custom SFX provided here). This can be used as an alternative death jingle for when choosing "EXIT" in the Retry prompt: normally this plays the vanilla death jingle, but it might be weird to replay the death SFX part of it, so you can insert this alternative variant in your <u class="dir">Addmusic_list.txt</u> (note: you need to insert it under <code>Locals:</code>) and configure Retry to play that only when using "EXIT". To do so, change <code>!death_jingle_alt</code> in <u class="dir">settings_global.asm</u> to the number you inserted it as in AddmusicK's list. This also has the advantage of sounding correct even if the level music is incompatible with the vanilla death jingle.</p>
     <br/>
 
     <h3 id="lm_resources">Lunar Magic Resources</h3>
@@ -46,39 +49,44 @@
             <th class="center-align">Default Palette</th>
         </tr>
         <tr>
-            <td><u class="dir">letters1.bin</u></td>
-            <td>Retry prompt letters used in the prompt when <code>!no_prompt_box = 0</code></td>
+            <td><u class="dir">prompt1.bin</u></td>
+            <td>Retry prompt tiles used in the prompt when the prompt black box is enabled (<code>!no_prompt_bg = 0</code>). Note that the two black tiles next to the cursor are needed.</td>
             <td class="center-align">8</td>
         </tr>
         <tr>
-            <td><u class="dir">letters2.bin</u></td>
-            <td>Retry prompt letters used in the prompt when <code>!no_prompt_box = 1</code></td>
-            <td class="center-align">8</td>
-        </tr>
-        <tr>
-            <td><u class="dir">coins.bin</u></td>
-            <td>Two 8x8 tiles used by the sprite status bar coin counters (the first is used by the coin counter, the second by the Dragon Coin counter).</td>
+            <td><u class="dir">prompt2.bin</u></td>
+            <td>Retry prompt tiles used in the prompt when the prompt black box is disabled (<code>!no_prompt_bg = 1</code>). Note that the two transparent tiles next to the cursor are needed.</td>
             <td class="center-align">8</td>
         </tr>
         <tr>
             <td><u class="dir">digits.bin</u></td>
-            <td>Numbers used by the sprite status bar timer, coin counter, lives counter and bonus stars counter.</td>
+            <td>Numbers used by all of the sprite status bar counters</td>
+            <td class="center-align">Any</td>
+        </tr>
+        <tr>
+            <td><u class="dir">x.bin</u></td>
+            <td>"X" tile optionally displayed beside the sprite status bar counters</td>
             <td class="center-align">Any</td>
         </tr>
         <tr>
             <td><u class="dir">indicator.bin</u></td>
-            <td>Single 8x8 tile used by the retry indicator</td>
+            <td>Single 8x8 tile used by the Retry indicator in the sprite status bar</td>
             <td class="center-align">9</td>
         </tr>
         <tr>
             <td><u class="dir">item_box_8x8.bin</u></td>
-            <td>Single 8x8 tile used to draw the smaller Item Box</td>
+            <td>Single 8x8 tile used to draw the smaller item box in the sprite status bar</td>
             <td class="center-align">B</td>
         </tr>
         <tr>
             <td><u class="dir">item_box_16x16.bin</u></td>
-            <td>Four 8x8 tiles used to draw the full Item Box</td>
+            <td>Four 8x8 tiles used to draw the full item box in the sprite status bar</td>
             <td class="center-align">B</td>
+        </tr>
+        <tr>
+            <td><u class="dir">coins.bin</u></td>
+            <td>Two 8x8 tiles used by the sprite status bar coin counters (the first is used by the coin counter, the second by the Dragon Coin counter)</td>
+            <td class="center-align">8</td>
         </tr>
         <tr>
             <td><u class="dir">timer.bin</u></td>
@@ -95,9 +103,61 @@
             <td>Single 8x8 tile used for the sprite status bar bonus stars counter icon</td>
             <td class="center-align">9</td>
         </tr>
+        <tr>
+            <td><u class="dir">death.bin</u></td>
+            <td>Single 8x8 tile used for the sprite status bar death counter icon</td>
+            <td class="center-align">8</td>
+        </tr>
     </table>
     <br/>
 
-    <center><a href="./index.html">Return to main page</a></center>
+    <h3 id="examples">Examples</h3>
+    <p>Inside the <u class="dir">resources/examples</u> folder you can find various asm codes that use some of the Retry features, to better show what is explained in the other pages. Feel free to use or adapt them for your project. Note that in order for the example blocks and patches to work, you'll need to copy Retry's <u class="dir">ram.asm</u> in the blocks/patch folder. This is not needed for the UberASM codes.</p>
+    <table class="left-align">
+        <tr>
+            <th>Type</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td rowspan="2">Blocks</td>
+            <td><u class="dir">invisible_cp_normal.asm</u></td>
+            <td>
+                This is an example of using the <code>!retry_ram_set_checkpoint</code> RAM address.<br/>
+                This block will trigger a silent checkpoint when touched that will act as a vanilla midway. So, by default it will set the checkpoint to the midway entrance of the main level, but if using <code>%checkpoint(&lt;sublevel&gt;,1)</code> in Retry's <code>settings_local.asm</code>, it will set the checkpoint to the midway entrance of the current sublevel.
+            </td>
+        </tr>
+        <tr>
+            <td><u class="dir">invisible_cp_custom.asm</u></td>
+            <td>
+                This is an example of using the <code>!retry_ram_set_checkpoint</code> RAM address.<br/>
+                This block will trigger a silent checkpoint when touched to the secondary exit defined by <code>!secondary_exit</code>.
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="1">Patches</td>
+            <td><u class="dir">prompt_type_title_select.asm</u></td>
+            <td>
+                This is an example of using the <code>!retry_ram_prompt_override</code> RAM address.<br/>
+                This patch will change the <code>1 PLAYER GAME</code>/<code>2 PLAYER GAME</code> options on the file select screen to <code>INSTANT RETRY</code>/<code>PROMPT RETRY</code>, to let the player choose which one they want. To customize it you can edit the tables at the bottom of the file.
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2">UberASM</td>
+            <td><u class="dir">red_switch_remove_cps.asm</u></td>
+            <td>
+                This is an example of using the <code>retry_api_reset_all_cps</code> API routine.<br/>
+                This is a level UberASM that will make so whenever a red switch (sprite <code>C8</code>) is pressed in the level, it will remove all the checkpoints in the game.
+            </td>
+        </tr>
+        <tr>
+            <td><u class="dir">title_screen_items_icon.asm</u></td>
+            <td>
+                This is an example of using the <code>retry_api_get_sram_var</code> API routine.<br/>
+                This is a gamemode UberASM (to be inserted in gamemodes <code>8</code> and <code>9</code> if using the vanilla title screen menu, or gamemode <code>A</code> if using the <a href="https://smwc.me/s/40641">One File, One Player</a> patch) that will draw a tile next to the save files in the load/erase file menu on the title screen, if the corresponding save file has a certain number of items (by default, moons) collected. This only works if the item is saved in SRAM using Retry's save feature (see <a href="./sram_tables.html">SRAM Tables</a>).
+            </td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

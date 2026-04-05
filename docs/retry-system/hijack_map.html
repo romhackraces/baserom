@@ -4,10 +4,13 @@
 	<title>Hijack Map - Retry System UberASM</title>
 	<meta name="author" content="KevinM">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
-<body class="wide">
+<body>
+<div class="box-wide">
 	<h1>Retry Hijack Map</h1>
 	<p>While this version of the Retry System mostly uses UberASM Tool code to run, it still requires some hijacks for some functions that cannot be achieved otherwise. These hijacks are inserted automatically when inserting UberASM Tool, and they can be removed with the provided <u class="dir">src/retry_unpatch.asm</u> file if you need to remove Retry from your rom (see <a href="./uninstall.html">Uninstalling Retry</a> for details).</p>
 	<p>If you're experiencing game crashes or weird problems after inserting some other patch, you can check here if there are conflicting hijacks with Retry, although that should be pretty rare compared to the old Retry patch which had much more frequent resource conflicts.</p>
@@ -40,6 +43,13 @@
 			<td class="left-align">
 				If <code>!remove_vanilla_status_bar = 1</code>, disables code to draw the vanilla status bar in mode 7 levels.<br/>
 				If <code>!remove_vanilla_status_bar = 0</code>, it restores the original code (only the first time the setting is changed to 0).
+			</td>
+		</tr>
+		<tr>
+			<td><code>$0086C7</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">
+				Fixes some graphical glitches with the Retry prompt and sprite status bar in Morton and Roy's rooms.
 			</td>
 		</tr>
 		<tr>
@@ -94,8 +104,13 @@
 		</tr>
 		<tr>
 			<td><code>$009E25</code></td>
-			<td><code>1</td>
+			<td><code>1</code></td>
 			<td class="left-align">Changes how many lives the save file starts with.</td>
+		</tr>
+		<tr>
+			<td><code>$00A1B2</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Prevents the original game from resetting the RNG state when loading the Overworld and cutscenes (since it is handled by Retry).</td>
 		</tr>
 		<tr>
 			<td><code>$00A5A8</code></td>
@@ -129,9 +144,28 @@
 			</td>
 		</tr>
 		<tr>
+			<td><code>$02827D</code></td>
+			<td><code>5</code></td>
+			<td class="left-align">
+				Fixes some graphical glitches with the Retry prompt and sprite status bar in Morton and Roy's rooms.
+			</td>
+		</tr>
+		<tr>
+			<td><code>$02832C</code></td>
+			<td><code>5</code></td>
+			<td class="left-align">
+				Fixes some graphical glitches with the Retry prompt and sprite status bar in Morton and Roy's rooms.
+			</td>
+		</tr>
+		<tr>
+			<td><code>$03BC72</code></td>
+			<td><code>4</code></td>
+			<td class="left-align">Fixes a bug where the switch palace message boxes sprites become glitched if drawing sprites in UberASM Tool's 2.0 "end" label (when editing the Overworld in Lunar Magic).</td>
+		</tr>
+		<tr>
 			<td><code>$05B30E</code></td>
 			<td><code>4</code></td>
-			<td class="left-align">Fixes a bug where the switch palace message boxes sprites become glitched if drawing sprites in UberASM Tool's 2.0 "end" label.</td>
+			<td class="left-align">Fixes a bug where the switch palace message boxes sprites become glitched if drawing sprites in UberASM Tool's 2.0 "end" label (when not editing the Overworld in Lunar Magic).</td>
 		</tr>
 		<tr>
 			<td><code>$05B31B</code></td>
@@ -168,7 +202,7 @@
 			<td><code>4</code></td>
 			<td class="left-align">
 				If <code>!use_custom_midway_bar = 1</code>, this inserts code to handle Retry's custom midway objects.<br/>
-				If <code>!use_custom_midway_bar = 0</code>, this restores the original code (only the first time the setting is changed, and only if Objectool is present in the rom).
+				If <code>!use_custom_midway_bar = 0</code>, this restores the original code (only the first time the setting is changed, and only if Objectool is not present in the rom).
 			</td>
 		</tr>
 		<tr>
@@ -177,7 +211,6 @@
 			<td class="left-align">Makes sure to spawn or not spawn the midway bar object at level load depending on the current checkpoint.</td>
 		</tr>
 	</table>
-
-<br/><center><a href="./index.html">Return to main page</a></center>
+</div>
 </body>
 </html>

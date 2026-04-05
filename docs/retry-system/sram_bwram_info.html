@@ -4,14 +4,17 @@
 	<title>SRAM &amp; BW-RAM Information - Retry System UberASM</title>
 	<meta name="author" content="KevinM, AmperSam">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
 <body>
+<div class="box">
 <h1>SRAM &amp; BW-RAM Information</h1>
 
-<p>As the standard Retry patch, this Retry includes a built-in SRAM expansion patch that's used by default to save the custom checkpoints and death counter. Differently from the normal Retry, the patch also works on SA-1 (using BW-RAM instead of SRAM, but the result is the same), so this can be effectively used as an alternative to the SRAM/BW-RAM Plus patch and the likes.</p>
-<p>If you've already patched SRAM/BW-RAM Plus, this feature will be turned off automatically (they can't coexist). Unlike SRAM Plus, this patch should also work on SNES Classic, so you should use it if you care about compatibility with that console. Also, the maximum amount of bytes you can save per save file is 2389 bytes.</p>
+<p>As the old Retry patch, this Retry includes a built-in SRAM expansion patch that's used by default to save the custom checkpoints and death counter. Differently from the old Retry patch, the save system also works on SA-1 (using BW-RAM instead of SRAM, but the result is the same), so this can be effectively used as an alternative to the SRAM/BW-RAM Plus patch and the likes (I don't recommend using them if you're using the Retry System, unless you already have them patched).</p>
+<p>If you've already patched SRAM/BW-RAM Plus, Retry's save feature will be turned off automatically (they can't coexist). Unlike SRAM Plus, Retry's save system should also work on SNES Classic, so you should use it if you care about compatibility with that console. Also, the maximum amount of bytes you can save per save file is 2385 bytes.</p>
 
 <h4>Q: How do I add my own addresses to the save tables?</h4>
 
@@ -26,7 +29,8 @@ dl $7E1F3C : dw 12      ; $401F3C on SA-1.
 ; 5 Dragon Coins collected flags.
 dl $7E1F2F : dw 12      ; $401F2F on SA-1.
 
-; Individual Dragon Coin Save patch tables. If you use that patch, you should include these.
+; Individual Dragon Coin Save patch tables.
+; If you use that patch, you should include these.
 dl $7E1F2F : dw 12      ; $401F2F on SA-1.
 dl $7FA660 : dw $0300   ; $40A660 on SA-1.
 </pre>
@@ -37,8 +41,8 @@ dl $7FA660 : dw $0300   ; $40A660 on SA-1.
 <p>A: If you really need to use those, then you can add these to the <code>sram_table</code>/<code>bw_ram_table</code>:</p>
 
 <pre>
-dl !ram_checkpoint    : dw 192
-dl !ram_death_counter : dw 5
+dl !retry_ram_checkpoint    : dw 192
+dl !retry_ram_death_counter : dw 5
 </pre>
 
 <p>Note: to have the Retry ram defines available in the patch, copy the contents of <u class="dir">retry_config/ram.asm</u> at the top of the SRAM+/BW-RAM+ table file. Also, if you're not using the death counter, you can omit the second line.</p>
@@ -65,7 +69,6 @@ db $00,$00,$00,$00,$00
 </pre>
 
 <p>Note: if you omitted the death counter in the previous table, then do it here too.</p>
-
-<br/><center><a href="./index.html">Return to main page</a></center>
+</div>
 </body>
 </html>

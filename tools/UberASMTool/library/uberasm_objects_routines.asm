@@ -37,6 +37,7 @@ routines:
     %ObjectRoutine($BC, retry_display_item_box)
     %ObjectRoutine($BD, retry_display_lives)
     %ObjectRoutine($BE, retry_display_bonus_stars)
+    %ObjectRoutine($BF, retry_display_death_counter)
     ; initialization objects
     %ObjectRoutine($C0, start_with_mushroom)
     %ObjectRoutine($C1, start_with_cape)
@@ -72,6 +73,7 @@ routines:
     %ObjectRoutine($A0, press_lr_to_die)
     %ObjectRoutine($A1, disable_screen_shake)
     %ObjectRoutine($A2, no_item_box)
+    %ObjectRoutine($A3, disable_score)
 ..done
 
 ; Game Mode 14 end
@@ -159,10 +161,14 @@ disable_screen_shake:
     stz $1887|!addr     ; store zero to the layer 1 shake timer
     rts
 
-
 ; Clears item box to prevent items
 no_item_box:
     stz $0DC2|!addr     ; Reset item box.
+    rts
+
+; Clears item box to prevent items
+disable_score:
+    lda #$01 : sta !toggle_score_sprites_freeram
     rts
 
 
@@ -199,6 +205,9 @@ retry_config_no_powerup_from_midway:
 
 ; Display sprite item box
 retry_display_item_box:
+    ; hide the statusbar
+    lda #$01 : sta !toggle_statusbar_freeram
+    ; set the tile
     rep #$20
     lda #$301D  ; palette B, tile 0x1D
     sta !retry_ram_status_bar_item_box_tile
@@ -207,6 +216,9 @@ retry_display_item_box:
 
 ; Display sprite timer
 retry_display_timer:
+    ; hide the statusbar
+    lda #$01 : sta !toggle_statusbar_freeram
+    ; set the tile
     rep #$20
     lda #$0020 ; palette 8, tile 0x20
     sta !retry_ram_status_bar_timer_tile
@@ -215,6 +227,9 @@ retry_display_timer:
 
 ; Display sprite coin counters
 retry_display_coins:
+    ; hide the statusbar
+    lda #$01 : sta !toggle_statusbar_freeram
+    ; set the tile
     rep #$20
     lda #$0022 ; palette 8, tile 0x22
     sta !retry_ram_status_bar_coins_tile
@@ -223,17 +238,36 @@ retry_display_coins:
 
 ; Display sprite life counter
 retry_display_lives:
+    ; hide the statusbar
+    lda #$01 : sta !toggle_statusbar_freeram
+    ; set the tile
     rep #$20
-    lda #$10CE ; palette 9, tile 0xCE
+    lda #$104E ; palette 9, tile 0x4E
     sta !retry_ram_status_bar_lives_tile
     sep #$20
     rts
 
 ; Display sprite bonus stars counter
 retry_display_bonus_stars:
+    ; hide the statusbar
+    lda #$01 : sta !toggle_statusbar_freeram
+    ; set the tile
     rep #$20
-    lda #$104E ; palette 9, tile 0x4E
+    lda #$1080 ; palette 9, tile 0x80
     sta !retry_ram_status_bar_bonus_stars_tile
+    sep #$20
+    rts
+
+; Display sprite death counter
+retry_display_death_counter:
+    ; hide the statusbar
+    lda #$01 : sta !toggle_statusbar_freeram
+    ; disable score
+    lda #$01 : sta !toggle_score_sprites_freeram
+    ; set the tile
+    rep #$20
+    lda #$1044 ; palette 9, tile 0x44
+    sta !retry_ram_status_bar_death_tile
     sep #$20
     rts
 

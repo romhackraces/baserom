@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Known Issues and Limitations - Retry System UberASM</title>
+	<meta name="author" content="KevinM">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
+	<link rel="icon" href="./img/icon.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
+</head>
+<body>
+<div class="box">
+	<h1>Known Issues and Limitations</h3>
+	<p>This page lists known issues and limitations of the Retry System. Note that, unless stated otherwise, all of these are not possible or planned to be fixed.</p>
+	<ul>
+		<li>Dying after the goal tape ("Kaizo trap") will cause the circle effect to disappear if the prompt shows up and the prompt black background is not disabled.</li>
+		<li>When the prompt appears (with the black background enabled), it will mess up level effects that use windowing (for example, <a href="https://smwc.me/s/41443">Fading Lights UberASM</a>, or the vanilla spotlight effect).</li>
+		<li>The sprite status bar will appear behind layer 3 with top priority enabled.</li>
+		<li>If the prompt black background is disabled, the prompt text will appear behind layer 3 with top priority enabled.</li>
+		<li>The sprite status bar will appear behind layer 2 in level modes where layer 2 has higher priority than sprites (like <code>1F</code>).</li>
+		<li>If the prompt black background is disabled, the prompt text will appear behind layer 2 in level modes where layer 2 has higher priority than sprites (like <code>1F</code>).</li>
+		<li>Some tiles in the sprite status bar may appear behind other sprites (mostly projectiles and stuff like that).</li>
+		<li>Some graphics in vanilla mode 7 bosses (like Roy's candles or Morton's pillars) will disappear when the prompt appears or when the sprite status bar is enabled.</li>
+        <li>Checkpoints don't work properly in level 24 if its special vanilla behavior is not disabled in Lunar Magic (by unselecting the "Allow level 24 to redirect screen exits based on coins collected and time remaining" option in the Overworld "Extra Options" menu). For example, dying and retrying will respawn Mario in the next room of the level instead of the checkpoint.</li>
+	</ul>
+</div>
+</body>
+</html>

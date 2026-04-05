@@ -1,4 +1,6 @@
-; Defines for miscellaneous values used by Retry
+; Static defines for miscellaneous values used by Retry
+; These are defined statically
+
 !retry_type_follow_global      #= $00
 !retry_type_prompt_death_song  #= $01
 !retry_type_prompt_death_sfx   #= $02
@@ -21,3 +23,18 @@
 !checkpoint_type_midway_bar_secondary_entrance   #= $07
 !checkpoint_type_min                             #= !checkpoint_type_vanilla
 !checkpoint_type_max                             #= !checkpoint_type_midway_bar_secondary_entrance
+
+!reset_rng_type_never    #= $00
+!reset_rng_type_ow       #= $01
+!reset_rng_type_ow_retry #= $02
+!reset_rng_type_always   #= $03
+!reset_rng_type_min      #= !reset_rng_type_never
+!reset_rng_type_max      #= !reset_rng_type_always
+
+!ssb_elements_number #= 6
+
+!canary_value #= 42069
+
+!box_window_x_pos #= $38
+
+!box_window_size #= 72

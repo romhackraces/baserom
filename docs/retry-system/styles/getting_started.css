@@ -1,0 +1,14 @@
+#hierarchy {
+    margin: 1em 0;
+    font-family: monospace;
+    font-size: 1.09em;
+}
+
+.folder, .file {
+    display: block;
+    padding: 0 0 0 2em;
+}
+
+.file {
+    display: inline;
+}

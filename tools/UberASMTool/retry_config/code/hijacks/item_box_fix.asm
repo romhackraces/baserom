@@ -5,7 +5,7 @@ if !item_box_fix
 org $00C572
     jml item_box_fix
 
-else
+else ; if not(!item_box_fix)
 
 if read1($00C572) == $5C
 
@@ -13,8 +13,9 @@ org $00C572
     lda $15
     and #$08
 
-endif
-endif
+endif ; if read1($00C572) == $5C
+
+endif ; !item_box_fix
 
 pullpc
 
@@ -29,4 +30,4 @@ item_box_fix:
     lda $15 : and #$08
     jml $00C576|!bank    
 
-endif
+endif ; !item_box_fix

@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Uninstall - Retry System UberASM</title>
-<meta name="author" content="KevinM">
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<title>Uninstall - Retry System UberASM</title>
+	<meta name="author" content="KevinM">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
 <body>
-<h1>Uninstalling Retry</h1>
-<p>If you wish to uninstall the Retry System, and you're not using a tool like <a href="https://smwc.me/t/125568">Callisto</a> that can rebuild the rom from scratch easily, it is easy to do following these steps:</p>
-<ul>
-	<li>Delete the <u class="dir">retry.asm</u> file from UberASM Tool's <u class="dir">library</u> folder.</li>
-	<li>Delete all the <u class="dir">retry_gmXX.asm</u> files from UberASM Tool's <u class="dir">gamemode</u> folder.</li>
-	<li>Delete the <u class="dir">retry_config</u> folder from UberASM Tool's top folder.</li>
-	<li>In UberASM Tool's <u class="dir">list.txt</u> file, remove all the lines with <u class="dir">retry_gmXX.asm</u> under <u class="dir">gamemode:</u>.</li>
-	<li>Run UberASM Tool.</li>
-	<li>Patch the <u class="dir">retry_unpatch.asm</u> file found in the <u class="dir">src</u> folder using <a href="https://smwc.me/s/37443">Asar</a>.
-</ul>
-<br/><center><a href="./index.html">Return to main page</a></center>
+<div class="box">
+	<h1>Uninstalling Retry</h1>
+	<p>If you wish to uninstall the Retry System, and you're not using a tool like <a href="https://smwc.me/t/125568">Callisto</a> that can rebuild the rom from scratch easily, it is easy to do following these steps:</p>
+	<ul>
+		<li>Delete the <u class="dir">retry.asm</u> file from UberASM Tool's <u class="dir">library</u> folder.</li>
+		<li>Delete the <u class="dir">retry_gm.asm</u> files from UberASM Tool's <u class="dir">gamemode</u> folder.</li>
+		<li>Delete the <u class="dir">retry_config</u> folder from UberASM Tool's top folder.</li>
+		<li>In UberASM Tool's <u class="dir">list.txt</u> file, remove the line <code>* retry_gm.asm</code> under <code>gamemode:</code> (or just remove <code>,retry_gm.asm</code> if you have multiple files after <code>*</code>).</li>
+		<li>Run UberASM Tool.</li>
+		<li>Patch the <u class="dir">retry_unpatch.asm</u> file found in the <u class="dir">src</u> folder using <a href="https://smwc.me/s/37443">Asar</a>.
+	</ul>
+</li>
 </body>
 </html>

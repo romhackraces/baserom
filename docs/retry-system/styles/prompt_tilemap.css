@@ -1,0 +1,57 @@
+table {
+    text-align: left;
+}
+
+button {
+    padding: 4px 6px 4px 6px;
+    border: 1px outset buttonborder;
+    border-radius: 3px;
+    border-color: rgba(64, 80, 96, 0.5);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    background-color: rgba(64, 80, 96, 0.5);
+    transition: background-color 0.15s ease-in;
+}
+
+button:hover {
+    background-color: rgba(64, 80, 96, 0.8);
+    transition: background-color 0.15s ease-out;
+}
+
+button:active {
+    background-color: rgba(64, 80, 96, 0.65);
+    transition: background-color 0.15s ease-in;
+}
+
+.out-table {
+    width: inherit;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.out-table td {
+    width: 25px;
+    height: 25px;
+    padding: 0px;
+}
+
+div.tool {
+    width: 320px;
+}
+
+ul.tool {
+    list-style-type: none;
+    text-align: right;
+}
+
+#out-wrap {
+    text-align: left;
+}
+
+#err {
+    font-weight: bold;
+    color: #c22c2c;
+}

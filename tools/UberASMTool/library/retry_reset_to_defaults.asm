@@ -8,8 +8,8 @@ init:
     lda #!default_prompt_type+1 : sta !ram_prompt_override
 
     ; Initialize prompt position.
-    lda #!text_x_pos : sta !ram_prompt_x_pos
-    lda #!text_y_pos : sta !ram_prompt_y_pos
+    lda #!prompt_box_text_x_pos : sta !ram_prompt_x_pos
+    lda #!prompt_box_text_y_pos : sta !ram_prompt_y_pos
 
     ; Initialize "midway powerup" flag.
     lda #!midway_powerup : sta !ram_midway_powerup

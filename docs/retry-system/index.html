@@ -4,13 +4,16 @@
 	<title>Readme - Retry System UberASM</title>
 	<meta name="author" content="KevinM, AmperSam">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
 <body>
+<div class="box">
 	<h1>Retry System UberASM</h1>
 	<p>The Retry System is a useful patch for both Kaizo hacks and generally hard hacks, as its primary function is to enable fast level reloading to skip going to the Overworld everytime the player dies (similarly to games like Super Meat Boy).</p>
-	<p>This package is a spiritual successor of the <a href="https://smwc.me/s/26078">original Retry patch</a> made by <a href="https://www.smwcentral.net/?p=profile&id=1250">worldpeace</a>, to expand its capabilities and to make it compatible with more resources as a consequence of it being primarily a UberASM resource.</p>
+	<p>This package is a spiritual successor of the <a href="https://smwc.me/1657727">original Retry patch</a> made by <a href="https://www.smwcentral.net/?p=profile&id=1250">worldpeace</a>, to expand its capabilities and to make it compatible with more resources as a consequence of it being primarily a UberASM resource.</p>
 	<p>To see the changelog check out the "Changelog" page.</p>
 	<ul>
 		<li><a href="./changelog.html">Changelog</a></li>
@@ -26,10 +29,11 @@
 	<ul>
 		<li><a href="./getting_started.html">Getting Started</a></li>
 	</ul>
-	<p>For some helpful general information, check out the following pages.</p>
+	<p>For some helpful general information about questions or issues you may have, check out the following pages.</p>
 	<ul>
 		<li><a href="./faq.html">Frequently Asked Questions</a></li>
 		<li><a href="./troubleshooting.html">Troubleshooting</a></li>
+		<li><a href="./known_issues.html">Known Issues and Limitations</a></li>
 	</ul>
 	<p>If you have additional questions or problems, you can PM me on SMW Central (<a href="https://www.smwcentral.net/?p=profile&id=36308">Kevin</a>), DM me on Discord (<code>kkevinm</code>) or open an issue on GitHub (<a href="https://github.com/kkevinm/retry-system/issues/new">Create New Issue</a>). Please make sure you have read this documentation carefully, and tried to solve the problem on your own first, before contacting me.</p>
 	<br/>
@@ -37,14 +41,15 @@
 	<h3 id="config">Configuration</h3>
 	<p>The Retry System can be configured in a lot of ways, from basic general settings, to level specific settings, to more nuanced options for advanced users.</p>
 	<p>All the configuration files you can edit can be found in the <u class="dir">retry_config</u> folder and include some comments on how to use them and what they can do, but you can read more in depth explanation for each file below.</p>
+	<p>The main files you'll need to edit are these:</p>
 	<ul>
-		<li><a href="./settings_global.html">settings_global.asm</a></li>
-		<li><a href="./settings_local.html">settings_local.asm</a></li>
-		<li><a href="./sram_tables.html">sram_tables.asm</a></li>
-		<li><a href="./extra.html">extra.asm</a></li>
-		<li><a href="./ram_map.html">ram.asm</a></li>
+		<li><a href="./settings_global.html">settings_global.asm (Global settings)</a></li>
+		<li><a href="./settings_local.html">settings_local.asm (Per-level settings)</a></li>
+		<li><a href="./sram_tables.html">sram_tables.asm (Save tables)</a></li>
 	</ul>
+	<p>The other asm files can be ignored for most use cases, but you can check out the <a href="#advanced">Advanced Usage</a> section below for more info.</p>
 	<p>You can edit the files in the <u class="dir">retry_config/code</u> folder (which contains all the source code) to change the retry but this is <b>not recommended</b> unless you know exactly what you're doing.</p>
+	<p>You can also edit the files in the <u class="dir">retry_config/gfx</u> folder to change how the Retry tiles look (see <a href="./files.html#gfx">Retry Resources - Graphics</a> for more information).</p>
 	<br/>
 	<!-- Midways -->
 	<h3 id="multiple_midway">Multiple Midways</h3>
@@ -53,21 +58,25 @@
 		<li><a href="./midway_instruction.html">Setting up Multiple Midways</a></li>
 	</ul>
 	<br/>
-	<!-- API -->
-	<h3 id="api">API</h3>
-	<p>The Retry System provides public routines that provide useful functionalities and can be directly called from your own UberASM code.</p>
-	<p>For more information check out the "Retry API" page.</p>
-	<ul>
-		<li><a href="./api.html">Retry API</a></li>
-	</ul>
-	<br/>
 	<!-- Sprite Status Bar -->
 	<h3 id="sprite-status-bar">Sprite Status Bar</h3>
-	<p>The Retry System comes with a built-in sprite status bar system that can replace the vanilla layer 3 status bar, and includes a minimalistic status bar with display for lives, item box, coins, dragon coins and timer. Each of these items can be enabled or disabled at any time, so you can just display what is needed for a particular level. This can be useful if you want to use fullscreen layer 3 backgrounds or just want a less dense status bar.</p>
+	<p>The Retry System comes with a built-in sprite status bar system that can replace the vanilla layer 3 status bar, and includes a minimalistic status bar with display for lives, item box, coins, dragon coins, timer, bonus stars and death counter.</p>
+	<p>Each of these items can be enabled or disabled at any time, so you can just display what is needed for your hack or for a particular level. This can be useful if you want to use fullscreen layer 3 backgrounds or just want a less dense status bar.</p>
 	<p>For more information check out the following pages.</p>
 	<ul>
 		<li><a href="./settings_global.html#sprite-status-bar">Global sprite status bar settings</a></li>
-		<li><a href="./api.html#configure_sprite_status_bar">Local sprite status bar settings</a></p></li>
+		<li><a href="./settings_local.html#ssb_config_item_box">Per-level sprite status bar settings</a></p></li>
+	</ul>
+	<br/>
+	<!-- Advanced -->
+	<h3 id="advanced">Advanced Usage</h3>
+	<p>Besides the more straightforward global and per-level settings described before, you can use and customize the Retry more in depth if you know your way around coding in asm. Being more niche use cases and more complicated to use, you can avoid it if you're just interested in the run of the mill Retry experience (there's already enough to explore in the other setting files anyway...).</p>
+	<p>For more information, check out the following pages.</p>
+	<ul>
+		<li><a href="./prompt_tilemap.html">prompt_tilemap.asm (Prompt Tilemap Settings)</a>: Customization of the Retry prompt text.</li>
+		<li><a href="./extra.html">extra.asm (Extra Routines)</a>: Special routines that Retry calls and you can add your code to.</li>
+		<li><a href="./ram_map.html">ram.asm (Retry RAM Map)</a>: Which RAM area Retry uses and how you can interact with it.</li>
+		<li><a href="./api.html">Retry API Routines</a>: Public Retry routines that you can call from your code.</li>
 	</ul>
 	<br/>
 	<!-- Other Info -->
@@ -80,6 +89,6 @@
 		<li><a href="./hijack_map.html">Hijack Map</a>: table of all the areas of the original code that Retry patches.</li>
 		<li><a href="./uninstall.html">Uninstalling Retry</a>: guide on how to completely remove Retry from your ROM.</li>
 	</ul>
-	<br/>
+</div>
 </body>
 </html>

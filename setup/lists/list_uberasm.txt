@@ -31,23 +31,12 @@ level:
 ; - https://www.smwcentral.net/?p=memorymap&a=detail&game=smw&region=ram&detail=29b0e3d11c61
 
 gamemode:
-    00 retry_gm00.asm
+	* retry_gm.asm
     03 baserom_gm03.asm
-    06 retry_gm06.asm
-    07 retry_gm07.asm
-    0C retry_gm0C.asm
-    0D retry_gm0D.asm
     0E baserom_gm0E.asm, clear_saved_checkpoints.asm, ow_auto_save.asm
-    0F retry_gm0F.asm
-    10 baserom_gm10.asm, retry_gm10.asm
-    11 retry_gm11.asm
-    12 baserom_gm12.asm, retry_gm12.asm
-    13 retry_gm13.asm
-    14 baserom_gm14.asm, retry_gm14.asm, screen_scrolling_pipes.asm
-    15 retry_gm15.asm
-    16 retry_gm16.asm
-    19 retry_gm19.asm
-
+    10 baserom_gm10.asm
+    12 baserom_gm12.asm
+    14 baserom_gm14.asm, screen_scrolling_pipes.asm
 
 ; OVERWORLD CODE
 ; Code files in this part of the list will be run on specific overworld maps.

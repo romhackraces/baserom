@@ -1,14 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>ObjecTool Information - Retry System UberASM</title>
 	<meta name="author" content="KevinM">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
 <body>
+<div class="box">
 <h1>ObjecTool Information</h1>
 <p>If you want to insert custom objects using the ObjecTool patch, and you're using Retry's Custom Midway Object feature (<code>!use_custom_midway_bar = 1</code> in the settings) you'll need to make an edit before inserting the patch.</p>
 <p>Open <u class="dir">objectool.asm</u> and remove these lines (they're towards the top of the file):</p>
@@ -21,10 +23,10 @@ org $0DA415|!bank                   ; x6A615 (hijack normal object loading routi
 
 <p>After doing this, just patch <u class="dir">objectool.asm</u>.</p>
 
-<p>One thing to keep in mind is that Retry will use slots <b>00-41</b> and <b>50-51</b> of the Custom Normal Objects (i.e., objects with id 2D) for its custom midway bars, meaning that you can't use them in ObjecTool.</p>
-<p>You're free to use Custom Normal Objects <b>42-4F</b> and <b>52-FF</b>, as well as all Custom Extended Objects available.</p>
+<p>One thing to keep in mind is that Retry will use slots <code>00-1F</code>, <code>40-41</code> and <code>50-51</code> of the Custom Normal Objects (i.e., objects with id <code>2D</code>) for its custom midway bars, meaning that you can't use them in ObjecTool.</p>
+<p>You're free to use Custom Normal Objects <code>20-3F</code>, <code>42-4F</code> and <code>52-FF</code>, as well as all Custom Extended Objects available.</p>
 
 <p>Additionally, if you want to remove Retry's custom midway bar while keeping ObjecTool, you'll need to place back the code that you removed in <u class="dir">objectool.asm</u> (and make sure you run Retry with <code>!use_custom_midway_bar = 0</code>).</p>
-<br/><center><a href="./index.html">Return to main page</a></center>
+</div>
 </body>
 </html>

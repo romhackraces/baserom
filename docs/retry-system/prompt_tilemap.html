@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Prompt Tilemap Settings - Retry System UberASM</title>
+	<meta name="author" content="KevinM">
+	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
+	<link rel="icon" href="./img/icon.png" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<link rel="stylesheet" type="text/css" href="./styles/prompt_tilemap.css">
+	<script defer src="./scripts/shared.js"></script>
+	<script defer src="./scripts/prompt_tilemap.js"></script>
+</head>
+<body>
+<div class="box-wide">
+	<h1>Retry Prompt Tilemap Settings</h1>
+	<p>This section describes how to edit the Retry prompt by using the <u class="dir">prompt_tilemap.asm</u> file.</p>
+	<p>If you're here just because you're getting glitched sprite tiles when the Retry prompt shows up, check out the <a href="#basic">Basic Settings</a>.</p>
+
+	<h3>Contents</h3>
+		<ul>
+			<li><a href="#basic">Basic Settings</a></li>
+			<li><a href="#advanced">Advanced Settings</a></li>
+			<li><a href="#tool">Tilemap Generation Tool</a></li>
+		</ul>
+	<br/>
+
+	<h3 id="basic">Basic Settings</h3>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>
+				<code>!prompt_tile_cursor</code><br/>
+				<code>!prompt_tiles_line1</code><br/>
+				<code>!prompt_tiles_line2</code>
+			</td>
+			<td>
+				Sprite tile numbers used by the prompt tiles (<code>$00-$FF</code> = SP1/SP2, <code>$100-$1FF</code> = SP3/SP4). These will be uploaded dynamically during gameplay when needed (and only those that are needed).<br/>
+				The default values should be fine in a lot of cases, since they just overwrite some Mario animation tiles that are not needed during death, but you may need to change them if you have some other patch installed that uses dynamic tiles (like 32x32 Mario or Custom Powerups) and you notice some glitchy tiles when the prompt appears.
+				<ul>
+					<li><code>!prompt_tile_cursor</code> is a single value but, if the black Retry background is enabled (<code>!no_prompt_bg = 0</code>), it uses three adjacent 8x8 tiles (so <code>$20</code> means it will overwrite <code>$20</code>, <code>$21</code>, <code>$22</code>), otherwise just one 8x8 tile.</li>
+					<li><code>!prompt_tiles_line1</code> is a list of 8x8 tiles that will be used for the first line of the prompt (by default it's 4 values because <code>RETRY</code> has 4 unique letters: <code>R</code>, <code>E</code>, <code>T</code>, <code>Y</code>).</li>
+					<li><code>!prompt_tiles_line2</code> is a list of 8x8 tiles that will be used additionally for the second line of the prompt (by default it's 2 values because <code>EXIT</code> has the 2 additional letters <code>X</code> and <code>I</code>, while <code>E</code> and <code>T</code> are already accounted for in the first line). Note that this is unused if the exit option is disabled (<code>!no_exit_option = 1</code>) or if all the tiles needed for the second line are already defined in the first line, so you should comment it (add <code>;</code> before it) to avoid uploading garbage tiles.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code>!prompt_pal_letter</code><br/>
+				<code>!prompt_pal_cursor</code>
+			</td>
+			<td>The palette row used by the cursor and the letter tiles. Note that they use sprite palettes.</td>
+		</tr>
+	</table>
+	<br/>
+
+	<h3 id="advanced">Advanced Settings</h3>
+	These options allow you to modify the "alphabet" used for the Retry prompt text and to specify the words that will be displayed in the prompt. Obviously you'll also need to edit the Retry gfx files to add new letters to the alphabet, if needed.
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+		</tr>
+		<tr>
+			<td>
+				<code>!prompt_gfx_index_cursor</code><br/>
+				<code>!prompt_gfx_index_line1</code><br/>
+				<code>!prompt_gfx_index_line2</code>
+			</td>
+			<td>
+				These options specify which tiles of the gfx file correspond to the tiles used for the cursor, for the first line and for the second line. The gfx files used for this are <u class="dir">gfx/prompt1.bin</u> (used when the black box is enabled) and <u class="dir">gfx/prompt2.bin</u> (used when the black box id disabled).<br/>
+				The values are indexes to the tiles in the gfx file, starting from 0. So for example, with the default gfx files, the letter <code>R</code> would be index <code>3</code> (since it's the fourth tile).
+				<ul>
+					<li><code>!prompt_gfx_index_cursor</code> is the index of the cursor tile. Note that the gfx file also needs to have two "empty" tiles (black tiles for <u class="dir">prompt1.bin</u>, transparent tiles for <u class="dir">prompt2.bin</u>) right next to the cursor. You usually wouldn't need to edit this as you would just edit the text itself.</li>
+					<li><code>!prompt_gfx_index_line1</code> is the list of indexes of the unique tiles needed for the first line. By default it corresponds to the indexes of the letters <code>R</code>, <code>E</code>, <code>T</code>, <code>Y</code>. Note that the amount of indexes should correspond to the amount of values in <code>!prompt_tiles_line1</code>.</li>
+					<li><code>!prompt_gfx_index_line2</code> is the list of indexes of the additional unique tiles needed for the second line. By default it corresponds to the indexes of the letters <code>X</code> and <code>I</code>, since <code>E</code> and <code>T</code> are already included in the first list. Note that the amount of indexes should correspond to the amount of values in <code>!prompt_tiles_line2</code>.  Note that this is unused if the exit option is disabled (<code>!no_exit_option = 1</code>) or if all the tiles needed for the second line are already defined in the first line, so you should comment it (add a <code>;</code> before it) to avoid uploading garbage tiles.</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<code>!prompt_tile_index_line1</code><br/>
+				<code>!prompt_tile_index_line2</code>
+			</td>
+			<td>
+				These settings is how you specify which tiles are actually drawn in the prompt for the two lines.<br/>
+				To find this out, note down the string of all the letters specified by <code>!prompt_gfx_index_line1</code> and <code>!prompt_gfx_index_line2</code> (in the same order). Then, in the defines you put the tiles as indexes to this string you constructed.<br/>
+				For example, the default settings specify <code>RETY</code> and <code>XI</code>, so the complete string is <code>RETYXI</code>. This means that <code>R = 0</code>, <code>E = 1</code>, <code>T = 2</code>, <code>Y = 3</code>, <code>X = 4</code>, <code>I = 5</code>.<br/>
+				So, to draw <code>RETRY</code> on the first line <code>!prompt_tile_index_line1 = 0,1,2,0,3</code>, and to draw <code>EXIT</code> on the second line <code>!prompt_tile_index_line2 = 1,4,5,2</code>.<br/>
+				If a line has multiple words, you can use <code>-1</code> in the list to denote a space, without having to add extra gfx for it (if the box is enabled, the space will be the black square, otherwise it just skips to the next tile).<br/>
+				In these lists you can specify any amount of tiles you want, but keep in mind that if the black background is enabled you'll be constrained by the prompt box/bar size (although you can change <code>!prompt_box_text_x_pos</code>/<code>!prompt_bar_text_x_pos</code> in <code>settings_global.asm</code> if you need more space). If it is disabled, you'll be constrained by the screen space.<br/>
+				Note that <code>!prompt_tile_index_line2</code> is unused if the exit option is disabled (<code>!no_exit_option = 1</code>), so you can comment it to save some ROM space (add <code>;</code> before it).
+			</td>
+		</tr>
+	</table>
+	<br/>
+
+	<h3 id="tool">Tilemap Generation Tool</h3>
+	<p>If you want to avoid hex brainrot you can use this simple tool to generate the settings for you, based on the text you want to show on the prompt. Then just copy them and paste them over the corresponding settings in the <u class="dir">prompt_tilemap.asm</u> asm file.</p>
+	<p>Both lines are case sensitive (usually you want everything to be all caps though), and the second line can be left empty if you're not using the "Exit" option (<code>!no_exit_option = 1</code>).</p>
+	<p>The tool output will be: how many values need to be specified in the prompt tiles lists (you need to choose these values yourself), the contents of the gfx/tile index lists, and a visual of how the <code>prompt1.bin</code>/<code>prompt2.bin</code> gfx file should be layed out (you need to edit the gfx yourself). In the gfx layout, "&#x25B6" denotes the cursor tile and "&#x2B1C" the "empty" tile (black or transparent square depending on the gfx file).</p>
+	<p>Note that in some cases some defines might start with <code>;</code> and it's important that it is kept in the asm file.</p>
+
+	<div class="tool">
+	<ul class="tool">
+		<li>
+			<label for="line1">First line:</label>
+			<input type="text" id="line1" value="RETRY"/>
+		</li>
+		<li>
+			<label for="line2">Second line:</label>
+			<input type="text" id="line2" value="EXIT"/>
+		</li>
+		<li>
+			<center><button onClick="generate()">Generate!</button></center>
+		</li>
+	</ul>
+	</div>
+	<span id="out-wrap">
+		<p id="out"></p>
+		<p id="err"></p>
+	</span>
+</div>
+</body>
+</html>

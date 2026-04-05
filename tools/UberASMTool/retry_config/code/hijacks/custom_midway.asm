@@ -41,8 +41,10 @@ new_norm_objects:
     ; If ObjecTool is inserted...
     lda.l !rom_objectool_byte : cmp #$5C : bne .no_objectool
 
-    ; ...jump to its code if the custom object number is $42-$4F or $52-$FF.
-    lda $5A : cmp #$42 : bcc .no_objectool
+    ; ...jump to its code if the custom object number is $20-$3F, $42-$4F or $52-$FF.
+    lda $5A : cmp #$20 : bcc .no_objectool
+              cmp #$40 : beq .no_objectool
+              cmp #$41 : beq .no_objectool
               cmp #$50 : beq .no_objectool
               cmp #$51 : beq .no_objectool
 
@@ -69,20 +71,16 @@ new_norm_objects:
 custom_midway:
     ; Backup $59 ($58-$59 used for entrance info).
     lda $59 : pha
-    stz $59
 
-    ; Check which type of entrance it's set in the extra bytes.
-    lda $5A : cmp #$50 : bcs .midway_entrance
-              cmp #$40 : bcs .main_entrance
-              cmp #$20 : bcs .secondary_water_entrance
+    ; Check which type of entrance is set in the extra bytes.
+    lda $5A : cmp #$40 : beq .main_entrance
+              cmp #$41 : beq .main_entrance
+              cmp #$50 : beq .midway_entrance
+              cmp #$51 : beq .midway_entrance
+              cmp #$20 : bcs .return
 
 .secondary_entrance:
-    and #$01 : ora #$02
-    bra +
-
-.secondary_water_entrance:
-    and #$01 : ora #$0A
-+   sta $59
+    and #$01 : ora #$02 : sta $59
     lda $5A : and #$1E : asl #3 : tsb $59
     bra .end
 
@@ -126,12 +124,12 @@ custom_midway:
     lda #$35 : sta [$6B],y
     lda #$00 : sta [$6E],y
 
-.return
+.return:
     ; Restore $59.
     pla : sta $59
     rts
 
-else
+else ; if not(!use_custom_midway_bar)
 
 ; Restore code, in case settings are changed.
 if read1($0DA415) == $5C && read1(!rom_objectool_byte) != $5C
@@ -144,6 +142,6 @@ org $0DA415
 
 pullpc
 
-endif
+endif ; read1($0DA415) == $5C && read1(!rom_objectool_byte) != $5C
 
-endif
+endif ; !use_custom_midway_bar

@@ -4,29 +4,46 @@
 	<title>Local Settings - Retry System UberASM</title>
 	<meta name="author" content="KevinM">
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+	<meta name="robots" content="noindex, nofollow, noimageindex, noarchive, nocache, nosnippet">
 	<link rel="icon" href="./img/icon.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./styles/shared.css">
+	<script defer src="./scripts/shared.js"></script>
 </head>
 <body>
+<div class="box">
 	<h1>Local Retry Settings</h1>
-	<p>Local settings are those Retry options that can be configured on a level-specific basis. These options must be inserted in the <code>retry_config/settings_local.asm</code> file. If you used older version of Retry, these are equivalent to the various tables you had to change the values of, but made simpler by not having to manage big tables of hex data.</p>
+	<p>Local settings are those Retry options that can be configured on a sublevel specific basis. These options must be inserted in the <code>retry_config/settings_local.asm</code> file. If you used older version of Retry, these are equivalent to the various tables you had to change the values of, but made simpler by not having to manage big tables of hex data.</p>
 	<p>If you still prefer the table approach, you can set <code>!use_legacy_tables = 1</code> in <code>settings_global.asm</code> and edit the tables in <code>legacy/tables.asm</code> as you're used to. In this case, ignore this document and the <code>settings_local.asm</code> file.</p>
 	<br/>
 
 	<h3>Overview</h3>
-	<p>This approach of configuring the level-specific settings uses instructions that enable some setting for a specified level number. Each instruction must be put on a separate line in the asm file.</p>
-	<p>There are various instruction types, but most times you'll probably only use one or two of them for any given level, if any.</p>
+	<p>This approach of configuring the level-specific settings uses instructions that enable some setting for a specified sublevel number. Each instruction must be put on a separate line in the asm file, in any order you want. Note that if you put the same option for the same level multiple times, only the last one will take effect.</p>
+	<p>There are various instruction types, but most times you'll probably only use one or two of them for any given level, if any. You can also add comments (lines starting with <code>;</code>) in the file, which won't do anything when inserting Retry, for example to help remembering the settings applied or to separate the settings of different sublevels.</p>
 	<p>The instruction types are the following:</p>
 
 	<ul>
-		<li><a href="#checkpoint">%checkpoint(level, value)</a></li>
-		<li><a href="#retry">%retry(level, value)</a></li>
-		<li><a href="#checkpoint_retry">%checkpoint_retry(level, checkpoint, retry)</a></li>
-		<li><a href="#sfx_echo">%sfx_echo(level)</a></li>
-		<li><a href="#no_reset_rng">%no_reset_rng(level)</a></li>
-		<li><a href="#no_room_cp_sfx">%no_room_cp_sfx(level)</a></li>
-		<li><a href="#no_lose_lives">%no_lose_lives(level)</a></li>
-		<li><a href="#settings">%settings(level, checkpoint, retry, sfx_echo, no_reset_rng, no_room_cp_sfx, no_lose_lives)</a></li>
+		<li class="closer"><a href="#checkpoint">%checkpoint(level, value)</a></li>
+		<li class="closer"><a href="#retry">%retry(level, value)</a></li>
+		<li class="closer"><a href="#checkpoint_retry">%checkpoint_retry(level, checkpoint, retry)</a></li>
+		<li class="closer"><a href="#sfx_echo">%sfx_echo(level)</a></li>
+		<li class="closer"><a href="#reset_rng">%reset_rng(level, value)</a></li>
+		<li class="closer"><a href="#no_room_cp_sfx">%no_room_cp_sfx(level)</a></li>
+		<li class="closer"><a href="#no_lose_lives">%no_lose_lives(level)</a></li>
+		<li class="closer"><a href="#settings">%settings(level, checkpoint, retry, sfx_echo, reset_rng, no_room_cp_sfx, no_lose_lives)</a></li>
+		<li class="closer"><a href="#ssb_config_item_box">%ssb_config_item_box(level, tile, pal)</a></li>
+		<li class="closer"><a href="#ssb_config_timer">%ssb_config_timer(level, tile, pal)</a></li>
+		<li class="closer"><a href="#ssb_config_coins">%ssb_config_coins(level, tile, pal, beha)</a></li>
+		<li class="closer"><a href="#ssb_config_lives">%ssb_config_lives(level, tile, pal)</a></li>
+		<li class="closer"><a href="#ssb_config_bonus_stars">%ssb_config_bonus_stars(level, tile, pal)</a></li>
+		<li class="closer"><a href="#ssb_config_death">%ssb_config_death(level, tile, pal)</a></li>
+		<li class="closer"><a href="#ssb_config">%ssb_config(level, item_box_tile, item_box_pal, timer_tile, timer_pal, coins_tile, coins_pal, coins_beha, lives_tile, lives_pal, bonus_stars_tile, bonus_stars_pal, death_tile, death_pal)</a></li>
+		<li class="closer"><a href="#ssb_hide_item_box">%ssb_hide_item_box(level)</a></li>
+		<li class="closer"><a href="#ssb_hide_timer">%ssb_hide_timer(level)</a></li>
+		<li class="closer"><a href="#ssb_hide_coins">%ssb_hide_coins(level)</a></li>
+		<li class="closer"><a href="#ssb_hide_lives">%ssb_hide_lives(level)</a></li>
+		<li class="closer"><a href="#ssb_hide_bonus_stars">%ssb_hide_bonus_stars(level)</a></li>
+		<li class="closer"><a href="#ssb_hide_death">%ssb_hide_death(level)</a></li>
+		<li class="closer"><a href="#ssb_hide">%ssb_hide(level)</a></li>
 	</ul>
 	<br/>
 
@@ -88,11 +105,18 @@
 	</ul>
 	<br/>
 
-<h3 id="no_reset_rng">%no_reset_rng(level)</h3>
-	<p>Normally Retry resets the RNG seed every time a level is reloaded, to make setups consistent between deaths. Using this option will make the RNG not reset when retrying in this sublevel.</p>
+<h3 id="reset_rng">%reset_rng(level, value)</h3>
+	<p>This option overrides the <code>!reset_rng</code> option in <a href="./settings_global.html#fixes">Global Settings - Quality of Life Fixes Settings</a> for the specified sublevel, depending on the value:</p>
+	<ul>
+		<li><code>0</code> = RNG will never be reset by Retry in this sublevel.</li>
+		<li><code>1</code> = RNG will be reset when entering this sublevel from the Overworld (vanilla behavior).</li>
+		<li><code>2</code> = option 1 + RNG will be reset when dying and Retrying in this sublevel (old Retry default behavior).</li>
+		<li><code>3</code> = RNG will always be reset in this sublevel (option 2 + RNG will be reset when entering it from a pipe/door).</li>
+	</ul>
 	<p>Examples:</p>
 	<ul>
-		<li><code>%no_reset_rng($105)</code>: sublevel $105 won't have the RNG reset when reloading it with Retry.</li>
+		<li><code>%reset_rng($105,0)</code>: never reset RNG in sublevel $105.</li>
+		<li><code>%reset_rng($69,3)</code>: always reset RNG in sublevel $69.</li>
 	</ul>
 	<br/>
 
@@ -106,7 +130,7 @@
 	<br/>
 
 <h3 id="no_lose_lives">%no_lose_lives(level)</h3>
-	<p>If infinite lives is disabled (<code>!infinite_lives = 0</code> in <code>settings_global.asm</code>), you can prevent life loss in specific sublevels using this option (for example for tutorial rooms or cutscenes).</p>
+	<p>If infinite lives is disabled (<code>!infinite_lives = 0</code> in <a href="./settings_global.html#fixes">Global Settings - Quality of Life Fixes Settings</a>), you can prevent life loss in specific sublevels using this option (for example for tutorial rooms or cutscenes).</p>
 	<p>If <code>!infinite_lives = 1</code>, you can ignore this.</p>
 	<p>Examples:</p>
 	<ul>
@@ -114,7 +138,7 @@
 	</ul>
 	<br/>
 
-<h3 id="settings">%settings(level, checkpoint, retry, sfx_echo, no_reset_rng, no_room_cp_sfx, no_lose_lives)</h3>
+<h3 id="settings">%settings(level, checkpoint, retry, sfx_echo, reset_rng, no_room_cp_sfx, no_lose_lives)</h3>
 	<p>This is a shorthand to configure all the settings for the specified level at the same time.</p>
 	<p>The arguments are:</p>
 	<ul>
@@ -122,11 +146,48 @@
 		<li><code>checkpoint</code>: same as <code>value</code> in <code>%checkpoint</code>.</li>
 		<li><code>retry</code>: same as <code>value</code> in <code>%retry</code>.</li>
 		<li><code>sfx_echo</code>: if <code>1</code>, SFX echo is toggled in the sublevel.</li>
-		<li><code>no_reset_rng</code>: if <code>0</code>, RNG is reset when retrying in the sublevel. Otherwise, it is not reset.</li>
+		<li><code>reset_rng</code>: same as <code>value</code> in <code>%reset_rng</code>.</li>
 		<li><code>no_room_cp_sfx</code>: if <code>0</code>, automatic checkpoints in the sublevel will play the SFX. Otherwise, they won't play the SFX.</li>
 		<li><code>no_lose_lives</code>: if <code>0</code>, life loss is enabled in the sublevel (if infinite lives is disabled globally). Otherwise, it is disabled.</li>
 	</ul>
+	<br/>
 
-	<br/><center><a href="./index.html">Return to main page</a></center>
+	<p id="ssb"></p>
+<h3 id="ssb_config_item_box" class="closer">%ssb_config_item_box(level, tile, pal)</h3>
+<h3 id="ssb_config_timer" class="closer">%ssb_config_timer(level, tile, pal)</h3>
+<h3 id="ssb_config_coins" class="closer">%ssb_config_coins(level, tile, pal, beha)</h3>
+<h3 id="ssb_config_lives" class="closer">%ssb_config_lives(level, tile, pal)</h3>
+<h3 id="ssb_config_bonus_stars" class="closer">%ssb_config_bonus_stars(level, tile, pal)</h3>
+<h3 id="ssb_config_death" class="closer">%ssb_config_death(level, tile, pal)</h3>
+	<p>These settings override the respective sprite status bar element's default configuration in the specified level. This only works if <code>!sprite_status_bar = 1</code> in <a href="./settings_global.html#sprite-status-bar">Global Settings - Sprite Status Bar Settings</a>.</p>
+	<p><code>tile</code> and <code>pal</code> specify the tile and palette to use for the element, similarly to the <code>!default_XXX_tile</code> and <code>!default_XXX_palette</code> defines in the global settings.</p>
+	<p>For the coin counter, there's an additional parameter <code>beha</code> that controls whether to display coins, dragon coins or both:
+		<ul>
+			<li>0 = draw both coins and dragon coins</li>
+			<li>1 = don't draw coins (only dragon coins)</li>
+			<li>2 = don't draw dragon coins (only coins)</li>
+		</ul>
+	</p>
+	<p>Note that these are settings that persist during the level. If you need a way to unhide status bar elements during a level, you can use the <a href="./api.html#configure_sprite_status_bar">API - Configure sprite status bar</a> routine.</p>
+	<br/>
+
+<h3 id="ssb_config">%ssb_config(level, item_box_tile, item_box_pal, timer_tile, timer_pal, coins_tile, coins_pal, coins_beha, lives_tile, lives_pal, bonus_stars_tile, bonus_stars_pal, death_tile, death_pal)</h3>
+	<p>This is a shorthand to configure all the sprite status bar elements for the specified level at the same time. This only works if <code>!sprite_status_bar = 1</code> in <a href="./settings_global.html#sprite-status-bar">Global Settings - Sprite Status Bar Settings</a>.</p>
+	<br/>
+
+	<p id="ssb2"></p>
+<h3 id="ssb_hide_item_box" class="closer">%ssb_hide_item_box(level)</h3>
+<h3 id="ssb_hide_timer" class="closer">%ssb_hide_timer(level)</h3>
+<h3 id="ssb_hide_coins" class="closer">%ssb_hide_coins(level)</h3>
+<h3 id="ssb_hide_lives" class="closer">%ssb_hide_lives(level)</h3>
+<h3 id="ssb_hide_bonus_stars" class="closer">%ssb_hide_bonus_stars(level)</h3>
+<h3 id="ssb_hide_death" class="closer">%ssb_hide_death(level)</h3>
+	<p>These hide the respective sprite status bar element in the specified level. This only works if <code>!sprite_status_bar = 1</code> in <a href="./settings_global.html#sprite-status-bar">Global Settings - Sprite Status Bar Settings</a>.</p>
+	<p>Note that these are settings that persist during the level. If you need a way to hide status bar elements during a level, you can use the <a href="./api.html#hide_sprite_status_bar">API - Hide sprite status bar</a> routine.</p>
+	<br/>
+
+<h3 id="ssb_hide">%ssb_hide(level)</h3>
+	<p>This hides the sprite status bar entirely in the specified level. This only works if <code>!sprite_status_bar = 1</code> in <a href="./settings_global.html#sprite-status-bar">Global Settings - Sprite Status Bar Settings</a>.</p>
+</div>
 </body>
 </html>

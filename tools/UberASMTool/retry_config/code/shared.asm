@@ -1,74 +1,97 @@
-;================================================
+;===============================================================================
 ; Shared routines and macros.
-;================================================
+;===============================================================================
 
-;================================================
-; Macro to push the current code's DB to the stack
-; and set the DBR to label's bank.
+;===============================================================================
+; Macro to push the current code's DB to the stack and set the DBR to label's
+; bank.
 ; Note: remember to PLB when finished!
-;================================================
+;===============================================================================
 macro set_dbr(label)
-?-  pea.w (<label>>>16)|((?-)>>16<<8)
+?-  pea.w bank(<label>)|(bank(?-)<<8)
     plb
 endmacro
 
-;================================================
+;===============================================================================
+; God awful function to find the RTL location in various SMW banks
+; It returns 0 if the bank is not supported
+;===============================================================================
+function __rtl(x) = \
+    select(equal(x, $00), $0084CF,\
+    select(equal(x, $01), $0180CA,\
+    select(equal(x, $02), $02B889,\
+    select(equal(x, $03), $03827F,\
+    select(equal(x, $04), $048575,\
+    select(equal(x, $05), $058125,\
+    select(equal(x, $07), $07FC51,\
+    select(equal(x, $0C), $0C9399,\
+    select(equal(x, $0D), $0DA105,\
+    0)))))))))
+
+;===============================================================================
 ; Macro to JSL to a routine that ends in RTS.
-;================================================
-macro jsl_to_rts(routine, rtl)
+;===============================================================================
+macro jsl_to_rts(routine)
+    !__rtl = __rtl(bank(<routine>)&$7F)
+    assert !__rtl,\
+        "jsl_to_rts not supported for bank $", hex(bank(<routine>)&$7F)
+    assert read1(!__rtl) == $6B,\
+        "Found $", hex(read1(!__rtl)), " at ROM $", hex(!__rtl), ", expected $6B"
+    
     phk : pea.w (?+)-1
-    pea.w <rtl>-1
+    pea.w !__rtl-1
     jml <routine>|!bank
 ?+
+    undef "__rtl"
 endmacro
 
-;================================================
+;===============================================================================
 ; Macro to JSL to a routine that ends in RTS.
 ; Also sets up the DBR to the routine's bank.
-;================================================
-macro jsl_to_rts_db(routine, rtl)
+;===============================================================================
+macro jsl_to_rts_db(routine)
     %set_dbr(<routine>)
-    %jsl_to_rts(<routine>,<rtl>)
+    %jsl_to_rts(<routine>)
     plb
 endmacro
 
-;================================================
+;===============================================================================
 ; Macro to load the current level number ($13BF).
 ; Calls the appropriate routine if dynamic OW levels are used.
-;================================================
+;===============================================================================
 macro lda_13BF()
 if !dynamic_ow_levels
     jsr shared_get_new_13BF
-else
+else ; if not(!dynamic_ow_levels)
     lda $13BF|!addr
-endif
+endif ; !dynamic_ow_levels
 endmacro
 
-;================================================
+;===============================================================================
 ; Functions for (H)DMA address conversion
-;================================================
+;===============================================================================
 function dma(addr,ch)     = ((addr)+((ch)*$10))
 function window_dma(addr) = dma(addr,!window_channel)
-function prompt_dma(addr) = dma(addr,!prompt_channel)
+function upload_dma(addr) = dma(addr,!upload_channel)
 
-;================================================
+;===============================================================================
 ; Utility functions for tilemap and stripe image management.
-;================================================
+;===============================================================================
 function xb(x)                = (((x)&$FF)<<8)|(((x)>>8)&$FF)
 function l3_prop(pal,page)    = ($20|(((pal)&7)<<2)|((page)&1))
 function l3_tile(tile,pal)    = ((tile)|((pal)<<8))
 function str_header1(x,y)     = xb($5000|((y)<<5)|(x))
 function str_header2(len,rle) = xb((((rle)&1)<<14)|(len))
 
-;================================================
+;===============================================================================
 ; Utility functions for VRAM and graphics.
-;================================================
+;===============================================================================
 function vram_addr(offset) = (!sprite_vram+(offset*$10))
 function gfx_size(num)     = (num*$20)
 
-;================================================
+;===============================================================================
 ; Routine to get the prompt type for the current level.
-;================================================
+;===============================================================================
 get_prompt_type:
     ; If in title screen, override the normal settings.
     lda $0100|!addr : cmp #$07 : bne .level
@@ -78,9 +101,9 @@ if !title_death_behavior < 2
     lda.b #!retry_type_vanilla
 elseif !title_death_behavior == 2
     lda.b #!retry_type_instant_death_sfx
-else
+else ; if not(!title_death_behavior < 2 && !title_death_behavior == 2)
     lda.b #!retry_type_instant_death_song
-endif
+endif ; !title_death_behavior < 2
     rts
 
 .level:
@@ -97,9 +120,9 @@ endif
 .not_default:
     rts
 
-;================================================
+;===============================================================================
 ; Get translevel number the player is standing on the overworld.
-;================================================
+;===============================================================================
 get_translevel:
     lda $0109|!addr : beq .no_intro
     lda #$00 : sta $13BF|!addr
@@ -107,7 +130,7 @@ get_translevel:
 .no_intro:
     ldy $0DD6|!addr
     lda $1F17|!addr,y : lsr #4 : sta $00
-    lda $1F19|!addr,y : and #$F0 : ora $00 : sta $00
+    lda $1F19|!addr,y : and #$F0 : tsb $00
     lda $1F1A|!addr,y : asl : sta $01
     lda $1F18|!addr,y : and #$01 : ora $01
     ldy $0DB3|!addr
@@ -120,14 +143,14 @@ get_translevel:
     sep #$10
 if !dynamic_ow_levels
     jmp get_new_13BF_no_intro
-else
+else ; not(!dynamic_ow_levels)
     rts
-endif
+endif ; !dynamic_ow_levels
 
-;================================================
-; Get correct $13BF value for current level
-; (for patches that change level number dynamically).
-;================================================
+;===============================================================================
+; Get correct $13BF value for current level (for patches that change level
+; number dynamically).
+;===============================================================================
 if !dynamic_ow_levels
 get_new_13BF:
     lda $0109|!addr : beq .no_intro
@@ -143,11 +166,12 @@ get_new_13BF:
     cpy #$00 : beq +
     clc : adc #$24
 +   rts
-endif
+endif ; !dynamic_ow_levels
 
-;================================================
-; Routine to save the current level's custom checkpoint value and set the midway flag.
-;================================================
+;===============================================================================
+; Routine to save the current level's custom checkpoint value and set the midway
+; flag.
+;===============================================================================
 hard_save:
     ; Filter title screen, etc.
     lda $0109|!addr : beq .no_intro
@@ -170,14 +194,14 @@ hard_save:
     plx
 if !save_on_checkpoint
     jmp save_game
-else
+else ; if not(!save_on_checkpoint)
     rts
-endif
+endif ; !save_on_checkpoint
 
-;================================================
+;===============================================================================
 ; Routine to remove the current level's checkpoint.
 ; Note: $13CE isn't cleared because it's also used in the OW loading routine.
-;================================================
+;===============================================================================
 reset_checkpoint:
     phx
     phy
@@ -194,9 +218,9 @@ reset_checkpoint:
     plx
     rts
 
-;================================================
+;===============================================================================
 ; Routine to save the game.
-;================================================
+;===============================================================================
 save_game:
     phx
     phy
@@ -218,9 +242,34 @@ save_game:
     plx
     rts
 
-;================================================
+;===============================================================================
+; Routine to check if the current save file is empty
+; Output: Carry set = save file empty
+;         Carry clear = save file not empty
+;===============================================================================
+is_save_file_empty:
+    php
+    sep #$30
+    ldx $010A|!addr
+    phb
+    ; Can't use %jsl_to_rts_db because plb clobbers the Z flag
+    lda.b #$00|!bank8 : pha : plb
+    %jsl_to_rts($009DB5)
+    bne .empty
+.not_empty:
+    plb
+    plp
+    clc
+    rts
+.empty:
+    plb
+    plp
+    sec
+    rts
+
+;===============================================================================
 ; Routines to reset and save the dcsave buffers.
-;================================================
+;===============================================================================
 dcsave:
 .init:
     ; Return if dcsave isn't installed.
@@ -235,9 +284,9 @@ dcsave:
     ; Call the dcsave routine.
 if !sa1
     %invoke_sa1(.jml)
-else
+else ; if not(!sa1)
     jsl .jml
-endif
+endif ; !sa1
     rts
 
 .midpoint:
@@ -262,12 +311,11 @@ endif
 .jml:
     jml [$000D|!dp]
 
-;================================================
-; Routine to get the checkpoint value for the current sublevel.
-; Returns the value in A (8 bit).
-; You should use cmp #$00 to check for 0 after calling this.
-; X,Y and P are preserved.
-;================================================
+;===============================================================================
+; Routine to get the checkpoint value for the current sublevel. Returns the
+; value in A (8 bit). You should use cmp #$00 to check for 0 after calling this.
+; X, Y and P are preserved.
+;===============================================================================
 get_checkpoint_value:
     phx
     php
@@ -279,12 +327,11 @@ get_checkpoint_value:
     plx
     rts
 
-;================================================
-; Routine to get the effect value for the current sublevel.
-; Returns the value in A (8 bit).
-; You should use cmp #$00 to check for 0 after calling this.
-; X,Y and P are preserved.
-;================================================
+;===============================================================================
+; Routine to get the effect value for the current sublevel. Returns the value in
+; A (8 bit). You should use cmp #$00 to check for 0 after calling this.
+; X, Y and P are preserved.
+;===============================================================================
 get_effect_value:
     phx
     php
@@ -297,11 +344,26 @@ get_effect_value:
     plx
     rts
 
-;================================================
-; Routine to get the index and mask to a bitwise sublevel table.
-; Returns the index to the table in X, and the mask in A (8 bit).
+;===============================================================================
+; Routine to get the RNG reset value for the current sublevel. Returns the value
+; in A (8 bit). You should use cmp #$00 to check for 0 after calling this.
+; X, Y and P are preserved.
+;===============================================================================
+get_reset_rng_value:
+    phx
+    php
+    rep #$10
+    ldx $010B|!addr
+    lda.l tables_reset_rng,x
+    plp
+    plx
+    rts
+
+;===============================================================================
+; Routine to get the index and mask to a bitwise sublevel table. Returns the
+; index to the table in X, and the mask in A (8 bit).
 ; A/X/Y should be in 8-bit mode when calling this. Y is preserved.
-;================================================
+;===============================================================================
 get_bitwise_mask:
     lda $010B|!addr : and #$07 : tax
     lda.l .mask_table,x : pha
@@ -314,10 +376,10 @@ get_bitwise_mask:
 .mask_table:
     db $80,$40,$20,$10,$08,$04,$02,$01
 
-;================================================
+;===============================================================================
 ; Routine to get current screen number in X.
 ; If Lunar Magic 3.0+ is used, it may overwrite Y.
-;================================================
+;===============================================================================
 get_screen_number:
     lda.l !rom_lm_version : cmp #$33 : bcc .no_lm3
     lda.l !rom_lm_get_screen_routine : cmp #$FF : beq .no_lm3
@@ -331,10 +393,10 @@ get_screen_number:
 .return:
     rts
 
-;================================================
+;===============================================================================
 ; Routine that returns the intro sublevel in A.
 ; Output: A 16 bit, intro sublevel in A.
-;================================================
+;===============================================================================
 get_intro_sublevel:
     rep #$20
     lda.l !rom_initial_submap : and #$00FF : beq .normal
@@ -346,21 +408,20 @@ get_intro_sublevel:
     lda.w #!intro_level
     rts
 
-;================================================
-; Routine that updates the OAM table at $0400 using
-; the decompressed mirror at $0420.
-; Useful if you need to draw sprites during fadein.
-;================================================
+;===============================================================================
+; Routine that updates the OAM table at $0400 using the decompressed mirror at
+; $0420. Useful if you need to draw sprites during fadein.
+;===============================================================================
 update_0400:
-    %jsl_to_rts_db($008494,$0084CF)
+    %jsl_to_rts_db($008494)
     rts
 
-;================================================
-; Routine to check if a level entrance destination would
-; trigger a room checkpoint in the current sublevel.
+;===============================================================================
+; Routine to check if a level entrance destination would trigger a room
+; checkpoint in the current sublevel.
 ; Input: A = entrance destination value high byte
 ; Output: Carry = Set (Yes) / Reset (No)
-;================================================
+;===============================================================================
 is_destination_a_checkpoint:
     ; Save A for later
     xba
@@ -394,6 +455,56 @@ is_destination_a_checkpoint:
     sec
     rts
 
+.no:
+    clc
+    rts
+
+;===============================================================================
+; Routine to set the Retry checkpoints accordingly with the initial OW flags
+; (i.e. the "Midway point obtained" flag)
+;===============================================================================
+set_checkpoints_from_initial_ow_flags:
+    php
+    sep #$30
+    ldy #$5F
+.loop:
+    ; Skip if the "Midway point obtained" flag is not set
+    lda $1F49|!addr,y : and #$40 : beq ..next
+    ; X = 2*Y (for checkpoint table)
+    tya : asl : tax
+    ; Skip if the checkpoint is for a secondary exit (just to be sure)
+    lda !ram_checkpoint+1,x : bit #$02 : bne ..next
+    ; Set the midway bit in the checkpoint
+    ora #$08 : sta !ram_checkpoint+1,x
+..next:
+    dey : bpl .loop
+    plp
+    rts
+
+;===============================================================================
+; Helper routine to reset the RNG state.
+;===============================================================================
+reset_rng:
+    rep #$20
+    stz $148B|!addr
+    stz $148D|!addr
+    sep #$20
+    rts
+
+;===============================================================================
+; idk what to call it
+; It checks if the prompt is active in the level and it was activated
+; Carry clear: no
+; Carry set: yes
+;===============================================================================
+is_prompt_deployed:
+    jsr shared_get_prompt_type
+    cmp.b #!retry_type_prompt_max+1 : bcs .no
+    lda !ram_is_respawning : bne .yes
+    lda !ram_prompt_phase : beq .no
+.yes:
+    sec
+    rts
 .no:
     clc
     rts

@@ -56,8 +56,8 @@ midway_main:
 
     ; Call the custom midway routine.
     ; (we already did PHX earlier).
-    phy : php : phb : phk : plb
-    jsr extra_midway
+    phy : php : phb
+    jsl extra_midway
     plb : plp : ply : plx
     
     ; Only run the powerup code if applicable.
@@ -140,7 +140,7 @@ if !sa1 == 0
     lda $05 : sta $4203
     rep #$20
     lda $01 : clc : adc $4216 : sta $01
-else
+else ; if !sa1
     stz $2250
 
     rep #$20
@@ -153,7 +153,7 @@ else
     txa : and #$00FF : sta $2251
     lda $05 : and #$00FF : sta $2253
     lda $01 : clc : adc $2306 : sta $01
-endif
+endif ; !sa1 == 0
 
     lda $00 : sta $04
     pla : sta $02
