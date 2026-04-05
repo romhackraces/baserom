@@ -2,6 +2,8 @@ v5.15
 - update retry-system to 2.0.1
 - add patch that allows toggling score disable
 - objects for sprite hud now automatically disable layer 3 hud
+- upgrade the endless throwblock to newer version
+- included fix for poison mushroom sprite status
 
 v5.14.1
 - update Callisto to 6.2.1

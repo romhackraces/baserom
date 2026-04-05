@@ -397,6 +397,10 @@ Donut Lift Block v1.1*
  - author(s): by Davros, mikeyk
  - source: https://smwc.me/s/20418
 
+Endless Throw Block
+- author(s): AmperSam
+- source: https://smwc.me/s/42051
+
 Hurt / Death Block for Kaizo / Pit Hacks
  - author(s): dacin
  - source: https://smwc.me/s/27268
