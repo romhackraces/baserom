@@ -71,6 +71,8 @@ function Setup-Tool($Name, $URL, $Dir, $List, $Extra) {
             Write-Host "`n$Name is not set up."
             # Download Tool
             Write-Host "Downloading $Name..." -ForegroundColor DarkGray
+            # Insure TLS support
+            [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
             Invoke-WebRequest -Uri $URL -OutFile "$env:temp\$Name.zip"
             # Expand Archive
             Write-Host "Extracting $Name..." -ForegroundColor DarkGray
